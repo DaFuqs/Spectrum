@@ -16,6 +16,6 @@ public class FoxEntityMixin {
 			return true;
 		
 		var entity = (LivingEntity) (Object) this;
-		return entity.hasEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || entity.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER);
+		return entity.hasEffect(SpectrumMobEffects.ETERNAL_SLUMBER) || entity.hasEffect(SpectrumMobEffects.FATAL_SLUMBER);
 	}
 }

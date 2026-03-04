@@ -43,7 +43,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	static {
 		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.BAD_OMEN, MobEffects.HERO_OF_THE_VILLAGE);
-		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.HUNGER, SpectrumStatusEffects.NOURISHING);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.HUNGER, SpectrumMobEffects.NOURISHING);
 		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.HARM, MobEffects.HEAL);
 		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.DIG_SLOWDOWN, MobEffects.DIG_SPEED);
 		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.MOVEMENT_SLOWDOWN, MobEffects.MOVEMENT_SPEED);
@@ -52,8 +52,8 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.WITHER, MobEffects.REGENERATION);
 		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.CONFUSION, MobEffects.JUMP);
 		HARMFUL_TO_BENEFICIAL_EFFECT.put(MobEffects.BLINDNESS, MobEffects.NIGHT_VISION);
-		HARMFUL_TO_BENEFICIAL_EFFECT.put(SpectrumStatusEffects.STIFFNESS, SpectrumStatusEffects.SWIFTNESS);
-		HARMFUL_TO_BENEFICIAL_EFFECT.put(SpectrumStatusEffects.DENSITY, SpectrumStatusEffects.LIGHTWEIGHT);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(SpectrumMobEffects.STIFFNESS, SpectrumMobEffects.SWIFTNESS);
+		HARMFUL_TO_BENEFICIAL_EFFECT.put(SpectrumMobEffects.DENSITY, SpectrumMobEffects.LIGHTWEIGHT);
 	}
 	
 	;
@@ -99,7 +99,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		registerInToastManager(getType(), this);
 		
 		// remember one of each status effect recipe for quick lookup
-		if (recipeData.statusEffect() == SpectrumStatusEffects.IMMUNITY) {
+		if (recipeData.statusEffect() == SpectrumMobEffects.IMMUNITY) {
 			immunityRecipe = this;
 		}
 		if (recipeData.statusEffect().value().getCategory() == MobEffectCategory.BENEFICIAL) {

@@ -28,7 +28,7 @@ public class KindlingEntityArmorFeatureRenderer extends RenderLayer<KindlingEnti
 	
 	public KindlingEntityArmorFeatureRenderer(RenderLayerParent<KindlingEntity, KindlingEntityModel> context, EntityModelSet loader) {
 		super(context);
-		this.model = new KindlingEntityModel(loader.bakeLayer(SpectrumModelLayers.KINDLING_ARMOR));
+		this.model = new KindlingEntityModel(loader.bakeLayer(SpectrumModelLayerLocations.KINDLING_ARMOR));
 	}
 	
 	@Override

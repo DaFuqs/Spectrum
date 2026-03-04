@@ -15,7 +15,7 @@ import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 
-public class SpectrumLootConditions {
+public class SpectrumLootConditionTypes {
 	
 	public static final DeferredRegister<LootItemConditionType> REGISTRAR = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, SpectrumCommon.MOD_ID);
 	

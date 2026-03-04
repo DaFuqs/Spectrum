@@ -35,7 +35,7 @@ public class ImmunityStatusEffect extends MobEffect {
 	public static void removeOtherStatusEffects(@NotNull LivingEntity entity) {
 		Set<Holder<MobEffect>> effectsToRemove = new HashSet<>();
 		for (MobEffectInstance instance : entity.getActiveEffects()) {
-			if (!instance.getEffect().is(SpectrumStatusEffectTags.BYPASSES_IMMUNITY)) {
+			if (!instance.getEffect().is(SpectrumMobEffectTags.BYPASSES_IMMUNITY)) {
 				effectsToRemove.add(instance.getEffect());
 			}
 		}
@@ -47,7 +47,7 @@ public class ImmunityStatusEffect extends MobEffect {
 	
 	@Override
 	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
-		cures.add(SpectrumStatusEffectCures.COMMAND_ONLY);
+		cures.add(SpectrumEffectCures.COMMAND_ONLY);
 	}
 	
 }

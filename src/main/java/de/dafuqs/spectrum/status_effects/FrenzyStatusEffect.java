@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.status_effects;
 
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
@@ -22,14 +21,14 @@ public class FrenzyStatusEffect extends MobEffect {
 	// prevent the resetting of frenzy-granted attributes
 	@Override
 	public void onEffectStarted(LivingEntity entity, int amplifier) {
-		if (!SpectrumStatusEffects.effectsAreGettingStacked && !entity.hasEffect(SpectrumStatusEffects.FRENZY)) {
+		if (!SpectrumMobEffects.effectsAreGettingStacked && !entity.hasEffect(SpectrumMobEffects.FRENZY)) {
 			super.onEffectStarted(entity, amplifier);
 		}
 	}
 	
 	@Override
 	public void removeAttributeModifiers(AttributeMap attributes) {
-		if (!SpectrumStatusEffects.effectsAreGettingStacked) {
+		if (!SpectrumMobEffects.effectsAreGettingStacked) {
 			super.removeAttributeModifiers(attributes);
 		}
 	}
@@ -89,7 +88,7 @@ public class FrenzyStatusEffect extends MobEffect {
 	
 	@Override
 	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
-		cures.add(SpectrumStatusEffectCures.SEDATIVES);
+		cures.add(SpectrumEffectCures.SEDATIVES);
 	}
 	
 	// TODO: move hurt reset code here

@@ -114,7 +114,7 @@ public class DecayAwayBlock extends Block {
 					return Blocks.NETHERRACK.defaultBlockState();
 				} else if (BuiltinDimensionTypes.END_EFFECTS.equals(identifier)) {
 					return Blocks.END_STONE.defaultBlockState();
-				} else if (SpectrumDimensions.DIMENSION_ID.equals(identifier)) {
+				} else if (SpectrumDimensionKeys.DIMENSION_ID.equals(identifier)) {
 					return SpectrumBlocks.BLACKSLAG.get().defaultBlockState();
 				}
 				return Blocks.DIRT.defaultBlockState();

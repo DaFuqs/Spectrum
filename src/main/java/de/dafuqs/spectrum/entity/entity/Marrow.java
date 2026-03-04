@@ -59,7 +59,7 @@ public class Marrow extends AbstractSkeleton {
 	protected @NotNull AbstractArrow getArrow(@NotNull ItemStack arrowStack, float velocity, @Nullable ItemStack weapon) {
 		AbstractArrow abstractArrow = super.getArrow(arrowStack, velocity, weapon);
 		if (abstractArrow instanceof Arrow arrow) {
-			arrow.addEffect(new MobEffectInstance(SpectrumStatusEffects.STIFFNESS, 600));
+			arrow.addEffect(new MobEffectInstance(SpectrumMobEffects.STIFFNESS, 600));
 		}
 		return abstractArrow;
 	}

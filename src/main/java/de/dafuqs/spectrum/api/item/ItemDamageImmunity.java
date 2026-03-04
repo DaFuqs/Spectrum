@@ -17,7 +17,7 @@ public class ItemDamageImmunity {
 	private static final Map<Item, List<TagKey<DamageType>>> damageSourceImmunities = new HashMap<>();
 	
 	public static void registerImmunity(ItemLike itemConvertible, TagKey<DamageType> damageTypeTag) {
-		// TODO: migrate to data loader
+		// TODO: migrate to item component
 		/*Item item = itemConvertible.asItem();
 		List<TagKey<DamageType>> current = damageSourceImmunities.getOrDefault(item, new ArrayList<>());
 		current.add(damageTypeTag);

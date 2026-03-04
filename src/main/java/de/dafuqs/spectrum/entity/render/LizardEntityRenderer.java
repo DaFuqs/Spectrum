@@ -14,7 +14,7 @@ public class LizardEntityRenderer extends MobRenderer<LizardEntity, LizardEntity
 	public static final ResourceLocation TEXTURE_BLINKING = SpectrumCommon.locate("textures/entity/lizard/lizard_blinking.png");
 	
 	public LizardEntityRenderer(EntityRendererProvider.Context context) {
-		super(context, new LizardEntityModel<>(context.bakeLayer(SpectrumModelLayers.LIZARD_SCALES)), 0.8F);
+		super(context, new LizardEntityModel<>(context.bakeLayer(SpectrumModelLayerLocations.LIZARD_SCALES)), 0.8F);
 		this.addLayer(new LizardEyesFeatureRenderer<>(this));
 		this.addLayer(new LizardHornsFeatureRenderer<>(this));
 		this.addLayer(new LizardFrillsFeatureRenderer<>(this));

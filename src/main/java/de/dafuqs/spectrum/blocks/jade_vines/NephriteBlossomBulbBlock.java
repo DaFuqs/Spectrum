@@ -48,6 +48,6 @@ public class NephriteBlossomBulbBlock extends BushBlock implements BonemealableB
 	
 	@Override
 	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-		world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).get(SpectrumConfiguredFeatures.NEPHRITE_BLOSSOM_BULB).place(world, world.getChunkSource().getGenerator(), random, pos);
+		world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).get(SpectrumConfiguredFeatureKeys.NEPHRITE_BLOSSOM_BULB).place(world, world.getChunkSource().getGenerator(), random, pos);
 	}
 }

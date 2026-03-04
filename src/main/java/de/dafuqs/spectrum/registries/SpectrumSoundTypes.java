@@ -4,7 +4,7 @@ package de.dafuqs.spectrum.registries;
 import net.minecraft.sounds.*;
 import net.minecraft.world.level.block.*;
 
-public class SpectrumBlockSoundGroups {
+public class SpectrumSoundTypes {
 	
 	// float volume, float pitch, SoundEvent breakSound, SoundEvent stepSound, SoundEvent placeSound, SoundEvent hitSound, SoundEvent fallSound
 	public static final SoundType CITRINE_BLOCK = new SoundType(1.0F, 1.0F, SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_BREAK, SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_STEP, SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_PLACE, SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_FALL);

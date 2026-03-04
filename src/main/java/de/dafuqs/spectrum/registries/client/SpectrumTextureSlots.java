@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.registries.client;
 
 import net.minecraft.data.models.model.*;
 
-public class SpectrumTextureKeys {
+public class SpectrumTextureSlots {
 	
 	public static final TextureSlot KEY0 = TextureSlot.create("0");
 	public static final TextureSlot KEY1 = TextureSlot.create("1");

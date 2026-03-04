@@ -75,7 +75,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		float speed = original.call(inventory, state);
 		
 		// RAZING GAMING
-		int razingLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantments.RAZING, stack);
+		int razingLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantmentKeys.RAZING, stack);
 		if (razingLevel > 0 && tool != null && tool.getMiningSpeed(state) > tool.defaultMiningSpeed()) {
 			float hardness = state.getBlock().defaultDestroyTime();
 			speed = (float) Math.max(1 + hardness, Math.pow(2, 1 + razingLevel / 8F));
@@ -84,7 +84,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		// INERTIA GAMING
 		// inertia mining speed calculation logic is capped at 5 levels.
 		// Higher and the formula would do weird stuff
-		int inertiaLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantments.INERTIA, stack);
+		int inertiaLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantmentKeys.INERTIA, stack);
 		inertiaLevel = Math.min(4, inertiaLevel);
 		if (inertiaLevel > 0) {
 			var inertia = stack.getOrDefault(SpectrumDataComponentTypes.INERTIA, InertiaComponent.DEFAULT);
@@ -217,7 +217,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@WrapOperation(method = "updatePlayerPose", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;setPose(Lnet/minecraft/world/entity/Pose;)V"))
 	public void spectrum$forceSwimmingState(Player instance, Pose entityPose, Operation<Void> original) {
 		var component = MiscPlayerDataAttachmentType.get(instance);
-		if ((component.shouldLieDown() || instance.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER)) && canPlayerFitWithinBlocksAndEntitiesWhen(Pose.SWIMMING)) {
+		if ((component.shouldLieDown() || instance.hasEffect(SpectrumMobEffects.FATAL_SLUMBER)) && canPlayerFitWithinBlocksAndEntitiesWhen(Pose.SWIMMING)) {
 			instance.setPose(Pose.SWIMMING);
 			return;
 		}

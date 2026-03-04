@@ -296,19 +296,19 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		int i = random.nextInt();
 		switch (i) {
 			case 0 -> {
-				return new MobEffectInstance(SpectrumStatusEffects.SCARRED, 200, 0);
+				return new MobEffectInstance(SpectrumMobEffects.SCARRED, 200, 0);
 			}
 			case 1 -> {
-				return new MobEffectInstance(SpectrumStatusEffects.STIFFNESS, 200, 1);
+				return new MobEffectInstance(SpectrumMobEffects.STIFFNESS, 200, 1);
 			}
 			case 2 -> {
-				return new MobEffectInstance(SpectrumStatusEffects.DENSITY, 200, 2);
+				return new MobEffectInstance(SpectrumMobEffects.DENSITY, 200, 2);
 			}
 			case 3 -> {
-				return new MobEffectInstance(SpectrumStatusEffects.VULNERABILITY, 200, 1);
+				return new MobEffectInstance(SpectrumMobEffects.VULNERABILITY, 200, 1);
 			}
 			default -> {
-				return new MobEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 200, 0);
+				return new MobEffectInstance(SpectrumMobEffects.LIFE_DRAIN, 200, 0);
 			}
 		}
 	}

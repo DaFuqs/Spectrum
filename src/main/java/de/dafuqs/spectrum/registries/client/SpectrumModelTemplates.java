@@ -7,10 +7,10 @@ import net.minecraft.resources.*;
 
 import java.util.*;
 
-import static de.dafuqs.spectrum.registries.client.SpectrumTextureKeys.*;
+import static de.dafuqs.spectrum.registries.client.SpectrumTextureSlots.*;
 import static net.minecraft.data.models.model.TextureSlot.*;
 
-public class SpectrumModels {
+public class SpectrumModelTemplates {
 	
 	// Item Templates
 	public static final ModelTemplate CLUSTER_ITEM = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates_item/cluster")), Optional.empty(), LAYER0);
@@ -59,7 +59,7 @@ public class SpectrumModels {
 	public static final ModelTemplate MULTILAYER_LIGHT = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/multilayer_light")), Optional.empty(), SIDE, TOP, INSIDE);
 	public static final ModelTemplate OVERGROWN = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/overgrown")), Optional.empty(), SIDE, TOP, BOTTOM, FRONDS);
 	public static final ModelTemplate PARTICLE_SPAWNER = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/particle_spawner")), Optional.empty(), TOP);
-	public static final ModelTemplate PEDESTAL = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/pedestal")), Optional.empty(), SpectrumTextureKeys.PEDESTAL, PARTICLE);
+	public static final ModelTemplate PEDESTAL = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/pedestal")), Optional.empty(), SpectrumTextureSlots.PEDESTAL, PARTICLE);
 	public static final ModelTemplate PRESENT = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/present")), Optional.empty(), TEXTURE, PARTICLE);
 	public static final ModelTemplate REDSTONE_TIMER = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/redstone_timer_base")), Optional.empty(), LIGHT);
 	public static final ModelTemplate REDSTONE_TRANSCEIVER_CHANNEL = new ModelTemplate(Optional.of(SpectrumCommon.locate("templates/redstone_transceiver_channel_base")), Optional.empty(), ALL);

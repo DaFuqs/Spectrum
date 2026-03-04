@@ -11,10 +11,10 @@ public class InexorableHelper {
 	
 	public static void checkAndRemoveSlowdownModifiers(LivingEntity entity) {
 		var armorInexorable = isArmorActive(entity);
-		var toolInexorable = SpectrumEnchantmentHelper.hasEnchantment(entity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, entity.getItemInHand(entity.getUsedItemHand()));
+		var toolInexorable = SpectrumEnchantmentHelper.hasEnchantment(entity.level().registryAccess(), SpectrumEnchantmentKeys.INEXORABLE, entity.getItemInHand(entity.getUsedItemHand()));
 		
-		var armorAttributes = BuiltInRegistries.ATTRIBUTE.getTag(SpectrumAttributeTags.INEXORABLE_ARMOR_EFFECTIVE);
-		var toolAttributes = BuiltInRegistries.ATTRIBUTE.getTag(SpectrumAttributeTags.INEXORABLE_HANDHELD_EFFECTIVE);
+		var armorAttributes = BuiltInRegistries.ATTRIBUTE.getTag(SpectrumAttributeKeys.INEXORABLE_ARMOR_EFFECTIVE);
+		var toolAttributes = BuiltInRegistries.ATTRIBUTE.getTag(SpectrumAttributeKeys.INEXORABLE_HANDHELD_EFFECTIVE);
 		
 		if (armorInexorable && armorAttributes.isPresent()) {
 			for (Holder<Attribute> attributeRegistryEntry : armorAttributes.get()) {
@@ -52,6 +52,6 @@ public class InexorableHelper {
 	}
 	
 	public static boolean isArmorActive(LivingEntity entity) {
-		return SpectrumEnchantmentHelper.hasEnchantment(entity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, entity.getItemBySlot(EquipmentSlot.CHEST));
+		return SpectrumEnchantmentHelper.hasEnchantment(entity.level().registryAccess(), SpectrumEnchantmentKeys.INEXORABLE, entity.getItemBySlot(EquipmentSlot.CHEST));
 	}
 }

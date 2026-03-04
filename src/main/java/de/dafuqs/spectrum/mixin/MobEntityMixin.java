@@ -18,7 +18,7 @@ public abstract class MobEntityMixin {
 	public void slowDownAIticks(CallbackInfo ci) {
 		var entity = (Mob) (Object) this;
 		
-		if ((entity.hasEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || entity.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER)) && !SleepStatusEffect.isImmuneish(entity)) {
+		if ((entity.hasEffect(SpectrumMobEffects.ETERNAL_SLUMBER) || entity.hasEffect(SpectrumMobEffects.FATAL_SLUMBER)) && !SleepStatusEffect.isImmuneish(entity)) {
 			target = null;
 			ci.cancel();
 			return;

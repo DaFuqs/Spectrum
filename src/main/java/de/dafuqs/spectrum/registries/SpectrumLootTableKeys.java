@@ -5,7 +5,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.storage.loot.*;
 
-public class SpectrumLootTables {
+public class SpectrumLootTableKeys {
 	
 	// Shooting Stars
 	public static final ResourceKey<LootTable> SHOOTING_STAR_BOUNCE = keyOf("entity/shooting_star/shooting_star_bounce");
@@ -18,19 +18,11 @@ public class SpectrumLootTables {
 	// Fishing
 	public static final ResourceKey<LootTable> UNIVERSAL_FISHING = keyOf("gameplay/universal_fishing");
 	
-	public static final ResourceKey<LootTable> LAVA_FISHING = keyOf("gameplay/fishing/lava/fishing");
-	public static final ResourceKey<LootTable> END_FISHING = keyOf("gameplay/fishing/end/fishing");
-	public static final ResourceKey<LootTable> DEEPER_DOWN_FISHING = keyOf("gameplay/fishing/deeper_down/fishing");
-	public static final ResourceKey<LootTable> SLUDGE_FISHING = keyOf("gameplay/fishing/sludge/fishing");
-	public static final ResourceKey<LootTable> LIQUID_CRYSTAL_FISHING = keyOf("gameplay/fishing/liquid_crystal/fishing");
-	public static final ResourceKey<LootTable> MIDNIGHT_SOLUTION_FISHING = keyOf("gameplay/fishing/midnight_solution/fishing");
-	
 	// Entities
 	public static final ResourceKey<LootTable> EGG_LAYING_WOOLY_PIG_SHEARING = keyOf("entities/egg_laying_wooly_pig_shearing");
 	
 	// Blocks
 	public static final ResourceKey<LootTable> WEEPING_GALA_SPRIG_RESIN = keyOf("gameplay/weeping_gala_sprig_resin");
-	public static final ResourceKey<LootTable> NIGHTDEW_VINE_RARE_DROP = keyOf("gameplay/nightdew_vine_rare_drop");
 	
 	public static final ResourceKey<LootTable> SAWBLADE_HOLLY_HARVESTING = keyOf("gameplay/sawblade_holly_harvesting");
 	public static final ResourceKey<LootTable> SAWBLADE_HOLLY_SHEARING = keyOf("gameplay/sawblade_holly_shearing");

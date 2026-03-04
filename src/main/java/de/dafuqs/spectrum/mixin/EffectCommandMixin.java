@@ -24,10 +24,10 @@ public class EffectCommandMixin {
 				if (effect.spectrum$isSevere()) {
 					effect.spectrum$setSevere(false);
 				}
-				effect.getCures().remove(SpectrumStatusEffectCures.COMMAND_ONLY);
+				effect.getCures().remove(SpectrumEffectCures.COMMAND_ONLY);
 			}
 			// manually remove fatal slumber to bypass turning it into eternal slumber
-			living.removeEffect(SpectrumStatusEffects.FATAL_SLUMBER);
+			living.removeEffect(SpectrumMobEffects.FATAL_SLUMBER);
 		}
 	}
 	
@@ -39,7 +39,7 @@ public class EffectCommandMixin {
 				if (effect.spectrum$isSevere()) {
 					effect.spectrum$setSevere(false);
 				}
-				effect.getCures().remove(SpectrumStatusEffectCures.COMMAND_ONLY);
+				effect.getCures().remove(SpectrumEffectCures.COMMAND_ONLY);
 			}
 		}
 	}

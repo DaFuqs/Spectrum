@@ -71,7 +71,7 @@ public class BedrockCapeRenderer {
 			}
 			float capeZOffset = capeRotations.getB();
 			
-			VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entitySolid(SpectrumModelLayers.BEDROCK_ARMOR_ID));
+			VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entitySolid(SpectrumModelLayerLocations.BEDROCK_ARMOR_ID));
 			poseStack.pushPose();
 			poseStack.translate(0, 0.5, 0);
 			poseStack.mulPose(Axis.XP.rotationDegrees(Mth.clamp(capeRotations.getA(), -25, 0)));

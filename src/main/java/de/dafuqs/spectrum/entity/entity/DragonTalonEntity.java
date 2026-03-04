@@ -124,7 +124,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
 		var difMod = 4F;
 		var airborne = !owner.onGround();
 		var sneaking = owner.isShiftKeyDown();
-		var inertia = SpectrumEnchantmentHelper.getLevel(owner.level().registryAccess(), SpectrumEnchantments.INERTIA, getTrackedStack());
+		var inertia = SpectrumEnchantmentHelper.getLevel(owner.level().registryAccess(), SpectrumEnchantmentKeys.INERTIA, getTrackedStack());
 		
 		if (sneaking)
 			difMod *= 3;
@@ -190,9 +190,9 @@ public class DragonTalonEntity extends BidentBaseEntity {
 		var bonusMod = 1f;
 		
 		if (yoinked instanceof LivingEntity livingYoink) {
-			bonusMod /= Optional.ofNullable(livingYoink.getEffect(SpectrumStatusEffects.DENSITY))
+			bonusMod /= Optional.ofNullable(livingYoink.getEffect(SpectrumMobEffects.DENSITY))
 					.map(effect -> effect.getAmplifier() + 2).orElse(1);
-			bonusMod *= Optional.ofNullable(livingYoink.getEffect(SpectrumStatusEffects.LIGHTWEIGHT))
+			bonusMod *= Optional.ofNullable(livingYoink.getEffect(SpectrumMobEffects.LIGHTWEIGHT))
 					.map(effect -> (effect.getAmplifier() + 2) / 1.5F).orElse(1F);
 		}
 		

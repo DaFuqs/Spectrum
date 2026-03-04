@@ -34,7 +34,7 @@ public class MalachiteCrossbowItem extends CrossbowItem implements Preenchanted,
 	
 	@Override
 	public boolean isValidRepairItem(@NotNull ItemStack stack, @NotNull ItemStack ingredient) {
-		return SpectrumToolMaterial.MALACHITE.getRepairIngredient().test(ingredient) || super.isValidRepairItem(stack, ingredient);
+		return SpectrumToolTiers.MALACHITE.getRepairIngredient().test(ingredient) || super.isValidRepairItem(stack, ingredient);
 	}
 	
 	@Override

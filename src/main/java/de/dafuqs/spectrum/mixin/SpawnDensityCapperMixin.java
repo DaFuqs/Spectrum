@@ -15,7 +15,7 @@ public class SpawnDensityCapperMixin {
 	
 	@WrapOperation(method = "canSpawn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/LocalMobCapCalculator$MobCounts;canSpawn(Lnet/minecraft/world/entity/MobCategory;)Z"))
 	public boolean reduceSpawnCap(LocalMobCapCalculator.MobCounts instance, MobCategory spawnGroup, Operation<Boolean> original, @Local LocalMobCapCalculator.MobCounts densityCap, @Local ServerPlayer serverPlayerEntity) {
-		var calming = serverPlayerEntity.getEffect(SpectrumStatusEffects.CALMING);
+		var calming = serverPlayerEntity.getEffect(SpectrumMobEffects.CALMING);
 		
 		if (calming != null) {
 			return densityCap == null || ((DensityCapAccessor) densityCap).getCounts().getOrDefault(spawnGroup, 0) < spawnGroup.getMaxInstancesPerChunk() - ((calming.getAmplifier() + 1) * 2.5);

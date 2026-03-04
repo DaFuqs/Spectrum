@@ -6,7 +6,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.enchantment.*;
 
 @SuppressWarnings("unused")
-public class SpectrumEnchantments {
+public class SpectrumEnchantmentKeys {
 	
 	public static final ResourceKey<Enchantment> BIG_CATCH = of("big_catch"); // Increase the chance to reel in entities instead of fishing loot
 	public static final ResourceKey<Enchantment> CLOVERS_FAVOR = of("clovers_favor"); // Increases drop chance of <1 loot drops

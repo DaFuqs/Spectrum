@@ -4,12 +4,9 @@ import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.helpers.enchantments.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.core.registries.*;
-import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
@@ -46,7 +43,7 @@ public abstract class EntityMixin {
 			if (thisLivingEntity.isDeadOrDying() && thisLivingEntity.getLastHurtByMob() instanceof Player killer) {
 				var hasInventoryInsertion = thisLivingEntity.level().registryAccess()
 						.lookup(Registries.ENCHANTMENT)
-						.flatMap(impl -> impl.get(SpectrumEnchantments.INVENTORY_INSERTION))
+						.flatMap(impl -> impl.get(SpectrumEnchantmentKeys.INVENTORY_INSERTION))
 						.map(e -> EnchantmentHelper.getEnchantmentLevel(e, killer) > 0)
 						.orElse(false);
 				if (hasInventoryInsertion) {
@@ -76,7 +73,7 @@ public abstract class EntityMixin {
 		if (!(entity instanceof LivingEntity living))
 			return original;
 		
-		if (!(entity instanceof Player) && (living.hasEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || living.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER)))
+		if (!(entity instanceof Player) && (living.hasEffect(SpectrumMobEffects.ETERNAL_SLUMBER) || living.hasEffect(SpectrumMobEffects.FATAL_SLUMBER)))
 			return Pose.SLEEPING;
 		
 		return original;

@@ -39,7 +39,7 @@ public class WhispyCircletItem extends SpectrumCurioItem {
 		List<MobEffectInstance> negativeEffects = new ArrayList<>();
 		for (MobEffectInstance statusEffectInstance : currentEffects) {
 			Holder<MobEffect> effect = statusEffectInstance.getEffect();
-			if (effect.value().getCategory() == category && !effect.is(SpectrumStatusEffectTags.SOPORIFIC) && !effect.is(SpectrumStatusEffectTags.BYPASSES_WHISPY_CIRCLET)) {
+			if (effect.value().getCategory() == category && !effect.is(SpectrumMobEffectTags.SOPORIFIC) && !effect.is(SpectrumMobEffectTags.BYPASSES_WHISPY_CIRCLET)) {
 				negativeEffects.add(statusEffectInstance);
 			}
 		}
@@ -92,7 +92,7 @@ public class WhispyCircletItem extends SpectrumCurioItem {
 	}
 	
 	public static boolean affects(Holder<MobEffect> effect) {
-		return effect.value().getCategory() == MobEffectCategory.HARMFUL && !effect.is(SpectrumStatusEffectTags.BYPASSES_WHISPY_CIRCLET);
+		return effect.value().getCategory() == MobEffectCategory.HARMFUL && !effect.is(SpectrumMobEffectTags.BYPASSES_WHISPY_CIRCLET);
 	}
 	
 	public static void preventPhantomSpawns(@NotNull ServerPlayer serverPlayerEntity) {

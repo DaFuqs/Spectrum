@@ -25,7 +25,7 @@ public class ShearsDispenserBehaviorMixin {
 			int age = blockState.getValue(SawbladeHollyBushBlock.AGE);
 			if (SawbladeHollyBushBlock.canBeSheared(age)) {
 				// we do not have the real shears item used in the dispenser here, but for the default loot table that does not make much of a difference
-				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(blockState, world, pos, world.getBlockEntity(pos), null, Items.SHEARS.getDefaultInstance(), SpectrumLootTables.SAWBLADE_HOLLY_SHEARING)) {
+				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(blockState, world, pos, world.getBlockEntity(pos), null, Items.SHEARS.getDefaultInstance(), SpectrumLootTableKeys.SAWBLADE_HOLLY_SHEARING)) {
 					SawbladeHollyBushBlock.popResource(world, pos, stack);
 				}
 				

@@ -68,7 +68,7 @@ public class SnappingIvyBlock extends BushBlock implements BonemealableBlock {
 	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		world.registryAccess()
 				.registryOrThrow(Registries.CONFIGURED_FEATURE)
-				.get(SpectrumConfiguredFeatures.SNAPPING_IVY_PATCH)
+				.get(SpectrumConfiguredFeatureKeys.SNAPPING_IVY_PATCH)
 				.place(world, world.getChunkSource().getGenerator(), random, pos);
 	}
 	

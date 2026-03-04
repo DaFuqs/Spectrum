@@ -108,7 +108,7 @@ public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlo
 		
 		if (canBeSheared(age) && handStack.is(Tags.Items.TOOLS_SHEAR)) {
 			if (!world.isClientSide) {
-				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, player.getMainHandItem(), SpectrumLootTables.SAWBLADE_HOLLY_SHEARING)) {
+				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, player.getMainHandItem(), SpectrumLootTableKeys.SAWBLADE_HOLLY_SHEARING)) {
 					popResource(world, pos, stack);
 				}
 				handStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
@@ -122,7 +122,7 @@ public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlo
 			return ItemInteractionResult.sidedSuccess(world.isClientSide);
 		} else if (age == MAX_AGE) {
 			if (!world.isClientSide) {
-				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, player.getMainHandItem(), SpectrumLootTables.SAWBLADE_HOLLY_HARVESTING)) {
+				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, player.getMainHandItem(), SpectrumLootTableKeys.SAWBLADE_HOLLY_HARVESTING)) {
 					popResource(world, pos, stack);
 				}
 			}

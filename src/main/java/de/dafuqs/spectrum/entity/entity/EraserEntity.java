@@ -81,7 +81,7 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 	
 	@Override
 	public boolean canBeAffected(MobEffectInstance effect) {
-		return super.canBeAffected(effect) && effect.getEffect() != SpectrumStatusEffects.DEADLY_POISON;
+		return super.canBeAffected(effect) && effect.getEffect() != SpectrumMobEffects.DEADLY_POISON;
 	}
 	
 	@Override
@@ -243,20 +243,20 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 				amplifier = 0;
 			}
 			case 4, 5, 6 -> {
-				statusEffect = SpectrumStatusEffects.STIFFNESS;
+				statusEffect = SpectrumMobEffects.STIFFNESS;
 				amplifier = random.nextInt(2);
 			}
 			case 7, 8, 9 -> {
-				statusEffect = SpectrumStatusEffects.FRENZY;
+				statusEffect = SpectrumMobEffects.FRENZY;
 				amplifier = random.nextInt(2);
 			}
-			case 10, 11, 12 -> statusEffect = SpectrumStatusEffects.SCARRED;
+			case 10, 11, 12 -> statusEffect = SpectrumMobEffects.SCARRED;
 			case 13, 14, 15 -> {
-				statusEffect = SpectrumStatusEffects.VULNERABILITY;
+				statusEffect = SpectrumMobEffects.VULNERABILITY;
 				amplifier = random.nextInt(2);
 			}
 			default -> {
-				statusEffect = SpectrumStatusEffects.DEADLY_POISON;
+				statusEffect = SpectrumMobEffects.DEADLY_POISON;
 				amplifier = random.nextInt(2);
 			}
 		}
@@ -361,7 +361,7 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 				}
 				case 3 -> this.effect = MobEffects.INVISIBILITY;
 				default -> {
-					this.effect = SpectrumStatusEffects.MAGIC_ANNULATION;
+					this.effect = SpectrumMobEffects.MAGIC_ANNULATION;
 					this.amplifier = 5;
 				}
 			}

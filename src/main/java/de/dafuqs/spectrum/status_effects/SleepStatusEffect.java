@@ -49,7 +49,7 @@ public class SleepStatusEffect extends MobEffect {
 	
 	// TODO: can the tag check be implemented into the entities base attribute modifier somehow?
 	public static boolean isImmuneish(LivingEntity entity) {
-		if (entity.hasEffect(SpectrumStatusEffects.FRENZY))
+		if (entity.hasEffect(SpectrumMobEffects.FRENZY))
 			return true;
 		
 		var type = entity.getType();
@@ -63,7 +63,7 @@ public class SleepStatusEffect extends MobEffect {
 	 * @return -1 = false
 	 */
 	public static float getGeneralSleepResistanceIfEntityHasSoporificEffect(LivingEntity entity) {
-		if (!isConstruct(entity.getType()) && SpectrumStatusEffectTags.hasEffectWithTag(entity, SpectrumStatusEffectTags.SOPORIFIC)) {
+		if (!isConstruct(entity.getType()) && SpectrumMobEffectTags.has(entity, SpectrumMobEffectTags.SOPORIFIC)) {
 			return getSleepResistance(entity.getEffect(getStrongestSleepEffect(entity)), entity);
 		}
 		return -1F;
@@ -89,12 +89,12 @@ public class SleepStatusEffect extends MobEffect {
 	}
 	
 	public static @Nullable Holder<MobEffect> getStrongestSleepEffect(LivingEntity entity) {
-		if (entity.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
-			return SpectrumStatusEffects.FATAL_SLUMBER;
-		} else if (entity.hasEffect(SpectrumStatusEffects.ETERNAL_SLUMBER)) {
-			return SpectrumStatusEffects.ETERNAL_SLUMBER;
-		} else if (entity.hasEffect(SpectrumStatusEffects.SOMNOLENCE)) {
-			return SpectrumStatusEffects.SOMNOLENCE;
+		if (entity.hasEffect(SpectrumMobEffects.FATAL_SLUMBER)) {
+			return SpectrumMobEffects.FATAL_SLUMBER;
+		} else if (entity.hasEffect(SpectrumMobEffects.ETERNAL_SLUMBER)) {
+			return SpectrumMobEffects.ETERNAL_SLUMBER;
+		} else if (entity.hasEffect(SpectrumMobEffects.SOMNOLENCE)) {
+			return SpectrumMobEffects.SOMNOLENCE;
 		}
 		return null;
 	}
@@ -103,8 +103,8 @@ public class SleepStatusEffect extends MobEffect {
 	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
 		Holder<MobEffect> holder = effectInstance.getEffect();
 		
-		if (holder.equals(SpectrumStatusEffects.SOMNOLENCE) || holder.equals(SpectrumStatusEffects.CALMING)) {
-			cures.add(SpectrumStatusEffectCures.SEDATIVES);
+		if (holder.equals(SpectrumMobEffects.SOMNOLENCE) || holder.equals(SpectrumMobEffects.CALMING)) {
+			cures.add(SpectrumEffectCures.SEDATIVES);
 		}
 	}
 	

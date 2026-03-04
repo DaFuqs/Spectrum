@@ -36,11 +36,11 @@ public class NightSaltsItem extends Item implements SleepAlteringItem {
 			component.setSleepTimers(20 * 10, 20 * 10, 0);
 			component.setLastSleepItem(this);
 			
-			player.addEffect(new MobEffectInstance(SpectrumStatusEffects.CALMING, 20 * 20, 2));
+			player.addEffect(new MobEffectInstance(SpectrumMobEffects.CALMING, 20 * 20, 2));
 			if (!player.getAbilities().instabuild)
 				stack.shrink(1);
 		} else {
-			user.addEffect(new MobEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 20 * 15));
+			user.addEffect(new MobEffectInstance(SpectrumMobEffects.SOMNOLENCE, 20 * 15));
 			user.startSleeping(user.blockPosition());
 			stack.shrink(1);
 		}
@@ -72,7 +72,7 @@ public class NightSaltsItem extends Item implements SleepAlteringItem {
 
     @Override
 	public void applyPenalties(Player player) {
-		player.addEffect(new MobEffectInstance(SpectrumStatusEffects.VULNERABILITY, 20 * 30));
+		player.addEffect(new MobEffectInstance(SpectrumMobEffects.VULNERABILITY, 20 * 30));
 		player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20 * 30));
 	}
 }

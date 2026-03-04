@@ -2,13 +2,11 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.capabilities.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.reverb.*;
-import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.*;
@@ -19,9 +17,6 @@ import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
-import me.shedaniel.autoconfig.*;
-import me.shedaniel.autoconfig.serializer.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.tags.*;
@@ -29,7 +24,6 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.entity.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.*;
 import net.neoforged.fml.common.*;
@@ -102,9 +96,8 @@ public class SpectrumCommon {
 		SpectrumEntityAttributes.register(modBus);
 		
 		// Register ALL the stuff
-		SpectrumLoadConditions.register(modBus);
 		logInfo("Registering Status Effects...");
-		SpectrumStatusEffects.register(modBus);
+		SpectrumMobEffects.register(modBus);
 		logInfo("Registering Advancement Criteria...");
 		SpectrumAdvancementCriteria.register(modBus);
 		logInfo("Registering Particle Types...");
@@ -112,7 +105,7 @@ public class SpectrumCommon {
 		logInfo("Registering Sound Events...");
 		SpectrumSoundEvents.register(modBus);
 		logInfo("Registering BlockSound Groups...");
-		SpectrumBlockSoundGroups.register();
+		SpectrumSoundTypes.register();
 		logInfo("Registering Fluids...");
 		NeoForgeMod.enableMilkFluid(); // TODO: remove all milk-item fluid-like compat recipes
 		SpectrumFluids.register(modBus);
@@ -128,7 +121,7 @@ public class SpectrumCommon {
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register(modBus);
 		modBus.addListener(SpectrumBlockEntities::addBlockEntityTypeBlocks);
-		SpectrumPastelUpgrades.register(modBus);
+		SpectrumPastelUpgradeSignatures.register(modBus);
 		
 		// Worldgen
 		logInfo("Registering Features...");
@@ -151,7 +144,7 @@ public class SpectrumCommon {
 		logInfo("Registering Loot Conditions & Functions...");
 		SpectrumLootContextTypes.register();
 		SpectrumLootFunctionTypes.register(modBus);
-		SpectrumLootConditions.register(modBus);
+		SpectrumLootConditionTypes.register(modBus);
 		
 		logInfo("Setting up server side Mod Compat...");
 		SpectrumIntegrationPacks.register(modBus);

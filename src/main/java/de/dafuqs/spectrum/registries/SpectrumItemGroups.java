@@ -144,7 +144,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.LAURELS_OF_SERENITY);
 					entries.accept(SpectrumItems.LAURELS_OF_SERENITY.get().getFullStack());
 					entries.accept(SpectrumItems.GLEAMING_PIN);
-					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.GLEAMING_PIN.get(), Map.of(SpectrumEnchantments.SNIPING, 2)));
+					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.GLEAMING_PIN.get(), Map.of(SpectrumEnchantmentKeys.SNIPING, 2)));
 					entries.accept(SpectrumItems.LESSER_POTION_PENDANT);
 					entries.accept(SpectrumItems.GREATER_POTION_PENDANT);
 					entries.accept(SpectrumItems.ASHEN_CIRCLET);
@@ -157,7 +157,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.NEAT_RING);
 					entries.accept(SpectrumItems.CRAFTING_TABLET);
 					entries.accept(SpectrumBlocks.BOTTOMLESS_BUNDLE);
-					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), Map.of(Enchantments.POWER, 5, SpectrumEnchantments.VOIDING, 1)));
+					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), Map.of(Enchantments.POWER, 5, SpectrumEnchantmentKeys.VOIDING, 1)));
 					
 					ItemStack fullBottomlessStack = SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance();
 					long maxUnenchantedBottomlessBundleCapacity = BottomlessBundleItem.getMaxStoredAmount(0);
@@ -192,10 +192,10 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.EXCHANGING_STAFF);
 					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.FORTUNE, 3, false, false).ifPresent(entries::accept);
 					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.SILK_TOUCH, 1, false, false).ifPresent(entries::accept);
-					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), SpectrumEnchantments.RESONANCE, 1, false, false).ifPresent(entries::accept);
+					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), SpectrumEnchantmentKeys.RESONANCE, 1, false, false).ifPresent(entries::accept);
 					entries.accept(SpectrumItems.BLOCK_FLOODER);
 					entries.accept(SpectrumItems.ENDER_SPLICE);
-					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.ENDER_SPLICE.get(), Map.of(SpectrumEnchantments.RESONANCE, 1, SpectrumEnchantments.INDESTRUCTIBLE, 1)));
+					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.ENDER_SPLICE.get(), Map.of(SpectrumEnchantmentKeys.RESONANCE, 1, SpectrumEnchantmentKeys.INDESTRUCTIBLE, 1)));
 					entries.accept(SpectrumItems.PERTURBED_EYE);
 					entries.accept(SpectrumBlocks.PARAMETRIC_MINING_DEVICE);
 					entries.accept(SpectrumBlocks.THREAT_CONFLUX);

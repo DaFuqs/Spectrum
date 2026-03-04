@@ -40,7 +40,7 @@ public class GleamingPinItem extends SpectrumCurioItem {
 	}
 	
 	public static int getEffectRange(ServerLevel world, ItemStack stack) {
-		return BASE_RANGE + RANGE_BONUS_PER_LEVEL_OF_SNIPING * SpectrumEnchantmentHelper.getLevel(world.registryAccess(), SpectrumEnchantments.SNIPING, stack);
+		return BASE_RANGE + RANGE_BONUS_PER_LEVEL_OF_SNIPING * SpectrumEnchantmentHelper.getLevel(world.registryAccess(), SpectrumEnchantmentKeys.SNIPING, stack);
 	}
 	
 	@Override

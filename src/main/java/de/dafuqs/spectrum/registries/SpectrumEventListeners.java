@@ -121,7 +121,7 @@ public class SpectrumEventListeners {
 		BlockState state = event.getState();
 		if (player instanceof ServerPlayer serverPlayerEntity) {
 			ItemStack handStack = player.getItemInHand(serverPlayerEntity.getUsedItemHand());
-			if (SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantments.INERTIA, handStack)) {
+			if (SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantmentKeys.INERTIA, handStack)) {
 				InertiaComponent.onInertiaBlockBreak(level, pos, state, serverPlayerEntity, handStack);
 			}
 			
@@ -249,7 +249,7 @@ public class SpectrumEventListeners {
 	public static void damagePlayersOutOfBoundsInDD(PlayerTickEvent.Post event) {
 		if(event.getEntity() instanceof ServerPlayer player) {
 			Level world = player.level();
-			if (!player.isCreative() && !player.isSpectator() && world.dimension() == SpectrumDimensions.DIMENSION_KEY && player.getY() > world.getMaxBuildHeight()) {
+			if (!player.isCreative() && !player.isSpectator() && world.dimension() == SpectrumDimensionKeys.DIMENSION_KEY && player.getY() > world.getMaxBuildHeight()) {
 				player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
 				if (player.isDeadOrDying()) {
 					Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");
@@ -265,10 +265,10 @@ public class SpectrumEventListeners {
 		var newEquipment = event.getTo();
 		var equipmentSlot = event.getSlot();
 		
-		var oldInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, oldEquipment);
-		var newInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantments.INEXORABLE, newEquipment);
+		var oldInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantmentKeys.INEXORABLE, oldEquipment);
+		var newInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantmentKeys.INEXORABLE, newEquipment);
 		
-		var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumAttributeTags.INEXORABLE_ARMOR_EFFECTIVE : SpectrumAttributeTags.INEXORABLE_HANDHELD_EFFECTIVE;
+		var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumAttributeKeys.INEXORABLE_ARMOR_EFFECTIVE : SpectrumAttributeKeys.INEXORABLE_HANDHELD_EFFECTIVE;
 		
 		//TODO make inexorable use enchantment effects or something
 		//TODO also move the enchantment cloaking logic from LivingEntityMixin into here
@@ -301,7 +301,7 @@ public class SpectrumEventListeners {
 		if(sourceEntity instanceof LivingEntity livinSource) {
 			LastKillAttachmentType.rememberKillTick(livinSource, livinSource.level().getGameTime());
 			
-			MobEffectInstance frenzy = livinSource.getEffect(SpectrumStatusEffects.FRENZY);
+			MobEffectInstance frenzy = livinSource.getEffect(SpectrumMobEffects.FRENZY);
 			if (frenzy != null) {
 				((FrenzyStatusEffect) frenzy.getEffect()).onKill(livinSource, frenzy.getAmplifier());
 			}
@@ -375,9 +375,9 @@ public class SpectrumEventListeners {
 			}
 		}
 		
-		@Nullable MobEffectInstance vulnerability = entity.getEffect(SpectrumStatusEffects.VULNERABILITY);
+		@Nullable MobEffectInstance vulnerability = entity.getEffect(SpectrumMobEffects.VULNERABILITY);
 		if (vulnerability != null) {
-			float vulnerabilityDamageMultiplier = 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier() + 1);
+			float vulnerabilityDamageMultiplier = 1 + (SpectrumMobEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier() + 1);
 			event.setAmount(event.getAmount() * vulnerabilityDamageMultiplier);
 		}
 		
@@ -422,7 +422,7 @@ public class SpectrumEventListeners {
 		
 		if (reason != Player.BedSleepingProblem.NOT_POSSIBLE_NOW && MiscPlayerDataAttachmentType.get(player).isSleeping()) {
 			event.setProblem(null);
-		} else if ((reason == Player.BedSleepingProblem.NOT_POSSIBLE_NOW || reason == Player.BedSleepingProblem.NOT_SAFE) && player.hasEffect(SpectrumStatusEffects.SOMNOLENCE)) {
+		} else if ((reason == Player.BedSleepingProblem.NOT_POSSIBLE_NOW || reason == Player.BedSleepingProblem.NOT_SAFE) && player.hasEffect(SpectrumMobEffects.SOMNOLENCE)) {
 			event.setProblem(null);
 		}
 	}
@@ -454,7 +454,7 @@ public class SpectrumEventListeners {
 	
 	public static void register() {
 		CrossbowShootingCallback.register((world, shooter, crossbow, projectile) -> {
-			int snipingLevel = SpectrumEnchantmentHelper.getLevel(world.registryAccess(), SpectrumEnchantments.SNIPING, crossbow);
+			int snipingLevel = SpectrumEnchantmentHelper.getLevel(world.registryAccess(), SpectrumEnchantmentKeys.SNIPING, crossbow);
 			if (snipingLevel > 0) {
 				projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.25F * snipingLevel));
 			}
@@ -498,7 +498,7 @@ public class SpectrumEventListeners {
 			if (!shouldDropHead && source.getEntity() instanceof LivingEntity livingAttacker) {
 				int damageSourceTreasureHunt = SpectrumEnchantmentHelper.getEquipmentLevel(
 						serverWorld.registryAccess(),
-						SpectrumEnchantments.TREASURE_HUNTER,
+						SpectrumEnchantmentKeys.TREASURE_HUNTER,
 						livingAttacker);
 				
 				shouldDropHead = damageSourceTreasureHunt > 0 && serverWorld.getRandom().nextFloat() < 0.2 * damageSourceTreasureHunt;
@@ -516,14 +516,14 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	private static void dropHealingWhenScarred(LivingHealEvent event) {
-		if(event.getEntity().hasEffect(SpectrumStatusEffects.SCARRED)) {
+		if(event.getEntity().hasEffect(SpectrumMobEffects.SCARRED)) {
 			event.setCanceled(true);
 		}
 	}
 	
 	@SubscribeEvent
 	private static void preventFallFlyingWhenScarred(PlayerFlyableFallEvent event) {
-		if(event.getEntity().hasEffect(SpectrumStatusEffects.SCARRED)) {
+		if(event.getEntity().hasEffect(SpectrumMobEffects.SCARRED)) {
 			event.setMultiplier(0.05F);
 		}
 	}
@@ -552,7 +552,7 @@ public class SpectrumEventListeners {
 		Player player = event.getEntity();
 		Entity target = event.getTarget();
 		
-		int improvedCriticalLevel = SpectrumEnchantmentHelper.getLevel(player.level().registryAccess(), SpectrumEnchantments.IMPROVED_CRITICAL, event.getEntity().getMainHandItem());
+		int improvedCriticalLevel = SpectrumEnchantmentHelper.getLevel(player.level().registryAccess(), SpectrumEnchantmentKeys.IMPROVED_CRITICAL, event.getEntity().getMainHandItem());
 		if(improvedCriticalLevel > 0) {
 			event.setDamageMultiplier(event.getDamageMultiplier() + ImprovedCriticalHelper.getAddtionalCritDamageMultiplier(improvedCriticalLevel));
 		}
@@ -582,7 +582,7 @@ public class SpectrumEventListeners {
 		if (sourceEntity instanceof LivingEntity livingAttacker) {
 			if (newDamage != 0F && hurtEntity.getHealth() == hurtEntity.getMaxHealth()) {
 				ItemStack mainHandStack = livingAttacker.getMainHandItem();
-				int level = SpectrumEnchantmentHelper.getLevel(livingAttacker.level().registryAccess(), SpectrumEnchantments.FIRST_STRIKE, mainHandStack);
+				int level = SpectrumEnchantmentHelper.getLevel(livingAttacker.level().registryAccess(), SpectrumEnchantmentKeys.FIRST_STRIKE, mainHandStack);
 				if (level > 0) {
 					float additionalFirstStrikeDamage = SpectrumConfig.CONFIG.FirstStrikeDamagePerLevel.get() * level;
 					event.setNewDamage(newDamage + additionalFirstStrikeDamage);
@@ -616,7 +616,7 @@ public class SpectrumEventListeners {
 		
 		// Disarming
 		if (!source.is(DamageTypes.THORNS) && sourceEntity instanceof LivingEntity livingSource) {
-			int disarmingLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), SpectrumEnchantments.DISARMING, livingSource.getMainHandItem());
+			int disarmingLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), SpectrumEnchantmentKeys.DISARMING, livingSource.getMainHandItem());
 			if (disarmingLevel > 0) {
 				float disarmingChance = disarmingLevel * (livingSource instanceof Player ? SpectrumConfig.CONFIG.DisarmingChancePerLevelPlayers.get() : SpectrumConfig.CONFIG.DisarmingChancePerLevelMobs.get());
 				if(level.getRandom().nextFloat() < disarmingChance) {
@@ -667,7 +667,7 @@ public class SpectrumEventListeners {
 		Player player = event.getEntity();
 		
 		MiscPlayerDataAttachmentType.get(player).resetSleepingState(false);
-		player.removeEffect(SpectrumStatusEffects.SOMNOLENCE);
+		player.removeEffect(SpectrumMobEffects.SOMNOLENCE);
 	}
 	
 	@SubscribeEvent
@@ -700,8 +700,8 @@ public class SpectrumEventListeners {
 			if (entity instanceof LivingEntity livingEntity) {
 				boolean protect = false;
 				
-				MobEffectInstance reboundInstance = livingEntity.getEffect(SpectrumStatusEffects.PROJECTILE_REBOUND);
-				if (reboundInstance != null && entity.level().getRandom().nextFloat() < SpectrumStatusEffects.PROJECTILE_REBOUND_CHANCE_PER_LEVEL * (reboundInstance.getAmplifier() + 1)) {
+				MobEffectInstance reboundInstance = livingEntity.getEffect(SpectrumMobEffects.PROJECTILE_REBOUND);
+				if (reboundInstance != null && entity.level().getRandom().nextFloat() < SpectrumMobEffects.PROJECTILE_REBOUND_CHANCE_PER_LEVEL * (reboundInstance.getAmplifier() + 1)) {
 					protect = true;
 				} else {
 					if (SpectrumCurioItem.hasEquipped(livingEntity, SpectrumItems.PUFF_CIRCLET.get())) {
@@ -793,7 +793,7 @@ public class SpectrumEventListeners {
 	@SubscribeEvent
 	private static void onMobEffectAdded(MobEffectEvent.Applicable event) {
 		LivingEntity entity = event.getEntity();
-		if (entity.hasEffect(SpectrumStatusEffects.IMMUNITY)) {
+		if (entity.hasEffect(SpectrumMobEffects.IMMUNITY)) {
 			event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 		}
 		event.setResult(MobEffectEvent.Applicable.Result.DEFAULT);

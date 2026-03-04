@@ -243,7 +243,7 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 				.withParameter(LootContextParams.THIS_ENTITY, this)
 				.withParameter(LootContextParams.ORIGIN, this.position());
 		
-		LootTable lootTable = world.getServer().reloadableRegistries().getLootTable(SpectrumLootTables.EGG_LAYING_WOOLY_PIG_SHEARING);
+		LootTable lootTable = world.getServer().reloadableRegistries().getLootTable(SpectrumLootTableKeys.EGG_LAYING_WOOLY_PIG_SHEARING);
 		return lootTable.getRandomItems(builder.create(LootContextParamSets.GIFT));
 	}
 	

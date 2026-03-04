@@ -339,7 +339,7 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 	// POIMemorized
 	@Override
 	public TagKey<PoiType> getPOITag() {
-		return SpectrumPointOfInterestTypeTags.LIZARD_DENS;
+		return SpectrumPoiTypeTags.LIZARD_DENS;
 	}
 	
 	@Override

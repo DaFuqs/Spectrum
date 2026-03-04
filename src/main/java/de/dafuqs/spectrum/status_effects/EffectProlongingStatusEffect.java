@@ -13,7 +13,7 @@ public class EffectProlongingStatusEffect extends MobEffect {
 	}
 	
 	public static boolean canBeExtended(Holder<MobEffect> statusEffect) {
-		return !statusEffect.is(SpectrumStatusEffectTags.NO_DURATION_EXTENSION);
+		return !statusEffect.is(SpectrumMobEffectTags.NO_DURATION_EXTENSION);
 	}
 	
 	public static int getExtendedDuration(int originalDuration, int prolongingAmplifier) {

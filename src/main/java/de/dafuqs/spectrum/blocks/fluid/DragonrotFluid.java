@@ -119,24 +119,24 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 					livingEntity.hurt(SpectrumDamageTypes.dragonrot(world), damage / 2F);
 				}
 				if (!livingEntity.isDeadOrDying()) {
-					MobEffectInstance existingEffect = livingEntity.getEffect(SpectrumStatusEffects.LIFE_DRAIN);
+					MobEffectInstance existingEffect = livingEntity.getEffect(SpectrumMobEffects.LIFE_DRAIN);
 					if (existingEffect == null) {
-						livingEntity.addEffect(new MobEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 600, 0));
+						livingEntity.addEffect(new MobEffectInstance(SpectrumMobEffects.LIFE_DRAIN, 600, 0));
 					} else if (existingEffect.getDuration() < 500) {
 						existingEffect.spectrum$setDuration(300);
 						
 						serverWorld.getChunkSource().broadcastAndSend(livingEntity, new ClientboundUpdateMobEffectPacket(livingEntity.getId(), existingEffect, true));
 					}
 					
-					existingEffect = livingEntity.getEffect(SpectrumStatusEffects.DEADLY_POISON);
+					existingEffect = livingEntity.getEffect(SpectrumMobEffects.DEADLY_POISON);
 					if (existingEffect == null || existingEffect.getDuration() < 80) {
-						livingEntity.addEffect(new MobEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 160, 0));
+						livingEntity.addEffect(new MobEffectInstance(SpectrumMobEffects.DEADLY_POISON, 160, 0));
 					}
 					
-					existingEffect = livingEntity.getEffect(SpectrumStatusEffects.IMMUNITY);
+					existingEffect = livingEntity.getEffect(SpectrumMobEffects.IMMUNITY);
 					if (existingEffect != null) {
 						if (existingEffect.getDuration() <= cut) {
-							livingEntity.removeEffect(SpectrumStatusEffects.IMMUNITY);
+							livingEntity.removeEffect(SpectrumMobEffects.IMMUNITY);
 						} else {
 							existingEffect.spectrum$setDuration(existingEffect.getDuration() - cut);
 							serverWorld.getChunkSource().broadcastAndSend(livingEntity, new ClientboundUpdateMobEffectPacket(livingEntity.getId(), existingEffect, true));
@@ -146,9 +146,9 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 					if (!dragon)
 						return;
 					
-					existingEffect = livingEntity.getEffect(SpectrumStatusEffects.DENSITY);
+					existingEffect = livingEntity.getEffect(SpectrumMobEffects.DENSITY);
 					if (existingEffect == null || existingEffect.getDuration() < 120) {
-						livingEntity.addEffect(new MobEffectInstance(SpectrumStatusEffects.DENSITY, 2000, 1));
+						livingEntity.addEffect(new MobEffectInstance(SpectrumMobEffects.DENSITY, 2000, 1));
 					}
 				}
 			}

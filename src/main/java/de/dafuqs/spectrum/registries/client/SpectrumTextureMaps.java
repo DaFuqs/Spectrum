@@ -5,7 +5,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 
-import static de.dafuqs.spectrum.registries.client.SpectrumTextureKeys.*;
+import static de.dafuqs.spectrum.registries.client.SpectrumTextureSlots.*;
 import static net.minecraft.data.models.model.TextureMapping.*;
 import static net.minecraft.data.models.model.TextureSlot.*;
 

@@ -14,7 +14,7 @@ public class PreservationTurretEntityRenderer extends MobRenderer<PreservationTu
 	public static final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/entity/preservation_turret/preservation_turret.png");
 	
 	public PreservationTurretEntityRenderer(EntityRendererProvider.Context context) {
-		super(context, new PreservationTurretEntityModel<>(context.bakeLayer(SpectrumModelLayers.PRESERVATION_TURRET)), 0.0F);
+		super(context, new PreservationTurretEntityModel<>(context.bakeLayer(SpectrumModelLayerLocations.PRESERVATION_TURRET)), 0.0F);
 	}
 	
 	@Override

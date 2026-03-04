@@ -39,7 +39,7 @@ public interface POIMemorized {
 			return false;
 		}
 		Optional<Holder<PoiType>> type = world.getPoiManager().getType(poiPos);
-		return type.map(pointOfInterestTypeRegistryEntry -> pointOfInterestTypeRegistryEntry.is(SpectrumPointOfInterestTypeTags.LIZARD_DENS)).orElse(false);
+		return type.map(pointOfInterestTypeRegistryEntry -> pointOfInterestTypeRegistryEntry.is(SpectrumPoiTypeTags.LIZARD_DENS)).orElse(false);
 	}
 	
 	default @Nullable BlockPos findNearestPOI(ServerLevel world, BlockPos pos, int maxDistance) {

@@ -13,7 +13,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.*;
-import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -42,7 +41,7 @@ public class SpectrumModelHelper {
 	}
 	
 	public static void registerLayeredItemModel(ItemModelGenerators ctx, Item item, ModelTemplate model, String suffix0, String suffix1, String suffix2, String suffix3) {
-		model.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layered(TextureMapping.getItemTexture(item, suffix0), TextureMapping.getItemTexture(item, suffix1), TextureMapping.getItemTexture(item, suffix2)).put(SpectrumTextureKeys.LAYER3, TextureMapping.getItemTexture(item, suffix3)), ctx.output);
+		model.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layered(TextureMapping.getItemTexture(item, suffix0), TextureMapping.getItemTexture(item, suffix1), TextureMapping.getItemTexture(item, suffix2)).put(SpectrumTextureSlots.LAYER3, TextureMapping.getItemTexture(item, suffix3)), ctx.output);
 	}
 	
 	public static void registerBlockTexturedItemModel(ItemModelGenerators ctx, Block block) {

@@ -13,7 +13,7 @@ public class FireBlockMixin {
 	
 	@ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "net/minecraft/server/level/ServerLevel.isRaining ()Z", ordinal = 0))
 	public boolean spectrum$extinguishInPermanentRain(boolean original, @Local(argsOnly = true) ServerLevel world) {
-		if (world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
+		if (world.dimension().equals(SpectrumDimensionKeys.DIMENSION_KEY)) {
 			return true;
 		}
 		return original;
@@ -21,7 +21,7 @@ public class FireBlockMixin {
 	
 	@ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "net/minecraft/server/level/ServerLevel.isRaining ()Z", ordinal = 1))
 	public boolean spectrum$assuageInPermanentRain(boolean original, @Local(argsOnly = true) ServerLevel world) {
-		if (world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
+		if (world.dimension().equals(SpectrumDimensionKeys.DIMENSION_KEY)) {
 			return true;
 		}
 		return original;

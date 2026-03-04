@@ -158,7 +158,7 @@ public class DeeperDownPortalBlock extends Block {
 			
 			if (currentWorldKey == Level.OVERWORLD) {
 				// => teleport to DD
-				ServerLevel targetWorld = serverWorld.getServer().getLevel(SpectrumDimensions.DIMENSION_KEY);
+				ServerLevel targetWorld = serverWorld.getServer().getLevel(SpectrumDimensionKeys.DIMENSION_KEY);
 				if (targetWorld != null) {
 					BlockPos portalPos = new BlockPos(pos.getX(), targetWorld.getMaxBuildHeight() - 1, pos.getZ());
 					if (!targetWorld.getBlockState(portalPos).is(SpectrumBlocks.DEEPER_DOWN_PORTAL)) {

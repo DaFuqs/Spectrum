@@ -29,7 +29,7 @@ public class AscensionStatusEffect extends MobEffect {
 		if (entity.level().isClientSide) {
 			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredSparkleRisingParticleEffect.WHITE, VectorPattern.EIGHT, 0.2);
 		} else if (applyDivinity) {
-			entity.addEffect(new MobEffectInstance(SpectrumStatusEffects.DIVINITY, MUSIC_DURATION_TICKS - MUSIC_INTRO_TICKS, DivinityStatusEffect.ASCENSION_AMPLIFIER));
+			entity.addEffect(new MobEffectInstance(SpectrumMobEffects.DIVINITY, MUSIC_DURATION_TICKS - MUSIC_INTRO_TICKS, DivinityStatusEffect.ASCENSION_AMPLIFIER));
 			return false;
 		}
 		return super.applyEffectTick(entity, amplifier);
@@ -51,7 +51,7 @@ public class AscensionStatusEffect extends MobEffect {
 	
 	@Override
 	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
-		cures.add(SpectrumStatusEffectCures.COMMAND_ONLY);
+		cures.add(SpectrumEffectCures.COMMAND_ONLY);
 	}
 	
 }

@@ -38,11 +38,11 @@ public class SoothingBouquetItem extends Item implements SleepAlteringItem, Slot
 			component.setSleepTimers(50, 20 * 6, 0);
 			component.setLastSleepItem(this);
 			
-			player.addEffect(new MobEffectInstance(SpectrumStatusEffects.CALMING, 20 * 10, 4));
-			player.addEffect(new MobEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 20 * 10, 4));
+			player.addEffect(new MobEffectInstance(SpectrumMobEffects.CALMING, 20 * 10, 4));
+			player.addEffect(new MobEffectInstance(SpectrumMobEffects.SOMNOLENCE, 20 * 10, 4));
 			player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 50, 3));
 		} else {
-			user.addEffect(new MobEffectInstance(SpectrumStatusEffects.SOMNOLENCE, 20 * 15, 2));
+			user.addEffect(new MobEffectInstance(SpectrumMobEffects.SOMNOLENCE, 20 * 15, 2));
 			user.startSleeping(user.blockPosition());
 		}
 		
@@ -83,6 +83,6 @@ public class SoothingBouquetItem extends Item implements SleepAlteringItem, Slot
 	
 	@Override
 	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
-		return SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR;
+		return SpectrumMobEffects.ETERNAL_SLUMBER_COLOR;
 	}
 }

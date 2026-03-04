@@ -46,7 +46,7 @@ public class CloverBlock extends BushBlock implements BonemealableBlock {
 	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		world.registryAccess()
 				.registryOrThrow(Registries.CONFIGURED_FEATURE)
-				.get(SpectrumConfiguredFeatures.CLOVER_PATCH)
+				.get(SpectrumConfiguredFeatureKeys.CLOVER_PATCH)
 				.place(world, world.getChunkSource().getGenerator(), random, pos);
 	}
 	

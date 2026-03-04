@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.helpers.enchantments;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
@@ -14,7 +13,7 @@ public class ImprovedCriticalHelper {
 	}
 	
 	public static float getAddtionalCritDamageMultiplier(HolderLookup.Provider lookup, ItemStack stack) {
-		return getAddtionalCritDamageMultiplier(SpectrumEnchantmentHelper.getLevel(lookup, SpectrumEnchantments.IMPROVED_CRITICAL, stack));
+		return getAddtionalCritDamageMultiplier(SpectrumEnchantmentHelper.getLevel(lookup, SpectrumEnchantmentKeys.IMPROVED_CRITICAL, stack));
 	}
 	
 }

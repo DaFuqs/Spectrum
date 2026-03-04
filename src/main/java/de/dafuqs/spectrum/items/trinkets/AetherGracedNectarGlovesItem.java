@@ -50,10 +50,10 @@ public class AetherGracedNectarGlovesItem extends AzureDikeCurioItem implements 
 		if (effect.value().isBeneficial())
 			return false;
 		
-		if (effect.is(SpectrumStatusEffectTags.BYPASSES_NECTAR_GLOVES))
+		if (effect.is(SpectrumMobEffectTags.BYPASSES_NECTAR_GLOVES))
 			return false;
 		
-		return hasEquipped(entity, SpectrumItems.AETHER_GRACED_NECTAR_GLOVES.get()) && (effect.value().getCategory() == MobEffectCategory.HARMFUL || effect == SpectrumStatusEffects.FRENZY);
+		return hasEquipped(entity, SpectrumItems.AETHER_GRACED_NECTAR_GLOVES.get()) && (effect.value().getCategory() == MobEffectCategory.HARMFUL || effect == SpectrumMobEffects.FRENZY);
 	}
 	
 	public static boolean tryBlockEffect(LivingEntity entity, int cost) {
@@ -71,6 +71,6 @@ public class AetherGracedNectarGlovesItem extends AzureDikeCurioItem implements 
 	
 	@Override
 	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
-		return SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR;
+		return SpectrumMobEffects.ETERNAL_SLUMBER_COLOR;
 	}
 }

@@ -22,12 +22,12 @@ public abstract class BrainMixin<E extends LivingEntity> {
 	
 	@Inject(method = "tick", at = @At("HEAD"), cancellable = true)
 	public void slowDownBrainTicks(ServerLevel world, E entity, CallbackInfo ci) {
-		if (entity.hasEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || entity.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
+		if (entity.hasEffect(SpectrumMobEffects.ETERNAL_SLUMBER) || entity.hasEffect(SpectrumMobEffects.FATAL_SLUMBER)) {
 			ci.cancel();
 			return;
 		}
 		
-		var effect = entity.getEffect(SpectrumStatusEffects.SOMNOLENCE);
+		var effect = entity.getEffect(SpectrumMobEffects.SOMNOLENCE);
 		if (effect == null)
 			return;
 		

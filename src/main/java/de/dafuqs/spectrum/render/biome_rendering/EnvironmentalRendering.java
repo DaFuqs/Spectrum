@@ -206,7 +206,7 @@ public class EnvironmentalRendering {
 		if (client.level == null)
 			return RenderState.INACTIVE;
 		
-		if (client.level.dimension().equals(SpectrumDimensions.DIMENSION_KEY))
+		if (client.level.dimension().equals(SpectrumDimensionKeys.DIMENSION_KEY))
 			return RenderState.ULTRA_DARK;
 		
 		if (overrideActive || overrideActiveTicks > 0)

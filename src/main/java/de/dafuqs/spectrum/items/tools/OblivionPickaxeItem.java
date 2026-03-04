@@ -32,7 +32,7 @@ public class OblivionPickaxeItem extends GlintlessPickaxe {
 	
 	@Override
 	public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
-		return Map.of(SpectrumEnchantments.VOIDING, 1);
+		return Map.of(SpectrumEnchantmentKeys.VOIDING, 1);
 	}
 	
 }

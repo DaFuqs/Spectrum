@@ -31,13 +31,13 @@ public abstract class LivingEntityPreventStatusClearMixin {
 	
 	@Inject(method = "removeAllEffects", at = @At("HEAD"))
 	private void spectrum$detectFatalSlumber(CallbackInfoReturnable<Boolean> cir, @Share("hasFatalSlumber") LocalBooleanRef hasFatalSlumber) {
-		hasFatalSlumber.set(getActiveEffectsMap().containsKey(SpectrumStatusEffects.FATAL_SLUMBER.value()));
+		hasFatalSlumber.set(getActiveEffectsMap().containsKey(SpectrumMobEffects.FATAL_SLUMBER.value()));
 	}
 	
 	@Inject(method = "removeAllEffects", at = @At("TAIL"))
 	private void spectrum$applyEternalSlumberIfFatalSlumberRemoved(CallbackInfoReturnable<Boolean> cir, @Share("hasFatalSlumber") LocalBooleanRef hasFatalSlumber) {
 		if (hasFatalSlumber.get()) {
-			addEffect(new MobEffectInstance(SpectrumStatusEffects.ETERNAL_SLUMBER, 6000));
+			addEffect(new MobEffectInstance(SpectrumMobEffects.ETERNAL_SLUMBER, 6000));
 		}
 	}
 	
@@ -47,7 +47,7 @@ public abstract class LivingEntityPreventStatusClearMixin {
 			if (affectedByImmunity(instance, effect.getAmplifier()))
 				return true;
 			
-			SpectrumStatusEffects.cutDuration(instance, effect);
+			SpectrumMobEffects.cutDuration(instance, effect);
 			
 			blockRemoval.set(true);
 			return false;
@@ -86,7 +86,7 @@ public abstract class LivingEntityPreventStatusClearMixin {
 	
 	@Unique
 	private static boolean affectedByImmunity(LivingEntity instance, int amplifier) {
-		var immunity = instance.getEffect(SpectrumStatusEffects.IMMUNITY);
+		var immunity = instance.getEffect(SpectrumMobEffects.IMMUNITY);
 		var cost = 1200 + 600 * amplifier;
 		
 		if (immunity != null && immunity.getDuration() >= cost) {

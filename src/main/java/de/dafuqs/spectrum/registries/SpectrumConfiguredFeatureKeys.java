@@ -9,10 +9,7 @@ import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
 
-// TODO: rename to SpectrumConfiguredFeatureKeys
-public class SpectrumConfiguredFeatures {
-	
-	private static final DeferredRegister<ConfiguredFeature<?, ?>> REGISTRAR = DeferredRegister.create(Registries.CONFIGURED_FEATURE, SpectrumCommon.MOD_ID);
+public class SpectrumConfiguredFeatureKeys {
 	
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CLOVER_PATCH = of("clover_patch");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SNAPPING_IVY_PATCH = of("snapping_ivy_patch");
@@ -33,8 +30,8 @@ public class SpectrumConfiguredFeatures {
 		put(Dragonjag.Variant.PURPLE, of("dragonjags/purple"));
 	}};
 	
-	public static ResourceKey<ConfiguredFeature<?, ?>> of(String id) {
-		return ResourceKey.create(Registries.CONFIGURED_FEATURE, SpectrumCommon.locate(id));
+	public static ResourceKey<ConfiguredFeature<?, ?>> of(String name) {
+		return ResourceKey.create(Registries.CONFIGURED_FEATURE, SpectrumCommon.locate(name));
 	}
 	
 }

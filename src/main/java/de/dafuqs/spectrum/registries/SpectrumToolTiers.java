@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
 import com.google.common.base.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
@@ -11,7 +10,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.function.Supplier;
 
-public enum SpectrumToolMaterial implements Tier {
+public enum SpectrumToolTiers implements Tier {
 	
 	LOW_HEALTH(
 			BlockTags.INCORRECT_FOR_IRON_TOOL,
@@ -118,7 +117,7 @@ public enum SpectrumToolMaterial implements Tier {
 	private final int enchantability;
 	private final Supplier<Ingredient> repairIngredient;
 	
-	SpectrumToolMaterial(final TagKey<Block> inverseTag, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
+	SpectrumToolTiers(final TagKey<Block> inverseTag, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
 		this.inverseTag = inverseTag;
 		this.itemDurability = itemDurability;
 		this.miningSpeed = miningSpeed;

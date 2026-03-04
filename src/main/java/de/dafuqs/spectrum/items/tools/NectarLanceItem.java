@@ -58,9 +58,9 @@ public class NectarLanceItem extends LightGreatswordItem implements SlotBackgrou
 				assert effect != null;
 				applyDoTProc(magicDamage, base + 5F, 0.8F, target, effect, false, true);
 			}
-		} else if (target.hasEffect(SpectrumStatusEffects.DEADLY_POISON)) {
-			var effect = target.getEffect(SpectrumStatusEffects.DEADLY_POISON);
-			if (target.removeEffect(SpectrumStatusEffects.DEADLY_POISON)) {
+		} else if (target.hasEffect(SpectrumMobEffects.DEADLY_POISON)) {
+			var effect = target.getEffect(SpectrumMobEffects.DEADLY_POISON);
+			if (target.removeEffect(SpectrumMobEffects.DEADLY_POISON)) {
 				assert effect != null;
 				applyDoTProc(magicDamage, base + 10F, 1.0F, target, effect, true, true);
 			}
@@ -70,7 +70,7 @@ public class NectarLanceItem extends LightGreatswordItem implements SlotBackgrou
 				assert effect != null;
 				applyDoTProc(magicDamage, base + 5F, 0.1F, target, effect, true, false);
 			}
-		} else if (SpectrumStatusEffectTags.hasEffectWithTag(target, SpectrumStatusEffectTags.SOPORIFIC)) {
+		} else if (SpectrumMobEffectTags.has(target, SpectrumMobEffectTags.SOPORIFIC)) {
 			var scaling = SleepStatusEffect.getSleepScaling(target);
 			if (scaling > 0) {
 				target.hurt(SpectrumDamageTypes.sleep(target.level(), target), scaling);

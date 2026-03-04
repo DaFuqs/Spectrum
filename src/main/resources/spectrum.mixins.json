@@ -90,7 +90,6 @@
     "accessors.TridentEntityAccessor"
   ],
   "client": [
-    "accessors.DimensionEffectsAccessor",
     "accessors.WorldRendererAccessor",
     "client.AbstractInventoryScreenMixin",
     "client.BipedEntityModelMixin",
@@ -121,8 +120,7 @@
     "client.SleepingChatScreenMixin",
     "client.TranslationStorageMixin",
     "client.TranslucentBlockMixin",
-    "client.accessors.ParticleManagerAccessor",
-    "client.accessors.RenderLayerAccessor"
+    "client.accessors.ParticleManagerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

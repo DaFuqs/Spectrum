@@ -50,10 +50,10 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 		
 		int effectDuration = (int) (150 * Math.round(alcPercent / 10));
 		if (alcPercent >= 35) {
-			effects.add(new MobEffectInstance(SpectrumStatusEffects.MAGIC_ANNULATION, effectDuration, (int) (alcPercent / 10)));
+			effects.add(new MobEffectInstance(SpectrumMobEffects.MAGIC_ANNULATION, effectDuration, (int) (alcPercent / 10)));
 		}
 		if (alcPercent >= 35) {
-			effects.add(new MobEffectInstance(SpectrumStatusEffects.TOUGHNESS, effectDuration, (int) (alcPercent / 10)));
+			effects.add(new MobEffectInstance(SpectrumMobEffects.TOUGHNESS, effectDuration, (int) (alcPercent / 10)));
 			effectDuration *= 1.5;
 		}
 		if (alcPercent >= 30) {
@@ -65,11 +65,11 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 			effectDuration *= 1.5;
 		}
 		if (alcPercent >= 10) {
-			effects.add(new MobEffectInstance(SpectrumStatusEffects.NOURISHING, effectDuration));
+			effects.add(new MobEffectInstance(SpectrumMobEffects.NOURISHING, effectDuration));
 			effectDuration *= 1.5;
 		}
 		if (nectar) {
-			effects.add(new MobEffectInstance(SpectrumStatusEffects.IMMUNITY, effectDuration / 2));
+			effects.add(new MobEffectInstance(SpectrumMobEffects.IMMUNITY, effectDuration / 2));
 		}
 		
 		int nectarMod = nectar ? 3 : 1;

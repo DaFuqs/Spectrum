@@ -12,7 +12,7 @@ public class WeepingGalaSprigBlock extends SaplingBlock {
 	public static final MapCodec<WeepingGalaSprigBlock> CODEC = simpleCodec(WeepingGalaSprigBlock::new);
 	
 	public WeepingGalaSprigBlock(BlockBehaviour.Properties settings) {
-		super(SpectrumSaplingGenerators.WEEPING_GALA_SAPLING_GENERATOR, settings);
+		super(SpectrumTreeGrowers.WEEPING_GALA_SAPLING_GENERATOR, settings);
 	}
 	
 	@Override

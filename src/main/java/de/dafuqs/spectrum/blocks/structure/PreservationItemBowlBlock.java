@@ -54,7 +54,7 @@ public class PreservationItemBowlBlock extends Block implements EntityBlock {
 	
 	public static boolean canInteract(Player player) {
 		// TODO: that really needs to get dehardcoded
-		return player.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER);
+		return player.hasEffect(SpectrumMobEffects.FATAL_SLUMBER);
 	}
 	
 	@Nullable

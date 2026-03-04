@@ -33,6 +33,6 @@ public class NectardewBurgeonItem extends CloakedItem implements SlotBackgroundE
 	
 	@Override
 	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
-		return isVisibleTo(player) ? SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR : 0x0;
+		return isVisibleTo(player) ? SpectrumMobEffects.ETERNAL_SLUMBER_COLOR : 0x0;
 	}
 }

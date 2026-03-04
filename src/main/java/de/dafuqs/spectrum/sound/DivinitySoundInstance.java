@@ -44,7 +44,7 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 			this.volume = 0.5F + ((float) time / AscensionStatusEffect.MUSIC_INTRO_TICKS) * 0.2F;
 		}
 		Player player = client.player;
-		if (instances > 1 || player == null || !(player.hasEffect(SpectrumStatusEffects.ASCENSION) || player.hasEffect(SpectrumStatusEffects.DIVINITY))) {
+		if (instances > 1 || player == null || !(player.hasEffect(SpectrumMobEffects.ASCENSION) || player.hasEffect(SpectrumMobEffects.DIVINITY))) {
 			this.setDone();
 		} else {
 			this.x = ((float) player.getX());

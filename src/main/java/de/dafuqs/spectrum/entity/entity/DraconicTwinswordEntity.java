@@ -242,7 +242,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 	}
 	
 	private void applyInertiaEffects(ItemStack stack) {
-		var inertia = SpectrumEnchantmentHelper.getLevel(level().registryAccess(), SpectrumEnchantments.INERTIA, stack);
+		var inertia = SpectrumEnchantmentHelper.getLevel(level().registryAccess(), SpectrumEnchantmentKeys.INERTIA, stack);
 		if (inertia > 0) {
 			damageMult += inertia * 0.1675F;
 			if (velMult < 2) {

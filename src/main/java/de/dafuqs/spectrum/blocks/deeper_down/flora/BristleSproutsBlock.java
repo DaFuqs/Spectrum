@@ -65,7 +65,7 @@ public class BristleSproutsBlock extends BushBlock implements BonemealableBlock 
 	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		world.registryAccess()
 				.registryOrThrow(Registries.CONFIGURED_FEATURE)
-				.get(SpectrumConfiguredFeatures.BRISTLE_SPROUT_PATCH)
+				.get(SpectrumConfiguredFeatureKeys.BRISTLE_SPROUT_PATCH)
 				.place(world, world.getChunkSource().getGenerator(), random, pos);
 	}
 	

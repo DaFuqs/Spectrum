@@ -49,7 +49,7 @@ public class JadeWineRecipe extends SweetenableTitrationBarrelRecipe {
 		
 		int effectDuration = 1200;
 		if (alcPercent >= 80) {
-			effects.add(new MobEffectInstance(SpectrumStatusEffects.PROJECTILE_REBOUND, effectDuration));
+			effects.add(new MobEffectInstance(SpectrumMobEffects.PROJECTILE_REBOUND, effectDuration));
 			effectDuration *= 2;
 		}
 		if (alcPercent >= 70) {
@@ -65,11 +65,11 @@ public class JadeWineRecipe extends SweetenableTitrationBarrelRecipe {
 			effectDuration *= 2;
 		}
 		if (alcPercent >= 20) {
-			effects.add(new MobEffectInstance(SpectrumStatusEffects.NOURISHING, effectDuration));
+			effects.add(new MobEffectInstance(SpectrumMobEffects.NOURISHING, effectDuration));
 			effectDuration *= 2;
 		}
 		if (nectar) {
-			effects.add(new MobEffectInstance(SpectrumStatusEffects.IMMUNITY, effectDuration));
+			effects.add(new MobEffectInstance(SpectrumMobEffects.IMMUNITY, effectDuration));
 		}
 		
 		int nectarMod = nectar ? 3 : 1;

@@ -46,14 +46,12 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		NeoForge.EVENT_BUS.addListener(HudRenderers::registerPost);
 		
 		NeoForge.EVENT_BUS.addListener(HudRenderers::registerPost);
-		modBus.addListener(SpectrumTooltipComponents::registerTooltipComponents);
 		SpectrumEnvironmentalDataOverrides.register();
 		SpectrumClientEventListeners.register(modBus);
 		
 		if (SpectrumConfig.CONFIG.AddItemTooltips.get()) {
 			NeoForge.EVENT_BUS.addListener(SpectrumTooltips::register);
 		}
-		modBus.addListener(SpectrumArmorRenderers::register);
 		
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
@@ -61,7 +59,7 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		modBus.addListener(SpectrumFluids::registerClient);
 		modBus.addListener(SpectrumBlockEntities::registerClient);
 		modBus.addListener(SpectrumScreenHandlerTypes::registerClient);
-		modBus.addListener(SpectrumModelLayers::register);
+		modBus.addListener(SpectrumModelLayerLocations::register);
 		modBus.addListener(BedrockCapeRenderer::registerLayers);
 		
 		modBus.addListener(SpectrumColorProviders::registerBlocks);

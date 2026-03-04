@@ -217,7 +217,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		return hasUniqueReagents(potionWorkshopBlockEntity)
 				&& canPlayerUseReagents(potionWorkshopBlockEntity)
 				&& recipe.recipeData.isApplicableTo(baseIngredient, potionMod)
-				&& !(potionMod.flags().severe() && recipe.recipeData.statusEffect().is(SpectrumStatusEffectTags.CANNOT_BE_SEVERE));
+				&& !(potionMod.flags().severe() && recipe.recipeData.statusEffect().is(SpectrumMobEffectTags.CANNOT_BE_SEVERE));
 	}
 	
 	private static void craftRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, RecipeHolder<PotionWorkshopCraftingRecipe> recipe) {

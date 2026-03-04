@@ -299,15 +299,15 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 			this.setClipped(this.getClipTime() - 1);
 			this.setChillTime(this.getChillTime() - 1);
 			
-			if (hasEffect(SpectrumStatusEffects.ETERNAL_SLUMBER)) {
+			if (hasEffect(SpectrumMobEffects.ETERNAL_SLUMBER)) {
 				ascend(2);
 			}
 			
-			if (hasEffect(SpectrumStatusEffects.FATAL_SLUMBER)) {
+			if (hasEffect(SpectrumMobEffects.FATAL_SLUMBER)) {
 				ascend(3);
 			}
 			
-			if (hasEffect(SpectrumStatusEffects.SOMNOLENCE) && getEepyTime() == 0) {
+			if (hasEffect(SpectrumMobEffects.SOMNOLENCE) && getEepyTime() == 0) {
 				setEepyTime(100);
 			}
 			

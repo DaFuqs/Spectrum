@@ -66,7 +66,7 @@ public class DivinityStatusEffect extends MobEffect {
 		super.onEffectStarted(entity, amplifier);
 		if (entity instanceof Player) {
 			if (entity instanceof ServerPlayer player) {
-				MobEffectInstance instance = entity.getEffect(SpectrumStatusEffects.DIVINITY);
+				MobEffectInstance instance = entity.getEffect(SpectrumMobEffects.DIVINITY);
 				if (instance != null && !instance.isAmbient()) {
 					PlayDivinityAppliedEffectsPayload.playDivinityAppliedEffects(player);
 				}
@@ -81,7 +81,7 @@ public class DivinityStatusEffect extends MobEffect {
 	
 	@Override
 	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
-		cures.add(SpectrumStatusEffectCures.COMMAND_ONLY);
+		cures.add(SpectrumEffectCures.COMMAND_ONLY);
 	}
 	
 }

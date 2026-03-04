@@ -18,7 +18,7 @@ public class SpectrumItemSubPredicateTypes {
 	public static ItemSubPredicate.Type<BottomlessStackPredicate> BOTTOMLESS_STACK = register("bottomless_stack", BottomlessStackPredicate.CODEC);
 	
 	private static <T extends ItemSubPredicate> ItemSubPredicate.Type<T> register(String id, Codec<T> codec) {
-		var type = new ItemSubPredicate.Type<>(codec);
+		ItemSubPredicate.Type<T> type = new ItemSubPredicate.Type<>(codec);
 		REGISTRAR.register(id, () -> type);
 		return type;
 	}

@@ -19,8 +19,8 @@ public class EggLayingWoolyPigWoolFeatureRenderer extends RenderLayer<EggLayingW
 	
 	public EggLayingWoolyPigWoolFeatureRenderer(EggLayingWoolyPigEntityRenderer context, EntityModelSet loader) {
 		super(context);
-		this.hat = new EggLayingWoolyPigHatEntityModel(loader.bakeLayer(SpectrumModelLayers.WOOLY_PIG_HAT));
-		this.wool = new EggLayingWoolyPigWoolEntityModel(loader.bakeLayer(SpectrumModelLayers.WOOLY_PIG_WOOL));
+		this.hat = new EggLayingWoolyPigHatEntityModel(loader.bakeLayer(SpectrumModelLayerLocations.WOOLY_PIG_HAT));
+		this.wool = new EggLayingWoolyPigWoolEntityModel(loader.bakeLayer(SpectrumModelLayerLocations.WOOLY_PIG_WOOL));
 	}
 	
 	@Override

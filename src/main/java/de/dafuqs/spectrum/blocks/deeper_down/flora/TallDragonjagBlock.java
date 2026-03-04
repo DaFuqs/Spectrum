@@ -91,7 +91,7 @@ public class TallDragonjagBlock extends DoublePlantBlock implements Dragonjag, B
 	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		boolean success = world.registryAccess()
 				.registryOrThrow(Registries.CONFIGURED_FEATURE)
-				.get(SpectrumConfiguredFeatures.DRAGONJAGS.get(variant))
+				.get(SpectrumConfiguredFeatureKeys.DRAGONJAGS.get(variant))
 				.place(world, world.getChunkSource().getGenerator(), random, pos);
 		
 		if (success) {

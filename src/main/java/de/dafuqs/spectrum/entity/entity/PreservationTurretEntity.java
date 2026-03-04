@@ -80,7 +80,7 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 	
 	@Override
 	public boolean canBeAffected(MobEffectInstance effect) {
-		if (effect.getEffect().is(SpectrumStatusEffectTags.SOPORIFIC))
+		if (effect.getEffect().is(SpectrumMobEffectTags.SOPORIFIC))
 			return false;
 		
 		return super.canBeAffected(effect);

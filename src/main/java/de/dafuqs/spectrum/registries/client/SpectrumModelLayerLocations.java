@@ -14,7 +14,7 @@ import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.client.*;
 
 
-public class SpectrumModelLayers {
+public class SpectrumModelLayerLocations {
 	
 	/**
 	 * Entities

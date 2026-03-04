@@ -32,7 +32,7 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 	
 	@Override
 	public @Nullable ResourceLocation getArmorTexture(@NotNull ItemStack stack, @NotNull Entity entity, @NotNull EquipmentSlot slot, ArmorMaterial.@NotNull Layer layer, boolean innerModel) {
-		return SpectrumModelLayers.BEDROCK_ARMOR_ID;
+		return SpectrumModelLayerLocations.BEDROCK_ARMOR_ID;
 	}
 	
 	@NotNull

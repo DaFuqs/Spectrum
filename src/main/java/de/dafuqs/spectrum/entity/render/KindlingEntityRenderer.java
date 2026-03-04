@@ -18,8 +18,8 @@ public class KindlingEntityRenderer extends MobRenderer<KindlingEntity, Kindling
 	public static final ResourceLocation SADDLE_TEXTURE = SpectrumCommon.locate("textures/entity/kindling/saddle.png");
 	
 	public KindlingEntityRenderer(EntityRendererProvider.Context context) {
-		super(context, new KindlingEntityModel(context.bakeLayer(SpectrumModelLayers.KINDLING)), 0.7F);
-		this.addLayer(new SaddleLayer<>(this, new KindlingEntityModel(context.bakeLayer(SpectrumModelLayers.KINDLING_SADDLE)), SADDLE_TEXTURE));
+		super(context, new KindlingEntityModel(context.bakeLayer(SpectrumModelLayerLocations.KINDLING)), 0.7F);
+		this.addLayer(new SaddleLayer<>(this, new KindlingEntityModel(context.bakeLayer(SpectrumModelLayerLocations.KINDLING_SADDLE)), SADDLE_TEXTURE));
 		this.addLayer(new KindlingEntityArmorFeatureRenderer(this, context.getModelSet()));
 	}
 	

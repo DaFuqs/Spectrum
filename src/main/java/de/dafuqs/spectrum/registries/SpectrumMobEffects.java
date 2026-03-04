@@ -19,7 +19,7 @@ import java.util.function.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
-public class SpectrumStatusEffects {
+public class SpectrumMobEffects {
 	
 	public static final int ETERNAL_SLUMBER_COLOR = 0xc35fee;
 	public static boolean effectsAreGettingStacked = false;

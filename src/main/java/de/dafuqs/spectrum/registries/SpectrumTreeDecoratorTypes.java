@@ -16,8 +16,8 @@ public class SpectrumTreeDecoratorTypes {
 	
 	public static final Holder<TreeDecoratorType<?>> FRONDS = register("fronds", () -> new TreeDecoratorType<>(FrondsDecorator.CODEC));
 	
-	private static Holder<TreeDecoratorType<?>> register(String id, Supplier<TreeDecoratorType<?>> treeDecoratorType) {
-		return REGISTRAR.register(id, treeDecoratorType);
+	private static Holder<TreeDecoratorType<?>> register(String name, Supplier<TreeDecoratorType<?>> treeDecoratorType) {
+		return REGISTRAR.register(name, treeDecoratorType);
 	}
 	
 	public static void register(IEventBus modBus) {

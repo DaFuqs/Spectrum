@@ -13,7 +13,7 @@ public class EraserEntityRenderer extends MobRenderer<EraserEntity, EraserEntity
 	public static final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/entity/eraser/eraser_base.png");
 	
 	public EraserEntityRenderer(EntityRendererProvider.Context context) {
-		super(context, new EraserEntityModel(context.bakeLayer(SpectrumModelLayers.ERASER)), 0.175F);
+		super(context, new EraserEntityModel(context.bakeLayer(SpectrumModelLayerLocations.ERASER)), 0.175F);
 		this.addLayer(new EraserOverlayFeatureRenderer(this));
 	}
 	

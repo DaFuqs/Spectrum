@@ -14,7 +14,7 @@ public class EggLayingWoolyPigEntityRenderer extends MobRenderer<EggLayingWoolyP
 	public static final ResourceLocation TEXTURE_BLINKING = SpectrumCommon.locate("textures/entity/egg_laying_wooly_pig/egg_laying_wooly_pig_blink.png");
 	
 	public EggLayingWoolyPigEntityRenderer(EntityRendererProvider.Context context) {
-		super(context, new EggLayingWoolyPigEntityModel(context.bakeLayer(SpectrumModelLayers.WOOLY_PIG)), 0.6F);
+		super(context, new EggLayingWoolyPigEntityModel(context.bakeLayer(SpectrumModelLayerLocations.WOOLY_PIG)), 0.6F);
 		this.addLayer(new EggLayingWoolyPigWoolFeatureRenderer(this, context.getModelSet()));
 	}
 	

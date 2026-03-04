@@ -78,7 +78,7 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	
 	@Override
 	public boolean isValidRepairItem(ItemStack stack, ItemStack ingredient) {
-		return SpectrumToolMaterial.MALACHITE.getRepairIngredient().test(ingredient) || super.isValidRepairItem(stack, ingredient);
+		return SpectrumToolTiers.MALACHITE.getRepairIngredient().test(ingredient) || super.isValidRepairItem(stack, ingredient);
 	}
 	
 	public int getRiptideLevel(HolderLookup.Provider lookup, ItemStack stack) {

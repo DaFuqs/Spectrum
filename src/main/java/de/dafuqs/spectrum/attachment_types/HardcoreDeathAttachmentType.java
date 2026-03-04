@@ -35,7 +35,7 @@ public class HardcoreDeathAttachmentType {
 	}
 	
 	public static boolean isInHardcore(Player player) {
-		return player.hasEffect(SpectrumStatusEffects.DIVINITY);
+		return player.hasEffect(SpectrumMobEffects.DIVINITY);
 	}
 	
 	public record Payload(int entityId, boolean ribbon) implements CustomPacketPayload {

@@ -54,7 +54,7 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 			effectDuration *= 1.5;
 		}
 		if (alcPercent >= 35) {
-			effects.add(new MobEffectInstance(SpectrumStatusEffects.EFFECT_PROLONGING, effectDuration, (int) (alcPercent / 12)));
+			effects.add(new MobEffectInstance(SpectrumMobEffects.EFFECT_PROLONGING, effectDuration, (int) (alcPercent / 12)));
 			effectDuration *= 2;
 		}
 		if (alcPercent >= 30) {
@@ -66,11 +66,11 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 			effectDuration *= 2;
 		}
 		if (alcPercent >= 10) {
-			effects.add(new MobEffectInstance(SpectrumStatusEffects.NOURISHING, effectDuration));
+			effects.add(new MobEffectInstance(SpectrumMobEffects.NOURISHING, effectDuration));
 			effectDuration *= 2;
 		}
 		if (nectar) {
-			effects.add(new MobEffectInstance(SpectrumStatusEffects.IMMUNITY, effectDuration / 2));
+			effects.add(new MobEffectInstance(SpectrumMobEffects.IMMUNITY, effectDuration / 2));
 		}
 		
 		int nectarMod = nectar ? 3 : 1;

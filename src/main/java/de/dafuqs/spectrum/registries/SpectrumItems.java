@@ -99,62 +99,62 @@ public class SpectrumItems {
 	
 	// Preenchanted tools
 	public static final DeferredItem<PreenchantedMultiToolItem> MULTITOOL = register("multitool", () -> new PreenchantedMultiToolItem(Tiers.IRON, 2, -2.4F, IS.of(Rarity.UNCOMMON).durability(Tiers.IRON.getUses())));
-	public static final DeferredItem<GlintlessPickaxe> TENDER_PICKAXE = register("tender_pickaxe", () -> new GlintlessPickaxe(SpectrumToolMaterial.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.LOW_HEALTH, 1, -2.8F))) {
+	public static final DeferredItem<GlintlessPickaxe> TENDER_PICKAXE = register("tender_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.LOW_HEALTH, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.SILK_TOUCH, 1);
 		}
 	});
-	public static final DeferredItem<GlintlessPickaxe> LUCKY_PICKAXE = register("lucky_pickaxe", () -> new GlintlessPickaxe(SpectrumToolMaterial.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.LOW_HEALTH, 1, -2.8F))) {
+	public static final DeferredItem<GlintlessPickaxe> LUCKY_PICKAXE = register("lucky_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.LOW_HEALTH, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.FORTUNE, 3);
 		}
 	});
-	public static final DeferredItem<RazorFalchionItem> RAZOR_FALCHION = register("razor_falchion", () -> new RazorFalchionItem(SpectrumToolMaterial.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.LOW_HEALTH.getUses()).attributes(SwordItem.createAttributes(SpectrumToolMaterial.LOW_HEALTH, 4, -2.2F))));
-	public static final DeferredItem<OblivionPickaxeItem> OBLIVION_PICKAXE = register("oblivion_pickaxe", () -> new OblivionPickaxeItem(SpectrumToolMaterial.VOIDING, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.VOIDING.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.VOIDING, 1, -2.8F))));
-	public static final DeferredItem<GlintlessPickaxe> RESONANT_PICKAXE = register("resonant_pickaxe", () -> new GlintlessPickaxe(SpectrumToolMaterial.LOW_HEALTH_MINING_LEVEL_4, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.LOW_HEALTH_MINING_LEVEL_4, 1, -2.8F))) {
+	public static final DeferredItem<RazorFalchionItem> RAZOR_FALCHION = register("razor_falchion", () -> new RazorFalchionItem(SpectrumToolTiers.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(SwordItem.createAttributes(SpectrumToolTiers.LOW_HEALTH, 4, -2.2F))));
+	public static final DeferredItem<OblivionPickaxeItem> OBLIVION_PICKAXE = register("oblivion_pickaxe", () -> new OblivionPickaxeItem(SpectrumToolTiers.VOIDING, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.VOIDING.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.VOIDING, 1, -2.8F))));
+	public static final DeferredItem<GlintlessPickaxe> RESONANT_PICKAXE = register("resonant_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.LOW_HEALTH_MINING_LEVEL_4, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.LOW_HEALTH_MINING_LEVEL_4, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
-			return Map.of(SpectrumEnchantments.RESONANCE, 1);
+			return Map.of(SpectrumEnchantmentKeys.RESONANCE, 1);
 		}
 	});
-	public static final DeferredItem<GlintlessPickaxe> DRAGONRENDING_PICKAXE = register("dragonrending_pickaxe", () -> new GlintlessPickaxe(SpectrumToolMaterial.DRACONIC, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.DRACONIC.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.DRACONIC, 1, -2.8F))) {
+	public static final DeferredItem<GlintlessPickaxe> DRAGONRENDING_PICKAXE = register("dragonrending_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.DRACONIC, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.DRACONIC.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.DRACONIC, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
-			return Map.of(SpectrumEnchantments.RAZING, 3);
+			return Map.of(SpectrumEnchantmentKeys.RAZING, 3);
 		}
 	});
 	public static final DeferredItem<LagoonRodItem> LAGOON_ROD = register("lagoon_rod", () -> new LagoonRodItem(IS.of().durability(256)));
 	public static final DeferredItem<MoltenRodItem> MOLTEN_ROD = register("molten_rod", () -> new MoltenRodItem(IS.of().durability(256)));
 	
 	// Bedrock Tools
-	public static final DeferredItem<SpectrumPickaxeItem> BEDROCK_PICKAXE = register("bedrock_pickaxe", () -> new SpectrumPickaxeItem(SpectrumToolMaterial.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.BEDROCK, 1, -2.8F)).fireResistant().durability(SpectrumToolMaterial.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))) {
+	public static final DeferredItem<SpectrumPickaxeItem> BEDROCK_PICKAXE = register("bedrock_pickaxe", () -> new SpectrumPickaxeItem(SpectrumToolTiers.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.BEDROCK, 1, -2.8F)).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.SILK_TOUCH, 1);
 		}
 	});
-	public static final DeferredItem<BedrockAxeItem> BEDROCK_AXE = register("bedrock_axe", () -> new BedrockAxeItem(SpectrumToolMaterial.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(AxeItem.createAttributes(SpectrumToolMaterial.BEDROCK, 5, -3.0F)).fireResistant().durability(SpectrumToolMaterial.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
-	public static final DeferredItem<BedrockShovelItem> BEDROCK_SHOVEL = register("bedrock_shovel", () -> new BedrockShovelItem(SpectrumToolMaterial.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(ShovelItem.createAttributes(SpectrumToolMaterial.BEDROCK, 1, -3.0F)).fireResistant().durability(SpectrumToolMaterial.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
-	public static final DeferredItem<BedrockSwordItem> BEDROCK_SWORD = register("bedrock_sword", () -> new BedrockSwordItem(SpectrumToolMaterial.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(SwordItem.createAttributes(SpectrumToolMaterial.BEDROCK, 4, -2.4F)).fireResistant().durability(SpectrumToolMaterial.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
-	public static final DeferredItem<BedrockHoeItem> BEDROCK_HOE = register("bedrock_hoe", () -> new BedrockHoeItem(SpectrumToolMaterial.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(HoeItem.createAttributes(SpectrumToolMaterial.BEDROCK, 2, -0.0F)).fireResistant().durability(SpectrumToolMaterial.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
-	public static final DeferredItem<BedrockBowItem> BEDROCK_BOW = register("bedrock_bow", () -> new BedrockBowItem(IS.of(Rarity.UNCOMMON).fireResistant().durability(SpectrumToolMaterial.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
-	public static final DeferredItem<BedrockCrossbowItem> BEDROCK_CROSSBOW = register("bedrock_crossbow", () -> new BedrockCrossbowItem(IS.of(Rarity.UNCOMMON).fireResistant().durability(SpectrumToolMaterial.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
-	public static final DeferredItem<BedrockShearsItem> BEDROCK_SHEARS = register("bedrock_shears", () -> new BedrockShearsItem(IS.of(Rarity.UNCOMMON).fireResistant().durability(SpectrumToolMaterial.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false)).component(DataComponents.TOOL, ShearsItem.createToolProperties())));
-	public static final DeferredItem<BedrockFishingRodItem> BEDROCK_FISHING_ROD = register("bedrock_fishing_rod", () -> new BedrockFishingRodItem(IS.of(Rarity.UNCOMMON).fireResistant().durability(SpectrumToolMaterial.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
+	public static final DeferredItem<BedrockAxeItem> BEDROCK_AXE = register("bedrock_axe", () -> new BedrockAxeItem(SpectrumToolTiers.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(AxeItem.createAttributes(SpectrumToolTiers.BEDROCK, 5, -3.0F)).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
+	public static final DeferredItem<BedrockShovelItem> BEDROCK_SHOVEL = register("bedrock_shovel", () -> new BedrockShovelItem(SpectrumToolTiers.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(ShovelItem.createAttributes(SpectrumToolTiers.BEDROCK, 1, -3.0F)).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
+	public static final DeferredItem<BedrockSwordItem> BEDROCK_SWORD = register("bedrock_sword", () -> new BedrockSwordItem(SpectrumToolTiers.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(SwordItem.createAttributes(SpectrumToolTiers.BEDROCK, 4, -2.4F)).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
+	public static final DeferredItem<BedrockHoeItem> BEDROCK_HOE = register("bedrock_hoe", () -> new BedrockHoeItem(SpectrumToolTiers.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(HoeItem.createAttributes(SpectrumToolTiers.BEDROCK, 2, -0.0F)).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
+	public static final DeferredItem<BedrockBowItem> BEDROCK_BOW = register("bedrock_bow", () -> new BedrockBowItem(IS.of(Rarity.UNCOMMON).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
+	public static final DeferredItem<BedrockCrossbowItem> BEDROCK_CROSSBOW = register("bedrock_crossbow", () -> new BedrockCrossbowItem(IS.of(Rarity.UNCOMMON).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
+	public static final DeferredItem<BedrockShearsItem> BEDROCK_SHEARS = register("bedrock_shears", () -> new BedrockShearsItem(IS.of(Rarity.UNCOMMON).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false)).component(DataComponents.TOOL, ShearsItem.createToolProperties())));
+	public static final DeferredItem<BedrockFishingRodItem> BEDROCK_FISHING_ROD = register("bedrock_fishing_rod", () -> new BedrockFishingRodItem(IS.of(Rarity.UNCOMMON).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
 	
-	public static final DeferredItem<WorkstaffItem> MALACHITE_WORKSTAFF = register("malachite_workstaff", () -> new WorkstaffItem(SpectrumToolMaterial.MALACHITE, 1, -3.2F, IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<GreatswordItem> MALACHITE_ULTRA_GREATSWORD = register("malachite_ultra_greatsword", () -> new GreatswordItem(SpectrumToolMaterial.MALACHITE, 7, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<MalachiteCrossbowItem> MALACHITE_CROSSBOW = register("malachite_crossbow", () -> new MalachiteCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireResistant().durability(SpectrumToolMaterial.MALACHITE.getUses())));
-	public static final DeferredItem<MalachiteBidentItem> MALACHITE_BIDENT = register("malachite_bident", () -> new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.MALACHITE.getUses()), -2.4, 9, 0.25F, 0F));
+	public static final DeferredItem<WorkstaffItem> MALACHITE_WORKSTAFF = register("malachite_workstaff", () -> new WorkstaffItem(SpectrumToolTiers.MALACHITE, 1, -3.2F, IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<GreatswordItem> MALACHITE_ULTRA_GREATSWORD = register("malachite_ultra_greatsword", () -> new GreatswordItem(SpectrumToolTiers.MALACHITE, 7, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<MalachiteCrossbowItem> MALACHITE_CROSSBOW = register("malachite_crossbow", () -> new MalachiteCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireResistant().durability(SpectrumToolTiers.MALACHITE.getUses())));
+	public static final DeferredItem<MalachiteBidentItem> MALACHITE_BIDENT = register("malachite_bident", () -> new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.MALACHITE.getUses()), -2.4, 9, 0.25F, 0F));
 	
 	// variants by socketing a moonstone core
-	public static final DeferredItem<GlassCrestWorkstaffItem> GLASS_CREST_WORKSTAFF = register("glass_crest_workstaff", () -> new GlassCrestWorkstaffItem(SpectrumToolMaterial.GLASS_CREST, 1, -2.8F, IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<GlassCrestGreatswordItem> GLASS_CREST_ULTRA_GREATSWORD = register("glass_crest_ultra_greatsword", () -> new GlassCrestGreatswordItem(SpectrumToolMaterial.GLASS_CREST, 5, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<GlassCrestCrossbowItem> GLASS_CREST_CROSSBOW = register("glass_crest_crossbow", () -> new GlassCrestCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireResistant().durability(SpectrumToolMaterial.GLASS_CREST.getUses())));
-	public static final DeferredItem<FerociousBidentItem> FEROCIOUS_GLASS_CREST_BIDENT = register("ferocious_glass_crest_bident", () -> new FerociousBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.GLASS_CREST.getUses()), -2.2, 13, 0.33F, 0.33F));
-	public static final DeferredItem<FractalBidentItem> FRACTAL_GLASS_CREST_BIDENT = register("fractal_glass_crest_bident", () -> new FractalBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.GLASS_CREST.getUses()), -2.4, 6.5, 0.25F, 0.25F));
+	public static final DeferredItem<GlassCrestWorkstaffItem> GLASS_CREST_WORKSTAFF = register("glass_crest_workstaff", () -> new GlassCrestWorkstaffItem(SpectrumToolTiers.GLASS_CREST, 1, -2.8F, IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<GlassCrestGreatswordItem> GLASS_CREST_ULTRA_GREATSWORD = register("glass_crest_ultra_greatsword", () -> new GlassCrestGreatswordItem(SpectrumToolTiers.GLASS_CREST, 5, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<GlassCrestCrossbowItem> GLASS_CREST_CROSSBOW = register("glass_crest_crossbow", () -> new GlassCrestCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireResistant().durability(SpectrumToolTiers.GLASS_CREST.getUses())));
+	public static final DeferredItem<FerociousBidentItem> FEROCIOUS_GLASS_CREST_BIDENT = register("ferocious_glass_crest_bident", () -> new FerociousBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.GLASS_CREST.getUses()), -2.2, 13, 0.33F, 0.33F));
+	public static final DeferredItem<FractalBidentItem> FRACTAL_GLASS_CREST_BIDENT = register("fractal_glass_crest_bident", () -> new FractalBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.GLASS_CREST.getUses()), -2.4, 6.5, 0.25F, 0.25F));
 	
 	public static final DeferredItem<Item> MALACHITE_GLASS_ARROW = register("malachite_glass_arrow", () -> new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.MALACHITE, ColoredCraftingParticleEffect.LIME));
 	public static final DeferredItem<Item> TOPAZ_GLASS_ARROW = register("topaz_glass_arrow", () -> new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.TOPAZ, ColoredCraftingParticleEffect.CYAN));
@@ -171,12 +171,12 @@ public class SpectrumItems {
 	
 	// Special tools
 	// TODO: set attribute modifiers similarly to how vanilla swords do it
-	public static final DeferredItem<DreamflayerItem> DREAMFLAYER = register("dreamflayer", () -> new DreamflayerItem(SpectrumToolMaterial.DREAMFLAYER, 3, -1.8F, IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<DreamflayerItem> DREAMFLAYER = register("dreamflayer", () -> new DreamflayerItem(SpectrumToolTiers.DREAMFLAYER, 3, -1.8F, IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<NightfallsBladeItem> NIGHTFALLS_BLADE = register("nightfalls_blade", () -> new NightfallsBladeItem(Tiers.DIAMOND, 3, -2.4F, IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<DraconicTwinswordItem> DRACONIC_TWINSWORD = register("draconic_twinsword", () -> new DraconicTwinswordItem(SpectrumToolMaterial.DRACONIC, 6, -3.0F, IS.of(1, Rarity.RARE)));
-	public static final DeferredItem<DragonTalonItem> DRAGON_TALON = register("dragon_talon", () -> new DragonTalonItem(SpectrumToolMaterial.DRACONIC, -3.0, -1.0, IS.of(1, Rarity.RARE).durability(SpectrumToolMaterial.DRACONIC.getUses())));
-	public static final DeferredItem<LightGreatswordItem> KNOTTED_SWORD = register("knotted_sword", () -> new LightGreatswordItem(SpectrumToolMaterial.VERDIGRIS, 3, -2.4F, 0.25F, 0.5F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.VERDIGRIS.getUses())));
-	public static final DeferredItem<NectarLanceItem> NECTAR_LANCE = register("nectar_lance", () -> new NectarLanceItem(SpectrumToolMaterial.NECTAR, 0, -2.4F, 0.5F, 1.5F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).durability(SpectrumToolMaterial.NECTAR.getUses())));
+	public static final DeferredItem<DraconicTwinswordItem> DRACONIC_TWINSWORD = register("draconic_twinsword", () -> new DraconicTwinswordItem(SpectrumToolTiers.DRACONIC, 6, -3.0F, IS.of(1, Rarity.RARE)));
+	public static final DeferredItem<DragonTalonItem> DRAGON_TALON = register("dragon_talon", () -> new DragonTalonItem(SpectrumToolTiers.DRACONIC, -3.0, -1.0, IS.of(1, Rarity.RARE).durability(SpectrumToolTiers.DRACONIC.getUses())));
+	public static final DeferredItem<LightGreatswordItem> KNOTTED_SWORD = register("knotted_sword", () -> new LightGreatswordItem(SpectrumToolTiers.VERDIGRIS, 3, -2.4F, 0.25F, 0.5F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.VERDIGRIS.getUses())));
+	public static final DeferredItem<NectarLanceItem> NECTAR_LANCE = register("nectar_lance", () -> new NectarLanceItem(SpectrumToolTiers.NECTAR, 0, -2.4F, 0.5F, 1.5F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).durability(SpectrumToolTiers.NECTAR.getUses())));
 	
 	// Bedrock Armor
 	public static final DeferredItem<BedrockArmorItem> BEDROCK_HELMET = register("bedrock_helmet", () -> new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.HELMET, IS.of(Rarity.UNCOMMON).fireResistant().durability(70 * 13).component(DataComponents.UNBREAKABLE, new Unbreakable(false))) {
@@ -298,7 +298,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> CHEONG = register("cheong", () -> new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.CHEONG), "item.spectrum.cheong.tooltip"));
 	public static final DeferredItem<Item> MERMAIDS_JAM = register("mermaids_jam", () -> new Item(IS.of().food(SpectrumFoodComponents.MERMAIDS_JAM)));
 	public static final DeferredItem<Item> MERMAIDS_POPCORN = register("mermaids_popcorn", () -> new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.MERMAIDS_POPCORN), "item.spectrum.mermaids_popcorn.tooltip"));
-	public static final DeferredItem<Item> LE_FISHE_AU_CHOCOLAT = register("le_fishe_au_chocolat", () -> new Item(IS.of().food(SpectrumFoodComponents.LE_FISHE_AU_CHOCOLAT).jukeboxPlayable(SpectrumJukeboxSongs.MUSIC_LE_FISHE_AU_CHOCOLAT)));
+	public static final DeferredItem<Item> LE_FISHE_AU_CHOCOLAT = register("le_fishe_au_chocolat", () -> new Item(IS.of().food(SpectrumFoodComponents.LE_FISHE_AU_CHOCOLAT).jukeboxPlayable(SpectrumJukeboxSongs.LE_FISHE_AU_CHOCOLAT)));
 	
 	public static final DeferredItem<Item> INFUSED_BEVERAGE = register("infused_beverage", () -> new BeverageItem(IS.of().food(SpectrumFoodComponents.BEVERAGE).craftRemainder(Items.GLASS_BOTTLE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).component(SpectrumDataComponentTypes.INFUSED_BEVERAGE, InfusedBeverageComponent.DEFAULT)));
 	public static final DeferredItem<Item> SUSPICIOUS_BREW = register("suspicious_brew", () -> new SuspiciousBrewItem(IS.of().food(SpectrumFoodComponents.BEVERAGE).craftRemainder(GLASS_BOTTLE)));
@@ -352,7 +352,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> IMBRIFER_COOKBOOK = register("imbrifer_cookbook", () -> new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.UNCOMMON), GuidebookItem.addressOf(GuidebookItem.CUISINE_CATEGORY_ID, locate("cuisine/cookbooks/imbrifer_cookbook"))));
 	public static final DeferredItem<Item> IMPERIAL_COOKBOOK = register("imperial_cookbook", () -> new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.UNCOMMON), GuidebookItem.addressOf(GuidebookItem.CUISINE_CATEGORY_ID, locate("cuisine/cookbooks/imperial_cookbook"))));
 	public static final DeferredItem<Item> BREWERS_HANDBOOK = register("brewers_handbook", () -> new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.UNCOMMON), GuidebookItem.addressOf(GuidebookItem.CUISINE_CATEGORY_ID, locate("cuisine/cookbooks/brewers_handbook"))));
-	public static final DeferredItem<Item> POISONERS_HANDBOOK = register("poisoners_handbook", () -> new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.EPIC), GuidebookItem.addressOf(GuidebookItem.DIMENSION_CATEGORY_ID, locate("dimension/poisoners_handbook")), SpectrumStatusEffects.ETERNAL_SLUMBER_COLOR));
+	public static final DeferredItem<Item> POISONERS_HANDBOOK = register("poisoners_handbook", () -> new CookbookItem(IS.of().stacksTo(1).rarity(Rarity.EPIC), GuidebookItem.addressOf(GuidebookItem.DIMENSION_CATEGORY_ID, locate("dimension/poisoners_handbook")), SpectrumMobEffects.ETERNAL_SLUMBER_COLOR));
 	
 	public static final DeferredItem<Item> AQUA_REGIA = register("aqua_regia", () -> new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.AQUA_REGIA).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> BAGNUN = register("bagnun", () -> new Item(IS.of().food(SpectrumFoodComponents.BAGNUN)));

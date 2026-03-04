@@ -20,7 +20,7 @@ public class KindlingCoughEntityRenderer extends EntityRenderer<KindlingCoughEnt
 	
 	public KindlingCoughEntityRenderer(EntityRendererProvider.Context context) {
 		super(context);
-		this.model = new KindlingCoughEntityModel(context.bakeLayer(SpectrumModelLayers.KINDLING_COUGH));
+		this.model = new KindlingCoughEntityModel(context.bakeLayer(SpectrumModelLayerLocations.KINDLING_COUGH));
 	}
 	
 	public void render(KindlingCoughEntity kindlingCoughEntity, float f, float g, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int i) {

@@ -16,8 +16,8 @@ public class MarrowRenderer extends SkeletonRenderer<Marrow> {
 	public static final ResourceLocation MARROW_CLOTHES_LOCATION = SpectrumCommon.locate("textures/entity/skeleton/marrow_overlay.png");
 	
 	public MarrowRenderer(EntityRendererProvider.Context context) {
-		super(context, SpectrumModelLayers.MARROW, SpectrumModelLayers.MARROW_INNER_ARMOR, SpectrumModelLayers.MARROW_OUTER_ARMOR);
-		this.addLayer(new SkeletonClothingLayer<>(this, context.getModelSet(), SpectrumModelLayers.MARROW_OUTER_LAYER, MARROW_CLOTHES_LOCATION));
+		super(context, SpectrumModelLayerLocations.MARROW, SpectrumModelLayerLocations.MARROW_INNER_ARMOR, SpectrumModelLayerLocations.MARROW_OUTER_ARMOR);
+		this.addLayer(new SkeletonClothingLayer<>(this, context.getModelSet(), SpectrumModelLayerLocations.MARROW_OUTER_LAYER, MARROW_CLOTHES_LOCATION));
 	}
 	
 	public @NotNull ResourceLocation getTextureLocation(@NotNull Marrow entity) {

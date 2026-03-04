@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.decay;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -105,7 +104,7 @@ public class RuinBlock extends DecayBlock {
 			}
 		} else if (conversion == Conversion.SPECIAL || level.dimension() == Level.OVERWORLD && pos.getY() == level.getMinBuildHeight()) {
 			return Optional.of(Boolean.FALSE);
-		} else if (level.dimension() == SpectrumDimensions.DIMENSION_KEY && pos.getY() == level.getMaxBuildHeight() - 1) { // highest layer cannot be built on
+		} else if (level.dimension() == SpectrumDimensionKeys.DIMENSION_KEY && pos.getY() == level.getMaxBuildHeight() - 1) { // highest layer cannot be built on
 			return Optional.of(Boolean.TRUE);
 		}
 		return Optional.empty();

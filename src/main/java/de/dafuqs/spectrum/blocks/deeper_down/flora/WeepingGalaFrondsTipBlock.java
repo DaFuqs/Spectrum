@@ -51,7 +51,7 @@ public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
 				reference.setProperty(FORM, Form.RESIN);
 				reference.update(world);
 			} else {
-				for (ItemStack rareStack : getResinStacks(state, world, pos, ItemStack.EMPTY, SpectrumLootTables.WEEPING_GALA_SPRIG_RESIN)) {
+				for (ItemStack rareStack : getResinStacks(state, world, pos, ItemStack.EMPTY, SpectrumLootTableKeys.WEEPING_GALA_SPRIG_RESIN)) {
 					popResource(world, pos, rareStack);
 				}
 				world.playSound(null, pos, SoundEvents.BEEHIVE_DRIP, SoundSource.BLOCKS, 1, 0.9F + random.nextFloat() * 0.2F);
@@ -66,7 +66,7 @@ public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
 		var reference = BlockReference.of(state, pos);
 		if (reference.getProperty(FORM) == Form.RESIN) {
 			if (!world.isClientSide()) {
-				for (ItemStack rareStack : getResinStacks(state, (ServerLevel) world, pos, player.getMainHandItem(), SpectrumLootTables.WEEPING_GALA_SPRIG_RESIN)) {
+				for (ItemStack rareStack : getResinStacks(state, (ServerLevel) world, pos, player.getMainHandItem(), SpectrumLootTableKeys.WEEPING_GALA_SPRIG_RESIN)) {
 					popResource(world, pos, rareStack);
 				}
 			}

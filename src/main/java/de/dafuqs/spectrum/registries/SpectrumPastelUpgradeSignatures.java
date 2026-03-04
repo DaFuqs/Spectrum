@@ -9,7 +9,7 @@ import net.neoforged.neoforge.registries.*;
 
 import java.util.function.*;
 
-public class SpectrumPastelUpgrades {
+public class SpectrumPastelUpgradeSignatures {
 	
 	private static final DeferredRegister<PastelUpgradeSignature> REGISTRAR = DeferredRegister.create(SpectrumRegistryKeys.PASTEL_UPGRADE, SpectrumCommon.MOD_ID);
 	

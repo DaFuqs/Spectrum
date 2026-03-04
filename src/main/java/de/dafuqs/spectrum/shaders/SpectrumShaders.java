@@ -50,7 +50,7 @@ public class SpectrumShaders {
 	
 	public static void updateShaders(Minecraft client, ClientLevel world) {
 		tickNoise(client);
-		if (world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
+		if (world.dimension().equals(SpectrumDimensionKeys.DIMENSION_KEY)) {
 			if (colorGradingPostProcess.isEmpty()) {
 				colorGradingPostProcess = SpectrumShaders.loadPostProcess(client, SpectrumShaders.COLOR_GRADING_ID);
 			}
@@ -62,7 +62,7 @@ public class SpectrumShaders {
 	}
 	
 	private static void tickColorGrading(ClientLevel world) {
-		if (world.dimension().equals(SpectrumDimensions.DIMENSION_KEY)) {
+		if (world.dimension().equals(SpectrumDimensionKeys.DIMENSION_KEY)) {
 			colorGradingPostProcess.ifPresent(pps -> {
 				for (int i = 0; i < 5; i++) {
 					pps.setUniform(COLOR_GRADING_UNIFORMS[i], ColorGrading.GRADING_OUT[i]);

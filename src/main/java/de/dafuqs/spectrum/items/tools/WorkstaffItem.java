@@ -118,7 +118,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 			// so we can restore the original enchant level when switching back
 			case SELECT_FORTUNE -> enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), Enchantments.FORTUNE);
 			case SELECT_SILK_TOUCH -> enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), Enchantments.SILK_TOUCH);
-			case SELECT_RESONANCE -> enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), SpectrumEnchantments.RESONANCE);
+			case SELECT_RESONANCE -> enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), SpectrumEnchantmentKeys.RESONANCE);
 			case ENABLE_RIGHT_CLICK_ACTIONS -> {
 				stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp -> new WorkstaffComponent(true, comp.canShoot(), comp.fortuneLevel()));
 				player.displayClientMessage(toggle.getTriggerText(), true);
@@ -157,7 +157,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 		}
 		
 		ItemStack newStack = stack.copy();
-		var removeResult = SpectrumEnchantmentHelper.removeEnchantments(registryLookup, newStack, Enchantments.SILK_TOUCH, SpectrumEnchantments.RESONANCE, Enchantments.FORTUNE);
+		var removeResult = SpectrumEnchantmentHelper.removeEnchantments(registryLookup, newStack, Enchantments.SILK_TOUCH, SpectrumEnchantmentKeys.RESONANCE, Enchantments.FORTUNE);
 		if (removeResult.getB() == 0) {
 			if (player instanceof ServerPlayer serverPlayerEntity) {
 				triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);

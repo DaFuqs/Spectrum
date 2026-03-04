@@ -623,7 +623,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 				.create(SpectrumLootContextTypes.FISHING);
 		
 		if (level().getServer() == null) return;
-		LootTable lootTable = this.level().getServer().reloadableRegistries().getLootTable(SpectrumLootTables.UNIVERSAL_FISHING);
+		LootTable lootTable = this.level().getServer().reloadableRegistries().getLootTable(SpectrumLootTableKeys.UNIVERSAL_FISHING);
 		List<ItemStack> list = lootTable.getRandomItems(lootContextParameterSet);
 		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayer) playerEntity, usedItem, this, null, list);
 		

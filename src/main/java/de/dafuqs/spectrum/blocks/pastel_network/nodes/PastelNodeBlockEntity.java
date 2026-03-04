@@ -172,7 +172,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	
 	// outer goes first, then inner, then redstone
 	public boolean tryInteractRings(ItemStack item, PastelNodeType type) {
-		var upgrade = SpectrumPastelUpgrades.of(item);
+		var upgrade = SpectrumPastelUpgradeSignatures.of(item);
 		
 		if (upgrade.category.isRedstone()) {
 			if (redstoneRing.isEmpty()) {
@@ -368,9 +368,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.writeFilterNbt(nbt, this.filterItems);
 		}
-		outerRing.ifPresent(r -> nbt.putString("OuterRing", SpectrumPastelUpgrades.toString(r)));
-		innerRing.ifPresent(r -> nbt.putString("InnerRing", SpectrumPastelUpgrades.toString(r)));
-		redstoneRing.ifPresent(r -> nbt.putString("RedstoneRing", SpectrumPastelUpgrades.toString(r)));
+		outerRing.ifPresent(r -> nbt.putString("OuterRing", SpectrumPastelUpgradeSignatures.toString(r)));
+		innerRing.ifPresent(r -> nbt.putString("InnerRing", SpectrumPastelUpgradeSignatures.toString(r)));
+		redstoneRing.ifPresent(r -> nbt.putString("RedstoneRing", SpectrumPastelUpgradeSignatures.toString(r)));
 	}
 	
 	@Nullable

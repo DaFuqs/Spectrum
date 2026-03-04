@@ -16,11 +16,11 @@ import org.joml.*;
 public interface ShootingStar {
 	
 	enum Variant implements StringRepresentable {
-		GLISTERING("glistering", SpectrumLootTables.GLISTERING_SHOOTING_STAR),
-		FIERY("fiery", SpectrumLootTables.FIERY_SHOOTING_STAR),
-		COLORFUL("colorful", SpectrumLootTables.COLORFUL_SHOOTING_STAR),
-		PRISTINE("pristine", SpectrumLootTables.PRISTINE_SHOOTING_STAR),
-		GEMSTONE("gemstone", SpectrumLootTables.GEMSTONE_SHOOTING_STAR);
+		GLISTERING("glistering", SpectrumLootTableKeys.GLISTERING_SHOOTING_STAR),
+		FIERY("fiery", SpectrumLootTableKeys.FIERY_SHOOTING_STAR),
+		COLORFUL("colorful", SpectrumLootTableKeys.COLORFUL_SHOOTING_STAR),
+		PRISTINE("pristine", SpectrumLootTableKeys.PRISTINE_SHOOTING_STAR),
+		GEMSTONE("gemstone", SpectrumLootTableKeys.GEMSTONE_SHOOTING_STAR);
 		
 		public static Codec<Variant> CODEC = StringRepresentable.fromEnum(Variant::values);
 		public static final StreamCodec<ByteBuf, Variant> PACKET_CODEC = PacketCodecHelper.enumOf(Variant::values);

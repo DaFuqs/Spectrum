@@ -42,10 +42,6 @@ import java.util.*;
 public abstract class LivingEntityMixin {
 	
 	@Shadow
-	@Nullable
-	protected Player lastHurtByPlayer;
-	
-	@Shadow
 	public abstract boolean hasEffect(Holder<MobEffect> effect);
 	
 	@Shadow
@@ -306,7 +302,7 @@ public abstract class LivingEntityMixin {
 	
 	@Inject(method = "tickEffects", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;remove()V"))
 	private void spectrum$fatalSlumberKill(CallbackInfo ci, @Local MobEffectInstance effectInstance) {
-		if (effectInstance.getEffect() == SpectrumStatusEffects.FATAL_SLUMBER) {
+		if (effectInstance.getEffect() == SpectrumMobEffects.FATAL_SLUMBER) {
 			var entity = (LivingEntity) (Object) this;
 			
 			if (entity.level().isClientSide())
@@ -338,7 +334,7 @@ public abstract class LivingEntityMixin {
 		if (original)
 			return true;
 		
-		if (hasEffect(SpectrumStatusEffects.ETERNAL_SLUMBER) || hasEffect(SpectrumStatusEffects.FATAL_SLUMBER))
+		if (hasEffect(SpectrumMobEffects.ETERNAL_SLUMBER) || hasEffect(SpectrumMobEffects.FATAL_SLUMBER))
 			return !(((LivingEntity) (Object) this) instanceof Player);
 		
 		return false;
@@ -351,15 +347,15 @@ public abstract class LivingEntityMixin {
 		
 		// if it is a stacking effect, stack it
 		MobEffectInstance existingInstance = this.getEffect(effectType);
-		if (existingInstance != null && effectType.is(SpectrumStatusEffectTags.STACKING)) {
-			SpectrumStatusEffects.effectsAreGettingStacked = true;
+		if (existingInstance != null && effectType.is(SpectrumMobEffectTags.STACKING)) {
+			SpectrumMobEffects.effectsAreGettingStacked = true;
 			
 			int newAmplifier = 1 + existingInstance.getAmplifier() + effect.getAmplifier();
 			effect.spectrum$setAmplifier(newAmplifier);
-			SpectrumStatusEffects.effectsAreGettingStacked = false;
+			SpectrumMobEffects.effectsAreGettingStacked = false;
 		}
 		
-		if ((!entity.hasEffect(SpectrumStatusEffects.IMMUNITY)) && AetherGracedNectarGlovesItem.testEffectFor(entity, effectType)) {
+		if ((!entity.hasEffect(SpectrumMobEffects.IMMUNITY)) && AetherGracedNectarGlovesItem.testEffectFor(entity, effectType)) {
 			var cost = (effect.getAmplifier() + 1) * AetherGracedNectarGlovesItem.HARMFUL_EFFECT_COST;
 			
 			if (StatusEffectHelper.isSevere(effect))
@@ -372,13 +368,13 @@ public abstract class LivingEntityMixin {
 		}
 		
 		var resistanceModifier = Mth.clamp(SleepStatusEffect.getSleepResistance(effect, entity), 0.1F, 10F);
-		if (effectType == SpectrumStatusEffects.ETERNAL_SLUMBER) {
+		if (effectType == SpectrumMobEffects.ETERNAL_SLUMBER) {
 			if (SleepStatusEffect.isImmuneish(entity)) {
 				effect.spectrum$setDuration(Math.round(effect.getDuration() / resistanceModifier));
 			} else if (!entity.getType().is(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
 				effect.spectrum$setDuration(MobEffectInstance.INFINITE_DURATION);
 			}
-		} else if (effectType == SpectrumStatusEffects.FATAL_SLUMBER) {
+		} else if (effectType == SpectrumMobEffects.FATAL_SLUMBER) {
 			if (SleepStatusEffect.isImmuneish(entity) && entity.getType().is(Tags.EntityTypes.BOSSES)) {
 				effect.spectrum$setDuration(20 * 60);
 			} else {
@@ -453,7 +449,7 @@ public abstract class LivingEntityMixin {
 	@ModifyVariable(method = "setSprinting(Z)V", at = @At("HEAD"), argsOnly = true)
 	private boolean spectrum$setSprinting(boolean sprinting) {
 		var entity = (LivingEntity) (Object) this;
-		if (sprinting && entity.hasEffect(SpectrumStatusEffects.SCARRED)) {
+		if (sprinting && entity.hasEffect(SpectrumMobEffects.SCARRED)) {
 			return false;
 		}
 		return sprinting;
@@ -470,7 +466,7 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"))
 	private void spectrum$addStatusEffect(MobEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
 		if (EffectProlongingStatusEffect.canBeExtended(effect.getEffect())) {
-			MobEffectInstance effectProlongingInstance = this.getEffect(SpectrumStatusEffects.EFFECT_PROLONGING);
+			MobEffectInstance effectProlongingInstance = this.getEffect(SpectrumMobEffects.EFFECT_PROLONGING);
 			if (effectProlongingInstance != null) {
 				effect.spectrum$setDuration(EffectProlongingStatusEffect.getExtendedDuration(effect.getDuration(), effectProlongingInstance.getAmplifier()));
 			}

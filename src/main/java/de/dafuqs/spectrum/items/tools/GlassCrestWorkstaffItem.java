@@ -75,7 +75,7 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem implements SlotBackgr
 	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
 		if (player != null) {
 			var lookup = player.level().registryAccess();
-			var resonance = SpectrumEnchantmentHelper.hasEnchantment(lookup, SpectrumEnchantments.RESONANCE, stack);
+			var resonance = SpectrumEnchantmentHelper.hasEnchantment(lookup, SpectrumEnchantmentKeys.RESONANCE, stack);
 			var silkTouch = SpectrumEnchantmentHelper.hasEnchantment(lookup, Enchantments.SILK_TOUCH, stack);
 			var fortune = SpectrumEnchantmentHelper.hasEnchantment(lookup, Enchantments.FORTUNE, stack);
 			

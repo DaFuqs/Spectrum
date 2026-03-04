@@ -40,14 +40,14 @@ public class StatusEffectHelper {
 	public static ResourceLocation getTextureLocation(ResourceLocation original, MobEffectInstance effect, RenderType renderType) {
 		var type = effect.getEffect();
 		
-		if (type == SpectrumStatusEffects.DIVINITY)
+		if (type == SpectrumMobEffects.DIVINITY)
 			return DIVINITY.get(renderType);
 
-		if (isSevere(effect) && type != SpectrumStatusEffects.ETERNAL_SLUMBER && type != SpectrumStatusEffects.FATAL_SLUMBER) {
+		if (isSevere(effect) && type != SpectrumMobEffects.ETERNAL_SLUMBER && type != SpectrumMobEffects.FATAL_SLUMBER) {
 			return SEVERE.get(renderType);
 		}
 		
-		if (type.is(SpectrumStatusEffectTags.NIGHT_ALCHEMY))
+		if (type.is(SpectrumMobEffectTags.NIGHT_ALCHEMY))
 			return NIGHT_ALCHEMY.get(renderType);
 		
 		return original;
@@ -55,7 +55,7 @@ public class StatusEffectHelper {
 	
 	public static boolean isSevere(MobEffectInstance instance) {
 		var type = instance.getEffect();
-		if (type.is(SpectrumStatusEffectTags.CANNOT_BE_SEVERE))
+		if (type.is(SpectrumMobEffectTags.CANNOT_BE_SEVERE))
 			return false;
 		return instance.spectrum$isSevere();
 	}

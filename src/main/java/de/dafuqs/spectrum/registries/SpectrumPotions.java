@@ -11,11 +11,9 @@ public class SpectrumPotions {
 	
 	private static final DeferredRegister<Potion> REGISTRAR = DeferredRegister.create(Registries.POTION, SpectrumCommon.MOD_ID);
 	
-	public static Holder<Potion> PIGMENT_POTION;
+	public static Holder<Potion> PIGMENT_POTION = REGISTRAR.register("pigment_potion", () -> new Potion());
 	
 	public static void register(IEventBus modBus) {
-		PIGMENT_POTION = REGISTRAR.register("pigment_potion", () -> new Potion());
-		
 		REGISTRAR.register(modBus);
 	}
 	

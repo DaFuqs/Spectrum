@@ -22,7 +22,12 @@
   },
   "result": {
     "id": "spectrum:threat_conflux",
-    "count": 2
+    "count": 2,
+    "components": {
+      "enchantments": {
+        "minecraft:sharpness": 1
+      }
+    }
   },
   "required_advancement": "spectrum:unlocks/blocks/modular_explosives"
 }

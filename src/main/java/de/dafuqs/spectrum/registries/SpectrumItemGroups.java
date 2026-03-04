@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.item_group.*;
+import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
@@ -197,8 +198,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.ENDER_SPLICE);
 					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.ENDER_SPLICE.get(), Map.of(SpectrumEnchantmentKeys.RESONANCE, 1, SpectrumEnchantmentKeys.INDESTRUCTIBLE, 1)));
 					entries.accept(SpectrumItems.PERTURBED_EYE);
-					entries.accept(SpectrumBlocks.PARAMETRIC_MINING_DEVICE);
-					entries.accept(SpectrumBlocks.THREAT_CONFLUX);
+					entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, (ParametricMiningDeviceItem) SpectrumBlocks.PARAMETRIC_MINING_DEVICE.asItem()));
+					entries.accept(Preenchanted.getDefaultEnchantedStack(lookup, (ThreatConfluxItem) SpectrumBlocks.THREAT_CONFLUX.asItem()));
 					entries.accept(SpectrumItems.PIPE_BOMB);
 					entries.accept(SpectrumItems.CRESCENT_CLOCK);
 					entries.accept(SpectrumItems.ARTISANS_ATLAS);

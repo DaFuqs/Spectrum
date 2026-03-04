@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.boom;
 
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
@@ -7,6 +8,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.*;
@@ -56,30 +58,26 @@ public class ExplosionWithStack extends Explosion {
 		
 	}
 	
-	public static void explode(ServerLevel level, @Nullable Entity source, @Nullable ItemStack stack, Vec3 pos) {
-		boolean primodialFireDamage = false; // stack.getEnchantmentLevel(level.registryAccess().registry(Registries.ENCHANTMENT).get().getHolderOrThrow(SpectrumEnchantments.RESONANCE)) > 0;
-		int power = stack.getEnchantmentLevel(level.registryAccess().registry(Registries.ENCHANTMENT).get().getHolderOrThrow(Enchantments.POWER));
-
-		@Nullable DamageSource damageSource = primodialFireDamage ? SpectrumDamageTypes.incandescence(level, source) : Explosion.getDefaultDamageSource(level, source);
-		@Nullable ExplosionDamageCalculator damageCalculator = new EnhancedExplosionDamageCalculator(level, damageSource, stack, true, true, Optional.empty(), Optional.empty());
+	public static void explode(ServerLevel level, @Nullable Entity source, @NotNull ItemStack stack, Vec3 pos) {
+		// boolean primodialFireDamage = false; // stack.getEnchantmentLevel(level.registryAccess().registry(Registries.ENCHANTMENT).get().getHolderOrThrow(SpectrumEnchantments.RESONANCE)) > 0;
+		// @Nullable DamageSource damageSource = primodialFireDamage ? SpectrumDamageTypes.incandescence(level, source) : Explosion.getDefaultDamageSource(level, source);
 		
-		float explosionRadius = 3.0F + power;
+		HolderLookup.RegistryLookup<Enchantment> enchantmentLookup = level.registryAccess().registry(Registries.ENCHANTMENT).get().asLookup();
+		ItemEnchantments enchantments = stack.getAllEnchantments(enchantmentLookup);
+		int powerLevel = enchantments.getLevel(enchantmentLookup.getOrThrow(Enchantments.POWER));
+		boolean damagesEntities = SpectrumEnchantmentHelper.hasEnchantment(enchantmentLookup, EnchantmentTags.DAMAGE_EXCLUSIVE, stack);
+		boolean causesFire = enchantments.getLevel(enchantmentLookup.getOrThrow(Enchantments.FLAME)) > 0;
 		
-		BlockInteraction blockinteraction = power == 0 ? BlockInteraction.KEEP : BlockInteraction.DESTROY;
+		@Nullable DamageSource damageSource = Explosion.getDefaultDamageSource(level, source);
+		@Nullable ExplosionDamageCalculator damageCalculator = new EnhancedExplosionDamageCalculator(level, damageSource, stack, powerLevel > 0, damagesEntities, Optional.empty(), Optional.empty());
+		
+		float explosionRadius = 3.0F + powerLevel;
+		
+		BlockInteraction blockinteraction = powerLevel == 0 ? BlockInteraction.KEEP : BlockInteraction.DESTROY;
 		ExplosionWithStack explosion = new ExplosionWithStack(
-				level,
-				source,
-				damageSource,
-				damageCalculator,
-				pos.x,
-				pos.y,
-				pos.z,
-				explosionRadius,
-				false,
-				blockinteraction,
-				ParticleTypes.EXPLOSION,
-				ParticleTypes.EXPLOSION_EMITTER,
-				SoundEvents.GENERIC_EXPLODE,
+				level, source, damageSource, damageCalculator, pos.x, pos.y, pos.z,
+				explosionRadius, causesFire, blockinteraction,
+				ParticleTypes.EXPLOSION, ParticleTypes.EXPLOSION_EMITTER, SoundEvents.GENERIC_EXPLODE,
 				stack
 		);
 		

@@ -22,7 +22,12 @@
   },
   "result": {
     "id": "spectrum:parametric_mining_device",
-    "count": 8
+    "count": 8,
+    "components": {
+      "enchantments": {
+        "minecraft:power": 1
+      }
+    }
   },
   "required_advancement": "spectrum:unlocks/blocks/modular_explosives"
 }

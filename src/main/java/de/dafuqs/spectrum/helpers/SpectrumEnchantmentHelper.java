@@ -3,10 +3,12 @@ package de.dafuqs.spectrum.helpers;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
@@ -163,15 +165,27 @@ public class SpectrumEnchantmentHelper {
 		return stack;
 	}
 	
-	public static int getLevel(HolderLookup.Provider registryLookup, ResourceKey<Enchantment> enchantment, ItemStack stack) {
-		return getRegistry(registryLookup)
-				.flatMap(impl -> impl.get(enchantment))
-				.map(entry -> EnchantmentHelper.getItemEnchantmentLevel(entry, stack))
-				.orElse(0);
+	public static int getLevel(HolderLookup.Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+		HolderLookup.RegistryLookup<Enchantment> lookup = provider.lookup(Registries.ENCHANTMENT).get();
+		Optional<Holder.Reference<Enchantment>> ench = lookup.get(enchantment);
+		if(ench.isEmpty()) {
+			return 0;
+		}
+		return stack.getEnchantmentLevel(ench.get());
 	}
 	
 	public static boolean hasEnchantment(HolderLookup.Provider registryLookup, ResourceKey<Enchantment> enchantment, ItemStack stack) {
 		return getLevel(registryLookup, enchantment, stack) > 0;
+	}
+	
+	public static boolean hasEnchantment(HolderLookup.RegistryLookup<Enchantment> provider, TagKey<Enchantment> tag, ItemStack stack) {
+		ItemEnchantments itemEnchantments = stack.getAllEnchantments(provider);
+		for(Object2IntMap.Entry<Holder<Enchantment>> e : itemEnchantments.entrySet()) {
+			if(e.getKey().is(tag)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public static Optional<HolderLookup.RegistryLookup<Enchantment>> getRegistry(HolderLookup.Provider registryLookup) {

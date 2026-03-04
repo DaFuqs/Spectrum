@@ -58,15 +58,14 @@ public class ExplosionWithStack extends Explosion {
 	
 	public static void explode(ServerLevel level, @Nullable Entity source, @Nullable ItemStack stack, Vec3 pos) {
 		boolean primodialFireDamage = false; // stack.getEnchantmentLevel(level.registryAccess().registry(Registries.ENCHANTMENT).get().getHolderOrThrow(SpectrumEnchantments.RESONANCE)) > 0;
-		boolean preservesBlocks = stack.getEnchantmentLevel(level.registryAccess().registry(Registries.ENCHANTMENT).get().getHolderOrThrow(Enchantments.BLAST_PROTECTION)) > 0;
-		boolean preserveAllDrops = stack.getEnchantmentLevel(level.registryAccess().registry(Registries.ENCHANTMENT).get().getHolderOrThrow(Enchantments.EFFICIENCY)) > 0;
-		
+		int power = stack.getEnchantmentLevel(level.registryAccess().registry(Registries.ENCHANTMENT).get().getHolderOrThrow(Enchantments.POWER));
+
 		@Nullable DamageSource damageSource = primodialFireDamage ? SpectrumDamageTypes.incandescence(level, source) : Explosion.getDefaultDamageSource(level, source);
 		@Nullable ExplosionDamageCalculator damageCalculator = new EnhancedExplosionDamageCalculator(level, damageSource, stack, true, true, Optional.empty(), Optional.empty());
 		
-		float radius = 4.0F;
+		float explosionRadius = 3.0F + power;
 		
-		BlockInteraction blockinteraction = preservesBlocks ? BlockInteraction.KEEP : preserveAllDrops ? BlockInteraction.DESTROY : BlockInteraction.DESTROY_WITH_DECAY;
+		BlockInteraction blockinteraction = power == 0 ? BlockInteraction.KEEP : BlockInteraction.DESTROY;
 		ExplosionWithStack explosion = new ExplosionWithStack(
 				level,
 				source,
@@ -75,7 +74,7 @@ public class ExplosionWithStack extends Explosion {
 				pos.x,
 				pos.y,
 				pos.z,
-				radius,
+				explosionRadius,
 				false,
 				blockinteraction,
 				ParticleTypes.EXPLOSION,
@@ -95,7 +94,7 @@ public class ExplosionWithStack extends Explosion {
 		for (ServerPlayer serverplayer : level.getPlayers(serverPlayer -> serverPlayer.distanceToSqr(pos.x, pos.y, pos.z) < 4096.0)) {
 			serverplayer.connection.send(new ClientboundExplodePacket(
 							pos.x, pos.y, pos.z,
-							radius,
+							explosionRadius,
 							explosion.getToBlow(),
 							explosion.getHitPlayers().get(serverplayer),
 							explosion.getBlockInteraction(),

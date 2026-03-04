@@ -1,0 +1,19 @@
+{
+  "values": [
+    "#minecraft:exclusive_set/damage",
+    "#minecraft:exclusive_set/mining",
+
+    "minecraft:breach",
+    "minecraft:flame",
+    "minecraft:looting",
+    "minecraft:power",
+    "minecraft:unbreaking",
+    "spectrum:exuberance",
+    "spectrum:indestructible",
+    "spectrum:resonance",
+    "spectrum:treasure_hunter",
+    "spectrum:pest_control",
+    "spectrum:disarming",
+    "spectrum:voiding"
+  ]
+}

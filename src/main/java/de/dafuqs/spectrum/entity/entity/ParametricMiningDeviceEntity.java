@@ -12,6 +12,7 @@ import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 	
@@ -28,29 +29,27 @@ public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 	}
 	
 	@Override
-	protected void onHitEntity(EntityHitResult result) {
-		Level world = this.level();
-		if (!world.isClientSide()) {
+	protected void onHitEntity(@NotNull EntityHitResult hitResult) {
+		Level level = this.level();
+		if (!level.isClientSide()) {
 			Entity owner = getOwner();
 			Player playerOwner = owner instanceof Player player ? player : null;
-			// TODO
-			// ExplosionWithStack.explode((ServerLevel) world, result.getEntity().blockPosition(), playerOwner, getItem());
+			ExplosionWithStack.explode((ServerLevel) level, playerOwner, this.getItem(), hitResult.getLocation());
 		}
-		world.broadcastEntityEvent(this, EntityEvent.DEATH);
+		level.broadcastEntityEvent(this, EntityEvent.DEATH);
 		
 		remove(Entity.RemovalReason.DISCARDED);
 	}
 	
 	@Override
-	protected void onHitBlock(BlockHitResult blockHitResult) {
-		Level world = this.level();
-		if (!world.isClientSide) {
+	protected void onHitBlock(@NotNull BlockHitResult hitResult) {
+		Level level = this.level();
+		if (!level.isClientSide()) {
 			Entity owner = getOwner();
 			Player playerOwner = owner instanceof Player player ? player : null;
-			// TODO
-			// ModularExplosionDefinition.explode((ServerLevel) world, blockHitResult.getBlockPos(), blockHitResult.getDirection().getOpposite(), playerOwner, getItem());
+			ExplosionWithStack.explode((ServerLevel) level, playerOwner, this.getItem(), Vec3.atCenterOf(hitResult.getBlockPos()));
 		}
-		world.broadcastEntityEvent(this, EntityEvent.DEATH);
+		level.broadcastEntityEvent(this, EntityEvent.DEATH);
 		
 		remove(Entity.RemovalReason.DISCARDED);
 	}
@@ -76,7 +75,7 @@ public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 	}
 	
 	@Override
-	protected Item getDefaultItem() {
+	protected @NotNull Item getDefaultItem() {
 		return SpectrumBlocks.PARAMETRIC_MINING_DEVICE.asItem();
 	}
 	

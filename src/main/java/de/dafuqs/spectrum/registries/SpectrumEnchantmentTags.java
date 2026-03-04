@@ -21,6 +21,7 @@ public class SpectrumEnchantmentTags {
 	public static final TagKey<Enchantment> PREVENTS_ITEM_DAMAGE = of("effect/prevents_item_damage");
 	public static final TagKey<Enchantment> RESONANT_BLOCK_DROPS = of("effect/resonant_block_drops");
 	public static final TagKey<Enchantment> SMELTS_MORE_LOOT = of("effect/smelts_more_loot");
+	public static final TagKey<Enchantment> ON_MODULAR_EXPLOSIVES = of("on_modular_explosives");
 	
 	private static TagKey<Enchantment> of(String id) {
 		return TagKey.create(Registries.ENCHANTMENT, SpectrumCommon.locate(id));

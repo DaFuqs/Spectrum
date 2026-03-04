@@ -19,7 +19,11 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.*;
+
+@ParametersAreNonnullByDefault
 public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.SpectrumFluidLoggable {
 	
 	public static final MapCodec<ThreatConfluxBlock> CODEC = simpleCodec(ThreatConfluxBlock::new);
@@ -38,7 +42,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 		}
 		
 		@Override
-		public String getSerializedName() {
+		public @NotNull String getSerializedName() {
 			return this.name;
 		}
 		
@@ -62,12 +66,12 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	}
 	
 	@Override
-	public MapCodec<? extends ThreatConfluxBlock> codec() {
+	public @NotNull MapCodec<? extends ThreatConfluxBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+	public @NotNull BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
 		if (!world.isClientSide() && state.getValue(ARMED).explodesWhenBroken()) {
 			explode((ServerLevel) world, pos);
 		}
@@ -75,13 +79,13 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	}
 	
 	@Override
-	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 		if (state.getValue(ARMED).explodesWhenBroken() && stack.is(SpectrumItems.MIDNIGHT_CHIP)) {
-			world.setBlockAndUpdate(pos, state.setValue(ARMED, ArmedState.NOT_ARMED));
-			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_DISARM, SoundSource.BLOCKS, 1.0F, 1.0F);
+			level.setBlockAndUpdate(pos, state.setValue(ARMED, ArmedState.NOT_ARMED));
+			level.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_DISARM, SoundSource.BLOCKS, 1.0F, 1.0F);
 			
-			if (!world.isClientSide()) {
-				ServerLevel serverWorld = ((ServerLevel) world);
+			if (!level.isClientSide()) {
+				ServerLevel serverWorld = ((ServerLevel) level);
 				for (int i = 0; i < 5; ++i) {
 					serverWorld.sendParticles(ParticleTypes.SMOKE,
 							pos.getX() + serverWorld.random.nextDouble(), pos.getY() + serverWorld.random.nextDouble(), pos.getZ() + serverWorld.random.nextDouble(),
@@ -93,14 +97,14 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 				stack.shrink(1);
 			}
 			
-			return ItemInteractionResult.sidedSuccess(world.isClientSide());
+			return ItemInteractionResult.sidedSuccess(level.isClientSide());
 		}
 		
-		return super.useItemOn(stack, state, world, pos, player, hand, hit);
+		return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
 	}
 	
 	@Override
-	public void setPlacedBy(@NotNull Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.setPlacedBy(world, pos, state, placer, itemStack);
 		
 		if (!world.isClientSide()) {
@@ -109,20 +113,20 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	}
 	
 	@Override
-	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		if (state.getValue(ARMED) == ArmedState.ARMED) {
-			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_PRIME, SoundSource.BLOCKS, 1, 2F);
-			world.setBlockAndUpdate(pos, state.setValue(ARMED, ArmedState.FUSED));
-			world.scheduleTick(pos, this, TICKS_TO_DETONATE);
+			level.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_PRIME, SoundSource.BLOCKS, 1, 2F);
+			level.setBlockAndUpdate(pos, state.setValue(ARMED, ArmedState.FUSED));
+			level.scheduleTick(pos, this, TICKS_TO_DETONATE);
 		}
 		
-		state.getValue(LOGGED).onEntityCollision(state, world, pos, entity);
+		state.getValue(LOGGED).onEntityCollision(state, level, pos, entity);
 		
-		super.entityInside(state, world, pos, entity);
+		super.entityInside(state, level, pos, entity);
 	}
 	
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return state.getValue(ARMED).explodesWhenBroken() ? ARMED_SHAPE : UNARMED_SHAPE;
 	}
 	
@@ -145,16 +149,16 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 		builder.add(ARMED, LOGGED);
 	}
 	
-	public void explode(@NotNull ServerLevel world, BlockPos pos) {
-		if (!(world.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
+	protected void explode(ServerLevel level, BlockPos pos) {
+		if (!(level.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
 			return;
 		}
 		ItemStack stack = blockEntity.getStack();
 		Player owner = blockEntity.getOwnerIfOnline();
 		
-		world.removeBlock(pos, false);
+		level.removeBlock(pos, false);
 		
-		//ExplosionWithStack.explode(world, pos, owner, stack);
+		ExplosionWithStack.explode(level, owner, stack, Vec3.atCenterOf(pos));
 	}
 	
 }

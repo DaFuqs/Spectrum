@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
+import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
@@ -48,8 +49,18 @@ public class ParametricMiningDeviceItem extends BlockItem implements Preenchante
 	}
 	
 	@Override
+	public int getEnchantmentValue(@NotNull ItemStack stack) {
+		return 12;
+	}
+	
+	@Override
+	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+		return super.supportsEnchantment(stack, enchantment) || enchantment.is(SpectrumEnchantmentTags.ON_MODULAR_EXPLOSIVES);
+	}
+	
+	@Override
 	public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
-		return Map.of(Enchantments.SHARPNESS, 1);
+		return Map.of(Enchantments.POWER, 1);
 	}
 	
 }

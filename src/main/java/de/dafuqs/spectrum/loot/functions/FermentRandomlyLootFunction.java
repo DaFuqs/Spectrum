@@ -51,12 +51,12 @@ public class FermentRandomlyLootFunction extends LootItemConditionalFunction {
 	}
 	
 	@Override
-	public LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
+	public @NotNull LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
 		return SpectrumLootFunctionTypes.FERMENT_RANDOMLY;
 	}
 	
 	@Override
-	public ItemStack run(ItemStack stack, LootContext context) {
+	public @NotNull ItemStack run(@NotNull ItemStack stack, @NotNull LootContext context) {
 		Optional<FermentationData> fermentationData = this.fermentation.map(
 				id -> {
 					Optional<RecipeHolder<?>> recipe = context.getLevel().getRecipeManager().byKey(id);

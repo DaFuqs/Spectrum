@@ -12,6 +12,7 @@ import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -22,8 +23,8 @@ public class DyeRandomlyLootFunction extends LootItemConditionalFunction {
 			Codec.BOOL.optionalFieldOf("show_in_tooltip", false).forGetter((function) -> function.showInTooltip))
 	).apply(instance, DyeRandomlyLootFunction::new));
 	
-	final List<Integer> colors;
-	final boolean showInTooltip;
+	private final List<Integer> colors;
+	private final boolean showInTooltip;
 	
 	DyeRandomlyLootFunction(List<LootItemCondition> conditions, List<Integer> colors, boolean showInTooltip) {
 		super(conditions);
@@ -32,13 +33,12 @@ public class DyeRandomlyLootFunction extends LootItemConditionalFunction {
 	}
 	
 	@Override
-	public LootItemFunctionType<DyeRandomlyLootFunction> getType() {
+	public @NotNull LootItemFunctionType<DyeRandomlyLootFunction> getType() {
 		return SpectrumLootFunctionTypes.DYE_RANDOMLY;
 	}
 	
 	@Override
-	public ItemStack run(ItemStack stack, LootContext context) {
-		stack.get(DataComponents.DYED_COLOR);
+	public @NotNull ItemStack run(ItemStack stack, @NotNull LootContext context) {
 		if (stack.is(ItemTags.DYEABLE)) {
 			RandomSource random = context.getRandom();
 			int color = this.colors.isEmpty() ? SpectrumColorHelper.getRandomColor(random.nextInt()) : this.colors.get(random.nextInt(this.colors.size()));

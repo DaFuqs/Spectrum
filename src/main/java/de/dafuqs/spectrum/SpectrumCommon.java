@@ -142,7 +142,7 @@ public class SpectrumCommon {
 		
 		// Loot
 		logInfo("Registering Loot Conditions & Functions...");
-		SpectrumLootContextTypes.register();
+		SpectrumLootContextParamSets.register();
 		SpectrumLootFunctionTypes.register(modBus);
 		SpectrumLootConditionTypes.register(modBus);
 		
@@ -156,7 +156,7 @@ public class SpectrumCommon {
 		logInfo("Registering Default Item Stack Damage Immunities...");
 		SpectrumItemDamageImmunities.registerDefaultItemStackImmunities();
 		logInfo("Registering Enchantment Drops...");
-		SpectrumLootPoolModifiers.register(modBus);
+		SpectrumGlobalLootModifierSerializers.register(modBus);
 		logInfo("Registering Variant Specific Predicates...");
 		SpectrumItemSubPredicateTypes.register(modBus);
 		SpectrumEntitySubPredicateTypes.register(modBus);

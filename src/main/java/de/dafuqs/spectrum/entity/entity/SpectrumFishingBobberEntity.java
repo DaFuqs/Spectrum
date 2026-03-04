@@ -620,7 +620,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 				.withParameter(LootContextParams.THIS_ENTITY, this)
 				.withParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, playerEntity)
 				.withLuck((float) this.luckBonus + playerEntity.getLuck())
-				.create(SpectrumLootContextTypes.FISHING);
+				.create(SpectrumLootContextParamSets.FISHING);
 		
 		if (level().getServer() == null) return;
 		LootTable lootTable = this.level().getServer().reloadableRegistries().getLootTable(SpectrumLootTableKeys.UNIVERSAL_FISHING);

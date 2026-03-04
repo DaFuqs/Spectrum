@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.loot.loot_modifiers;
+package de.dafuqs.spectrum.loot.modifiers;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -24,26 +24,26 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class TreasureHunterModifier extends LootModifier {
+public class TreasureHunterLootModifier extends LootModifier {
 	
 	public record Entry(EntityPredicate predicate, ItemStack headStack, float chance) {
 		
-		public static final MapCodec<TreasureHunterModifier.Entry> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+		public static final MapCodec<TreasureHunterLootModifier.Entry> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 				EntityPredicate.CODEC.fieldOf("entity").forGetter(m -> m.predicate),
 				ItemStack.CODEC.fieldOf("head_stack").forGetter(m -> m.headStack),
 				Codec.FLOAT.fieldOf("drop_chance_per_level").forGetter(m -> m.chance)
-		).apply(instance, TreasureHunterModifier.Entry::new));
+		).apply(instance, TreasureHunterLootModifier.Entry::new));
 		
 	}
 	
-	public static final MapCodec<TreasureHunterModifier> CODEC = RecordCodecBuilder.mapCodec(i ->
+	public static final MapCodec<TreasureHunterLootModifier> CODEC = RecordCodecBuilder.mapCodec(i ->
 			LootModifier.codecStart(i).and(
 					Entry.CODEC.codec().listOf().fieldOf("entries").forGetter(o -> o.entries)
-			).apply(i, TreasureHunterModifier::new));
+			).apply(i, TreasureHunterLootModifier::new));
 	
-	protected List<TreasureHunterModifier.Entry> entries;
+	protected List<TreasureHunterLootModifier.Entry> entries;
 	
-	protected TreasureHunterModifier(LootItemCondition[] conditionsIn, List<TreasureHunterModifier.Entry> entries) {
+	protected TreasureHunterLootModifier(LootItemCondition[] conditionsIn, List<TreasureHunterLootModifier.Entry> entries) {
 		super(conditionsIn);
 		this.entries = entries;
 	}

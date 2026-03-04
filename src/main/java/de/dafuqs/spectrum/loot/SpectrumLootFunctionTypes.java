@@ -19,7 +19,7 @@ public class SpectrumLootFunctionTypes {
 	public static final LootItemFunctionType<GrantAdvancementLootFunction> GRANT_ADVANCEMENT = register("grant_advancement", GrantAdvancementLootFunction.CODEC);
 	
 	private static <T extends LootItemFunction> LootItemFunctionType<T> register(String id, MapCodec<T> codec) {
-		var type = new LootItemFunctionType<>(codec);
+		LootItemFunctionType<T> type = new LootItemFunctionType<>(codec);
 		REGISTRAR.register(id, () -> type);
 		return type;
 	}

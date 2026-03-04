@@ -67,9 +67,6 @@ public class FillPotionFillableLootFunction extends LootItemConditionalFunction 
 	
 	@Override
 	public @NotNull ItemStack run(@NotNull ItemStack stack, @NotNull LootContext context) {
-		if (this.template == null)
-			return stack;
-		
 		if (!(stack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable))
 			return stack;
 		

@@ -6,7 +6,7 @@ import net.minecraft.world.level.storage.loot.parameters.*;
 
 import java.util.function.*;
 
-public class SpectrumLootContextTypes {
+public class SpectrumLootContextParamSets {
 	
 	public static final LootContextParamSet FISHING = register("fishing", (builder) -> {
 		builder

@@ -77,8 +77,8 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 				if (remainingUseTicks > 0) {
 					float overcharge = 1 - (float) remainingUseTicks / OVERCHARGE_DURATION_MAX_TICKS;
 					overcharge(stack, overcharge);
-					if (user instanceof ServerPlayer serverPlayerEntity) {
-						serverPlayerEntity.displayClientMessage(Component.translatable("item.spectrum.glass_crest_crossbow.message.charge", Support.DF.format(overcharge * 100)), true);
+					if (user instanceof ServerPlayer serverPlayer) {
+						serverPlayer.displayClientMessage(Component.translatable("item.spectrum.glass_crest_crossbow.message.charge", Support.DF.format(overcharge * 100)), true);
 					}
 				}
 			}

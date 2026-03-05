@@ -382,7 +382,7 @@ public abstract class LivingEntityMixin {
 			}
 		}
 	}
-	
+	// TODO: move to event
 	@Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
 	private void spectrum$applyBonusDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity target = (LivingEntity) (Object) this;

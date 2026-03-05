@@ -454,6 +454,7 @@ public class SpectrumEventListeners {
 	
 	public static void register() {
 		CrossbowShootingCallback.register((world, shooter, crossbow, projectile) -> {
+			crossbow = shooter.getItemInHand(shooter.getUsedItemHand()); // TODO: fix this in Arrowhead
 			int snipingLevel = SpectrumEnchantmentHelper.getLevel(world.registryAccess(), SpectrumEnchantmentKeys.SNIPING, crossbow);
 			if (snipingLevel > 0) {
 				projectile.setDeltaMovement(projectile.getDeltaMovement().scale(1.25F * snipingLevel));

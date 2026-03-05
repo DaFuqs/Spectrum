@@ -77,8 +77,8 @@ public interface InkPowered {
 			long drained = inkStorage.drainEnergy(color, amount);
 			
 			if (drained > 0) {
-				if (player instanceof ServerPlayer serverPlayerEntity) {
-					SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayerEntity, stack, inkStorage, color, -amount);
+				if (player instanceof ServerPlayer serverPlayer) {
+					SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayer, stack, inkStorage, color, -amount);
 				}
 				inkStorageItem.setEnergyStorage(stack, inkStorage);
 			}
@@ -139,6 +139,40 @@ public interface InkPowered {
 			return true;
 		}
 		
+		if (!canUse(player)) {
+			return false;
+		}
+		
+		// hands (main hand, too, if someone uses the staff from the offhand)
+		for (ItemStack stack : player.getHandSlots()) {
+			amount -= tryDrainEnergy(stack, color, amount, player);
+			if (amount <= 0) {
+				return true;
+			}
+		}
+		
+		// trinket slots
+		List<ItemStack> curioInkStorages = CuriosApi
+				.getCuriosInventory(player)
+				.stream()
+				.flatMap(inventory -> inventory.findCurios(itemStack1 -> itemStack1.getItem() instanceof InkStorageItem<?>).stream())
+				.map(SlotResult::stack).toList();
+		
+		for (ItemStack stack : curioInkStorages) {
+			amount -= tryDrainEnergy(stack, color, amount, player);
+			if (amount <= 0) {
+				return true;
+			}
+		}
+		
+		// inventory
+		for (ItemStack stack : player.getInventory().items) {
+			amount -= tryDrainEnergy(stack, color, amount, player);
+			if (amount <= 0) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 	
@@ -164,29 +198,29 @@ public interface InkPowered {
 		}
 		
 		// hands
-		for (ItemStack itemStack : player.getHandSlots()) {
-			amount -= tryDrainEnergy(itemStack, color, amount, player);
+		for (ItemStack stack : player.getHandSlots()) {
+			amount -= tryGetEnergy(stack, color);
 			if (amount <= 0) {
 				return true;
 			}
 		}
 		
 		// curio slots
-		List<ItemStack> inkStorages = CuriosApi
+		List<ItemStack> curioInkStorages = CuriosApi
 				.getCuriosInventory(player)
 				.stream()
 				.flatMap(inventory -> inventory.findCurios(itemStack1 -> itemStack1.getItem() instanceof InkStorageItem<?>).stream())
 				.map(SlotResult::stack).toList();
-		for (ItemStack inkStorage : inkStorages) {
-			amount -= tryGetEnergy(inkStorage, color);
+		for (ItemStack stack : curioInkStorages) {
+			amount -= tryGetEnergy(stack, color);
 			if (amount <= 0) {
 				return true;
 			}
 		}
 		
 		// inventory
-		for (ItemStack itemStack : player.getInventory().items) {
-			amount -= tryDrainEnergy(itemStack, color, amount, player);
+		for (ItemStack stack : player.getInventory().items) {
+			amount -= tryGetEnergy(stack, color);
 			if (amount <= 0) {
 				return true;
 			}
@@ -206,8 +240,8 @@ public interface InkPowered {
 		long available = 0;
 		
 		// hands
-		for (ItemStack itemStack : player.getHandSlots()) {
-			available += tryGetEnergy(itemStack, color);
+		for (ItemStack stack : player.getHandSlots()) {
+			available += tryGetEnergy(stack, color);
 		}
 		
 		// trinket slots
@@ -218,8 +252,8 @@ public interface InkPowered {
 				.map(SlotResult::stack).mapToLong(stack -> tryGetEnergy(stack, color)).sum();
 		
 		// inventory
-		for (ItemStack itemStack : player.getInventory().items) {
-			available += tryGetEnergy(itemStack, color);
+		for (ItemStack stack : player.getInventory().items) {
+			available += tryGetEnergy(stack, color);
 		}
 		return available;
 	}

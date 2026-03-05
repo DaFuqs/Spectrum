@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.attachment_types;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.progression.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
@@ -10,11 +11,14 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
 import org.jetbrains.annotations.*;
+import top.theillusivec4.curios.api.*;
+import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
 
@@ -54,6 +58,36 @@ public class AzureDikeAttachmentType {
 					.copyHandler(COPY_HANDLER)
 					.sync(STREAM_CODEC)
 					.build();
+	
+	public static void recalculate(LivingEntity livingEntity) {
+		Level level = livingEntity.level();
+		if (!level.isClientSide) {
+			AzureDikeAttachmentType attachment = livingEntity.getData(ATTACHMENT_TYPE);
+			
+			Optional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(livingEntity);
+			if (curiosInventory.isPresent()) {
+				int maxAzureDike = 0;
+				float rechargeSpeedModifier = 1F;
+				float rechargeDelayAfterDamageModifier = 1F;
+				float maxAzureDikeMultiplier = 1F;
+				
+				for (SlotResult slot : curiosInventory.get().findCurios(stack -> stack.getItem() instanceof AzureDikeItem)) {
+					ItemStack stack = slot.stack();
+					AzureDikeItem azureDikeItem = (AzureDikeItem) stack.getItem();
+					maxAzureDike += azureDikeItem.maxAzureDike(stack);
+					rechargeSpeedModifier += azureDikeItem.azureDikeRechargeSpeedModifier(stack) - 1;
+					rechargeDelayAfterDamageModifier += azureDikeItem.rechargeDelayAfterDamageModifier(stack) - 1;
+					maxAzureDikeMultiplier += azureDikeItem.maxAzureDikeMultiplier(stack) - 1;
+				}
+				
+				int ticksPerPointOfRecharge = (int) Math.max(1, BASE_RECHARGE_DELAY_TICKS / rechargeSpeedModifier);
+				int rechargeDelayTicksAfterGettingHit = (int) Math.max(1, BASE_RECHARGE_DELAY_TICKS_AFTER_DAMAGE / rechargeDelayAfterDamageModifier);
+				
+				attachment.set(Math.round((maxAzureDike * maxAzureDikeMultiplier)), ticksPerPointOfRecharge, rechargeDelayTicksAfterGettingHit, false);
+				attachment.sync(livingEntity);
+			}
+		}
+	}
 	
 	public record Payload(int entityId, float maxProtection, float currentProtection, int ticksPerPointOfRecharge, int rechargeDelayTicksAfterGettingHit, int currentRechargeDelay) implements CustomPacketPayload {
 		

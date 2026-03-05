@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.attachment_types.AzureDikeAttachmentType;
 import de.dafuqs.spectrum.progression.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -20,13 +21,13 @@ public abstract class AzureDikeCurioItem extends SpectrumCurioItem implements Az
 	@Override
 	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
 		super.onEquip(slotContext, prevStack, stack);
-		recalculate(slotContext.entity());
+		AzureDikeAttachmentType.recalculate(slotContext.entity());
 	}
 	
 	@Override
 	public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
 		super.onUnequip(slotContext, newStack, stack);
-		recalculate(slotContext.entity());
+		AzureDikeAttachmentType.recalculate(slotContext.entity());
 	}
 	
 	@Override

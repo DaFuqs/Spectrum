@@ -4280,6 +4280,8 @@
   "effect.spectrum.projectile_rebound.desc": "Grants a small chance to defend against incoming projectiles.",
   "effect.spectrum.scarred": "Scarred",
   "effect.spectrum.scarred.desc": "Stops natural health regeneration and prevents you from sprinting.",
+  "effect.spectrum.nourishing": "Lesser Saturation",
+  "effect.spectrum.nourishing.desc": "Slowly suppresses appetite.",
   "effect.spectrum.somnolence": "Somnolence",
   "effect.spectrum.somnolence.desc": "Causes intense fatigue, but allows sleeping through the day.",
   "effect.spectrum.stiffness": "Stiffness",
@@ -5141,7 +5143,7 @@
   "jukebox_song.spectrum.credits": "Radiarc – Irrelevance Fading",
   "jukebox_song.spectrum.divinity": "Proper Motions – Everreflective",
   "jukebox_song.spectrum.discovery": "DaveJF – The Mist",
-  "jukebox_song.spectrum.le_fishe_au_chocolat": "tyrono - A Culinary Identity Crisis",
+  "jukebox_song.spectrum.le_fishe_au_chocolat": "A Culinary Identity Crisis",
 
   "message.spectrum.needs_item_to_harvest": "Harvesting requires a ",
 

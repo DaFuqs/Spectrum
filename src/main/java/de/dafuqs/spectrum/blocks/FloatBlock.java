@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.gravity;
+package de.dafuqs.spectrum.blocks;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
@@ -46,10 +46,6 @@ public class FloatBlock extends FallingBlock {
 	
 	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-		this.checkForLaunch(world, pos);
-	}
-	
-	private void checkForLaunch(Level world, BlockPos pos) {
 		if (!world.isClientSide) {
 			if (gravityMod == 0) {
 				launch(world, pos);

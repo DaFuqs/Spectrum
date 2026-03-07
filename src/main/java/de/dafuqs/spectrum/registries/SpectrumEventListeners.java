@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import com.sammy.malum.registry.common.*;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
@@ -66,6 +65,8 @@ import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
+import net.neoforged.neoforge.items.*;
+import net.neoforged.neoforge.items.wrapper.*;
 import org.jetbrains.annotations.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
@@ -807,38 +808,94 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void tickHorseInventory(EntityTickEvent.Post event) {
-		if(event.getEntity() instanceof AbstractHorse horse) {
-			if (horse instanceof AbstractChestedHorse thisEntity
-					&& !thisEntity.isNoGravity()
-					&& thisEntity.hasChest()
-					&& thisEntity.level() instanceof ServerLevel serverWorld) {
-				
-				double addedGravity = 0;
-				
-				Container horseInventory = horse.getInventory();
-				for (int i = 0; i < horseInventory.getContainerSize(); i++) {
-					ItemStack stack = horse.getInventory().getItem(i);
-					if (stack.getItem() instanceof GravitableItem gravitableItem) {
-						addedGravity += gravitableItem.applyGravity(stack, serverWorld, thisEntity);
-					}
+	private static void tickGravity(EntityTickEvent.Pre event) {
+		Entity entity = event.getEntity();
+		if (entity.isNoGravity()) {
+			return;
+		}
+		Level level = entity.level();
+		
+		if(entity instanceof Player player && !player.getAbilities().flying) {
+			float appliedGravity = applyGravityBasedOnInventory(player, player.getInventory());
+			
+			// taking flight
+			if(level.getGameTime() % 20 == 0 && player instanceof ServerPlayer serverPlayer) {
+				if (appliedGravity > 0.081) {
+					Support.grantAdvancementCriterion(serverPlayer, "lategame/carry_too_many_low_gravity_blocks", "gravity");
+					// unable to jump a full block
+				} else if (appliedGravity < -0.025) {
+					Support.grantAdvancementCriterion(serverPlayer, "midgame/carry_too_many_heavy_gravity_blocks", "gravity");
 				}
-				
-				// when the animal is sent flying trigger a hidden advancement
-				if (addedGravity > 0.081 && serverWorld.getGameTime() % 20 == 0) {
-					Player owner = PlayerOwned.getPlayerEntityIfOnline(thisEntity.getOwnerUUID());
-					if (owner != null) {
-						Support.grantAdvancementCriterion((ServerPlayer) owner, "lategame/put_too_many_low_gravity_blocks_into_animal", "gravity");
-					}
-					
-					// take damage when at height heights
-					// otherwise the animal would just be floating forever
-					if (thisEntity.position().y > serverWorld.getHeight() + 1000) {
-						thisEntity.hurt(thisEntity.damageSources().fellOutOfWorld(), 10);
+			}
+		}
+		
+		if(level.isClientSide()) {
+			return;
+		}
+		
+		// Since an ItemEntity is much lighter than a player, we can x10 the gravity effect
+		// This is not affected by item entity stack count to make it more predictable
+		if(entity instanceof ItemEntity itemEntity) {
+			ItemStack stack = itemEntity.getItem();
+			if (stack.has(SpectrumDataComponentTypes.GRAVITABLE)) {
+				float gravity = stack.get(SpectrumDataComponentTypes.GRAVITABLE);
+				if(gravity == 0) {
+					itemEntity.setNoGravity(true);
+				} else {
+					itemEntity.push(0, gravity * 10, 0);
+					if (itemEntity.position().y() > level.getMaxBuildHeight() + 200) {
+						itemEntity.discard();
 					}
 				}
 			}
 		}
+		
+		if(entity instanceof AbstractChestedHorse horse && horse.hasChest()) {
+			float appliedGravity = applyGravityBasedOnInventory(horse, horse.getInventory());
+				
+			// when the animal is sent flying trigger a hidden advancement
+			if (appliedGravity > 0.081 && level.getGameTime() % 20 == 0) {
+				Player owner = PlayerOwned.getPlayerEntityIfOnline(horse.getOwnerUUID());
+				if (owner != null) {
+					Support.grantAdvancementCriterion((ServerPlayer) owner, "lategame/put_too_many_low_gravity_blocks_into_animal", "gravity");
+				}
+				
+				// take damage when at height heights
+				// otherwise the animal would just be floating forever
+				if (horse.position().y() > level.getMaxBuildHeight() + 200) {
+					horse.hurt(horse.damageSources().fellOutOfWorld(), 10);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * This one is for LivingEntities, like players
+	 * Makes entities lighter / heavier, depending on the gravity effect of the item stack
+	 *
+	 * @return The additional Y Velocity that was applied
+	 */
+	public static float applyGravityBasedOnInventory(LivingEntity entity, Container inventory) {
+		if (!entity.isPushable() || entity.isNoGravity() || entity.isSpectator()) {
+			return 0;
+		}
+		
+		float appliedGravityThisTick = 0F;
+		for(int i = 0; i < inventory.getContainerSize(); i++) {
+			ItemStack stack = inventory.getItem(i);
+			appliedGravityThisTick += stack.getOrDefault(SpectrumDataComponentTypes.GRAVITABLE, 0F) * stack.getCount();
+		}
+		
+		if(appliedGravityThisTick != 0) {
+			entity.push(0, appliedGravityThisTick, 0);
+		}
+		
+		// if falling very slowly => reset fall distance / damage
+		if (appliedGravityThisTick > 0 && entity.getDeltaMovement().y > -0.4) {
+			entity.fallDistance = 0;
+		}
+		
+		return appliedGravityThisTick;
 	}
 	
 }

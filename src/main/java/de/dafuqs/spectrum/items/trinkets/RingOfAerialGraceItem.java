@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -10,7 +9,7 @@ import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class RingOfAerialGraceItem extends GravityRingItem implements GravitableItem {
+public class RingOfAerialGraceItem extends GravityRingItem {
 	
 	public RingOfAerialGraceItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/ring_of_aerial_grace"), InkColors.WHITE);

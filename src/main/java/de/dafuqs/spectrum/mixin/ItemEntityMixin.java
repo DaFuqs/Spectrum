@@ -85,22 +85,4 @@ public abstract class ItemEntityMixin {
 		}
 	}
 	
-	@Inject(method = "tick()V", at = @At("TAIL"))
-	public void doGravityEffects(CallbackInfo ci) {
-		ItemEntity itemEntity = ((ItemEntity) (Object) this);
-		
-		if (itemEntity.isNoGravity()) {
-			return;
-		}
-		
-		ItemStack stack = itemEntity.getItem();
-		Item item = stack.getItem();
-		
-		if (item instanceof GravitableItem gravitableItem) {
-			// if the stack is floating really high => delete it
-			gravitableItem.applyGravity(stack, itemEntity.level(), itemEntity);
-		}
-		
-	}
-	
 }

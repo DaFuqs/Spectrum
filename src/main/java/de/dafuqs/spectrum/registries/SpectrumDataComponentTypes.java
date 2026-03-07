@@ -68,6 +68,7 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<List<TagKey<DamageType>>>> DAMAGE_IMMUNE = register("damage_immune", builder -> builder.persistent(TagKey.codec(Registries.DAMAGE_TYPE).listOf()).networkSynchronized(StreamCodec.unit(List.of())).cacheEncoding());
 	public static final Supplier<DataComponentType<SimpleFluidContent>> FLUID_CONTENT = register("fluid_content", builder -> builder.persistent(SimpleFluidContent.CODEC));
 	public static final Supplier<DataComponentType<List<MobEffectInstance>>> SLEEP_ALTERING_EFFECTS = register("sleep_altering_effects", builder -> builder.persistent(MobEffectInstance.CODEC.listOf()).networkSynchronized(StreamCodec.unit(List.of())).cacheEncoding());
+	public static final Supplier<DataComponentType<Float>> GRAVITABLE = register("gravitable", builder -> builder.persistent(Codec.FLOAT).networkSynchronized(ByteBufCodecs.FLOAT));
 	
 	public static <T> Supplier<DataComponentType<T>> register(String name, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
 		return REGISTRAR.registerComponentType(name, builderOperator);

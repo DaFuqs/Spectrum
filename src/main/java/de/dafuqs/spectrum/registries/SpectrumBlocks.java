@@ -30,7 +30,6 @@ import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.blocks.geology.*;
-import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.item_roundel.*;
@@ -53,7 +52,6 @@ import de.dafuqs.spectrum.blocks.structure.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.blocks.weathering.*;
-import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.data.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
@@ -81,7 +79,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.projectile.*;
-import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
@@ -1155,26 +1152,16 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<SpectrumClusterBlock> LARGE_BLOODSTONE_BUD = register(cluster(blockWithItem("large_bloodstone_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumSoundTypes.SMALL_ONYX_BUD, 4), SpectrumClusterBlock.GrowthStage.LARGE), () -> IS.of(Rarity.UNCOMMON), InkColors.RED), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> SMALL_BLOODSTONE_BUD = register(cluster(blockWithItem("small_bloodstone_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumSoundTypes.ONYX_CLUSTER, 3), SpectrumClusterBlock.GrowthStage.SMALL), () -> IS.of(Rarity.UNCOMMON), InkColors.RED), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	
-	public static final DeferredBlock<CloakedOreBlock> STRATINE_ORE = register(simple(blockWithItem("stratine_ore", () -> new CloakedOreBlock(UniformInt.of(3, 5), netherrackOre(), SpectrumAdvancements.REVEAL_STRATINE, NETHERRACK.defaultBlockState()), block -> new FloatBlockItem(block, IS.of().fireResistant(), -0.01F), InkColors.RED)));
-	public static final DeferredBlock<CloakedOreBlock> PALTAERIA_ORE = register(simple(blockWithItem("paltaeria_ore", () -> new CloakedOreBlock(UniformInt.of(2, 4), endstoneOre(), SpectrumAdvancements.REVEAL_PALTAERIA, END_STONE.defaultBlockState()), block -> new FloatBlockItem(block, IS.of(), 0.01F), InkColors.CYAN)));
+	public static final DeferredBlock<CloakedOreBlock> STRATINE_ORE = register(simple(blockWithItem("stratine_ore", () -> new CloakedOreBlock(UniformInt.of(3, 5), netherrackOre(), SpectrumAdvancements.REVEAL_STRATINE, NETHERRACK.defaultBlockState()), () -> IS.of().fireResistant().component(SpectrumDataComponentTypes.GRAVITABLE, -0.01F), InkColors.RED)));
+	public static final DeferredBlock<CloakedOreBlock> PALTAERIA_ORE = register(simple(blockWithItem("paltaeria_ore", () -> new CloakedOreBlock(UniformInt.of(2, 4), endstoneOre(), SpectrumAdvancements.REVEAL_PALTAERIA, END_STONE.defaultBlockState()), () -> IS.of().component(SpectrumDataComponentTypes.GRAVITABLE, 0.01F), InkColors.CYAN)));
 	
 	private static BlockBehaviour.Properties gravityBlock(MapColor mapColor) {
 		return settings(mapColor, SoundType.METAL, 4.0F, 6.0F).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops();
 	}
 	
-	public static final DeferredBlock<FloatBlock> PALTAERIA_FLOATBLOCK = register(singleton(blockWithItem("paltaeria_floatblock", () -> new FloatBlock(gravityBlock(MapColor.COLOR_LIGHT_BLUE), 0.2F), block -> new FloatBlockItem(block, IS.of().fireResistant(), 0.02F), InkColors.RED), SpectrumTexturedModelProviders.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
-	public static final DeferredBlock<FloatBlock> STRATINE_FLOATBLOCK = register(singleton(blockWithItem("stratine_floatblock", () -> new FloatBlock(gravityBlock(MapColor.NETHER), -0.2F), block -> new FloatBlockItem(block, IS.of(), -0.02F), InkColors.CYAN), SpectrumTexturedModelProviders.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
-	public static final DeferredBlock<FloatBlock> HOVER_BLOCK = register(singleton(blockWithItem("hover_block", () -> new FloatBlock(gravityBlock(MapColor.DIAMOND), 0.0F), block -> new FloatBlockItem(block, IS.of(), 0F) {
-		@Override
-		public double applyGravity(ItemStack stack, Level world, Entity entity) {
-			return 0;
-		}
-		
-		@Override
-		public void applyGravity(ItemStack stack, Level world, ItemEntity itemEntity) {
-			itemEntity.setNoGravity(true);
-		}
-	}, InkColors.GREEN), TexturedModel.COLUMN));
+	public static final DeferredBlock<FloatBlock> STRATINE_FLOATBLOCK = register(singleton(blockWithItem("stratine_floatblock", () -> new FloatBlock(gravityBlock(MapColor.NETHER), -0.2F), () -> IS.of().fireResistant().component(SpectrumDataComponentTypes.GRAVITABLE, -0.02F), InkColors.CYAN), SpectrumTexturedModelProviders.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
+	public static final DeferredBlock<FloatBlock> PALTAERIA_FLOATBLOCK = register(singleton(blockWithItem("paltaeria_floatblock", () -> new FloatBlock(gravityBlock(MapColor.COLOR_LIGHT_BLUE), 0.2F), () -> IS.of().component(SpectrumDataComponentTypes.GRAVITABLE, 0.02F), InkColors.RED), SpectrumTexturedModelProviders.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
+	public static final DeferredBlock<FloatBlock> HOVER_BLOCK = register(singleton(blockWithItem("hover_block", () -> new FloatBlock(gravityBlock(MapColor.DIAMOND), 0.0F), () -> IS.of().component(SpectrumDataComponentTypes.GRAVITABLE, 0.0F), InkColors.GREEN), TexturedModel.COLUMN));
 	
 	public static final DeferredBlock<Block> BLACKSLAG_COAL_ORE = register(singleton(blockWithItem("blackslag_coal_ore", () -> new DropExperienceBlock(UniformInt.of(0, 2), blackslagOre()), InkColors.BLACK), TexturedModel.COLUMN_ALT));
 	public static final DeferredBlock<Block> BLACKSLAG_COPPER_ORE = register(singleton(blockWithItem("blackslag_copper_ore", () -> new DropExperienceBlock(ConstantInt.of(0), blackslagOre()), InkColors.BLACK), TexturedModel.COLUMN_ALT));

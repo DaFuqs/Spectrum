@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -10,7 +9,7 @@ import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class RingOfDenserStepsItem extends GravityRingItem implements GravitableItem {
+public class RingOfDenserStepsItem extends GravityRingItem {
 	
 	public RingOfDenserStepsItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/ring_of_denser_steps"), InkColors.BROWN);

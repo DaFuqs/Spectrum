@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.components.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
@@ -64,8 +65,9 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<WrappedPresentComponent>> WRAPPED_PRESENT = register("wrapped_present", builder -> builder.persistent(WrappedPresentComponent.CODEC).networkSynchronized(WrappedPresentComponent.PACKET_CODEC).cacheEncoding());
 	public static final Supplier<DataComponentType<WithMilkComponent>> WITH_MILK = register("with_milk", builder -> builder.persistent(WithMilkComponent.CODEC).networkSynchronized(WithMilkComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<WorkstaffComponent>> WORKSTAFF = register("workstaff", builder -> builder.persistent(WorkstaffComponent.CODEC).networkSynchronized(WorkstaffComponent.PACKET_CODEC));
-	public static final Supplier<DataComponentType<DamageImmuneComponent>> DAMAGE_IMMUNE = register("damage_immune", builder -> builder.persistent(DamageImmuneComponent.CODEC).networkSynchronized(StreamCodec.unit(DamageImmuneComponent.DEFAULT)).cacheEncoding());
+	public static final Supplier<DataComponentType<List<TagKey<DamageType>>>> DAMAGE_IMMUNE = register("damage_immune", builder -> builder.persistent(TagKey.codec(Registries.DAMAGE_TYPE).listOf()).networkSynchronized(StreamCodec.unit(List.of())).cacheEncoding());
 	public static final Supplier<DataComponentType<SimpleFluidContent>> FLUID_CONTENT = register("fluid_content", builder -> builder.persistent(SimpleFluidContent.CODEC));
+	public static final Supplier<DataComponentType<List<MobEffectInstance>>> SLEEP_ALTERING_EFFECTS = register("sleep_altering_effects", builder -> builder.persistent(MobEffectInstance.CODEC.listOf()).networkSynchronized(StreamCodec.unit(List.of())).cacheEncoding());
 	
 	public static <T> Supplier<DataComponentType<T>> register(String name, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
 		return REGISTRAR.registerComponentType(name, builderOperator);

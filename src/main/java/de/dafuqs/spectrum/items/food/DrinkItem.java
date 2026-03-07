@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -40,6 +41,12 @@ public class DrinkItem extends Item {
 		}
 		
 		return itemStack;
+	}
+	
+	@Override
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		user.startUsingItem(hand);
+		return InteractionResultHolder.consume(user.getItemInHand(hand));
 	}
 	
 	@Override

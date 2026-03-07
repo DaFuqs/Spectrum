@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.components.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.tags.*;
@@ -68,7 +69,7 @@ public abstract class ItemEntityMixin {
 	@Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
 	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		ItemEntity thisItemEntity = (ItemEntity) (Object) this;
-		if (DamageImmuneComponent.isImmuneTo(thisItemEntity.getItem(), source)) {
+		if (DamageImmunityHelper.isImmuneTo(thisItemEntity.getItem(), source)) {
 			cir.setReturnValue(true);
 		} else if (source.is(SpectrumDamageTypes.PRIMORDIAL_FIRE)) {
 			if (PrimordialFireBurningRecipe.processItemEntity(thisItemEntity.level(), thisItemEntity)) {
@@ -79,7 +80,7 @@ public abstract class ItemEntityMixin {
 	
 	@Inject(method = "fireImmune", at = @At("HEAD"), cancellable = true)
 	private void spectrum$isFireImmune(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if (DamageImmuneComponent.isImmuneTo(((ItemEntity) (Object) this).getItem(), DamageTypeTags.IS_FIRE)) {
+		if (DamageImmunityHelper.isImmuneTo(((ItemEntity) (Object) this).getItem(), DamageTypeTags.IS_FIRE)) {
 			callbackInfoReturnable.setReturnValue(true);
 		}
 	}

@@ -78,7 +78,7 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	public static void modifyComponents(ModifyDefaultComponentsEvent event) {
-		event.modify(Items.NETHER_STAR, builder -> builder.set(SpectrumDataComponentTypes.DAMAGE_IMMUNE.get(), new DamageImmuneComponent(List.of(DamageTypeTags.IS_EXPLOSION, DamageTypeTags.IS_FIRE))));
+		event.modify(Items.NETHER_STAR, builder -> builder.set(SpectrumDataComponentTypes.DAMAGE_IMMUNE.get(), List.of(DamageTypeTags.IS_EXPLOSION, DamageTypeTags.IS_FIRE)));
 	}
 	
 	@SubscribeEvent

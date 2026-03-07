@@ -17,7 +17,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class SoothingBouquetItem extends Item implements SleepAlteringItem, SlotBackgroundEffectProvider {
+public class SoothingBouquetItem extends Item implements SlotBackgroundEffectProvider {
 	
 	private static final MutableComponent TOOLTIP = Component.translatable("item.spectrum.soothing_bouquet.tooltip");
 	
@@ -36,7 +36,7 @@ public class SoothingBouquetItem extends Item implements SleepAlteringItem, Slot
 			var component = MiscPlayerDataAttachmentType.get(player);
 			
 			component.setSleepTimers(50, 20 * 6, 0);
-			component.setLastSleepItem(this);
+			component.setLastSleepItem(stack);
 			
 			player.addEffect(new MobEffectInstance(SpectrumMobEffects.CALMING, 20 * 10, 4));
 			player.addEffect(new MobEffectInstance(SpectrumMobEffects.SOMNOLENCE, 20 * 10, 4));
@@ -69,11 +69,6 @@ public class SoothingBouquetItem extends Item implements SleepAlteringItem, Slot
 	@Override
 	public SoundEvent getDrinkingSound() {
 		return SoundEvents.SNIFFER_SCENTING;
-	}
-	
-	@Override
-	public void applyPenalties(Player player) {
-		player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20 * 15));
 	}
 	
 	@Override

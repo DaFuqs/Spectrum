@@ -4,15 +4,14 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.entity.*;
-import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.attachment.*;
@@ -29,7 +28,7 @@ public class MiscPlayerDataAttachmentType {
 			Codec.INT.fieldOf("ticky_before_sleep").forGetter(m -> m.ticksBeforeSleep),
 			Codec.INT.fieldOf("sleeping_window").forGetter(m -> m.sleepingWindow),
 			Codec.INT.fieldOf("sleep_invincibility").forGetter(m -> m.sleepInvincibility),
-			BuiltInRegistries.ITEM.byNameCodec().optionalFieldOf("sleep_consumable").forGetter(m -> (Optional<Item>) (Object) m.sleepConsumable)
+			MobEffectInstance.CODEC.listOf().fieldOf("sleep_consumable").forGetter(m -> m.sleepAlteringEffects)
 	).apply(i, MiscPlayerDataAttachmentType::ofCodec));
 	
 	public static final AttachmentType<MiscPlayerDataAttachmentType> ATTACHMENT_TYPE = AttachmentType.builder((holder) -> new MiscPlayerDataAttachmentType((Player) holder)).serialize(CODEC).build();
@@ -46,7 +45,7 @@ public class MiscPlayerDataAttachmentType {
 	// Sleep
 	private int ticksBeforeSleep = -1, sleepingWindow = -1, sleepInvincibility;
 	private double lastSyncedSleepPotency = -2;
-	private Optional<SleepAlteringItem> sleepConsumable = Optional.empty();
+	private List<MobEffectInstance> sleepAlteringEffects = List.of();
 	
 	// Sword mechanics
 	private boolean isLunging, bHopWindow, perfectCounter;
@@ -55,12 +54,12 @@ public class MiscPlayerDataAttachmentType {
 	// Gleaming Pin
 	private long lastGleamingPinTriggerTick;
 	
-	public static MiscPlayerDataAttachmentType ofCodec(int ticksBeforeSleep, int sleepingWindow, int sleepInvincibility, Optional<Item> sleepConsumable) {
+	public static MiscPlayerDataAttachmentType ofCodec(int ticksBeforeSleep, int sleepingWindow, int sleepInvincibility, List<MobEffectInstance> sleepAlteringEffects) {
 		MiscPlayerDataAttachmentType data = new MiscPlayerDataAttachmentType();
 		data.ticksBeforeSleep = ticksBeforeSleep;
 		data.sleepingWindow = sleepingWindow;
 		data.sleepInvincibility = sleepInvincibility;
-		data.sleepConsumable = (Optional<SleepAlteringItem>) (Object) sleepConsumable;
+		data.sleepAlteringEffects = sleepAlteringEffects;
 		return data;
 	}
 	
@@ -188,18 +187,21 @@ public class MiscPlayerDataAttachmentType {
 		}
 	}
 	
-	public void resetSleepingState(boolean canApplyPenalties) {
-		if (ticksBeforeSleep == -1)
+	public void resetSleepingState(boolean applySleepAlteringEffects) {
+		if (ticksBeforeSleep == -1) {
 			return;
+		}
+		
+		if (applySleepAlteringEffects) {
+			for(MobEffectInstance instance : sleepAlteringEffects) {
+				player.addEffect(instance);
+			}
+		}
 		
 		ticksBeforeSleep = -1;
 		sleepingWindow = -1;
 		sleepInvincibility = -1;
-		
-		if (canApplyPenalties)
-			sleepConsumable.ifPresent(p -> p.applyPenalties(player));
-		
-		sleepConsumable = Optional.empty();
+		sleepAlteringEffects = List.of();
 	}
 	
 	public void setSleepTimers(int wait, int window, int invulnTicks) {
@@ -208,8 +210,8 @@ public class MiscPlayerDataAttachmentType {
 		sleepInvincibility = invulnTicks;
 	}
 	
-	public void setLastSleepItem(@NotNull SleepAlteringItem item) {
-		this.sleepConsumable = Optional.of(item);
+	public void setLastSleepItem(@NotNull ItemStack stack) {
+		this.sleepAlteringEffects = stack.getOrDefault(SpectrumDataComponentTypes.SLEEP_ALTERING_EFFECTS, List.of());
 	}
 	
 	public static MiscPlayerDataAttachmentType get(@NotNull Player player) {
@@ -236,14 +238,14 @@ public class MiscPlayerDataAttachmentType {
 		return lastGleamingPinTriggerTick;
 	}
 	
-	public record Payload(UUID id, int ticksBeforeSleep, int sleepingWindow, int sleepInvincibility, Optional<Item> sleepConsumable) implements CustomPacketPayload {
+	public record Payload(UUID id, int ticksBeforeSleep, int sleepingWindow, int sleepInvincibility, List<MobEffectInstance> sleepAlteringEffects) implements CustomPacketPayload {
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, Payload> CODEC = StreamCodec.composite(
 				UUIDUtil.STREAM_CODEC, Payload::id,
 				ByteBufCodecs.INT, Payload::ticksBeforeSleep,
 				ByteBufCodecs.INT, Payload::sleepingWindow,
 				ByteBufCodecs.INT, Payload::sleepInvincibility,
-				ByteBufCodecs.optional(ByteBufCodecs.registry(Registries.ITEM)), Payload::sleepConsumable,
+				MobEffectInstance.STREAM_CODEC.apply(ByteBufCodecs.collection(NonNullList::createWithCapacity)), Payload::sleepAlteringEffects,
 				Payload::new
 		);
 		
@@ -258,7 +260,7 @@ public class MiscPlayerDataAttachmentType {
 			data.ticksBeforeSleep = payload.ticksBeforeSleep();
 			data.sleepingWindow = payload.sleepingWindow();
 			data.sleepInvincibility = payload.sleepInvincibility();
-			data.sleepConsumable = (Optional<SleepAlteringItem>) (Object) payload.sleepConsumable;
+			data.sleepAlteringEffects = payload.sleepAlteringEffects;
 		}
 		
 		@Override

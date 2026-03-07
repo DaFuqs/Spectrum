@@ -166,7 +166,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
 						}
 						world.setBlock(blockPos, destinationState, 3);
 						
-						payForStaffUse(player, stack, INK_COST, ITEM_COST);
+						payForUse(player, stack, INK_COST, ITEM_COST);
 						success = true;
 					} else if (sourceState.is(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
 						// blockstate marked as stackable => stack more on top!
@@ -210,7 +210,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
 				}
 				
 				if (success) {
-					payForStaffUse(player, stack, INK_COST, ITEM_COST);
+					payForUse(player, stack, INK_COST, ITEM_COST);
 					SpectrumAdvancementCriteria.NATURES_STAFF_CONVERSION.trigger(player, sourceState, world.getBlockState(blockPos));
 					return InteractionResult.CONSUME;
 				}

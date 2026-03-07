@@ -191,7 +191,7 @@ public class SpectrumEventListeners {
 		
 		if(player.getSleepTimer() == 100 && SpectrumCurioItem.hasEquipped(player, SpectrumItems.WHISPY_CIRCLET.asItem())) {
 			player.setHealth(player.getMaxHealth());
-			WhispyCircletItem.removeNegativeStatusEffects(player);
+			MobEffectHelper.clearEffects(player, WhispyCircletItem.EFFECT_CLEAR_PREDICATE);
 		}
 		
 	}

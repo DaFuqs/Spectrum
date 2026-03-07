@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
@@ -17,85 +18,27 @@ import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 import top.theillusivec4.curios.api.*;
 
+import javax.annotation.*;
 import java.util.*;
+import java.util.function.*;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class WhispyCircletItem extends SpectrumCurioItem {
 	
 	public static final ResourceLocation ATTRIBUTE_ID = SpectrumCommon.locate("whispy_circlet_mental_presence");
+	public static final Predicate<MobEffectInstance> EFFECT_CLEAR_PREDICATE = instance -> {
+		Holder<MobEffect> holder = instance.getEffect();
+		return holder.value().getCategory() == MobEffectCategory.HARMFUL && !holder.is(SpectrumMobEffectTags.BYPASSES_WHISPY_CIRCLET);
+	};
 	
 	private final static int TRIGGER_EVERY_X_TICKS = 100;
-	private final static int NEGATIVE_EFFECT_SHORTENING_TICKS = 200;
 	
 	public WhispyCircletItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/whispy_circlet"));
 	}
 	
-	public static void removeSingleStatusEffect(@NotNull LivingEntity entity, MobEffectCategory category) {
-		Collection<MobEffectInstance> currentEffects = entity.getActiveEffects();
-		if (currentEffects.isEmpty()) {
-			return;
-		}
-		
-		List<MobEffectInstance> negativeEffects = new ArrayList<>();
-		for (MobEffectInstance statusEffectInstance : currentEffects) {
-			Holder<MobEffect> effect = statusEffectInstance.getEffect();
-			if (effect.value().getCategory() == category && !effect.is(SpectrumMobEffectTags.SOPORIFIC) && !effect.is(SpectrumMobEffectTags.BYPASSES_WHISPY_CIRCLET)) {
-				negativeEffects.add(statusEffectInstance);
-			}
-		}
-		
-		if (negativeEffects.isEmpty()) {
-			return;
-		}
-		
-		Level world = entity.level();
-		int randomIndex = world.random.nextInt(negativeEffects.size());
-		entity.removeEffect(negativeEffects.get(randomIndex).getEffect());
-	}
-	
-	public static void removeNegativeStatusEffects(@NotNull LivingEntity entity) {
-		Set<Holder<MobEffect>> effectsToRemove = new HashSet<>();
-		for (var instance : entity.getActiveEffects()) {
-			if (affects(instance.getEffect())) {
-				effectsToRemove.add(instance.getEffect());
-			}
-		}
-		
-		for (Holder<MobEffect> effect : effectsToRemove) {
-			entity.removeEffect(effect);
-		}
-	}
-	
-	public static void shortenNegativeStatusEffects(@NotNull LivingEntity entity, int duration) {
-		Collection<MobEffectInstance> newEffects = new ArrayList<>();
-		Collection<Holder<MobEffect>> effectTypesToClear = new ArrayList<>();
-		
-		// remove them first, so hidden "stacked" effects are preserved
-		for (MobEffectInstance instance : entity.getActiveEffects()) {
-			if (affects(instance.getEffect())) {
-				int newDurationTicks = instance.getDuration() - duration;
-				if (newDurationTicks > 0) {
-					newEffects.add(new MobEffectInstance(instance.getEffect(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), instance.isVisible(), instance.showIcon()));
-				}
-				if (!effectTypesToClear.contains(instance.getEffect())) {
-					effectTypesToClear.add(instance.getEffect());
-				}
-			}
-		}
-		
-		for (var effectTypeToClear : effectTypesToClear) {
-			entity.removeEffect(effectTypeToClear);
-		}
-		for (MobEffectInstance newEffect : newEffects) {
-			entity.addEffect(newEffect);
-		}
-	}
-	
-	public static boolean affects(Holder<MobEffect> effect) {
-		return effect.value().getCategory() == MobEffectCategory.HARMFUL && !effect.is(SpectrumMobEffectTags.BYPASSES_WHISPY_CIRCLET);
-	}
-	
-	public static void preventPhantomSpawns(@NotNull ServerPlayer serverPlayerEntity) {
+	public static void preventPhantomSpawns(ServerPlayer serverPlayerEntity) {
 		serverPlayerEntity.getStats().setValue(serverPlayerEntity, Stats.CUSTOM.get(Stats.TIME_SINCE_REST), 0);
 	}
 	
@@ -116,10 +59,10 @@ public class WhispyCircletItem extends SpectrumCurioItem {
 		if (!world.isClientSide) {
 			long time = entity.level().getGameTime();
 			if (time % TRIGGER_EVERY_X_TICKS == 0) {
-				shortenNegativeStatusEffects(entity, NEGATIVE_EFFECT_SHORTENING_TICKS);
+				MobEffectHelper.shortenEffects(entity, EFFECT_CLEAR_PREDICATE);
 			}
-			if (time % 10000 == 0 && entity instanceof ServerPlayer serverPlayerEntity) {
-				preventPhantomSpawns(serverPlayerEntity);
+			if (time % 10000 == 0 && entity instanceof ServerPlayer serverPlayer) {
+				preventPhantomSpawns(serverPlayer);
 			}
 		}
 	}

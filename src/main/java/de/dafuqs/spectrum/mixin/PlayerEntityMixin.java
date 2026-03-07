@@ -106,7 +106,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 			ci.cancel();
 		}
 	}
-	
+	//TODO: move to event
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "net/minecraft/world/entity/player/Player.getAttributeValue (Lnet/minecraft/core/Holder;)D"))
 	protected void spectrum$calculateModifiers(Entity target, CallbackInfo ci) {
 		Player player = (Player) (Object) this;

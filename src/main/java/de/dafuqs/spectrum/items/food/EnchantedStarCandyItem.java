@@ -1,16 +1,25 @@
 package de.dafuqs.spectrum.items.food;
 
-import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
+import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 
+import javax.annotation.*;
 import java.util.*;
+import java.util.function.*;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class EnchantedStarCandyItem extends Item {
+	
+	public static final Predicate<MobEffectInstance> EFFECT_CLEAR_PREDICATE = instance -> instance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL;
 	
 	public EnchantedStarCandyItem(Properties settings) {
 		super(settings);
@@ -22,7 +31,7 @@ public class EnchantedStarCandyItem extends Item {
 		
 		user.heal(user.getMaxHealth());
 		if (!world.isClientSide) {
-			WhispyCircletItem.removeNegativeStatusEffects(user);
+			MobEffectHelper.clearEffects(user, EFFECT_CLEAR_PREDICATE);
 		}
 		if (user instanceof Player player) {
 			player.getFoodData().eat(1000, 1.0F);

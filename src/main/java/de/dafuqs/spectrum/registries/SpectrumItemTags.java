@@ -31,6 +31,7 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> PLAYER_ATTRIBUTED_PLACEMENT = of("player_attributed_placement");
 	public static final TagKey<Item> NATURES_STAFF_CONSUMABLE = of("consumable/natures_staff");
 	public static final TagKey<Item> RADIANCE_STAFF_CONSUMABLE = of("consumable/radiance_staff");
+	public static final TagKey<Item> GLOW_VISION_GOGGLES_CONSUMABLE = of("consumable/glow_vision_goggles");
 	public static final TagKey<Item> TRINKETS = of("trinkets");
 	public static final TagKey<Item> STORES_ITEMS_ADDED_TO_INVENTORY = of("stores_items_added_to_inventory"); // TODO: this might be fun as an item component / enchantment actually
 	

@@ -47,7 +47,7 @@ public abstract class LivingEntityPreventStatusClearMixin {
 			if (affectedByImmunity(instance, effect.getAmplifier()))
 				return true;
 			
-			MobEffectHelper.cutDuration(instance, effect);
+			MobEffectHelper.shortenEffect(instance, effect);
 			
 			blockRemoval.set(true);
 			return false;

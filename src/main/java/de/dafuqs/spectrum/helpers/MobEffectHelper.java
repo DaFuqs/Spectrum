@@ -10,6 +10,11 @@ import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
+import java.util.function.Predicate;
 
 public class MobEffectHelper {
 	
@@ -30,17 +35,56 @@ public class MobEffectHelper {
 	public static boolean isStrongSleepEffect(InkPoweredStatusEffectInstance instance) {
 		return isStrongSleepEffect(instance.getStatusEffectInstance());
 	}
+
+    public static void clearRandomEffect(@NotNull LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
+        Collection<MobEffectInstance> currentEffects = entity.getActiveEffects();
+        List<MobEffectInstance> toRemove = new ArrayList<>();
+        for (MobEffectInstance instance : currentEffects) {
+            if (effectPredicate.test(instance)) {
+                toRemove.add(instance);
+            }
+        }
+        
+        if (toRemove.isEmpty()) {
+            return;
+        }
+        
+        Level world = entity.level();
+        int randomIndex = world.random.nextInt(toRemove.size());
+        entity.removeEffect(toRemove.get(randomIndex).getEffect());
+    }
+
+    public static void clearEffects(@NotNull LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
+        Set<Holder<MobEffect>> effectsToRemove = new HashSet<>();
+        for (MobEffectInstance instance : entity.getActiveEffects()) {
+            if (effectPredicate.test(instance)) {
+                effectsToRemove.add(instance.getEffect());
+            }
+        }
+        
+        for (Holder<MobEffect> effect : effectsToRemove) {
+            entity.removeEffect(effect);
+        }
+    }
+
+    public static void shortenEffects(@NotNull LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
+        for (MobEffectInstance instance : entity.getActiveEffects()) {
+            if (effectPredicate.test(instance)) {
+				shortenEffect(entity, instance);
+            }
+        }
+    }
 	
-	public static void cutDuration(LivingEntity instance, MobEffectInstance effect) {
+	public static void shortenEffect(LivingEntity livingEntity, MobEffectInstance instance) {
 		// new duration = duration - 1min OR duration * 0.4, whichever is the smaller reduction
-		int duration = effect.getDuration();
-		((StatusEffectInstanceAccessor) effect).setDuration(Math.max(duration - 1200, (int) (duration * 0.4)));
-		if (instance.level() instanceof ServerLevel serverWorld) {
-			serverWorld.getChunkSource().broadcastAndSend(instance, new ClientboundUpdateMobEffectPacket(instance.getId(), effect, false));
+		int duration = instance.getDuration();
+		((StatusEffectInstanceAccessor) instance).setDuration(Math.max(duration - 1200, (int) (duration * 0.4)));
+		if (livingEntity.level() instanceof ServerLevel serverWorld) {
+			serverWorld.getChunkSource().broadcastAndSend(livingEntity, new ClientboundUpdateMobEffectPacket(livingEntity.getId(), instance, false));
 		}
 	}
-	
-	public enum RenderType {
+
+    public enum RenderType {
 		GUI_LARGE,
 		GUI_SMALL,
 		HUD_DEFAULT,

@@ -59,29 +59,26 @@ public abstract class ItemEntityMixin {
 	}
 	
 	@Inject(at = @At("HEAD"), method = "hurt")
-	public void spectrumItemStackDamageActions(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+	public void spectrumItemStackDamageActions(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		if (amount > 0 && this.getItem().getItem() instanceof DamageAwareItem damageAwareItem) {
 			damageAwareItem.onItemEntityDamaged(source, amount, (ItemEntity) (Object) this);
 		}
 	}
 	
 	@Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
-	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		ItemEntity thisItemEntity = (ItemEntity) (Object) this;
 		if (DamageImmuneComponent.isImmuneTo(thisItemEntity.getItem(), source)) {
-			callbackInfoReturnable.setReturnValue(true);
-		}
-		if (source.is(SpectrumDamageTypes.PRIMORDIAL_FIRE)) {
-			Level world = thisItemEntity.level();
-			
-			if (PrimordialFireBurningRecipe.processItemEntity(world, thisItemEntity)) {
-				callbackInfoReturnable.setReturnValue(true);
+			cir.setReturnValue(true);
+		} else if (source.is(SpectrumDamageTypes.PRIMORDIAL_FIRE)) {
+			if (PrimordialFireBurningRecipe.processItemEntity(thisItemEntity.level(), thisItemEntity)) {
+				cir.setReturnValue(true);
 			}
 		}
 	}
 	
 	@Inject(method = "fireImmune", at = @At("HEAD"), cancellable = true)
-	private void isFireProof(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+	private void spectrum$isFireImmune(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 		if (DamageImmuneComponent.isImmuneTo(((ItemEntity) (Object) this).getItem(), DamageTypeTags.IS_FIRE)) {
 			callbackInfoReturnable.setReturnValue(true);
 		}

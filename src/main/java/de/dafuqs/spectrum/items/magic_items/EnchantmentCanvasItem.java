@@ -110,4 +110,9 @@ public class EnchantmentCanvasItem extends Item {
 		return Optional.of(BuiltInRegistries.ITEM.get(boundId));
 	}
 	
+	@Override
+	public boolean isFoil(@NotNull ItemStack stack) {
+		return super.isFoil(stack) || stack.has(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS);
+	}
+	
 }

@@ -2,15 +2,15 @@
   "type": "spectrum:titration_barrel",
   "ingredients": [
     {
-      "tag": "c:foods/vegetables",
+      "tag": "c:foods/vegetable",
       "count": 4
     },
     {
-      "tag": "c:foods/vegetables",
+      "tag": "c:foods/vegetable",
       "count": 4
     },
     {
-      "tag": "c:foods/vegetables",
+      "tag": "c:foods/vegetable",
       "count": 4
     }
   ],

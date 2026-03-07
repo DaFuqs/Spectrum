@@ -25,7 +25,7 @@ public abstract class TridentEntityMixin extends AbstractArrow {
 	@WrapOperation(method = "onHitEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"))
 	private boolean makeBidentDamageReasonable(Entity instance, DamageSource source, float amount, Operation<Boolean> original) {
 		if (((Object) this) instanceof BidentBaseEntity bidentEntity) {
-			var stack = bidentEntity.getTrackedStack();
+			var stack = bidentEntity.getPickupItemStackOrigin();
 			float damage = (float) spectrum$getDamage(stack);
 			
 			DamageSource damageSource = SpectrumDamageTypes.impaling(level(), bidentEntity, getOwner());

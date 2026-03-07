@@ -114,7 +114,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 		if (!entityData.get(HIT)) {
 			
 			if (isPropelled()) {
-				applyInertiaEffects(getTrackedStack());
+				applyInertiaEffects(getPickupItemStackOrigin());
 			}
 			
 			travelingTicks = 0;
@@ -176,7 +176,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 		}
 		
 		var propelled = isPropelled();
-		ItemStack stack = getTrackedStack();
+		ItemStack stack = getPickupItemStackOrigin();
 		var channeling = SpectrumEnchantmentHelper.getLevel(level().registryAccess(), Enchantments.CHANNELING, stack);
 		Entity owner = this.getOwner();
 		
@@ -255,7 +255,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 	protected void onHitBlock(BlockHitResult blockHitResult) {
 		var pos = blockHitResult.getBlockPos();
 		var state = level().getBlockState(pos);
-		var stack = getTrackedStack();
+		var stack = getPickupItemStackOrigin();
 		var channeling = SpectrumEnchantmentHelper.getLevel(level().registryAccess(), Enchantments.CHANNELING, stack);
 		var damage = adjustDamage(getDamage(stack), channeling);
 		var damageSource = SpectrumDamageTypes.impaling(level(), this, getOwner());

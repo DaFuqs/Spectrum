@@ -16,9 +16,4 @@ public class BidentEntity extends BidentBaseEntity {
 		super(entityType, world);
 	}
 	
-	@Override
-	protected void onHitBlock(BlockHitResult blockHitResult) {
-		super.onHitBlock(blockHitResult);
-	}
-	
 }

@@ -66,7 +66,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
 	@Override
 	protected void onHitEntity(EntityHitResult entityHitResult) {
 		// TODO: this is in big parts identical to DraconicTwinswordEntity.onEntityHit(). Dedup needed
-		ItemStack stack = getTrackedStack();
+		ItemStack stack = getPickupItemStackOrigin();
 		Entity attacked = entityHitResult.getEntity();
 		if (attacked.getType() == EntityType.ENDERMAN) {
 			return;
@@ -124,7 +124,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
 		var difMod = 4F;
 		var airborne = !owner.onGround();
 		var sneaking = owner.isShiftKeyDown();
-		var inertia = SpectrumEnchantmentHelper.getLevel(owner.level().registryAccess(), SpectrumEnchantmentKeys.INERTIA, getTrackedStack());
+		var inertia = SpectrumEnchantmentHelper.getLevel(owner.level().registryAccess(), SpectrumEnchantmentKeys.INERTIA, getPickupItemStackOrigin());
 		
 		if (sneaking)
 			difMod *= 3;
@@ -159,7 +159,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
 			yoink(owner, position(), 0.125, 0.165);
 		}
 		
-		if (SpectrumEnchantmentHelper.hasEnchantment(level().registryAccess(), Enchantments.CHANNELING, getTrackedStack()) && owner != null) {
+		if (SpectrumEnchantmentHelper.hasEnchantment(level().registryAccess(), Enchantments.CHANNELING, getPickupItemStackOrigin()) && owner != null) {
 			if (level() instanceof ServerLevel world) {
 				for (int i = 0; i < 10; i++) {
 					world.sendParticles(ParticleTypes.GLOW,
@@ -175,7 +175,6 @@ public class DragonTalonEntity extends BidentBaseEntity {
 			return;
 		}
 		
-		getEntityData().set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) 4);
 		setNoPhysics(true);
 	}
 	

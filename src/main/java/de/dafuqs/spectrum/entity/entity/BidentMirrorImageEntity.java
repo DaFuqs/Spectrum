@@ -59,7 +59,7 @@ public class BidentMirrorImageEntity extends BidentBaseEntity {
 	
 	private void processHit(@Nullable Entity target, float effectMult) {
 		var drm = level().registryAccess();
-		var stack = getTrackedStack();
+		var stack = getPickupItemStackOrigin();
 		var power = SpectrumEnchantmentHelper.getLevel(drm, Enchantments.POWER, stack) * 0.3F + 1;
 		var efficiency = SpectrumEnchantmentHelper.getLevel(drm, Enchantments.EFFICIENCY, stack);
 		var world = this.level();

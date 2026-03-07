@@ -29,10 +29,13 @@ public abstract class BidentBaseEntity extends ThrownTrident {
 	
 	@Override
 	public void setPickupItemStack(ItemStack stack) {
-		setTrackedStack(stack.copy());
+		entityData.set(STACK, stack.copy());
 		super.setPickupItemStack(stack);
-		this.entityData.set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) SpectrumEnchantmentHelper.getLevel(level().registryAccess(), Enchantments.LOYALTY, stack));
-		this.entityData.set(TridentEntityAccessor.spectrum$getEnchanted(), stack.hasFoil());
+	}
+	
+	@Override
+	public ItemStack getDefaultPickupItem() {
+		return entityData.get(STACK);
 	}
 	
 	@Override
@@ -40,27 +43,4 @@ public abstract class BidentBaseEntity extends ThrownTrident {
 		return SpectrumSoundEvents.BIDENT_HIT_GROUND;
 	}
 	
-	public ItemStack getTrackedStack() {
-		return this.entityData.get(STACK);
-	}
-	
-	public void setTrackedStack(ItemStack stack) {
-		entityData.set(STACK, stack);
-	}
-	
-	@Override
-	public void readAdditionalSaveData(CompoundTag nbt) {
-		super.readAdditionalSaveData(nbt);
-		this.entityData.set(STACK, CodecHelper.fromNbt(ItemStack.CODEC, nbt.get("item"), ItemStack.EMPTY));
-	}
-	
-	@Override
-	public void addAdditionalSaveData(CompoundTag nbt) {
-		super.addAdditionalSaveData(nbt);
-	}
-	
-	@Override
-	public AABB makeBoundingBox() {
-		return super.makeBoundingBox();
-	}
 }

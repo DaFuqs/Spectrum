@@ -32,7 +32,7 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	
 	@Override
 	public void render(BidentBaseEntity bidentBaseEntity, float yaw, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light) {
-		ItemStack itemStack = bidentBaseEntity.getTrackedStack();
+		ItemStack itemStack = bidentBaseEntity.getDefaultPickupItem();
 		renderAsItemStack(bidentBaseEntity, tickDelta, poseStack, vertexConsumerProvider, light, itemStack);
 		super.render(bidentBaseEntity, yaw, tickDelta, poseStack, vertexConsumerProvider, light);
 	}
@@ -43,7 +43,7 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.level(), null, 817210941);
 		
 		poseStack.pushPose();
-		poseStack.translate(0, entity.makeBoundingBox().getSize() / 2, 0);
+		poseStack.translate(0, entity.getBoundingBox().getSize() / 2, 0);
 		poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(tickDelta, entity.yRotO, entity.getYRot()) - 90.0F));
 		poseStack.mulPose(Axis.ZP.rotationDegrees(-135 + Mth.lerp(tickDelta, entity.xRotO, entity.getXRot()) + 90.0F));
 		poseStack.translate(0, offset, 0);

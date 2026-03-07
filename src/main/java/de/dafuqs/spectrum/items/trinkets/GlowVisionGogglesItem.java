@@ -1,16 +1,19 @@
 package de.dafuqs.spectrum.items.trinkets;
 
+import com.kwpugh.gobber2.items.staffs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import top.theillusivec4.curios.api.*;
 
@@ -19,7 +22,7 @@ import java.util.*;
 public class GlowVisionGogglesItem extends SpectrumCurioItem implements InkPowered {
 	
 	public static final InkCost INK_COST = new InkCost(InkColors.LIGHT_BLUE, 20);
-	public static final ItemStack ITEM_COST = new ItemStack(Items.GLOW_INK_SAC, 1);
+	public static final Ingredient ITEM_COST = Ingredient.of(SpectrumItemTags.GLOW_VISION_GOGGLES_CONSUMABLE);
 	
 	public GlowVisionGogglesItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/glow_vision_goggles"));
@@ -32,7 +35,7 @@ public class GlowVisionGogglesItem extends SpectrumCurioItem implements InkPower
 		Level level = slotContext.entity().level();
 		if (!level.isClientSide && level.getGameTime() % 20 == 0) {
 			if (slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
-				giveEffect(level, serverPlayerEntity);
+				giveEffect(level, stack, serverPlayerEntity);
 			}
 		}
 	}
@@ -43,30 +46,22 @@ public class GlowVisionGogglesItem extends SpectrumCurioItem implements InkPower
 		
 		Level level = slotContext.entity().level();
 		if (!level.isClientSide && slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
-			giveEffect(level, serverPlayerEntity);
+			giveEffect(level, stack, serverPlayerEntity);
 		}
 	}
 	
-	private static void giveEffect(Level world, ServerPlayer serverPlayerEntity) {
-		int lightLevelAtPlayerPos = world.getMaxLocalRawBrightness(serverPlayerEntity.blockPosition());
+	private void giveEffect(Level world, ItemStack gogglesStack, ServerPlayer serverPlayer) {
+		int lightLevelAtPlayerPos = world.getMaxLocalRawBrightness(serverPlayer.blockPosition());
 		
 		if (lightLevelAtPlayerPos < 7) {
-			MobEffectInstance nightVisionInstance = serverPlayerEntity.getEffect(MobEffects.NIGHT_VISION);
+			MobEffectInstance nightVisionInstance = serverPlayer.getEffect(MobEffects.NIGHT_VISION);
 			if (nightVisionInstance == null || nightVisionInstance.getDuration() < 220) { // prevent "night vision running out" flashing
 				// no / short night vision => search for glow ink sac and add night vision if found
 				
-				boolean paid = serverPlayerEntity.isCreative();
-				if (!paid) { // try pay with ink
-					paid = InkPowered.tryDrainEnergy(serverPlayerEntity, INK_COST);
-				}
-				if (!paid) {  // try pay with item
-					paid = InventoryHelper.removeFromInventoryWithRemainders(serverPlayerEntity, ITEM_COST);
-				}
-				
-				if (paid) {
+				if (payForUse(serverPlayer, gogglesStack, INK_COST, ITEM_COST)) {
 					MobEffectInstance newNightVisionInstance = new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * SpectrumConfig.CONFIG.GlowVisionGogglesDuration.get(), 0, true, true);
-					serverPlayerEntity.addEffect(newNightVisionInstance);
-					world.playSound(null, serverPlayerEntity, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, SoundSource.PLAYERS, 0.2F, 1.0F);
+					serverPlayer.addEffect(newNightVisionInstance);
+					world.playSound(null, serverPlayer, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, SoundSource.PLAYERS, 0.2F, 1.0F);
 				}
 			}
 		}

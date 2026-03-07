@@ -258,7 +258,7 @@ public interface InkPowered {
 		return available;
 	}
 	
-	default boolean payForStaffUse(Player player, ItemStack stack, @NotNull InkCost inkCost, @Nullable Ingredient itemCost) {
+	default boolean payForUse(Player player, ItemStack stack, @NotNull InkCost inkCost, @Nullable Ingredient itemCost) {
 		boolean paid = player.isCreative(); // free for creative players
 		if (!paid) { // try pay with ink
 			paid = InkPowered.tryDrainEnergy(player, inkCost, getInkCostMod(player.level().registryAccess(), stack));

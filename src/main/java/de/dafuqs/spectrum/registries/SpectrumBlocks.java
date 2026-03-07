@@ -53,6 +53,7 @@ import de.dafuqs.spectrum.blocks.structure.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.blocks.weathering.*;
+import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.data.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
@@ -72,6 +73,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.effect.*;
@@ -79,6 +81,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
@@ -326,7 +329,10 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> SPLINTERSPAWN_INFESTED_SHALE_CLAY = register(parented(blockWithItem("splinterspawn_infested_shale_clay", () -> new SplinterspawnInfestedBlock(SHALE_CLAY.get(), BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY.get())), InkColors.BROWN), b -> SHALE_CLAY.get()));
 	
 	public static final DeferredBlock<Block> DRAGONBONE = register(axisRotated(blockWithItem("dragonbone", () -> new DragonboneBlock(BlockBehaviour.Properties.ofFullCopy(BONE_BLOCK).strength(-1.0F, 22.0F).pushReaction(PushReaction.BLOCK)), InkColors.GREEN), TexturedModel.COLUMN));
-	public static final DeferredBlock<Block> CRACKED_DRAGONBONE = register(axisRotated(blockWithItem("cracked_dragonbone", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(BONE_BLOCK).strength(100.0F, 1200.0F).pushReaction(PushReaction.BLOCK)), InkColors.GREEN), TexturedModel.COLUMN));
+	public static final DeferredBlock<Block> CRACKED_DRAGONBONE = register(axisRotated(blockWithItem("cracked_dragonbone", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(BONE_BLOCK).strength(100.0F, 1200.0F).pushReaction(PushReaction.BLOCK)), IS.of()
+			.component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, new PairedFoodComponent(Items.STONE, true, new FoodProperties(1, 1, false, 1, Optional.empty(), List.of())))
+			.component(SpectrumDataComponentTypes.DAMAGE_IMMUNE, new DamageImmuneComponent(DamageTypeTags.IS_EXPLOSION)),
+			InkColors.GREEN), TexturedModel.COLUMN));
 
 	public static final DeferredBlock<Block> POLISHED_BONE_ASH = register(blockWithItem("polished_bone_ash", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CRACKED_DRAGONBONE.get()).destroyTime(1500.0F).mapColor(MapColor.SNOW)), InkColors.CYAN));
 	public static final DeferredBlock<Block> POLISHED_BONE_ASH_STAIRS = register(blockWithItem("polished_bone_ash_stairs", () -> new StairBlock(POLISHED_BONE_ASH.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(POLISHED_BONE_ASH.get())), InkColors.CYAN));
@@ -1216,7 +1222,7 @@ public class SpectrumBlocks {
 	}))));
 	
 	public static final DeferredBlock<MemoryBlock> MEMORY = register(singletonWithSoup(blockWithItem("memory", () -> new MemoryBlock(settings(MapColor.NONE, SoundType.AMETHYST, 0.0F).isViewBlocking(SpectrumBlocks::never).noOcclusion().randomTicks()), block -> new MemoryItem(block, IS.of(1, Rarity.UNCOMMON)), InkColors.LIGHT_GRAY), ModelLocationUtils::getModelLocation).withItemModel((ctx, item) -> SpectrumModelHelper.registerLayeredItemModel(ctx, item, ModelTemplates.THREE_LAYERED_ITEM, "_base", "_overlay", "_brighten")));
-	public static final DeferredBlock<CrackedEndPortalFrameBlock> CRACKED_END_PORTAL_FRAME = register(blockWithItem("cracked_end_portal_frame", () -> new CrackedEndPortalFrameBlock(settings(MapColor.ICE, SoundType.GLASS, -1.0F, 3600000.0F).instrument(NoteBlockInstrument.BASEDRUM).lightLevel((state) -> 1)), IS.of().fireResistant(), InkColors.PURPLE).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_none")).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(CrackedEndPortalFrameBlock.FACING_VERTICAL).select(false, Variant.variant()).select(true, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))).with(PropertyDispatch.property(CrackedEndPortalFrameBlock.EYE_TYPE).generate(type -> SpectrumModelHelper.createModelVariant(ModelLocationUtils.getModelLocation(block, "_" + type.getSerializedName()))))));
+	public static final DeferredBlock<CrackedEndPortalFrameBlock> CRACKED_END_PORTAL_FRAME = register(blockWithItem("cracked_end_portal_frame", () -> new CrackedEndPortalFrameBlock(settings(MapColor.ICE, SoundType.GLASS, -1.0F, 3600000.0F).instrument(NoteBlockInstrument.BASEDRUM).lightLevel((state) -> 1)), IS.of().fireResistant().component(SpectrumDataComponentTypes.DAMAGE_IMMUNE, new DamageImmuneComponent(DamageTypeTags.IS_FIRE, DamageTypeTags.IS_EXPLOSION)), InkColors.PURPLE).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_none")).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(CrackedEndPortalFrameBlock.FACING_VERTICAL).select(false, Variant.variant()).select(true, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))).with(PropertyDispatch.property(CrackedEndPortalFrameBlock.EYE_TYPE).generate(type -> SpectrumModelHelper.createModelVariant(ModelLocationUtils.getModelLocation(block, "_" + type.getSerializedName()))))));
 	public static final DeferredBlock<Block> LAVA_SPONGE = register(simple(blockWithItem("lava_sponge", () -> new LavaSpongeBlock(BlockBehaviour.Properties.ofFullCopy(SPONGE).mapColor(MapColor.COLOR_ORANGE)), IS.of().fireResistant(), InkColors.ORANGE)));
 	public static final DeferredBlock<Block> WET_LAVA_SPONGE = register(simple(blockWithItem("wet_lava_sponge", () -> new WetLavaSpongeBlock(BlockBehaviour.Properties.ofFullCopy(WET_SPONGE).mapColor(MapColor.COLOR_ORANGE).lightLevel(s -> 9).emissiveRendering(SpectrumBlocks::always).hasPostProcess(SpectrumBlocks::always)), block -> new WetLavaSpongeItem(block, IS.of(1).fireResistant().craftRemainder(LAVA_SPONGE.asItem())), InkColors.ORANGE)));
 	

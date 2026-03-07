@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.pastel.*;
+import de.dafuqs.spectrum.api.pastel_network.*;
 import net.minecraft.world.*;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.*;

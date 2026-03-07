@@ -24,23 +24,6 @@ public interface ExperienceStorageItem {
 	 *
 	 * @param itemStack The item stack
 	 * @param amount    The amount of experience to store
-	 * @param random    A random
-	 * @return The overflow amount that could not be stored
-	 */
-	static int addStoredExperience(HolderLookup.Provider lookup, ItemStack itemStack, float amount, RandomSource random) {
-		if (amount > 0) {
-			int intAmount = Support.getIntFromDecimalWithChance(amount, random);
-			return addStoredExperience(lookup, itemStack, intAmount);
-		}
-		return 0;
-	}
-	
-	/**
-	 * Adds amount experience to an ExperienceProviderItem stack.
-	 * If the experience would be overflowing return the amount of experience that could not be stored
-	 *
-	 * @param itemStack The item stack
-	 * @param amount    The amount of experience to store
 	 * @return The overflow amount that could not be stored
 	 */
 	static int addStoredExperience(HolderLookup.Provider lookup, ItemStack itemStack, int amount) {
@@ -59,7 +42,6 @@ public interface ExperienceStorageItem {
 			itemStack.update(SpectrumDataComponentTypes.STORED_EXPERIENCE, 0, existing -> existing + amount);
 			return 0;
 		}
-		
 	}
 	
 	/**

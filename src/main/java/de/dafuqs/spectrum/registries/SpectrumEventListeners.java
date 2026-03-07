@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import com.sammy.malum.registry.common.*;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
@@ -74,6 +75,11 @@ import java.util.concurrent.atomic.*;
 
 @EventBusSubscriber(modid = SpectrumCommon.MOD_ID)
 public class SpectrumEventListeners {
+	
+	@SubscribeEvent
+	public static void modifyComponents(ModifyDefaultComponentsEvent event) {
+		event.modify(Items.NETHER_STAR, builder -> builder.set(SpectrumDataComponentTypes.DAMAGE_IMMUNE.get(), new DamageImmuneComponent(List.of(DamageTypeTags.IS_EXPLOSION, DamageTypeTags.IS_FIRE))));
+	}
 	
 	@SubscribeEvent
 	public static InteractionResult exchangeBlock(PlayerInteractEvent.LeftClickBlock event) {

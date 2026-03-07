@@ -10,7 +10,9 @@ import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
+import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
@@ -62,14 +64,15 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<WrappedPresentComponent>> WRAPPED_PRESENT = register("wrapped_present", builder -> builder.persistent(WrappedPresentComponent.CODEC).networkSynchronized(WrappedPresentComponent.PACKET_CODEC).cacheEncoding());
 	public static final Supplier<DataComponentType<WithMilkComponent>> WITH_MILK = register("with_milk", builder -> builder.persistent(WithMilkComponent.CODEC).networkSynchronized(WithMilkComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<WorkstaffComponent>> WORKSTAFF = register("workstaff", builder -> builder.persistent(WorkstaffComponent.CODEC).networkSynchronized(WorkstaffComponent.PACKET_CODEC));
+	public static final Supplier<DataComponentType<DamageImmuneComponent>> DAMAGE_IMMUNE = register("damage_immune", builder -> builder.persistent(DamageImmuneComponent.CODEC).networkSynchronized(StreamCodec.unit(DamageImmuneComponent.DEFAULT)).cacheEncoding());
 	public static final Supplier<DataComponentType<SimpleFluidContent>> FLUID_CONTENT = register("fluid_content", builder -> builder.persistent(SimpleFluidContent.CODEC));
 	
-	public static <T> Supplier<DataComponentType<T>> register(String id, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
-		return REGISTRAR.registerComponentType(id, builderOperator);
+	public static <T> Supplier<DataComponentType<T>> register(String name, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
+		return REGISTRAR.registerComponentType(name, builderOperator);
 	}
 	
-	public static void register(IEventBus modEventBus) {
-		REGISTRAR.register(modEventBus);
+	public static void register(IEventBus eventBus) {
+		REGISTRAR.register(eventBus);
 	}
 	
 }

@@ -108,15 +108,15 @@ public class SpectrumCommon {
 		logInfo("Registering BlockSound Groups...");
 		SpectrumSoundTypes.register();
 		logInfo("Registering Fluids...");
-		NeoForgeMod.enableMilkFluid(); // TODO: remove all milk-item fluid-like compat recipes
+		NeoForgeMod.enableMilkFluid();
 		SpectrumFluids.register(modBus);
 		logInfo("Registering Armor Materials...");
 		SpectrumArmorMaterials.register(modBus);
+		SpectrumDataComponentTypes.register(modBus);
+		SpectrumPotions.register(modBus);
 		logInfo("Registering Blocks...");
 		SpectrumBlocks.register(modBus);
 		logInfo("Registering Items...");
-		SpectrumPotions.register(modBus);
-		SpectrumDataComponentTypes.register(modBus);
 		SpectrumItems.register(modBus);
 		SpectrumItemGroups.register(modBus);
 		logInfo("Registering Block Entities...");
@@ -151,8 +151,6 @@ public class SpectrumCommon {
 		logInfo("Registering Screen Handler Types...");
 		SpectrumScreenHandlerTypes.register(modBus);
 		
-		logInfo("Registering Default Item Stack Damage Immunities...");
-		SpectrumItemDamageImmunities.registerDefaultItemStackImmunities();
 		logInfo("Registering Enchantment Drops...");
 		SpectrumGlobalLootModifierSerializers.register(modBus);
 		logInfo("Registering Variant Specific Predicates...");

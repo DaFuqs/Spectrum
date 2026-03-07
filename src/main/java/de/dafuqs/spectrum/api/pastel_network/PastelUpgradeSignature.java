@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.api.pastel;
+package de.dafuqs.spectrum.api.pastel_network;
 
 import net.minecraft.core.*;
 import net.minecraft.resources.*;

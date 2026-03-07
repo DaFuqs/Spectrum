@@ -4,7 +4,7 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.api.pastel.*;
+import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.items.tools.*;

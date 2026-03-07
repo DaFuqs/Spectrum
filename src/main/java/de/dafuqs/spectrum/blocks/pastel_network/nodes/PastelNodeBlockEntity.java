@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 import com.google.common.base.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.pastel.*;
+import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.helpers.*;

@@ -31,6 +31,7 @@ import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
@@ -245,7 +246,7 @@ public class SpectrumItems {
 	public static final DeferredItem<CloakedFloatItem> STRATINE_FRAGMENTS = register("stratine_fragments", () -> new CloakedFloatItem(IS.of().fireResistant(), -0.00125F, SpectrumBlocks.STRATINE_ORE.get().getCloakAdvancementIdentifier(), RED_DYE));
 	public static final DeferredItem<CloakedFloatItem> STRATINE_GEM = register("stratine_gem", () -> new CloakedFloatItem(IS.of(16).fireResistant(), -0.01F, SpectrumBlocks.STRATINE_ORE.get().getCloakAdvancementIdentifier(), RED_DYE));
 	public static final DeferredItem<Item> PYRITE_CHUNK = register("pyrite_chunk", () -> new Item(IS.of()));
-	public static final DeferredItem<Item> DRAGONBONE_CHUNK = register("dragonbone_chunk", () -> new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.BREAK_CRACKED_DRAGONBONE, GRAY_DYE));
+	public static final DeferredItem<Item> DRAGONBONE_CHUNK = register("dragonbone_chunk", () -> new CloakedItem(IS.of(Rarity.UNCOMMON).component(SpectrumDataComponentTypes.DAMAGE_IMMUNE, new DamageImmuneComponent(DamageTypeTags.IS_EXPLOSION)), SpectrumAdvancements.BREAK_CRACKED_DRAGONBONE, GRAY_DYE));
 	public static final DeferredItem<Item> BONE_ASH = register("bone_ash", () -> new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.BREAK_CRACKED_DRAGONBONE, GRAY_DYE));
 	public static final DeferredItem<Item> RESPLENDENT_FEATHER = register("resplendent_feather", () -> new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.PLUCK_RESPLENDENT_FEATHER, RED_DYE));
 	public static final DeferredItem<Item> RAW_BLOODSTONE = register("raw_bloodstone", () -> new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.PLUCK_RESPLENDENT_FEATHER, RED_DYE));
@@ -341,7 +342,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> PRICKLY_BAYLEAF = register("prickly_bayleaf", () -> new Item(IS.of().food(SpectrumFoodComponents.PRICKLY_BAYLEAF)));
 	public static final DeferredItem<Item> TRIPLE_MEAT_POT_STEW = register("triple_meat_pot_stew", () -> new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW)));
 	public static final DeferredItem<Item> DRAGONBONE_BROTH = register("dragonbone_broth", () -> new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.DRAGONBONE_BROTH)));
-	public static final DeferredItem<Item> DOOMBLOOM_SEED = register("doombloom_seed", () -> new ItemNameBlockItem(SpectrumBlocks.DOOMBLOOM.get(), IS.of().fireResistant()));
+	public static final DeferredItem<Item> DOOMBLOOM_SEED = register("doombloom_seed", () -> new ItemNameBlockItem(SpectrumBlocks.DOOMBLOOM.get(), IS.of().fireResistant().fireResistant().component(SpectrumDataComponentTypes.DAMAGE_IMMUNE, new DamageImmuneComponent(DamageTypeTags.IS_FIRE, DamageTypeTags.IS_EXPLOSION))));
 	
 	public static final DeferredItem<Item> GLISTERING_MELON_SEEDS = register("glistering_melon_seeds", () -> new ItemNameBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM.get(), IS.of()));
 	public static final DeferredItem<Item> AMARANTH_GRAINS = register("amaranth_grains", () -> new ItemNameBlockItem(SpectrumBlocks.AMARANTH.get(), IS.of()));

@@ -502,7 +502,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodProperties MERMAIDS_POPCORN = new FoodProperties.Builder()
 			.nutrition(6).saturationModifier(SAT_LOW)
-			.effect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 400, 0), 1.0F)
+			.effect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 1800, 0), 1.0F)
 			.build();
 	
 	public static final FoodProperties LE_FISHE_AU_CHOCOLAT = new FoodProperties.Builder()

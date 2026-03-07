@@ -11,6 +11,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -26,7 +27,7 @@ public class BedrockFishingRodItem extends SpectrumFishingRodItem implements Pre
 	}
 	
 	@Override
-	public boolean isEnchantable(ItemStack stack) {
+	public boolean isEnchantable(@NotNull ItemStack stack) {
 		return true;
 	}
 	
@@ -37,7 +38,7 @@ public class BedrockFishingRodItem extends SpectrumFishingRodItem implements Pre
 	
 	@Override
 	public void spawnBobber(Player user, Level world, int luckOfTheSeaLevel, int waitTimeReductionTicks, int exuberanceLevel, int bigCatchLevel, int serendipityReelLevel, boolean inventoryInsertion, boolean shouldSmeltDrops) {
-		world.addFreshEntity(new BedrockFishingBobberEntity(user, world, luckOfTheSeaLevel, waitTimeReductionTicks, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, shouldSmeltDrops));
+		world.addFreshEntity(new BedrockFishingHook(user, world, luckOfTheSeaLevel, waitTimeReductionTicks, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, shouldSmeltDrops));
 	}
 	
 	@Override

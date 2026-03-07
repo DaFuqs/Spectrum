@@ -60,7 +60,7 @@
     "RandomChanceWithEnchantedBonusLootConditionMixin",
     "ServerPlayNetworkHandlerMixin",
     "ShearsDispenserBehaviorMixin",
-    "SimpleCriterionTriggerMixin",
+    "accessors.SimpleCriterionAccessor",
     "SpawnDensityCapperMixin",
     "StatusEffectInstanceMixin",
     "StatusEffectUtilMixin",

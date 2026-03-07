@@ -30,10 +30,9 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
 		ItemStack itemStack = user.getItemInHand(hand);
 		
-		PlayerEntityAccessor playerEntityAccessor = ((PlayerEntityAccessor) user);
-		if (playerEntityAccessor.spectrum$getSpectrumBobber() != null) {
+		if (user.fishing != null) {
 			if (!world.isClientSide) {
-				int damage = playerEntityAccessor.spectrum$getSpectrumBobber().use(itemStack);
+				int damage = user.fishing.retrieve(itemStack);
 				itemStack.hurtAndBreak(damage, user, LivingEntity.getSlotForHand(hand));
 			}
 			

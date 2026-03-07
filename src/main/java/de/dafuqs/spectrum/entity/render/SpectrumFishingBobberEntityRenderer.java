@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.phys.*;
 
-public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer<SpectrumFishingBobberEntity> {
+public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer<SpectrumFishingHook> {
 	
 	private static final double VIEW_BOBBING_SCALE = 960.0;
 	
@@ -21,10 +21,10 @@ public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer
 		super(context);
 	}
 	
-	public abstract RenderType getLayer(SpectrumFishingBobberEntity bobber);
+	public abstract RenderType getLayer(SpectrumFishingHook bobber);
 	
 	@Override
-	public void render(SpectrumFishingBobberEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+	public void render(SpectrumFishingHook entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
 		Player player = entity.getPlayerOwner();
 		if (player != null) {
 			poseStack.pushPose();

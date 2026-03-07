@@ -16,12 +16,12 @@ public class BedrockFishingBobberEntityRenderer extends SpectrumFishingBobberEnt
 	}
 	
 	@Override
-	public ResourceLocation getTextureLocation(SpectrumFishingBobberEntity fishingBobberEntity) {
+	public ResourceLocation getTextureLocation(SpectrumFishingHook fishingBobberEntity) {
 		return TEXTURE;
 	}
 	
 	@Override
-	public RenderType getLayer(SpectrumFishingBobberEntity bobber) {
+	public RenderType getLayer(SpectrumFishingHook bobber) {
 		return LAYER;
 	}
 	

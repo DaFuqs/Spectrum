@@ -53,9 +53,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@Shadow
 	protected abstract boolean canPlayerFitWithinBlocksAndEntitiesWhen(Pose pose);
 	
-	@Unique
-	public SpectrumFishingBobberEntity spectrum$fishingBobber;
-	
 	
 	@ModifyVariable(method = "attack", name = "entityReachSq", at = @At(value = "STORE"))
 	protected double spectrum$increaseSweepMaxDistance(double original) {
@@ -175,16 +172,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	@Unique
 	protected int spectrum$getChanneling(ItemStack stack) {
 		return SpectrumEnchantmentHelper.getLevel(level().registryAccess(), Enchantments.CHANNELING, stack);
-	}
-	
-	@Override
-	public void spectrum$setSpectrumBobber(SpectrumFishingBobberEntity bobber) {
-		this.spectrum$fishingBobber = bobber;
-	}
-	
-	@Override
-	public SpectrumFishingBobberEntity spectrum$getSpectrumBobber() {
-		return this.spectrum$fishingBobber;
 	}
 	
 	@Override

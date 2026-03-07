@@ -28,7 +28,7 @@ public class MoltenRodItem extends SpectrumFishingRodItem {
 	
 	@Override
 	public void spawnBobber(Player user, Level world, int luckBonus, int waitTimeReductionTicks, int exuberanceLevel, int bigCatchLevel, int serendipityReelLevel, boolean inventoryInsertion, boolean shouldSmeltDrops) {
-		world.addFreshEntity(new MoltenFishingBobberEntity(user, world, luckBonus, waitTimeReductionTicks, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion));
+		world.addFreshEntity(new MoltenFishingHook(user, world, luckBonus, waitTimeReductionTicks, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion));
 	}
 	
 	@Override

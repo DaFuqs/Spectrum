@@ -8,9 +8,9 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
 
-public class MoltenFishingBobberEntity extends SpectrumFishingBobberEntity {
+public class MoltenFishingHook extends SpectrumFishingHook {
 	
-	public MoltenFishingBobberEntity(EntityType<? extends SpectrumFishingBobberEntity> entityType, Level world) {
+	public MoltenFishingHook(EntityType<? extends SpectrumFishingHook> entityType, Level world) {
 		super(entityType, world);
 	}
 	
@@ -23,7 +23,7 @@ public class MoltenFishingBobberEntity extends SpectrumFishingBobberEntity {
 		}
 	}
 	
-	public MoltenFishingBobberEntity(Player thrower, Level world, int luckBonus, int waitTimeReductionTicks, int exuberanceLevel, int bigCatchLevel, int serendipityReelLevel, boolean inventoryInsertion) {
+	public MoltenFishingHook(Player thrower, Level world, int luckBonus, int waitTimeReductionTicks, int exuberanceLevel, int bigCatchLevel, int serendipityReelLevel, boolean inventoryInsertion) {
 		super(SpectrumEntityTypes.MOLTEN_FISHING_BOBBER.get(), thrower, world, luckBonus, waitTimeReductionTicks, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, true);
 	}
 	

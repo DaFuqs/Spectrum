@@ -18,8 +18,8 @@ public class LagoonFishingBobberEntityRenderer extends SpectrumFishingBobberEnti
 	}
 	
 	@Override
-	public ResourceLocation getTextureLocation(SpectrumFishingBobberEntity fishingBobberEntity) {
-		if (fishingBobberEntity.isInOpenWater()) {
+	public ResourceLocation getTextureLocation(SpectrumFishingHook fishingBobberEntity) {
+		if (fishingBobberEntity.isOpenWaterFishing()) {
 			return TEXTURE_OPEN_WATERS;
 		} else {
 			return TEXTURE;
@@ -27,8 +27,8 @@ public class LagoonFishingBobberEntityRenderer extends SpectrumFishingBobberEnti
 	}
 	
 	@Override
-	public RenderType getLayer(SpectrumFishingBobberEntity bobber) {
-		if (bobber.isOpenOrWaterAround(bobber.blockPosition())) {
+	public RenderType getLayer(SpectrumFishingHook bobber) {
+		if (bobber.calculateOpenWater(bobber.blockPosition())) {
 			return LAYER_OPEN_WATERS;
 		} else {
 			return LAYER;

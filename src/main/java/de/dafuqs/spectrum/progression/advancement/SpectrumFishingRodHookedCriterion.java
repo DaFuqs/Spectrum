@@ -2,12 +2,11 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
-import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
@@ -28,18 +27,18 @@ public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<Sp
 	
 	public static final String NAME = "fishing_rod_hooked";
 	
-	public void trigger(ServerPlayer player, ItemStack rod, SpectrumFishingBobberEntity bobber, Entity fishedEntity, Collection<ItemStack> fishingLoots) {
+	public void trigger(ServerPlayer player, ItemStack rod, SpectrumFishingHook bobber, Entity fishedEntity, Collection<ItemStack> fishingLoots) {
 		LootContext bobberContext = EntityPredicate.createContext(player, bobber);
-		LootContext hookedEntityContext = bobber.getHookedEntity() == null ? null : EntityPredicate.createContext(player, bobber.getHookedEntity());
+		LootContext hookedEntityContext = bobber.getHookedIn() == null ? null : EntityPredicate.createContext(player, bobber.getHookedIn());
 		LootContext fishedEntityContext = fishedEntity == null ? null : EntityPredicate.createContext(player, fishedEntity);
 		this.trigger(player, (conditions) -> conditions.matches(rod, bobberContext, hookedEntityContext, fishedEntityContext, fishingLoots, (ServerLevel) bobber.level(), bobber.blockPosition()));
 		
 		// also trigger vanilla fishing criterion
 		// since that one requires a FishingBobberEntity and SpectrumFishingBobberEntity
 		// does not extend that we have to do some hacky shenanigans running trigger() directly
-		LootContext hookedEntityOrBobberContext = EntityPredicate.createContext(player, (bobber.getHookedEntity() != null ? bobber.getHookedEntity() : bobber));
+		LootContext hookedEntityOrBobberContext = EntityPredicate.createContext(player, (bobber.getHookedIn() != null ? bobber.getHookedIn() : bobber));
 		Predicate<FishingRodHookedTrigger.TriggerInstance> instancePredicate = triggerInstance -> triggerInstance.matches(rod, hookedEntityOrBobberContext, fishingLoots);
-		CriteriaTriggers.FISHING_ROD_HOOKED.spectrum$trigger(player, instancePredicate);
+		((SimpleCriterionAccessor) CriteriaTriggers.FISHING_ROD_HOOKED).spectrum$invokeTrigger(player, instancePredicate);
 	}
 	
 	@Override

@@ -20,11 +20,11 @@ public abstract class FishingHookPredicateMixin {
 	
 	@Inject(method = "matches", at = @At(value = "HEAD"), cancellable = true)
 	public void spectrum$test(Entity entity, ServerLevel world, Vec3 pos, CallbackInfoReturnable<Boolean> cir) {
-		if (entity instanceof SpectrumFishingBobberEntity spectrumFishingBobberEntity) {
+		if (entity instanceof SpectrumFishingHook spectrumFishingHook) {
 			if (this.inOpenWater.isEmpty()) {
 				cir.setReturnValue(true);
 			}
-			cir.setReturnValue(this.inOpenWater.get() == spectrumFishingBobberEntity.isInOpenWater());
+			cir.setReturnValue(this.inOpenWater.get() == spectrumFishingHook.isOpenWaterFishing());
 		}
 	}
 	

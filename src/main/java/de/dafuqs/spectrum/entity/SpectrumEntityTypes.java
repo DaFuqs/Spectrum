@@ -2,15 +2,9 @@ package de.dafuqs.spectrum.entity;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
-import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.animal.horse.*;
-import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.monster.*;
-import net.minecraft.world.entity.projectile.*;
-import net.minecraft.world.level.*;
 import net.minecraft.world.level.levelgen.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.event.entity.*;
@@ -28,9 +22,9 @@ public class SpectrumEntityTypes {
 	public static final DeferredHolder<EntityType<?>, EntityType<PhantomGlowFrameEntity>> GLOW_PHANTOM_FRAME = register("glow_phantom_frame", 10, 2147483647, false, EntityDimensions.scalable(0.5F, 0.5F), false, PhantomGlowFrameEntity::new);
 	public static final DeferredHolder<EntityType<?>, EntityType<BlockFlooderProjectile>> BLOCK_FLOODER_PROJECTILE = register("block_flooder_projectile", 4, 10, true, EntityDimensions.scalable(0.25F, 0.25F), true, BlockFlooderProjectile::new);
 	public static final DeferredHolder<EntityType<?>, EntityType<InkProjectileEntity>> INK_PROJECTILE = register("ink_projectile", 4, 10, true, EntityDimensions.scalable(0.3F, 0.3F), true, InkProjectileEntity::new);
-	public static final DeferredHolder<EntityType<?>, EntityType<LagoonFishingBobberEntity>> LAGOON_FISHING_BOBBER = register("lagoon_fishing_bobber", EntityType.Builder.<LagoonFishingBobberEntity>of(LagoonFishingBobberEntity::new, MobCategory.MISC).noSave().noSummon().fireImmune().sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(5));
-	public static final DeferredHolder<EntityType<?>, EntityType<MoltenFishingBobberEntity>> MOLTEN_FISHING_BOBBER = register("molten_fishing_bobber", EntityType.Builder.<MoltenFishingBobberEntity>of(MoltenFishingBobberEntity::new, MobCategory.MISC).noSave().noSummon().fireImmune().sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(5));
-	public static final DeferredHolder<EntityType<?>, EntityType<BedrockFishingBobberEntity>> BEDROCK_FISHING_BOBBER = register("bedrock_fishing_bobber", EntityType.Builder.<BedrockFishingBobberEntity>of(BedrockFishingBobberEntity::new, MobCategory.MISC).noSave().noSummon().fireImmune().sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(5));
+	public static final DeferredHolder<EntityType<?>, EntityType<LagoonFishingHook>> LAGOON_FISHING_BOBBER = register("lagoon_fishing_bobber", EntityType.Builder.<LagoonFishingHook>of(LagoonFishingHook::new, MobCategory.MISC).noSave().noSummon().fireImmune().sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(5));
+	public static final DeferredHolder<EntityType<?>, EntityType<MoltenFishingHook>> MOLTEN_FISHING_BOBBER = register("molten_fishing_bobber", EntityType.Builder.<MoltenFishingHook>of(MoltenFishingHook::new, MobCategory.MISC).noSave().noSummon().fireImmune().sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(5));
+	public static final DeferredHolder<EntityType<?>, EntityType<BedrockFishingHook>> BEDROCK_FISHING_BOBBER = register("bedrock_fishing_bobber", EntityType.Builder.<BedrockFishingHook>of(BedrockFishingHook::new, MobCategory.MISC).noSave().noSummon().fireImmune().sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(5));
 	public static final DeferredHolder<EntityType<?>, EntityType<FireproofItemEntity>> FIREPROOF_ITEM = register("fireproof_item", 6, 20, true, EntityDimensions.scalable(0.25F, 0.25F), true, FireproofItemEntity::new);
 	public static final DeferredHolder<EntityType<?>, EntityType<EggLayingWoolyPigEntity>> EGG_LAYING_WOOLY_PIG = register("egg_laying_wooly_pig", EntityType.Builder.of(EggLayingWoolyPigEntity::new, MobCategory.CREATURE).sized(0.9F, 1.3F).clientTrackingRange(10));
 	public static final DeferredHolder<EntityType<?>, EntityType<GlassArrowEntity>> GLASS_ARROW = register("glass_arrow", EntityType.Builder.<GlassArrowEntity>of(GlassArrowEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20));

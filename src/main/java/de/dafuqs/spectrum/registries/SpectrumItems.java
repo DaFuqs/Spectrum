@@ -408,7 +408,7 @@ public class SpectrumItems {
 	public static final Item DEEP_LIGHT_BANNER_PATTERN = register(banner(item("deep_light_banner_pattern", new BannerPatternItem(SpectrumBannerPatternTags.DEEP_LIGHT_TAG, IS.of(1, Rarity.RARE)), InkColors.LIGHT_BLUE)));
 	
 	// Spawning items
-	public static final Item BUCKET_OF_ERASER = register(simple(item("bucket_of_eraser", new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER, Fluids.EMPTY, SoundEvents.BUCKET_EMPTY, IS.of()), InkColors.PINK)));
+	public static final Item BUCKET_OF_ERASER = register(simple(item("bucket_of_eraser", new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER, Fluids.EMPTY, SoundEvents.BUCKET_EMPTY, IS.of(1)), InkColors.PINK)));
 	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = register(parented(item("egg_laying_wooly_pig_spawn_egg", new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x3a2c38, 0xfff2e0, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
 	public static final Item PRESERVATION_TURRET_SPAWN_EGG = register(parented(item("preservation_turret_spawn_egg", new SpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET, 0xf3f6f8, 0xc8c5be, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));
 	public static final Item KINDLING_SPAWN_EGG = register(parented(item("kindling_spawn_egg", new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0xda4261, 0xffd452, IS.of()), InkColors.WHITE), SpectrumModels.SPAWN_EGG));

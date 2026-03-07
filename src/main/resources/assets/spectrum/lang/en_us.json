@@ -4374,7 +4374,7 @@
   "gui.spectrum.quick_navigation.controls1": "Movement Keys to move",
   "gui.spectrum.quick_navigation.controls2": "Drop/Inventory to select",
 
-  "info.spectrum.tooltip.adulterated.info": " [only you can see this]",
+  "info.spectrum.tooltip.adulterated.info": "[only you can see this]",
   "info.spectrum.tooltip.adulterated.effect": "Tainted with %s",
 
   "item.minecraft.lingering_potion.effect.pigment_potion": "Lingering §2P§3i§cg§6m§be§en§dt§f Potion",
@@ -4851,7 +4851,7 @@
   "item.spectrum.soothing_bouquet": "Soothing Bouquet",
   "item.spectrum.soothing_bouquet.tooltip": "Smell to sleep",
   "item.spectrum.concealing_oils": "Concealing Oils",
-  "item.spectrum.concealing_oils.tooltip": "Apply by right-clicking unto food in your inventory",
+  "item.spectrum.concealing_oils.tooltip": "Apply to food by right-clicking the oils onto it",
   "item.spectrum.concealing_oils.when_poisoned": "When Poisoned:",
   "item.spectrum.bitter_oils": "Bitter Oils",
   "item.spectrum.nightdew_sprout": "Nightdew Sprout",

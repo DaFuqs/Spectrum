@@ -12,6 +12,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
+import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.fluids.*;
@@ -46,6 +47,7 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<Long>> LAST_COOLDOWN_START = register("last_cooldown_start", builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));
 	public static final Supplier<DataComponentType<MemoryComponent>> MEMORY = register("memory", builder -> builder.persistent(MemoryComponent.CODEC).networkSynchronized(MemoryComponent.PACKET_CODEC).cacheEncoding());
 	public static final Supplier<DataComponentType<MobEffectInstance>> CONCEALED_EFFECT = register("concealed_effect", builder -> builder.persistent(MobEffectInstance.CODEC).networkSynchronized(MobEffectInstance.STREAM_CODEC));
+	public static final Supplier<DataComponentType<ResolvableProfile>> CONCEALED_EFFECT_PROFILE = register("concealed_effect_profile", builder -> builder.persistent(ResolvableProfile.CODEC).networkSynchronized(ResolvableProfile.STREAM_CODEC).cacheEncoding());
 	public static final Supplier<DataComponentType<Float>> OVERCHARGED = register("overcharged", builder -> builder.persistent(Codec.FLOAT).networkSynchronized(ByteBufCodecs.FLOAT));
 	public static final Supplier<DataComponentType<PairedItemComponent>> PAIRED_ITEM = register("paired_item", builder -> builder.persistent(PairedItemComponent.CODEC).networkSynchronized(PairedItemComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<Long>> TIMESTAMP = register("timestamp", builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));

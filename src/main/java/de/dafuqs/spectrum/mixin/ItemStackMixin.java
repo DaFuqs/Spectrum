@@ -8,10 +8,12 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
+import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
@@ -61,35 +63,24 @@ public abstract class ItemStackMixin {
 		}
 	}
 	
+	// TODO: move to event
 	@Inject(method = "getTooltipLines", at = @At(value = "INVOKE", target = "net/minecraft/world/item/TooltipFlag.isAdvanced ()Z", shift = At.Shift.BEFORE, ordinal = 1))
 	public void spectrum$AppendTooltip(Item.TooltipContext context, Player player, TooltipFlag type, CallbackInfoReturnable<List<Component>> cir, @Local Consumer<Component> consumer) {
 		var stack = (ItemStack) (Object) this;
 		
 		if (stack.has(SpectrumDataComponentTypes.CONCEALED_EFFECT)) {
-			spectrum$addConcealedEffectsTooltip(stack, context, consumer, player);
+			ConcealingOilsItem.addConcealedEffectsTooltip(stack, context, consumer, player);
 		}
 		
 		if (stack.getItem() instanceof ExpandedStatTooltip expanded) {
 			expanded.expandTooltip(stack, player, consumer, context);
 		}
 		
-		if (stack.has(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS)) {
-			stack.get(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS).addToTooltip(context, consumer, type);
+		ItemEnchantments canvasEnchantments = stack.get(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS);
+		if (canvasEnchantments != null && !canvasEnchantments.isEmpty()) {
+			canvasEnchantments.addToTooltip(context, consumer, type);
 		}
 		
-	}
-	
-	@Unique
-	public void spectrum$addConcealedEffectsTooltip(ItemStack stack, Item.TooltipContext context, Consumer<Component> tooltipAdder, Player player) {
-		var oilEffect = stack.get(SpectrumDataComponentTypes.CONCEALED_EFFECT);
-		var profile = stack.get(DataComponents.PROFILE);
-		if (oilEffect != null && profile != null && player.getUUID().equals(profile.id().orElse(null))) {
-			var subText = new ArrayList<Component>();
-			PotionContents.addPotionTooltip(List.of(oilEffect), subText::add, 1f, context.tickRate());
-			
-			tooltipAdder.accept(Component.translatable("info.spectrum.tooltip.adulterated.info").withStyle(s -> s.withColor(ConcealingOilsItem.POISONED_COLOUR)));
-			tooltipAdder.accept(Component.translatable("info.spectrum.tooltip.adulterated.effect", subText.getFirst()).withStyle(s -> s.withColor(ConcealingOilsItem.POISONED_COLOUR).withItalic(true)));
-		}
 	}
 	
 }

@@ -358,12 +358,11 @@ public class ArtisansAtlasItem extends MapItem {
 		Level level = context.level();
 		if (level == null) return;
 		
-		if (getSavedData(stack, level) instanceof ArtisansAtlasState atlasState) {
-			ResourceLocation structureId = atlasState.getTargetId();
-			if (structureId == null)
-				tooltip.add(Component.translatable("item.spectrum.artisans_atlas.empty"));
-			else
-				tooltip.add(Component.translatable("item.spectrum.artisans_atlas.locates_structure").append(Component.translatable(structureId.toLanguageKey("structure"))));
+		ResourceLocation structureId = getSavedData(stack, level) instanceof ArtisansAtlasState atlasState ? atlasState.getTargetId() : null;
+		if(structureId == null) {
+			tooltip.add(Component.translatable("item.spectrum.artisans_atlas.empty"));
+		} else {
+			tooltip.add(Component.translatable("item.spectrum.artisans_atlas.locates_structure").append(Component.translatable(structureId.toLanguageKey("structure"))));
 		}
 		
 	}

@@ -4397,7 +4397,7 @@
   "item.spectrum.aqua_regia.tooltip.preview2": "Petals ferment slower than Bulbs, but reduce negative effects",
   "item.spectrum.tooltip.could_use_some_sweetener": "Could use some sweetener",
   "item.spectrum.artisans_atlas": "Artisan's Atlas",
-  "item.spectrum.artisans_atlas.empty": "Use in a structure to locate others of its kind",
+  "item.spectrum.artisans_atlas.empty": "Sneak-Use in a structure to locate others of its kind",
   "item.spectrum.artisans_atlas.locates_structure": "Locates the closest ",
   "item.spectrum.artisans_atlas.set_structure": "Now locates ",
   "item.spectrum.artisans_atlas.unlocatable": "The aura of this structure seems to be of a special kind",

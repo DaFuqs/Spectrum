@@ -254,7 +254,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			}
 		}
 		// jade vine crossbreeding advancement
-		if (spiritInstillerRecipe.id().equals(SpectrumAdvancements.JADE_VINE_CROSSBREEDING)) {
+		if (spiritInstillerRecipe.id().equals(SpectrumRecipes.JADE_VINE_CROSSBREEDING)) {
 			Support.grantAdvancementCriterion(player, "lategame/create_jade_vine", "crossbred_jade_vine_bulb");
 		}
 	}

@@ -186,6 +186,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.EVERPROMISE_RIBBON);
 					entries.accept(SpectrumItems.BAG_OF_HOLDING);
 					entries.accept(SpectrumItems.RADIANCE_STAFF);
+					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.RADIANCE_STAFF.get(), Map.of(Enchantments.EFFICIENCY, 5)));
 					entries.accept(SpectrumItems.NATURES_STAFF);
 					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.NATURES_STAFF.get(), Map.of(Enchantments.EFFICIENCY, 5)));
 					entries.accept(SpectrumItems.STAFF_OF_REMEMBRANCE);

@@ -396,7 +396,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> DEEP_LIGHT_BANNER_PATTERN = register("deep_light_banner_pattern", () -> new BannerPatternItem(SpectrumBannerPatternTags.DEEP_LIGHT_TAG, IS.of(1, Rarity.RARE)));
 	
 	// Spawning items
-	public static final DeferredItem<Item> BUCKET_OF_ERASER = register("bucket_of_eraser", () -> new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER.get(), Fluids.EMPTY, SoundEvents.BUCKET_EMPTY, IS.of()));
+	public static final DeferredItem<Item> BUCKET_OF_ERASER = register("bucket_of_eraser", () -> new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER.get(), Fluids.EMPTY, SoundEvents.BUCKET_EMPTY, IS.of(1)));
 	public static final DeferredItem<Item> EGG_LAYING_WOOLY_PIG_SPAWN_EGG = register("egg_laying_wooly_pig_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.get(), 0x3a2c38, 0xfff2e0, IS.of()));
 	public static final DeferredItem<Item> PRESERVATION_TURRET_SPAWN_EGG = register("preservation_turret_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET.get(), 0xf3f6f8, 0xc8c5be, IS.of()));
 	public static final DeferredItem<Item> KINDLING_SPAWN_EGG = register("kindling_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.KINDLING.get(), 0xda4261, 0xffd452, IS.of()));

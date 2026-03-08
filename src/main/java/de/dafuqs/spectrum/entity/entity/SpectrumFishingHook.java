@@ -95,6 +95,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 	
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
 		builder.define(DATA_ABLAZE, false);
 	}
 	
@@ -114,7 +115,6 @@ public abstract class SpectrumFishingHook extends FishingHook {
 		}
 		this.baseTick();
 		
-		super.tick();
 		Player owner = this.getPlayerOwner();
 		if (owner == null) {
 			this.discard();

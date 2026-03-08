@@ -354,30 +354,22 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void preventFireDamage(EntityInvulnerabilityCheckEvent event) {
-		Entity entity = event.getEntity();
-		if(entity instanceof LivingEntity livingEntity) {
-			DamageSource source = event.getSource();
-			if (source.is(DamageTypeTags.IS_FIRE) && SpectrumCurioItem.hasEquipped(livingEntity, SpectrumItems.ASHEN_CIRCLET.get())) {
-				event.setInvulnerable(true);
-			}
-		}
-	}
-	
-	@SubscribeEvent
 	private static void onIncomingDamage(LivingIncomingDamageEvent event) {
 		LivingEntity entity = event.getEntity();
 		DamageSource source = event.getSource();
 		
-		// If the player is damaged by lava and wears an ashen circlet:
+		// If the player is damaged by fire / lava and wears an ashen circlet:
 		// prevent damage and grant fire resistance
-		if (source.is(DamageTypes.LAVA)) {
+		if (source.is(DamageTypeTags.IS_FIRE)) {
 			Optional<ItemStack> ashenCircletStack = SpectrumCurioItem.getFirstEquipped(entity, SpectrumItems.ASHEN_CIRCLET.get());
 			if (ashenCircletStack.isPresent()) {
-				if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), entity.level()) == 0) {
-					AshenCircletItem.grantFireResistance(ashenCircletStack.get(), entity);
+				if (source.is(DamageTypes.LAVA)) {
+					if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), entity.level()) == 0) {
+						AshenCircletItem.grantFireResistance(ashenCircletStack.get(), entity);
+						event.setCanceled(true);
+					}
+				} else {
 					event.setCanceled(true);
-					return;
 				}
 			}
 		}

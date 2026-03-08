@@ -91,7 +91,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	public boolean canUseAoE(Player player, ItemStack stack) {
 		int range = getAoERange(stack);
 		if (range <= 0) {
-			return true;
+			return false;
 		}
 		
 		int costForRange = (int) Math.pow(BASE_COST_PER_AOE_MINING_RANGE_INCREMENT.cost(), range);
@@ -99,7 +99,6 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	}
 	
 	public static void applyToggle(Player player, ItemStack stack, GUIToggle toggle) {
-		
 		switch (toggle) {
 			case SELECT_1x1 -> {
 				stack.remove(SpectrumDataComponentTypes.AOE);

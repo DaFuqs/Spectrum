@@ -65,8 +65,6 @@ import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
-import net.neoforged.neoforge.items.*;
-import net.neoforged.neoforge.items.wrapper.*;
 import org.jetbrains.annotations.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
@@ -743,6 +741,12 @@ public class SpectrumEventListeners {
 	private static void onBlockBreak(BlockEvent.BreakEvent event) {
 		if(!event.isCanceled()) {
 			event.getLevel().gameEvent(SpectrumGameEvents.BLOCK_CHANGED, event.getPos(), GameEvent.Context.of(event.getState()));
+			
+			Player player = event.getPlayer();
+			ItemStack miningStack =  player.getMainHandItem();
+			if(miningStack.getItem() instanceof AoEBreakingTool aoeBreakingTool) {
+				aoeBreakingTool.afterBreakingBlock(event.getLevel(), event.getPos(), player, miningStack);
+			}
 		}
 	}
 	

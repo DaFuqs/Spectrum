@@ -19,12 +19,11 @@ import java.util.function.*;
 // Shoutout and thanks a bunch to Vazkii, Willie and artemisSystem!
 public class AoEHelper {
 	
-	public static void doAoEBlockBreaking(Player player, ItemStack stack, BlockPos pos, Direction side, int radius) {
+	public static void doAoEBlockBreaking(LevelAccessor level, BlockPos pos, Player player, ItemStack stack, Direction side, int radius) {
 		if (radius <= 0) {
 			return;
 		}
 		
-		Level world = player.level();
 		Predicate<BlockState> minableBlocksPredicate = state -> {
 			boolean suitableTool = !state.requiresCorrectToolForDrops() || stack.isCorrectToolForDrops(state);
 			boolean suitableSpeed = stack.getDestroySpeed(state) > 0;
@@ -38,12 +37,12 @@ public class AoEHelper {
 		Vec3i beginDiff = new Vec3i(doX ? -radius : 0, doY ? -1 : 0, doZ ? -radius : 0);
 		Vec3i endDiff = new Vec3i(doX ? radius : 0, doY ? radius * 2 - 1 : 0, doZ ? radius : 0);
 
-		removeBlocksInIteration(player, stack, world, pos, beginDiff, endDiff, minableBlocksPredicate);
+		removeBlocksInIteration(level, pos, player, stack, beginDiff, endDiff, minableBlocksPredicate);
 	}
 
 	private static boolean recursive = false;
 	
-	private static void removeBlocksInIteration(Player player, ItemStack stack, Level world, BlockPos centerPos, Vec3i startDelta, Vec3i endDelta, Predicate<BlockState> filter) {
+	private static void removeBlocksInIteration(LevelAccessor level, BlockPos centerPos, Player player, ItemStack stack, Vec3i startDelta, Vec3i endDelta, Predicate<BlockState> filter) {
 		if (recursive) {
 			return;
 		}
@@ -52,7 +51,7 @@ public class AoEHelper {
 		try {
 			for (BlockPos blockPos : BlockPos.betweenClosed(centerPos.offset(startDelta), centerPos.offset(endDelta))) {
 				if (!blockPos.equals(centerPos)) {
-					breakBlockWithDrops(player, stack, world, blockPos, filter);
+					breakBlockWithDrops(player, stack, level, blockPos, filter);
 				}
 			}
 		} finally {
@@ -86,11 +85,11 @@ public class AoEHelper {
 		}
 	}
 	
-	public static void breakBlockWithDrops(Player player, ItemStack stack, Level world, BlockPos pos, Predicate<BlockState> filter) {
+	public static void breakBlockWithDrops(Player player, ItemStack stack, LevelAccessor world, BlockPos pos, Predicate<BlockState> filter) {
 		ChunkPos chunkPos = world.getChunk(pos).getPos();
 		if (world.hasChunk(chunkPos.x, chunkPos.z)) {
 			BlockState blockstate = world.getBlockState(pos);
-			if (!world.isClientSide && !blockstate.isAir() && blockstate.getDestroyProgress(player, world, pos) > 0 && filter.test(blockstate)) {
+			if (!world.isClientSide() && !blockstate.isAir() && blockstate.getDestroyProgress(player, world, pos) > 0 && filter.test(blockstate)) {
 				ItemStack save = player.getMainHandItem();
 				player.setItemInHand(InteractionHand.MAIN_HAND, stack);
 				((ServerPlayer) player).connection.send(new ClientboundLevelEventPacket(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(blockstate), false));

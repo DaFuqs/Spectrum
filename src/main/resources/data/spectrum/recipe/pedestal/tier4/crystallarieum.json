@@ -11,7 +11,7 @@
   },
   "experience": 8.0,
   "pattern": [
-    "ILI",
+    "I I",
     "CPC",
     "BPB"
   ],
@@ -19,8 +19,7 @@
     "I": "spectrum:bismuth_crystal",
     "C": "spectrum:polished_calcite",
     "B": "spectrum:polished_basalt",
-    "P": "#spectrum:pigment_blocks",
-    "L": "spectrum:liquid_crystal_bucket"
+    "P": "#spectrum:pigment_blocks"
   },
   "result": {
     "id": "spectrum:crystallarieum",

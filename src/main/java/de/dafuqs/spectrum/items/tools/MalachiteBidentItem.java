@@ -31,7 +31,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 import java.util.function.*;
 
-public class MalachiteBidentItem extends TridentItem implements Preenchanted, ExpandedStatTooltip, ArmorPiercingItem {
+public class MalachiteBidentItem extends TridentItem implements Preenchanted, ExpandedStatTooltip, ArmorPiercingItem, ActivatableItem {
 	
 	private final float armorPierce, protPierce;
 	
@@ -52,6 +52,19 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
 		ItemStack handStack = user.getItemInHand(hand);
+		
+		if (user.isShiftKeyDown()) {
+			boolean newActivated = !ActivatableItem.isActivated(handStack);
+			if(newActivated) {
+				ActivatableItem.setActivated(handStack, true);
+				user.displayClientMessage(Component.translatable("item.spectrum.bident.tooltip.enabled"), true);
+			} else {
+				ActivatableItem.setActivated(handStack, false);
+				user.displayClientMessage(Component.translatable("item.spectrum.bident.tooltip.disabled"), true);
+			}
+			return InteractionResultHolder.consume(user.getItemInHand(hand));
+		}
+		
 		if (handStack.getDamageValue() >= handStack.getMaxDamage() - 1) {
 			return InteractionResultHolder.fail(handStack);
 		}
@@ -146,31 +159,17 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 		}
 	}
 	
-	public void markDisabled(ItemStack stack, boolean disabled) {
-		ActivatableItem.setActivated(stack, !disabled);
-	}
-	
-	public boolean isDisabled(ItemStack stack) {
-		return !ActivatableItem.isActivated(stack);
-	}
-	
 	public boolean canBeDisabled() {
 		return false;
 	}
 	
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-		if (isDisabled(stack))
-			tooltip.add(Component.translatable("item.spectrum.bident.toolTip.disabled").withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
-	}
-	
-	@Override
-	public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction clickType, Player player) {
-		if (canBeDisabled() && clickType == ClickAction.SECONDARY) {
-			markDisabled(stack, !isDisabled(stack));
-			return true;
+		if (ActivatableItem.isActivated(stack)) {
+			tooltip.add(Component.translatable("item.spectrum.bident.tooltip.enabled").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+		} else {
+			tooltip.add(Component.translatable("item.spectrum.bident.tooltip.disabled").withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
 		}
-		return false;
 	}
 	
 	public float getThrowSpeed(ItemStack stack) {

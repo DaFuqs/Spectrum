@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
+import net.neoforged.neoforge.common.*;
 import org.jetbrains.annotations.*;
 
 public abstract class ParryingSwordItem extends SwordItem implements ExtendedItemBarProvider {
@@ -118,4 +119,10 @@ public abstract class ParryingSwordItem extends SwordItem implements ExtendedIte
 		var progress = Math.round(Mth.clampedLerp(13, 0, ((float) player.getTicksUsingItem() / getMaxShieldingTime(player, stack))));
 		return new BarSignature(2, 13, 13, progress, 1, getBarColor(), 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
+	
+	@Override
+	public boolean canPerformAction(@NotNull ItemStack stack, @NotNull ItemAbility itemAbility) {
+		return super.canPerformAction(stack, itemAbility) || itemAbility == ItemAbilities.SHIELD_BLOCK;
+	}
+	
 }

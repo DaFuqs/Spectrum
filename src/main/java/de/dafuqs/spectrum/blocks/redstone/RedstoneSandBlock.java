@@ -43,10 +43,12 @@ public class RedstoneSandBlock extends FallingBlock {
 		return state;
 	}
 	
+	@Override
 	protected boolean isSignalSource(BlockState state) {
 		return true;
 	}
 	
+	@Override
 	protected int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return state.getValue(POWER);
 	}

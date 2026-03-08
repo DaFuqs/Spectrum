@@ -76,7 +76,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
@@ -1315,7 +1314,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> UPGRADE_EXPERIENCE2 = register(parented(blockWithItem("upgrade_experience2", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.EXPERIENCE, 4, InkColors.PURPLE_COLOR), block -> new UpgradeBlockItem(block, IS.of(16, Rarity.UNCOMMON), "upgrade_experience2"), InkColors.LIGHT_GRAY), b -> UPGRADE_EXPERIENCE.get()));
 	
 	public static final DeferredBlock<RedstoneSandBlock> REDSTONE_SAND = register(simple(blockWithItem("redstone_sand", () -> new RedstoneSandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.FIRE)), InkColors.RED)));
-	public static final DeferredBlock<EnderGlassBlock> ENDER_GLASS = register(blockWithItem("ender_glass", () -> new EnderGlassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).mapColor(MapColor.COLOR_PURPLE).noOcclusion().isRedstoneConductor(SpectrumBlocks::never).isValidSpawn((state, world, pos, entityType) -> state.getValue(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID).isSuffocating((state, world, pos) -> state.getValue(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID).isViewBlocking((state, world, pos) -> state.getValue(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID)), InkColors.PURPLE).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_solid")).withBlockModel((ctx, block) ->
+	public static final DeferredBlock<EnderGlassBlock> ENDER_GLASS = register(blockWithItem("ender_glass", () -> new EnderGlassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).mapColor(MapColor.COLOR_PURPLE).noOcclusion().isRedstoneConductor(SpectrumBlocks::never).isValidSpawn((state, world, pos, entityType) -> EnderGlassBlock.getTransparencyState(state) == EnderGlassBlock.TransparencyState.SOLID).isSuffocating((state, world, pos) -> EnderGlassBlock.getTransparencyState(state) == EnderGlassBlock.TransparencyState.SOLID).isViewBlocking((state, world, pos) -> EnderGlassBlock.getTransparencyState(state) == EnderGlassBlock.TransparencyState.SOLID)), InkColors.PURPLE).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_solid")).withBlockModel((ctx, block) ->
 			MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(EnderGlassBlock.TRANSPARENCY_STATE)
 					.generate(transparency -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModelProviders.cubeAll(b -> b, "_" + transparency.getSerializedName()).createWithSuffix(block, "_" + transparency.getSerializedName(), ctx.modelOutput))))));
 	public static final DeferredBlock<CloverBlock> CLOVER = register(singletonWithSoup(blockWithItem("clover", () -> new CloverBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).offsetType(BlockBehaviour.OffsetType.XZ)), InkColors.LIME), ModelLocationUtils::getModelLocation).withItemModel(SpectrumModelHelper::registerItemModel));

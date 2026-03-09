@@ -40,7 +40,9 @@ import net.minecraft.data.models.model.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
@@ -155,14 +157,14 @@ public class SpectrumItems {
 	public static final WorkstaffItem MALACHITE_WORKSTAFF = register(item("malachite_workstaff", new WorkstaffItem(SpectrumToolMaterial.MALACHITE, 1, -3.2F, IS.of(1, Rarity.UNCOMMON)), InkColors.GREEN));
 	public static final GreatswordItem MALACHITE_ULTRA_GREATSWORD = register(item("malachite_ultra_greatsword", new GreatswordItem(SpectrumToolMaterial.MALACHITE, 7, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON)), InkColors.GREEN));
 	public static final MalachiteCrossbowItem MALACHITE_CROSSBOW = register(item("malachite_crossbow", new MalachiteCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireResistant().durability(SpectrumToolMaterial.MALACHITE.getUses())), InkColors.GREEN));
-	public static final MalachiteBidentItem MALACHITE_BIDENT = register(item("malachite_bident", new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.MALACHITE.getUses()).component(SpectrumDataComponentTypes.ACTIVATED, Unit.INSTANCE), -2.4, 9, 0.25F, 0F, false), InkColors.GREEN));
+	public static final MalachiteBidentItem MALACHITE_BIDENT = register(item("malachite_bident", new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.MALACHITE.getUses()), -2.4, 9, 0.25F, 0F, false), InkColors.GREEN));
 	
 	// variants by socketing a moonstone core
 	public static final GlassCrestWorkstaffItem GLASS_CREST_WORKSTAFF = register(item("glass_crest_workstaff", new GlassCrestWorkstaffItem(SpectrumToolMaterial.GLASS_CREST, 1, -2.8F, IS.of(1, Rarity.UNCOMMON)), InkColors.WHITE));
 	public static final GlassCrestGreatswordItem GLASS_CREST_ULTRA_GREATSWORD = register(item("glass_crest_ultra_greatsword", new GlassCrestGreatswordItem(SpectrumToolMaterial.GLASS_CREST, 5, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON)), InkColors.WHITE));
 	public static final GlassCrestCrossbowItem GLASS_CREST_CROSSBOW = register(item("glass_crest_crossbow", new GlassCrestCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireResistant().durability(SpectrumToolMaterial.GLASS_CREST.getUses())), InkColors.WHITE));
-	public static final FerociousBidentItem FEROCIOUS_GLASS_CREST_BIDENT = register(item("ferocious_glass_crest_bident", new FerociousBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.GLASS_CREST.getUses()), -2.2, 13, 0.33F, 0.33F), InkColors.WHITE));
-	public static final FractalBidentItem FRACTAL_GLASS_CREST_BIDENT = register(item("fractal_glass_crest_bident", new FractalBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.GLASS_CREST.getUses()), -2.4, 6.5, 0.25F, 0.25F), InkColors.WHITE));
+	public static final FerociousBidentItem FEROCIOUS_GLASS_CREST_BIDENT = register(item("ferocious_glass_crest_bident", new FerociousBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.GLASS_CREST.getUses()).component(SpectrumDataComponentTypes.ACTIVATED, Unit.INSTANCE), -2.2, 13, 0.33F, 0.33F), InkColors.WHITE));
+	public static final FractalBidentItem FRACTAL_GLASS_CREST_BIDENT = register(item("fractal_glass_crest_bident", new FractalBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.GLASS_CREST.getUses()).component(SpectrumDataComponentTypes.ACTIVATED, Unit.INSTANCE), -2.4, 6.5, 0.25F, 0.25F), InkColors.WHITE));
 	
 	public static final Item MALACHITE_GLASS_ARROW = register(simple(item("malachite_glass_arrow", new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.MALACHITE, ColoredCraftingParticleEffect.LIME), InkColors.GREEN)));
 	public static final Item TOPAZ_GLASS_ARROW = register(simple(item("topaz_glass_arrow", new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.TOPAZ, ColoredCraftingParticleEffect.CYAN), InkColors.CYAN)));

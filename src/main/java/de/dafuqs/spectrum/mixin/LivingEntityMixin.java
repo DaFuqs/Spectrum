@@ -339,7 +339,7 @@ public abstract class LivingEntityMixin {
 		
 		return false;
 	}
-	
+	// TODO: move to event
 	@Inject(method = "addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z", at = @At("HEAD"), cancellable = true)
 	private void spectrum$addEffect(MobEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
 		var entity = (LivingEntity) (Object) this;
@@ -356,10 +356,7 @@ public abstract class LivingEntityMixin {
 		}
 		
 		if ((!entity.hasEffect(SpectrumMobEffects.IMMUNITY)) && AetherGracedNectarGlovesItem.testEffectFor(entity, effectType)) {
-			var cost = (effect.getAmplifier() + 1) * AetherGracedNectarGlovesItem.HARMFUL_EFFECT_COST;
-			
-			if (MobEffectHelper.isSevere(effect))
-				cost *= 3;
+			int cost = (effect.getAmplifier() + 1) * AetherGracedNectarGlovesItem.HARMFUL_EFFECT_COST;
 			
 			if (AetherGracedNectarGlovesItem.tryBlockEffect(entity, cost)) {
 				cir.setReturnValue(false);
@@ -367,7 +364,7 @@ public abstract class LivingEntityMixin {
 			}
 		}
 		
-		var resistanceModifier = Mth.clamp(SleepMobEffect.getSleepResistance(effect, entity), 0.1F, 10F);
+		float resistanceModifier = Mth.clamp(SleepMobEffect.getSleepResistance(effect, entity), 0.1F, 10F);
 		if (effectType == SpectrumMobEffects.ETERNAL_SLUMBER) {
 			if (SleepMobEffect.isImmuneish(entity)) {
 				effect.spectrum$setDuration(Math.round(effect.getDuration() / resistanceModifier));

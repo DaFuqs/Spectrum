@@ -89,9 +89,6 @@ public class InkPoweredStatusEffectInstance {
 				}
 				mutableText.withStyle(effect.getEffect().value().getCategory().getTooltipFormatting());
 				mutableText.append(Component.translatable("spectrum.tooltip.ink_cost", Support.getShortenedNumberString(cost.cost()), cost.color().getColoredInkName()).withStyle(ChatFormatting.GRAY));
-				if (entry.statusEffectInstance.spectrum$isSevere()) {
-					mutableText.append(Component.translatable("item.spectrum.potion.tooltip.severe"));
-				}
 				tooltip.add(mutableText);
 				
 				effect.getEffect().value().createModifiers(effect.getAmplifier(), (attribute, modifier) ->

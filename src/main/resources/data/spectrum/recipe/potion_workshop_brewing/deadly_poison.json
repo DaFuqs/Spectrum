@@ -1,15 +1,15 @@
 {
   "type": "spectrum:potion_workshop_brewing",
   "ingredient1": "minecraft:nether_wart",
-  "ingredient2": "spectrum:bone_ash",
+  "ingredient2": "spectrum:bitter_oils",
   "ingredient3": "minecraft:fermented_spider_eye",
   "effect": "spectrum:deadly_poison",
-  "base_duration_ticks": 600,
+  "base_duration_ticks": 1200,
   "potency_modifier": 1.0,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
-  "required_advancement": "spectrum:break_cracked_dragonbone",
+  "required_advancement": "spectrum:hidden/collect_cookbooks/poisoners_handbook",
   "ink_color": "spectrum:green",
   "ink_cost": 4
 }

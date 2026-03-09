@@ -7,7 +7,6 @@
     "spectrum:amethyst_powder",
     "spectrum:bedrock_dust",
     "spectrum:bismuth_flake",
-    "spectrum:bone_ash",
     "spectrum:ash_flakes",
     "spectrum:pure_lapis",
     "spectrum:pure_redstone",
@@ -37,7 +36,6 @@
     "spectrum:stratine_fragments",
     "spectrum:topaz_powder",
     "spectrum:vegetal",
-    "spectrum:bitter_oils",
 
     {
       "id": "spectrum:blackest_lotus",

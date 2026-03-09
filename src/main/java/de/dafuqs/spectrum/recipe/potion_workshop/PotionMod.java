@@ -78,7 +78,6 @@ public record PotionMod(
 			boolean potentDecreasingEffect,
 			boolean negateDecreasingDuration,
 			boolean randomColor,
-			boolean severe,
 			List<Tuple<PotionRecipeEffect, Float>> additionalEffects
 	) {
 		private static final Codec<Tuple<PotionRecipeEffect, Float>> ENTRY_CODEC = RecordCodecBuilder.create(i -> i.group(
@@ -97,7 +96,7 @@ public record PotionMod(
 				this.potionFlags = potionFlags;
 			}
 			
-			public static final PotionFlags.Conditions ANY = new Conditions(new PotionFlags(false, false, false, false, false, false, false, false, false, false, List.of()));
+			public static final PotionFlags.Conditions ANY = new Conditions(new PotionFlags(false, false, false, false, false, false, false, false, false, List.of()));
 			
 			public static final Codec<PotionFlags.Conditions> CODEC = RecordCodecBuilder.create(i -> i.group(
 					PotionMod.PotionFlags.CODEC.forGetter(Conditions::potionFlags)
@@ -113,7 +112,6 @@ public record PotionMod(
 				if (this.potionFlags.potentDecreasingEffect && !reagentFlags.potentDecreasingEffect) return false;
 				if (this.potionFlags.negateDecreasingDuration && !reagentFlags.negateDecreasingDuration) return false;
 				if (this.potionFlags.randomColor && !reagentFlags.randomColor) return false;
-				if (this.potionFlags.severe && !reagentFlags.severe) return false;
 				return true;
 			}
 			
@@ -129,7 +127,6 @@ public record PotionMod(
 				Codec.BOOL.optionalFieldOf("potent_decreasing_effect", false).forGetter(PotionFlags::potentDecreasingEffect),
 				Codec.BOOL.optionalFieldOf("negate_decreasing_duration", false).forGetter(PotionFlags::negateDecreasingDuration),
 				Codec.BOOL.optionalFieldOf("random_color", false).forGetter(PotionFlags::randomColor),
-				Codec.BOOL.optionalFieldOf("severe", false).forGetter(PotionFlags::severe),
 				ENTRY_CODEC.listOf().optionalFieldOf("additional_effects", List.of()).forGetter(PotionFlags::additionalEffects)
 		).apply(i, PotionFlags::new));
 		
@@ -143,7 +140,6 @@ public record PotionMod(
 				ByteBufCodecs.BOOL, PotionFlags::potentDecreasingEffect,
 				ByteBufCodecs.BOOL, PotionFlags::negateDecreasingDuration,
 				ByteBufCodecs.BOOL, PotionFlags::randomColor,
-				ByteBufCodecs.BOOL, PotionFlags::severe,
 				ENTRY_PACKET_CODEC.apply(ByteBufCodecs.list()), PotionFlags::additionalEffects,
 				PotionFlags::new
 		);
@@ -171,9 +167,8 @@ public record PotionMod(
 		public int additionalDrinkDurationTicks = 0;
 		public PotionFlags flags = new PotionFlags(
 				false, false, false, false, false, false,
-				false, false, false, false, List.of()
+				false, false, false, List.of()
 		);
-		;
 		
 		public Builder() {
 		}
@@ -208,7 +203,6 @@ public record PotionMod(
 					this.flags.potentDecreasingEffect | potionMod.flags.potentDecreasingEffect,
 					this.flags.negateDecreasingDuration | potionMod.flags.negateDecreasingDuration,
 					this.flags.randomColor | potionMod.flags.randomColor,
-					this.flags.severe | potionMod.flags.severe,
 					Stream.concat(this.flags.additionalEffects.stream(), potionMod.flags.additionalEffects.stream()).toList()
 			);
 			return this;

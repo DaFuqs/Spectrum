@@ -98,6 +98,19 @@
       "text": "book.spectrum.guidebook.poisoners_handbook.page15.text"
     },
     {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.poisoners_handbook.bitter_oils_1.title",
+      "item": {
+        "item": "spectrum:bitter_oils"
+      },
+      "text": "book.spectrum.guidebook.poisoners_handbook.bitter_oils_1.text"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe_id": "spectrum:titration_barrel/bitter_oils",
+      "text": "book.spectrum.guidebook.poisoners_handbook.bitter_oils_2.text"
+    },
+    {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.poisoners_handbook.page24.title",
       "text": "book.spectrum.guidebook.poisoners_handbook.page24.text"

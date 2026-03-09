@@ -124,7 +124,6 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 						livingEntity.addEffect(new MobEffectInstance(SpectrumMobEffects.LIFE_DRAIN, 600, 0));
 					} else if (existingEffect.getDuration() < 500) {
 						existingEffect.spectrum$setDuration(300);
-						
 						serverWorld.getChunkSource().broadcastAndSend(livingEntity, new ClientboundUpdateMobEffectPacket(livingEntity.getId(), existingEffect, true));
 					}
 					

@@ -111,7 +111,7 @@ public class MobEffectHelper {
 	}
 	
 	private static final StatusEffectBackground DIVINITY = new StatusEffectBackground("divinity");
-	private static final StatusEffectBackground SEVERE = new StatusEffectBackground("severe");
+	private static final StatusEffectBackground SOPORIFIC = new StatusEffectBackground("soporific");
 	private static final StatusEffectBackground NIGHT_ALCHEMY = new StatusEffectBackground("night_alchemy");
 	
 	public static ResourceLocation getTextureLocation(ResourceLocation original, MobEffectInstance effect, RenderType renderType) {
@@ -119,22 +119,15 @@ public class MobEffectHelper {
 		
 		if (type == SpectrumMobEffects.DIVINITY)
 			return DIVINITY.get(renderType);
-
-		if (isSevere(effect) && type != SpectrumMobEffects.ETERNAL_SLUMBER && type != SpectrumMobEffects.FATAL_SLUMBER) {
-			return SEVERE.get(renderType);
-		}
 		
 		if (type.is(SpectrumMobEffectTags.NIGHT_ALCHEMY))
 			return NIGHT_ALCHEMY.get(renderType);
 		
+		if (type.is(SpectrumMobEffectTags.SOPORIFIC)) {
+			return SOPORIFIC.get(renderType);
+		}
+		
 		return original;
-	}
-	
-	public static boolean isSevere(MobEffectInstance instance) {
-		var type = instance.getEffect();
-		if (type.is(SpectrumMobEffectTags.CANNOT_BE_SEVERE))
-			return false;
-		return instance.spectrum$isSevere();
 	}
 	
 }

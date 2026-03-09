@@ -31,6 +31,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
+import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
@@ -148,14 +149,14 @@ public class SpectrumItems {
 	public static final DeferredItem<WorkstaffItem> MALACHITE_WORKSTAFF = register("malachite_workstaff", () -> new WorkstaffItem(SpectrumToolTiers.MALACHITE, 1, -3.2F, IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<GreatswordItem> MALACHITE_ULTRA_GREATSWORD = register("malachite_ultra_greatsword", () -> new GreatswordItem(SpectrumToolTiers.MALACHITE, 7, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<MalachiteCrossbowItem> MALACHITE_CROSSBOW = register("malachite_crossbow", () -> new MalachiteCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireResistant().durability(SpectrumToolTiers.MALACHITE.getUses())));
-	public static final DeferredItem<MalachiteBidentItem> MALACHITE_BIDENT = register("malachite_bident", () -> new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.MALACHITE.getUses()), -2.4, 9, 0.25F, 0F));
+	public static final DeferredItem<MalachiteBidentItem> MALACHITE_BIDENT = register("malachite_bident", () -> new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.MALACHITE.getUses()).component(SpectrumDataComponentTypes.ACTIVATED.get(), Unit.INSTANCE), -2.4, 9, 0.25F, 0F));
 	
 	// variants by socketing a moonstone core
 	public static final DeferredItem<GlassCrestWorkstaffItem> GLASS_CREST_WORKSTAFF = register("glass_crest_workstaff", () -> new GlassCrestWorkstaffItem(SpectrumToolTiers.GLASS_CREST, 1, -2.8F, IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<GlassCrestGreatswordItem> GLASS_CREST_ULTRA_GREATSWORD = register("glass_crest_ultra_greatsword", () -> new GlassCrestGreatswordItem(SpectrumToolTiers.GLASS_CREST, 5, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<GlassCrestCrossbowItem> GLASS_CREST_CROSSBOW = register("glass_crest_crossbow", () -> new GlassCrestCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireResistant().durability(SpectrumToolTiers.GLASS_CREST.getUses())));
-	public static final DeferredItem<FerociousBidentItem> FEROCIOUS_GLASS_CREST_BIDENT = register("ferocious_glass_crest_bident", () -> new FerociousBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.GLASS_CREST.getUses()), -2.2, 13, 0.33F, 0.33F));
-	public static final DeferredItem<FractalBidentItem> FRACTAL_GLASS_CREST_BIDENT = register("fractal_glass_crest_bident", () -> new FractalBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.GLASS_CREST.getUses()), -2.4, 6.5, 0.25F, 0.25F));
+	public static final DeferredItem<FerociousBidentItem> FEROCIOUS_GLASS_CREST_BIDENT = register("ferocious_glass_crest_bident", () -> new FerociousBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.GLASS_CREST.getUses()).component(SpectrumDataComponentTypes.ACTIVATED.get(), Unit.INSTANCE), -2.2, 13, 0.33F, 0.33F));
+	public static final DeferredItem<FractalBidentItem> FRACTAL_GLASS_CREST_BIDENT = register("fractal_glass_crest_bident", () -> new FractalBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.GLASS_CREST.getUses()).component(SpectrumDataComponentTypes.ACTIVATED.get(), Unit.INSTANCE), -2.4, 6.5, 0.25F, 0.25F));
 	
 	public static final DeferredItem<Item> MALACHITE_GLASS_ARROW = register("malachite_glass_arrow", () -> new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.MALACHITE, ColoredCraftingParticleEffect.LIME));
 	public static final DeferredItem<Item> TOPAZ_GLASS_ARROW = register("topaz_glass_arrow", () -> new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.TOPAZ, ColoredCraftingParticleEffect.CYAN));

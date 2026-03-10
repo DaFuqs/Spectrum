@@ -40,6 +40,7 @@ import net.minecraft.data.models.model.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
+import net.minecraft.util.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
@@ -154,7 +155,7 @@ public class SpectrumItems {
 	public static final WorkstaffItem MALACHITE_WORKSTAFF = register(item("malachite_workstaff", new WorkstaffItem(SpectrumToolMaterial.MALACHITE, 1, -3.2F, IS.of(1, Rarity.UNCOMMON)), InkColors.GREEN));
 	public static final GreatswordItem MALACHITE_ULTRA_GREATSWORD = register(item("malachite_ultra_greatsword", new GreatswordItem(SpectrumToolMaterial.MALACHITE, 7, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON)), InkColors.GREEN));
 	public static final MalachiteCrossbowItem MALACHITE_CROSSBOW = register(item("malachite_crossbow", new MalachiteCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireResistant().durability(SpectrumToolMaterial.MALACHITE.getUses())), InkColors.GREEN));
-	public static final MalachiteBidentItem MALACHITE_BIDENT = register(item("malachite_bident", new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.MALACHITE.getUses()), -2.4, 9, 0.25F, 0F), InkColors.GREEN));
+	public static final MalachiteBidentItem MALACHITE_BIDENT = register(item("malachite_bident", new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.MALACHITE.getUses()).component(SpectrumDataComponentTypes.ACTIVATED, Unit.INSTANCE), -2.4, 9, 0.25F, 0F, false), InkColors.GREEN));
 	
 	// variants by socketing a moonstone core
 	public static final GlassCrestWorkstaffItem GLASS_CREST_WORKSTAFF = register(item("glass_crest_workstaff", new GlassCrestWorkstaffItem(SpectrumToolMaterial.GLASS_CREST, 1, -2.8F, IS.of(1, Rarity.UNCOMMON)), InkColors.WHITE));

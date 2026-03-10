@@ -18,13 +18,13 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 // riptide w/o weather requirement; damages enemies on touch; iframes?
-public class FerociousBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider, InkPowered {
+public class FerociousBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider, InkPowered, ActivatableItem {
 	
 	public static final InkCost RIPTIDE_COST = new InkCost(InkColors.WHITE, 10);
 	public static final int BUILTIN_RIPTIDE_LEVEL = 1;
 	
 	public FerociousBidentItem(Item.Properties settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
-		super(settings, attackSpeed, damage, armorPierce, protPierce);
+		super(settings, attackSpeed, damage, armorPierce, protPierce, true);
 	}
 	
 	@Override

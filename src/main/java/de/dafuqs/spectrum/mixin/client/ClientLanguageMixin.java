@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin.client;
 
 import net.minecraft.client.*;
 import net.minecraft.client.resources.language.*;
+import net.minecraft.network.chat.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -9,20 +10,20 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 import java.util.*;
 
 @Mixin(ClientLanguage.class)
-public class TranslationStorageMixin {
+public class ClientLanguageMixin {
 	
 	@Mutable
 	@Shadow
 	@Final
 	private Map<String, String> storage;
 	
-	@Inject(method = "<init>", at = @At("TAIL"))
-	private void addTranslations(Map<String, String> translations, boolean rightToLeft, CallbackInfo ci) {
+	@Inject(method = "<init>(Ljava/util/Map;ZLjava/util/Map;)V", at = @At("TAIL"))
+	private void addTranslations(Map<String,String> translations, boolean rightToLeft, Map<String, Component> componentStorage, CallbackInfo ci) {
 		Calendar calendar = Calendar.getInstance();
 		if (calendar.get(Calendar.MONTH) != Calendar.APRIL || calendar.get(Calendar.DAY_OF_MONTH) != 1) return;
 		
 		Map<String, String> builder = new HashMap<>(translations);
-		builder.put("block.spectrum.crystallarieum", getCrystallarieuaeuieueum());
+		builder.put("block.spectrum.crystallarieum", spectrum$getCrystallarieuaeuieueum());
 		builder.put("item.spectrum.ring_of_pursuit", "Ring of Fursuit");
 		builder.put("item.spectrum.draconic_twinsword", "Draconic Winblade");
 		builder.put("item.spectrum.dragon_talon", "Sellsword Winblades");
@@ -39,7 +40,7 @@ public class TranslationStorageMixin {
 	}
 	
 	@Unique
-	private static String getCrystallarieuaeuieueum() {
+	private static String spectrum$getCrystallarieuaeuieueum() {
 		List<String> possibilities = new ArrayList<>() {{
 			add("Crystallarieum");
 			add("Crystallareium");

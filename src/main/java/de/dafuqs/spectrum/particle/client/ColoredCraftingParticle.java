@@ -20,6 +20,10 @@ public class ColoredCraftingParticle extends TextureSheetParticle {
 		this.rCol = red;
 		this.gCol = green;
 		this.bCol = blue;
+		
+		this.xd = velocityX;
+		this.yd = velocityY;
+		this.zd = velocityZ;
 	}
 	
 	@Override

@@ -115,7 +115,7 @@
     "client.PotionItemClientMixin",
     "client.SkinManagerMixin",
     "client.SleepingChatScreenMixin",
-    "client.TranslationStorageMixin",
+    "client.ClientLanguageMixin",
     "client.TranslucentBlockMixin",
     "client.accessors.ParticleManagerAccessor"
   ],

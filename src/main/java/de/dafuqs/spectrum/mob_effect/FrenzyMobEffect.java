@@ -63,19 +63,17 @@ public class FrenzyMobEffect extends MobEffect {
 	
 	public void updateAttributes(@NotNull LivingEntity entity, int amplifier, int increase) {
 		AttributeMap attributes = entity.getAttributes();
-		if (attributes != null) {
-			createModifiers(amplifier, (entry, modifier) -> {
-				AttributeInstance entityInstance = attributes.getInstance(entry);
-				if (entityInstance != null) {
-					AttributeModifier appliedModifier = entityInstance.getModifier(modifier.id());
-					double newBaseValue = appliedModifier == null ? modifier.amount() : appliedModifier.amount();
-					double newValue = this.adjustModifierAmount(newBaseValue, modifier.amount(), amplifier, increase);
-					entityInstance.removeModifier(modifier);
-					entityInstance.addPermanentModifier(new AttributeModifier(modifier.id(), newValue, modifier.operation()));
-					entityInstance.getValue();
-				}
-			});
-		}
+		createModifiers(amplifier, (entry, modifier) -> {
+			AttributeInstance entityInstance = attributes.getInstance(entry);
+			if (entityInstance != null) {
+				AttributeModifier appliedModifier = entityInstance.getModifier(modifier.id());
+				double newBaseValue = appliedModifier == null ? modifier.amount() : appliedModifier.amount();
+				double newValue = this.adjustModifierAmount(newBaseValue, modifier.amount(), amplifier, increase);
+				entityInstance.removeModifier(modifier);
+				entityInstance.addPermanentModifier(new AttributeModifier(modifier.id(), newValue, modifier.operation()));
+				entityInstance.getValue();
+			}
+		});
 	}
 	
 	public double adjustModifierAmount(double existingValue, double additionalValue, int amplifier, int increase) {

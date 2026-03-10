@@ -199,7 +199,7 @@ public class FloatBlockEntity extends Entity {
 			if (damage > 0) {
 				// since the player position is tracked at its head and item entities are laying directly on the ground, we have to use a relatively big bounding box here
 				Predicate<Entity> predicate = EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(entity -> entity.isAlive() && (entity instanceof LivingEntity || entity instanceof ItemEntity));
-				this.level().getEntities(this, this.getBoundingBox(), predicate).forEach((entity) -> {
+				this.level().getEntities(this, this.getBoundingBox().inflate(0.5), predicate).forEach((entity) -> {
 					if (entity instanceof ItemEntity itemEntity) {
 						AnvilCrusher.crush(itemEntity, damage * 2);
 					} else {

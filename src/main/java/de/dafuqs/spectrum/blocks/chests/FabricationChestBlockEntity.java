@@ -128,10 +128,10 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 			return cachedOutputs;
 		}
 		
-		var list = new ArrayList<ItemStack>();
+		List<ItemStack> list = new ArrayList<>();
 		
 		for (int slot : RECIPE_SLOTS) {
-			var tablet = inventory.get(slot);
+			ItemStack tablet = inventory.get(slot);
 			
 			if (!tablet.is(SpectrumItems.CRAFTING_TABLET))
 				continue;
@@ -141,11 +141,10 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 				continue;
 
 			Recipe<?> recipe = recipeHolder.value();
-
-			if (recipe == null || !isRecipeValid(recipe))
+			if (!isRecipeValid(recipe))
 				continue;
 			
-			var output = recipe.getResultItem(level.registryAccess());
+			ItemStack output = recipe.getResultItem(level.registryAccess());
 			
 			if (!output.isEmpty())
 				list.add(output);

@@ -209,10 +209,6 @@ public abstract class LightShardBaseEntity extends Projectile {
 	}
 	
 	@Override
-	public void onClientRemoval() {
-	}
-	
-	@Override
 	public void remove(RemovalReason reason) {
 		super.remove(reason);
 		var bound = random.nextInt(11);

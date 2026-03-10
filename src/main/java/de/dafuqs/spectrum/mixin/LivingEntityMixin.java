@@ -84,14 +84,6 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	protected boolean dead;
 	
-	@ModifyVariable(method = "travel", at = @At(value = "STORE"), ordinal = 0)
-	private boolean spectrum$noSlowFallingSlowdown(boolean b) {
-		if (!b) {
-			return false;
-		}
-		return !InexorableHelper.isArmorActive((LivingEntity) (Object) this);
-	}
-	
 	@Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;shouldDiscardFriction()Z"))
 	private void spectrum$travel(CallbackInfo ci, @Local(ordinal = 1) LocalFloatRef f) {
 		var entity = (LivingEntity) (Object) this;

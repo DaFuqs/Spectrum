@@ -48,6 +48,7 @@ public class SpectrumEntityTypes {
 	public static final DeferredHolder<EntityType<?>, EntityType<Splinterspawn>> SPLINTERSPAWN = register("splinterspawn", EntityType.Builder.of(Splinterspawn::new, MobCategory.MONSTER).sized(0.4F, 0.3F).eyeHeight(0.13F).passengerAttachments(0.2375F).clientTrackingRange(8));
 	
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
+		event.put(LIVING_MARKER.get(),LivingMarkerEntity.createLivingAttributes().build());
 		event.put(EGG_LAYING_WOOLY_PIG.get(), EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes().build());
 		event.put(MONSTROSITY.get(), MonstrosityEntity.createMonstrosityAttributes().build());
 		event.put(PRESERVATION_TURRET.get(), PreservationTurretEntity.createGuardianTurretAttributes().build());

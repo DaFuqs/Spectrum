@@ -308,7 +308,7 @@ public class SpectrumEventListeners {
 			
 			MobEffectInstance frenzy = livinSource.getEffect(SpectrumMobEffects.FRENZY);
 			if (frenzy != null) {
-				((FrenzyMobEffect) frenzy.getEffect()).onKill(livinSource, frenzy.getAmplifier());
+				((FrenzyMobEffect) frenzy.getEffect().value()).onKill(livinSource, frenzy.getAmplifier());
 			}
 		}
 		

@@ -61,26 +61,29 @@ public class TrinketChangeCriterion extends SimpleCriterionTrigger<TrinketChange
 		).apply(instance, TrinketChangeCriterion.Conditions::new));
 		
 		public boolean matches(List<ItemStack> trinketStacks, int totalCount, int spectrumCount) {
-			if ((this.totalCountRange.isPresent() && this.totalCountRange.get().matches(totalCount))
-					|| (this.spectrumCountRange.isPresent() && this.spectrumCountRange.get().matches(spectrumCount))) {
-				int i = this.itemPredicates.orElse(List.of()).size();
-				if (i == 0) {
+			if(this.totalCountRange.isPresent() && !this.totalCountRange.get().matches(totalCount)) {
+				return false;
+			}
+			if(this.spectrumCountRange.isPresent() && this.spectrumCountRange.get().matches(spectrumCount)) {
+				return false;
+			}
+			
+			int i = this.itemPredicates.orElse(List.of()).size();
+			if (i == 0) {
+				return true;
+			}
+			
+			List<ItemPredicate> requiredTrinkets = new ObjectArrayList<>(this.itemPredicates.get());
+			for (ItemStack trinketStack : trinketStacks) {
+				if (requiredTrinkets.isEmpty()) {
 					return true;
-				} else {
-					List<ItemPredicate> requiredTrinkets = new ObjectArrayList<>(this.itemPredicates.get());
-					for (ItemStack trinketStack : trinketStacks) {
-						if (requiredTrinkets.isEmpty()) {
-							return true;
-						}
-						if (!trinketStack.isEmpty()) {
-							requiredTrinkets.removeIf((item) -> item.test(trinketStack));
-						}
-					}
-					
-					return requiredTrinkets.isEmpty();
+				}
+				if (!trinketStack.isEmpty()) {
+					requiredTrinkets.removeIf((item) -> item.test(trinketStack));
 				}
 			}
-			return false;
+			
+			return requiredTrinkets.isEmpty();
 		}
 	}
 	

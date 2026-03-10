@@ -44,15 +44,15 @@ public class ModifyDropsResonanceProcessor extends ResonanceProcessor {
 	}
 	
 	private void modifyDrops(List<ItemStack> droppedStacks) {
-		for (ItemStack stack : droppedStacks) {
+		ListIterator<ItemStack> i = droppedStacks.listIterator();
+		while(i.hasNext()) {
+			ItemStack stack = i.next();
 			for (Map.Entry<Ingredient, Item> modifiedDrop : modifiedDrops.entrySet()) {
 				if (modifiedDrop.getKey().test(stack)) {
 					ItemStack convertedStack;
 					convertedStack = modifiedDrop.getValue().getDefaultInstance();
 					convertedStack.setCount(stack.getCount());
-					
-					droppedStacks.remove(stack);
-					droppedStacks.add(convertedStack);
+					i.set(convertedStack);
 					break;
 				}
 			}

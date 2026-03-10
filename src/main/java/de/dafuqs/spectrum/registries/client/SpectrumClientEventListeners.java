@@ -412,7 +412,7 @@ public class SpectrumClientEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void hardcoreHearts(PlayerHeartTypeEvent event) {
+	private static void playerHeartTypeEvent(PlayerHeartTypeEvent event) {
 		Player player = event.getEntity();
 		if(player.hasEffect(SpectrumMobEffects.DEADLY_POISON)) {
 			event.setType(Gui.HeartType.POISIONED);

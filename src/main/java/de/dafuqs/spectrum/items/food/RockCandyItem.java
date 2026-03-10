@@ -50,7 +50,7 @@ public class RockCandyItem extends Item {
 	}
 	
 	public static void tickSugarStickGrowing(ItemEntity itemEntity) {
-		if (itemEntity.getAge() % 4 != 0) {
+		if (itemEntity.getAge() % 4 != 0 || itemEntity.hasPickUpDelay() || !itemEntity.isAlive()) {
 			return;
 		}
 		
@@ -62,13 +62,8 @@ public class RockCandyItem extends Item {
 		Level level = itemEntity.level();
 		AABB boundingBox = itemEntity.getBoundingBox();
 		
-		// is the other item entity also submerged?
-		// *technically* we should prob. check if the entities share the same fluid pool, but eh
-		List<ItemEntity> otherItemEntities = level.getEntitiesOfClass(ItemEntity.class, boundingBox.inflate(ITEM_SEARCH_RANGE),
-				entity -> !entity.hasPickUpDelay() && entity.isAlive() && entity != itemEntity && entity.isInFluidType(SpectrumFluids.LIQUID_CRYSTAL_TYPE.get()) && RockCandyVariant.getFor(entity.getItem()) != null);
-		
 		if(level.isClientSide()) {
-			if(!otherItemEntities.isEmpty()) {
+			if(!searchSecondaryIngredients(itemEntity, level, boundingBox).isEmpty()) {
 				RandomSource random = level.getRandom();
 				RockCandyVariant variant = stack.getItem() instanceof RockCandyItem rockCandyItem ? rockCandyItem.variant : RockCandyVariant.SUGAR;
 				level.addParticle(ColoredCraftingParticleEffect.of(variant.getDyeColor().getFireworkColor()),
@@ -87,6 +82,7 @@ public class RockCandyItem extends Item {
 			return;
 		}
 		
+		List<ItemEntity> otherItemEntities = searchSecondaryIngredients(itemEntity, level, boundingBox);
 		Collections.shuffle(otherItemEntities);
 		for (ItemEntity otherItemEntity : otherItemEntities) {
 			ItemStack otherStack = otherItemEntity.getItem();
@@ -102,12 +98,21 @@ public class RockCandyItem extends Item {
 					
 					Vec3 pos = itemEntity.position();
 					level.playSound(null, pos.x(), pos.y(), pos.z(), itemVariant.getGrowSoundEvent(), SoundSource.BLOCKS, 0.9F + level.getRandom().nextFloat() * 0.2F, 0.9F + level.getRandom().nextFloat() * 0.2F);
-					level.addFreshEntity(new ItemEntity(level, pos.x, pos.y, pos.z, newStack));
+					
+					ItemEntity entity = new ItemEntity(level, pos.x, pos.y, pos.z, newStack);
+					entity.setDefaultPickUpDelay();
+					level.addFreshEntity(entity);
 					
 					break;
 				}
 			}
 		}
+	}
+	
+	// *technically* we should prob. check if the entities share the same fluid pool, but eh
+	private static @NotNull List<ItemEntity> searchSecondaryIngredients(ItemEntity itemEntity, Level level, AABB boundingBox) {
+		return level.getEntitiesOfClass(ItemEntity.class, boundingBox.inflate(ITEM_SEARCH_RANGE),
+				entity -> !entity.hasPickUpDelay() && entity.isAlive() && entity != itemEntity && entity.isInFluidType(SpectrumFluids.LIQUID_CRYSTAL_TYPE.get()) && RockCandyVariant.getFor(entity.getItem()) != null);
 	}
 	
 	private static boolean isIngredient(ItemStack stack) {

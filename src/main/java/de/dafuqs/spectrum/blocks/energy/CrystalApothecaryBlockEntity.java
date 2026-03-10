@@ -25,8 +25,11 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
 public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEntity implements PlayerOwnedWithName, BlockPosEventQueue.Callback<BlockPosEventQueue.Entry> {
 	
@@ -77,22 +80,19 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 		
 		// search for blocks in working range and sum them up
 		Collection<Block> compensationBlocks = CrystalApothecarySimulationsDataLoader.COMPENSATIONS.keySet();
-		for (BlockPos pos : BlockPos.withinManhattan(blockPos, RANGE, RANGE, RANGE)) {
-			if (!blockPos.closerThan(pos, RANGE)) {
-				continue;
-			}
-			
-			BlockState state = world.getBlockState(pos);
+		
+		streamAffectedBlocks(blockPos).forEach(currPos -> {
+			BlockState state = world.getBlockState(currPos);
 			Block block = state.getBlock();
 			if (compensationBlocks.contains(block)) {
-				int validBlocks = countValidGemstoneClusterBlocksAroundBlockPos(world, pos, CrystalApothecarySimulationsDataLoader.COMPENSATIONS.get(block).validNeighbors());
+				int validBlocks = countValidGemstoneClusterBlocksAroundBlockPos(world, currPos, CrystalApothecarySimulationsDataLoader.COMPENSATIONS.get(block).validNeighbors());
 				if (matches.containsKey(block)) {
 					matches.put(block, matches.get(block) + validBlocks);
 				} else {
 					matches.put(block, validBlocks);
 				}
 			}
-		}
+		});
 		
 		List<ItemStack> needsAwarding = new ArrayList<>();
 		int totalNeedsAwarding = 0;
@@ -313,17 +313,19 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 	
 	protected void harvestExistingClusters() {
 		if (level instanceof ServerLevel serverWorld) {
-			for (BlockPos currPos : BlockPos.withinManhattan(this.worldPosition, RANGE, RANGE, RANGE)) {
-				if (!currPos.closerThan(worldPosition, RANGE)) {
-					continue;
-				}
-				
+			streamAffectedBlocks(this.worldPosition).forEach(currPos -> {
 				if (level.getBlockState(currPos).is(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
-					this.blockPosEventTransferListener.acceptEvent(serverWorld,
+					blockPosEventTransferListener.acceptEvent(serverWorld,
 							new GameEvent.ListenerInfo(SpectrumGameEvents.BLOCK_CHANGED, Vec3.atCenterOf(currPos), GameEvent.Context.of(level.getBlockState(currPos)),
-									this.blockPosEventTransferListener, Vec3.atCenterOf(this.worldPosition)), Vec3.atCenterOf(this.worldPosition));
+									blockPosEventTransferListener, Vec3.atCenterOf(worldPosition)), Vec3.atCenterOf(worldPosition));
 				}
-			}
+			});
 		}
 	}
+	
+	private static @NotNull Stream<BlockPos> streamAffectedBlocks(BlockPos worldPosition) {
+		return BlockPos.withinManhattanStream(worldPosition, RANGE, RANGE, RANGE)
+				.filter(blockPos -> blockPos.closerThan(worldPosition, RANGE));
+	}
+	
 }

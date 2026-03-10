@@ -31,17 +31,19 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 import java.util.function.*;
 
-public class MalachiteBidentItem extends TridentItem implements Preenchanted, ExpandedStatTooltip, ArmorPiercingItem, ActivatableItem {
+public class MalachiteBidentItem extends TridentItem implements Preenchanted, ExpandedStatTooltip, ArmorPiercingItem {
 	
+	private final boolean hasActiveAbilities;
 	private final float armorPierce, protPierce;
 	
-	public MalachiteBidentItem(Item.Properties settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
+	public MalachiteBidentItem(Item.Properties settings, double attackSpeed, double damage, float armorPierce, float protPierce, boolean hasActiveAbilities) {
 		super(settings.attributes(ItemAttributeModifiers.builder()
 				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, damage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
 				.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
 				.build()));
 		this.armorPierce = armorPierce;
 		this.protPierce = protPierce;
+		this.hasActiveAbilities = hasActiveAbilities;
 	}
 	
 	@Override
@@ -53,7 +55,7 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
 		ItemStack handStack = user.getItemInHand(hand);
 		
-		if (user.isShiftKeyDown()) {
+		if (hasActiveAbilities && user.isShiftKeyDown()) {
 			boolean newActivated = !ActivatableItem.isActivated(handStack);
 			if(newActivated) {
 				ActivatableItem.setActivated(handStack, true);
@@ -165,10 +167,12 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-		if (ActivatableItem.isActivated(stack)) {
-			tooltip.add(Component.translatable("item.spectrum.bident.tooltip.enabled").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-		} else {
-			tooltip.add(Component.translatable("item.spectrum.bident.tooltip.disabled").withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
+		if(hasActiveAbilities) {
+			if (ActivatableItem.isActivated(stack)) {
+				tooltip.add(Component.translatable("item.spectrum.bident.tooltip.enabled").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+			} else {
+				tooltip.add(Component.translatable("item.spectrum.bident.tooltip.disabled").withStyle(ChatFormatting.RED, ChatFormatting.ITALIC));
+			}
 		}
 	}
 	

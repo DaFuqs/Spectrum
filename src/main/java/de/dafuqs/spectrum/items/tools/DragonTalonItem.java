@@ -31,7 +31,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	private final ItemAttributeModifiers modifiers;
 	
 	public DragonTalonItem(Tier toolMaterial, double damage, double extraReach, Item.Properties settings) {
-		super(settings, 0, 0, 0, 0);
+		super(settings, 0, 0, 0, 0, false);
 		this.modifiers = ItemAttributeModifiers.builder()
 				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, damage + toolMaterial.getAttackDamageBonus(), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
 				.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -2.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)

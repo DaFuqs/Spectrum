@@ -540,7 +540,7 @@ public class SpectrumBlocks {
 			.withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(BottomlessBundleBlock.LOCKED, ModelLocationUtils.getModelLocation(block, "_locked"), ModelLocationUtils.getModelLocation(block, "_unlocked"))))
 			.withPredefinedItemModel());
 	
-	public static final DeferredBlock<Block> PERSISTENT_LIGHT = register(singleton(block("persistent_light", () -> new PersistentLightBlock(BlockBehaviour.Properties.ofFullCopy(LIGHT).sound(SpectrumSoundTypes.LIGHT).instabreak())), SpectrumTexturedModelProviders.particle(SpectrumTextures.SHIMMERSTONE_LIGHT)));
+	public static final DeferredBlock<Block> PERSISTENT_LIGHT = register(singleton(block("persistent_light", () -> new PersistentLightBlock(BlockBehaviour.Properties.ofFullCopy(LIGHT).air().sound(SpectrumSoundTypes.LIGHT).instabreak())), SpectrumTexturedModelProviders.particle(SpectrumTextures.SHIMMERSTONE_LIGHT)));
 	public static final DeferredBlock<Block> TRANSIENT_LIGHT = register(parented(block("transient_light", () -> new TransientLightBlock(BlockBehaviour.Properties.ofFullCopy(PERSISTENT_LIGHT.get()).randomTicks())), b -> PERSISTENT_LIGHT.get()));
 	
 	private static BlockBehaviour.Properties decay(MapColor mapColor, SoundType soundGroup, float strength, float resistance, PushReaction pistonBehavior) {
@@ -743,7 +743,7 @@ public class SpectrumBlocks {
 	public static final float ASH_STRENGTH = 2F;
 	
 	public static BlockBehaviour.Properties ash(SoundType soundGroup) {
-		return settings(MapColor.QUARTZ, soundGroup, ASH_STRENGTH).requiresCorrectToolForDrops();
+		return settings(MapColor.QUARTZ, soundGroup, ASH_STRENGTH);
 	}
 	
 	public static final DeferredBlock<Block> ASHEN_BLACKSLAG = register(singleton(blockWithItem("ashen_blackslag", () -> new RotatedPillarBlock(blackslag(SoundType.DEEPSLATE).mapColor(MapColor.QUARTZ)), InkColors.LIGHT_GRAY), SpectrumTexturedModelProviders.cubeBottomTopParticle(b -> b, "_side", b -> b, "_top", b -> BLACKSLAG.get(), "_top", b -> b, "_top")));

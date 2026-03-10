@@ -44,35 +44,30 @@ public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
 	@Override
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (random.nextFloat() < 0.1F) {
-			var reference = BlockReference.of(state, pos);
-			var form = reference.getProperty(FORM);
+			var form = state.getValue(FORM);
 			
 			if (form == Form.SPRIG) {
-				reference.setProperty(FORM, Form.RESIN);
-				reference.update(world);
+				world.setBlockAndUpdate(pos, state.setValue(FORM, Form.RESIN));
 			} else {
 				for (ItemStack rareStack : getResinStacks(state, world, pos, ItemStack.EMPTY, SpectrumLootTableKeys.WEEPING_GALA_SPRIG_RESIN)) {
 					popResource(world, pos, rareStack);
 				}
 				world.playSound(null, pos, SoundEvents.BEEHIVE_DRIP, SoundSource.BLOCKS, 1, 0.9F + random.nextFloat() * 0.2F);
-				reference.setProperty(FORM, Form.SPRIG);
-				reference.update(world);
+				world.setBlockAndUpdate(pos, state.setValue(FORM, Form.SPRIG));
 			}
 		}
 	}
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		var reference = BlockReference.of(state, pos);
-		if (reference.getProperty(FORM) == Form.RESIN) {
+		if (state.getValue(FORM) == Form.RESIN) {
 			if (!world.isClientSide()) {
 				for (ItemStack rareStack : getResinStacks(state, (ServerLevel) world, pos, player.getMainHandItem(), SpectrumLootTableKeys.WEEPING_GALA_SPRIG_RESIN)) {
 					popResource(world, pos, rareStack);
 				}
 			}
 			world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1, 0.9F + world.getRandom().nextFloat() * 0.2F);
-			reference.setProperty(FORM, Form.SPRIG);
-			reference.update(world);
+			world.setBlockAndUpdate(pos, state.setValue(FORM, Form.SPRIG));
 			
 			return InteractionResult.sidedSuccess(world.isClientSide());
 		}
@@ -81,7 +76,7 @@ public class WeepingGalaFrondsTipBlock extends WeepingGalaFrondsBlock {
 	}
 	
 	public static List<ItemStack> getResinStacks(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack, ResourceKey<LootTable> lootTableKey) {
-		var builder = (new LootParams.Builder(world))
+		var builder = new LootParams.Builder(world)
 				.withParameter(LootContextParams.BLOCK_STATE, state)
 				.withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
 				.withParameter(LootContextParams.TOOL, stack);

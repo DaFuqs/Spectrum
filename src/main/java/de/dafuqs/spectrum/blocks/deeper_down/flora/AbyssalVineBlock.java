@@ -41,50 +41,47 @@ public class AbyssalVineBlock extends TriStateVineBlock {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		var reference = BlockReference.of(state, pos);
-		var superSucc = super.useWithoutItem(state, world, pos, player, hit);
+		InteractionResult result = super.useWithoutItem(state, world, pos, player, hit);
 		
-		if (superSucc.indicateItemUse()) {
-			return superSucc;
+		if (result.indicateItemUse()) {
+			return result;
 		}
 		
-		if (!reference.getProperty(BERRIES))
+		if (!state.getValue(BERRIES))
 			return InteractionResult.FAIL;
 		
-		reference.setProperty(BERRIES, false);
-		reference.update(world);
+		state = state.setValue(BERRIES, false);
+		world.setBlockAndUpdate(pos, state);
 		world.playSound(null, pos, SoundEvents.CAVE_VINES_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.8F, 1.2F));
 		player.getInventory().placeItemBackInInventory(SpectrumItems.FISSURE_PLUM.get().getDefaultInstance());
 		
-		world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, reference.getState()));
+		world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, state));
 		return InteractionResult.SUCCESS;
 	}
 	
 	@Override
 	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-		var reference = BlockReference.of(state, pos);
 		var growthChance = 0.8F;
 		
 		for (int offset = 0; true; offset++) {
-			var ref = BlockReference.of(world, pos.offset(0, offset, 0));
+			BlockState currentState = world.getBlockState(pos.offset(0, offset, 0));
 			
-			if (ref.isOf(SpectrumBlocks.SHALE_CLAY.get()))
+			if (currentState.is(SpectrumBlocks.SHALE_CLAY.get()))
 				return;
 			
-			if (ref.isIn(SpectrumBlockTags.GROWTH_ACCELERATORS)) {
+			if (currentState.is(SpectrumBlockTags.GROWTH_ACCELERATORS)) {
 				growthChance = 0.5F;
 			}
 			
-			if (!ref.isOf(this))
+			if (!currentState.is(this))
 				break;
 		}
 		
 		if (random.nextFloat() < growthChance)
 			return;
 		
-		if (!reference.getProperty(BERRIES))
-			tryGrowBerries(reference, world);
-		reference.update(world);
+		if (!state.getValue(BERRIES))
+			tryGrowBerries(state, world, pos);
 	}
 	
 	@Override
@@ -102,31 +99,28 @@ public class AbyssalVineBlock extends TriStateVineBlock {
 		return true;
 	}
 	
-	public void tryGrowBerries(BlockReference reference, Level world) {
+	public void tryGrowBerries(BlockState state, Level world, BlockPos pos) {
 		int berryCount = 0;
 		
 		for (int i = 0; i < 3; i++) {
-			var uRef = BlockReference.of(world, reference.pos.offset(0, i, 0));
-			var dRef = BlockReference.of(world, reference.pos.offset(0, -i, 0));
+			var uRef = world.getBlockState(pos.offset(0, i, 0));
+			var dRef = world.getBlockState(pos.offset(0, -i, 0));
 			
 			berryCount += checkForBerries(uRef);
 			berryCount += checkForBerries(dRef);
 			
-			if (i == 1 && (reference.pos.getY() % 5 == 0 && berryCount == 2) || (reference.pos.getY() % 7 == 0 && berryCount == 1))
+			if (i == 1 && (pos.getY() % 5 == 0 && berryCount == 2) || (pos.getY() % 7 == 0 && berryCount == 1))
 				return;
 		}
 		
 		if (berryCount >= 3)
 			return;
 		
-		reference.setProperty(BERRIES, true);
+		world.setBlockAndUpdate(pos, state.setValue(BERRIES, true));
 	}
 	
-	private int checkForBerries(BlockReference ref) {
-		if (ref.isOf(this) && ref.getProperty(BERRIES)) {
-			return 1;
-		}
-		return 0;
+	private int checkForBerries(BlockState ref) {
+		return ref.is(this) && ref.getValue(BERRIES) ? 1 : 0;
 	}
 	
 	@Override

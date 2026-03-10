@@ -147,16 +147,16 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 						}
 					}
 					case SEALED -> {
+						if (player.isCreative() && player.getMainHandItem().is(SpectrumItems.PAINTBRUSH)) {
+							player.displayClientMessage(Component.translatable("block.spectrum.titration_barrel.debug_added_day"), true);
+							barrelEntity.addOneDayOfSealTime();
+							world.playSound(null, pos, SpectrumSoundEvents.NEW_RECIPE, SoundSource.BLOCKS, 1.0F, 1.0F);
+						}
+						
 						// player is able to query the days the barrel already ferments
 						// or open it with a shift-click
 						var recipe = barrelEntity.getRecipeForInventory(world);
 						if (recipe.isPresent()) {
-							if (player.isCreative() && player.getMainHandItem().is(SpectrumItems.PAINTBRUSH)) {
-								player.displayClientMessage(Component.translatable("block.spectrum.titration_barrel.debug_added_day"), true);
-								barrelEntity.addOneDayOfSealTime();
-								world.playSound(null, pos, SpectrumSoundEvents.NEW_RECIPE, SoundSource.BLOCKS, 1.0F, 1.0F);
-							}
-							
 							// funky check to allow shenanigans when sealing it when changing the computer's clock to the past
 							long sealSeconds = barrelEntity.getSealSeconds();
 							if (sealSeconds >= 0 && !recipe.get().value().isFermentingLongEnoughToTap(barrelEntity.getSealSeconds())) {

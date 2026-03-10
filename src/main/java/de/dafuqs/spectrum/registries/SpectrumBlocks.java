@@ -43,7 +43,6 @@ import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.redstone.*;
-import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
@@ -561,19 +560,6 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> RUIN = register(decay(block("ruin", () -> new RuinBlock(decay(MapColor.COLOR_BLACK, SoundType.STONE, 100.0F, 3600000.0F, PushReaction.BLOCK)))));
 	public static final DeferredBlock<Block> FORFEITURE = register(decay(block("forfeiture", () -> new ForfeitureBlock(decay(MapColor.COLOR_BLACK, SoundType.STONE, 100.0F, 3600000.0F, PushReaction.BLOCK)))));
 	public static final DeferredBlock<Block> DECAY_AWAY = register(simple(block("decay_away", () -> new DecayAwayBlock(BlockBehaviour.Properties.ofFullCopy(DIRT).pushReaction(PushReaction.DESTROY)))));
-	
-	// ROCK CANDY
-	private static BlockBehaviour.Properties rockCandy(Block block) {
-		return BlockBehaviour.Properties.ofFullCopy(block).pushReaction(PushReaction.DESTROY).destroyTime(0.5F).lightLevel(ROCK_CANDY_LUMINANCE).randomTicks();
-	}
-	
-	private static final ToIntFunction<BlockState> ROCK_CANDY_LUMINANCE = state -> Math.max(15, state.getValue(BlockStateProperties.AGE_2) * 3 + (state.getValue(SugarStickBlock.LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? LiquidCrystalFluidBlock.LUMINANCE : 8));
-	public static final DeferredBlock<Block> SUGAR_STICK = register(sugarStick(blockWithItem("sugar_stick", () -> new SugarStickBlock(rockCandy(SMALL_AMETHYST_BUD), RockCandy.RockCandyVariant.SUGAR), InkColors.PINK), b -> b));
-	public static final DeferredBlock<Block> TOPAZ_SUGAR_STICK = register(sugarStick(blockWithItem("topaz_sugar_stick", () -> new SugarStickBlock(rockCandy(SMALL_TOPAZ_BUD.get()), RockCandy.RockCandyVariant.TOPAZ), InkColors.PINK), b -> TOPAZ_GLASS.get()));
-	public static final DeferredBlock<Block> AMETHYST_SUGAR_STICK = register(sugarStick(blockWithItem("amethyst_sugar_stick", () -> new SugarStickBlock(rockCandy(SMALL_AMETHYST_BUD), RockCandy.RockCandyVariant.AMETHYST), InkColors.PINK), b -> AMETHYST_GLASS.get()));
-	public static final DeferredBlock<Block> CITRINE_SUGAR_STICK = register(sugarStick(blockWithItem("citrine_sugar_stick", () -> new SugarStickBlock(rockCandy(SMALL_CITRINE_BUD.get()), RockCandy.RockCandyVariant.CITRINE), InkColors.PINK), b -> CITRINE_GLASS.get()));
-	public static final DeferredBlock<Block> ONYX_SUGAR_STICK = register(sugarStick(blockWithItem("onyx_sugar_stick", () -> new SugarStickBlock(rockCandy(SMALL_ONYX_BUD.get()), RockCandy.RockCandyVariant.ONYX), InkColors.PINK), b -> ONYX_GLASS.get()));
-	public static final DeferredBlock<Block> MOONSTONE_SUGAR_STICK = register(sugarStick(blockWithItem("moonstone_sugar_stick", () -> new SugarStickBlock(rockCandy(SMALL_MOONSTONE_BUD.get()), RockCandy.RockCandyVariant.MOONSTONE), InkColors.PINK), b -> MOONSTONE_GLASS.get()));
 	
 	// PASTEL NETWORK
 	private static BlockBehaviour.Properties pastelNode(SoundType soundGroup) {

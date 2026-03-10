@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
-import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.*;
@@ -40,6 +39,7 @@ import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.bus.api.*;
+import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
@@ -269,12 +269,19 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> JADEITE_PETALS = register("jadeite_petals", () -> new Item(IS.of(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> BLOOD_ORCHID_PETAL = register("blood_orchid_petal", () -> new CloakedItem(IS.of(), SpectrumAdvancements.REVEAL_BLOOD_ORCHID_PETALS, RED_DYE));
 	
-	public static final DeferredItem<Item> ROCK_CANDY = register("rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.SUGAR));
-	public static final DeferredItem<Item> TOPAZ_ROCK_CANDY = register("topaz_rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ));
-	public static final DeferredItem<Item> AMETHYST_ROCK_CANDY = register("amethyst_rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.AMETHYST_ROCK_CANDY), RockCandy.RockCandyVariant.AMETHYST));
-	public static final DeferredItem<Item> CITRINE_ROCK_CANDY = register("citrine_rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.CITRINE_ROCK_CANDY), RockCandy.RockCandyVariant.CITRINE));
-	public static final DeferredItem<Item> ONYX_ROCK_CANDY = register("onyx_rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.ONYX_ROCK_CANDY), RockCandy.RockCandyVariant.ONYX));
-	public static final DeferredItem<Item> MOONSTONE_ROCK_CANDY = register("moonstone_rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.MOONSTONE_ROCK_CANDY), RockCandy.RockCandyVariant.MOONSTONE));
+	public static final DeferredItem<Item> SUGAR_STICK = register("sugar_stick", () -> new RockCandyItem(IS.of(), RockCandyItem.RockCandyVariant.SUGAR, false));
+	public static final DeferredItem<Item> TOPAZ_SUGAR_STICK = register("topaz_sugar_stick", () -> new RockCandyItem(IS.of(), RockCandyItem.RockCandyVariant.TOPAZ, false));
+	public static final DeferredItem<Item> AMETHYST_SUGAR_STICK = register("amethyst_sugar_stick", () -> new RockCandyItem(IS.of(), RockCandyItem.RockCandyVariant.AMETHYST, false));
+	public static final DeferredItem<Item> CITRINE_SUGAR_STICK = register("citrine_sugar_stick", () -> new RockCandyItem(IS.of(), RockCandyItem.RockCandyVariant.CITRINE, false));
+	public static final DeferredItem<Item> ONYX_SUGAR_STICK = register("onyx_sugar_stick", () -> new RockCandyItem(IS.of(), RockCandyItem.RockCandyVariant.ONYX, false));
+	public static final DeferredItem<Item> MOONSTONE_SUGAR_STICK = register("moonstone_sugar_stick", () -> new RockCandyItem(IS.of(), RockCandyItem.RockCandyVariant.MOONSTONE, false));
+	
+	public static final DeferredItem<Item> ROCK_CANDY = register("rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.ROCK_CANDY), RockCandyItem.RockCandyVariant.SUGAR, true));
+	public static final DeferredItem<Item> TOPAZ_ROCK_CANDY = register("topaz_rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandyItem.RockCandyVariant.TOPAZ, true));
+	public static final DeferredItem<Item> AMETHYST_ROCK_CANDY = register("amethyst_rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.AMETHYST_ROCK_CANDY), RockCandyItem.RockCandyVariant.AMETHYST, true));
+	public static final DeferredItem<Item> CITRINE_ROCK_CANDY = register("citrine_rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.CITRINE_ROCK_CANDY), RockCandyItem.RockCandyVariant.CITRINE, true));
+	public static final DeferredItem<Item> ONYX_ROCK_CANDY = register("onyx_rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.ONYX_ROCK_CANDY), RockCandyItem.RockCandyVariant.ONYX, true));
+	public static final DeferredItem<Item> MOONSTONE_ROCK_CANDY = register("moonstone_rock_candy", () -> new RockCandyItem(IS.of().food(SpectrumFoodComponents.MOONSTONE_ROCK_CANDY), RockCandyItem.RockCandyVariant.MOONSTONE, true));
 	
 	public static final DeferredItem<Item> BLOODBOIL_SYRUP = register("bloodboil_syrup", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.BLOODBOIL_SYRUP).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> MILKY_RESIN = register("milky_resin", () -> new Item(IS.of(Rarity.UNCOMMON)));
@@ -398,13 +405,13 @@ public class SpectrumItems {
 	
 	// Spawning items
 	public static final DeferredItem<Item> BUCKET_OF_ERASER = register("bucket_of_eraser", () -> new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER.get(), Fluids.EMPTY, SoundEvents.BUCKET_EMPTY, IS.of(1)));
-	public static final DeferredItem<Item> EGG_LAYING_WOOLY_PIG_SPAWN_EGG = register("egg_laying_wooly_pig_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.get(), 0x3a2c38, 0xfff2e0, IS.of()));
-	public static final DeferredItem<Item> PRESERVATION_TURRET_SPAWN_EGG = register("preservation_turret_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET.get(), 0xf3f6f8, 0xc8c5be, IS.of()));
-	public static final DeferredItem<Item> KINDLING_SPAWN_EGG = register("kindling_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.KINDLING.get(), 0xda4261, 0xffd452, IS.of()));
-	public static final DeferredItem<Item> LIZARD_SPAWN_EGG = register("lizard_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.LIZARD.get(), 0x896459, 0x503a40, IS.of()));
-	public static final DeferredItem<Item> ERASER_SPAWN_EGG = register("eraser_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.ERASER.get(), 0x200d29, 0xc83e93, IS.of()));
-	public static final DeferredItem<Item> MARROW_SPAWN_EGG = register("marrow_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.MARROW.get(), 0x908188, 0xe2762f, IS.of()));
-	public static final DeferredItem<Item> SPLINTERSPAWN_SPAWN_EGG = register("splinterspawn_spawn_egg", () -> new SpawnEggItem(SpectrumEntityTypes.SPLINTERSPAWN.get(), 0x7b6b75, 0xf6db6f, IS.of()));
+	public static final DeferredItem<Item> EGG_LAYING_WOOLY_PIG_SPAWN_EGG = register("egg_laying_wooly_pig_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x3a2c38, 0xfff2e0, IS.of()));
+	public static final DeferredItem<Item> PRESERVATION_TURRET_SPAWN_EGG = register("preservation_turret_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET, 0xf3f6f8, 0xc8c5be, IS.of()));
+	public static final DeferredItem<Item> KINDLING_SPAWN_EGG = register("kindling_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.KINDLING, 0xda4261, 0xffd452, IS.of()));
+	public static final DeferredItem<Item> LIZARD_SPAWN_EGG = register("lizard_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.LIZARD, 0x896459, 0x503a40, IS.of()));
+	public static final DeferredItem<Item> ERASER_SPAWN_EGG = register("eraser_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.ERASER, 0x200d29, 0xc83e93, IS.of()));
+	public static final DeferredItem<Item> MARROW_SPAWN_EGG = register("marrow_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.MARROW, 0x908188, 0xe2762f, IS.of()));
+	public static final DeferredItem<Item> SPLINTERSPAWN_SPAWN_EGG = register("splinterspawn_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.SPLINTERSPAWN, 0x7b6b75, 0xf6db6f, IS.of()));
 	
 	// Magical Tools
 	public static final DeferredItem<Item> BAG_OF_HOLDING = register("bag_of_holding", () -> new BagOfHoldingItem(IS.of(1)));

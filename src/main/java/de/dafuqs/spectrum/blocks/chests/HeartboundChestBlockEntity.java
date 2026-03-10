@@ -141,15 +141,16 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	@Override
 	public boolean canOpen(Player player) {
-		boolean isOwner = this.getOwnerUUID().equals(player.getUUID());
+		Level level = this.getLevel();
+		boolean isOwnerOrSameTeamAsOwner = isOwnerOrSameTeamAsOwner(player);
 		
-		if (!isOwner && this.getLevel() != null) {
+		if (level != null && !isOwnerOrSameTeamAsOwner) {
 			this.lastNonOwnerOpenedTick = this.getLevel().getGameTime();
 			updateRedstone(this.worldPosition, this.getLevel().getBlockState(worldPosition));
 			player.displayClientMessage(Component.translatable("block.spectrum.heartbound_chest.owner", this.ownerName), true);
 		}
 		
-		return isOwner;
+		return isOwnerOrSameTeamAsOwner;
 	}
 	
 	public boolean wasRecentlyTriedToOpenByNonOwner() {

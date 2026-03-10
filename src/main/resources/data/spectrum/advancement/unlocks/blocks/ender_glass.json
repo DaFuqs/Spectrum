@@ -1,5 +1,11 @@
 {
   "criteria": {
+    "placed_pedestal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:place_pedestal"
+      }
+    },
     "gotten_radiating_ender": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

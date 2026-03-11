@@ -45,20 +45,6 @@ public abstract class InGameHudMixin {
 			ci.cancel();
 	}
 	
-	@Inject(method = "renderItemHotbar", at = @At("HEAD"), cancellable = true)
-	private void spectrum$disableHotbarSomnolence(GuiGraphics context, DeltaTracker tickCounter, CallbackInfo ci) {
-		var potency = SleepMobEffect.getSleepScaling(getCameraPlayer());
-		if (potency > 0.4F)
-			ci.cancel();
-	}
-	
-	@Inject(method = "renderPlayerHealth", at = @At("HEAD"), cancellable = true)
-	private void spectrum$disableStatusSomnolence(GuiGraphics context, CallbackInfo ci) {
-		var potency = SleepMobEffect.getSleepScaling(getCameraPlayer());
-		if (potency > 0.4F)
-			ci.cancel();
-	}
-	
 	@ModifyArg(method = "renderEffects", at = @At(value = "INVOKE", target = "net/minecraft/client/gui/GuiGraphics.blitSprite (Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 0))
 	private ResourceLocation modifyAmbientEffectBackgrounds(ResourceLocation texture, @Local MobEffectInstance effect) {
 		return MobEffectHelper.getTextureLocation(texture, effect, MobEffectHelper.RenderType.HUD_AMBIENT);

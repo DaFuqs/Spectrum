@@ -292,32 +292,6 @@ public abstract class LivingEntityMixin {
 		return Optional.of(new Tuple<>(ap, stack));
 	}
 	
-	@Inject(method = "tickEffects", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;remove()V"))
-	private void spectrum$fatalSlumberKill(CallbackInfo ci, @Local MobEffectInstance effectInstance) {
-		if (effectInstance.getEffect() == SpectrumMobEffects.FATAL_SLUMBER) {
-			var entity = (LivingEntity) (Object) this;
-			
-			if (entity.level().isClientSide())
-				return;
-			
-			if (entity.isSpectator() || entity instanceof Player player && player.getAbilities().instabuild)
-				return;
-			
-			var damage = Float.MAX_VALUE;
-			if (SleepMobEffect.isImmuneish(entity)) {
-				if (entity instanceof Player)
-					damage = entity.getHealth() * 0.95F;
-				else
-					damage = entity.getMaxHealth() * 0.3F;
-			}
-			
-			entity.hurt(SpectrumDamageTypes.sleep(entity.level(), null), damage);
-			if (entity.isAlive() && entity instanceof ServerPlayer serverPlayerEntity && !serverPlayerEntity.isCreative()) {
-				Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/survive_fatal_slumber", "survived_fatal_slumber");
-			}
-		}
-	}
-	
 	/**
 	 * We do not force player sleeping because that would do funny things to the sleep cycle
 	 */

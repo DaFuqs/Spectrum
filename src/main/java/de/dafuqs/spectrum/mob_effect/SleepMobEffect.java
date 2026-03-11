@@ -24,7 +24,6 @@ public class SleepMobEffect extends MobEffect {
 	// oh my god
 	// TODO: can the tag check be implemented into the entities base attribute modifier somehow?
 	public static float getSleepResistance(@Nullable MobEffectInstance sleepEffect, LivingEntity entity) {
-		
 		var type = entity.getType();
 		
 		if (sleepEffect == null || type.is(SpectrumEntityTypeTags.SOULLESS))

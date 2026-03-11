@@ -52,8 +52,7 @@ public class NightfallsBladeItem extends TieredItem implements InkPoweredPotionF
 	
 	@Override
 	public long adjustFinalCostFor(@NotNull InkPoweredStatusEffectInstance instance) {
-		var mod = MobEffectHelper.isStrongSleepEffect(instance) ? 1 : 0;
-		return Math.round(Math.pow(instance.getInkCost().cost(), 1.75 + instance.getStatusEffectInstance().getAmplifier() + mod));
+		return Math.round(Math.pow(instance.getInkCost().cost(), 1.75 + instance.getStatusEffectInstance().getAmplifier()));
 	}
 	
 	@Override

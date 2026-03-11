@@ -119,6 +119,33 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
+	public static void fatalSlumberKill(MobEffectEvent.Expired event) {
+		MobEffectInstance effectInstance = event.getEffectInstance();
+		if (effectInstance.getEffect().value() == SpectrumMobEffects.FATAL_SLUMBER.value()) {
+			LivingEntity entity = event.getEntity();
+			
+			if (entity.level().isClientSide())
+				return;
+			
+			if (entity.isSpectator() || entity instanceof Player player && player.getAbilities().instabuild)
+				return;
+			
+			float damage = Float.MAX_VALUE;
+			if (SleepMobEffect.isImmuneish(entity)) {
+				if (entity instanceof Player)
+					damage = entity.getHealth() * 0.95F;
+				else
+					damage = entity.getMaxHealth() * 0.3F;
+			}
+			
+			entity.hurt(SpectrumDamageTypes.sleep(entity.level(), null), damage);
+			if (entity.isAlive() && entity instanceof ServerPlayer serverPlayerEntity && !serverPlayerEntity.isCreative()) {
+				Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/survive_fatal_slumber", "survived_fatal_slumber");
+			}
+		}
+	}
+	
+	@SubscribeEvent
 	public static void handleInertia(BlockEvent.BreakEvent event) {
 		Player player = event.getPlayer();
 		BlockPos pos = event.getPos();

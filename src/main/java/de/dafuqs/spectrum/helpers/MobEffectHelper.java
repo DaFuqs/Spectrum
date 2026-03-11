@@ -27,14 +27,6 @@ public class MobEffectHelper {
 	public static int getExtendedDuration(int originalDuration, int prolongingAmplifier) {
 		return (int) (originalDuration * (1 + ADDITIONAL_EFFECT_DURATION_MODIFIER_PER_LEVEL * (1 + prolongingAmplifier)));
 	}
-	
-	public static boolean isStrongSleepEffect(MobEffectInstance instance) {
-		return instance.getEffect() == SpectrumMobEffects.ETERNAL_SLUMBER || instance.getEffect() == SpectrumMobEffects.FATAL_SLUMBER;
-	}
-	
-	public static boolean isStrongSleepEffect(InkPoweredStatusEffectInstance instance) {
-		return isStrongSleepEffect(instance.getStatusEffectInstance());
-	}
 
     public static void clearRandomEffect(@NotNull LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
         Collection<MobEffectInstance> currentEffects = entity.getActiveEffects();

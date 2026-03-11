@@ -16,7 +16,7 @@ import java.util.*;
 public class AscensionMobEffect extends MobEffect {
 	
 	public static final int MUSIC_DURATION_TICKS = 288 * 20;
-	public static final int MUSIC_INTRO_TICKS = 56 * 20; // 56 seconds
+	public static final int MUSIC_INTRO_TICKS = 1130; // 56.5 seconds
 	
 	private static boolean applyDivinity = false;
 	

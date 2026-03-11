@@ -11,7 +11,8 @@ import net.minecraft.world.entity.player.*;
 
 public class DivinitySoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
-	private static int instances = 0;
+	private static DivinitySoundInstance INSTANCE = null;
+	
 	private int time = 0;
 	private boolean done;
 	
@@ -20,8 +21,13 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 		this.looping = true;
 		this.delay = 0;
 		this.volume = 0.8F;
-		instances++;
-		Minecraft.getInstance().getSoundManager().stop(null, SoundSource.MUSIC);
+		
+		if(INSTANCE == null) {
+			INSTANCE = this;
+			Minecraft.getInstance().getSoundManager().stop(null, SoundSource.MUSIC);
+		} else {
+			setDone();
+		}
 	}
 	
 	@Override
@@ -44,7 +50,7 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 			this.volume = 0.5F + ((float) time / AscensionMobEffect.MUSIC_INTRO_TICKS) * 0.2F;
 		}
 		Player player = client.player;
-		if (instances > 1 || player == null || !(player.hasEffect(SpectrumMobEffects.ASCENSION) || player.hasEffect(SpectrumMobEffects.DIVINITY))) {
+		if (INSTANCE != this || player == null || !(player.hasEffect(SpectrumMobEffects.ASCENSION) || player.hasEffect(SpectrumMobEffects.DIVINITY))) {
 			this.setDone();
 		} else {
 			this.x = ((float) player.getX());
@@ -56,6 +62,8 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 	protected final void setDone() {
 		this.done = true;
 		this.looping = false;
-		instances--;
+		if(INSTANCE == this) {
+			INSTANCE = null;
+		}
 	}
 }

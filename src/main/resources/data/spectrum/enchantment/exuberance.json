@@ -24,7 +24,7 @@
       {
         "effect": {
           "type": "minecraft:multiply",
-          "factor": 1.25
+          "factor": 1.5
         }
       }
     ],
@@ -32,7 +32,7 @@
       {
         "effect": {
           "type": "minecraft:multiply",
-          "factor": 1.25
+          "factor": 1.5
         }
       }
     ]

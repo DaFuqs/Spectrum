@@ -804,17 +804,6 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void onDropExperience(LivingExperienceDropEvent event) {
-		if(!event.isCanceled()) {
-			Player attackingPlayer = event.getAttackingPlayer();
-			float exuberanceMod = ExuberanceHelper.getExuberanceMod(attackingPlayer);
-			if(exuberanceMod > 0) {
-				event.setDroppedExperience((int) (exuberanceMod * event.getDroppedExperience()));
-			}
-		}
-	}
-	
-	@SubscribeEvent
 	private static void onEntityAttributeModification(EntityAttributeModificationEvent event) {
 		for(EntityType<? extends LivingEntity> et : event.getTypes()) {
 			event.add(et, SpectrumEntityAttributes.MENTAL_PRESENCE);

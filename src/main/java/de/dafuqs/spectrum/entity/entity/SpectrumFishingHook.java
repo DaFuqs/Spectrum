@@ -4,6 +4,7 @@ import com.mojang.logging.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.helpers.enchantments.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.loot.*;
@@ -25,6 +26,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -445,25 +447,27 @@ public abstract class SpectrumFishingHook extends FishingHook {
 		
 		if (level().getServer() == null) return;
 		LootTable lootTable = this.level().getServer().reloadableRegistries().getLootTable(SpectrumLootTableKeys.UNIVERSAL_FISHING);
-		List<ItemStack> list = lootTable.getRandomItems(lootContextParameterSet);
-		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayer) playerEntity, usedItem, this, null, list);
+		List<ItemStack> fishedStacks = lootTable.getRandomItems(lootContextParameterSet);
+		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayer) playerEntity, usedItem, this, null, fishedStacks);
 		
-		for (ItemStack itemStack : list) {
+		for (ItemStack itemStack : fishedStacks) {
 			if (itemStack.is(ItemTags.FISHES)) {
 				playerEntity.awardStat(Stats.FISH_CAUGHT, 1);
 			}
 		}
 		
 		if (isAblaze()) {
-			list = FoundryHelper.applyFoundry(this.level(), list);
+			fishedStacks = FoundryHelper.applyFoundry(this.level(), fishedStacks); // TODO: use vanilla method
 		}
 		
-		float exuberanceMod = ExuberanceHelper.getExuberanceMod(this.exuberanceLevel);
-		for (ItemStack itemStack : list) {
-			int experienceAmount = this.random.nextInt((int) (6 * exuberanceMod) + 1);
+		for (ItemStack fishedStack : fishedStacks) {
+			int experienceAmount = this.random.nextInt(6) + 1;
+			
+			ItemStack rod = playerEntity.getMainHandItem().getItem() instanceof SpectrumFishingRodItem ? playerEntity.getMainHandItem() : playerEntity.getOffhandItem();
+			experienceAmount = EnchantmentHelper.processBlockExperience((ServerLevel) level(), rod, experienceAmount);
 			
 			if (this.inventoryInsertion) {
-				playerEntity.getInventory().placeItemBackInInventory(itemStack);
+				playerEntity.getInventory().placeItemBackInInventory(fishedStack);
 				playerEntity.giveExperiencePoints(experienceAmount);
 				
 				playerEntity.level().playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(),
@@ -471,7 +475,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 						0.2F, ((playerEntity.getRandom().nextFloat() - playerEntity.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
 			} else {
 				// fireproof item, so it does not burn when fishing in lava
-				ItemEntity itemEntity = new FireproofItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), itemStack);
+				ItemEntity itemEntity = new FireproofItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), fishedStack);
 				double d = playerEntity.getX() - this.getX();
 				double e = playerEntity.getY() - this.getY();
 				double f = playerEntity.getZ() - this.getZ();

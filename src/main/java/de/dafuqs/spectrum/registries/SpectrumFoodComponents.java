@@ -262,6 +262,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodProperties ASHEN_TART = new FoodProperties.Builder()
 			.nutrition(8).saturationModifier(SAT_NORMAL)
+			.effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20 * 30), 1.0F)
 			.effect(new MobEffectInstance(SpectrumStatusEffects.LAVA_GLIDING, 20 * 30), 1.0F)
 			.build();
 	

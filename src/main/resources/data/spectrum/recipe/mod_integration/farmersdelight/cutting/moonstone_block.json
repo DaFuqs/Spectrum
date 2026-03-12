@@ -14,7 +14,7 @@
     }
   ],
   "tool": {
-    "fabric:type": "farmersdelight:item_ability",
+    "type": "farmersdelight:item_ability",
     "action": "pickaxe_dig"
   },
   "neoforge:conditions": [

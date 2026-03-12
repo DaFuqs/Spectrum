@@ -7,39 +7,30 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
+// See: SmeltItemFunction
 public class FoundryHelper {
-	
-	@Nullable
-	public static ItemStack getSmeltedItemStack(ItemStack inputItemStack, Level world) {
-		var drm = world.registryAccess();
-		var input = new SingleRecipeInput(inputItemStack);
-		return world.getRecipeManager().getRecipeFor(RecipeType.SMELTING, input, world)
-				.map(recipe -> {
-					var recipeOutputStack = recipe.value().getResultItem(drm).copy();
-					recipeOutputStack.setCount(recipeOutputStack.getCount() * inputItemStack.getCount());
-					return recipeOutputStack;
-				})
-				.orElse(null);
-	}
 	
 	@NotNull
 	public static List<ItemStack> applyFoundry(Level world, List<ItemStack> originalStacks) {
 		List<ItemStack> returnItemStacks = new ArrayList<>();
 		
-		for (ItemStack is : originalStacks) {
-			ItemStack smeltedStack = FoundryHelper.getSmeltedItemStack(is, world);
-			if (smeltedStack == null) {
-				returnItemStacks.add(is);
-			} else {
-				while (!smeltedStack.isEmpty()) {
-					int currentAmount = Math.min(smeltedStack.getCount(), smeltedStack.getItem().getDefaultMaxStackSize());
-					ItemStack currentStack = smeltedStack.copyWithCount(currentAmount);
-					returnItemStacks.add(currentStack);
-					smeltedStack.setCount(smeltedStack.getCount() - currentAmount);
-				}
+		for (ItemStack stack : originalStacks) {
+			ItemStack smeltedStack = FoundryHelper.getSmeltedItemStack(stack, world);
+			returnItemStacks.add(smeltedStack);
+		}
+		
+		return returnItemStacks;
+	}
+	
+	private static ItemStack getSmeltedItemStack(ItemStack stack, Level world) {
+		Optional<RecipeHolder<SmeltingRecipe>> optionalRecipe = world.getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SingleRecipeInput(stack), world);
+		if (optionalRecipe.isPresent()) {
+			ItemStack itemstack = optionalRecipe.get().value().getResultItem(world.registryAccess());
+			if (!itemstack.isEmpty()) {
+				return itemstack.copyWithCount(stack.getCount() * itemstack.getCount());
 			}
 		}
-		return returnItemStacks;
+		return stack;
 	}
 	
 }

@@ -26,10 +26,12 @@ public class GravityMobEffect extends MobEffect {
 	
 	public static void applyGravityEffect(Entity entity, double additionalYVelocity) {
 		// don't affect creative/spectators/... players or immune boss mobs
-		if (entity.isPushable() && !(entity).isSpectator()) {
+		if (entity.isPushable() && !entity.isSpectator()) {
 			if (!(entity instanceof Player playerEntity && playerEntity.isCreative())) {
 				entity.push(0, additionalYVelocity, 0);
-				// maybe add fall distance, when not touching the ground?
+				if (additionalYVelocity > 0 && entity.getDeltaMovement().y > -0.4) {
+					entity.fallDistance = 0;
+				}
 			}
 		}
 	}

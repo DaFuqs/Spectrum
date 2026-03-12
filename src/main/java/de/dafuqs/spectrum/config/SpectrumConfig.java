@@ -367,7 +367,7 @@ public class SpectrumConfig {
 		DisarmingChancePerLevelPlayers = builder
 				.translation("config.spectrum.disarming_chance_per_level_players")
 				.comment("If > 0 the Disarming Enchantment is able to remove armor and hand tools from a hit player. Should be a far smaller chance than for mobs")
-				.define("disarming_chance_per_level_players", 0.001F);
+				.define("disarming_chance_per_level_players", 0.0025F);
 		
 		PestControlExperienceMultiplier = builder
 				.translation("config.spectrum.pest_control_experience_multiplier")

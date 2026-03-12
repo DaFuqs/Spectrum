@@ -132,7 +132,7 @@ public class SpectrumMobEffects {
 	 * Increases speed and visibility in lava
 	 */
 	public static final Holder<MobEffect> LAVA_GLIDING = register("lava_gliding", () -> new NoopMobEffect(MobEffectCategory.BENEFICIAL, 0xc42e0e)
-			.addAttributeModifier(AdditionalEntityAttributes.LAVA_SPEED, locate("effect.lava_gliding.lava_speed"), 0.1D, AttributeModifier.Operation.ADD_VALUE)
+			.addAttributeModifier(AdditionalEntityAttributes.LAVA_SPEED, locate("effect.lava_gliding.lava_speed"), 0.2D, AttributeModifier.Operation.ADD_VALUE)
 			.addAttributeModifier(AdditionalEntityAttributes.LAVA_VISIBILITY, locate("effect.lava_gliding.lava_visibility"), 8.0D, AttributeModifier.Operation.ADD_VALUE));
 	
 	/**

@@ -62,7 +62,6 @@ public class SpectrumConfig {
 	public final ModConfigSpec.ConfigValue<Float> BlockSoundVolume;
 	public final ModConfigSpec.ConfigValue<Float> OreAuraSoundVolume;
 	public final ModConfigSpec.ConfigValue<String> NameForUnrevealedEnchantments;
-	public final ModConfigSpec.ConfigValue<Float> ExuberanceBonusExperiencePercentPerLevel;
 	public final ModConfigSpec.ConfigValue<Float> ImprovedCriticalExtraDamageMultiplierPerLevel;
 	public final ModConfigSpec.ConfigValue<Float> FirstStrikeDamagePerLevel;
 	public final ModConfigSpec.ConfigValue<Float> DisarmingChancePerLevelMobs;
@@ -251,12 +250,12 @@ public class SpectrumConfig {
 				.define("storm_stone_spawn_chance", 0.4F);
 		
 		VanillaRecipeCraftingTimeTicks = builder
-				.translation("config.spectrum.vanilla_recipe_crafting_time_tioks")
+				.translation("config.spectrum.vanilla_recipe_crafting_time_ticks")
 				.comment("""
 			The time in ticks it takes a Pigment Pedestal to craft a vanilla Crafting Table recipe without upgrades
 			Setting this to <=0 will make the Pedestal not able to be used for crafting Crafting Table recipes.
 			""")
-				.define("vanilla_recipe_crafting_time_tioks", 40);
+				.define("vanilla_recipe_crafting_time_ticks", 40);
 		
 		RepairAnythingRecipeRepairPercentage = builder
 				.translation("config.spectrum.repair_anything_recipe_repair_percentage")
@@ -349,11 +348,6 @@ public class SpectrumConfig {
 				.translation("config.spectrum.name_for_unrevealed_enchantments")
 				.comment("When empty, enchantments that the player has not unlocked show up with a scattered name. You can use a different name here")
 				.define("name_for_unrevealed_enchantments", "");
-		
-		ExuberanceBonusExperiencePercentPerLevel = builder
-				.translation("config.spectrum.exuberance_bonus_experience_percent_per_level")
-				.comment("Exuberance increases experience gained when killing mobs. With 25% bonus XP and 5 levels this would mean 2,25x XP on max level")
-				.define("exuberance_bonus_experience_percent_per_level", 0.25F);
 		
 		ImprovedCriticalExtraDamageMultiplierPerLevel = builder
 				.translation("config.spectrum.improved_critical_extra_damage_multiplier_per_level")

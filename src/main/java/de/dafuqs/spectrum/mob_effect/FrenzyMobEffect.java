@@ -69,8 +69,7 @@ public class FrenzyMobEffect extends MobEffect {
 				AttributeModifier appliedModifier = entityInstance.getModifier(modifier.id());
 				double newBaseValue = appliedModifier == null ? modifier.amount() : appliedModifier.amount();
 				double newValue = this.adjustModifierAmount(newBaseValue, modifier.amount(), amplifier, increase);
-				entityInstance.removeModifier(modifier);
-				entityInstance.addPermanentModifier(new AttributeModifier(modifier.id(), newValue, modifier.operation()));
+				entityInstance.addOrReplacePermanentModifier(new AttributeModifier(modifier.id(), newValue, modifier.operation()));
 				entityInstance.getValue();
 			}
 		});

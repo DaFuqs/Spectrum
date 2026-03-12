@@ -199,7 +199,7 @@ public class BottomlessBundleItem extends BlockItem {
 		} else {
 			ItemStack remainder = itemHandler.insertItem(0, otherStack, false);
 			if (otherStack.getCount() != remainder.getCount()) {
-				slot.set(remainder);
+				cursorStackReference.set(remainder);
 				this.playInsertSound(player);
 			}
 		}

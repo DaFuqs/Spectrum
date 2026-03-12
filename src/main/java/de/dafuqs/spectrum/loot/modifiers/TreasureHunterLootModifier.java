@@ -4,7 +4,9 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.registries.*;
@@ -14,6 +16,7 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -63,12 +66,23 @@ public class TreasureHunterLootModifier extends LootModifier {
 			return original;
 		}
 		
+		int treasureHunterLevel;
+		if(damageSource.is(SpectrumDamageTypeTags.ALWAYS_DROPS_MOB_HEAD)) {
+			treasureHunterLevel = Integer.MAX_VALUE;
+		} else {
+			treasureHunterLevel = SpectrumEnchantmentHelper.getLevel(killed.registryAccess(), SpectrumEnchantmentKeys.TREASURE_HUNTER, damageSourceWeapon);
+		}
+		
+		if(treasureHunterLevel <= 0) {
+			return original;
+		}
+		
 		ServerLevel serverLevel = (ServerLevel) killed.level();
 		Vec3 pos = killed.position();
 		RandomSource random = lootContext.getRandom();
 		for(Entry e : this.entries) {
 			if(e.predicate.matches(serverLevel, pos, killed)) {
-				if(random.nextFloat() > e.chance()) {
+				if(random.nextFloat() > e.chance() * treasureHunterLevel) {
 					continue;
 				}
 				

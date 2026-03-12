@@ -17,5 +17,20 @@
     "mainhand"
   ],
   "supported_items": "#spectrum:enchantable/clovers_favor",
-  "weight": 2
+  "weight": 2,
+
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.15,
+          "per_level_above_first": 0.15
+        },
+        "attribute": "additionalentityattributes:player.bonus_rare_loot_rolls",
+        "id": "minecraft:enchantment.clovers_favor",
+        "operation": "add_value"
+      }
+    ]
+  }
 }

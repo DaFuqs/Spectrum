@@ -187,10 +187,10 @@
       "random/fizz"
     ]
   },
-  "block.modular_explosive.explode": {
-    "subtitle": "spectrum.subtitles.block.modular_explosive.explode",
+  "block.arcane_charge.explode": {
+    "subtitle": "spectrum.subtitles.block.arcane_charge.explode",
     "sounds": [
-      "spectrum:threat_conflux.explode"
+      "spectrum:arcane_charge.explode"
     ]
   },
   "block.parametric_mining_device.throw": {

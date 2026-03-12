@@ -1,0 +1,78 @@
+{
+  "name": "book.spectrum.guidebook.arcane_charges.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/arcane_charges"
+  },
+  "icon": {
+    "item": "spectrum:threat_conflux"
+  },
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": 6,
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "items": [
+        {
+          "id": "spectrum:threat_conflux"
+        },
+
+        {
+          "id": "spectrum:parametric_mining_device"
+        }
+      ],
+      "title": "book.spectrum.guidebook.arcane_charges.name",
+      "text": "book.spectrum.guidebook.arcane_charges.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.arcane_charges.page1.title",
+      "text": "book.spectrum.guidebook.arcane_charges.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.arcane_charges.page2.text",
+      "recipe_id": "spectrum:pedestal/tier3/boom/threat_conflux"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.arcane_charges.page3.text",
+      "recipe_id": "spectrum:pedestal/tier3/boom/parametric_mining_device"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.arcane_charges.page4.title",
+      "text": "book.spectrum.guidebook.arcane_charges.page4.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.arcane_charges.page5.title",
+      "text": "book.spectrum.guidebook.arcane_charges.page5.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.arcane_charges.page6.title",
+      "text": "book.spectrum.guidebook.arcane_charges.page6.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.arcane_charges.page7.title",
+      "text": "book.spectrum.guidebook.arcane_charges.page7.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.arcane_charges.page8.title",
+      "text": "book.spectrum.guidebook.arcane_charges.page8.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.arcane_charges.page9.title",
+      "text": "book.spectrum.guidebook.arcane_charges.page9.text"
+    }
+  ]
+}

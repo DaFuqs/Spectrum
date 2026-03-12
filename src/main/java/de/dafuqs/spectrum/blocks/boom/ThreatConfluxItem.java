@@ -33,7 +33,7 @@ public class ThreatConfluxItem extends BlockItem implements Preenchanted {
 	
 	@Override
 	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
-		return super.supportsEnchantment(stack, enchantment) || enchantment.is(SpectrumEnchantmentTags.ON_MODULAR_EXPLOSIVES);
+		return super.supportsEnchantment(stack, enchantment) || enchantment.is(SpectrumEnchantmentTags.ON_ARCANE_CHARGES);
 	}
 	
 	@Override

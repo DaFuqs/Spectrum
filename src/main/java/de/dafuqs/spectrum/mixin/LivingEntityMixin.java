@@ -464,4 +464,12 @@ public abstract class LivingEntityMixin {
 		}
 	}
 	
+	@WrapOperation(method = "travel", at = @At(value = "INVOKE", target="Ljava/lang/Math;min(DD)D",ordinal = 0))
+	private double noSlowFallingSlowdown(double gravity, double slowdown, Operation<Double> original) {
+		if(InexorableHelper.isArmorActive((LivingEntity) (Object) this)){
+			return gravity;
+		}
+		return original.call(gravity,slowdown);
+	}
+	
 }

@@ -16,6 +16,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.*;
 import org.jetbrains.annotations.*;
@@ -24,6 +25,8 @@ import java.util.*;
 import java.util.function.*;
 
 public class ExplosionWithStack extends Explosion {
+	
+	public static final int BASE_EXPLOSION_LEVEL = 3;
 	
 	private final ItemStack stack;
 	
@@ -36,17 +39,29 @@ public class ExplosionWithStack extends Explosion {
 		return this.stack;
 	}
 	
+	public static boolean shouldPreserveExplosive(Level level, ItemStack stack) {
+		if(EnchantmentHelper.hasTag(stack, SpectrumEnchantmentTags.INDESTRUCTIBLE_EFFECT)) {
+			return true;
+		}
+		int unbreakingLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), Enchantments.UNBREAKING, stack);
+		float random = level.getRandom().nextFloat();
+		float f = 1F / (1F + unbreakingLevel * unbreakingLevel);
+		return random > f;
+	}
+	
 	private static class EnhancedExplosionDamageCalculator extends SimpleExplosionDamageCalculator {
 		
 		private final ServerLevel level;
 		private final DamageSource damageSource;
 		private final ItemStack stack;
+		private final Optional<BlockPos> posToPreserve;
 		
-		public EnhancedExplosionDamageCalculator(ServerLevel level, DamageSource damageSource, ItemStack stack, boolean explodesBlocks, boolean damagesEntities, Optional<Float> knockbackMultiplier, Optional<HolderSet<Block>> immuneBlocks) {
+		public EnhancedExplosionDamageCalculator(ServerLevel level, DamageSource damageSource, ItemStack stack, boolean explodesBlocks, boolean damagesEntities, Optional<Float> knockbackMultiplier, Optional<HolderSet<Block>> immuneBlocks, Optional<BlockPos> posToPreserve) {
 			super(explodesBlocks, damagesEntities, knockbackMultiplier, immuneBlocks);
 			this.level = level;
 			this.damageSource = damageSource;
 			this.stack = stack;
+			this.posToPreserve = posToPreserve;
 		}
 		
 		@Override
@@ -56,9 +71,17 @@ public class ExplosionWithStack extends Explosion {
 			return damage;
 		}
 		
+		@Override
+		public boolean shouldBlockExplode(Explosion explosion, BlockGetter reader, BlockPos pos, BlockState state, float power) {
+			if(posToPreserve.isPresent()) {
+				return !posToPreserve.get().equals(pos);
+			}
+			return true;
+		}
+		
 	}
 	
-	public static void explode(ServerLevel level, @Nullable Entity source, @NotNull ItemStack stack, Vec3 pos) {
+	public static void explode(ServerLevel level, @Nullable Entity source, @NotNull ItemStack stack, Vec3 pos, boolean preserveBlockAtExplosionCenter) {
 		// boolean primodialFireDamage = false; // stack.getEnchantmentLevel(level.registryAccess().registry(Registries.ENCHANTMENT).get().getHolderOrThrow(SpectrumEnchantments.RESONANCE)) > 0;
 		// @Nullable DamageSource damageSource = primodialFireDamage ? SpectrumDamageTypes.incandescence(level, source) : Explosion.getDefaultDamageSource(level, source);
 		
@@ -69,9 +92,9 @@ public class ExplosionWithStack extends Explosion {
 		boolean causesFire = enchantments.getLevel(enchantmentLookup.getOrThrow(Enchantments.FLAME)) > 0;
 		
 		@Nullable DamageSource damageSource = Explosion.getDefaultDamageSource(level, source);
-		@Nullable ExplosionDamageCalculator damageCalculator = new EnhancedExplosionDamageCalculator(level, damageSource, stack, powerLevel > 0, damagesEntities, Optional.empty(), Optional.empty());
+		@Nullable ExplosionDamageCalculator damageCalculator = new EnhancedExplosionDamageCalculator(level, damageSource, stack, powerLevel > 0, damagesEntities, Optional.empty(), Optional.empty(), preserveBlockAtExplosionCenter ? Optional.of(BlockPos.containing(pos)) : Optional.empty());
 		
-		float explosionRadius = 3.0F + powerLevel;
+		int explosionRadius = BASE_EXPLOSION_LEVEL + powerLevel;
 		
 		BlockInteraction blockinteraction = powerLevel == 0 ? BlockInteraction.KEEP : BlockInteraction.DESTROY;
 		ExplosionWithStack explosion = new ExplosionWithStack(
@@ -81,7 +104,9 @@ public class ExplosionWithStack extends Explosion {
 				stack
 		);
 		
-		if (EventHooks.onExplosionStart(level, explosion)) return;
+		if (EventHooks.onExplosionStart(level, explosion)) {
+			return;
+		}
 		
 		explosion.explode();
 		

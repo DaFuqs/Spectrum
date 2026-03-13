@@ -3,9 +3,11 @@ package de.dafuqs.spectrum.blocks.boom;
 import appeng.entity.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.*;
@@ -14,6 +16,7 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -102,8 +105,23 @@ public class ParametricMiningDeviceBlock extends PlacedItemBlock {
 		
 		if ((level.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
 			ItemStack stack = blockEntity.getStack();
+			
+			Direction facing = state.getValue(FACING);
+			int powerLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), Enchantments.POWER, stack);
+			BlockPos explosionPos = pos.relative(facing.getOpposite(), (ExplosionWithStack.BASE_EXPLOSION_LEVEL + powerLevel) / 2);
+			Vec3 explosionCenter = Vec3.atCenterOf(explosionPos);
+			
 			level.removeBlock(pos, false);
-			ExplosionWithStack.explode((ServerLevel) level, player, stack, Vec3.atCenterOf(pos));
+			// if explosions spawn inside a block they just destroy that block and nothing else
+			// so if that block is not explosion resistant, we yeet it
+			if (level.getBlockState(explosionPos).getBlock().getExplosionResistance() < 50) {
+				level.removeBlock(explosionPos, false);
+			}
+			ExplosionWithStack.explode((ServerLevel) level, player, stack, explosionCenter, false);
+			
+			if(ExplosionWithStack.shouldPreserveExplosive(level, stack)) {
+				level.addFreshEntity(new ItemEntity(level, explosionCenter.x, explosionCenter.y, explosionCenter.z, stack));
+			}
 		}
 		
 		return InteractionResult.CONSUME;

@@ -10,6 +10,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -150,15 +151,24 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	}
 	
 	protected void explode(ServerLevel level, BlockPos pos) {
-		if (!(level.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
+		if (level.isClientSide || !(level.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
 			return;
 		}
 		ItemStack stack = blockEntity.getStack();
 		Player owner = blockEntity.getOwnerIfOnline();
 		
-		level.removeBlock(pos, false);
+		BlockState state = level.getBlockState(pos);
+		boolean shouldPreserve = ExplosionWithStack.shouldPreserveExplosive(level, stack);
+		if(!shouldPreserve) {
+			level.removeBlock(pos, false);
+		}
 		
-		ExplosionWithStack.explode(level, owner, stack, Vec3.atCenterOf(pos));
+		ExplosionWithStack.explode(level, owner, stack, Vec3.atCenterOf(pos), shouldPreserve);
+		
+		if(shouldPreserve) {
+			level.setBlockAndUpdate(pos, state.setValue(ARMED, ArmedState.NOT_ARMED));
+			level.scheduleTick(pos, this, TICKS_TO_ARM);
+		}
 	}
 	
 }

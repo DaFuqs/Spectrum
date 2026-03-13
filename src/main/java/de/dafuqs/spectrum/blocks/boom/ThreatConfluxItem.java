@@ -27,6 +27,11 @@ public class ThreatConfluxItem extends BlockItem implements Preenchanted {
 	}
 	
 	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return true;
+	}
+	
+	@Override
 	public int getEnchantmentValue(@NotNull ItemStack stack) {
 		return 12;
 	}

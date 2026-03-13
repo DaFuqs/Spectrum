@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
+import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
@@ -46,6 +47,11 @@ public class ParametricMiningDeviceItem extends BlockItem implements Preenchante
 			}
 		}
 		return InteractionResultHolder.success(stack);
+	}
+	
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return true;
 	}
 	
 	@Override

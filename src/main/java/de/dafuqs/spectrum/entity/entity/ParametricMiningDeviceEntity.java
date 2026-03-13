@@ -6,7 +6,10 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.server.level.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
@@ -30,28 +33,34 @@ public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 	
 	@Override
 	protected void onHitEntity(@NotNull EntityHitResult hitResult) {
-		Level level = this.level();
-		if (!level.isClientSide()) {
-			Entity owner = getOwner();
-			Player playerOwner = owner instanceof Player player ? player : null;
-			ExplosionWithStack.explode((ServerLevel) level, playerOwner, this.getItem(), hitResult.getLocation());
-		}
-		level.broadcastEntityEvent(this, EntityEvent.DEATH);
-		
-		remove(Entity.RemovalReason.DISCARDED);
+		explodeAt(hitResult.getLocation());
 	}
 	
 	@Override
 	protected void onHitBlock(@NotNull BlockHitResult hitResult) {
+		explodeAt(Vec3.atCenterOf(hitResult.getBlockPos()));
+	}
+	
+	private void explodeAt(Vec3 hitResult) {
 		Level level = this.level();
+		ItemStack stack = this.getItem();
 		if (!level.isClientSide()) {
 			Entity owner = getOwner();
 			Player playerOwner = owner instanceof Player player ? player : null;
-			ExplosionWithStack.explode((ServerLevel) level, playerOwner, this.getItem(), Vec3.atCenterOf(hitResult.getBlockPos()));
+			ExplosionWithStack.explode((ServerLevel) level, playerOwner, stack, hitResult, false);
 		}
-		level.broadcastEntityEvent(this, EntityEvent.DEATH);
 		
-		remove(Entity.RemovalReason.DISCARDED);
+		level.broadcastEntityEvent(this, EntityEvent.DEATH);
+		remove(RemovalReason.DISCARDED);
+		
+		if(ExplosionWithStack.shouldPreserveExplosive(level, stack)) {
+			level.addFreshEntity(new ItemEntity(level, position().x, position().y, position().z, stack));
+		}
+	}
+	
+	@Override
+	public boolean isInvulnerableTo(DamageSource source) {
+		return super.isInvulnerableTo(source) || source.is(DamageTypeTags.IS_EXPLOSION);
 	}
 	
 	@Override

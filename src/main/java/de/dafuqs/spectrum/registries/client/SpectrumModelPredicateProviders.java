@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries.client;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -34,6 +35,7 @@ public class SpectrumModelPredicateProviders {
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK);
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
+		registerCelestialPocketwatchPredicates(SpectrumItems.CELESTIAL_POCKETWATCH);
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerNullableInkColorPredicate(SpectrumItems.PAINTBRUSH);
 		
@@ -169,6 +171,11 @@ public class SpectrumModelPredicateProviders {
 				}
 			}
 		});
+	}
+	
+	private static void registerCelestialPocketwatchPredicates(Item item) {
+		ItemProperties.register(item, ResourceLocation.parse("active"), (stack, world, entity, i)
+				-> SpectrumClient.skyLerper.isActive(world.dimensionType()) ? 1.0F : 0.0F);
 	}
 	
 	private static void registerActivatableItemPredicate(Item item) {

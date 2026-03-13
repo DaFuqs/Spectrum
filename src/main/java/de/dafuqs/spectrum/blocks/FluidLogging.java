@@ -52,26 +52,8 @@ public class FluidLogging {
 			}
 		}
 		
-		public static State getForFluidState(FluidState fluidState) {
-			if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL.get()) {
-				return LIQUID_CRYSTAL;
-			} else if (fluidState.is(FluidTags.WATER)) {
-				return WATER;
-			}
-			
-			return NOT_LOGGED;
-		}
-		
 		public int getLuminance() {
 			return luminance;
-		}
-		
-		public boolean isOf(Fluid fluid) {
-			return this.getFluidState().is(fluid);
-		}
-		
-		public boolean isIn(TagKey<Fluid> fluidTag) {
-			return this.getFluidState().is(fluidTag);
 		}
 		
 		@Override

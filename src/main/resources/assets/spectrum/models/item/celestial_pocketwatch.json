@@ -1,6 +1,14 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "item/generated",
   "textures": {
     "layer0": "spectrum:item/celestial_pocketwatch"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "active": 1.0
+      },
+      "model": "spectrum:item/celestial_pocketwatch_active"
+    }
+  ]
 }

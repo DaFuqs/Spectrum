@@ -324,6 +324,12 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> FREIGEIST = register("freigeist", () -> new FreigeistItem(IS.of().food(SpectrumFoodComponents.FREIGEIST).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> DIVINATION_HEART = register("divination_heart", () -> new Item(IS.of().food(SpectrumFoodComponents.DIVINATION_HEART)));
 	
+	public static final Item SUGARY_STAR_CANDY = register("sugary_star_candy", new StarCandyItem(IS.of(Rarity.COMMON).food(SpectrumFoodComponents.SUGARY_STAR_CANDY)));
+	public static final Item MELLOW_STAR_CANDY = register("mellow_star_candy", new StarCandyItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MELLOW_STAR_CANDY)));
+	public static final Item ENCHANTED_STAR_CANDY = register("enchanted_star_candy", new EnchantedStarCandyItem(IS.of(Rarity.RARE).food(SpectrumFoodComponents.ENCHANTED_STAR_CANDY)));
+	public static final Item GLEAMING_STAR_CANDY = register("gleaming_star_candy", new EnchantedStarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.GLEAMING_STAR_CANDY)));
+	public static final Item MAGNIFICENT_STAR_CANDY = register("magnificent_star_candy", new EnchantedStarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.MAGNIFICENT_STAR_CANDY)));
+	
 	public static final DeferredItem<Item> STAR_CANDY = register("star_candy", () -> new StarCandyItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.STAR_CANDY)));
 	public static final DeferredItem<Item> ENCHANTED_STAR_CANDY = register("enchanted_star_candy", () -> new EnchantedStarCandyItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.ENCHANTED_STAR_CANDY)));
 	

@@ -52,11 +52,23 @@ public class SpectrumFoodComponents {
 			.effect(() -> new MobEffectInstance(SpectrumMobEffects.FATAL_SLUMBER, 100), 0.05F)
 			.build();
 	
-	public static final FoodProperties STAR_CANDY = new FoodProperties.Builder()
+	public static final FoodProperties SUGARY_STAR_CANDY = new FoodProperties.Builder()
+			.nutrition(1).saturationModifier(SAT_POOR).fast()
+			.build();
+	
+	public static final FoodProperties MELLOW_STAR_CANDY = new FoodProperties.Builder()
 			.nutrition(3).saturationModifier(SAT_POOR).fast()
 			.build();
 	
+	public static final FoodProperties GLEAMING_STAR_CANDY = new FoodProperties.Builder()
+			.nutrition(5).saturationModifier(SAT_POOR).fast()
+			.build();
+	
 	public static final FoodProperties ENCHANTED_STAR_CANDY = new FoodProperties.Builder()
+			.nutrition(8).saturationModifier(SAT_POOR).fast()
+			.build();
+	
+	public static final FoodProperties MAGNIFICENT_STAR_CANDY = new FoodProperties.Builder()
 			.nutrition(20).saturationModifier(SAT_NORMAL).fast()
 			.build();
 	

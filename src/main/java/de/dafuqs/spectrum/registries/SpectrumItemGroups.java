@@ -1110,6 +1110,18 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.POLISHED_ONYX);
 					entries.accept(SpectrumBlocks.POLISHED_MOONSTONE);
 					
+					entries.accept(SpectrumBlocks.TOPAZ_BRICKS);
+					entries.accept(SpectrumBlocks.AMETHYST_BRICKS);
+					entries.accept(SpectrumBlocks.CITRINE_BRICKS);
+					entries.accept(SpectrumBlocks.ONYX_BRICKS);
+					entries.accept(SpectrumBlocks.MOONSTONE_BRICKS);
+					entries.accept(SpectrumBlocks.MIXED_GEMSTONE_BRICKS);
+					
+					entries.accept(SpectrumBlocks.AZURITE_BRICKS);
+					entries.accept(SpectrumBlocks.MALACHITE_BRICKS);
+					entries.accept(SpectrumBlocks.BLOODSTONE_BRICKS);
+					entries.accept(SpectrumBlocks.MIXED_REFINED_CRYSTAL_BRICKS);
+					
 					entries.accept(SpectrumBlocks.TOPAZ_PILLAR);
 					entries.accept(SpectrumBlocks.AMETHYST_PILLAR);
 					entries.accept(SpectrumBlocks.CITRINE_PILLAR);

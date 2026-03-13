@@ -8,5 +8,6 @@
   "ingredient3": "spectrum:orange_pigment",
   "result": {
     "id": "minecraft:lava_bucket"
-  }
+  },
+  "required_advancement": "spectrum:hidden/collect_pigment/orange"
 }

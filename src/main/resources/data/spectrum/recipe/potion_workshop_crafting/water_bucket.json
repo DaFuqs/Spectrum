@@ -9,5 +9,6 @@
   },
   "result": {
     "id": "minecraft:water_bucket"
-  }
+  },
+  "required_advancement": "spectrum:hidden/collect_pigment/light_blue"
 }

@@ -9,5 +9,6 @@
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": false,
   "ink_color": "spectrum:blue",
-  "ink_cost": 4
+  "ink_cost": 4,
+  "required_advancement": "spectrum:create_onyx_shard"
 }

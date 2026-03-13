@@ -9,5 +9,6 @@
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
   "ink_color": "spectrum:green",
-  "ink_cost": 1
+  "ink_cost": 1,
+  "required_advancement": "spectrum:collect_shimmerstone"
 }

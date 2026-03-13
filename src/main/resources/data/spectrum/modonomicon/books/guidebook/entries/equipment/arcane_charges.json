@@ -7,7 +7,7 @@
   "icon": {
     "item": "spectrum:threat_conflux"
   },
-  "category": "spectrum:magical_blocks",
+  "category": "spectrum:equipment",
   "hide_while_locked": true,
   "parents": [],
   "background_u_index": 0,
@@ -27,52 +27,30 @@
         }
       ],
       "title": "book.spectrum.guidebook.arcane_charges.name",
-      "text": "book.spectrum.guidebook.arcane_charges.page0.text"
+      "text": "book.spectrum.guidebook.arcane_charges.about.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.arcane_charges.page1.title",
-      "text": "book.spectrum.guidebook.arcane_charges.page1.text"
+      "title": "book.spectrum.guidebook.arcane_charges.enchanting.title",
+      "text": "book.spectrum.guidebook.arcane_charges.enchanting.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.arcane_charges.page2.text",
+      "text": "book.spectrum.guidebook.arcane_charges.threat_conflux.text",
       "recipe_id": "spectrum:pedestal/tier3/boom/threat_conflux"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.arcane_charges.page3.text",
+      "text": "book.spectrum.guidebook.arcane_charges.parametric_mining_device.text",
       "recipe_id": "spectrum:pedestal/tier3/boom/parametric_mining_device"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.arcane_charges.page4.title",
-      "text": "book.spectrum.guidebook.arcane_charges.page4.text"
+      "text": "book.spectrum.guidebook.arcane_charges.enchanting2.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.arcane_charges.page5.title",
-      "text": "book.spectrum.guidebook.arcane_charges.page5.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.arcane_charges.page6.title",
-      "text": "book.spectrum.guidebook.arcane_charges.page6.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.arcane_charges.page7.title",
-      "text": "book.spectrum.guidebook.arcane_charges.page7.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.arcane_charges.page8.title",
-      "text": "book.spectrum.guidebook.arcane_charges.page8.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.arcane_charges.page9.title",
-      "text": "book.spectrum.guidebook.arcane_charges.page9.text"
+      "text": "book.spectrum.guidebook.arcane_charges.enchanting3.text"
     }
   ]
 }

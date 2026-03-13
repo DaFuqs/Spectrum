@@ -22,6 +22,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
@@ -374,8 +375,11 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumItems.BLOODBOIL_SYRUP);
 				entries.accept(SpectrumItems.MILKY_RESIN);
 				entries.accept(SpectrumItems.SCONE);
-				entries.accept(SpectrumItems.STAR_CANDY);
+				entries.accept(SpectrumItems.SUGARY_STAR_CANDY);
+				entries.accept(SpectrumItems.MELLOW_STAR_CANDY);
+				entries.accept(SpectrumItems.GLEAMING_STAR_CANDY);
 				entries.accept(SpectrumItems.ENCHANTED_STAR_CANDY);
+				entries.accept(SpectrumItems.MAGNIFICENT_STAR_CANDY);
 				entries.accept(SpectrumItems.CHEONG);
 				entries.accept(SpectrumItems.MERMAIDS_JAM);
 				entries.accept(SpectrumItems.MERMAIDS_POPCORN);
@@ -1104,6 +1108,18 @@ public class SpectrumItemGroups {
 				entries.accept(SpectrumBlocks.POLISHED_CITRINE);
 				entries.accept(SpectrumBlocks.POLISHED_ONYX);
 				entries.accept(SpectrumBlocks.POLISHED_MOONSTONE);
+				
+				entries.accept(SpectrumBlocks.TOPAZ_BRICKS);
+				entries.accept(SpectrumBlocks.AMETHYST_BRICKS);
+				entries.accept(SpectrumBlocks.CITRINE_BRICKS);
+				entries.accept(SpectrumBlocks.ONYX_BRICKS);
+				entries.accept(SpectrumBlocks.MOONSTONE_BRICKS);
+				entries.accept(SpectrumBlocks.MIXED_GEMSTONE_BRICKS);
+				
+				entries.accept(SpectrumBlocks.AZURITE_BRICKS);
+				entries.accept(SpectrumBlocks.MALACHITE_BRICKS);
+				entries.accept(SpectrumBlocks.BLOODSTONE_BRICKS);
+				entries.accept(SpectrumBlocks.MIXED_REFINED_CRYSTAL_BRICKS);
 				
 				entries.accept(SpectrumBlocks.TOPAZ_PILLAR);
 				entries.accept(SpectrumBlocks.AMETHYST_PILLAR);

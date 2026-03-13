@@ -320,8 +320,11 @@ public class SpectrumItems {
 	public static final Item FREIGEIST = register(simple(item("freigeist", new FreigeistItem(IS.of().food(SpectrumFoodComponents.FREIGEIST).craftRemainder(GLASS_BOTTLE)), InkColors.RED)));
 	public static final Item DIVINATION_HEART = register(simple(item("divination_heart", new Item(IS.of().food(SpectrumFoodComponents.DIVINATION_HEART)), InkColors.RED)));
 	
-	public static final Item STAR_CANDY = register(simple(item("star_candy", new StarCandyItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.STAR_CANDY)), InkColors.PINK)));
-	public static final Item ENCHANTED_STAR_CANDY = register(simple(item("enchanted_star_candy", new EnchantedStarCandyItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.ENCHANTED_STAR_CANDY)), InkColors.PINK)));
+	public static final Item SUGARY_STAR_CANDY = register(simple(item("sugary_star_candy", new StarCandyItem(IS.of(Rarity.COMMON).food(SpectrumFoodComponents.SUGARY_STAR_CANDY)), InkColors.PINK)));
+	public static final Item MELLOW_STAR_CANDY = register(simple(item("mellow_star_candy", new StarCandyItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MELLOW_STAR_CANDY)), InkColors.PINK)));
+	public static final Item ENCHANTED_STAR_CANDY = register(simple(item("enchanted_star_candy", new EnchantedStarCandyItem(IS.of(Rarity.RARE).food(SpectrumFoodComponents.ENCHANTED_STAR_CANDY)), InkColors.PINK)));
+	public static final Item GLEAMING_STAR_CANDY = register(simple(item("gleaming_star_candy", new EnchantedStarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.GLEAMING_STAR_CANDY)), InkColors.PINK)));
+	public static final Item MAGNIFICENT_STAR_CANDY = register(simple(item("magnificent_star_candy", new EnchantedStarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.MAGNIFICENT_STAR_CANDY)), InkColors.PINK)));
 	
 	public static final Item ENCHANTED_GOLDEN_CARROT = register(parented(item("enchanted_golden_carrot", new ItemWithGlint(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.ENCHANTED_GOLDEN_CARROT)), InkColors.PINK), GOLDEN_CARROT));
 	public static final Item JARAMEL = register(simple(item("jaramel", new Item(IS.of().food(SpectrumFoodComponents.JARAMEL)), InkColors.PINK)));

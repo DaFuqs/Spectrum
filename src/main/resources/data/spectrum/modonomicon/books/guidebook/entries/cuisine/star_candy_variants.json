@@ -2,10 +2,10 @@
   "name": "book.spectrum.guidebook.star_candy_variants.name",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:hidden/collect_enchanted_star_candy"
+    "advancement_id": "spectrum:hidden/craft_star_candy_variant"
   },
   "icon": {
-    "item": "spectrum:enchanted_star_candy"
+    "item": "spectrum:gleaming_star_candy"
   },
   "category": "spectrum:cuisine",
   "hide_while_locked": true,
@@ -36,14 +36,22 @@
       "text": "book.spectrum.guidebook.star_candy_variants.variants.text"
     },
     {
-    "type": "modonomicon:spotlight",
+      "type": "modonomicon:spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/craft_magnificent_star_candy"
+      },
       "item": {
         "item": "spectrum:magnificent_star_candy"
       },
       "text": "book.spectrum.guidebook.star_candy_variants.magnificent.text"
     },
     {
-    "type": "modonomicon:spotlight",
+      "type": "modonomicon:spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/craft_sugary_star_candy"
+      },
       "item": {
         "item": "spectrum:sugary_star_candy"
       },

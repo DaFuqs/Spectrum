@@ -31,6 +31,7 @@ import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
+import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
@@ -322,8 +323,8 @@ public class SpectrumItems {
 	
 	public static final Item SUGARY_STAR_CANDY = register(simple(item("sugary_star_candy", new StarCandyItem(IS.of(Rarity.COMMON).food(SpectrumFoodComponents.SUGARY_STAR_CANDY), StarCandyItem.Rarity.SUGARY), InkColors.PINK)));
 	public static final Item MELLOW_STAR_CANDY = register(simple(item("mellow_star_candy", new StarCandyItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MELLOW_STAR_CANDY), StarCandyItem.Rarity.MELLOW), InkColors.PINK)));
-	public static final Item GLEAMING_STAR_CANDY = register(simple(item("gleaming_star_candy", new StarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.GLEAMING_STAR_CANDY), StarCandyItem.Rarity.GLEAMING), InkColors.PINK)));
-	public static final Item ENCHANTED_STAR_CANDY = register(simple(item("enchanted_star_candy", new StarCandyItem(IS.of(Rarity.RARE).food(SpectrumFoodComponents.ENCHANTED_STAR_CANDY), StarCandyItem.Rarity.ENCHANTED), InkColors.PINK)));
+	public static final Item GLEAMING_STAR_CANDY = register(simple(item("gleaming_star_candy", new StarCandyItem(IS.of(Rarity.RARE).food(SpectrumFoodComponents.GLEAMING_STAR_CANDY), StarCandyItem.Rarity.GLEAMING), InkColors.PINK)));
+	public static final Item ENCHANTED_STAR_CANDY = register(simple(item("enchanted_star_candy", new StarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.ENCHANTED_STAR_CANDY), StarCandyItem.Rarity.ENCHANTED), InkColors.PINK)));
 	public static final Item MAGNIFICENT_STAR_CANDY = register(simple(item("magnificent_star_candy", new StarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.MAGNIFICENT_STAR_CANDY), StarCandyItem.Rarity.MAGNIFICENT), InkColors.PINK)));
 	
 	public static final Item ENCHANTED_GOLDEN_CARROT = register(parented(item("enchanted_golden_carrot", new ItemWithGlint(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.ENCHANTED_GOLDEN_CARROT)), InkColors.PINK), GOLDEN_CARROT));

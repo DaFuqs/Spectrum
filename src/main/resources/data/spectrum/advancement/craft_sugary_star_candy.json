@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "id": "spectrum:sugary_star_candy"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.craft_sugary_star_candy.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_sugary_star_candy.description"
+    }
+  },
+  "parent": "spectrum:craft_star_candy_variant",
+  "criteria": {
+    "crafted_sugary_star_candy": {
+      "trigger": "spectrum:crafted_with_pedestal",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:sugary_star_candy"
+          ]
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:craft_star_candy_variant"
+      }
+    }
+  }
+}

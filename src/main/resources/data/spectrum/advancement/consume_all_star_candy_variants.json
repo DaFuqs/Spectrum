@@ -1,0 +1,72 @@
+{
+  "display": {
+    "icon": {
+      "id": "spectrum:enchanted_star_candy"
+    },
+    "title": {
+      "translate": "advancements.spectrum.consume_all_star_candy_variants.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.consume_all_star_candy_variants.description"
+    }
+  },
+  "parent": "spectrum:craft_magnificent_star_candy",
+  "criteria": {
+    "sugary_star_candy": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:sugary_star_candy"
+          ]
+        }
+      }
+    },
+    "mellow_star_candy": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:mellow_star_candy"
+          ]
+        }
+      }
+    },
+    "gleaming_star_candy": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:gleaming_star_candy"
+          ]
+        }
+      }
+    },
+    "enchanted_star_candy": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:enchanted_star_candy"
+          ]
+        }
+      }
+    },
+    "magnificent_star_candy": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:magnificent_star_candy"
+          ]
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:craft_star_candy_variant"
+      }
+    }
+  }
+}

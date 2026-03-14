@@ -25,6 +25,10 @@ import de.dafuqs.spectrum.items.misc.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.registries.client.*;
+import net.minecraft.*;
+import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -326,9 +330,9 @@ public class SpectrumItems {
 	
 	public static final Item SUGARY_STAR_CANDY = register("sugary_star_candy", new StarCandyItem(IS.of(Rarity.COMMON).food(SpectrumFoodComponents.SUGARY_STAR_CANDY), StarCandyItem.Rarity.SUGARY));
 	public static final Item MELLOW_STAR_CANDY = register("mellow_star_candy", new StarCandyItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MELLOW_STAR_CANDY), StarCandyItem.Rarity.MELLOW));
-	public static final Item GLEAMING_STAR_CANDY = register("gleaming_star_candy", new StarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.GLEAMING_STAR_CANDY), StarCandyItem.Rarity.GLEAMING));
-	public static final Item ENCHANTED_STAR_CANDY = register("enchanted_star_candy", new StarCandyItem(IS.of(Rarity.RARE).food(SpectrumFoodComponents.ENCHANTED_STAR_CANDY), StarCandyItem.Rarity.ENCHANTED));
-	public static final Item MAGNIFICENT_STAR_CANDY = register("magnificent_star_candy", new StarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.MAGNIFICENT_STAR_CANDY), StarCandyItem.Rarity.MAGNIFICENT));
+	public static final Item GLEAMING_STAR_CANDY = register("gleaming_star_candy", new StarCandyItem(IS.of(Rarity.RARE).food(SpectrumFoodComponents.GLEAMING_STAR_CANDY), StarCandyItem.Rarity.GLEAMING));
+	public static final Item ENCHANTED_STAR_CANDY = register("enchanted_star_candy", new StarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.ENCHANTED_STAR_CANDY), StarCandyItem.Rarity.ENCHANTED));
+	public static final Item MAGNIFICENT_STAR_CANDY = register("magnificent_star_candy", new StarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.MAGNIFICENT_STAR_CANDY), StarCandyItem.Rarity.MAGNIFICENT), InkColors.PINK)));
 
 	public static final DeferredItem<Item> ENCHANTED_GOLDEN_CARROT = register("enchanted_golden_carrot", () -> new ItemWithGlint(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.ENCHANTED_GOLDEN_CARROT)));
 	public static final DeferredItem<Item> JARAMEL = register("jaramel", () -> new Item(IS.of().food(SpectrumFoodComponents.JARAMEL)));

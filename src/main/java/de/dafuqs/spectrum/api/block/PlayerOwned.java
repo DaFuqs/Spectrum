@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.api.block;
 import de.dafuqs.spectrum.*;
 import net.minecraft.nbt.*;
 import net.minecraft.world.entity.player.*;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -30,11 +31,20 @@ public interface PlayerOwned {
 	
 	@Nullable
 	default Player getOwnerIfOnline() {
+		return getPlayerEntityIfOnline(this.getOwnerUUID());
+	}
+	
+	@Nullable
+	default Player getOwnerIfOnline(Level level) {
 		UUID ownerUUID = this.getOwnerUUID();
-		if (ownerUUID != null && SpectrumCommon.minecraftServer != null) {
-			return SpectrumCommon.minecraftServer.getPlayerList().getPlayer(ownerUUID);
+		if (ownerUUID == null) {
+			return null;
 		}
-		return null;
+		if(level instanceof ServerLevel serverLevel) {
+			return serverLevel.getServer().getPlayerList().getPlayer(ownerUUID);
+		} else {
+			return level.getPlayerByUUID(ownerUUID);
+		}
 	}
 	
 	static void writeOwnerUUID(CompoundTag nbt, UUID ownerUUID) {

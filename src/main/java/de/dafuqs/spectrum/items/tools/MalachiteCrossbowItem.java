@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.component.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
@@ -43,17 +44,17 @@ public class MalachiteCrossbowItem extends CrossbowItem implements Preenchanted,
 	}
 	
 	@Override
-	public float getProjectileVelocityModifier(ItemStack stack) {
+	public float getProjectileVelocityModifier(ItemStack stack, LivingEntity shooter) {
 		return 1.5F;
 	}
 	
 	@Override
-	public float getPullTimeModifier(ItemStack stack) {
+	public float getPullTimeModifier(ItemStack stack, LivingEntity shooter) {
 		return 2.0F;
 	}
 	
 	@Override
-	public float getDivergenceMod(ItemStack stack) {
+	public float getDivergenceMod(ItemStack stack, LivingEntity shooter) {
 		return 0.75F;
 	}
 	

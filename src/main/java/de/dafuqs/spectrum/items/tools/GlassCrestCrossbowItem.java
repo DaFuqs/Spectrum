@@ -116,15 +116,15 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 	}
 	
 	@Override
-	public float getProjectileVelocityModifier(ItemStack stack) {
-		float parent = super.getProjectileVelocityModifier(stack);
+	public float getProjectileVelocityModifier(ItemStack stack, LivingEntity shooter) {
+		float parent = super.getProjectileVelocityModifier(stack, shooter);
 		float overcharge = getOvercharge(stack);
 		return overcharge == 0 ? parent : parent * (1 + overcharge * 0.75F);
 	}
 	
 	@Override
-	public float getDivergenceMod(ItemStack stack) {
-		float parent = super.getDivergenceMod(stack);
+	public float getDivergenceMod(ItemStack stack, LivingEntity shooter) {
+		float parent = super.getDivergenceMod(stack, shooter);
 		float overcharge = getOvercharge(stack);
 		return overcharge == 0 ? parent : parent * (1 - overcharge * 0.5F);
 	}

@@ -33,7 +33,7 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 	
 	public Entity getOwner() {
 		if (this.owner == null) {
-			this.owner = PlayerOwned.getPlayerEntityIfOnline(this.ownerUUID);
+			this.owner = PlayerOwned.getPlayerIfOnline(this.level, this.ownerUUID);
 		}
 		return this.owner;
 	}

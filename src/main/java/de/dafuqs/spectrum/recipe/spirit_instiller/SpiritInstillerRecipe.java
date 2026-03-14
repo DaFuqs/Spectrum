@@ -129,11 +129,11 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 		}
 		
 		// Run Advancement trigger
-		grantPlayerSpiritInstillingAdvancementCriterion(spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
+		grantPlayerSpiritInstillingAdvancementCriterion(world, spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
 	}
 	
-	protected static void grantPlayerSpiritInstillingAdvancementCriterion(UUID playerUUID, ItemStack resultStack, int experience) {
-		ServerPlayer serverPlayerEntity = (ServerPlayer) PlayerOwned.getPlayerEntityIfOnline(playerUUID);
+	protected static void grantPlayerSpiritInstillingAdvancementCriterion(Level level, UUID playerUUID, ItemStack resultStack, int experience) {
+		ServerPlayer serverPlayerEntity = (ServerPlayer) PlayerOwned.getPlayerIfOnline(level, playerUUID);
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.SPIRIT_INSTILLER_CRAFTING.trigger(serverPlayerEntity, resultStack, experience);
 		}

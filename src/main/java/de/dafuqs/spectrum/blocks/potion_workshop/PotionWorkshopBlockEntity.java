@@ -178,7 +178,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 			// => search valid recipe
 			var newPotionWorkshopBrewingRecipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, potionWorkshopBlockEntity.getRecipeInput(), world).orElse(null);
 			if (newPotionWorkshopBrewingRecipe != null) {
-				if (newPotionWorkshopBrewingRecipe.value().canPlayerCraft(potionWorkshopBlockEntity.getOwnerIfOnline())) {
+				if (newPotionWorkshopBrewingRecipe.value().canPlayerCraft(potionWorkshopBlockEntity.getOwnerIfOnline(world))) {
 					// we check for reagents here instead of the recipe itself for performance reasons
 					if (isBrewingRecipeApplicable(newPotionWorkshopBrewingRecipe.value(), potionWorkshopBlockEntity.getItem(BASE_INPUT_SLOT_ID), potionWorkshopBlockEntity)) {
 						return newPotionWorkshopBrewingRecipe;
@@ -187,7 +187,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 			} else {
 				var newPotionWorkshopCraftingRecipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, potionWorkshopBlockEntity.getRecipeInput(), world).orElse(null);
 				if (newPotionWorkshopCraftingRecipe != null) {
-					if (newPotionWorkshopCraftingRecipe.value().canPlayerCraft(potionWorkshopBlockEntity.getOwnerIfOnline())) {
+					if (newPotionWorkshopCraftingRecipe.value().canPlayerCraft(potionWorkshopBlockEntity.getOwnerIfOnline(world))) {
 						newRecipe = newPotionWorkshopCraftingRecipe;
 					}
 				}
@@ -240,15 +240,15 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		// process reagents
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 		
-		int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod), world.random);
+		int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod), world.getRandom());
 		int brewedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxBrewedPotionsAmount);
 		
 		// calculate outputs
 		ItemStack bottles = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID);
-		List<ItemStack> results = brewingRecipe.value().getPotions(bottles, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, world.random, brewedAmount);
+		List<ItemStack> results = brewingRecipe.value().getPotions(bottles, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, world.getRandom(), brewedAmount);
 		
 		// trigger advancements for all brewed potions
-		ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline();
+		ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline(world);
 		if (brewedAmount <= 0) {
 			SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, ItemStack.EMPTY, 0, potionWorkshopBlockEntity, potionMod.flags());
 		} else {
@@ -278,15 +278,15 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		// process reagents
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 		
-		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod) * PotionWorkshopBrewingRecipe.ARROW_COUNT_MULTIPLIER, world.random);
+		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod) * PotionWorkshopBrewingRecipe.ARROW_COUNT_MULTIPLIER, world.getRandom());
 		int tippedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxTippedArrowsAmount);
 		
 		// calculate outputs
 		ItemStack arrows = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID);
-		ItemStack tippedArrows = brewingRecipe.value().getTippedArrows(arrows, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, tippedAmount, world.random);
+		ItemStack tippedArrows = brewingRecipe.value().getTippedArrows(arrows, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, tippedAmount, world.getRandom());
 		
 		// trigger advancements for all brewed potions
-		ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline();
+		ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline(world);
 		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, tippedArrows, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, tippedArrows, tippedArrows.getCount(), potionWorkshopBlockEntity, potionMod.flags());
@@ -302,23 +302,24 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	
 	private static void fillPotionFillable(PotionWorkshopBlockEntity potionWorkshopBlockEntity, RecipeHolder<PotionWorkshopBrewingRecipe> brewingRecipe) {
 		ItemStack potionFillableStack = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID);
-		if (potionFillableStack.getItem() instanceof InkPoweredPotionFillable && potionWorkshopBlockEntity.level != null) {
+		Level level = potionWorkshopBlockEntity.getLevel();
+		if (potionFillableStack.getItem() instanceof InkPoweredPotionFillable && level != null) {
 			// process reagents
 			PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 			
-			int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod), potionWorkshopBlockEntity.level.random);
+			int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod), level.getRandom());
 			if (maxBrewedPotionsAmount < 1) {
-				ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline();
+				ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline(potionWorkshopBlockEntity.getLevel());
 				if (serverPlayerEntity != null) {
 					SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potionFillableStack, 0, potionWorkshopBlockEntity, potionMod.flags());
 				}
 			} else {
-				brewingRecipe.value().fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.level.random);
+				brewingRecipe.value().fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, level.getRandom());
 				potionWorkshopBlockEntity.inventory.set(BASE_INPUT_SLOT_ID, ItemStack.EMPTY);
 				InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potionFillableStack, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 				
 				// trigger advancements
-				ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline();
+				ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline(level);
 				if (serverPlayerEntity != null) {
 					SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potionFillableStack, 1, potionWorkshopBlockEntity, potionMod.flags());
 				}
@@ -336,7 +337,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		Level world = potionWorkshopBlockEntity.getLevel();
 		List<RecipeHolder<PotionWorkshopReactingRecipe>> reagentRecipes = world.getRecipeManager().getRecipesFor(SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, potionWorkshopBlockEntity.getRecipeInput(), world);
 		for (RecipeHolder<PotionWorkshopReactingRecipe> recipe : reagentRecipes) {
-			if (!recipe.value().canPlayerCraft(potionWorkshopBlockEntity.getOwnerIfOnline())) {
+			if (!recipe.value().canPlayerCraft(potionWorkshopBlockEntity.getOwnerIfOnline(world))) {
 				return false;
 			}
 		}
@@ -549,7 +550,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		if (this.ownerUUID == null) {
 			return false;
 		} else {
-			return hasFourthReagentSlotUnlocked(getOwnerIfOnline());
+			return hasFourthReagentSlotUnlocked(getOwnerIfOnline(this.getLevel()));
 		}
 	}
 	

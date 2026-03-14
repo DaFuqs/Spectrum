@@ -43,14 +43,14 @@ public class SpectrumPresentUnpackBehaviors {
 		});
 		
 		PresentBlock.registerBehavior(SpectrumBlocks.INCANDESCENT_AMALGAM, (stack, presentBlockEntity, world, pos, random) -> {
-			IncandescentAmalgamBlock.explode(world, pos, presentBlockEntity.getOwnerIfOnline(), stack);
+			IncandescentAmalgamBlock.explode(world, pos, presentBlockEntity.getOwnerIfOnline(world), stack);
 			return ItemStack.EMPTY;
 		});
 		
 		PresentBlock.registerBehavior(Items.FIREWORK_ROCKET, (stack, presentBlockEntity, world, pos, random) -> {
 			Vec3 centerPos = Vec3.atLowerCornerOf(pos);
 			for (int i = 0; i < stack.getCount(); i++) {
-				FireworkRocketEntity fireworkRocketEntity = new FireworkRocketEntity(world, presentBlockEntity.getOwnerIfOnline(), centerPos.x + 0.35 + random.nextFloat() * 0.3, centerPos.y + 0.35 + random.nextFloat() * 0.3, centerPos.z + 0.35 + random.nextFloat() * 0.3, stack);
+				FireworkRocketEntity fireworkRocketEntity = new FireworkRocketEntity(world, presentBlockEntity.getOwnerIfOnline(world), centerPos.x + 0.35 + random.nextFloat() * 0.3, centerPos.y + 0.35 + random.nextFloat() * 0.3, centerPos.z + 0.35 + random.nextFloat() * 0.3, stack);
 				world.addFreshEntity(fireworkRocketEntity);
 			}
 			return ItemStack.EMPTY;
@@ -75,7 +75,7 @@ public class SpectrumPresentUnpackBehaviors {
 			if (stack.getCount() > 0) {
 				PrimedTnt tntEntity = null;
 				for (int i = 0; i < stack.getCount(); i++) {
-					tntEntity = new PrimedTnt(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, presentBlockEntity.getOwnerIfOnline());
+					tntEntity = new PrimedTnt(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, presentBlockEntity.getOwnerIfOnline(world));
 					world.addFreshEntity(tntEntity);
 				}
 				world.playSound(null, tntEntity.getX(), tntEntity.getY(), tntEntity.getZ(), SoundEvents.TNT_PRIMED, SoundSource.BLOCKS, 1.0F, 1.0F);

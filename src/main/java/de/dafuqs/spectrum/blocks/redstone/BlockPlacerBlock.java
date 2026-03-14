@@ -65,7 +65,7 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 				world.gameEvent(GameEvent.BLOCK_ACTIVATE, pos, GameEvent.Context.of(blockEntity.getBlockState()));
 			} else {
 				ItemStack stack = blockEntity.getItem(slot);
-				tryPlace(stack, pointer, blockEntity.getOwnerIfOnline());
+				tryPlace(stack, pointer, blockEntity.getOwnerIfOnline(world));
 			}
 		}
 	}

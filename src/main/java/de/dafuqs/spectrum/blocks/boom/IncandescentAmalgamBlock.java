@@ -143,7 +143,7 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements SimpleW
 	protected static void explode(Level world, BlockPos pos) {
 		if (!world.isClientSide) {
 			if (world.getBlockEntity(pos) instanceof PlacedItemBlockEntity placedItemBlockEntity) {
-				Player owner = placedItemBlockEntity.getOwnerIfOnline();
+				Player owner = placedItemBlockEntity.getOwnerIfOnline(world);
 				ItemStack stack = placedItemBlockEntity.getStack();
 				
 				world.removeBlock(pos, false);

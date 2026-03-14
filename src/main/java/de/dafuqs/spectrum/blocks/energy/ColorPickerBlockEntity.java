@@ -251,7 +251,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 			InkStorage itemStorage = inkStorageItem.getEnergyStorage(stack);
 			
 			ServerPlayer owner = null;
-			if (getOwnerIfOnline() instanceof ServerPlayer serverPlayerEntity) {
+			if (getOwnerIfOnline(this.getLevel()) instanceof ServerPlayer serverPlayerEntity) {
 				owner = serverPlayerEntity;
 			}
 			

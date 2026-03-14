@@ -364,7 +364,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	}
 	
 	private static boolean checkRecipeRequirements(Level world, BlockPos blockPos, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
-		Player lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(cinderhearthBlockEntity.ownerUUID);
+		Player lastInteractedPlayer = PlayerOwned.getPlayerIfOnline(world, cinderhearthBlockEntity.ownerUUID);
 		if (lastInteractedPlayer == null) {
 			return false;
 		}
@@ -450,7 +450,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 			float experienceMod = cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.EXPERIENCE, InkColors.PURPLE, cinderhearth.usesEfficiency);
 			int finalExperience = Support.getIntFromDecimalWithChance(experience * experienceMod, world.random);
 			ExperienceStorageItem.addStoredExperience(world.registryAccess(), cinderhearth.getItem(EXPERIENCE_STORAGE_ITEM_SLOT_ID), finalExperience);
-			cinderhearth.grantPlayerCinderhearthSmeltingAdvancement(inputStackCopy, outputs, finalExperience);
+			cinderhearth.grantPlayerCinderhearthSmeltingAdvancement((ServerLevel) cinderhearth.level, inputStackCopy, outputs, finalExperience);
 		} else {
 			cinderhearth.inventory = backupInventory;
 			
@@ -461,8 +461,8 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		}
 	}
 	
-	public void grantPlayerCinderhearthSmeltingAdvancement(ItemStack input, List<ItemStack> outputs, int experience) {
-		ServerPlayer serverPlayerEntity = (ServerPlayer) getOwnerIfOnline();
+	public void grantPlayerCinderhearthSmeltingAdvancement(ServerLevel level, ItemStack input, List<ItemStack> outputs, int experience) {
+		ServerPlayer serverPlayerEntity = (ServerPlayer) getOwnerIfOnline(level);
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.CINDERHEARTH_SMELTING.trigger(serverPlayerEntity, input, outputs, experience, this.upgrades);
 		}

@@ -159,11 +159,10 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			}
 			if (ownerUUID != null) {
 				EntityHelper.addPlayerTrust(hatchedEntity, ownerUUID);
-			}
-			
-			Player owner = PlayerOwned.getPlayerEntityIfOnline(ownerUUID);
-			if (owner instanceof ServerPlayer serverPlayerEntity) {
-				SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);
+				Player owner = PlayerOwned.getPlayerIfOnline(world, ownerUUID);
+				if (owner instanceof ServerPlayer serverPlayerEntity) {
+					SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);
+				}
 			}
 			
 			return true;

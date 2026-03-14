@@ -73,7 +73,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		if (ownerUUID == null) {
 			return;
 		}
-		Player playerEntity = enderHopperBlockEntity.getOwnerIfOnline();
+		Player playerEntity = enderHopperBlockEntity.getOwnerIfOnline(enderHopperBlockEntity.getLevel());
 		if (playerEntity == null) {
 			return;
 		}
@@ -94,7 +94,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	private static void insertIntoEnderChest(EnderHopperBlockEntity enderHopperBlockEntity, ItemEntity itemEntity) {
 		UUID ownerUUID = enderHopperBlockEntity.getOwnerUUID();
 		if (ownerUUID != null) {
-			Player playerEntity = enderHopperBlockEntity.getOwnerIfOnline();
+			Player playerEntity = enderHopperBlockEntity.getOwnerIfOnline(enderHopperBlockEntity.getLevel());
 			if (playerEntity != null) {
 				ItemStack sourceItemStack = itemEntity.getItem();
 				if (!sourceItemStack.isEmpty()) {

@@ -261,14 +261,14 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 				LootParams.Builder builder = new LootParams.Builder((ServerLevel) world)
 						.withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(eventPos))
 						.withParameter(LootContextParams.TOOL, HARVEST_ITEMSTACK)
-						.withOptionalParameter(LootContextParams.THIS_ENTITY, getOwnerIfOnline())
+						.withOptionalParameter(LootContextParams.THIS_ENTITY, getOwnerIfOnline(world))
 						.withOptionalParameter(LootContextParams.BLOCK_ENTITY, eventState.hasBlockEntity() ? this.getLevel().getBlockEntity(eventPos) : null);
 				
 				List<ItemStack> drops = eventState.getDrops(builder);
 				boolean anyDropsUsed = drops.isEmpty();
 				for (ItemStack drop : drops) {
 					if (hasOwner()) {
-						Player owner = getOwnerIfOnline();
+						Player owner = getOwnerIfOnline(world);
 						if (owner instanceof ServerPlayer serverPlayerEntity) {
 							SpectrumAdvancementCriteria.CRYSTAL_APOTHECARY_COLLECTING.trigger(serverPlayerEntity, drop);
 						}

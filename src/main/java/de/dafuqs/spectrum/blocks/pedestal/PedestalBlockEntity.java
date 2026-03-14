@@ -162,7 +162,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			if (calculatedRecipe instanceof PedestalRecipe calculatedPedestalRecipe) {
 				pedestalBlockEntity.propertyDelegate.craftingTimeTotal = (int) Math.ceil(calculatedPedestalRecipe.getCraftingTime() / pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED));
 				
-				Player player = pedestalBlockEntity.getOwnerIfOnline();
+				Player player = pedestalBlockEntity.getOwnerIfOnline(world);
 				if (player instanceof ServerPlayer serverPlayerEntity) {
 					SpectrumAdvancementCriteria.PEDESTAL_RECIPE_CALCULATED.trigger(serverPlayerEntity, calculatedPedestalRecipe.assemble(pedestalBlockEntity.createRecipeInput(), world.registryAccess()), (int) calculatedPedestalRecipe.getExperience(), pedestalBlockEntity.propertyDelegate.craftingTimeTotal);
 				}
@@ -197,7 +197,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			pedestalBlockEntity.propertyDelegate.craftingTime++;
 			if (pedestalBlockEntity.propertyDelegate.craftingTime == pedestalBlockEntity.propertyDelegate.craftingTimeTotal) {
 				pedestalBlockEntity.propertyDelegate.craftingTime = 0;
-				craftingFinished = pedestalBlockEntity.craftVanillaRecipe(vanillaCraftingRecipe, pedestalBlockEntity, maxCountPerStack);
+				craftingFinished = pedestalBlockEntity.craftVanillaRecipe(world, vanillaCraftingRecipe, pedestalBlockEntity, maxCountPerStack);
 				if (craftingFinished) {
 					playCraftingFinishedSoundEvent(pedestalBlockEntity, calculatedRecipe);
 					pedestalBlockEntity.inventoryChanged = true;
@@ -384,14 +384,14 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		float experience = recipe.getExperience() * pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.EXPERIENCE);
 		pedestalBlockEntity.storedXP += experience;
 		
-		Player player = pedestalBlockEntity.getOwnerIfOnline();
+		Player player = pedestalBlockEntity.getOwnerIfOnline(world);
 		//TODO revisit onCraftedBySystem (see OfflineDataLookup)
 		if (player != null) {
 			outputStack.onCraftedBy(world, player, outputStack.getCount());
 		}
 		
 		// trigger advancements
-		pedestalBlockEntity.grantPlayerPedestalCraftingAdvancement(outputStack, (int) experience, pedestalBlockEntity.propertyDelegate.craftingTimeTotal);
+		pedestalBlockEntity.grantPlayerPedestalCraftingAdvancement(world, outputStack, (int) experience, pedestalBlockEntity.propertyDelegate.craftingTimeTotal);
 		
 		// if it was a recipe to upgrade the pedestal itself
 		// => upgrade
@@ -624,15 +624,15 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		level.playSound(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), soundEvent, SoundSource.BLOCKS, 0.9F + level.random.nextFloat() * 0.2F, 0.9F + level.random.nextFloat() * 0.15F);
 	}
 	
-	private boolean craftVanillaRecipe(@Nullable CraftingRecipe recipe, PedestalBlockEntity pedestal, int maxCountPerStack) {
+	private boolean craftVanillaRecipe(Level level, @Nullable CraftingRecipe recipe, PedestalBlockEntity pedestal, int maxCountPerStack) {
 		if (canAcceptRecipeOutput(recipe, createRecipeInput(), maxCountPerStack)) {
 			ItemStack recipeOutput = recipe.assemble(createRecipeInput().getCraftingGridInput(), pedestal.getLevel().registryAccess());
-			Player player = getOwnerIfOnline();
+			Player player = getOwnerIfOnline(level);
 			//TODO revise for non-player crafting
 			if (player == null) {
-				recipeOutput.onCraftedBySystem(this.getLevel());
+				recipeOutput.onCraftedBySystem(level);
 			} else {
-				recipeOutput.onCraftedBy(this.getLevel(), player, recipeOutput.getCount());
+				recipeOutput.onCraftedBy(level, player, recipeOutput.getCount());
 			}
 			
 			// -1 for all crafting inputs
@@ -674,8 +674,8 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 	}
 	
-	private void grantPlayerPedestalCraftingAdvancement(ItemStack output, int experience, int duration) {
-		ServerPlayer serverPlayerEntity = (ServerPlayer) getOwnerIfOnline();
+	private void grantPlayerPedestalCraftingAdvancement(Level level, ItemStack output, int experience, int duration) {
+		ServerPlayer serverPlayerEntity = (ServerPlayer) getOwnerIfOnline(level);
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.PEDESTAL_CRAFTING.trigger(serverPlayerEntity, output, experience, duration);
 		}
@@ -846,25 +846,25 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		
 		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_COMPLEX);
 		if (multiblock.validate(level, worldPosition.below(), Rotation.NONE)) {
-			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayer) this.getOwnerIfOnline(), multiblock);
+			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayer) this.getOwnerIfOnline(level), multiblock);
 			return PedestalRecipeTier.COMPLEX;
 		}
 		
 		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_WITHOUT_MOONSTONE);
 		if (multiblock.validate(level, worldPosition.below(), Rotation.NONE)) {
-			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayer) this.getOwnerIfOnline(), multiblock);
+			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayer) this.getOwnerIfOnline(level), multiblock);
 			return PedestalRecipeTier.ADVANCED;
 		}
 		
 		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_ADVANCED);
 		if (multiblock.validate(level, worldPosition.below(), Rotation.NONE)) {
-			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayer) this.getOwnerIfOnline(), multiblock);
+			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayer) this.getOwnerIfOnline(level), multiblock);
 			return PedestalRecipeTier.ADVANCED;
 		}
 		
 		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_SIMPLE);
 		if (multiblock.validate(level, worldPosition.below(), Rotation.NONE)) {
-			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayer) this.getOwnerIfOnline(), multiblock);
+			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayer) this.getOwnerIfOnline(level), multiblock);
 			return PedestalRecipeTier.SIMPLE;
 		}
 		

@@ -56,7 +56,7 @@ public class OminousSaplingBlock extends BushBlock implements EntityBlock {
 		Optional<OminousSaplingBlockEntity> ominousSaplingBlockEntity = world.getBlockEntity(pos, SpectrumBlockEntities.OMINOUS_SAPLING.get());
 		if (ominousSaplingBlockEntity.isPresent()) {
 			UUID ownerUUID = ominousSaplingBlockEntity.get().getOwnerUUID();
-			Player playerEntity = PlayerOwned.getPlayerEntityIfOnline(ownerUUID);
+			Player playerEntity = PlayerOwned.getPlayerIfOnline(world, ownerUUID);
 			if (playerEntity instanceof ServerPlayer serverPlayerEntity) {
 				Support.grantAdvancementCriterion(serverPlayerEntity, "endgame/grow_ominous_sapling", "grow");
 			}

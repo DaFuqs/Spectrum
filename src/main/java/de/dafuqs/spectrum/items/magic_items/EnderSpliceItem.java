@@ -148,7 +148,7 @@ public class EnderSpliceItem extends Item {
 	}
 	
 	private static boolean teleportPlayerToPlayerWithUUID(Level world, LivingEntity user, Player playerEntity, UUID targetPlayerUUID, boolean hasResonance) {
-		Player targetPlayer = PlayerOwned.getPlayerEntityIfOnline(targetPlayerUUID);
+		Player targetPlayer = PlayerOwned.getPlayerIfOnline(world, targetPlayerUUID);
 		if (targetPlayer != null) {
 			return teleportPlayerToPos(targetPlayer.getCommandSenderWorld(), user, playerEntity, targetPlayer.getCommandSenderWorld(), targetPlayer.position(), hasResonance);
 		}

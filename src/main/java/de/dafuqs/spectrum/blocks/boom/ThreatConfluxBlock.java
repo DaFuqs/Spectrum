@@ -155,7 +155,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 			return;
 		}
 		ItemStack stack = blockEntity.getStack();
-		Player owner = blockEntity.getOwnerIfOnline();
+		Player owner = blockEntity.getOwnerIfOnline(level);
 		
 		BlockState state = level.getBlockState(pos);
 		boolean shouldPreserve = ExplosionWithStack.shouldPreserveExplosive(level, stack);

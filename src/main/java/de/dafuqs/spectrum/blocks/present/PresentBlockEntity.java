@@ -10,6 +10,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
@@ -24,8 +25,9 @@ public class PresentBlockEntity extends PlacedItemBlockEntity implements PlayerO
 	
 	public void triggerAdvancement() {
 		UUID openerUUID = getOpenerUUID();
+		Level level = this.getLevel();
 		if (openerUUID != null) {
-			Player opener = PlayerOwned.getPlayerEntityIfOnline(openerUUID);
+			Player opener = PlayerOwned.getPlayerIfOnline(level, openerUUID);
 			if (opener != null) {
 				Support.grantAdvancementCriterion((ServerPlayer) opener, "gift_or_open_present", "gifted_or_opened_present");
 			}
@@ -33,7 +35,7 @@ public class PresentBlockEntity extends PlacedItemBlockEntity implements PlayerO
 		
 		UUID ownerUUID = getOwnerUUID();
 		if (ownerUUID != null) {
-			Player wrapper = PlayerOwned.getPlayerEntityIfOnline(ownerUUID);
+			Player wrapper = PlayerOwned.getPlayerIfOnline(level, ownerUUID);
 			if (wrapper != null) {
 				Support.grantAdvancementCriterion((ServerPlayer) wrapper, "gift_or_open_present", "gifted_or_opened_present");
 			}

@@ -216,7 +216,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	}
 	
 	private static boolean checkRecipeRequirements(Level world, BlockPos blockPos, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-		Player lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(spiritInstillerBlockEntity.ownerUUID);
+		Player lastInteractedPlayer = PlayerOwned.getPlayerIfOnline(world, spiritInstillerBlockEntity.ownerUUID);
 		if (lastInteractedPlayer == null) {
 			return false;
 		}

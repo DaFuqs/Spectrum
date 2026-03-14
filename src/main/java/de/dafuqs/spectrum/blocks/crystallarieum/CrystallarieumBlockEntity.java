@@ -163,7 +163,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			Optional<BlockState> nextState = recipe.value().getNextState(recipe, topState);
 			if (nextState.isPresent()) {
 				world.setBlockAndUpdate(topPos, nextState.get());
-				ServerPlayer owner = (ServerPlayer) crystallarieum.getOwnerIfOnline();
+				ServerPlayer owner = (ServerPlayer) crystallarieum.getOwnerIfOnline(world);
 				if (owner != null) {
 					SpectrumAdvancementCriteria.CRYSTALLARIEUM_GROWING.trigger(owner, (ServerLevel) world, topPos, crystallarieum.getItem(CATALYST_SLOT_ID));
 				}

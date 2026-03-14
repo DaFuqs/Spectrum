@@ -127,7 +127,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		// check the crafting conditions from time to time
 		// good for performance because of the many checks
 		if (fusionShrineBlockEntity.craftingTime % 60 == 0) {
-			Player lastInteractedPlayer = fusionShrineBlockEntity.getOwnerIfOnline();
+			Player lastInteractedPlayer = fusionShrineBlockEntity.getOwnerIfOnline(world);
 			
 			boolean recipeConditionsMet = recipe.value().canPlayerCraft(lastInteractedPlayer) && recipe.value().areConditionMetCurrently((ServerLevel) world, blockPos);
 			boolean structureComplete = FusionShrineBlock.verifyStructure(world, blockPos, null);
@@ -246,8 +246,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
 	}
 	
-	public void grantPlayerFusionCraftingAdvancement(ItemStack stack, int experience) {
-		ServerPlayer serverPlayerEntity = (ServerPlayer) getOwnerIfOnline();
+	public void grantPlayerFusionCraftingAdvancement(Level world, ItemStack stack, int experience) {
+		ServerPlayer serverPlayerEntity = (ServerPlayer) getOwnerIfOnline(world);
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, stack, experience);
 		}

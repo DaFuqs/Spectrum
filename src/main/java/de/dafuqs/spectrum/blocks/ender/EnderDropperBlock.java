@@ -116,7 +116,7 @@ public class EnderDropperBlock extends DispenserBlock {
 						ItemStack moved = ItemHandlerHelper.insertItemStacked(target, itemStack.copyWithCount(1), false);
 						// return without triggering fail event if successfully moved
 						if (moved.isEmpty()) {
-							enderDropperBlockEntity.getOwnerIfOnline().getEnderChestInventory().setChanged();
+							enderDropperBlockEntity.getOwnerIfOnline(world).getEnderChestInventory().setChanged();
 							return;
 						}
 					}

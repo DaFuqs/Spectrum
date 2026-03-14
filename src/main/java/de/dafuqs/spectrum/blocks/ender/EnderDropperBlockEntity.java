@@ -110,7 +110,7 @@ public class EnderDropperBlockEntity extends DispenserBlockEntity implements Pla
 	}
 	
 	private Optional<PlayerEnderChestContainer> getInventory() {
-		var player = getOwnerIfOnline();
+		var player = getOwnerIfOnline(this.level);
 		if (player != null)
 			return Optional.of(player.getEnderChestInventory());
 		return Optional.empty();

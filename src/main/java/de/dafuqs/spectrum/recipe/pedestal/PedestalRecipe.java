@@ -200,7 +200,7 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe<PedestalRe
 	}
 	
 	public boolean canCraft(PedestalBlockEntity pedestalBlockEntity) {
-		Player playerEntity = pedestalBlockEntity.getOwnerIfOnline();
+		Player playerEntity = pedestalBlockEntity.getOwnerIfOnline(pedestalBlockEntity.getLevel());
 		if (playerEntity == null || !canPlayerCraft(playerEntity)) {
 			return false;
 		}

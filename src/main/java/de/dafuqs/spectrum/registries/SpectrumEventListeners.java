@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import com.kwpugh.gobber2.events.*;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
@@ -18,7 +17,6 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
-import de.dafuqs.spectrum.mixin.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
@@ -858,7 +856,7 @@ public class SpectrumEventListeners {
 				
 			// when the animal is sent flying trigger a hidden advancement
 			if (appliedGravity > 0.081 && level.getGameTime() % 20 == 0) {
-				Player owner = PlayerOwned.getPlayerEntityIfOnline(horse.getOwnerUUID());
+				Player owner = PlayerOwned.getPlayerIfOnline(level, horse.getOwnerUUID());
 				if (owner != null) {
 					Support.grantAdvancementCriterion((ServerPlayer) owner, "lategame/put_too_many_low_gravity_blocks_into_animal", "gravity");
 				}

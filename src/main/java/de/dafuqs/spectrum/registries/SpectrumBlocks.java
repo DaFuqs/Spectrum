@@ -92,7 +92,6 @@ import net.neoforged.fml.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
-import vazkii.botania.api.item.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -1859,19 +1858,17 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> MIDNIGHT_SOLUTION = register(singleton(block("midnight_solution", () -> new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION.get(), BLACK_MATERIA.get().defaultBlockState(), fluid(MapColor.WARPED_STEM).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
 	public static final DeferredBlock<Block> DRAGONROT = register(singleton(block("dragonrot", () -> new DragonrotFluidBlock(SpectrumFluids.DRAGONROT.get(), BLACKSTONE.defaultBlockState(), fluid(MapColor.ICE).lightLevel((state) -> 15).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
 	
-	public static final Block TOPAZ_BRICKS = register(simple(blockWithItem("topaz_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_TOPAZ)), InkColors.CYAN)));
-	public static final Block AMETHYST_BRICKS = register(simple(blockWithItem("amethyst_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_AMETHYST)), InkColors.MAGENTA)));
-	public static final Block CITRINE_BRICKS = register(simple(blockWithItem("citrine_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_CITRINE)), InkColors.YELLOW)));
-	public static final Block ONYX_BRICKS = register(simple(blockWithItem("onyx_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_ONYX)), InkColors.BLACK)));
-	public static final Block MOONSTONE_BRICKS = register(simple(blockWithItem("moonstone_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_MOONSTONE)), InkColors.WHITE)));
+	public static final DeferredBlock<Block> TOPAZ_BRICKS = register(simple(blockWithItem("topaz_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_TOPAZ.get())), InkColors.CYAN)));
+	public static final DeferredBlock<Block> AMETHYST_BRICKS = register(simple(blockWithItem("amethyst_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_AMETHYST.get())), InkColors.MAGENTA)));
+	public static final DeferredBlock<Block> CITRINE_BRICKS = register(simple(blockWithItem("citrine_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_CITRINE.get())), InkColors.YELLOW)));
+	public static final DeferredBlock<Block> ONYX_BRICKS = register(simple(blockWithItem("onyx_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_ONYX.get())), InkColors.BLACK)));
+	public static final DeferredBlock<Block> MOONSTONE_BRICKS = register(simple(blockWithItem("moonstone_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_MOONSTONE.get())), InkColors.WHITE)));
+	public static final DeferredBlock<Block> MIXED_GEMSTONE_BRICKS = register(simple(blockWithItem("mixed_gemstone_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_AMETHYST.get())), InkColors.MAGENTA)));
 	
-	public static final Block MIXED_GEMSTONE_BRICKS = register(simple(blockWithItem("mixed_gemstone_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_AMETHYST)), InkColors.MAGENTA)));
-	
-	public static final Block AZURITE_BRICKS = register(simple(blockWithItem("azurite_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(AZURITE_BLOCK)), InkColors.BLUE)));
-	public static final Block MALACHITE_BRICKS = register(simple(blockWithItem("malachite_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(MALACHITE_BLOCK)), InkColors.GREEN)));
-	public static final Block BLOODSTONE_BRICKS = register(simple(blockWithItem("bloodstone_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(BLOODSTONE_BLOCK)), InkColors.RED)));
-	
-	public static final Block MIXED_REFINED_CRYSTAL_BRICKS = register(simple(blockWithItem("mixed_refined_crystal_bricks", new Block(BlockBehaviour.Properties.ofFullCopy(AZURITE_BLOCK)), InkColors.BLUE)));
+	public static final DeferredBlock<Block> AZURITE_BRICKS = register(simple(blockWithItem("azurite_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(AZURITE_BLOCK.get())), InkColors.BLUE)));
+	public static final DeferredBlock<Block> MALACHITE_BRICKS = register(simple(blockWithItem("malachite_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(MALACHITE_BLOCK.get())), InkColors.GREEN)));
+	public static final DeferredBlock<Block> BLOODSTONE_BRICKS = register(simple(blockWithItem("bloodstone_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BLOODSTONE_BLOCK.get())), InkColors.RED)));
+	public static final DeferredBlock<Block> MIXED_REFINED_CRYSTAL_BRICKS = register(simple(blockWithItem("mixed_refined_crystal_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(AZURITE_BLOCK.get())), InkColors.BLUE)));
 	
 	static boolean never(BlockState state, BlockGetter world, BlockPos pos, EntityType<?> type) {
 		return false;

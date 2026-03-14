@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.food;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
@@ -43,18 +44,18 @@ public class StarCandyItem extends Item {
 		switch(this.rarity) {
 			case GLEAMING ->  {
 				if (!world.isClientSide) {
-					WhispyCircletItem.removeSingleStatusEffect(user, MobEffectCategory.HARMFUL);
+					MobEffectHelper.clearRandomEffect(user, instance -> instance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL);
 				}
 			}
 			case ENCHANTED ->  {
 				if (!world.isClientSide) {
-					WhispyCircletItem.removeNegativeStatusEffects(user);
+					MobEffectHelper.clearEffects(user, instance -> instance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL);
 				}
 			}
 			case MAGNIFICENT -> {
 				user.heal(user.getMaxHealth());
 				if (!world.isClientSide) {
-					WhispyCircletItem.removeNegativeStatusEffects(user);
+					MobEffectHelper.clearEffects(user, instance -> instance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL);
 				}
 				if (user instanceof Player player) {
 					player.getFoodData().eat(1000, 1.0F);
@@ -115,19 +116,19 @@ public class StarCandyItem extends Item {
 		public Item getItem() {
 			switch (this) {
 				case SUGARY -> {
-					return SpectrumItems.SUGARY_STAR_CANDY;
+					return SpectrumItems.SUGARY_STAR_CANDY.get();
 				}
 				case MELLOW -> {
-					return SpectrumItems.MELLOW_STAR_CANDY;
+					return SpectrumItems.MELLOW_STAR_CANDY.get();
 				}
 				case GLEAMING -> {
-					return SpectrumItems.GLEAMING_STAR_CANDY;
+					return SpectrumItems.GLEAMING_STAR_CANDY.get();
 				}
 				case ENCHANTED -> {
-					return SpectrumItems.ENCHANTED_STAR_CANDY;
+					return SpectrumItems.ENCHANTED_STAR_CANDY.get();
 				}
 				default -> {
-					return SpectrumItems.MAGNIFICENT_STAR_CANDY;
+					return SpectrumItems.MAGNIFICENT_STAR_CANDY.get();
 				}
 			}
 		}

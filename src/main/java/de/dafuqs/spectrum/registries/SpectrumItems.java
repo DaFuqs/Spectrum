@@ -328,11 +328,11 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> FREIGEIST = register("freigeist", () -> new FreigeistItem(IS.of().food(SpectrumFoodComponents.FREIGEIST).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> DIVINATION_HEART = register("divination_heart", () -> new Item(IS.of().food(SpectrumFoodComponents.DIVINATION_HEART)));
 	
-	public static final Item SUGARY_STAR_CANDY = register("sugary_star_candy", new StarCandyItem(IS.of(Rarity.COMMON).food(SpectrumFoodComponents.SUGARY_STAR_CANDY), StarCandyItem.Rarity.SUGARY));
-	public static final Item MELLOW_STAR_CANDY = register("mellow_star_candy", new StarCandyItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MELLOW_STAR_CANDY), StarCandyItem.Rarity.MELLOW));
-	public static final Item GLEAMING_STAR_CANDY = register("gleaming_star_candy", new StarCandyItem(IS.of(Rarity.RARE).food(SpectrumFoodComponents.GLEAMING_STAR_CANDY), StarCandyItem.Rarity.GLEAMING));
-	public static final Item ENCHANTED_STAR_CANDY = register("enchanted_star_candy", new StarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.ENCHANTED_STAR_CANDY), StarCandyItem.Rarity.ENCHANTED));
-	public static final Item MAGNIFICENT_STAR_CANDY = register("magnificent_star_candy", new StarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.MAGNIFICENT_STAR_CANDY), StarCandyItem.Rarity.MAGNIFICENT), InkColors.PINK)));
+	public static final DeferredItem<Item> SUGARY_STAR_CANDY = register("sugary_star_candy", () -> new StarCandyItem(IS.of(Rarity.COMMON).food(SpectrumFoodComponents.SUGARY_STAR_CANDY), StarCandyItem.Rarity.SUGARY));
+	public static final DeferredItem<Item> MELLOW_STAR_CANDY = register("mellow_star_candy", () -> new StarCandyItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MELLOW_STAR_CANDY), StarCandyItem.Rarity.MELLOW));
+	public static final DeferredItem<Item> GLEAMING_STAR_CANDY = register("gleaming_star_candy", () -> new StarCandyItem(IS.of(Rarity.RARE).food(SpectrumFoodComponents.GLEAMING_STAR_CANDY), StarCandyItem.Rarity.GLEAMING));
+	public static final DeferredItem<Item> ENCHANTED_STAR_CANDY = register("enchanted_star_candy", () -> new StarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.ENCHANTED_STAR_CANDY), StarCandyItem.Rarity.ENCHANTED));
+	public static final DeferredItem<Item> MAGNIFICENT_STAR_CANDY = register("magnificent_star_candy", () -> new StarCandyItem(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.MAGNIFICENT_STAR_CANDY), StarCandyItem.Rarity.MAGNIFICENT));
 
 	public static final DeferredItem<Item> ENCHANTED_GOLDEN_CARROT = register("enchanted_golden_carrot", () -> new ItemWithGlint(IS.of(Rarity.EPIC).food(SpectrumFoodComponents.ENCHANTED_GOLDEN_CARROT)));
 	public static final DeferredItem<Item> JARAMEL = register("jaramel", () -> new Item(IS.of().food(SpectrumFoodComponents.JARAMEL)));

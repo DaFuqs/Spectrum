@@ -382,8 +382,13 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.BLOODBOIL_SYRUP);
 					entries.accept(SpectrumItems.MILKY_RESIN);
 					entries.accept(SpectrumItems.SCONE);
-					entries.accept(SpectrumItems.STAR_CANDY);
+					
+					entries.accept(SpectrumItems.SUGARY_STAR_CANDY);
+					entries.accept(SpectrumItems.MELLOW_STAR_CANDY);
+					entries.accept(SpectrumItems.GLEAMING_STAR_CANDY);
 					entries.accept(SpectrumItems.ENCHANTED_STAR_CANDY);
+					entries.accept(SpectrumItems.MAGNIFICENT_STAR_CANDY);
+					
 					entries.accept(SpectrumItems.CHEONG);
 					entries.accept(SpectrumItems.MERMAIDS_JAM);
 					entries.accept(SpectrumItems.MERMAIDS_POPCORN);

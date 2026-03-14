@@ -38,10 +38,10 @@ public class SpectrumItemGroups {
 			.displayItems((displayContext, entries) -> {
 				entries.accept(SpectrumBlocks.PEDESTAL_ALL_BASIC, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
 				for (CreativeSubTab subGroup : ((ICreativeTabParent) SpectrumItemGroups.MAIN.get()).fractal$getChildren()) {
+					subGroup.buildContents(displayContext);
 					entries.acceptAll(subGroup.getDisplayItems());
 				}
 			})
-			.hideTitle()
 			.title(Component.translatable("itemGroup.spectrum"))
 			.build());
 	

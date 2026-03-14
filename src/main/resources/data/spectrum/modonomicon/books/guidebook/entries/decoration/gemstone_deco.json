@@ -118,6 +118,51 @@
       },
       "title1": "block.spectrum.moonstone_pillar",
       "recipe_id_1": "spectrum:crafting_table/gem_blocks/moonstone_pillar"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.gemstone_deco.bricks.title",
+      "text": "book.spectrum.guidebook.gemstone_deco.bricks.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/bricks/topaz"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/bricks/amethyst"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/bricks/citrine"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/bricks/onyx"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/bricks/moonstone"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/bricks/mixed_gemstone_bricks"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/bricks/bloodstone"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/bricks/azurite"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/bricks/malachite"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/bricks/mixed_refined_crystal_bricks"
     }
   ]
 }

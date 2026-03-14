@@ -2711,6 +2711,8 @@
   "book.spectrum.guidebook.gemstone_runes.page2.title": "Alternative Recipe",
   "book.spectrum.guidebook.gemstone_deco.name": "Gemstone Decorations",
   "book.spectrum.guidebook.gemstone_deco.page0.text": "The gems have an exceptionally beautiful appearance.\\\nHowever, the look of the raw clusters, as I know them from the geodes, seems a little too natural for my edgier builds. As a full block, however, they are beautiful too and fit right in.\\\n\\\nIf I run out of gems at some point, I can easily break the polished ones up again.",
+  "book.spectrum.guidebook.gemstone_deco.bricks.title": "Gemstone Bricks",
+  "book.spectrum.guidebook.gemstone_deco.bricks.text": "I thought: *what if they still looked pretty, but in brick form*?\\\n\\\nWorks in both the Pedestal and the [](item://minecraft:stonecutter).",
   "book.spectrum.guidebook.geodes.name": "Geodes",
   "book.spectrum.guidebook.geodes.page0.text": "I was told about a strange occurrence underground, but this picture is the only clue I have at the moment.",
   "book.spectrum.guidebook.geodes.page1.text": "Breaking Clusters gives me Gemstone Shards, which seem to inherit most of the original properties.\\\nEach type of gem seems to represent a different type of fundamental property.\\\n\\\nLooks like different heights encourage the formation of certain types. To find them all, it will make sense to search in different places.",
@@ -4098,6 +4100,7 @@
   "book.spectrum.guidebook.filtering.filter_slot.text": "I gave some of my more advanced constructions filters!\\\n\\\nPutting any item in one of those slots makes it only select matching items, instead of blindly handling everything.",
   "book.spectrum.guidebook.filtering.tag_filtering.title": "Tag Filtering",
   "book.spectrum.guidebook.filtering.tag_filtering.text": "By writing an [#](449900)Item Tag[#]() on a strip of [vellum](item://minecraft:name_tag), I can be even more granular, making my constructs only handle things in that tag! By prepending a tags name with a '!' I can then filter even further and exclude items with that tag.\\\n\\\nConditions are evaluated from left to right.",
+
 
   "commands.spectrum.primordial_fire.put_on.success": "Set %d entities on fire",
   "commands.spectrum.primordial_fire.put_out.success": "Extinguished %d entities",

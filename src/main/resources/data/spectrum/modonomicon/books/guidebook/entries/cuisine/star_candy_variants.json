@@ -1,0 +1,53 @@
+{
+  "name": "book.spectrum.guidebook.star_candy_variants.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_enchanted_star_candy"
+  },
+  "icon": {
+    "item": "spectrum:enchanted_star_candy"
+  },
+  "category": "spectrum:cuisine",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/star_candy"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 10,
+  "y": -2,
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.star_candy_variants.name",
+      "items": [
+        {
+          "id": "spectrum:mellow_star_candy"
+        },
+        {
+          "id": "spectrum:gleaming_star_candy"
+        },
+        {
+          "id": "spectrum:enchanted_star_candy"
+        }
+      ],
+      "text": "book.spectrum.guidebook.star_candy_variants.variants.text"
+    },
+    {
+    "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:magnificent_star_candy"
+      },
+      "text": "book.spectrum.guidebook.star_candy_variants.magnificent.text"
+    },
+    {
+    "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:sugary_star_candy"
+      },
+      "text": "book.spectrum.guidebook.star_candy_variants.sugary.text"
+    }
+  ]
+}

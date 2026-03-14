@@ -353,7 +353,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:star_candy",
+          "name": "spectrum:mellow_star_candy",
           "weight": 25,
           "functions": [
             {
@@ -368,7 +368,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:enchanted_star_candy",
+          "name": "spectrum:gleaming_star_candy",
           "weight": 0,
           "quality": 1
         }

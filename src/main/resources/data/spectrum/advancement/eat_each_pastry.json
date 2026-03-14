@@ -187,9 +187,7 @@
       "trigger": "minecraft:consume_item",
       "conditions": {
         "item": {
-          "items": [
-            "spectrum:star_candy"
-          ]
+          "items": "#spectrum:star_candies"
         }
       }
     },

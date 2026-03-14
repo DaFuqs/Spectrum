@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:citrine_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:citrine_bricks",
+    "count": 1
+  }
+}

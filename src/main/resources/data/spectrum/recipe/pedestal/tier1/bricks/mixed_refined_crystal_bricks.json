@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:pedestal_shapeless",
+  "group": "gemstone_bricks",
+  "time": 40,
+  "tier": "basic",
+  "colors": {},
+  "experience": 0.0,
+  "ingredients": [
+    "spectrum:azurite_block",
+    "spectrum:malachite_block",
+    "spectrum:bloodstone_block"
+  ],
+  "result": {
+    "id": "spectrum:mixed_refined_crystal_bricks",
+    "count": 16
+  },
+  "required_advancement": "spectrum:lategame/no_rgb"
+}

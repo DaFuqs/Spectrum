@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:azurite_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:azurite_bricks",
+    "count": 1
+  }
+}

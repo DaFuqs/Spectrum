@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:malachite_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:malachite_bricks",
+    "count": 1
+  }
+}

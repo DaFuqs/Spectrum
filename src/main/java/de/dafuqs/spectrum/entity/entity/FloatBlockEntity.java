@@ -35,7 +35,7 @@ import java.util.function.*;
  */
 public class FloatBlockEntity extends Entity {
 	
-	private static final float MAX_DAMAGE = 12.0F;
+	private static final float MAX_DAMAGE = 16.0F;
 	private static final float DAMAGE_PER_FALLEN_BLOCK = 1.0F;
 	
 	private static final EntityDataAccessor<BlockPos> ORIGIN = SynchedEntityData.defineId(FloatBlockEntity.class, EntityDataSerializers.BLOCK_POS);
@@ -193,7 +193,7 @@ public class FloatBlockEntity extends Entity {
 	}
 	
 	public void dealDamage() {
-		int traveledDistance = Mth.ceil(this.moveDist - 1.0F);
+		int traveledDistance = Math.abs(Mth.ceil(this.moveDist - 1.0F));
 		if (traveledDistance > 0) {
 			int damage = (int) Math.min(Mth.floor(traveledDistance * DAMAGE_PER_FALLEN_BLOCK), MAX_DAMAGE);
 			if (damage > 0) {

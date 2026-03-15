@@ -29,13 +29,15 @@ public class SlushBlock extends RotatedPillarBlock implements BonemealableBlock 
 	
 	@Override
 	public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+		if(!world.getBlockState(pos.above()).isAir()) {
+			return false;
+		}
 		for (BlockPos currPos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
 			BlockState currState = world.getBlockState(currPos);
 			if (currState.is(SpectrumBlockTags.OVERGROWN)) {
 				return true;
 			}
 		}
-		
 		return false;
 	}
 	
@@ -46,17 +48,8 @@ public class SlushBlock extends RotatedPillarBlock implements BonemealableBlock 
 	
 	@Override
 	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-		boolean overgrownBlockNext = false;
-		
 		// search for all valid neighboring blocks and choose a weighted random one
-		for (BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
-			BlockState blockState = world.getBlockState(blockPos);
-			if (blockState.is(SpectrumBlockTags.OVERGROWN)) {
-				overgrownBlockNext = true;
-			}
-		}
-		
-		if (overgrownBlockNext) {
+		if(isValidBonemealTarget(world, pos, state)) {
 			world.setBlockAndUpdate(pos, SpectrumBlocks.OVERGROWN_SLUSH.get().defaultBlockState());
 		}
 	}
@@ -65,7 +58,7 @@ public class SlushBlock extends RotatedPillarBlock implements BonemealableBlock 
 	public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
 		ItemStack handStack = context.getItemInHand();
 		if (itemAbility == ItemAbilities.HOE_TILL && handStack.canPerformAction(itemAbility) && HoeItem.onlyIfAirAbove(context)) {
-			return SpectrumBlocks.TILLED_SLUSH.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+			return SpectrumBlocks.TILLED_SLUSH.get().defaultBlockState();
 		}
 		return null;
 	}

@@ -18,11 +18,10 @@ Steps to reproduce the behavior.
 **Expected behavior**
 A concise description of what you expected to happen.
 
-**Minecraft version**
-Which version of Minecraft are you currently using?
-
-**Mod version**
-Which version of the mod are you currently using?
+**Version information**
+Spectrum Version:
+Minecraft Version:
+Mod Loader: Fabric / NeoForge
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.

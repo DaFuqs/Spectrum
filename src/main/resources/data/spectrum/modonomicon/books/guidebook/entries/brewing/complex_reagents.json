@@ -35,13 +35,6 @@
     {
       "type": "modonomicon:spotlight",
       "item": {
-        "item": "minecraft:redstone"
-      },
-      "text": "book.spectrum.guidebook.potion_workshop_reagents.redstone.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "item": {
         "item": "spectrum:aether_vestiges"
       },
       "anchor": "aether_vestiges",
@@ -62,13 +55,6 @@
         "advancement_id": "spectrum:unlocks/reagents/pure_resources"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.pure_redstone.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "item": {
-        "item": "minecraft:glowstone_dust"
-      },
-      "text": "book.spectrum.guidebook.potion_workshop_reagents.glowstone_dust.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -104,20 +90,6 @@
         "advancement_id": "spectrum:unlocks/reagents/pure_resources"
       },
       "text": "book.spectrum.guidebook.potion_workshop_reagents.pure_lapis.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "item": {
-        "item": "minecraft:gunpowder"
-      },
-      "text": "book.spectrum.guidebook.potion_workshop_reagents.gunpowder.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "item": {
-        "item": "minecraft:dragon_breath"
-      },
-      "text": "book.spectrum.guidebook.potion_workshop_reagents.dragon_breath.text"
     },
     {
       "type": "modonomicon:spotlight",

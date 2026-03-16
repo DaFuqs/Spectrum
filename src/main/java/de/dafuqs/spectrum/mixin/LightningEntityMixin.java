@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.registries.*;
@@ -20,12 +19,12 @@ public abstract class LightningEntityMixin {
 	@Shadow
 	protected abstract BlockPos getStrikePosition();
 	
-	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LightningBolt;clearCopperOnLightningStrike(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"))
-	private void spawnLightningStoneAtImpact(CallbackInfo ci) {
+	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getDifficulty()Lnet/minecraft/world/Difficulty;"))
+	private void spectrum$trySpawnStormStoneOnImpact(CallbackInfo ci) {
 		Level world = ((LightningBolt) (Object) this).level();
 		
-		// do not spawn storm stones when using other forms of
-		// spawning thunder, like magic, ... in clear weather. Only when it is actually thundering
+		// do not spawn storm stones when using other forms of spawning thunder,
+		// like magic, ... in clear weather. Only when it is actually thundering
 		if (world.isThundering() && SpectrumConfig.CONFIG.StormStoneDimensions.get().contains(world.dimension().location().toString())) {
 			spectrum$spawnStormStone(world, this.getStrikePosition());
 		}
@@ -43,7 +42,7 @@ public abstract class LightningEntityMixin {
 			aboveGroundBlockPos = blockPos2.relative(Direction.from2DDataValue(world.getRandom().nextInt(6))).above();
 		} else {
 			// there is chance involved
-			if (world.random.nextFloat() > SpectrumConfig.CONFIG.StormStoneSpawnChance.get()) {
+			if (world.random.nextFloat() < SpectrumConfig.CONFIG.StormStoneSpawnChance.get()) {
 				return;
 			}
 			aboveGroundBlockPos = affectedBlockPos.above();

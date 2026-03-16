@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
@@ -19,19 +20,19 @@ public abstract class LightningEntityMixin {
 	@Shadow
 	protected abstract BlockPos getStrikePosition();
 	
-	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LightningBolt;clearCopperOnLightningStrike(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"))
-	private void spawnLightningStoneAtImpact(CallbackInfo ci) {
+	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getDifficulty()Lnet/minecraft/world/Difficulty;"))
+	private void spectrum$trySpawnStormStoneOnImpact(CallbackInfo ci) {
 		Level world = ((LightningBolt) (Object) this).level();
 		
-		// do not spawn storm stones when using other forms of
-		// spawning thunder, like magic, ... in clear weather. Only when it is actually thundering
+		// do not spawn storm stones when using other forms of spawning thunder,
+		// like magic, ... in clear weather. Only when it is actually thundering
 		if (world.isThundering() && SpectrumCommon.CONFIG.StormStonesWorlds.contains(world.dimension().location().toString())) {
-			spawnLightningStone(world, this.getStrikePosition());
+			spectrum$spawnStormStone(world, this.getStrikePosition());
 		}
 	}
 	
 	@Unique
-	private void spawnLightningStone(@NotNull Level world, BlockPos affectedBlockPos) {
+	private void spectrum$spawnStormStone(@NotNull Level world, BlockPos affectedBlockPos) {
 		BlockState blockState = world.getBlockState(affectedBlockPos);
 		BlockPos aboveGroundBlockPos;
 		

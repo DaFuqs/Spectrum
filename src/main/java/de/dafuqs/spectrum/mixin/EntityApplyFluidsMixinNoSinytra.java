@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin.compat.connector.absent;
+package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import de.dafuqs.spectrum.api.entity.*;

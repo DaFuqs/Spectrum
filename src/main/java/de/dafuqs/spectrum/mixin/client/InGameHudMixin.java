@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -22,6 +23,12 @@ public abstract class InGameHudMixin {
 	
 	@Shadow
 	public abstract void render(GuiGraphics context, DeltaTracker tickerCounter);
+	
+	@Inject(method = "renderPlayerHealth", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiling/ProfilerFiller;popPush(Ljava/lang/String;)V"))
+	private void spectrum$renderAzureDikeBar(GuiGraphics context, CallbackInfo ci, @Local Player cameraPlayer, @Local(ordinal = 2) int x, @Local(ordinal = 4) int y, @Local(ordinal = 6) int heartRows, @Local(ordinal = 7) int rowHeight) {
+		Minecraft.getInstance().getProfiler().popPush("spectrum:azure");
+		HudRenderers.renderAzureDike(context, cameraPlayer, x, y - (heartRows - 1) * rowHeight - 10);
+	}
 	
 	@ModifyExpressionValue(method = "renderCameraOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;useFancyGraphics()Z"))
 	private boolean spectrum$disableVignietteInDimension(boolean original) {

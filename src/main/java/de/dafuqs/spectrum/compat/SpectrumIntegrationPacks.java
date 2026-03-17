@@ -32,7 +32,6 @@ public class SpectrumIntegrationPacks {
 		}
 	}
 	
-	public static final String CONNECTOR_ID = "connector";
 	public static final String AE2_ID = "ae2";
 	public static final String GOBBER_ID = "gobber2";
 	public static final String ALLOY_FORGERY_ID = "alloy_forgery";
@@ -41,7 +40,6 @@ public class SpectrumIntegrationPacks {
 	public static final String MODONOMICON_ID = "modonomicon";
 	public static final String CREATE_ID = "create";
 	public static final String NEEPMEAT_ID = "neepmeat";
-	public static final String MALUM_ID = "malum";
 	public static final String EXCLUSIONS_LIB_ID = "exclusions_lib";
 	public static final String STARRY_SKIES_ID = "starry_skies";
 	
@@ -57,19 +55,14 @@ public class SpectrumIntegrationPacks {
 			ExclusionsLibCompat.registerNotPresent();
 		}
 		
-		if (!FabricLoader.getInstance().isModLoaded(CONNECTOR_ID)) {
-			// Connector on neoforge causes a lot of issues since most code bases
-			// of neoforge mods differ quite a lot from their fabric counterparts
-			// registerIntegrationPack(AE2_ID, () -> new AE2Compat()); // stuck in 1.20.1
-			// registerIntegrationPack(GOBBER_ID, () -> new GobberCompat()); // stuck in 1.20.1
-			registerIntegrationPack(ALLOY_FORGERY_ID, () -> new AlloyForgeryCompat());
-			registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
-			// registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat()); // stuck in 1.20.1
-			registerIntegrationPack(NEEPMEAT_ID, () -> new NEEPMeatCompat());
-			// registerIntegrationPack(MALUM_ID, () -> new MalumCompat()); // stuck in 1.20.1
-			// registerIntegrationPack(CREATE_ID, () -> new CreateCompat()); // stuck in 1.20.1
-			registerIntegrationPack(STARRY_SKIES_ID, () -> new StarrySkiesCompat());
-		}
+		// registerIntegrationPack(AE2_ID, () -> new AE2Compat()); // stuck in 1.20.1
+		// registerIntegrationPack(GOBBER_ID, () -> new GobberCompat()); // stuck in 1.20.1
+		registerIntegrationPack(ALLOY_FORGERY_ID, () -> new AlloyForgeryCompat());
+		registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
+		// registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat()); // stuck in 1.20.1
+		registerIntegrationPack(NEEPMEAT_ID, () -> new NEEPMeatCompat());
+		// registerIntegrationPack(CREATE_ID, () -> new CreateCompat()); // stuck in 1.20.1
+		registerIntegrationPack(STARRY_SKIES_ID, () -> new StarrySkiesCompat());
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

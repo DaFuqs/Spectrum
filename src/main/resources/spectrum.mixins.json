@@ -99,11 +99,7 @@
     "accessors.RegistryOpsAccessor",
     "accessors.SlimeEntityAccessor",
     "accessors.StatusEffectInstanceAccessor",
-    "accessors.TridentEntityAccessor",
-    "compat.connector.absent.EntityApplyFluidsMixinNoSinytra",
-    "compat.connector.absent.PlayerEntityMixin",
-    "compat.connector.present.PlayerEntityMixin",
-    "compat.connector.present.EntityAnnoyingForgeQuirkMixin"
+    "accessors.TridentEntityAccessor"
   ],
   "client": [
     "accessors.DimensionEffectsAccessor",
@@ -141,8 +137,6 @@
     "client.TranslucentBlockMixin",
     "client.accessors.ParticleManagerAccessor",
     "client.accessors.RenderLayerAccessor",
-    "compat.connector.absent.InGameHudMixin",
-    "compat.connector.present.InGameHudMixin",
     "compat.sodium.present.ColorProviderRegistryMixin"
   ],
   "injectors": {

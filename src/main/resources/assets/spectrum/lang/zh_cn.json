@@ -3511,11 +3511,6 @@
   "tag.spectrum.unlocks_bag_of_holding": "解锁手持末影袋",
   "tag.spectrum.crossbows": "光谱世界弩",
 
-  "explosion_archetype.spectrum.cosmetic": "无威胁性的爆炸",
-  "explosion_archetype.spectrum.destroy_blocks": "爆炸会破坏方块",
-  "explosion_archetype.spectrum.damage_entities": "爆炸会对生物造成伤害",
-  "explosion_archetype.spectrum.all": "爆炸会破坏方块并对生物造成伤害",
-
   "spectrum.gui.guidebook.reveal_hint_button.text": "解锁线索",
   "spectrum.gui.guidebook.reveal_hint_button.tooltip.pay": "支付少量费用以解锁提示",
   "spectrum.gui.guidebook.reveal_hint_button.tooltip.lacking_resource": "你的物品栏中缺少该物品",

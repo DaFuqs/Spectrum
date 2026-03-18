@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.data.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
@@ -8,6 +9,8 @@ import net.minecraft.world.level.block.*;
 
 @SuppressWarnings("unused")
 public class SpectrumBlockTags {
+	
+	private static final DeferredRegistrar.Contextual<DatagenProxy.ProvidedTagBuilderBuilder<Block>> REGISTRAR = new DeferredRegistrar.Contextual<>(DatagenProxy.IS_DATAGEN);
 	
 	// PLANTS
 	public static final TagKey<Block> AMARANTH_PLANTABLE = of("amaranth_plantable");
@@ -80,22 +83,6 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> MEMORY_VERY_FAST_MANIFESTERS = of("memory_very_fast_manifesters");
 	
 	// CONVENTIONAL TAGS ("c" namespace)
-	public static final TagKey<Block> C_LIGHTNING_RODS = conventional("lightning_rods");
-	public static final TagKey<Block> C_BRUSHABLE_BLOCKS = conventional("brushable_blocks");
-	public static final TagKey<Block> C_INFESTED_BLOCKS = conventional("infested_blocks");
-	
-	private static TagKey<Block> of(String id) {
-		return TagKey.create(Registries.BLOCK, SpectrumCommon.locate(id));
-	}
-	
-	private static TagKey<Block> conventional(String id) {
-		return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", id));
-	}
-	
-	// TODO: port datagen
-	/*
-	private static final DeferredRegister.Contextual<DatagenProxy.ProvidedTagBuilderBuilder<Block>> REGISTRAR = new DeferredRegistrar.Contextual<>(DatagenProxy.IS_DATAGEN);
-	
 	public static final TagKey<Block> C_LIGHTNING_RODS = conventional("lightning_rods", provider -> provider
 			.add(Blocks.LIGHTNING_ROD)
 			.addOptionalTag(ResourceLocation.parse("friendsandfoes:lightning_rods")));
@@ -114,10 +101,23 @@ public class SpectrumBlockTags {
 			.add(Blocks.INFESTED_MOSSY_STONE_BRICKS)
 			.add(Blocks.INFESTED_STONE_BRICKS)
 			.add(SpectrumBlocks.INFESTED_BLACKSLAG));
+	
+	private static TagKey<Block> of(String id) {
+		return TagKey.create(Registries.BLOCK, SpectrumCommon.locate(id));
+	}
+	
+	private static TagKey<Block> conventional(String id) {
+		return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", id));
+	}
+	
+	private static TagKey<Block> conventional(String id, DatagenProxy.TagBuilderCallback<Block> builder) {
+		TagKey<Block> tag = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", id));
+		REGISTRAR.defer(ctx -> builder.build(ctx.build(tag)));
+		return tag;
 	}
 	
 	public static void provideTags(DatagenProxy.ProvidedTagBuilderBuilder<Block> provider) {
 		REGISTRAR.flush(provider);
-	}*/
+	}
 	
 }

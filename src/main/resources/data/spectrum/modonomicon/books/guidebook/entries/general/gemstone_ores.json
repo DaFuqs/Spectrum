@@ -45,8 +45,8 @@
       },
       "show_visualize_button": false,
       "multiblock_id": "spectrum:amethyst_geode",
-      "text": "book.spectrum.guidebook.geodes.page2.text",
-      "multiblock_name": "multiblock.spectrum.amethyst_geode"
+      "multiblock_name": "multiblock.spectrum.amethyst_geode",
+      "text": "book.spectrum.guidebook.gemstone_ores.generation.text"
     }
   ]
 }

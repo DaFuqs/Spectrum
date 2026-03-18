@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.*;
@@ -27,12 +28,12 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 	
 	@Override
 	public boolean isThrownAsMirrorImage(ItemStack stack, ServerLevel world, Player player) {
-		return !isDisabled(stack) && InkPowered.tryDrainEnergy(player, MIRROR_IMAGE_COST);
+		return ActivatableItem.isActivated(stack) && InkPowered.tryDrainEnergy(player, MIRROR_IMAGE_COST);
 	}
 	
 	@Override
 	public float getThrowSpeed(ItemStack stack) {
-		return isDisabled(stack) ? super.getThrowSpeed(stack) : 5.0F;
+		return ActivatableItem.isActivated(stack) ? 5.0F : super.getThrowSpeed(stack);
 	}
 	
 	@Override

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.*;
@@ -39,7 +40,7 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 
 	@Override
 	public boolean canStartRiptide(Player player, ItemStack stack) {
-		return !isDisabled(stack) && (super.canStartRiptide(player, stack) || InkPowered.tryDrainEnergy(player, RIPTIDE_COST));
+		return ActivatableItem.isActivated(stack) && (super.canStartRiptide(player, stack) || InkPowered.tryDrainEnergy(player, RIPTIDE_COST));
 	}
 	
 	@Override

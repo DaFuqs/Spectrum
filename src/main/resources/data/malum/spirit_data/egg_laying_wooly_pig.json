@@ -1,0 +1,18 @@
+{
+  "registry_name": "spectrum:egg_laying_wooly_pig",
+  "primary_type": "malum:sacred",
+  "spirits": [
+    {
+      "spirit": "malum:sacred",
+      "count": 4
+    },
+    {
+      "spirit": "malum:earthen",
+      "count": 2
+    },
+    {
+      "spirit": "malum:aerial",
+      "count": 1
+    }
+  ]
+}

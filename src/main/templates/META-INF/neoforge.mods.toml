@@ -53,3 +53,11 @@ type="required"
 versionRange="${curios_version_range}"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies.spectrum]]
+modId="malum"
+type="optional"
+reason="load after malum to fix https://github.com/SammySemicolon/Malum-Mod/issues/445"
+versionRange=""
+ordering="NONE"
+side="BOTH"

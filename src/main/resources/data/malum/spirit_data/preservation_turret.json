@@ -1,0 +1,10 @@
+{
+  "registry_name": "spectrum:preservation_turret",
+  "primary_type": "malum:earthen",
+  "spirits": [
+    {
+      "spirit": "malum:earthen",
+      "count": 1
+    }
+  ]
+}

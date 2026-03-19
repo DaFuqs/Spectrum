@@ -1,0 +1,18 @@
+{
+  "registry_name": "spectrum:eraser",
+  "primary_type": "malum:aerial",
+  "spirits": [
+    {
+      "spirit": "malum:wicked",
+      "count": 2
+    },
+    {
+      "spirit": "malum:earthen",
+      "count": 1
+    },
+    {
+      "spirit": "malum:aerial",
+      "count": 2
+    }
+  ]
+}

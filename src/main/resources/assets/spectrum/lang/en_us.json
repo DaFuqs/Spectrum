@@ -5289,7 +5289,7 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.pure_echo": "• adds the main effect of the potion that was brewed before",
   "spectrum.rei.potion_workshop_reacting.spectrum.citrine_powder": "• +25%% potency",
   "spectrum.rei.potion_workshop_reacting.spectrum.four_leaf_clover": "• large boost to a random stat",
-  "spectrum.rei.potion_workshop_reacting.spectrum.fermented_spider_eye": "• turns beneficial effects to their harmful ones\n• -25% duration",
+  "spectrum.rei.potion_workshop_reacting.minecraft.fermented_spider_eye": "• turns beneficial effects to their harmful ones\n• -25% duration",
   "spectrum.rei.potion_workshop_reacting.spectrum.jadeite_petals": "• +120s duration for beneficial effects",
   "spectrum.rei.potion_workshop_reacting.spectrum.fissure_plum": "• +30s duration\n• 50%% chance for +1 potency\n• 50%% chance for +1 yield\n • Stat modifiers are inverted for harmful effects",
   "spectrum.rei.potion_workshop_reacting.spectrum.midnight_chip": "• +1 potency\n• +30s duration\n• -2 yield",

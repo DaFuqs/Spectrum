@@ -161,7 +161,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), Map.of(Enchantments.POWER, 5, SpectrumEnchantmentKeys.VOIDING, 1)));
 					
 					ItemStack fullBottomlessStack = SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance();
-					long maxUnenchantedBottomlessBundleCapacity = BottomlessBundleItem.getMaxStoredAmount(0);
+					long maxUnenchantedBottomlessBundleCapacity = BottomlessComponent.getMaxStoredAmount(0);
 					fullBottomlessStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(maxUnenchantedBottomlessBundleCapacity, false, false, Items.ARROW.getDefaultInstance(), maxUnenchantedBottomlessBundleCapacity));
 					entries.accept(fullBottomlessStack);
 					

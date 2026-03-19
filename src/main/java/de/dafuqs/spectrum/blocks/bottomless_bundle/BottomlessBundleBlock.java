@@ -84,25 +84,16 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 				BlockEntity be = world.getBlockEntity(pos);
 				if (be instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 					BottomlessItemHandler storage = bottomlessBundleBlockEntity.storage();
-					ItemStack storedVariant = storage.variant;
 					
 					// If same type or empty template -> try to insert
-					if ((storedVariant.isEmpty() || ItemStack.isSameItemSameComponents(storedVariant, stack))) {
-						if (!stack.isEmpty() && stack.getItem().canFitInsideContainerItems(stack)) {
-							ItemStack remainder = storage.insertItem(0, stack, false);
-							stack.setCount(remainder.getCount());
-							world.playSound(null, pos, SoundEvents.BUNDLE_INSERT, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
-						}
+					if (storage.isItemValid(0, stack)) {
+						ItemStack remainder = storage.insertItem(0, stack, false);
+						stack.setCount(remainder.getCount());
+						world.playSound(null, pos, SoundEvents.BUNDLE_INSERT, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 					} else {
 						// extract one stack worth (or up to available amount)
-						if (!storage.variant.isEmpty() && storage.count > 0) {
-							int extractCount = Math.min(storage.variant.getItem().getDefaultMaxStackSize(), (int) Math.min(Integer.MAX_VALUE, storage.count));
-							ItemStack removed = storage.variant.copyWithCount(extractCount);
-							storage.count -= extractCount;
-							if (storage.count <= 0) {
-								storage.variant = ItemStack.EMPTY;
-								storage.count = 0;
-							}
+						ItemStack removed = storage.extractSingleStack();
+						if(!removed.isEmpty()) {
 							player.getInventory().placeItemBackInInventory(removed);
 							world.playSound(null, pos, SoundEvents.BUNDLE_REMOVE_ONE, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 						}

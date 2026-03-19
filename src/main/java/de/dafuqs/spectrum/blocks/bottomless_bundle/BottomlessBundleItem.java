@@ -33,26 +33,17 @@ import java.util.*;
 
 public class BottomlessBundleItem extends BlockItem {
 	
-	private static final long MAX_STORED_AMOUNT_BASE = 20000;
-	
 	public BottomlessBundleItem(Block block, Item.Properties settings) {
 		super(block, settings);
-	}
-	
-	public static long getMaxStoredAmount(int powerLevel) {
-		return MAX_STORED_AMOUNT_BASE * (int) Math.pow(10, Math.min(5, powerLevel)); // to not exceed int max
 	}
 	
 	private static boolean dropOneBundledStack(ItemStack stack, Player player) {
 		BottomlessComponent bottomlessComponent = BottomlessComponent.get(stack, player.level().registryAccess(), true);
 		BottomlessItemHandler storage = bottomlessComponent.handler();
 		
-		if (!storage.variant.isEmpty() && storage.count > 0) {
-			int extractCount = Math.min(storage.variant.getItem().getDefaultMaxStackSize(), (int) Math.min(Integer.MAX_VALUE, storage.count));
-			ItemStack removed = storage.variant.copyWithCount(extractCount);
-			storage.count -= extractCount;
+		ItemStack removed = storage.extractSingleStack();
+		if(!removed.isEmpty()) {
 			player.drop(removed, true);
-			
 			stack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(storage));
 			return true;
 		}
@@ -121,21 +112,21 @@ public class BottomlessBundleItem extends BlockItem {
 		BottomlessItemHandler itemHandler = component.handler();
 		boolean locked = itemHandler.locked();
 		long storedAmount = itemHandler.count();
+		ItemStack variant = itemHandler.variant();
 		if (storedAmount == 0) {
 			tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.empty").withStyle(ChatFormatting.GRAY));
-			if (locked) {
-				tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.locked").withStyle(ChatFormatting.GRAY));
-			}
 		} else {
-			ItemStack variant = itemHandler.variant();
 			String totalStacks = Support.getShortenedNumberString(storedAmount / (float) variant.getItem().getDefaultMaxStackSize());
 			tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.count", storedAmount, itemHandler.capacity(), totalStacks).withStyle(ChatFormatting.GRAY));
-			if (locked) {
-				tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.locked").withStyle(ChatFormatting.GRAY));
-			} else {
-				tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.enter_inventory", variant.getItem().getDescription().getString()).withStyle(ChatFormatting.GRAY));
-			}
 		}
+		
+		if (locked) {
+			tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.locked", variant.getItem().getDescription().getString()).withStyle(ChatFormatting.GRAY));
+		}
+		if(locked || (!variant.isEmpty() && storedAmount > 0)) {
+			tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.enter_inventory", variant.getItem().getDescription().getString()).withStyle(ChatFormatting.GRAY));
+		}
+		
 		if (itemHandler.deletesOverflow()) {
 			tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.voiding"));
 		}
@@ -218,6 +209,11 @@ public class BottomlessBundleItem extends BlockItem {
 		ItemStack bundledVariant = handler.variant();
 		ItemStack bundledStack = bundledVariant.copyWithCount((int) Math.min(Integer.MAX_VALUE, handler.count()));
 		bundledStack.inventoryTick(world, entity, slot, selected);
+		if (!ItemStack.isSameItemSameComponents(bundledVariant, bundledStack) || bundledStack.getCount() != handler.count()) {
+			handler.variant = bundledStack;
+			handler.count = bundledVariant.getCount();
+			stack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(handler));
+		}
 	}
 	
 	private void playRemoveOneSound(Entity entity) {

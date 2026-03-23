@@ -5777,6 +5777,8 @@
   "lore.spectrum.time_travel_tap": "Worthy of a Time Traveller",
   "lore.spectrum.evernectar": "...Evernectar?",
 
+  "spectrum.filled_map.undergrowth_manor_surveillance": "Surveillance Map",
+
   "______food_tooltips": "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",
   "spectrum.food.whenEaten": "When Eaten:",

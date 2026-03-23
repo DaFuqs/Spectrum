@@ -61,3 +61,11 @@ reason="load after malum to fix https://github.com/SammySemicolon/Malum-Mod/issu
 versionRange="[1.8.2,)"
 ordering="AFTER"
 side="BOTH"
+
+[[dependencies.spectrum]]
+modId="pastel"
+type="incompatible"
+reason="Mixin errors caused by lots of code overlap"
+versionRange=""
+ordering="NONE"
+side="BOTH"

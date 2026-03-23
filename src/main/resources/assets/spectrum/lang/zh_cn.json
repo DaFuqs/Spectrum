@@ -2668,6 +2668,7 @@
   "spectrum.rei.potion_workshop_reacting.minecraft.glowstone_dust": "• +1 效果强度",
   "spectrum.rei.potion_workshop_reacting.minecraft.gunpowder": "• 可制作喷溅型药水",
   "spectrum.rei.potion_workshop_reacting.minecraft.redstone": "• +100% 持续时间",
+  "spectrum.rei.potion_workshop_reacting.minecraft.fermented_spider_eye": "• 将正面效果转换为等效的负面效果\n• -25% 持续时间",
   "spectrum.rei.potion_workshop_reacting.spectrum.nectardew_burgeon": "• +100% 效果强度\n• +100% 持续时间\n• -3 产量\n• 使药水具有催眠功效",
   "spectrum.rei.potion_workshop_reacting.spectrum.nightdew_sprout": "• +1 效果强度\n• +50% 持续时间\n• -1 产量",
   "spectrum.rei.potion_workshop_reacting.spectrum.bitter_oils": "• -4 产量\n• 药水效果极难被祛除",

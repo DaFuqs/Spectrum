@@ -175,7 +175,7 @@ public class SpectrumModelPredicateProviders {
 	
 	private static void registerCelestialPocketwatchPredicates(Item item) {
 		ItemProperties.register(item, ResourceLocation.parse("active"), (stack, world, entity, i)
-				-> SpectrumClient.skyLerper.isActive(world.dimensionType()) ? 1.0F : 0.0F);
+				-> world != null && SpectrumClient.skyLerper.isActive(world.dimensionType()) ? 1.0F : 0.0F);
 	}
 	
 	private static void registerActivatableItemPredicate(Item item) {

@@ -24,7 +24,7 @@ public class RottenGroundBlock extends MudBlock {
 //    }
 	
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	protected VoxelShape getCollisionShape(BlockState p_221561_, BlockGetter p_221562_, BlockPos p_221563_, CollisionContext p_221564_) {
 		return SHAPE;
 	}
 	

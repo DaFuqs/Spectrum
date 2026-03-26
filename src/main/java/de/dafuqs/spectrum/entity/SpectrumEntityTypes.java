@@ -37,7 +37,7 @@ public class SpectrumEntityTypes {
 	public static final DeferredHolder<EntityType<?>, EntityType<LightMineEntity>> LIGHT_MINE = register("light_mine", EntityType.Builder.<LightMineEntity>of(LightMineEntity::new, MobCategory.MISC).noSave().fireImmune().sized(0.75F, 0.75F).clientTrackingRange(4).updateInterval(20));
 	public static final DeferredHolder<EntityType<?>, EntityType<MonstrosityEntity>> MONSTROSITY = register("monstrosity", EntityType.Builder.of(MonstrosityEntity::new, MobCategory.MISC).fireImmune().canSpawnFarFromPlayer().sized(6.0F, 6.0F).clientTrackingRange(10));
 	public static final DeferredHolder<EntityType<?>, EntityType<PreservationTurretEntity>> PRESERVATION_TURRET = register("preservation_turret", EntityType.Builder.of(PreservationTurretEntity::new, MobCategory.MONSTER).fireImmune().canSpawnFarFromPlayer().sized(1.0F, 1.0F).clientTrackingRange(10));
-	public static final DeferredHolder<EntityType<?>, EntityType<LizardEntity>> LIZARD = register("lizard", EntityType.Builder.of(LizardEntity::new, MobCategory.MONSTER).sized(1.0F, 0.7F).clientTrackingRange(10));
+	public static final DeferredHolder<EntityType<?>, EntityType<LizardEntity>> LIZARD = register("lizard", EntityType.Builder.of(LizardEntity::new, MobCategory.AMBIENT).sized(1.0F, 0.7F).clientTrackingRange(10));
 	public static final DeferredHolder<EntityType<?>, EntityType<KindlingEntity>> KINDLING = register("kindling", EntityType.Builder.of(KindlingEntity::new, MobCategory.CREATURE).sized(1.0F, 1.0F).passengerAttachments(0.5F).clientTrackingRange(10).fireImmune());
 	public static final DeferredHolder<EntityType<?>, EntityType<KindlingCoughEntity>> KINDLING_COUGH = register("kindling_cough", EntityType.Builder.<KindlingCoughEntity>of(KindlingCoughEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).fireImmune());
 	public static final DeferredHolder<EntityType<?>, EntityType<EraserEntity>> ERASER = register("eraser", EntityType.Builder.of(EraserEntity::new, MobCategory.MONSTER).sized(0.3F, 0.3F).clientTrackingRange(10));
@@ -60,8 +60,8 @@ public class SpectrumEntityTypes {
 	}
 	
 	public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
-		event.register(ERASER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
-		event.register(MARROW.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
+		event.register(ERASER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(MARROW.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
 	}
 	
 	// TODO: remove

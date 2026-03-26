@@ -531,8 +531,8 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> STORAGE_NODE_CRYSTAL = register("storage_node_crystal", () -> new Item(IS.of()));
 	public static final DeferredItem<Item> GATHER_NODE_CRYSTAL = register("gather_node_crystal", () -> new Item(IS.of()));
 
-	public static<I extends Item> DeferredItem<I> register(String id, Supplier<I> entry) {
-		return REGISTRAR.register(id, entry);
+	public static<I extends Item> DeferredItem<I> register(String name, Supplier<I> entry) {
+		return REGISTRAR.register(name, entry);
 	}
 	
 	public static void register(IEventBus eventBus) {

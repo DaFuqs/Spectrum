@@ -36,7 +36,6 @@
     "GlassBottleItemMixin",
     "InfestedBlockMixin",
     "ItemEntityMixin",
-    "ItemPredicateMixin",
     "ItemStackMixin",
     "KilledByPlayerLootConditionMixin",
     "LightningEntityMixin",

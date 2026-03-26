@@ -100,13 +100,13 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 			return ItemStack.EMPTY;
 		}
 		
-		long amountToExtract = Math.min(amount, this.count);
+		int amountToExtract = (int) Math.min(amount, this.count);
 		if (amountToExtract <= 0L) {
 			return ItemStack.EMPTY;
 		}
 		
 		this.count -= amountToExtract;
-		ItemStack result = this.variant.copyWithCount(amount);
+		ItemStack result = this.variant.copyWithCount(amountToExtract);
 		if(this.count <= 0L) {
 			this.variant = ItemStack.EMPTY;
 		}

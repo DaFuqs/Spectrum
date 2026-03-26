@@ -16,6 +16,7 @@ public class SpectrumItemSubPredicateTypes {
 	public static ItemSubPredicate.Type<SweetenedPredicate> SWEETENED = register("sweetened", SweetenedPredicate.CODEC);
 	public static ItemSubPredicate.Type<InfusedBeveragePredicate> INFUSED_BEVERAGE = register("infused_beverage", InfusedBeveragePredicate.CODEC);
 	public static ItemSubPredicate.Type<BottomlessStackPredicate> BOTTOMLESS_STACK = register("bottomless_stack", BottomlessStackPredicate.CODEC);
+	public static ItemSubPredicate.Type<StoredExperiencePredicate> STORED_EXPERIENCE = register("stored_experience", StoredExperiencePredicate.CODEC);
 	
 	private static <T extends ItemSubPredicate> ItemSubPredicate.Type<T> register(String id, Codec<T> codec) {
 		ItemSubPredicate.Type<T> type = new ItemSubPredicate.Type<>(codec);

@@ -413,7 +413,7 @@ public class SpectrumConfig {
 				.define("gemstone_armor_weakness_amplifier", 1);
 		
 		GemstoneArmorSlownessAmplifier = builder
-				.translation("config.spectrum.GemstoneArmorSlownessAmplifier")
+				.translation("config.spectrum.gemstone_armor_slowness_amplifier")
 				.define("gemstone_armor_slowness_amplifier", 1);
 		
 		GemstoneArmorAbsorptionAmplifier = builder

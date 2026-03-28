@@ -58,7 +58,6 @@
     "RandomChanceWithEnchantedBonusLootConditionMixin",
     "ServerPlayNetworkHandlerMixin",
     "ShearsDispenserBehaviorMixin",
-    "accessors.SimpleCriterionAccessor",
     "SpawnDensityCapperMixin",
     "StatusEffectInstanceMixin",
     "StatusEffectUtilMixin",
@@ -83,6 +82,7 @@
     "accessors.PersistentProjectileEntityAccessor",
     "accessors.ProjectileAttackGoalAccessor",
     "accessors.RegistryOpsAccessor",
+    "accessors.SimpleCriterionAccessor",
     "accessors.SlimeEntityAccessor",
     "accessors.StatusEffectInstanceAccessor",
     "accessors.TridentEntityAccessor"
@@ -93,6 +93,7 @@
     "client.BipedEntityModelMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
+    "client.ClientLanguageMixin",
     "client.DeathScreenMixin",
     "client.DimensionTypeMixin",
     "client.DrawContextMixin",
@@ -114,9 +115,10 @@
     "client.PotionItemClientMixin",
     "client.SkinManagerMixin",
     "client.SleepingChatScreenMixin",
-    "client.ClientLanguageMixin",
+    "client.SoundSystemMixin",
     "client.TranslucentBlockMixin",
-    "client.accessors.ParticleManagerAccessor"
+    "client.accessors.ParticleManagerAccessor",
+    "client.accessors.SourceAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

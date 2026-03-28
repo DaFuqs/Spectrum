@@ -4099,7 +4099,7 @@
   "book.spectrum.guidebook.filtering.title": "Filtering",
   "book.spectrum.guidebook.filtering.filter_slot.text": "I gave some of my more advanced constructions filters!\\\n\\\nPutting any item in one of those slots makes it only select matching items, instead of blindly handling everything.",
   "book.spectrum.guidebook.filtering.tag_filtering.title": "Tag Filtering",
-  "book.spectrum.guidebook.filtering.tag_filtering.text": "By writing an [#](449900)Item Tag[#]() on a strip of [vellum](item://minecraft:name_tag), I can be even more granular, making my constructs only handle things in that tag! By prepending a tags name with a '!' I can then filter even further and exclude items with that tag.\\\n\\\nConditions are evaluated from left to right.",
+  "book.spectrum.guidebook.filtering.tag_filtering.text": "By writing an [#](449900)Item Tag[#]() on a [](item://minecraft:name_tag), I can be even more granular, making my constructs only handle things in that tag! By prepending a tags name with a '!' I can then filter even further and exclude items with that tag.\\\n\\\nConditions are evaluated from left to right.",
 
 
   "commands.spectrum.primordial_fire.put_on.success": "Set %d entities on fire",

@@ -57,6 +57,7 @@ public class SpectrumModelPredicateProviders {
 		registerOversizedItemPredicate(SpectrumItems.NECTAR_LANCE.get());
 		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD.get());
 		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON.get());
+		registerOversizedItemPredicate(SpectrumItems.OMNI_ACCELERATOR.get());
 		
 		registerBidentThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT.get());
 		registerBidentThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT.get());
@@ -192,9 +193,11 @@ public class SpectrumModelPredicateProviders {
 				SlotReservingItem.isReservingSlot(stack) ? 1.0F : 0.0F);
 	}
 	
+	public static final int MAGICAL_OVERSIZED_SEED = 817210941;
+	
 	private static void registerOversizedItemPredicate(Item item) {
 		ItemProperties.register(item, ResourceLocation.parse("oversized"), (stack, world, entity, seed) ->
-				seed == 817210941 ? 1.0F : 0.0F);
+				seed == MAGICAL_OVERSIZED_SEED ? 1.0F : 0.0F);
 	}
 	
 	private static void registerBowPredicates(Item bowItem) {

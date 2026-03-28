@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
+import com.mojang.authlib.minecraft.client.*;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
@@ -12,7 +13,10 @@ import net.minecraft.client.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.block.*;
 import net.minecraft.client.renderer.blockentity.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.resources.model.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
@@ -21,17 +25,14 @@ import org.jetbrains.annotations.*;
 public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<PastelNodeBlockEntity> {
 	
 	private static final long REAL_DAY_LENGTH = 86400 * 20;
-	
-	private static final Crystal CONNECTION = new Crystal(SpectrumItems.CONNECTION_NODE_CRYSTAL.get().getDefaultInstance(), 0.25, false);
-	private static final Crystal PROVIDER = new Crystal(SpectrumItems.PROVIDER_NODE_CRYSTAL.get().getDefaultInstance(), 0.1, true);
-	private static final Crystal SENDER = new Crystal(SpectrumItems.SENDER_NODE_CRYSTAL.get().getDefaultInstance(), 0.1, true);
-	private static final Crystal STORAGE = new Crystal(SpectrumItems.STORAGE_NODE_CRYSTAL.get().getDefaultInstance(), 0.15, true);
-	private static final Crystal GATHER = new Crystal(SpectrumItems.GATHER_NODE_CRYSTAL.get().getDefaultInstance(), 0.1, false);
+	private static final Crystal CONNECTION = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/connection_node_crystal")), false);
+	private static final Crystal PROVIDER = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/provider_node_crystal")), true);
+	private static final Crystal SENDER = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/sender_node_crystal")), true);
+	private static final Crystal STORAGE = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/storage_node_crystal")), true);
+	private static final Crystal GATHER = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/gather_node_crystal")), false);
 	
 	private static final ResourceLocation BASE = SpectrumCommon.locate("textures/block/pastel_node_base.png");
-	
 	private static final ResourceLocation INNER_RING = SpectrumCommon.locate("textures/block/pastel_node_inner_ring_blank.png");
-	
 	private static final ResourceLocation OUTER_RING = SpectrumCommon.locate("textures/block/pastel_node_outer_ring_blank.png");
 	private static final ResourceLocation REDSTONE_RING = SpectrumCommon.locate("textures/block/pastel_node_redstone_ring_blank.png");
 	
@@ -72,7 +73,7 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 			case GATHER -> GATHER;
 		};
 		
-		var heightMod = 0.7F;
+		var heightMod = 0.5F;
 		
 		switch (node.getState()) {
 			case CONNECTED -> {
@@ -157,8 +158,9 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 			}
 		}
 		
-		matrices.translate(0.0, node.crystalHeight + crystal.yOffset, 0.0);
-		Minecraft.getInstance().getItemRenderer().renderStatic(crystal.crystal, ItemDisplayContext.NONE, LightTexture.FULL_BRIGHT, overlay, matrices, vertexConsumers, node.getLevel(), 0);
+		matrices.translate(0.0, node.crystalHeight, 0.0);
+		BlockRenderDispatcher blockRenderManager = Minecraft.getInstance().getBlockRenderer();
+		blockRenderManager.getModelRenderer().renderModel(matrices.last(), vertexConsumers.getBuffer(Sheets.solidBlockSheet()), null, blockRenderManager.getBlockModelShaper().getModelManager().getModel(crystal.crystal), 1.0F, 1.0F, 1.0F, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
 		matrices.popPose();
 	}
 	
@@ -166,6 +168,6 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 		return (float) (in % (Math.PI * 2));
 	}
 	
-	private record Crystal(ItemStack crystal, double yOffset, boolean hasOuterRing) {
+	private record Crystal(ModelResourceLocation crystal, boolean hasOuterRing) {
 	}
 }

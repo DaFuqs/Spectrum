@@ -1550,12 +1550,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.CREATIVE_INK_ASSORTMENT);
 					entries.accept(SpectrumItems.PRIMORDIAL_LIGHTER);
 					
-					entries.accept(SpectrumItems.CONNECTION_NODE_CRYSTAL);
-					entries.accept(SpectrumItems.STORAGE_NODE_CRYSTAL);
-					entries.accept(SpectrumItems.PROVIDER_NODE_CRYSTAL);
-					entries.accept(SpectrumItems.SENDER_NODE_CRYSTAL);
-					entries.accept(SpectrumItems.GATHER_NODE_CRYSTAL);
-					
 					entries.accept(SpectrumBlocks.DOWNSTONE);
 					entries.accept(SpectrumBlocks.PRESERVATION_STONE);
 					entries.accept(SpectrumBlocks.PRESERVATION_STAIRS);

@@ -1,4 +1,5 @@
 {
+	"format_version": "1.21.11",
 	"credit": "~ XOXO Azzyypaaras ~",
 	"textures": {
 		"2": "spectrum:block/storage_node_crystal"
@@ -6,9 +7,9 @@
 	"elements": [
 		{
 			"name": "lower crystal",
-			"from": [5.5, 7.5, 5.5],
-			"to": [10.5, 10.5, 10.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"from": [-2.5, 3.5, -2.5],
+			"to": [2.5, 6.5, 2.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 0]},
 			"faces": {
 				"north": {"uv": [0, 0, 5, 3], "texture": "#2"},
 				"east": {"uv": [0, 0, 5, 3], "texture": "#2"},
@@ -20,9 +21,9 @@
 		},
 		{
 			"name": "upper crystal",
-			"from": [5.5, 11.5, 5.5],
-			"to": [10.5, 14.5, 10.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"from": [-2.5, 7.5, -2.5],
+			"to": [2.5, 10.5, 2.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 0]},
 			"faces": {
 				"north": {"uv": [0, 0, 5, 3], "texture": "#2"},
 				"east": {"uv": [0, 0, 5, 3], "texture": "#2"},
@@ -34,9 +35,9 @@
 		},
 		{
 			"name": "lower crystal inner",
-			"from": [10.64264, 10.65, 10.65736],
-			"to": [5.34264, 7.35, 5.35736],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"from": [2.64264, 6.65, 2.65736],
+			"to": [-2.65736, 3.35, -2.64264],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 0]},
 			"faces": {
 				"north": {"uv": [0, 3, 2, 5], "texture": "#2"},
 				"east": {"uv": [0, 3, 2, 5], "texture": "#2"},
@@ -48,9 +49,9 @@
 		},
 		{
 			"name": "upper crystal inner",
-			"from": [10.64264, 14.65, 10.65736],
-			"to": [5.34264, 11.35, 5.35736],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"from": [2.64264, 10.65, 2.65736],
+			"to": [-2.65736, 7.35, -2.64264],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 0]},
 			"faces": {
 				"north": {"uv": [0, 3, 2, 5], "texture": "#2"},
 				"east": {"uv": [0, 3, 2, 5], "texture": "#2"},
@@ -78,7 +79,7 @@
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, 225, 0],
+			"rotation": [0, -135, 0],
 			"translation": [0.25, 1.5, 0],
 			"scale": [0.4, 0.4, 0.4]
 		},
@@ -87,7 +88,7 @@
 			"scale": [0.25, 0.25, 0.25]
 		},
 		"gui": {
-			"rotation": [30, 225, 0],
+			"rotation": [30, -135, 0],
 			"translation": [0, 1.75, 0],
 			"scale": [0.75, 0.75, 0.75]
 		},
@@ -100,7 +101,6 @@
 			"name": "crystal",
 			"origin": [8, 3.5, 8],
 			"color": 0,
-			"nbt": "{}",
 			"children": [0, 1, 2, 3]
 		}
 	]

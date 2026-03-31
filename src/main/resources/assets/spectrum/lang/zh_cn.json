@@ -2610,7 +2610,7 @@
   "container.spectrum.rei.ink_converting.title": "墨水转换",
   "container.spectrum.rei.heating.title": "加热",
   "container.spectrum.rei.freezing.title": "冷冻",
-  "container.spectrum.rei.chance": "概率: %。0f %%",
+  "container.spectrum.rei.chance": "概率: %.0f %%",
   "container.spectrum.rei.cinderhearth_recipe": "炼化炉配方",
   "container.spectrum.rei.ink_converting.color": "颜色: %s",
   "container.spectrum.rei.ink_converting.amount": "数量: %d",

@@ -40,8 +40,9 @@ import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.stream.*;
 
-public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter {
+public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter, WorldlyContainer {
 	
 	public static final String ITEM_TRANS = "container.spectrum.rei.enchantment_upgrade.required_item_count";
 	public static final String LEVEL_TRANS = "container.spectrum.rei.enchantment_upgrade.level";
@@ -839,6 +840,21 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	@Override
 	public UpgradeHolder getUpgradeHolder() {
 		return this.upgrades;
+	}
+	
+	@Override
+	public int @NotNull [] getSlotsForFace(Direction direction) {
+		return direction == Direction.UP ? new int[1] : new int[0];
+	}
+	
+	@Override
+	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction dir) {
+		return true;
+	}
+	
+	@Override
+	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction dir) {
+		return true;
 	}
 	
 }

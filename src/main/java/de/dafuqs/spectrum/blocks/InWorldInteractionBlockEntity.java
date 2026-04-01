@@ -61,8 +61,9 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	
 	@Override
 	public void unpackLootTable(@Nullable Player player) {
-		if (lootTableSeed == 0 && level != null)
+		if (lootTableSeed == 0 && level != null) {
 			lootTableSeed = level.getRandom().nextLong();
+		}
 		RandomizableContainer.super.unpackLootTable(player);
 		this.setChanged();
 	}
@@ -78,10 +79,16 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 		return items;
 	}
 	
+	
 	@Override
 	public void inventoryChanged() {
 		this.setChanged();
-		if (level != null && !level.isClientSide) {
+	}
+	
+	@Override
+	public void setChanged() {
+		super.setChanged();
+		if(this.level != null && !this.level.isClientSide()) {
 			updateInClientWorld();
 		}
 	}

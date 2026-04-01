@@ -67,7 +67,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	protected final CraftingDelegate propertyDelegate = new CraftingDelegate();
 	
 	@Override
-	public int[] getSlotsForFace(Direction side) {
+	public int @NotNull [] getSlotsForFace(Direction side) {
 		switch (side) {
 			case UP -> {
 				return new int[]{INPUT_SLOT_ID};
@@ -82,7 +82,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	}
 	
 	@Override
-	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction dir) {
+	public boolean canPlaceItemThroughFace(int slot, @NotNull ItemStack stack, @Nullable Direction dir) {
 		switch (slot) {
 			case INK_PROVIDER_SLOT_ID -> {
 				return stack.getItem() instanceof InkStorageItem<?> inkStorageItem && (inkStorageItem.getDrainability().canDrain(false));
@@ -97,8 +97,8 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	}
 	
 	@Override
-	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction dir) {
-		return slot >= FIRST_OUTPUT_SLOT_ID;
+	public boolean canTakeItemThroughFace(int slot, @NotNull ItemStack stack, @NotNull Direction dir) {
+		return true;
 	}
 	
 	public enum CinderHearthStructureType {

@@ -149,7 +149,7 @@ public class PastelTransmissionLogic {
 			
 			Optional<PastelTransmission> transmission = createTransmissionOnValidPath(sourceNode, destinationNode, proposedStack.copyWithCount(simulatedAmount), sourceNode.getTransferTime());
 			if (transmission.isPresent()) {
-				int toRemove = matchingStacks.getA();
+				int toRemove = simulatedAmount;
 				while (toRemove > 0) {
 					for (ItemStack matchingStack : matchingStacks.getB()) {
 						int amountToShrink = Math.min(toRemove, matchingStack.getCount());

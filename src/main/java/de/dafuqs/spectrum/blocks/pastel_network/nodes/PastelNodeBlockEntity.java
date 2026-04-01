@@ -92,7 +92,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			return null;
 		}
 		Direction direction = state.getValue(PastelNodeBlock.FACING);
-		return level.getCapability(Capabilities.ItemHandler.BLOCK, this.getBlockPos().relative(direction), direction.getOpposite());
+		return level.getCapability(Capabilities.ItemHandler.BLOCK, this.getBlockPos().relative(direction.getOpposite()), direction);
 	}
 	
 	public static void tick(@NotNull Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {

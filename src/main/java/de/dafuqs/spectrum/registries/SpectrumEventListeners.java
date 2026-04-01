@@ -242,7 +242,7 @@ public class SpectrumEventListeners {
 		
 		if (serverLevel.getGameTime() % 100 == 0) {
 			if (TimeHelper.getTimeOfDay(serverLevel).isNight()) { // 90 chances in a night
-				if (SpectrumConfig.CONFIG.ShootingStarDimensions.get().contains(serverLevel.dimension().location().toString())) {
+				if (SpectrumConfig.spawnsShootingStars(serverLevel.dimension().location())) {
 					ShootingStarSpawner.INSTANCE.tick(serverLevel, true, true);
 				}
 			}

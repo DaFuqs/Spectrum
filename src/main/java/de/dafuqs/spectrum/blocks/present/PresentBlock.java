@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -157,7 +158,7 @@ public class PresentBlock extends BaseEntityBlock {
 				int openingTick = presentBlockEntity.openingTick();
 				Vec3 posVec = new Vec3(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
 				if (openingTick >= OPENING_STEPS) {
-					spawnParticles(world, pos, presentBlockEntity.getColors());
+					spawnParticles(world, pos, presentBlockEntity.getStack());
 					presentBlockEntity.triggerAdvancement();
 					if (presentBlockEntity.isEmpty()) {
 						world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 0.8F);
@@ -179,24 +180,25 @@ public class PresentBlock extends BaseEntityBlock {
 					world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 				} else {
 					world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.SAND_PLACE, SoundSource.BLOCKS, 0.8F + openingTick * 0.1F, 1.0F);
-					spawnParticles(world, pos, presentBlockEntity.getColors());
+					spawnParticles(world, pos, presentBlockEntity.getStack());
 				}
 			}
 			world.scheduleTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
 		}
 	}
 	
-	public static void spawnParticles(ServerLevel world, BlockPos pos, Map<Integer, Integer> colors) {
+	public static void spawnParticles(ServerLevel world, BlockPos pos, ItemStack present) {
+		Map<InkColor, Integer> colors = PresentBlockItem.getWrapData(present).colors();
 		PlayPresentOpeningParticlesPayload.playPresentOpeningParticles(world, pos, colors);
 	}
 	
-	public static void spawnParticlesClient(Level world, BlockPos pos, Map<Integer, Integer> colors) {
+	public static void spawnParticlesClient(Level world, BlockPos pos, Map<InkColor, Integer> colors) {
 		if (colors.isEmpty()) {
 			int randomColor = DyeColor.byId(world.random.nextInt(DyeColor.values().length)).getTextureDiffuseColor();
 			spawnParticlesClient(world, pos, randomColor, 15);
 		} else {
-			for (Map.Entry<Integer, Integer> color : colors.entrySet()) {
-				spawnParticlesClient(world, pos, color.getKey(), color.getValue() * 10);
+			for (Map.Entry<InkColor, Integer> color : colors.entrySet()) {
+				spawnParticlesClient(world, pos, color.getKey().getColorInt(), color.getValue() * 10);
 			}
 		}
 	}

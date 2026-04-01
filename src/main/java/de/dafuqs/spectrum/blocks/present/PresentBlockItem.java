@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import com.mojang.authlib.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
@@ -56,7 +57,7 @@ public class PresentBlockItem extends BlockItem {
 		return itemStack.get(SpectrumDataComponentTypes.WRAPPED_PRESENT);
 	}
 	
-	public static void wrap(ItemStack itemStack, PresentBlock.WrappingPaper wrappingPaper, Map<Integer, Integer> colors) {
+	public static void wrap(ItemStack itemStack, PresentBlock.WrappingPaper wrappingPaper, Map<InkColor, Integer> colors) {
 		itemStack.set(SpectrumDataComponentTypes.WRAPPED_PRESENT, new WrappedPresentComponent(wrappingPaper, colors));
 	}
 	

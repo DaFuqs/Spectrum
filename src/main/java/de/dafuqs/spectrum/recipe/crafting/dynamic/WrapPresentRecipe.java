@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
@@ -60,14 +61,14 @@ public class WrapPresentRecipe extends CustomRecipe {
 	public ItemStack assemble(@NotNull CraftingInput input, HolderLookup.Provider registryLookup) {
 		ItemStack presentStack = ItemStack.EMPTY;
 		PresentBlock.WrappingPaper wrappingPaper = PresentBlock.WrappingPaper.RED;
-		Map<Integer, Integer> colors = new HashMap<>();
+		Map<InkColor, Integer> colors = new HashMap<>();
 		
 		for (int j = 0; j < input.size(); ++j) {
 			ItemStack stack = input.getItem(j);
 			if (stack.getItem() instanceof PresentBlockItem) {
 				presentStack = stack.copy();
 			} else if (stack.getItem() instanceof PigmentItem pigmentItem) {
-				int color = pigmentItem.getInkColor().getColorInt();
+				InkColor color = pigmentItem.getInkColor();
 				if (colors.containsKey(color)) {
 					colors.put(color, colors.get(color) + 1);
 				} else {

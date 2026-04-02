@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
-import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -22,7 +21,7 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 	// Since the watch can be triggered from an item frame, too
 	// and item frames can turn items in 8 directions this fits real fine
 	public static final int TIME_STEP_TICKS = 24000 / 8;
-	public static final InkCost COST = new InkCost(InkColors.MAGENTA, 1000);
+	public static final InkAmount COST = new InkAmount(InkColors.MAGENTA, 1000);
 	
 	enum TimeToggleResult {
 		SUCCESS,

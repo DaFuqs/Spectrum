@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.recipe.*;
@@ -26,6 +27,7 @@ public class SpectrumRegistries {
 	public static final Registry<PastelUpgradeSignature> PASTEL_UPGRADE = register(SpectrumRegistryKeys.PASTEL_UPGRADE, false);
 	public static final Registry<RecipeScaling> RECIPE_SCALING = register(SpectrumRegistryKeys.RECIPE_SCALING, true);
 	public static final Registry<MapCodec<? extends ResonanceProcessor>> RESONANCE_PROCESSOR_TYPE = register(SpectrumRegistryKeys.RESONANCE_PROCESSOR_TYPE, false);
+	public static final Registry<MapCodec<? extends PastelPayload>> PASTEL_PAYLOAD_TYPE = register(SpectrumRegistryKeys.PASTEL_PAYLOAD_TYPE, false); // TODO: sync?
 	
 	private static <T> Registry<T> register(ResourceKey<? extends Registry<T>> key, boolean synced) {
 		return new RegistryBuilder<>(key).sync(synced).create();
@@ -39,6 +41,7 @@ public class SpectrumRegistries {
 		event.register(PASTEL_UPGRADE);
 		event.register(RECIPE_SCALING);
 		event.register(RESONANCE_PROCESSOR_TYPE);
+		event.register(PASTEL_PAYLOAD_TYPE);
 	}
 
 	public static void registerDynamicRegistries(DataPackRegistryEvent.NewRegistry event) {

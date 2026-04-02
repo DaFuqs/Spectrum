@@ -35,8 +35,8 @@ public class BookHintPage extends BookTextPage {
 				: new BookNoneCondition();
 		var completionAdvancement = ResourceLocation.tryParse(GsonHelper.getAsString(json, "completion_advancement"));
 		IngredientStack cost = IngredientStack.EMPTY;
-		if (json.has("cost")) {
-			var ingredient = GsonHelper.getAsJsonObject(json, "cost");
+		if (json.has("amount")) {
+			var ingredient = GsonHelper.getAsJsonObject(json, "amount");
 			cost = IngredientStack.CODEC.parse(provider.createSerializationContext(JsonOps.INSTANCE), ingredient).result().orElse(cost);
 		}
 		return new BookHintPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, completionAdvancement, cost);

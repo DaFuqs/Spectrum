@@ -1,12 +1,9 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import com.kwpugh.gobber2.items.staffs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.config.*;
-import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
@@ -21,7 +18,7 @@ import java.util.*;
 
 public class GlowVisionGogglesItem extends SpectrumCurioItem implements InkPowered {
 	
-	public static final InkCost INK_COST = new InkCost(InkColors.LIGHT_BLUE, 20);
+	public static final InkAmount INK_COST = new InkAmount(InkColors.LIGHT_BLUE, 20);
 	public static final Ingredient ITEM_COST = Ingredient.of(SpectrumItemTags.GLOW_VISION_GOGGLES_CONSUMABLE);
 	
 	public GlowVisionGogglesItem(Properties settings) {

@@ -31,7 +31,7 @@ import java.util.*;
 
 public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDamageItem, ExtendedItemBarProvider, SlotBackgroundEffectProvider, InkPowered {
 	
-	private static final InkCost GROUND_SLAM_COST = new InkCost(InkColors.WHITE, 25);
+	private static final InkAmount GROUND_SLAM_COST = new InkAmount(InkColors.WHITE, 25);
 	public static final float MAGIC_DAMAGE_SHARE = 0.25F;
 	public final int GROUND_SLAM_CHARGE_TICKS = 32;
 	

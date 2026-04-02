@@ -7,10 +7,13 @@ import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.core.*;
+import net.minecraft.network.*;
+import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
 
 public class SpectrumRegistryKeys {
@@ -26,6 +29,7 @@ public class SpectrumRegistryKeys {
 	public static final ResourceKey<Registry<RecipeScaling>> RECIPE_SCALING = of("recipe_scaling");
 	public static final ResourceKey<Registry<MapCodec<? extends ResonanceProcessor>>> RESONANCE_PROCESSOR_TYPE = of("resonance_processor_type");
 	public static final ResourceKey<Registry<ResonanceProcessor>> RESONANCE_PROCESSOR = of("resonance_processor");
+	public static final ResourceKey<Registry<MapCodec<? extends PastelPayload>>> PASTEL_PAYLOAD_TYPE = of("pastel_payload_type");
 	
 	private static <T> ResourceKey<Registry<T>> of(String name) {
 		return ResourceKey.createRegistryKey(SpectrumCommon.locate(name));

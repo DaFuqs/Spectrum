@@ -13,11 +13,11 @@ public interface InkPoweredPotionFillable {
 	int maxEffectCount();
 	int maxEffectAmplifier();
 	
-	// used for calculating the items cost to apply a certain effect
+	// used for calculating the items amount to apply a certain effect
 	// calculated once and then stored in the items nbt for quick lookup and nicer modifiability
 	// via commands or special loot (so ones found in dungeon chests can be cheaper!)
 	default long adjustFinalCostFor(@NotNull InkPoweredStatusEffectInstance instance) {
-		return (long) Math.pow(instance.getInkCost().cost(), 1 + instance.getStatusEffectInstance().getAmplifier());
+		return (long) Math.pow(instance.getInkCost().amount(), 1 + instance.getStatusEffectInstance().getAmplifier());
 	}
 	
 	// saving
@@ -36,8 +36,8 @@ public interface InkPoweredPotionFillable {
 					break;
 				}
 				
-				// calculate the final cost of this effect and add it
-				InkCost adjustedCost = new InkCost(newEffect.getInkCost().color(), adjustFinalCostFor(newEffect));
+				// calculate the final amount of this effect and add it
+				InkAmount adjustedCost = new InkAmount(newEffect.getInkCost().color(), adjustFinalCostFor(newEffect));
 				InkPoweredStatusEffectInstance modifiedInstance = new InkPoweredStatusEffectInstance(statusEffectInstance, adjustedCost, newEffect.getColor(), newEffect.isUnidentifiable());
 				existingEffects.add(modifiedInstance);
 			}

@@ -2,40 +2,41 @@ package de.dafuqs.spectrum.particle.effect;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.particle.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public record PastelTransmissionParticleEffect(List<BlockPos> nodePositions, ItemStack stack, int travelTime, int color) implements ParticleOptions {
+public record PastelTransmissionParticleEffect(List<BlockPos> nodePositions, PastelPayload payload, int travelTime, int color) implements ParticleOptions {
 	
 	public static final MapCodec<PastelTransmissionParticleEffect> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 			BlockPos.CODEC.listOf().fieldOf("positions").forGetter((particleEffect) -> particleEffect.nodePositions),
-			ItemStack.CODEC.fieldOf("stack").forGetter((effect) -> effect.stack),
+			PastelPayload.CODEC.fieldOf("payload").forGetter((effect) -> effect.payload),
 			Codec.INT.fieldOf("travel_time").forGetter((particleEffect) -> particleEffect.travelTime),
 			Codec.INT.fieldOf("color").forGetter((particleEffect) -> particleEffect.color)
 	).apply(i, PastelTransmissionParticleEffect::new));
 	
 	public static final StreamCodec<RegistryFriendlyByteBuf, PastelTransmissionParticleEffect> PACKET_CODEC = StreamCodec.composite(
 			BlockPos.STREAM_CODEC.apply(ByteBufCodecs.list()), c -> c.nodePositions,
-			ItemStack.STREAM_CODEC, c -> c.stack,
+			PastelPayload.STREAM_CODEC, c -> c.payload,
 			ByteBufCodecs.VAR_INT, c -> c.travelTime,
 			ByteBufCodecs.VAR_INT, c -> c.color,
 			PastelTransmissionParticleEffect::new
 	);
 	
 	@Override
-	public ParticleType<PastelTransmissionParticleEffect> getType() {
+	public @NotNull ParticleType<PastelTransmissionParticleEffect> getType() {
 		return SpectrumParticleTypes.PASTEL_TRANSMISSION;
 	}
 	
 	@Override
-	public String toString() {
+	public @NotNull String toString() {
 		int nodeCount = this.nodePositions.size();
 		BlockPos source = this.nodePositions.getFirst();
 		BlockPos destination = this.nodePositions.getLast();

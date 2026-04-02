@@ -38,7 +38,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	public static final int PLACEMENT_TRIES_PER_STEP = 4;
 	public static final int MIN_LIGHT_LEVEL = 10;
 	
-	public static final InkCost INK_COST = new InkCost(InkColors.YELLOW, 10);
+	public static final InkAmount INK_COST = new InkAmount(InkColors.YELLOW, 10);
 	public static final Ingredient COST = Ingredient.of(SpectrumItemTags.RADIANCE_STAFF_CONSUMABLE);
 	
 	public RadianceStaffItem(Properties settings) {

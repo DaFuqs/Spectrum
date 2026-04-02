@@ -28,7 +28,7 @@ import java.util.*;
 
 public class OmniAcceleratorItem extends BundleItem implements InkPowered, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 	
-	protected static final InkCost COST = new InkCost(InkColors.YELLOW, 20);
+	protected static final InkAmount COST = new InkAmount(InkColors.YELLOW, 20);
 	protected static final int CHARGE_TIME = 10;
 	
 	public OmniAcceleratorItem(Properties settings) {

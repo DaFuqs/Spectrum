@@ -14,7 +14,6 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.component.*;
-import org.spongepowered.asm.mixin.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -60,7 +59,7 @@ public class ConcealingOilsItem extends DrinkItem implements InkPoweredPotionFil
 		}
 		
 		InkPoweredStatusEffectInstance effect = InkPoweredPotionFillable.getEffects(oilsStack).getFirst();
-		if (InkPowered.tryDrainEnergy(player, effect.getInkCost().color(), effect.getInkCost().cost())) {
+		if (InkPowered.tryDrainEnergy(player, effect.getInkCost().color(), effect.getInkCost().amount())) {
 			stackToApplyTo.set(SpectrumDataComponentTypes.CONCEALED_EFFECT, effect.getStatusEffectInstance());
 			stackToApplyTo.set(SpectrumDataComponentTypes.CONCEALED_EFFECT_PROFILE, new ResolvableProfile(player.getGameProfile()));
 			

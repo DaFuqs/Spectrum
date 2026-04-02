@@ -60,7 +60,7 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 			if (opt.isPresent()) {
 				var wrapper = new CompoundTag();
 				wrapper.put("network", opt.get());
-				wrapper.put("scheduler", transgender(network.getTransmissions()));
+				wrapper.put("scheduler", toTag(network.getTransmissions()));
 				wrapper.put("graph", network.graphToNbt());
 				networkList.add(wrapper);
 			}
@@ -79,7 +79,7 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 			
 			Optional<ServerPastelNetwork> network = CodecHelper.fromNbt(ServerPastelNetwork.CODEC, netNbt);
 			if (network.isPresent()) {
-				network.get().getTransmissions().putAll(transDecode(schedulerNbt, network.get()));
+				network.get().getTransmissions().putAll(fromTag(schedulerNbt, network.get()));
 				network.get().setGraph(ServerPastelNetwork.graphFromNbt(graphNbt));
 				manager.networks.add(network.get());
 			}
@@ -87,9 +87,9 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 		return manager;
 	}
 	
-	private static @NotNull HashMap<PastelTransmission, Integer> transDecode(CompoundTag schedulerNbt, ServerPastelNetwork network) {
-		var transmissions = schedulerNbt.getList("transmissions", Tag.TAG_COMPOUND);
-		var timers = schedulerNbt.getIntArray("timers");
+	private static @NotNull HashMap<PastelTransmission, Integer> fromTag(CompoundTag tag, ServerPastelNetwork network) {
+		var transmissions = tag.getList("transmissions", Tag.TAG_COMPOUND);
+		var timers = tag.getIntArray("timers");
 		var map = new HashMap<PastelTransmission, Integer>();
 		
 		for (int i = 0; i < transmissions.size(); i++) {
@@ -117,19 +117,19 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 		}
 	}
 	
-	private static CompoundTag transgender(Map<PastelTransmission, Integer> trans) {
+	private static CompoundTag toTag(Map<PastelTransmission, Integer> transmissions) {
 		var transNbt = new CompoundTag();
-		var transmissions = new ListTag();
-		var timers = new int[trans.size()];
-		for (Map.Entry<PastelTransmission, Integer> transmissionEntry : trans.entrySet()) {
+		var list = new ListTag();
+		var timers = new int[transmissions.size()];
+		for (Map.Entry<PastelTransmission, Integer> transmissionEntry : transmissions.entrySet()) {
 			var result = PastelTransmission.CODEC.encodeStart(NbtOps.INSTANCE, transmissionEntry.getKey()).result();
 			if (result.isPresent()) {
-				transmissions.add(result.get());
-				timers[transmissions.size() - 1] = transmissionEntry.getValue();
+				list.add(result.get());
+				timers[list.size() - 1] = transmissionEntry.getValue();
 			}
 		}
 		
-		transNbt.put("transmissions", transmissions);
+		transNbt.put("transmissions", list);
 		transNbt.putIntArray("timers", timers);
 		return transNbt;
 	}

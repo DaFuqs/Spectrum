@@ -35,7 +35,7 @@ import java.util.*;
 public class NaturesStaffItem extends Item implements InkPowered {
 	
 	public static final Ingredient ITEM_COST = Ingredient.of(SpectrumItemTags.NATURES_STAFF_CONSUMABLE);
-	public static final InkCost INK_COST = new InkCost(InkColors.LIME, 20);
+	public static final InkAmount INK_COST = new InkAmount(InkColors.LIME, 20);
 	
 	public NaturesStaffItem(Properties settings) {
 		super(settings);

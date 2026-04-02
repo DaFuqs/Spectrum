@@ -386,7 +386,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 					requiredExperience += currentRequired;
 					valid = true;
 				} else {
-					requiredExperience += 50; // conflicting enchantments (like more enchantments in a book where not all can be applied cost extra
+					requiredExperience += 50; // conflicting enchantments (like more enchantments in a book where not all can be applied amount extra
 				}
 			}
 			if (valid) { // and applicable enchantment found
@@ -564,7 +564,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			SpectrumAdvancementCriteria.ENCHANTER_UPGRADING.trigger(serverPlayerEntity, builder.toImmutable(), xpCost);
 		}
 		
-		// update the item cost if chain upgrading
+		// update the item amount if chain upgrading
 		if (recipeMatches(this, level)) {
 			craftingTimeTotal = upgrade.getItemScaling().apply(targetLevel);
 		} else {

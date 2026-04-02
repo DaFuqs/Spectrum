@@ -114,12 +114,12 @@ public interface InkPowered {
 		return false;
 	}
 	
-	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkCost inkCost) {
-		return tryDrainEnergy(player, inkCost.color(), inkCost.cost());
+	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkAmount inkAmount) {
+		return tryDrainEnergy(player, inkAmount.color(), inkAmount.amount());
 	}
 	
-	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkCost inkCost, float costModifier) {
-		return tryDrainEnergy(player, inkCost.color(), Support.getIntFromDecimalWithChance(inkCost.cost() * costModifier, player.getRandom()));
+	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkAmount inkAmount, float costModifier) {
+		return tryDrainEnergy(player, inkAmount.color(), Support.getIntFromDecimalWithChance(inkAmount.amount() * costModifier, player.getRandom()));
 	}
 	
 	/**
@@ -176,8 +176,8 @@ public interface InkPowered {
 		return false;
 	}
 	
-	static boolean hasAvailableInk(Player player, InkCost inkCost) {
-		return hasAvailableInk(player, inkCost.color(), inkCost.cost());
+	static boolean hasAvailableInk(Player player, InkAmount inkAmount) {
+		return hasAvailableInk(player, inkAmount.color(), inkAmount.amount());
 	}
 	
 	static boolean hasAvailableInk(Player player, InkColor color, long amount) {
@@ -258,10 +258,10 @@ public interface InkPowered {
 		return available;
 	}
 	
-	default boolean payForUse(Player player, ItemStack stack, @NotNull InkCost inkCost, @Nullable Ingredient itemCost) {
+	default boolean payForUse(Player player, ItemStack stack, @NotNull InkAmount inkAmount, @Nullable Ingredient itemCost) {
 		boolean paid = player.isCreative(); // free for creative players
 		if (!paid) { // try pay with ink
-			paid = InkPowered.tryDrainEnergy(player, inkCost, getInkCostMod(player.level().registryAccess(), stack));
+			paid = InkPowered.tryDrainEnergy(player, inkAmount, getInkCostMod(player.level().registryAccess(), stack));
 		}
 		if (!paid && itemCost != null && player.getInventory().contains(itemCost)) {  // try pay with item
 			int efficiencyLevel = SpectrumEnchantmentHelper.getLevel(player.level().registryAccess(), Enchantments.EFFICIENCY, stack);

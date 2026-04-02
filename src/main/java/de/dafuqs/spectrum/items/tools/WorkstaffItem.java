@@ -24,7 +24,7 @@ import java.util.*;
 
 public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Preenchanted {
 	
-	protected static final InkCost BASE_COST_PER_AOE_MINING_RANGE_INCREMENT = new InkCost(InkColors.WHITE, 3); // TODO: make pricier once ink networking is in
+	protected static final InkAmount BASE_COST_PER_AOE_MINING_RANGE_INCREMENT = new InkAmount(InkColors.WHITE, 3); // TODO: make pricier once ink networking is in
 	
 	public enum GUIToggle {
 		SELECT_SILK_TOUCH("item.spectrum.workstaff.message.silk_touch"),
@@ -94,7 +94,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 			return false;
 		}
 		
-		int costForRange = (int) Math.pow(BASE_COST_PER_AOE_MINING_RANGE_INCREMENT.cost(), range);
+		int costForRange = (int) Math.pow(BASE_COST_PER_AOE_MINING_RANGE_INCREMENT.amount(), range);
 		return InkPowered.tryDrainEnergy(player, BASE_COST_PER_AOE_MINING_RANGE_INCREMENT.color(), costForRange);
 	}
 	

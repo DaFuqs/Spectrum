@@ -161,7 +161,7 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	@Override
-	public int[] getSlotsForFace(Direction side) {
+	public int @NotNull [] getSlotsForFace(@NotNull Direction side) {
 		return new int[0];
 	}
 	

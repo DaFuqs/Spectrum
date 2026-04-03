@@ -21,6 +21,8 @@ import net.minecraft.advancements.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.protocol.*;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
@@ -699,7 +701,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	
 	@Override
 	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
-		super.saveAdditional(nbt, registryLookup);
+ 		super.saveAdditional(nbt, registryLookup);
 		nbt.putInt("crafting_time", this.craftingTime);
 		nbt.putInt("crafting_time_total", this.craftingTimeTotal);
 		nbt.putInt("current_item_processing_time", this.currentItemProcessingTime);
@@ -719,12 +721,6 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.id().toString());
 		}
-	}
-	
-	@Override
-	public void updateInClientWorld() {
-		if (level != null)
-			level.sendBlockUpdated(worldPosition, level.getBlockState(worldPosition), level.getBlockState(worldPosition), Block.UPDATE_INVISIBLE);
 	}
 	
 	public Direction getItemFacingDirection() {
@@ -844,7 +840,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	
 	@Override
 	public int @NotNull [] getSlotsForFace(Direction direction) {
-		return direction == Direction.UP ? new int[1] : new int[0];
+		return direction == Direction.UP ? new int[]{1} : new int[]{0};
 	}
 	
 	@Override

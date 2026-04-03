@@ -123,7 +123,7 @@ public interface ImplementedInventory extends Container {
 	@Override
 	default void clearContent() {
 		getItems().clear();
-		inventoryChanged();
+		setChanged();
 	}
 	
 	/**

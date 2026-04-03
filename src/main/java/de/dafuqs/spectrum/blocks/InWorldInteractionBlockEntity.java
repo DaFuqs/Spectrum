@@ -10,6 +10,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
@@ -29,8 +30,9 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	
 	// interaction methods
 	public void updateInClientWorld() {
-		if (level instanceof ServerLevel serverWorld)
-			serverWorld.getChunkSource().blockChanged(worldPosition);
+		if (level != null) {
+			level.sendBlockUpdated(worldPosition, level.getBlockState(worldPosition), level.getBlockState(worldPosition), Block.UPDATE_INVISIBLE);
+		}
 	}
 	
 	// Called when the chunk is first loaded to initialize this be
@@ -65,7 +67,6 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 			lootTableSeed = level.getRandom().nextLong();
 		}
 		RandomizableContainer.super.unpackLootTable(player);
-		this.setChanged();
 	}
 	
 	@Nullable
@@ -88,8 +89,8 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	@Override
 	public void setChanged() {
 		super.setChanged();
-		if(this.level != null && !this.level.isClientSide()) {
-			updateInClientWorld();
+		if (level instanceof ServerLevel serverWorld) {
+			serverWorld.getChunkSource().blockChanged(worldPosition);
 		}
 	}
 	

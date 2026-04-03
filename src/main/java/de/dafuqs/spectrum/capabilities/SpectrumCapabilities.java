@@ -25,9 +25,9 @@ public class SpectrumCapabilities {
     public static void register(RegisterCapabilitiesEvent event) {
 		// ItemHandler.BLOCK
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.FUSION_SHRINE.get(), (@NotNull FusionShrineBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));;
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.PEDESTAL.get(), (@NotNull PedestalBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.PEDESTAL.get(), (@NotNull PedestalBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.SPIRIT_INSTILLER.get(), (@NotNull SpiritInstillerBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.ENCHANTER.get(), (@NotNull EnchanterBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.ENCHANTER.get(), (@NotNull EnchanterBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CINDERHEARTH.get(), (@NotNull CinderhearthBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CRYSTALLARIEUM.get(), (@NotNull CrystallarieumBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.TITRATION_BARREL.get(), (titrationBarrel, direction) -> {

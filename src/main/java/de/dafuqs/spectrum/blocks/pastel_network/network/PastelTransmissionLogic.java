@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
-import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -137,7 +135,6 @@ public class PastelTransmissionLogic {
 			proposals.put(stack, proposals.getOrDefault(stack, 0L) + stack.getCount());
 		}
 		
-		// TODO: this is jank. Improve
 		for (ItemStack stack : proposals.keySet()) {
 			long proposedAmount = Math.min(Math.min(proposals.get(stack), sourceNode.getMaxTransferredAmount()), totalAvailableStorage);
 			if (proposedAmount == 0)
@@ -152,28 +149,24 @@ public class PastelTransmissionLogic {
 			
 			Optional<PastelTransmission> transmission = createTransmissionOnValidPath(sourceNode, destinationNode, new PastelPayload.ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount)), sourceNode.getTransferTime());
 			if (transmission.isPresent()) {
-				int toRemove = simulatedAmount;
-				while (toRemove > 0) {
-					for (ItemStack matchingStack : matchingStacks.getB()) {
-						int amountToShrink = Math.min(toRemove, matchingStack.getCount());
-						matchingStack.shrink(amountToShrink);
-						toRemove -= amountToShrink;
-					}
+				int extracted = 0;
+				for (int i = 0; i < sourceStorage.getSlots(); i++) {
+					if (ItemStack.isSameItemSameComponents(proposedStack, sourceStorage.getStackInSlot(i)))
+						extracted += sourceStorage.extractItem(i, simulatedAmount - extracted, false).getCount();
+					if (extracted == simulatedAmount)
+						break;
 				}
 				
-				Optional<PastelTransmission> optionalTransmission = createTransmissionOnValidPath(sourceNode, destinationNode, new PastelPayload.ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount)), sourceNode.getTransferTime());
-				if (optionalTransmission.isPresent()) {
-					PastelTransmission trans = optionalTransmission.get();
-					int travelTime = trans.getTransmissionDuration();
-					this.network.addTransmission(trans, travelTime);
-					PastelTransmissionPayload.sendPastelTransmissionParticle(this.network, trans.getTransmissionDuration(), transmission.get());
-					
-					destinationNode.markTransferred(transferMode != TransferMode.PUSH);
-					sourceNode.markTransferred(transferMode != TransferMode.PULL);
-					
-					destinationNode.addItemCountUnderway(simulatedAmount);
-					return true;
-				}
+				PastelTransmission trans = transmission.get();
+				int travelTime = trans.getTransmissionDuration();
+				this.network.addTransmission(trans, travelTime);
+				PastelTransmissionPayload.sendPastelTransmissionParticle(this.network, trans.getTransmissionDuration(), transmission.get());
+				
+				destinationNode.markTransferred(transferMode != TransferMode.PUSH);
+				sourceNode.markTransferred(transferMode != TransferMode.PULL);
+				
+				destinationNode.addItemCountUnderway(simulatedAmount);
+				return true;
 			}
 		}
 		return false;

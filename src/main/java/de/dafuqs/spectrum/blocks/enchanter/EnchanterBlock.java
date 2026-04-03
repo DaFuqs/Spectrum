@@ -62,10 +62,8 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 			if (serverPlayerEntity != null) {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
-		} else {
-			if (world.isClientSide) {
-				ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.ENCHANTER), SpectrumMultiblocks.ENCHANTER_TEXT, blockPos.below(4), Rotation.NONE);
-			}
+		} else if (world.isClientSide) {
+			ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.ENCHANTER), SpectrumMultiblocks.ENCHANTER_TEXT, blockPos.below(4), Rotation.NONE);
 		}
 		
 		return valid;
@@ -108,7 +106,6 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 							if (retrieveStack(world, pos, player, hand, handStack, enchanterBlockEntity, i)) {
 								enchanterBlockEntity.setItemFacingDirection(player.getDirection());
 								enchanterBlockEntity.setOwner(player);
-								enchanterBlockEntity.inventoryChanged();
 								break;
 							}
 						}
@@ -120,7 +117,6 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 						if (exchangeStack(world, pos, player, hand, handStack, enchanterBlockEntity, inputInventorySlotIndex)) {
 							enchanterBlockEntity.setItemFacingDirection(player.getDirection());
 							enchanterBlockEntity.setOwner(player);
-							enchanterBlockEntity.inventoryChanged();
 						}
 					}
 				}

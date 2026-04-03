@@ -27,14 +27,15 @@ public class LizardHornVariant {
 		return ResourceKey.create(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, SpectrumCommon.locate(name));
 	}
 	
-	private final ResourceLocation texture;
+	private final ResourceLocation texture, textureFull;
 	
 	LizardHornVariant(ResourceLocation texture) {
-		this.texture = texture.withPath((string) -> "textures/" + string + ".png");
+		this.texture = texture;
+		this.textureFull = texture.withPath((string) -> "textures/" + string + ".png");
 	}
 	
 	public ResourceLocation getTextureLocation() {
-		return texture;
+		return textureFull;
 	}
 	
 }

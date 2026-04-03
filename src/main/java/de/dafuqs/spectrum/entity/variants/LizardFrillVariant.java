@@ -27,14 +27,15 @@ public class LizardFrillVariant {
 		return ResourceKey.create(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, SpectrumCommon.locate(name));
 	}
 	
-	private final ResourceLocation texture;
+	private final ResourceLocation texture, textureFull;
 	
 	LizardFrillVariant(ResourceLocation texture) {
-		this.texture = texture.withPath((string) -> "textures/" + string + ".png");
+		this.texture = texture;
+		this.textureFull = texture.withPath((string) -> "textures/" + string + ".png");
 	}
 	
 	public ResourceLocation getTextureLocation() {
-		return texture;
+		return textureFull;
 	}
 	
 }

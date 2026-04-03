@@ -1,11 +1,13 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
 import com.google.common.base.*;
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -59,7 +61,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected boolean cachedUnpowered = true;
 	protected PastelNetwork.NodePriority priority = PastelNetwork.NodePriority.GENERIC;
 	protected long itemCountUnderway = 0;
-	
 	
 	// upgrade impl stuff
 	protected boolean lit, triggerTransfer, triggered, waiting, lamp, sensor, updated;
@@ -413,6 +414,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			return pastelNodeBlock.pastelNodeType;
 		}
 		return PastelNodeType.CONNECTION;
+	}
+	
+	public Set<PastelPayloadType> getSupportedPayloads() {
+		if (this.getBlockState().getBlock() instanceof PastelNodeBlock pastelNodeBlock) {
+			return pastelNodeBlock.supportedPayloads;
+		}
+		return Set.of();
 	}
 	
 	public void setNetworkUUID(@Nullable UUID uuid) {

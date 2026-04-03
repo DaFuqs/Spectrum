@@ -52,9 +52,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	}};
 	
 	protected final PastelNodeType pastelNodeType;
-	protected final Set<MapCodec<PastelPayload>> supportedPayloads;
+	protected final Set<PastelPayloadType> supportedPayloads;
 	
-	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType, Set<MapCodec<PastelPayload>> supportedPayloads) {
+	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType, Set<PastelPayloadType> supportedPayloads) {
 		super(settings.lightLevel(s -> s.getValue(LIT) ? 13 : 0));
 		this.pastelNodeType = pastelNodeType;
 		this.supportedPayloads = supportedPayloads;

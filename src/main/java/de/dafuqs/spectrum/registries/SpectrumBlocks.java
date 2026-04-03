@@ -567,12 +567,12 @@ public class SpectrumBlocks {
 		return settings(MapColor.NONE, soundGroup, 1.0F).pushReaction(PushReaction.DESTROY).noOcclusion();
 	}
 	
-	public static final DeferredBlock<PastelNodeBlock> CONNECTION_NODE = register(blockWithItem("connection_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.CONNECTION), () -> IS.of(), InkColors.LIGHT_GRAY).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> CONNECTION_NODE = register(blockWithItem("connection_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.CONNECTION, Set.of()), () -> IS.of(), InkColors.LIGHT_GRAY).withPredefinedItemModel());
 	
-	public static final DeferredBlock<PastelNodeBlock> PROVIDER_NODE = register(blockWithItem("provider_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER, Set.of(PastelPayload.ITEM.get())), () -> IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> STORAGE_NODE = register(blockWithItem("storage_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.TOPAZ_CLUSTER), PastelNodeType.STORAGE), () -> IS.of(), InkColors.CYAN).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> SENDER_NODE = register(blockWithItem("sender_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.CITRINE_CLUSTER), PastelNodeType.SENDER), () -> IS.of(), InkColors.YELLOW).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> GATHER_NODE = register(blockWithItem("gather_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.ONYX_CLUSTER), PastelNodeType.GATHER), () -> IS.of(), InkColors.BLACK).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> PROVIDER_NODE = register(blockWithItem("provider_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER, Set.of(PastelPayloadType.ITEM.get())), () -> IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> STORAGE_NODE = register(blockWithItem("storage_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.TOPAZ_CLUSTER), PastelNodeType.STORAGE, Set.of(PastelPayloadType.ITEM.get())), () -> IS.of(), InkColors.CYAN).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> SENDER_NODE = register(blockWithItem("sender_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.CITRINE_CLUSTER), PastelNodeType.SENDER, Set.of(PastelPayloadType.ITEM.get())), () -> IS.of(), InkColors.YELLOW).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> GATHER_NODE = register(blockWithItem("gather_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.ONYX_CLUSTER), PastelNodeType.GATHER, Set.of(PastelPayloadType.ITEM.get())), () -> IS.of(), InkColors.BLACK).withPredefinedItemModel());
 	
 	// COLORED BLOCK FAMILIES
 	

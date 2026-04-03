@@ -27,7 +27,8 @@ public class SpectrumRegistries {
 	public static final Registry<PastelUpgradeSignature> PASTEL_UPGRADE = register(SpectrumRegistryKeys.PASTEL_UPGRADE, false);
 	public static final Registry<RecipeScaling> RECIPE_SCALING = register(SpectrumRegistryKeys.RECIPE_SCALING, true);
 	public static final Registry<MapCodec<? extends ResonanceProcessor>> RESONANCE_PROCESSOR_TYPE = register(SpectrumRegistryKeys.RESONANCE_PROCESSOR_TYPE, false);
-	public static final Registry<MapCodec<? extends PastelPayload>> PASTEL_PAYLOAD_TYPE = register(SpectrumRegistryKeys.PASTEL_PAYLOAD_TYPE, false);
+	public static final Registry<PastelPayloadType> PASTEL_PAYLOAD_TYPE = register(SpectrumRegistryKeys.PASTEL_PAYLOAD_TYPE, false);
+	public static final Registry<MapCodec<? extends PastelPayload>> PASTEL_PAYLOAD = register(SpectrumRegistryKeys.PASTEL_PAYLOAD, false);
 	
 	private static <T> Registry<T> register(ResourceKey<? extends Registry<T>> key, boolean synced) {
 		return new RegistryBuilder<>(key).sync(synced).create();
@@ -42,6 +43,7 @@ public class SpectrumRegistries {
 		event.register(RECIPE_SCALING);
 		event.register(RESONANCE_PROCESSOR_TYPE);
 		event.register(PASTEL_PAYLOAD_TYPE);
+		event.register(PASTEL_PAYLOAD);
 	}
 
 	public static void registerDynamicRegistries(DataPackRegistryEvent.NewRegistry event) {

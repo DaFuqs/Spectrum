@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.blocks.pastel_network.payloads;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import de.dafuqs.spectrum.blocks.pastel_network.nodes.PastelNodeBlockEntity;
-import de.dafuqs.spectrum.helpers.InWorldInteractionHelper;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.client.PastelTransmissionParticle;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -18,27 +18,30 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Nullable;
 
-public class ItemPastelPayload implements PastelPayload {
+public record ItemPastelPayload(ItemStack itemStack) implements PastelPayload {
 	
 	public static final MapCodec<ItemPastelPayload> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-			ItemStack.CODEC.fieldOf("stack").forGetter(ItemPastelPayload::getItemStack)
+			ItemStack.CODEC.fieldOf("stack").forGetter(ItemPastelPayload::itemStack)
 	).apply(i, ItemPastelPayload::new));
 	
 	public static final StreamCodec<RegistryFriendlyByteBuf, ItemPastelPayload> STREAM_CODEC = StreamCodec.composite(
-			ItemStack.STREAM_CODEC, ItemPastelPayload::getItemStack,
+			ItemStack.STREAM_CODEC, ItemPastelPayload::itemStack,
 			ItemPastelPayload::new
 	);
 	
-	private final ItemStack itemStack;
-	
-	public ItemPastelPayload(ItemStack itemStack) {
-		this.itemStack = itemStack;
+	public void render(PastelTransmissionParticle particle, Level level, PoseStack poseStack, final MultiBufferSource vertexConsumers, int light) {
+		particle.itemRenderer.renderStatic(this.itemStack, ItemDisplayContext.GROUND, light, OverlayTexture.NO_OVERLAY, poseStack, vertexConsumers, level, 0);
 	}
 	
-	public ItemStack getItemStack() {
-		return itemStack;
+	public MapCodec<ItemPastelPayload> codec() {
+		return CODEC;
 	}
 	
+	public StreamCodec<RegistryFriendlyByteBuf, ItemPastelPayload> streamCodec() {
+		return STREAM_CODEC;
+	}
+	
+	@Override
 	public void arriveAtDestination(Level level, BlockPos destination, @Nullable PastelNodeBlockEntity destinationNode) {
 		int inserted = 0;
 		int count = itemStack.getCount();
@@ -61,15 +64,4 @@ public class ItemPastelPayload implements PastelPayload {
 		}
 	}
 	
-	public void render(PastelTransmissionParticle particle, Level level, PoseStack poseStack, final MultiBufferSource vertexConsumers, int light) {
-		particle.itemRenderer.renderStatic(this.itemStack, ItemDisplayContext.GROUND, light, OverlayTexture.NO_OVERLAY, poseStack, vertexConsumers, level, 0);
-	}
-	
-	public MapCodec<ItemPastelPayload> codec() {
-		return CODEC;
-	}
-	
-	public StreamCodec<RegistryFriendlyByteBuf, ItemPastelPayload> streamCodec() {
-		return STREAM_CODEC;
-	}
 }

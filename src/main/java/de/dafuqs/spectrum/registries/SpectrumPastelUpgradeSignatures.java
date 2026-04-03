@@ -20,7 +20,6 @@ public class SpectrumPastelUpgradeSignatures {
 	public static final PastelUpgradeSignature.Category REDSTONE = PastelUpgradeSignature.Category.redstone();
 	
 	public static void register(IEventBus eventBus) {
-		
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> WEAK_STACK = register(
 				"weak_stack", () -> PastelUpgradeSignature.builder(SpectrumItems.RAW_BLOODSTONE.get(), STACK, SpectrumCommon.MOD_ID)
 						.named("weak_stack").stackMod(3).stackMult(2).build()

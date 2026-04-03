@@ -52,12 +52,10 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	}};
 	
 	protected final PastelNodeType pastelNodeType;
-	protected final Set<MapCodec<PastelPayload>> supportedPayloads;
 	
-	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType, Set<MapCodec<PastelPayload>> supportedPayloads) {
+	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType) {
 		super(settings.lightLevel(s -> s.getValue(LIT) ? 13 : 0));
 		this.pastelNodeType = pastelNodeType;
-		this.supportedPayloads = supportedPayloads;
 		registerDefaultState(defaultBlockState().setValue(LIT, false).setValue(REDSTONE_EMITTING, false));
 	}
 	

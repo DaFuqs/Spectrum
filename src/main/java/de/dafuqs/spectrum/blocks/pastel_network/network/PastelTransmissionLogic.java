@@ -148,7 +148,7 @@ public class PastelTransmissionLogic {
 			if (matchingStacks.getA() == 0)
 				continue;
 			
-			Optional<PastelTransmission> transmission = createTransmissionOnValidPath(sourceNode, destinationNode, new PastelPayload.ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount)), sourceNode.getTransferTime());
+			Optional<PastelTransmission> transmission = createTransmissionOnValidPath(sourceNode, destinationNode, new ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount)), sourceNode.getTransferTime());
 			if (transmission.isPresent()) {
 				int extracted = 0;
 				for (int i = 0; i < sourceStorage.getSlots(); i++) {

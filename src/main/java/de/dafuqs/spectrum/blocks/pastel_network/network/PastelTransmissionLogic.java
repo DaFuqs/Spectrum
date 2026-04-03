@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import net.minecraft.core.*;

@@ -39,6 +39,7 @@ import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.blocks.present.*;
@@ -567,7 +568,8 @@ public class SpectrumBlocks {
 	}
 	
 	public static final DeferredBlock<PastelNodeBlock> CONNECTION_NODE = register(blockWithItem("connection_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.CONNECTION), () -> IS.of(), InkColors.LIGHT_GRAY).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> PROVIDER_NODE = register(blockWithItem("provider_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER), () -> IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
+	
+	public static final DeferredBlock<PastelNodeBlock> PROVIDER_NODE = register(blockWithItem("provider_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER, Set.of(PastelPayload.ITEM.get())), () -> IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
 	public static final DeferredBlock<PastelNodeBlock> STORAGE_NODE = register(blockWithItem("storage_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.TOPAZ_CLUSTER), PastelNodeType.STORAGE), () -> IS.of(), InkColors.CYAN).withPredefinedItemModel());
 	public static final DeferredBlock<PastelNodeBlock> SENDER_NODE = register(blockWithItem("sender_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.CITRINE_CLUSTER), PastelNodeType.SENDER), () -> IS.of(), InkColors.YELLOW).withPredefinedItemModel());
 	public static final DeferredBlock<PastelNodeBlock> GATHER_NODE = register(blockWithItem("gather_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.ONYX_CLUSTER), PastelNodeType.GATHER), () -> IS.of(), InkColors.BLACK).withPredefinedItemModel());

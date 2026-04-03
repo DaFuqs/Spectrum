@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
@@ -33,10 +34,10 @@ import java.util.*;
 
 public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock, ColorableBlock {
 	
-	public static final MapCodec<PastelNodeBlock> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+	/*public static final MapCodec<PastelNodeBlock> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 			propertiesCodec(),
 			StringRepresentable.fromEnum(PastelNodeType::values).fieldOf("node_type").forGetter(b -> b.pastelNodeType)
-	).apply(i, PastelNodeBlock::new));
+	).apply(i, PastelNodeBlock::new));*/
 	
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final BooleanProperty REDSTONE_EMITTING = BlockStateProperties.POWERED;
@@ -51,16 +52,19 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	}};
 	
 	protected final PastelNodeType pastelNodeType;
+	protected final Set<MapCodec<PastelPayload>> supportedPayloads;
 	
-	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType) {
+	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType, Set<MapCodec<PastelPayload>> supportedPayloads) {
 		super(settings.lightLevel(s -> s.getValue(LIT) ? 13 : 0));
 		this.pastelNodeType = pastelNodeType;
+		this.supportedPayloads = supportedPayloads;
 		registerDefaultState(defaultBlockState().setValue(LIT, false).setValue(REDSTONE_EMITTING, false));
 	}
 	
 	@Override
 	public MapCodec<? extends PastelNodeBlock> codec() {
-		return CODEC;
+		// TODO: make the CODEC
+		return null;
 	}
 	
 	@Override

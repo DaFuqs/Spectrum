@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.PastelPayload;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;

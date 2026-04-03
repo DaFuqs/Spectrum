@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
-import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import net.minecraft.core.*;
@@ -84,16 +83,13 @@ public class PastelTransmissionLogic {
 			if (!sourceNode.canTransfer()) {
 				continue;
 			}
-			
-			IItemHandler sourceStorage = sourceNode.getConnectedStorage();
-			if (sourceStorage != null) {
-				tryTransferToType(sourceNode, sourceStorage, destinationType, transferMode);
-			}
+			tryTransferToType(sourceNode, destinationType, transferMode);
 		}
 	}
 	
-	private void tryTransferToType(PastelNodeBlockEntity sourceNode, IItemHandler sourceStorage, PastelNodeType type, TransferMode transferMode) {
-		for (PastelNodeBlockEntity destinationNode : this.network.getLoadedNodes(type, PastelNetwork.NodePriority.GENERIC)) {
+	private void tryTransferToType(PastelNodeBlockEntity sourceNode, PastelNodeType destinationType, TransferMode transferMode) {
+		IItemHandler sourceStorage = sourceNode.getConnectedStorage();
+		for (PastelNodeBlockEntity destinationNode : this.network.getLoadedNodes(destinationType, PastelNetwork.NodePriority.GENERIC)) {
 			if (!destinationNode.canTransfer()) {
 				continue;
 			}
@@ -150,7 +146,7 @@ public class PastelTransmissionLogic {
 			if (matchingStacks.getA() == 0)
 				continue;
 			
-			Optional<PastelTransmission> transmission = createTransmissionOnValidPath(sourceNode, destinationNode, new PastelPayload.ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount)), sourceNode.getTransferTime());
+			Optional<PastelTransmission> transmission = createTransmissionOnValidPath(sourceNode, destinationNode, new ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount)), sourceNode.getTransferTime());
 			if (transmission.isPresent()) {
 				int toRemove = simulatedAmount;
 				while (toRemove > 0) {
@@ -161,7 +157,7 @@ public class PastelTransmissionLogic {
 					}
 				}
 				
-				Optional<PastelTransmission> optionalTransmission = createTransmissionOnValidPath(sourceNode, destinationNode, new PastelPayload.ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount)), sourceNode.getTransferTime());
+				Optional<PastelTransmission> optionalTransmission = createTransmissionOnValidPath(sourceNode, destinationNode, new ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount)), sourceNode.getTransferTime());
 				if (optionalTransmission.isPresent()) {
 					PastelTransmission trans = optionalTransmission.get();
 					int travelTime = trans.getTransmissionDuration();

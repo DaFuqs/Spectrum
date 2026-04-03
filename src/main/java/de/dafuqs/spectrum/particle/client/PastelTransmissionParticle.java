@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.particle.client;
 
 import com.mojang.blaze3d.vertex.*;
-import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.PastelPayload;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.render.*;
@@ -9,12 +9,10 @@ import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
-import net.minecraft.client.renderer.texture.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 

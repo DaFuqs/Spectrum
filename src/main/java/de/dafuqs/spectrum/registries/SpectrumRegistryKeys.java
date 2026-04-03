@@ -7,13 +7,11 @@ import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.api.recipe.*;
-import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.core.*;
-import net.minecraft.network.*;
-import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
 
 public class SpectrumRegistryKeys {

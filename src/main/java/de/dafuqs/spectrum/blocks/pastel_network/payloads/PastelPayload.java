@@ -24,8 +24,8 @@ public interface PastelPayload {
 	DeferredRegister<MapCodec<? extends PastelPayload>> REGISTRAR = DeferredRegister.create(SpectrumRegistryKeys.PASTEL_PAYLOAD_TYPE, SpectrumCommon.MOD_ID);
 	
 	DeferredHolder<MapCodec<? extends PastelPayload>, MapCodec<ItemPastelPayload>> ITEM = REGISTRAR.register("item", () -> ItemPastelPayload.CODEC);
-	//DeferredHolder<MapCodec<? extends PastelPayload>, MapCodec<FluidPastelPayload>> FLUID = REGISTRAR.register("fluid", () -> FluidPastelPayload.CODEC);
-	//DeferredHolder<MapCodec<? extends PastelPayload>, MapCodec<InkPastelPayload>> INK = REGISTRAR.register("ink", () -> InkPastelPayload.CODEC);
+	DeferredHolder<MapCodec<? extends PastelPayload>, MapCodec<FluidPastelPayload>> FLUID = REGISTRAR.register("fluid", () -> FluidPastelPayload.CODEC);
+	DeferredHolder<MapCodec<? extends PastelPayload>, MapCodec<InkPastelPayload>> INK = REGISTRAR.register("ink", () -> InkPastelPayload.CODEC);
 	
 	static void register(IEventBus modBus) {
 		REGISTRAR.register(modBus);

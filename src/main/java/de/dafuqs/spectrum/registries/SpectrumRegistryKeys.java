@@ -27,7 +27,8 @@ public class SpectrumRegistryKeys {
 	public static final ResourceKey<Registry<RecipeScaling>> RECIPE_SCALING = of("recipe_scaling");
 	public static final ResourceKey<Registry<MapCodec<? extends ResonanceProcessor>>> RESONANCE_PROCESSOR_TYPE = of("resonance_processor_type");
 	public static final ResourceKey<Registry<ResonanceProcessor>> RESONANCE_PROCESSOR = of("resonance_processor");
-	public static final ResourceKey<Registry<MapCodec<? extends PastelPayload>>> PASTEL_PAYLOAD_TYPE = of("pastel_payload_type");
+	public static final ResourceKey<Registry<PastelPayloadType>> PASTEL_PAYLOAD_TYPE = of("pastel_payload_type");
+	public static final ResourceKey<Registry<MapCodec<? extends PastelPayload>>> PASTEL_PAYLOAD = of("pastel_payload");
 	
 	private static <T> ResourceKey<Registry<T>> of(String name) {
 		return ResourceKey.createRegistryKey(SpectrumCommon.locate(name));

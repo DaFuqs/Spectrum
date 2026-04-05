@@ -89,8 +89,8 @@ public class PastelTransmissionLogic {
 				continue;
 			}
 			
-			for(PastelPayloadType payloadType : sourceNode.getSupportedPayloads()) {
-				payloadType.tryTransferToType(this, sourceNode, destinationType, transferMode);
+			for(Supplier<? extends PastelPayloadType> payloadType : sourceNode.getSupportedPayloads()) {
+				payloadType.get().tryTransferToType(this, sourceNode, destinationType, transferMode);
 			}
 		}
 	}
@@ -99,7 +99,11 @@ public class PastelTransmissionLogic {
 		return this.network.getLoadedNodes(type, PastelNetwork.NodePriority.GENERIC);
 	}
 	
-	public void addTransmission(PastelTransmission transmission) {
+	public void addTransmission(PastelNodeBlockEntity sourceNode, PastelNodeBlockEntity destinationNode, PastelTransmissionLogic.TransferMode transferMode, PastelTransmission transmission) {
+		PastelNodeStatusUpdatePayload.sendPastelNodeStatusUpdate(List.of(sourceNode), true);
+		destinationNode.markTransferred(transferMode != PastelTransmissionLogic.TransferMode.PUSH);
+		sourceNode.markTransferred(transferMode != PastelTransmissionLogic.TransferMode.PULL);
+		
 		network.addTransmission(transmission, transmission.getTransmissionDuration());
 		PastelTransmissionPayload.sendPastelTransmissionParticle(network, transmission.getTransmissionDuration(), transmission);
 	}

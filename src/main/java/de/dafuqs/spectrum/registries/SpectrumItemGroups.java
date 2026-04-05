@@ -242,10 +242,14 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.UPGRADE_EXPERIENCE2);
 					
 					entries.accept(SpectrumBlocks.CONNECTION_NODE);
-					entries.accept(SpectrumBlocks.PROVIDER_NODE);
-					entries.accept(SpectrumBlocks.SENDER_NODE);
-					entries.accept(SpectrumBlocks.STORAGE_NODE);
-					entries.accept(SpectrumBlocks.GATHER_NODE);
+					entries.accept(SpectrumBlocks.ITEM_PROVIDER_NODE);
+					entries.accept(SpectrumBlocks.ITEM_SENDER_NODE);
+					entries.accept(SpectrumBlocks.ITEM_STORAGE_NODE);
+					entries.accept(SpectrumBlocks.ITEM_GATHER_NODE);
+					entries.accept(SpectrumBlocks.FLUID_PROVIDER_NODE);
+					entries.accept(SpectrumBlocks.FLUID_SENDER_NODE);
+					entries.accept(SpectrumBlocks.FLUID_STORAGE_NODE);
+					entries.accept(SpectrumBlocks.FLUID_GATHER_NODE);
 					
 					entries.accept(SpectrumBlocks.LIGHT_LEVEL_DETECTOR);
 					entries.accept(SpectrumBlocks.WEATHER_DETECTOR);

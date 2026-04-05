@@ -31,6 +31,7 @@ import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock, ColorableBlock {
 	
@@ -52,9 +53,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	}};
 	
 	protected final PastelNodeType pastelNodeType;
-	protected final Set<PastelPayloadType> supportedPayloads;
+	protected final Set<Supplier<? extends PastelPayloadType>> supportedPayloads;
 	
-	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType, Set<PastelPayloadType> supportedPayloads) {
+	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType, Set<Supplier<? extends PastelPayloadType>> supportedPayloads) {
 		super(settings.lightLevel(s -> s.getValue(LIT) ? 13 : 0));
 		this.pastelNodeType = pastelNodeType;
 		this.supportedPayloads = supportedPayloads;

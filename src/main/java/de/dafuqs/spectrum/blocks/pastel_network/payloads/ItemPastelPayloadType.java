@@ -3,15 +3,17 @@ package de.dafuqs.spectrum.blocks.pastel_network.payloads;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.pastel_network.network.PastelTransmission;
 import de.dafuqs.spectrum.blocks.pastel_network.network.PastelTransmissionLogic;
-import de.dafuqs.spectrum.blocks.pastel_network.nodes.PastelNodeBlockEntity;
-import de.dafuqs.spectrum.blocks.pastel_network.nodes.PastelNodeType;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.networking.s2c_payloads.PastelNodeStatusUpdatePayload;
-import net.minecraft.core.BlockPos;
+import net.minecraft.core.*;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.*;
+import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
+import org.jetbrains.annotations.*;
 import org.jgrapht.GraphPath;
 import org.jgrapht.graph.DefaultEdge;
 
@@ -23,13 +25,22 @@ import java.util.function.Predicate;
 public class ItemPastelPayloadType extends PastelPayloadType {
 	
 	public ItemPastelPayloadType() {
-		super(SpectrumCommon.locate("item"), PastelPayload.ITEM.get());
+		super(SpectrumCommon.locate("item"), SpectrumPastelPayloads.ITEM.get());
+	}
+	
+	public static @Nullable IItemHandler getConnectedItemStorage(PastelNodeBlockEntity pastelNodeBlockEntity) {
+		BlockState state = pastelNodeBlockEntity.getBlockState();
+		if (!(state.getBlock() instanceof PastelNodeBlock)) {
+			return null;
+		}
+		Direction direction = state.getValue(PastelNodeBlock.FACING);
+		return pastelNodeBlockEntity.getLevel().getCapability(Capabilities.ItemHandler.BLOCK, pastelNodeBlockEntity.getBlockPos().relative(direction.getOpposite()), direction);
 	}
 	
 	@Override
 	public void tryTransferToType(PastelTransmissionLogic logic, PastelNodeBlockEntity sourceNode, PastelNodeType type, PastelTransmissionLogic.TransferMode transferMode) {
-		IItemHandler sourceStorage = sourceNode.getConnectedStorage();
-		if (sourceStorage == null) {
+		IItemHandler sourceHandler = getConnectedItemStorage(sourceNode);
+		if (sourceHandler == null) {
 			return;
 		}
 		
@@ -38,9 +49,9 @@ public class ItemPastelPayloadType extends PastelPayloadType {
 				continue;
 			}
 			
-			IItemHandler destinationStorage = destinationNode.getConnectedStorage();
-			if (destinationStorage != null) {
-				boolean success = transferBetween(logic, sourceNode, sourceStorage, destinationNode, destinationStorage, transferMode);
+			IItemHandler destinationHandler = getConnectedItemStorage(destinationNode);
+			if (destinationHandler != null) {
+				boolean success = transferBetween(logic, sourceNode, sourceHandler, destinationNode, destinationHandler, transferMode);
 				if (success && transferMode != PastelTransmissionLogic.TransferMode.PULL) {
 					return;
 				}
@@ -89,15 +100,13 @@ public class ItemPastelPayloadType extends PastelPayloadType {
 			if (matchingStacks.getA() == 0)
 				continue;
 			
-			PastelPayload payload = new ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount));
-			int vertexTime = sourceNode.getTransferTime();
 			GraphPath<BlockPos, DefaultEdge> graphPath = logic.getPath(sourceNode, destinationNode);
 			if (graphPath == null) {
 				return false;
 			}
 			
-			PastelNodeStatusUpdatePayload.sendPastelNodeStatusUpdate(List.of(sourceNode), true);
-			PastelTransmission transmission = new PastelTransmission(graphPath.getVertexList(), payload, vertexTime);
+			PastelPayload payload = new ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount));
+			PastelTransmission transmission = new PastelTransmission(graphPath.getVertexList(), payload, sourceNode.getTransferTime());
 			int extracted = 0;
 			for (int i = 0; i < sourceStorage.getSlots(); i++) {
 				if (ItemStack.isSameItemSameComponents(proposedStack, sourceStorage.getStackInSlot(i)))
@@ -106,11 +115,7 @@ public class ItemPastelPayloadType extends PastelPayloadType {
 					break;
 			}
 			
-			logic.addTransmission(transmission);
-			
-			destinationNode.markTransferred(transferMode != PastelTransmissionLogic.TransferMode.PUSH);
-			sourceNode.markTransferred(transferMode != PastelTransmissionLogic.TransferMode.PULL);
-			
+			logic.addTransmission(sourceNode, destinationNode, transferMode, transmission);
 			destinationNode.addItemCountUnderway(simulatedAmount);
 			return true;
 		}

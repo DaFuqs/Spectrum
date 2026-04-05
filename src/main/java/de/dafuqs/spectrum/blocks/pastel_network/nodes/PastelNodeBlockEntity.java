@@ -41,6 +41,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, MenuProvider, PastelUpgradeable {
 	
@@ -85,15 +86,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		this.outerRing = Optional.empty();
 		this.innerRing = Optional.empty();
 		this.redstoneRing = Optional.empty();
-	}
-	
-	public @Nullable IItemHandler getConnectedStorage() {
-		BlockState state = this.getBlockState();
-		if (!(state.getBlock() instanceof PastelNodeBlock)) {
-			return null;
-		}
-		Direction direction = state.getValue(PastelNodeBlock.FACING);
-		return level.getCapability(Capabilities.ItemHandler.BLOCK, this.getBlockPos().relative(direction.getOpposite()), direction);
 	}
 	
 	public static void tick(@NotNull Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
@@ -268,7 +260,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 	}
 	
-	public long getMaxTransferredAmount() {
+	public int getMaxTransferredAmount() {
 		return transferCount;
 	}
 	
@@ -416,7 +408,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return PastelNodeType.CONNECTION;
 	}
 	
-	public Set<PastelPayloadType> getSupportedPayloads() {
+	public Set<Supplier<? extends PastelPayloadType>> getSupportedPayloads() {
 		if (this.getBlockState().getBlock() instanceof PastelNodeBlock pastelNodeBlock) {
 			return pastelNodeBlock.supportedPayloads;
 		}

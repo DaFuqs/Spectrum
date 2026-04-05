@@ -46,7 +46,7 @@ public record ItemPastelPayload(ItemStack itemStack) implements PastelPayload {
 		int inserted = 0;
 		int count = itemStack.getCount();
 		if (destinationNode != null) {
-			IItemHandler destinationStorage = destinationNode.getConnectedStorage();
+			IItemHandler destinationStorage = ItemPastelPayloadType.getConnectedItemStorage(destinationNode);
 			if (destinationStorage != null) {
 				inserted = count;
 				inserted -= ItemHandlerHelper.insertItemStacked(destinationStorage, itemStack.copyWithCount(count), false).getCount();

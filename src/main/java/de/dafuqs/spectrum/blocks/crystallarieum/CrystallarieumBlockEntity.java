@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.crystallarieum;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.fluid.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -27,7 +28,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, InkStorageBlockEntity<IndividualCappedInkStorage> {
+public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, InkStorageBlockEntity<IndividualCappedInkStorage>, SpectrumFluidTank.Callback {
 	
 	private final static FlowAnimator.Factory<CrystallarieumBlockEntity> FACTORY;
 	
@@ -46,7 +47,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	@Nullable
 	protected RecipeHolder<CrystallarieumRecipe> currentRecipe;
 	protected CrystallarieumCatalyst currentCatalyst = CrystallarieumCatalyst.EMPTY;
-	protected FluidTank fluidStorage = new FluidTank(1000);
+	protected FluidTank tank = new SpectrumFluidTank(1000, this);
 	
 	// for performance reasons, the crystallarieum only processes recipe logic every 20 ticks
 	public static final int SECOND = 20;
@@ -90,7 +91,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (currentRecipe == null) {
 			animator.swapState(FlowStates.INACTIVE);
 		} else {
-			if (currentRecipe.value().getFluidIngredient().test(fluidStorage.getFluid()) && inkStorage.getEnergy(currentRecipe.value().getInkColor()) > 0) {
+			if (currentRecipe.value().getFluidIngredient().test(tank.getFluid()) && inkStorage.getEnergy(currentRecipe.value().getInkColor()) > 0) {
 				animator.swapState(FlowStates.ACTIVE);
 			} else {
 				animator.swapState(FlowStates.IDLE);
@@ -125,7 +126,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			return;
 		}
 		
-		if (crystallarieum.canWork && (!recipe.value().getFluidIngredient().test(crystallarieum.fluidStorage.getFluid()) || crystallarieum.inkStorage.getEnergy(recipe.value().getInkColor()) == 0)) {
+		if (crystallarieum.canWork && (!recipe.value().getFluidIngredient().test(crystallarieum.tank.getFluid()) || crystallarieum.inkStorage.getEnergy(recipe.value().getInkColor()) == 0)) {
 			crystallarieum.canWork = false;
 			return;
 		}
@@ -209,7 +210,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			this.tickLooper = TickLooper.readNbt(nbt.getCompound("Looper"));
 		}
 		
-		this.fluidStorage.readFromNBT(registryLookup, nbt);
+		this.tank.readFromNBT(registryLookup, nbt);
 		this.canWork = nbt.getBoolean("CanWork");
 		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		this.currentCatalyst = CrystallarieumCatalyst.EMPTY;
@@ -227,7 +228,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		CodecHelper.writeNbt(nbt, "InkStorage", InkStorageComponent.CODEC, new InkStorageComponent(this.inkStorage));
 		nbt.put("Looper", this.tickLooper.toNbt());
 		
-		this.fluidStorage.writeToNBT(registryLookup, nbt);
+		this.tank.writeToNBT(registryLookup, nbt);
 		nbt.putBoolean("CanWork", this.canWork);
 		nbt.putInt("CurrentGrowthStageDuration", this.currentGrowthStageTicks);
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
@@ -248,7 +249,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	}
 	
 	/**
-	 * Searches recipes for a valid one using itemStack and plants the first block of that recipe on top
+	 * Searches recipes for a valid one using fluidStack and plants the first block of that recipe on top
 	 *
 	 * @param itemStack stack that is tried to plant on top, if a valid recipe
 	 */
@@ -303,8 +304,8 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		}
 	}
 	
-	public FluidTank getFluidStorage() {
-		return fluidStorage;
+	public FluidTank getFluidTank() {
+		return tank;
 	}
 	
 	/**
@@ -394,4 +395,10 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		
 		FACTORY = builder.build();
 	}
+	
+	@Override
+	public void onFluidContentsChanged() {
+		this.inventoryChanged();
+	}
+	
 }

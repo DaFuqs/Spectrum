@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.fusion_shrine;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.fluid.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
@@ -32,7 +33,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, Upgradeable {
+public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, Upgradeable, SpectrumFluidTank.Callback {
 	
 	protected static final int INVENTORY_SIZE = 7;
 	
@@ -44,7 +45,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	
 	private boolean inventoryChanged = true;
 	
-	public final FluidTank tank = new FluidTank(1000);
+	public final FluidTank tank = new SpectrumFluidTank(1000, this);
 	
 	public FusionShrineBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.FUSION_SHRINE.get(), pos, state, INVENTORY_SIZE);
@@ -302,8 +303,13 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		this.craftingTime = 0;
 	}
 	
-	public FluidTank getFluidStorage() {
+	public FluidTank getFluidTank() {
 		return tank;
+	}
+	
+	@Override
+	public void onFluidContentsChanged() {
+		this.inventoryChanged();
 	}
 	
 }

@@ -122,8 +122,8 @@ public class SpectrumCommon {
 		SpectrumItemGroups.register(modBus);
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register(modBus);
-		PastelPayload.register(modBus);
-		PastelPayloadType.register(modBus);
+		SpectrumPastelPayloadTypes.register(modBus);
+		SpectrumPastelPayloads.register(modBus);
 		modBus.addListener(SpectrumBlockEntities::addBlockEntityTypeBlocks);
 		SpectrumPastelUpgradeSignatures.register(modBus);
 		
@@ -167,7 +167,6 @@ public class SpectrumCommon {
 		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
 		SpectrumOmniAcceleratorProjectiles.register();
 		SpectrumItemProjectileBehaviors.register();
-
 		SpectrumEntityColorProcessors.register();
 		
 		logInfo("Registering Commands...");

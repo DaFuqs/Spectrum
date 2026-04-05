@@ -48,9 +48,9 @@ public class SpectrumCapabilities {
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.AMPHORA.get(), (@NotNull AmphoraBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
 		
 		// FluidHandler.BLOCK
-		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, SpectrumBlockEntities.FUSION_SHRINE.get(), (blockEntity, context) -> blockEntity.getFluidStorage());
-		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, SpectrumBlockEntities.CRYSTALLARIEUM.get(), (blockEntity, context) -> blockEntity.getFluidStorage());
-		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, SpectrumBlockEntities.TITRATION_BARREL.get(), (blockEntity, context) -> blockEntity.getFluidStorage());
+		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, SpectrumBlockEntities.FUSION_SHRINE.get(), (blockEntity, context) -> blockEntity.getFluidTank());
+		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, SpectrumBlockEntities.CRYSTALLARIEUM.get(), (blockEntity, context) -> blockEntity.getFluidTank());
+		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, SpectrumBlockEntities.TITRATION_BARREL.get(), (blockEntity, context) -> blockEntity.getFluidTank());
 		
 		// ItemHandler.ITEM
 		event.registerItem(Capabilities.ItemHandler.ITEM, (stack, ctx) -> BottomlessItemCapability.get(stack), SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem());

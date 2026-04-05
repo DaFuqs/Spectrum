@@ -97,7 +97,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 							// or seal it with a piece of colored wood
 							if (handStack.isEmpty()) {
 								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity.items);
-								FluidStack fluid = barrelEntity.fluidStorage.getFluid();
+								FluidStack fluid = barrelEntity.tank.getFluid();
 								if (fluid.isEmpty()) {
 									if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
 										player.displayClientMessage(Component.translatable("block.spectrum.titration_barrel.content_count_without_fluid_full", itemCount), true);
@@ -125,9 +125,9 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 									return ItemInteractionResult.CONSUME;
 								}
 								
-								if (FluidUtil.interactWithFluidHandler(player, hand, barrelEntity.fluidStorage)) {
-									if (!barrelEntity.fluidStorage.isEmpty()) {
-										if (state.getValue(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.fluidStorage.isEmpty()) {
+								if (FluidUtil.interactWithFluidHandler(player, hand, barrelEntity.tank)) {
+									if (!barrelEntity.tank.isEmpty()) {
+										if (state.getValue(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.tank.isEmpty()) {
 											world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
 										}
 									} else {
@@ -208,7 +208,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 		if (stack.isPresent()) {
 			player.getInventory().placeItemBackInInventory(stack.get());
 			barrelEntity.setChanged();
-			if (barrelEntity.items.isEmpty() && barrelEntity.fluidStorage.isEmpty()) {
+			if (barrelEntity.items.isEmpty() && barrelEntity.tank.isEmpty()) {
 				world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, BarrelState.EMPTY));
 			} else {
 				// They'll get updated if the block state changes anyway
@@ -280,8 +280,8 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 					float icurr = InventoryHelper.countItemsInInventory(blockEntity);
 					float imax = TitrationBarrelBlockEntity.MAX_ITEM_COUNT;
 					
-					float fcurr = blockEntity.fluidStorage.getFluidAmount();
-					float fmax = blockEntity.fluidStorage.getCapacity();
+					float fcurr = blockEntity.tank.getFluidAmount();
+					float fmax = blockEntity.tank.getCapacity();
 					
 					return Mth.floor(((icurr / imax) + (fcurr / fmax)) / 2.0f * 14.0f) + isNotEmpty;
 				}

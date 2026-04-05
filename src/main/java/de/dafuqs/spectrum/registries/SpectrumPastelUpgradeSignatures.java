@@ -13,8 +13,6 @@ public class SpectrumPastelUpgradeSignatures {
 	
 	private static final DeferredRegister<PastelUpgradeSignature> REGISTRAR = DeferredRegister.create(SpectrumRegistryKeys.PASTEL_UPGRADE, SpectrumCommon.MOD_ID);
 	
-	private static final String NAMESPACE = SpectrumCommon.MOD_ID;
-	
 	public static final PastelUpgradeSignature.Category NON_COMPOUNDING = PastelUpgradeSignature.Category.nonCompounding();
 	public static final PastelUpgradeSignature.Category STACK = PastelUpgradeSignature.Category.simple();
 	public static final PastelUpgradeSignature.Category SPEED = PastelUpgradeSignature.Category.simple();
@@ -24,59 +22,59 @@ public class SpectrumPastelUpgradeSignatures {
 	public static void register(IEventBus eventBus) {
 		
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> WEAK_STACK = register(
-				"weak_stack", () -> PastelUpgradeSignature.builder(SpectrumItems.RAW_BLOODSTONE.get(), STACK, NAMESPACE)
+				"weak_stack", () -> PastelUpgradeSignature.builder(SpectrumItems.RAW_BLOODSTONE.get(), STACK, SpectrumCommon.MOD_ID)
 						.named("weak_stack").stackMod(3).stackMult(2).build()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> STRONG_STACK = register(
-				"strong_stack", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_BLOODSTONE.get(), STACK, NAMESPACE)
+				"strong_stack", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_BLOODSTONE.get(), STACK, SpectrumCommon.MOD_ID)
 						.named("strong_stack").stackMod(15).stackMult(4).build()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> WEAK_SPEED = register(
-				"weak_speed", () -> PastelUpgradeSignature.builder(SpectrumItems.RAW_MALACHITE.get(), SPEED, NAMESPACE)
+				"weak_speed", () -> PastelUpgradeSignature.builder(SpectrumItems.RAW_MALACHITE.get(), SPEED, SpectrumCommon.MOD_ID)
 						.named("weak_speed").speedMod(-5).speedMult(0.8F).build()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> STRONG_SPEED = register(
-				"strong_speed", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_MALACHITE.get(), SPEED, NAMESPACE)
+				"strong_speed", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_MALACHITE.get(), SPEED, SpectrumCommon.MOD_ID)
 						.named("strong_speed").speedMod(-10).speedMult(0.5F).build()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> WEAK_FILTER = register(
-				"weak_filter", () -> PastelUpgradeSignature.builder(SpectrumItems.RAW_AZURITE.get(), FILTER, NAMESPACE)
+				"weak_filter", () -> PastelUpgradeSignature.builder(SpectrumItems.RAW_AZURITE.get(), FILTER, SpectrumCommon.MOD_ID)
 						.named("weak_filter").slotRowMod(1).build()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> STRONG_FILTER = register(
-				"strong_filter", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_AZURITE.get(), FILTER, NAMESPACE)
+				"strong_filter", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_AZURITE.get(), FILTER, SpectrumCommon.MOD_ID)
 						.named("strong_filter").slotRowMod(2).build()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> RATE = register(
-				"rate", () -> PastelUpgradeSignature.builder(SpectrumItems.RESONANCE_SHARD.get(), NON_COMPOUNDING, NAMESPACE)
+				"rate", () -> PastelUpgradeSignature.builder(SpectrumItems.RESONANCE_SHARD.get(), NON_COMPOUNDING, SpectrumCommon.MOD_ID)
 						.named("rate").priority(true).build()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> LIGHT = register(
-				"light", () -> PastelUpgradeSignature.builder(SpectrumItems.SHIMMERSTONE_GEM.get(), NON_COMPOUNDING, NAMESPACE)
+				"light", () -> PastelUpgradeSignature.builder(SpectrumItems.SHIMMERSTONE_GEM.get(), NON_COMPOUNDING, SpectrumCommon.MOD_ID)
 						.named("light").light(true).build()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> ALWAYS_ACTIVE = register(
-				"always_active", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_REDSTONE.get(), REDSTONE, NAMESPACE)
+				"always_active", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_REDSTONE.get(), REDSTONE, SpectrumCommon.MOD_ID)
 						.redstone("always_active").redstonePreProcess(context -> InteractionResult.SUCCESS).buildRedstone()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> ALWAYS_INACTIVE = register(
-				"always_inactive", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_LAPIS.get(), REDSTONE, NAMESPACE)
+				"always_inactive", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_LAPIS.get(), REDSTONE, SpectrumCommon.MOD_ID)
 						.redstone("always_inactive").redstonePreProcess(context -> InteractionResult.FAIL).buildRedstone()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> INVERTED = register(
-				"inverted", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_COAL.get(), REDSTONE, NAMESPACE)
+				"inverted", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_COAL.get(), REDSTONE, SpectrumCommon.MOD_ID)
 						.redstone("inverted").redstonePostProcess(context -> context.active() ? InteractionResult.FAIL : InteractionResult.SUCCESS).buildRedstone()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> SENSOR = register(
-				"sensor", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_ECHO.get(), REDSTONE, NAMESPACE)
+				"sensor", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_ECHO.get(), REDSTONE, SpectrumCommon.MOD_ID)
 						.redstone("sensor").sensor(true).buildRedstone()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> TRIGGER = register(
-				"trigger", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_QUARTZ.get(), REDSTONE, NAMESPACE)
+				"trigger", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_QUARTZ.get(), REDSTONE, SpectrumCommon.MOD_ID)
 						.redstone("trigger").triggerTransfer(true).buildRedstone()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> LAMP = register(
-				"lamp", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_GLOWSTONE.get(), REDSTONE, NAMESPACE)
+				"lamp", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_GLOWSTONE.get(), REDSTONE, SpectrumCommon.MOD_ID)
 						.redstone("lamp").lamp(true).buildRedstone()
 		);
 		

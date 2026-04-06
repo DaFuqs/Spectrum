@@ -569,6 +569,8 @@ public class SpectrumBlocks {
 	
 	public static final DeferredBlock<PastelNodeBlock> CONNECTION_NODE = register(blockWithItem("connection_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.CONNECTION, Set.of()), () -> IS.of(), InkColors.LIGHT_GRAY).withPredefinedItemModel());
 	
+	public static final DeferredBlock<PastelNodeBlock> INK_NODE = register(blockWithItem("ink_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.SENDER, Set.of(SpectrumPastelPayloadTypes.INK)), () -> IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
+	
 	// TODO: rename ids to "item_*" with next major update
 	public static final DeferredBlock<PastelNodeBlock> ITEM_PROVIDER_NODE = register(blockWithItem("provider_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER, Set.of(SpectrumPastelPayloadTypes.ITEM)), () -> IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
 	public static final DeferredBlock<PastelNodeBlock> ITEM_STORAGE_NODE = register(blockWithItem("storage_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.TOPAZ_CLUSTER), PastelNodeType.STORAGE, Set.of(SpectrumPastelPayloadTypes.ITEM)), () -> IS.of(), InkColors.CYAN).withPredefinedItemModel());

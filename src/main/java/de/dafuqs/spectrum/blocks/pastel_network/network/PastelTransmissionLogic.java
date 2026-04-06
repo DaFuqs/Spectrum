@@ -5,7 +5,9 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.items.*;
@@ -77,21 +79,8 @@ public class PastelTransmissionLogic {
 	}
 	
 	public void tick(PastelNetwork.NodePriority priority) {
-		transferBetween(PastelNodeType.SENDER, PastelNodeType.GATHER, TransferMode.PUSH_PULL, priority);
-		transferBetween(PastelNodeType.PROVIDER, PastelNodeType.GATHER, TransferMode.PULL, priority);
-		transferBetween(PastelNodeType.STORAGE, PastelNodeType.GATHER, TransferMode.PULL, priority);
-		transferBetween(PastelNodeType.SENDER, PastelNodeType.STORAGE, TransferMode.PUSH, priority);
-	}
-	
-	private void transferBetween(PastelNodeType sourceType, PastelNodeType destinationType, TransferMode transferMode, PastelNetwork.NodePriority priority) {
-		for (PastelNodeBlockEntity sourceNode : this.network.getLoadedNodes(sourceType, priority)) {
-			if (!sourceNode.canTransfer()) {
-				continue;
-			}
-			
-			for(Supplier<? extends PastelPayloadType> payloadType : sourceNode.getSupportedPayloads()) {
-				payloadType.get().tryTransferToType(this, sourceNode, destinationType, transferMode);
-			}
+		for(Map.Entry<ResourceKey<PastelPayloadType>, PastelPayloadType> payloadType : SpectrumRegistries.PASTEL_PAYLOAD_TYPE.entrySet()) {
+			payloadType.getValue().tick(this);
 		}
 	}
 	

@@ -30,7 +30,7 @@ public class InkPoweredStatusEffectInstance {
 	
 	public static final StreamCodec<RegistryFriendlyByteBuf, InkPoweredStatusEffectInstance> PACKET_CODEC = StreamCodec.composite(
 			MobEffectInstance.STREAM_CODEC, c -> c.statusEffectInstance,
-			InkAmount.PACKET_CODEC, c -> c.cost,
+			InkAmount.STREAM_CODEC, c -> c.cost,
 			ByteBufCodecs.VAR_INT, c -> c.customColor,
 			ByteBufCodecs.BOOL, c -> c.unidentifiable,
 			InkPoweredStatusEffectInstance::new

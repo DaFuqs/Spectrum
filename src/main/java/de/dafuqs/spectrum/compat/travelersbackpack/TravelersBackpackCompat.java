@@ -38,7 +38,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 		/*
 		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:sludge", SpectrumFluids.SLUDGE.get().getSource()) {
 			@Override
-			public void affectDrinker(FluidStack fluidStack, Level world, Entity entity) {
+			public void affectDrinker(FluidStack inkAmount, Level world, Entity entity) {
 				if (entity instanceof LivingEntity livingEntity) {
 					livingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200));
 					livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 400, 2));
@@ -49,7 +49,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 		
 		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL.get().getSource()) {
 			@Override
-			public void affectDrinker(FluidStack fluidStack, Level world, Entity entity) {
+			public void affectDrinker(FluidStack inkAmount, Level world, Entity entity) {
 				if (entity instanceof Player player) {
 					player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 400, 1));
 				}
@@ -58,7 +58,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 		
 		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:midnight_solution", SpectrumFluids.MIDNIGHT_SOLUTION.get().getSource()) {
 			@Override
-			public void affectDrinker(FluidStack fluidStack, Level world, Entity entity) {
+			public void affectDrinker(FluidStack inkAmount, Level world, Entity entity) {
 				if (entity instanceof Player player) {
 					player.giveExperiencePoints(-20);
 					
@@ -81,7 +81,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 		
 		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:dragonrot", SpectrumFluids.DRAGONROT.get().getSource()) {
 			@Override
-			public void affectDrinker(FluidStack fluidStack, Level world, Entity entity) {
+			public void affectDrinker(FluidStack inkAmount, Level world, Entity entity) {
 				if (entity instanceof LivingEntity livingEntity) {
 					livingEntity.addEffect(new MobEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 600, 3));
 					livingEntity.hurt(SpectrumDamageTypes.dragonrot(world), 1000); // 💀

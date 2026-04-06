@@ -249,7 +249,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	}
 	
 	/**
-	 * Searches recipes for a valid one using fluidStack and plants the first block of that recipe on top
+	 * Searches recipes for a valid one using inkAmount and plants the first block of that recipe on top
 	 *
 	 * @param itemStack stack that is tried to plant on top, if a valid recipe
 	 */

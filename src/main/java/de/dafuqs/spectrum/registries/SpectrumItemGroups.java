@@ -242,6 +242,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.UPGRADE_EXPERIENCE2);
 					
 					entries.accept(SpectrumBlocks.CONNECTION_NODE);
+					entries.accept(SpectrumBlocks.INK_NODE);
 					entries.accept(SpectrumBlocks.ITEM_PROVIDER_NODE);
 					entries.accept(SpectrumBlocks.ITEM_SENDER_NODE);
 					entries.accept(SpectrumBlocks.ITEM_STORAGE_NODE);

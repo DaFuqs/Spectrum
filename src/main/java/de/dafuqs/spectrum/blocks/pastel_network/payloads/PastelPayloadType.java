@@ -5,6 +5,8 @@ import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.resources.*;
 
+import java.util.function.*;
+
 public abstract class PastelPayloadType {
 	
 	protected final ResourceLocation id;
@@ -15,6 +17,25 @@ public abstract class PastelPayloadType {
 		this.codec = codec;
 	}
 	
-	public abstract void tryTransferToType(PastelTransmissionLogic logic, PastelNodeBlockEntity sourceNode, PastelNodeType type, PastelTransmissionLogic.TransferMode transferMode);
+	public void tick(PastelTransmissionLogic logic) {
+		transferBetween(logic, PastelNodeType.SENDER, PastelNodeType.GATHER, PastelTransmissionLogic.TransferMode.PUSH_PULL);
+		transferBetween(logic, PastelNodeType.PROVIDER, PastelNodeType.GATHER, PastelTransmissionLogic.TransferMode.PULL);
+		transferBetween(logic, PastelNodeType.STORAGE, PastelNodeType.GATHER, PastelTransmissionLogic.TransferMode.PULL);
+		transferBetween(logic, PastelNodeType.SENDER, PastelNodeType.STORAGE, PastelTransmissionLogic.TransferMode.PUSH);
+	}
+	
+	protected void transferBetween(PastelTransmissionLogic logic, PastelNodeType sourceType, PastelNodeType destinationType, PastelTransmissionLogic.TransferMode transferMode) {
+		for (PastelNodeBlockEntity sourceNode : logic.getLoadedNodes(sourceType)) {
+			if (!sourceNode.canTransfer()) {
+				continue;
+			}
+			
+			for(Supplier<? extends PastelPayloadType> payloadType : sourceNode.getSupportedPayloads()) {
+				payloadType.get().tryTransferToType(logic, sourceNode, destinationType, transferMode);
+			}
+		}
+	}
+	
+	protected abstract void tryTransferToType(PastelTransmissionLogic logic, PastelNodeBlockEntity sourceNode, PastelNodeType type, PastelTransmissionLogic.TransferMode transferMode);
 	
 }

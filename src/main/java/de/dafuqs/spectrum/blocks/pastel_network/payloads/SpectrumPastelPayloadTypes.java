@@ -11,7 +11,7 @@ public class SpectrumPastelPayloadTypes {
 	
 	public static final DeferredHolder<PastelPayloadType, ItemPastelPayloadType> ITEM = REGISTRAR.register("item", ItemPastelPayloadType::new);
 	public static final DeferredHolder<PastelPayloadType, FluidPastelPayloadType> FLUID = REGISTRAR.register("fluid", FluidPastelPayloadType::new);
-	//public static final  DeferredHolder<PastelPayloadType, ItemPastelPayloadType> INK = REGISTRAR.register("ink", InkPastelPayload.CODEC);
+	public static final  DeferredHolder<PastelPayloadType, InkPastelPayloadType> INK = REGISTRAR.register("ink", InkPastelPayloadType::new);
 	
 	public static void register(IEventBus modBus) {
 		REGISTRAR.register(modBus);

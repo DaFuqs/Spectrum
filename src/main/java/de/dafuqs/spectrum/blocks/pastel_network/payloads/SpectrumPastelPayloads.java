@@ -12,7 +12,7 @@ public class SpectrumPastelPayloads {
 	
 	public static final DeferredHolder<MapCodec<? extends PastelPayload>, MapCodec<ItemPastelPayload>> ITEM = REGISTRAR.register("item", () -> ItemPastelPayload.CODEC);
 	public static final DeferredHolder<MapCodec<? extends PastelPayload>, MapCodec<FluidPastelPayload>> FLUID = REGISTRAR.register("fluid", () -> FluidPastelPayload.CODEC);
-	//DeferredHolder<MapCodec<? extends PastelPayload>, MapCodec<InkPastelPayload>> INK = REGISTRAR.register("ink", () -> InkPastelPayload.CODEC);
+	public static final DeferredHolder<MapCodec<? extends PastelPayload>, MapCodec<InkPastelPayload>> INK = REGISTRAR.register("ink", () -> InkPastelPayload.CODEC);
 	
 	public static void register(IEventBus modBus) {
 		REGISTRAR.register(modBus);

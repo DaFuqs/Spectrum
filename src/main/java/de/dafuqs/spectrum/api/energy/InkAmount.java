@@ -13,7 +13,7 @@ public record InkAmount(InkColor color, long amount) {
 			Codec.LONG.fieldOf("amount").forGetter(InkAmount::amount)
 	).apply(i, InkAmount::new));
 	
-	public static final StreamCodec<ByteBuf, InkAmount> PACKET_CODEC = StreamCodec.composite(
+	public static final StreamCodec<ByteBuf, InkAmount> STREAM_CODEC = StreamCodec.composite(
 			InkColor.PACKET_CODEC, InkAmount::color,
 			ByteBufCodecs.VAR_LONG, InkAmount::amount,
 			InkAmount::new

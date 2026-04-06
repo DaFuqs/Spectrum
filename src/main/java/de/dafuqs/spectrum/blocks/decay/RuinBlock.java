@@ -83,23 +83,20 @@ public class RuinBlock extends DecayBlock {
 	}
 	
 	@Override
-	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moved) {
-		super.onRemove(state, level, pos, newState, moved);
+	public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable net.minecraft.world.level.block.entity.BlockEntity blockEntity, ItemStack tool) {
+		Optional<Boolean> shouldCreatePortalFacingUp = shouldCreatePortalFacingUp(level, pos, state);
 		
-		if (newState.isAir()) {
-			Optional<Boolean> shouldCreatePortalFacingUp = shouldCreatePortalFacingUp(level, pos, state);
-			if (shouldCreatePortalFacingUp.isPresent()) {
-				level.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
-			}
+		super.playerDestroy(level, player, pos, state, blockEntity, tool);
+		
+		if (shouldCreatePortalFacingUp.isPresent() && level instanceof ServerLevel serverLevel) {
+			serverLevel.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
 		}
 	}
 	
 	protected Optional<Boolean> shouldCreatePortalFacingUp(Level level, BlockPos pos, BlockState state) {
 		DecayBlock.Conversion conversion = state.getValue(RuinBlock.CONVERSION);
 		if (level.dimension() == Level.NETHER) {
-			if (pos.getY() == level.getMinBuildHeight() + level.dimensionType().logicalHeight() - 1) { // Attempt to match the nether ceiling. Tricky...
-				return Optional.of(Boolean.TRUE);
-			} else if (pos.getY() == level.getMinBuildHeight()) {
+			if (pos.getY() == level.getMinBuildHeight()) {
 				return Optional.of(Boolean.FALSE);
 			}
 		} else if (conversion == Conversion.SPECIAL || level.dimension() == Level.OVERWORLD && pos.getY() == level.getMinBuildHeight()) {

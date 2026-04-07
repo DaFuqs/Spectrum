@@ -4047,7 +4047,7 @@
 
   "book.spectrum.guidebook.vanilla_enchantments.name": "Vanilla Enchantments",
   "book.spectrum.guidebook.vanilla_enchantments.page0.text": "The Enchanter is also able to create most enchantments I'm already familiar with.\\\n\\\nThose Enchantments can be upgraded to higher levels, too – using the same [Pigment](entry://general/pigment) used for creating it.",
-  "book.spectrum.guidebook.vegetal.page0.text": "The answer seemed to be organics! Easily digestible indeed. Quite of obvious in retrospect...\\\nWhen digested by the organism, they created an interesting byproduct which I called Vegetal, representing the **raw energy of nature**.\\\n\\\nI am sure it will be very useful to me down the line.",
+  "book.spectrum.guidebook.vegetal.page0.text": "The answer seemed to be organics! Easily digestible indeed. Quite obvious in retrospect...\\\nWhen digested by the organism, they created an interesting byproduct which I called Vegetal, representing the **raw energy of nature**.\\\n\\\nI am sure it will be very useful to me down the line.",
   "book.spectrum.guidebook.vulnerability.page0.text": "[#](449900)Increased incoming damage[#]() with each additional level.",
   "book.spectrum.guidebook.weather_detector.page0.text": "Citrine is very sensitive to the energies released during a storm.\\\n\\\nWhen exposed to rain or a thunderstorm, it emits a [#](449900)redstone signal[#]().",
   "book.spectrum.guidebook.weather_detector.page1.text": "Rain will give a strength 8 signal, thunderstorms a full 15.",

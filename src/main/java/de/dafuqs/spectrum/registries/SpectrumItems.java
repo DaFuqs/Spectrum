@@ -13,7 +13,6 @@ import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.conditional.*;
-import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
@@ -25,10 +24,6 @@ import de.dafuqs.spectrum.items.misc.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.effect.*;
-import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.spectrum.registries.client.*;
-import net.minecraft.*;
-import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -439,8 +434,8 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> CONCEALING_OILS = register("concealing_oils", () -> new ConcealingOilsItem(IS.of(16)));
 	public static final DeferredItem<Item> BITTER_OILS = register("bitter_oils", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.BITTER_OILS).craftRemainder(GLASS_BOTTLE)));
 	
-	public static final DeferredItem<Item> INCANDESCENT_ESSENCE = register("incandescent_essence", () -> new CloakedItem(IS.of().fireResistant(), SpectrumAdvancements.MIDGAME, ORANGE_DYE));
-	public static final DeferredItem<Item> FROSTBITE_ESSENCE = register("frostbite_essence", () -> new CloakedItem(IS.of(), SpectrumAdvancements.MIDGAME, LIGHT_BLUE_DYE));
+	public static final DeferredItem<Item> INCANDESCENT_ESSENCE = register("incandescent_essence", () -> new CloakedItem(IS.of().fireResistant(), SpectrumAdvancements.REVEAL_INCANDESCENT_RESOURCES, ORANGE_DYE));
+	public static final DeferredItem<Item> FROSTBITE_ESSENCE = register("frostbite_essence", () -> new CloakedItem(IS.of(), SpectrumAdvancements.REVEAL_FROSTBITE_RESOURCES, LIGHT_BLUE_DYE));
 	public static final DeferredItem<Item> MOONSTONE_CORE = register("moonstone_core", () -> new CloakedItem(IS.of(Rarity.RARE), SpectrumAdvancements.FIND_FORGOTTEN_CITY, WHITE_DYE));
 	
 	// Music discs

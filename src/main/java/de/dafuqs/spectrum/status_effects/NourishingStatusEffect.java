@@ -12,11 +12,6 @@ public class NourishingStatusEffect extends MobEffect {
 	}
 	
 	@Override
-	public String getDescriptionId() {
-		return MobEffects.SATURATION.value().getDescriptionId();
-	}
-	
-	@Override
 	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
 		Level world = entity.level();
 		if (!world.isClientSide && entity instanceof Player playerEntity) {

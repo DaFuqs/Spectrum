@@ -129,6 +129,17 @@
     "spectrum:universe_spyhole",
     "spectrum:decay_away",
     "spectrum:stuck_storm_stone",
-    "spectrum:neolith_block"
+    "spectrum:neolith_block",
+
+    "spectrum:topaz_bricks",
+    "spectrum:amethyst_bricks",
+    "spectrum:citrine_bricks",
+    "spectrum:onyx_bricks",
+    "spectrum:moonstone_bricks",
+    "spectrum:mixed_gemstone_bricks",
+    "spectrum:azurite_bricks",
+    "spectrum:malachite_bricks",
+    "spectrum:bloodstone_bricks",
+    "spectrum:mixed_refined_crystal_bricks"
   ]
 }

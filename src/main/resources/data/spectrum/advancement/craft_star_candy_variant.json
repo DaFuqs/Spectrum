@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "id": "spectrum:gleaming_star_candy"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.craft_star_candy_variant.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_star_candy_variant.description"
+    }
+  },
+  "parent": "spectrum:collect_amaranth_bushel",
+  "criteria": {
+    "crafted_star_candy_variant": {
+      "trigger": "spectrum:crafted_with_pedestal",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:sugary_star_candy",
+            "spectrum:gleaming_star_candy",
+            "spectrum:enchanted_star_candy",
+            "spectrum:magnificent_star_candy"
+          ]
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_amaranth_bushel"
+      }
+    }
+  }
+}

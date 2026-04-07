@@ -1,11 +1,11 @@
 {
-  "name": "item.spectrum.star_candy",
+  "name": "book.spectrum.guidebook.star_candy.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/food/star_candy"
   },
   "icon": {
-    "item": "spectrum:star_candy"
+    "item": "spectrum:mellow_star_candy"
   },
   "category": "spectrum:cuisine",
   "hide_while_locked": true,
@@ -22,14 +22,14 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.star_candy.page0.text",
-      "title": "item.spectrum.star_candy"
+      "title": "book.spectrum.guidebook.star_candy.name",
+      "text": "book.spectrum.guidebook.star_candy.about.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
       "recipe_id": "spectrum:pedestal/tier1/food/star_candy",
-      "text": "book.spectrum.guidebook.star_candy.page1.text"
+      "text": "book.spectrum.guidebook.star_candy.recipe.text"
     }
   ]
 }

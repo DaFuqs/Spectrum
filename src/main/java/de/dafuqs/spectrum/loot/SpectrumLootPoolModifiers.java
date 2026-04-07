@@ -116,6 +116,8 @@ public class SpectrumLootPoolModifiers {
 		put(ResourceKey.create(Registries.LOOT_TABLE, SpectrumCommon.locate("entities/preservation_turret")), new TreasureHunterDropDefinition(SpectrumSkullType.PRESERVATION_TURRET, 0.1F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, SpectrumCommon.locate("entities/monstrosity")), new TreasureHunterDropDefinition(SpectrumSkullType.MONSTROSITY, 0.1F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, SpectrumCommon.locate("entities/eraser")), new TreasureHunterDropDefinition(SpectrumSkullType.ERASER, 0.1F));
+		put(ResourceKey.create(Registries.LOOT_TABLE, SpectrumCommon.locate("entities/marrow")), new TreasureHunterDropDefinition(SpectrumSkullType.MARROW, 0.1F));
+		put(ResourceKey.create(Registries.LOOT_TABLE, SpectrumCommon.locate("entities/splinterspawn")), new TreasureHunterDropDefinition(SpectrumSkullType.SPLINTERSPAWN, 0.1F));
 	}};
 	
 	public static void setup() {

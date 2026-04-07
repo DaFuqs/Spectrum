@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.*;
@@ -18,13 +19,13 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 // riptide w/o weather requirement; damages enemies on touch; iframes?
-public class FerociousBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider, InkPowered {
+public class FerociousBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider, InkPowered, ActivatableItem {
 	
 	public static final InkCost RIPTIDE_COST = new InkCost(InkColors.WHITE, 10);
 	public static final int BUILTIN_RIPTIDE_LEVEL = 1;
 	
 	public FerociousBidentItem(Item.Properties settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
-		super(settings, attackSpeed, damage, armorPierce, protPierce);
+		super(settings, attackSpeed, damage, armorPierce, protPierce, true);
 	}
 	
 	@Override
@@ -39,7 +40,7 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 
 	@Override
 	public boolean canStartRiptide(Player player, ItemStack stack) {
-		return !isDisabled(stack) && (super.canStartRiptide(player, stack) || InkPowered.tryDrainEnergy(player, RIPTIDE_COST));
+		return ActivatableItem.isActivated(stack) && (super.canStartRiptide(player, stack) || InkPowered.tryDrainEnergy(player, RIPTIDE_COST));
 	}
 	
 	@Override

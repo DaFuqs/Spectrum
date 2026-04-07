@@ -788,7 +788,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	public PedestalRecipeInput createRecipeInput() {
-		return PedestalRecipeInput.create(level, this.inventory, getOwnerIfOnline());
+		return PedestalRecipeInput.create(level, this.inventory, getOwnerIfOnline(this.level));
 	}
 	
 	public CraftingInput.Positioned createPositionedInput() {

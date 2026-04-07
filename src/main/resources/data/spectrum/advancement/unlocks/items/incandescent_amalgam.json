@@ -17,6 +17,12 @@
       "conditions": {
         "advancement_identifier": "spectrum:hidden/collect_incandescent_essence"
       }
+    },
+    "unlocked_midnight_solution": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/midnight_solution"
+      }
     }
   }
 }

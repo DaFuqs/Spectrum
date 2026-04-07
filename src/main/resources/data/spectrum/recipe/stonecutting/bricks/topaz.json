@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:topaz_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:topaz_bricks",
+    "count": 1
+  }
+}

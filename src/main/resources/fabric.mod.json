@@ -95,5 +95,7 @@
   "suggests": {
     "paginatedadvancements": "*"
   },
-  "breaks": {}
+  "breaks": {
+    "connector": "*"
+  }
 }

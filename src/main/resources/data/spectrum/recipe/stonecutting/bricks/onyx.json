@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": [
+    {
+      "item": "spectrum:onyx_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:onyx_bricks",
+    "count": 1
+  }
+}

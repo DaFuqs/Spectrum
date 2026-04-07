@@ -142,12 +142,6 @@ public interface InkPowered {
 		if (!canUse(player)) {
 			return false;
 		}
-		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID)) {
-			var effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.parse("malum:silenced"));
-			if (player.hasEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))) {
-				return false;
-			}
-		}
 		
 		// hands (main hand, too, if someone uses the staff from the offhand)
 		for (ItemStack itemStack : player.getHandSlots()) {
@@ -218,13 +212,6 @@ public interface InkPowered {
 	static boolean hasAvailableInk(Player player, InkColor color, long amount) {
 		if (!canUse(player)) {
 			return false;
-		}
-
-		if(SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.MALUM_ID)) {
-			var effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.parse("malum:silenced"));
-			if (player.hasEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))) {
-				return false;
-			}
 		}
 		
 		if (player.isCreative()) {

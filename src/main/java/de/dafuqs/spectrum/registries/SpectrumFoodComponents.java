@@ -52,11 +52,23 @@ public class SpectrumFoodComponents {
 			.effect(new MobEffectInstance(SpectrumStatusEffects.FATAL_SLUMBER, 100), 0.05F)
 			.build();
 	
-	public static final FoodProperties STAR_CANDY = new FoodProperties.Builder()
+	public static final FoodProperties SUGARY_STAR_CANDY = new FoodProperties.Builder()
+			.nutrition(1).saturationModifier(SAT_POOR).fast()
+			.build();
+	
+	public static final FoodProperties MELLOW_STAR_CANDY = new FoodProperties.Builder()
 			.nutrition(3).saturationModifier(SAT_POOR).fast()
 			.build();
 	
+	public static final FoodProperties GLEAMING_STAR_CANDY = new FoodProperties.Builder()
+			.nutrition(5).saturationModifier(SAT_POOR).fast()
+			.build();
+	
 	public static final FoodProperties ENCHANTED_STAR_CANDY = new FoodProperties.Builder()
+			.nutrition(8).saturationModifier(SAT_POOR).fast()
+			.build();
+	
+	public static final FoodProperties MAGNIFICENT_STAR_CANDY = new FoodProperties.Builder()
 			.nutrition(20).saturationModifier(SAT_NORMAL).fast()
 			.build();
 	
@@ -250,6 +262,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodProperties ASHEN_TART = new FoodProperties.Builder()
 			.nutrition(8).saturationModifier(SAT_NORMAL)
+			.effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20 * 30), 1.0F)
 			.effect(new MobEffectInstance(SpectrumStatusEffects.LAVA_GLIDING, 20 * 30), 1.0F)
 			.build();
 	
@@ -489,7 +502,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodProperties MERMAIDS_POPCORN = new FoodProperties.Builder()
 			.nutrition(6).saturationModifier(SAT_LOW)
-			.effect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 400, 0), 1.0F)
+			.effect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 1800, 0), 1.0F)
 			.build();
 	
 	public static final FoodProperties LE_FISHE_AU_CHOCOLAT = new FoodProperties.Builder()

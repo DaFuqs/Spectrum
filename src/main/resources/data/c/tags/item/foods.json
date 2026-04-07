@@ -1,5 +1,7 @@
 {
   "values": [
+    "#spectrum:star_candies",
+
     "spectrum:aloe_leaf",
     "spectrum:amethyst_rock_candy",
     "spectrum:aqua_regia",
@@ -26,7 +28,6 @@
     "spectrum:divination_heart",
     "spectrum:dragonbone_broth",
     "spectrum:enchanted_golden_carrot",
-    "spectrum:enchanted_star_candy",
     "spectrum:evernectar",
     "spectrum:faded_koi",
     "spectrum:fishcake",
@@ -84,7 +85,6 @@
     "spectrum:scone",
     "spectrum:sedatives",
     "spectrum:slushslide",
-    "spectrum:star_candy",
     "spectrum:surstromming",
     "spectrum:suspicious_brew",
     "spectrum:topaz_rock_candy",

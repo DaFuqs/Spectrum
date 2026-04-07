@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:pedestal_shapeless",
+  "group": "gemstone_bricks",
+  "time": 40,
+  "tier": "basic",
+  "colors": {},
+  "experience": 0.0,
+  "ingredients": [
+    "spectrum:topaz_block",
+    "minecraft:amethyst_block",
+    "spectrum:citrine_block",
+    "spectrum:onyx_block",
+    "spectrum:moonstone_block"
+  ],
+  "result": {
+    "id": "spectrum:mixed_gemstone_bricks",
+    "count": 5
+  },
+  "required_advancement": "spectrum:lategame/collect_moonstone"
+}

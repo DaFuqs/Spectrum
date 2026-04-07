@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.*;
@@ -17,22 +18,22 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 // gets thrown as copy instead of getting removed from the player's inv
-public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider, InkPowered {
+public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider, InkPowered, ActivatableItem {
 	
 	public static final InkCost MIRROR_IMAGE_COST = new InkCost(InkColors.WHITE, 25);
 	
 	public FractalBidentItem(Item.Properties settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
-		super(settings, attackSpeed, damage, armorPierce, protPierce);
+		super(settings, attackSpeed, damage, armorPierce, protPierce, true);
 	}
 	
 	@Override
 	public boolean isThrownAsMirrorImage(ItemStack stack, ServerLevel world, Player player) {
-		return !isDisabled(stack) && InkPowered.tryDrainEnergy(player, MIRROR_IMAGE_COST);
+		return ActivatableItem.isActivated(stack) && InkPowered.tryDrainEnergy(player, MIRROR_IMAGE_COST);
 	}
 	
 	@Override
 	public float getThrowSpeed(ItemStack stack) {
-		return isDisabled(stack) ? super.getThrowSpeed(stack) : 5.0F;
+		return ActivatableItem.isActivated(stack) ? 5.0F : super.getThrowSpeed(stack);
 	}
 	
 	@Override

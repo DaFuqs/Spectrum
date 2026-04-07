@@ -183,7 +183,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		});
 		
 		//WorldInteractionRecipe
-		long amount = FabricLoader.getInstance().isModLoaded("connector") ? 1000 : 81_000;
+		long amount = 81_000;
 		EmiStack water = EmiStack.of(Fluids.WATER, amount);
 		EmiStack lava = EmiStack.of(Fluids.LAVA, amount);
 		EmiStack dragonrot = EmiStack.of(SpectrumFluids.DRAGONROT, amount);

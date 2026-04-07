@@ -83,7 +83,6 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> MEMORY_VERY_FAST_MANIFESTERS = of("memory_very_fast_manifesters");
 	
 	// CONVENTIONAL TAGS ("c" namespace)
-	
 	public static final TagKey<Block> C_LIGHTNING_RODS = conventional("lightning_rods", provider -> provider
 			.add(Blocks.LIGHTNING_ROD)
 			.addOptionalTag(ResourceLocation.parse("friendsandfoes:lightning_rods")));

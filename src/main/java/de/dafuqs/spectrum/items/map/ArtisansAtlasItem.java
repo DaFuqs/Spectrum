@@ -359,12 +359,11 @@ public class ArtisansAtlasItem extends MapItem {
 		var world = Minecraft.getInstance().level;
 		if (world == null) return;
 		
-		if (getSavedData(stack, world) instanceof ArtisansAtlasState atlasState) {
-			ResourceLocation structureId = atlasState.getTargetId();
-			if (structureId == null)
-				tooltip.add(Component.translatable("item.spectrum.artisans_atlas.empty"));
-			else
-				tooltip.add(Component.translatable("item.spectrum.artisans_atlas.locates_structure").append(Component.translatable(structureId.toLanguageKey("structure"))));
+		ResourceLocation structureId = getSavedData(stack, world) instanceof ArtisansAtlasState atlasState ? atlasState.getTargetId() : null;
+		if(structureId == null) {
+			tooltip.add(Component.translatable("item.spectrum.artisans_atlas.empty"));
+		} else {
+			tooltip.add(Component.translatable("item.spectrum.artisans_atlas.locates_structure").append(Component.translatable(structureId.toLanguageKey("structure"))));
 		}
 		
 	}

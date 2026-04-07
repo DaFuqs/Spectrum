@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
-import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.*;
@@ -75,11 +74,11 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> MOONSTONE_SHARD = register("moonstone_shard", () -> new CloakedItem(IS.of(), SpectrumAdvancements.BREAK_DECAYED_BEDROCK, WHITE_DYE));
 	public static final DeferredItem<Item> SPECTRAL_SHARD = register("spectral_shard", () -> new Item(IS.of(Rarity.RARE)));
 	
-	public static final DeferredItem<Item> TOPAZ_POWDER = register("topaz_powder", () -> new GemstonePowderItem(IS.of(), SpectrumAdvancements.COLLECT_TOPAZ, BuiltinGemstoneColor.CYAN, CYAN_DYE));
-	public static final DeferredItem<Item> AMETHYST_POWDER = register("amethyst_powder", () -> new GemstonePowderItem(IS.of(), SpectrumAdvancements.COLLECT_AMETHYST, BuiltinGemstoneColor.MAGENTA, MAGENTA_DYE));
-	public static final DeferredItem<Item> CITRINE_POWDER = register("citrine_powder", () -> new GemstonePowderItem(IS.of(), SpectrumAdvancements.COLLECT_CITRINE, BuiltinGemstoneColor.YELLOW, YELLOW_DYE));
-	public static final DeferredItem<Item> ONYX_POWDER = register("onyx_powder", () -> new GemstonePowderItem(IS.of(), SpectrumAdvancements.CREATE_ONYX, BuiltinGemstoneColor.BLACK, BLACK_DYE));
-	public static final DeferredItem<Item> MOONSTONE_POWDER = register("moonstone_powder", () -> new GemstonePowderItem(IS.of(), SpectrumAdvancements.COLLECT_MOONSTONE, BuiltinGemstoneColor.WHITE, WHITE_DYE));
+	public static final DeferredItem<Item> TOPAZ_POWDER = register("topaz_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.COLLECT_TOPAZ, CYAN_DYE));
+	public static final DeferredItem<Item> AMETHYST_POWDER = register("amethyst_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.COLLECT_AMETHYST, MAGENTA_DYE));
+	public static final DeferredItem<Item> CITRINE_POWDER = register("citrine_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.COLLECT_CITRINE, YELLOW_DYE));
+	public static final DeferredItem<Item> ONYX_POWDER = register("onyx_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.CREATE_ONYX, BLACK_DYE));
+	public static final DeferredItem<Item> MOONSTONE_POWDER = register("moonstone_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.COLLECT_MOONSTONE, WHITE_DYE));
 	
 	// Pigment
 	public static final DeferredItem<Item> WHITE_PIGMENT = register("white_pigment", () -> new PigmentItem(IS.of(), InkColors.WHITE, WHITE_DYE));

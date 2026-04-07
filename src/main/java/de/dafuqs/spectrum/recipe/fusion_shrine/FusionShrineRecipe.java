@@ -267,11 +267,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 		}
 		
 		if (this.copyComponents) {
-			var originalEnchantments = output.getEnchantments();
-			output = memory.transmuteCopy(output.getItem(), output.getCount());
-			for (Holder<Enchantment> enchantment : originalEnchantments.keySet()) {
-				output.enchant(enchantment, originalEnchantments.getLevel(enchantment));
-			}
+			output = copyComponents(output, memory);
 		}
 		
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results

@@ -19,6 +19,7 @@ import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 
 import java.util.*;
@@ -38,9 +39,11 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	protected final int craftingTime;
 	protected final float experience;
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
+	protected final boolean copyComponents;
 	
 	public SpiritInstillerRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier,
-								 IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack output, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades) {
+								 IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack output,
+								 int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, boolean copyComponents) {
 		
 		super(group, secret, requiredAdvancementIdentifier);
 		
@@ -51,6 +54,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 		this.craftingTime = craftingTime;
 		this.experience = experience;
 		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
+		this.copyComponents = copyComponents;
 		
 		registerInToastManager(getType(), this);
 	}
@@ -113,6 +117,10 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 			}
 		}
 		
+		if (this.copyComponents) {
+			copyComponents(resultStack, recipeInput.getItem(0));
+		}
+		
 		spawnXPAndGrantAdvancements(resultStack, spiritInstillerBlockEntity, upgradeHolder, world, pos);
 		
 		return resultStack;
@@ -148,7 +156,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	}
 	
 	public boolean areYieldAndEfficiencyUpgradesDisabled() {
-		return noBenefitsFromYieldAndEfficiencyUpgrades;
+		return copyComponents || noBenefitsFromYieldAndEfficiencyUpgrades;
 	}
 	
 	@Override
@@ -192,7 +200,8 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 				ItemStack.STRICT_CODEC.fieldOf("result").forGetter(recipe -> recipe.output),
 				Codec.INT.optionalFieldOf("time", 200).forGetter(recipe -> recipe.craftingTime),
 				Codec.FLOAT.optionalFieldOf("experience", 1.0f).forGetter(recipe -> recipe.experience),
-				Codec.BOOL.optionalFieldOf("disable_yield_and_efficiency_upgrades", false).forGetter(recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades)
+				Codec.BOOL.optionalFieldOf("disable_yield_and_efficiency_upgrades", false).forGetter(recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades),
+				Codec.BOOL.optionalFieldOf("copy_components", false).forGetter(recipe -> recipe.copyComponents)
 		).apply(i, SpiritInstillerRecipe::new));
 		
 		private static final StreamCodec<RegistryFriendlyByteBuf, SpiritInstillerRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
@@ -206,6 +215,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 				ByteBufCodecs.VAR_INT, recipe -> recipe.craftingTime,
 				ByteBufCodecs.FLOAT, recipe -> recipe.experience,
 				ByteBufCodecs.BOOL, recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades,
+				ByteBufCodecs.BOOL, recipe -> recipe.copyComponents,
 				SpiritInstillerRecipe::new
 		);
 		

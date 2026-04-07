@@ -16,52 +16,52 @@
     "filled_pigment_palette_with_cmyk_colors": {
       "trigger": "spectrum:ink_container_interaction",
       "conditions": {
-        "black": {
+        "spectrum:black": {
           "min": 1
         },
-        "blue": {
+        "spectrum:blue": {
           "min": 1
         },
-        "brown": {
+        "spectrum:brown": {
           "min": 1
         },
-        "cyan": {
+        "spectrum:cyan": {
           "min": 1
         },
-        "gray": {
+        "spectrum:gray": {
           "min": 1
         },
-        "green": {
+        "spectrum:green": {
           "min": 1
         },
-        "light_blue": {
+        "spectrum:light_blue": {
           "min": 1
         },
-        "light_gray": {
+        "spectrum:light_gray": {
           "min": 1
         },
-        "lime": {
+        "spectrum:lime": {
           "min": 1
         },
-        "magenta": {
+        "spectrum:magenta": {
           "min": 1
         },
-        "orange": {
+        "spectrum:orange": {
           "min": 1
         },
-        "pink": {
+        "spectrum:pink": {
           "min": 1
         },
-        "purple": {
+        "spectrum:purple": {
           "min": 1
         },
-        "red": {
+        "spectrum:red": {
           "min": 1
         },
-        "white": {
+        "spectrum:white": {
           "min": 1
         },
-        "yellow": {
+        "spectrum:yellow": {
           "min": 1
         },
         "item": {

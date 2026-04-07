@@ -7,5 +7,6 @@
   "center_ingredient": "minecraft:nautilus_shell",
   "result": {
     "id": "minecraft:heart_of_the_sea"
-  }
+  },
+  "required_advancement": "spectrum:unlocks/items/heart_of_the_sea"
 }

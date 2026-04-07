@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -135,6 +137,7 @@ public class PastelTransmissionLogic {
 			proposals.put(stack, proposals.getOrDefault(stack, 0L) + stack.getCount());
 		}
 		
+		// TODO: this is jank. Improve
 		for (ItemStack stack : proposals.keySet()) {
 			long proposedAmount = Math.min(Math.min(proposals.get(stack), sourceNode.getMaxTransferredAmount()), totalAvailableStorage);
 			if (proposedAmount == 0)
@@ -147,9 +150,9 @@ public class PastelTransmissionLogic {
 			if (matchingStacks.getA() == 0)
 				continue;
 			
-			Optional<PastelTransmission> transmission = createTransmissionOnValidPath(sourceNode, destinationNode, proposedStack.copyWithCount(simulatedAmount), sourceNode.getTransferTime());
+			Optional<PastelTransmission> transmission = createTransmissionOnValidPath(sourceNode, destinationNode, new PastelPayload.ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount)), sourceNode.getTransferTime());
 			if (transmission.isPresent()) {
-				int toRemove = matchingStacks.getA();
+				int toRemove = simulatedAmount;
 				while (toRemove > 0) {
 					for (ItemStack matchingStack : matchingStacks.getB()) {
 						int amountToShrink = Math.min(toRemove, matchingStack.getCount());
@@ -158,7 +161,7 @@ public class PastelTransmissionLogic {
 					}
 				}
 				
-				Optional<PastelTransmission> optionalTransmission = createTransmissionOnValidPath(sourceNode, destinationNode, proposedStack.copyWithCount(simulatedAmount), sourceNode.getTransferTime());
+				Optional<PastelTransmission> optionalTransmission = createTransmissionOnValidPath(sourceNode, destinationNode, new PastelPayload.ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount)), sourceNode.getTransferTime());
 				if (optionalTransmission.isPresent()) {
 					PastelTransmission trans = optionalTransmission.get();
 					int travelTime = trans.getTransmissionDuration();
@@ -176,11 +179,11 @@ public class PastelTransmissionLogic {
 		return false;
 	}
 	
-	public Optional<PastelTransmission> createTransmissionOnValidPath(PastelNodeBlockEntity source, PastelNodeBlockEntity destination, ItemStack stack, int vertexTime) {
+	public Optional<PastelTransmission> createTransmissionOnValidPath(PastelNodeBlockEntity source, PastelNodeBlockEntity destination, PastelPayload payload, int vertexTime) {
 		GraphPath<BlockPos, DefaultEdge> graphPath = getPath(this.network.getGraph(), source, destination);
 		if (graphPath != null) {
 			PastelNodeStatusUpdatePayload.sendPastelNodeStatusUpdate(List.of(source), true);
-			return Optional.of(new PastelTransmission(graphPath.getVertexList(), stack, vertexTime));
+			return Optional.of(new PastelTransmission(graphPath.getVertexList(), payload, vertexTime));
 		}
 		return Optional.empty();
 	}

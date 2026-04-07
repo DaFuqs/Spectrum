@@ -40,8 +40,9 @@ import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.stream.*;
 
-public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter {
+public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter, WorldlyContainer {
 	
 	public static final String ITEM_TRANS = "container.spectrum.rei.enchantment_upgrade.required_item_count";
 	public static final String LEVEL_TRANS = "container.spectrum.rei.enchantment_upgrade.level";
@@ -385,7 +386,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 					requiredExperience += currentRequired;
 					valid = true;
 				} else {
-					requiredExperience += 50; // conflicting enchantments (like more enchantments in a book where not all can be applied cost extra
+					requiredExperience += 50; // conflicting enchantments (like more enchantments in a book where not all can be applied amount extra
 				}
 			}
 			if (valid) { // and applicable enchantment found
@@ -563,7 +564,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			SpectrumAdvancementCriteria.ENCHANTER_UPGRADING.trigger(serverPlayerEntity, builder.toImmutable(), xpCost);
 		}
 		
-		// update the item cost if chain upgrading
+		// update the item amount if chain upgrading
 		if (recipeMatches(this, level)) {
 			craftingTimeTotal = upgrade.getItemScaling().apply(targetLevel);
 		} else {
@@ -839,6 +840,21 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	@Override
 	public UpgradeHolder getUpgradeHolder() {
 		return this.upgrades;
+	}
+	
+	@Override
+	public int @NotNull [] getSlotsForFace(Direction direction) {
+		return direction == Direction.UP ? new int[1] : new int[0];
+	}
+	
+	@Override
+	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction dir) {
+		return true;
+	}
+	
+	@Override
+	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction dir) {
+		return true;
 	}
 	
 }

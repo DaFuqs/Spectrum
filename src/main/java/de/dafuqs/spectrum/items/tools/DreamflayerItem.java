@@ -178,7 +178,7 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 		if (ActivatableItem.isActivated(stack))
 			return SlotEffect.FULL_PACKAGE;
 		
-		var usable = InkPowered.hasAvailableInk(player, new InkCost(InkColors.RED, INK_COST_FOR_ACTIVATION));
+		var usable = InkPowered.hasAvailableInk(player, new InkAmount(InkColors.RED, INK_COST_FOR_ACTIVATION));
 		return usable ? SlotEffect.BORDER_FADE : SlotEffect.NONE;
 	}
 	

@@ -385,9 +385,9 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 		
 		
 		for (Map.Entry<PastelTransmission, Integer> transPair : transmissions) {
-			var transmission = transPair.getKey();
-			var remainingTravelTime = transPair.getValue();
-			var nodes = transmission.getNodePositions();
+			PastelTransmission transmission = transPair.getKey();
+			int remainingTravelTime = transPair.getValue();
+			List<BlockPos> nodes = transmission.getNodePositions();
 			
 			if (nodes.isEmpty())
 				continue;

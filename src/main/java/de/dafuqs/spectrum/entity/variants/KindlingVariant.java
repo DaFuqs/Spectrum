@@ -42,47 +42,59 @@ public class KindlingVariant {
 		return ResourceKey.create(SpectrumRegistryKeys.KINDLING_VARIANT, SpectrumCommon.locate(name));
 	}
 	
-	private final ResourceLocation defaultTexture;
-	private final ResourceLocation blinkingTexture;
-	private final ResourceLocation angryTexture;
-	private final ResourceLocation clippedTexture;
-	private final ResourceLocation blinkingClippedTexture;
-	private final ResourceLocation angryClippedTexture;
+	private final ResourceLocation defaultTexture, defaultTextureFull;
+	private final ResourceLocation blinkingTexture, blinkingTextureFull;
+	private final ResourceLocation angryTexture, angryTextureFull;
+	private final ResourceLocation clippedTexture, clippedTextureFull;
+	private final ResourceLocation blinkingClippedTexture, blinkingClippedTextureFull;
+	private final ResourceLocation angryClippedTexture, angryClippedTextureFull;
 	private final ResourceKey<LootTable> clippingLootTable;
 	
 	KindlingVariant(ResourceLocation defaultTexture, ResourceLocation blinkingTexture, ResourceLocation angryTexture, ResourceLocation clippedTexture,
 					ResourceLocation blinkingClippedTexture, ResourceLocation angryClippedTexture, ResourceKey<LootTable> clippingLootTable) {
-		this.defaultTexture = defaultTexture.withPath((string) -> "textures/" + string + ".png");
-		this.blinkingTexture = blinkingTexture.withPath((string) -> "textures/" + string + ".png");
-		this.angryTexture = angryTexture.withPath((string) -> "textures/" + string + ".png");
-		this.clippedTexture = clippedTexture.withPath((string) -> "textures/" + string + ".png");
-		this.blinkingClippedTexture = blinkingClippedTexture.withPath((string) -> "textures/" + string + ".png");
-		this.angryClippedTexture = angryClippedTexture.withPath((string) -> "textures/" + string + ".png");
+		this.defaultTexture = defaultTexture;
+		this.blinkingTexture = blinkingTexture;
+		this.angryTexture = angryTexture;
+		this.clippedTexture = clippedTexture;
+		this.blinkingClippedTexture = blinkingClippedTexture;
+		this.angryClippedTexture = angryClippedTexture;
+		
+		this.defaultTextureFull = fullTextureId(defaultTexture);
+		this.blinkingTextureFull = fullTextureId(blinkingTexture);
+		this.angryTextureFull = fullTextureId(angryTexture);
+		this.clippedTextureFull = fullTextureId(clippedTexture);
+		this.blinkingClippedTextureFull = fullTextureId(blinkingClippedTexture);
+		this.angryClippedTextureFull = fullTextureId(angryClippedTexture);
+		
 		this.clippingLootTable = clippingLootTable;
 	}
 	
+	private static ResourceLocation fullTextureId(ResourceLocation texture) {
+		return texture.withPath((s) -> "textures/" + s + ".png");
+	}
+	
 	public ResourceLocation getDefaultTexture() {
-		return defaultTexture;
+		return defaultTextureFull;
 	}
 	
 	public ResourceLocation getBlinkingTexture() {
-		return blinkingTexture;
+		return blinkingTextureFull;
 	}
 	
 	public ResourceLocation getAngryTexture() {
-		return angryTexture;
+		return angryTextureFull;
 	}
 	
 	public ResourceLocation getClippedTexture() {
-		return clippedTexture;
+		return clippedTextureFull;
 	}
 	
 	public ResourceLocation getBlinkingClippedTexture() {
-		return blinkingClippedTexture;
+		return blinkingClippedTextureFull;
 	}
 	
 	public ResourceLocation getAngryClippedTexture() {
-		return angryClippedTexture;
+		return angryClippedTextureFull;
 	}
 	
 	public ResourceKey<LootTable> getClippingLootTable() {

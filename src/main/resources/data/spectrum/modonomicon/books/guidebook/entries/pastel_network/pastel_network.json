@@ -30,19 +30,6 @@
       "texture_width": 108,
       "texture_height": 162,
       "border": false
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "item": {
-        "item": "minecraft:name_tag",
-        "components": {
-          "lore": [
-            "{\"text\":\"c:ores\"}"
-          ]
-        }
-      },
-      "title": "book.spectrum.guidebook.pastel_network.page2.title",
-      "text": "book.spectrum.guidebook.pastel_network.page2.text"
     }
   ]
 }

@@ -4,9 +4,9 @@ import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.capabilities.*;
 import de.dafuqs.spectrum.compat.*;
-import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.*;
@@ -17,6 +17,7 @@ import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.sound.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.tags.*;
@@ -121,6 +122,7 @@ public class SpectrumCommon {
 		SpectrumItemGroups.register(modBus);
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register(modBus);
+		PastelPayload.register(modBus);
 		modBus.addListener(SpectrumBlockEntities::addBlockEntityTypeBlocks);
 		SpectrumPastelUpgradeSignatures.register(modBus);
 		

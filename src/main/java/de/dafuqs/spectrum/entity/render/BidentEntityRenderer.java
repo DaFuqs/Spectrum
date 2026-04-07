@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.render;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
@@ -38,9 +39,7 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	}
 	
 	private void renderAsItemStack(BidentBaseEntity entity, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light, ItemStack itemStack) {
-		// Originally used for over-sized item rendering.
-		//SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformationMode.NONE;
-		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.level(), null, 817210941);
+		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.level(), null, SpectrumModelPredicateProviders.MAGICAL_OVERSIZED_SEED);
 		
 		poseStack.pushPose();
 		poseStack.translate(0, entity.getBoundingBox().getSize() / 2, 0);

@@ -19,7 +19,7 @@ import java.util.*;
 // gets thrown as copy instead of getting removed from the player's inv
 public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider, InkPowered, ActivatableItem {
 	
-	public static final InkCost MIRROR_IMAGE_COST = new InkCost(InkColors.WHITE, 25);
+	public static final InkAmount MIRROR_IMAGE_COST = new InkAmount(InkColors.WHITE, 25);
 	
 	public FractalBidentItem(Item.Properties settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
 		super(settings, attackSpeed, damage, armorPierce, protPierce, true);

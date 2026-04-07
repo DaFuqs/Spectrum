@@ -53,3 +53,19 @@ type="required"
 versionRange="${curios_version_range}"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies.spectrum]]
+modId="malum"
+type="optional"
+reason="load after malum to fix https://github.com/SammySemicolon/Malum-Mod/issues/445"
+versionRange="[1.8.2,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.spectrum]]
+modId="pastel"
+type="incompatible"
+reason="Mixin errors caused by lots of code overlap"
+versionRange=""
+ordering="NONE"
+side="BOTH"

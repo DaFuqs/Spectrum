@@ -67,7 +67,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected int transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
 	protected int filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 
-	protected Boolean isInitialized = false;
+	protected boolean isInitialized = false;
 	
 	private final List<ItemStack> filterItems;
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
@@ -92,7 +92,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			return null;
 		}
 		Direction direction = state.getValue(PastelNodeBlock.FACING);
-		return level.getCapability(Capabilities.ItemHandler.BLOCK, this.getBlockPos().relative(direction), direction.getOpposite());
+		return level.getCapability(Capabilities.ItemHandler.BLOCK, this.getBlockPos().relative(direction.getOpposite()), direction);
 	}
 	
 	public static void tick(@NotNull Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
@@ -652,7 +652,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return color.isPresent() ? color.get().getTextureDiffuseColor() : SpectrumColorHelper.getRandomColor(getNodeId().hashCode());
 	}
 	
-	enum ConnectionState {
+	public enum ConnectionState {
 		DISCONNECTED,
 		CONNECTED,
 		ACTIVE,

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.particle.client;
 
 import com.mojang.blaze3d.vertex.*;
-import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.render.*;
@@ -23,16 +23,16 @@ import java.util.*;
 
 public class PastelTransmissionParticle extends TransmissionParticle implements EarlyRenderingParticle {
 	
-	private final ItemRenderer itemRenderer;
+	public final ItemRenderer itemRenderer;
 	private final List<Vec3> travelPositions;
-	private final ItemStack itemStack;
+	private final PastelPayload payload;
 	private final ParticleOptions particleEffect;
 	
-	public PastelTransmissionParticle(ItemRenderer itemRenderer, ClientLevel world, double x, double y, double z, List<BlockPos> travelPositions, ItemStack stack, int travelTime, int networkColor) {
+	public PastelTransmissionParticle(ItemRenderer itemRenderer, ClientLevel world, double x, double y, double z, List<BlockPos> travelPositions, PastelPayload payload, int travelTime, int networkColor) {
 		super(world, x, y, z, new BlockPositionSource(travelPositions.get(travelPositions.size() - 1)), travelTime);
 		
 		this.itemRenderer = itemRenderer;
-		this.itemStack = stack;
+		this.payload = payload;
 		this.quadSize = 0.25F;
 		this.particleEffect = new DustParticleOptions(SpectrumColorHelper.colorIntToVec(networkColor), 0.8F);
 		
@@ -94,7 +94,7 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
 		poseStack.mulPose(camera.rotation());
 		poseStack.scale(0.65F, 0.65F, 0.65F);
 		poseStack.translate(0, -0.15, 0);
-		itemRenderer.renderStatic(itemStack, ItemDisplayContext.GROUND, light, OverlayTexture.NO_OVERLAY, poseStack, vertexConsumers, level, 0);
+		payload.render(this, level, poseStack, vertexConsumers, light);
 		
 		poseStack.popPose();
 	}

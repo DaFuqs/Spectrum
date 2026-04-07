@@ -48,7 +48,7 @@ public class FillPotionFillableLootFunction extends LootItemConditionalFunction 
 			MobEffectInstance statusEffectInstance = new MobEffectInstance(statusEffect, this.duration.getInt(context), this.amplifier.getInt(context), ambient, showParticles, true);
 			InkColor inkColor = this.inkColors.get(context.getRandom().nextInt(this.inkColors.size()));
 			int cost = this.inkCost.getInt(context);
-			return new InkPoweredStatusEffectInstance(statusEffectInstance, new InkCost(inkColor, cost), this.color, this.unidentifiable);
+			return new InkPoweredStatusEffectInstance(statusEffectInstance, new InkAmount(inkColor, cost), this.color, this.unidentifiable);
 		}
 		
 	}

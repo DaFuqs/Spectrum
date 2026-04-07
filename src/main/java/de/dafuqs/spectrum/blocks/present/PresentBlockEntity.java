@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
@@ -95,10 +96,6 @@ public class PresentBlockEntity extends PlacedItemBlockEntity implements PlayerO
 	
 	public ItemStack retrievePresent() {
 		return this.stack.copy();
-	}
-	
-	public Map<Integer, Integer> getColors() {
-		return PresentBlockItem.getWrapData(this.stack).colors();
 	}
 	
 	public List<ItemStack> getStacks() {

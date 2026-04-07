@@ -1,4 +1,5 @@
 {
+	"format_version": "1.21.11",
 	"credit": "~ XOXO Azzyypaaras ~",
 	"textures": {
 		"2": "spectrum:block/sender_node_crystal"
@@ -6,9 +7,9 @@
 	"elements": [
 		{
 			"name": "crystal",
-			"from": [6.5, 8, 6.5],
-			"to": [9.5, 11, 9.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"from": [-1.5, 4, -1.5],
+			"to": [1.5, 7, 1.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 0]},
 			"faces": {
 				"north": {"uv": [3, 0, 0, 3], "texture": "#2"},
 				"east": {"uv": [3, 0, 0, 3], "texture": "#2"},
@@ -20,9 +21,9 @@
 		},
 		{
 			"name": "crystal inner",
-			"from": [9.64264, 11.15, 9.65736],
-			"to": [6.34264, 7.85, 6.35736],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
+			"from": [1.64264, 7.15, 1.65736],
+			"to": [-1.65736, 3.85, -1.64264],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 0]},
 			"faces": {
 				"north": {"uv": [3, 3, 6, 0], "rotation": 90, "texture": "#2"},
 				"east": {"uv": [3, 3, 6, 0], "rotation": 90, "texture": "#2"},
@@ -50,7 +51,7 @@
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"firstperson_lefthand": {
-			"rotation": [0, 225, 0],
+			"rotation": [0, -135, 0],
 			"translation": [0.25, 1.5, 0],
 			"scale": [0.4, 0.4, 0.4]
 		},
@@ -59,7 +60,7 @@
 			"scale": [0.25, 0.25, 0.25]
 		},
 		"gui": {
-			"rotation": [30, 225, 0],
+			"rotation": [30, -135, 0],
 			"translation": [0, 1.75, 0],
 			"scale": [0.75, 0.75, 0.75]
 		},
@@ -72,7 +73,6 @@
 			"name": "crystal",
 			"origin": [8, 3.5, 8],
 			"color": 0,
-			"nbt": "{}",
 			"children": [0, 1]
 		}
 	]

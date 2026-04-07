@@ -161,7 +161,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), Map.of(Enchantments.POWER, 5, SpectrumEnchantmentKeys.VOIDING, 1)));
 					
 					ItemStack fullBottomlessStack = SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance();
-					long maxUnenchantedBottomlessBundleCapacity = BottomlessBundleItem.getMaxStoredAmount(0);
+					long maxUnenchantedBottomlessBundleCapacity = BottomlessComponent.getMaxStoredAmount(0);
 					fullBottomlessStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(maxUnenchantedBottomlessBundleCapacity, false, false, Items.ARROW.getDefaultInstance(), maxUnenchantedBottomlessBundleCapacity));
 					entries.accept(fullBottomlessStack);
 					
@@ -1549,12 +1549,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
 					entries.accept(SpectrumItems.CREATIVE_INK_ASSORTMENT);
 					entries.accept(SpectrumItems.PRIMORDIAL_LIGHTER);
-					
-					entries.accept(SpectrumItems.CONNECTION_NODE_CRYSTAL);
-					entries.accept(SpectrumItems.STORAGE_NODE_CRYSTAL);
-					entries.accept(SpectrumItems.PROVIDER_NODE_CRYSTAL);
-					entries.accept(SpectrumItems.SENDER_NODE_CRYSTAL);
-					entries.accept(SpectrumItems.GATHER_NODE_CRYSTAL);
 					
 					entries.accept(SpectrumBlocks.DOWNSTONE);
 					entries.accept(SpectrumBlocks.PRESERVATION_STONE);

@@ -8,7 +8,7 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	maven { url = "https://maven.is-immensely.gay/releases" } // Revelationary, Fractal, AEA, Arrowhead, Dimensional Reverb...
+	maven { url = "https://maven.is-immensely.gay/releases" } // Revelationary, Fractal, AEA, Arrowhead, ...
 	maven { url = "https://maven.shedaniel.me/" } // REI
 	maven { url = "https://maven.terraformersmc.com/" } // Modmenu, EMI
 	maven { url = "https://maven.nucleoid.xyz/" } // Common Protection API
@@ -106,7 +106,6 @@ dependencies {
 	implementation("de.dafuqs:revelationary-neoforge:${project.revelationary_version}")
 	implementation jarJar("maven.modrinth:additionalentityattributes:${project.additional_entity_attributes_version}")
 	implementation jarJar("de.dafuqs:arrowhead:${project.arrowhead_version}")
-	implementation jarJar("de.dafuqs:reverb-neoforge:${project.dimensional_reverb_version}")
 	implementation jarJar("de.dafuqs:Fractal:${project.fractal_version}")
 
 	// external and compat

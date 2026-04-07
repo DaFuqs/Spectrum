@@ -26,9 +26,9 @@ import java.util.*;
 public class StaffOfRemembranceItem extends Item implements InkPowered, PrioritizedEntityInteraction {
 	
 	public static final InkColor USED_COLOR = InkColors.LIGHT_GRAY;
-	public static final InkCost TURN_NEUTRAL_TO_MEMORY_COST = new InkCost(USED_COLOR, 1000);
-	public static final InkCost TURN_HOSTILE_TO_MEMORY_COST = new InkCost(USED_COLOR, 5000);
-	public static final InkCost CREATE_PLAYER_MEMORY_COST = new InkCost(USED_COLOR, 5000);
+	public static final InkAmount TURN_NEUTRAL_TO_MEMORY_COST = new InkAmount(USED_COLOR, 1000);
+	public static final InkAmount TURN_HOSTILE_TO_MEMORY_COST = new InkAmount(USED_COLOR, 5000);
+	public static final InkAmount CREATE_PLAYER_MEMORY_COST = new InkAmount(USED_COLOR, 5000);
 	
 	public StaffOfRemembranceItem(Properties settings) {
 		super(settings);

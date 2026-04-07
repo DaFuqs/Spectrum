@@ -23,25 +23,25 @@ public class InkPoweredStatusEffectInstance {
 	
 	public static final Codec<InkPoweredStatusEffectInstance> CODEC = RecordCodecBuilder.create(i -> i.group(
 			MobEffectInstance.CODEC.fieldOf("effect").forGetter(c -> c.statusEffectInstance),
-			InkCost.CODEC.fieldOf("ink_cost").forGetter(c -> c.cost),
+			InkAmount.CODEC.fieldOf("ink_cost").forGetter(c -> c.cost),
 			Codec.INT.optionalFieldOf("custom_color", -1).forGetter(c -> c.customColor),
 			Codec.BOOL.optionalFieldOf("unidentifiable", false).forGetter(c -> c.unidentifiable)
 	).apply(i, InkPoweredStatusEffectInstance::new));
 	
 	public static final StreamCodec<RegistryFriendlyByteBuf, InkPoweredStatusEffectInstance> PACKET_CODEC = StreamCodec.composite(
 			MobEffectInstance.STREAM_CODEC, c -> c.statusEffectInstance,
-			InkCost.PACKET_CODEC, c -> c.cost,
+			InkAmount.PACKET_CODEC, c -> c.cost,
 			ByteBufCodecs.VAR_INT, c -> c.customColor,
 			ByteBufCodecs.BOOL, c -> c.unidentifiable,
 			InkPoweredStatusEffectInstance::new
 	);
 	
 	private final MobEffectInstance statusEffectInstance;
-	private final InkCost cost;
+	private final InkAmount cost;
 	private final int customColor; // -1: use effect default
 	private final boolean unidentifiable;
 	
-	public InkPoweredStatusEffectInstance(MobEffectInstance statusEffectInstance, InkCost cost, int customColor, boolean unidentifiable) {
+	public InkPoweredStatusEffectInstance(MobEffectInstance statusEffectInstance, InkAmount cost, int customColor, boolean unidentifiable) {
 		this.statusEffectInstance = statusEffectInstance;
 		this.cost = cost;
 		this.customColor = customColor;
@@ -52,7 +52,7 @@ public class InkPoweredStatusEffectInstance {
 		return statusEffectInstance;
 	}
 	
-	public InkCost getInkCost() {
+	public InkAmount getInkCost() {
 		return cost;
 	}
 	
@@ -78,7 +78,7 @@ public class InkPoweredStatusEffectInstance {
 					continue;
 				}
 				
-				InkCost cost = entry.getInkCost();
+				InkAmount cost = entry.getInkCost();
 				
 				MutableComponent mutableText = Component.translatable(effect.getDescriptionId());
 				if (effect.getAmplifier() > 0) {
@@ -88,7 +88,7 @@ public class InkPoweredStatusEffectInstance {
 					mutableText = Component.translatable("potion.withDuration", mutableText, MobEffectUtil.formatDuration(effect, 1.0F, tickRate));
 				}
 				mutableText.withStyle(effect.getEffect().value().getCategory().getTooltipFormatting());
-				mutableText.append(Component.translatable("spectrum.tooltip.ink_cost", Support.getShortenedNumberString(cost.cost()), cost.color().getColoredInkName()).withStyle(ChatFormatting.GRAY));
+				mutableText.append(Component.translatable("spectrum.tooltip.ink_cost", Support.getShortenedNumberString(cost.amount()), cost.color().getColoredInkName()).withStyle(ChatFormatting.GRAY));
 				tooltip.add(mutableText);
 				
 				effect.getEffect().value().createModifiers(effect.getAmplifier(), (attribute, modifier) ->

@@ -32,6 +32,7 @@ public class ClientLanguageMixin {
 		builder.put("item.spectrum.whispy_circlet", "Whisky Circlet");
 		builder.put("item.spectrum.shimmerstone_gem", "Stimmerstone Gem");
 		builder.put("block.spectrum.shimmerstone_block", "Block of Stimmerstone");
+		builder.put("block.spectrum.fading", "Sourdough Starter");
 		
 		builder.put("item.spectrum.mermaids_gem", translations.get("item.spectrum.storm_stone"));
 		builder.put("item.spectrum.storm_stone", translations.get("item.spectrum.mermaids_gem"));

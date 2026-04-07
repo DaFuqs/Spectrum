@@ -1,5 +1,5 @@
 {
-  "spectrum:light_gray": [
+  "spectrum:pink": [
     "spectrum:liquid_crystal",
     "spectrum:flowing_liquid_crystal"
   ],
@@ -7,10 +7,11 @@
     "spectrum:sludge",
     "spectrum:flowing_sludge"
   ],
-  "spectrum:gray": [
+  "spectrum:black": [
     "spectrum:midnight_solution",
-    "spectrum:flowing_midnight_solution",
-
+    "spectrum:flowing_midnight_solution"
+  ],
+  "spectrum:orange": [
     "spectrum:dragonrot",
     "spectrum:flowing_dragonrot"
   ]

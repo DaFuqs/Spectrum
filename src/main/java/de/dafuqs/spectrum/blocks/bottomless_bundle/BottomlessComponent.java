@@ -13,7 +13,9 @@ import org.jetbrains.annotations.*;
 
 public record BottomlessComponent(@NotNull BottomlessItemHandler handler) {
 	
-	public static final BottomlessComponent DEFAULT = new BottomlessComponent(new BottomlessItemHandler(BottomlessBundleItem.getMaxStoredAmount(0), false, false, ItemStack.EMPTY, 0));
+	private static final long MAX_STORED_AMOUNT_BASE = 20000;
+	
+	public static final BottomlessComponent DEFAULT = new BottomlessComponent(new BottomlessItemHandler(getMaxStoredAmount(0), false, false, ItemStack.EMPTY, 0));
 	
 	public static Codec<BottomlessComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 			Codec.LONG.fieldOf("capacity").forGetter(component -> component.handler.capacity()),
@@ -43,28 +45,28 @@ public record BottomlessComponent(@NotNull BottomlessItemHandler handler) {
 	public @NotNull static BottomlessComponent get(ItemStack bottomlessBundle, @Nullable HolderLookup.Provider registryLookup, boolean recalculateEnchantmentDependentValuesAndSet) {
 		@Nullable BottomlessComponent existing = bottomlessBundle.get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
 		
-		ItemStack stack = ItemStack.EMPTY;
-		long count = 0;
-		long maxStoredAmount = DEFAULT.handler().capacity();
+		ItemStack storedStack = ItemStack.EMPTY;
+		long storedCount = 0;
+		long maxStoredCount = DEFAULT.handler().capacity();
 		boolean deletesOverflow = false;
 		if(registryLookup != null) {
-			maxStoredAmount = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundle.getEnchantmentLevel(registryLookup.lookup(Registries.ENCHANTMENT).flatMap(impl -> impl.get(Enchantments.POWER)).orElse(null)));
+			maxStoredCount = getMaxStoredAmount(bottomlessBundle.getEnchantmentLevel(registryLookup.lookup(Registries.ENCHANTMENT).flatMap(impl -> impl.get(Enchantments.POWER)).orElse(null)));
 			deletesOverflow = EnchantmentHelper.hasTag(bottomlessBundle, SpectrumEnchantmentTags.DELETES_OVERFLOW);
 		}
 		boolean locked = false;
 		if(existing != null) {
-			stack = existing.handler().variant();
-			count = existing.handler().count();
+			storedStack = existing.handler().variant();
+			storedCount = existing.handler().count();
 			locked = existing.handler().locked();
 		}
 		
-		BottomlessComponent result = new BottomlessComponent(maxStoredAmount, deletesOverflow, locked, stack, count);
+		BottomlessComponent result = new BottomlessComponent(maxStoredCount, deletesOverflow, locked, storedStack, storedCount);
 		
 		if(recalculateEnchantmentDependentValuesAndSet) {
 			if(existing == null) {
-				stack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, result);
-			} else if(maxStoredAmount != existing.handler().capacity() || deletesOverflow != existing.handler().deletesOverflow()) {
-				stack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, result);
+				bottomlessBundle.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, result);
+			} else if(maxStoredCount != existing.handler().capacity() || deletesOverflow != existing.handler().deletesOverflow()) {
+				bottomlessBundle.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, result);
 			}
 		}
 		
@@ -76,6 +78,10 @@ public record BottomlessComponent(@NotNull BottomlessItemHandler handler) {
 	@Deprecated
 	public BottomlessComponent(long capacity, boolean deletesOverflow, boolean locked, ItemStack variant, long count) {
 		this(new BottomlessItemHandler(capacity, deletesOverflow, locked, variant, count));
+	}
+	
+	public static long getMaxStoredAmount(int powerLevel) {
+		return MAX_STORED_AMOUNT_BASE * (int) Math.pow(10, Math.min(5, powerLevel)); // to not exceed int max
 	}
 	
 }

@@ -6,6 +6,7 @@ import com.llamalad7.mixinextras.sugar.*;
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
@@ -34,7 +35,7 @@ public abstract class ItemRendererMixin {
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/ItemRenderer;getModel(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)Lnet/minecraft/client/resources/model/BakedModel;"))
 	private BakedModel spectrum$handleOversizedItemModels(BakedModel original, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) @Nullable Level world, @Local(argsOnly = true) @Nullable LivingEntity entity) {
 		if (world instanceof ClientLevel clientWorld) {
-			return original.getOverrides().resolve(original, stack, clientWorld, entity, 817210941);
+			return original.getOverrides().resolve(original, stack, clientWorld, entity, SpectrumModelPredicateProviders.MAGICAL_OVERSIZED_SEED);
 		}
 		return original;
 	}

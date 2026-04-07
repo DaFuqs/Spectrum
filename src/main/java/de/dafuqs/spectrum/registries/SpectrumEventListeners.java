@@ -25,9 +25,11 @@ import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.advancements.*;
+import net.minecraft.client.resources.model.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.server.packs.resources.*;
@@ -56,6 +58,7 @@ import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.fml.loading.*;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.event.entity.*;
 import net.neoforged.neoforge.event.entity.living.*;
@@ -78,6 +81,15 @@ public class SpectrumEventListeners {
 	@SubscribeEvent
 	public static void modifyComponents(ModifyDefaultComponentsEvent event) {
 		event.modify(Items.NETHER_STAR, builder -> builder.set(SpectrumDataComponentTypes.DAMAGE_IMMUNE.get(), List.of(DamageTypeTags.IS_EXPLOSION, DamageTypeTags.IS_FIRE)));
+	}
+	
+	@SubscribeEvent
+	public static void registerAdditional(ModelEvent.RegisterAdditional event) {
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/connection_node_crystal")));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/provider_node_crystal")));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/sender_node_crystal")));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/storage_node_crystal")));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/gather_node_crystal")));
 	}
 	
 	@SubscribeEvent
@@ -230,7 +242,7 @@ public class SpectrumEventListeners {
 		
 		if (serverLevel.getGameTime() % 100 == 0) {
 			if (TimeHelper.getTimeOfDay(serverLevel).isNight()) { // 90 chances in a night
-				if (SpectrumConfig.CONFIG.ShootingStarDimensions.get().contains(serverLevel.dimension().location().toString())) {
+				if (SpectrumConfig.spawnsShootingStars(serverLevel.dimension().location())) {
 					ShootingStarSpawner.INSTANCE.tick(serverLevel, true, true);
 				}
 			}

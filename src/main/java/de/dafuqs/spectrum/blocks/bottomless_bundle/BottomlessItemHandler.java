@@ -53,7 +53,7 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 		if (!isItemValid(0, insertedVariant)) return 0L;
 		long capacity = getCapacity();
 		long space = capacity - this.count;
-		if (space <= 0L) return 0L;
+		if (!deletesOverflow && space <= 0L) return 0L;
 		long toInsert = Math.min(space, maxAmount);
 		if (this.variant.isEmpty()) {
 			// Lock template to one copy of the item
@@ -100,13 +100,13 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 			return ItemStack.EMPTY;
 		}
 		
-		long amountToExtract = Math.min(amount, this.count);
+		int amountToExtract = (int) Math.min(amount, this.count);
 		if (amountToExtract <= 0L) {
 			return ItemStack.EMPTY;
 		}
 		
 		this.count -= amountToExtract;
-		ItemStack result = this.variant.copyWithCount(amount);
+		ItemStack result = this.variant.copyWithCount(amountToExtract);
 		if(this.count <= 0L) {
 			this.variant = ItemStack.EMPTY;
 		}
@@ -127,8 +127,13 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 		// must be an item that can be stored & same item type/components as existing template (if set)
 		if (toInsert.isEmpty()) return false;
 		if (!toInsert.canFitInsideContainerItems()) return false;
-		if (this.isEmpty()) return true;
-		return ItemStack.isSameItemSameComponents(this.variant, toInsert);
+		
+		if(this.locked()) {
+			return ItemStack.isSameItemSameComponents(this.variant, toInsert);
+		} else {
+			if (this.isEmpty()) return true;
+			return ItemStack.isSameItemSameComponents(this.variant, toInsert);
+		}
 	}
 	
 	public boolean isEmpty() {

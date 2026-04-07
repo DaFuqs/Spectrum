@@ -359,7 +359,10 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 	
 	@Override
-	public int[] getSlotsForFace(Direction side) {
+	public int @NotNull [] getSlotsForFace(Direction direction) {
+		if(direction == Direction.UP) {
+			return new int[EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT];
+		}
 		return IntStream.rangeClosed(0, EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT - 1).toArray();
 	}
 	

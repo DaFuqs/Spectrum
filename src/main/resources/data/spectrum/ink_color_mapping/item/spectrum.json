@@ -45,8 +45,7 @@
     "spectrum:milky_resin",
     "spectrum:constructors_staff",
     "spectrum:exchanging_staff",
-    "spectrum:block_flooder",
-    "spectrum:connection_node_crystal"
+    "spectrum:block_flooder"
   ],
   "spectrum:white": [
     "spectrum:pedestal_basic_topaz",
@@ -650,8 +649,7 @@
     "spectrum:topaz_rock_candy",
     "spectrum:pure_diamond",
     "spectrum:pure_emerald",
-    "spectrum:pure_prismarine",
-    "spectrum:storage_node_crystal"
+    "spectrum:pure_prismarine"
   ],
   "spectrum:black": [
     "spectrum:onyx_cluster",
@@ -748,8 +746,7 @@
     "spectrum:bedrock_dust",
     "spectrum:onyx_rock_candy",
     "spectrum:doombloom_seed",
-    "spectrum:concealing_oils",
-    "spectrum:gather_node_crystal"
+    "spectrum:concealing_oils"
   ],
   "spectrum:brown": [
     "spectrum:crystallarieum",
@@ -1327,8 +1324,7 @@
     "spectrum:amethyst_rock_candy",
     "spectrum:crescent_clock",
     "spectrum:celestial_pocketwatch",
-    "spectrum:ring_of_pursuit",
-    "spectrum:provider_node_crystal"
+    "spectrum:ring_of_pursuit"
   ],
   "spectrum:light_blue": [
     "spectrum:light_blue_planks",
@@ -1456,7 +1452,6 @@
     "spectrum:take_off_belt",
     "spectrum:gloves_of_dawns_grasp",
     "spectrum:gleaming_pin",
-    "spectrum:pure_glowstone",
-    "spectrum:sender_node_crystal"
+    "spectrum:pure_glowstone"
   ]
 }

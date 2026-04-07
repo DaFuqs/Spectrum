@@ -23,8 +23,10 @@
         "items": [
           {
             "items": "spectrum:knowledge_gem",
-            "components": {
-              "spectrum:stored_experience": 1000000000
+            "predicates": {
+              "spectrum:stored_experience": {
+                "min": 1000000000
+              }
             }
           }
         ],

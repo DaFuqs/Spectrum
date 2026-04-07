@@ -76,134 +76,78 @@
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.minecraft.levitation",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_paltaeria"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/levitation"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.minecraft.luck",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_four_leaf_clover"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/luck",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.page7.text"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.minecraft.resistance",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_moonstone"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/resistance",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.minecraft.wither",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/collect_midnight_chip"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/wither",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.minecraft.darkness",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_vanilla/echo_shard"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/darkness"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.spectrum.toughness",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_glass_peach"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/toughness",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.spectrum.deadly_poison",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:break_cracked_dragonbone"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/deadly_poison"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.spectrum.life_drain",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_downstone_fragments"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/life_drain"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.spectrum.scarred",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:break_cracked_dragonbone"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/scarred"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.spectrum.calming",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/weak_sleep_effects"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/calming"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.spectrum.somnolence",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/weak_sleep_effects"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/somnolence",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.low_potency_mod"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.spectrum.eternal_slumber",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/strong_sleep_effects"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/eternal_slumber",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.low_yield"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.spectrum.fatal_slumber",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/potions/strong_sleep_effects"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/fatal_slumber",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.fillable_only"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "effect.spectrum.immunity",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
-      },
       "recipe_id": "spectrum:potion_workshop_brewing/immunity",
       "text": "book.spectrum.guidebook.potion_workshop_brewing.page19.text"
     }

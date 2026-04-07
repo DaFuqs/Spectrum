@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "unlocked_complex_reagents": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_complex_reagents"
+      }
+    },
+    "found_poisoners_handbook": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
+      }
+    },
+    "collected_jadeite": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_jadeite"
+      }
+    },
+    "plucked_resplendent_feather": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:pluck_resplendent_feather"
+      }
+    },
+    "eat_burgeon": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:nectardew_burgeon"
+          ]
+        }
+      }
+    }
+  }
+}

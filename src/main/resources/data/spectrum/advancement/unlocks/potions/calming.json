@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "unlocked_complex_reagents": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_complex_reagents"
+      }
+    },
+    "harvested_moonstruck_nectar": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collected_frostbite_crystal"
+      }
+    },
+    "collected_frostbite_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_frostbite_crystal"
+      }
+    },
+    "eat_sprout": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:nightdew_sprout"
+          ]
+        }
+      }
+    }
+  }
+}

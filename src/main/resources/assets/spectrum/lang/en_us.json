@@ -5829,7 +5829,7 @@
   "config.spectrum.storm_stone_dimensions": "Worlds that spawn Storm Stones",
   "config.spectrum.toast_milliseconds": "Unlock Toast Duration",
   "config.spectrum.vanilla_recipe_crafting_time_ticks": "Ticks it takes the Pedestal to craft Vanilla recipes",
-  "config.spectrum.wind_sim": "Enable Wind Simulation",
+  "config.spectrum.wind_sim": "Enable Wind Simulation for certain particles",
   "config.spectrum.wind_sim_interval": "Wind Simulation Update Interval",
   "config.spectrum.always_spawn_light_block_particles": "Light Blocks emit particles without holding a Radiance Staff",
   "config.spectrum.post_process_shaders": "Enable Post-Process Shaders",

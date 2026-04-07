@@ -3,5 +3,15 @@
     "#minecraft:enchantable/durability",
 
     "spectrum:ender_splice"
+  ],
+  "remove": [
+    {
+      "id": "twilightforest:glass_sword",
+      "required": false
+    },
+    {
+      "id": "bewitchment:death_protection_poppet",
+      "required": false
+    }
   ]
 }

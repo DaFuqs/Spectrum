@@ -59,6 +59,9 @@ public class SpectrumModelPredicateProviders {
 		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON.get());
 		registerOversizedItemPredicate(SpectrumItems.OMNI_ACCELERATOR.get());
 		
+		registerBlockingPredicate(SpectrumItems.NECTAR_LANCE.get());
+		registerBlockingPredicate(SpectrumItems.KNOTTED_SWORD.get());
+		
 		registerBidentThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT.get());
 		registerBidentThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT.get());
 		registerBidentThrowingItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT.get());
@@ -198,6 +201,11 @@ public class SpectrumModelPredicateProviders {
 	private static void registerOversizedItemPredicate(Item item) {
 		ItemProperties.register(item, ResourceLocation.parse("oversized"), (stack, world, entity, seed) ->
 				seed == MAGICAL_OVERSIZED_SEED ? 1.0F : 0.0F);
+	}
+	
+	private static void registerBlockingPredicate(Item item) {
+		ItemProperties.register(item, ResourceLocation.parse("blocking"), (stack, world, entity, seed) ->
+				entity != null && entity.isBlocking() ? 1.0F : 0.0F);
 	}
 	
 	private static void registerBowPredicates(Item bowItem) {

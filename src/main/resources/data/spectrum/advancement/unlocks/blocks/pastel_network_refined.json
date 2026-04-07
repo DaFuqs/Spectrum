@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_pastel_network": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/pastel_network"
+      }
+    },
+    "grown_azurite_in_crystallarieum": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/grow_azurite_in_crystallarieum"
+      }
+    }
+  }
+}

@@ -58,16 +58,6 @@ public class SingleInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public boolean requestEnergy(InkColor color, long amount) {
-		if (color == this.storedColor && amount >= this.storedEnergy) {
-			this.storedEnergy -= amount;
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	@Override
 	public long drainEnergy(InkColor color, long amount) {
 		if (color == this.storedColor) {
 			long drainedAmount = Math.min(this.storedEnergy, amount);

@@ -41,18 +41,6 @@ public class TotalCappedInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public boolean requestEnergy(InkColor color, long amount) {
-		long storedAmount = this.storedEnergy.getOrDefault(color, 0L);
-		if (storedAmount < amount) {
-			return false;
-		} else {
-			this.currentTotal -= amount;
-			this.storedEnergy.put(color, storedAmount - amount);
-			return true;
-		}
-	}
-	
-	@Override
 	public long drainEnergy(InkColor color, long amount) {
 		long storedAmount = this.storedEnergy.getOrDefault(color, 0L);
 		long drainedAmount = Math.min(storedAmount, amount);

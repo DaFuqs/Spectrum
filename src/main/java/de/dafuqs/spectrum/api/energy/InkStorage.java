@@ -1,12 +1,9 @@
 package de.dafuqs.spectrum.api.energy;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
-import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -71,35 +68,83 @@ public interface InkStorage extends Clearable {
 	}
 	
 	/**
-	 * Transfer Ink from one storage to another
-	 * Transfers a fixed amount of energy
-	 * => Use the pressure like system without fixed amount, where possible
-	 *
-	 * @param source      The ink storage that is getting drawn from
-	 * @param destination The ink storage receiving energy
-	 * @param color       The ink type to transfer
-	 * @param amount      The fixed amount of ink to transfer
-	 * @return the amount of energy that could be transferred
+	 * Transfers Ink from storages with lots of Ink
+	 * to storages with less.
+	 * When called repeatedly (like every tick) the values of all storages will equalize,
+	 * limited by their max storage.
+	 * Don't forget to mark your stuff dirty, like with InkStorageBlockEntity.setInkDirty()!
+	 * @param inkStorages The storages to run an equalization tick on
 	 */
-	@Deprecated
-	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color, long amount) {
-		if (!destination.accepts(color)) {
-			return 0;
-		}
+	static void equalizeInk(List<InkStorage> inkStorages) {
+		SpectrumRegistries.INK_COLOR.stream()
+				.forEach(inkColor -> equalizeInk(inkStorages, inkColor));
+	}
+	
+	private static void equalizeInk(List<InkStorage> storages, InkColor color) {
+		long total = 0;
 		
-		long sourceAmount = source.getEnergy(color);
-		if (sourceAmount > 0) {
-			long destinationRoom = destination.getRoom(color);
-			if (destinationRoom > 0) {
-				long transferAmount = Math.min(amount, Math.min(sourceAmount, destinationRoom));
-				if (transferAmount > 0) {
-					destination.addEnergy(color, transferAmount);
-					source.drainEnergy(color, transferAmount);
-					return transferAmount;
-				}
+		// collect storages that accept this color
+		List<InkStorage> accepting = new ArrayList<>(storages.size());
+		for (InkStorage s : storages) {
+			if (s.accepts(color)) {
+				accepting.add(s);
+				total += s.getEnergy(color);
 			}
 		}
-		return 0;
+		
+		if (accepting.isEmpty() || total == 0) return;
+		
+		long idealTarget = total / accepting.size();
+		
+		// drain storages above target value
+		long pooled = 0;
+		for (InkStorage s : accepting) {
+			long current = s.getEnergy(color);
+			long delta = idealTarget - current;
+			long step = delta / 32;
+			if (step == 0 && delta != 0) {
+				step = delta > 0 ? 1 : -1;
+			}
+			
+			long smoothedTarget = current + step;
+			
+			if (current > smoothedTarget) {
+				long excess = current - smoothedTarget;
+				pooled += s.drainEnergy(color, excess);
+			}
+		}
+		
+		if (pooled <= 0) return;
+		
+		// refill storages below target
+		for (InkStorage s : accepting) {
+			long current = s.getEnergy(color);
+			long delta = idealTarget - current;
+			long step = delta / 32;
+			if (step == 0 && delta != 0) {
+				step = delta > 0 ? 1 : -1;
+			}
+			long smoothedTarget = current + step;
+			
+			if (current < smoothedTarget && pooled > 0) {
+				long needed = smoothedTarget - current;
+				long added = needed - s.addEnergy(color, needed);
+				pooled -= added;
+			}
+		}
+		
+		// If leftover pooled energy exists (due to capacity limits),
+		// redistribute with pressure flow
+		if (pooled > 0) {
+			for (InkStorage s : accepting) {
+				long room = s.getRoom(color);
+				if (room > 0) {
+					long added = room - s.addEnergy(color, room);
+					pooled -= added;
+				}
+				if (pooled <= 0) break;
+			}
+		}
 	}
 	
 	// if the storage is able to store this kind of color
@@ -111,10 +156,6 @@ public interface InkStorage extends Clearable {
 	// Drains energy from the storage. Returns the amount of energy that could be drained
 	// In contrast to requestEnergy this drains the energy up until 0, even if not requestedAmount of energy is stored
 	long drainEnergy(InkColor color, long requestedAmount);
-	
-	// returns true if the energy could be drained successfully
-	// if not enough energy is stored, the amount of stored energy remains unchanged
-	boolean requestEnergy(InkColor color, long requestedAmount);
 	
 	// gets the amount of stored energy of that type
 	long getEnergy(InkColor color);
@@ -150,42 +191,9 @@ public interface InkStorage extends Clearable {
 	// completely empty the storage
 	void clearContent();
 	
-	// Returns how full the storage is, as a float
-	default float getFillPercent(InkColor color) {
-		return Mth.clamp((float) getEnergy(color) / getMaxPerColor(), 0, 1);
-	}
-	
-	// Same as above, but in total.
-	default float getTotalFillPercent() {
-		return Mth.clamp((float) getCurrentTotal() / getMaxTotal(), 0, 1);
-	}
-	
 	void addTooltip(List<Component> tooltip);
 	
 	long getRoom(InkColor color);
-	
-	static @NotNull Map<InkColor, Long> readEnergy(CompoundTag compound) {
-		Map<InkColor, Long> energy = new HashMap<>();
-		if (compound != null) {
-			for (String key : compound.getAllKeys()) {
-				InkColor inkColor = SpectrumRegistries.INK_COLOR.get(SpectrumCommon.locate(key));
-				if (inkColor == null) { // TODO: needed? Fallback to a default color?
-					continue;
-				}
-				long amount = compound.getLong(key);
-				energy.put(inkColor, amount);
-			}
-		}
-		return energy;
-	}
-	
-	static @NotNull CompoundTag writeEnergy(Map<InkColor, Long> storedEnergy) {
-		CompoundTag energy = new CompoundTag();
-		for (Map.Entry<InkColor, Long> color : storedEnergy.entrySet()) {
-			energy.putLong(color.getKey().getID().toString(), color.getValue());
-		}
-		return energy;
-	}
 	
 	static void addInkStoreBulletTooltip(List<Component> tooltip, InkColor color, long amount) {
 		MutableComponent inkName = color.getColoredInkName();

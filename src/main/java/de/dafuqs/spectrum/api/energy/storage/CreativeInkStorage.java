@@ -34,11 +34,6 @@ public class CreativeInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public boolean requestEnergy(InkColor color, long requestedAmount) {
-		return true;
-	}
-	
-	@Override
 	public long getEnergy(InkColor color) {
 		return Long.MAX_VALUE;
 	}

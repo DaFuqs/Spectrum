@@ -19,45 +19,6 @@ public class TotalCappedElementalMixingInkStorage extends TotalCappedInkStorage 
 	}
 	
 	@Override
-	public boolean requestEnergy(InkColor color, long amount) {
-		if (color.isIn(InkColorTags.ELEMENTAL_COLORS)) {
-			// can be output directly
-			long storedAmount = this.storedEnergy.get(color);
-			if (storedAmount < amount) {
-				return false;
-			} else {
-				this.currentTotal -= amount;
-				this.storedEnergy.put(color, storedAmount - amount);
-				return true;
-			}
-		}
-		
-		// mix!
-		Optional<Map<InkColor, Float>> requiredElementals = InkColorMixes.getColorsToMix(color);
-		if (requiredElementals.isEmpty()) {
-			return false;
-		}
-		
-		// check if we have enough
-		for (Map.Entry<InkColor, Float> entry : requiredElementals.get().entrySet()) {
-			long storedAmount = this.storedEnergy.get(entry.getKey());
-			long requiredAmount = (int) Math.ceil(entry.getValue() * amount);
-			if (storedAmount < requiredAmount) {
-				return false;
-			}
-		}
-		
-		// yes, we got stored enough. Drain
-		for (Map.Entry<InkColor, Float> entry : requiredElementals.get().entrySet()) {
-			long storedAmount = this.storedEnergy.get(entry.getKey());
-			long requiredAmount = (int) Math.ceil(entry.getValue() * amount);
-			this.currentTotal -= requiredAmount;
-			this.storedEnergy.put(entry.getKey(), storedAmount - requiredAmount);
-		}
-		return true;
-	}
-	
-	@Override
 	public long drainEnergy(InkColor color, long amount) {
 		if (color.isIn(InkColorTags.ELEMENTAL_COLORS)) {
 			// can be output directly

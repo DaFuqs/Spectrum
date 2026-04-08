@@ -18,18 +18,17 @@ import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.client.*;
-import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.advancements.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
-import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.server.packs.resources.*;
@@ -63,9 +62,7 @@ import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.event.entity.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.*;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.*;
-import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
 import org.jetbrains.annotations.*;
@@ -778,9 +775,9 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
+	private static void onNeighborNotify(BlockEvent.NeighborNotifyEvent event) {
 		if(!event.isCanceled()) {
-			event.getLevel().gameEvent(SpectrumGameEvents.BLOCK_CHANGED, event.getPos(), GameEvent.Context.of(event.getPlacedBlock()));
+			event.getLevel().gameEvent(SpectrumGameEvents.BLOCK_CHANGED, event.getPos(), GameEvent.Context.of(event.getLevel().getBlockState(event.getPos())));
 		}
 	}
 	

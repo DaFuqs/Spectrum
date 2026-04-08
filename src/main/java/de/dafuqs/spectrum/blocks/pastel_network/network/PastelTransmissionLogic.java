@@ -1,25 +1,18 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
-import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
-import net.minecraft.world.item.*;
-import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.*;
-import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.*;
 import org.jgrapht.alg.shortestpath.*;
 import org.jgrapht.graph.*;
 
 import java.util.*;
-import java.util.function.*;
 
 @SuppressWarnings("UnstableApiUsage")
 public class PastelTransmissionLogic {
@@ -80,7 +73,7 @@ public class PastelTransmissionLogic {
 	
 	public void tick(PastelNetwork.NodePriority priority) {
 		for(Map.Entry<ResourceKey<PastelPayloadType>, PastelPayloadType> payloadType : SpectrumRegistries.PASTEL_PAYLOAD_TYPE.entrySet()) {
-			payloadType.getValue().tick(this);
+			payloadType.getValue().tick(this, priority);
 		}
 	}
 	

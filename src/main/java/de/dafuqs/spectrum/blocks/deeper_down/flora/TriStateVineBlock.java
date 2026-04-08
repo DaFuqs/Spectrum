@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.deeper_down.flora;
 
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
@@ -83,7 +82,7 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 		BlockState roof = world.getBlockState(pos.above());
 		if (roof.is(this)) {
 			state = defaultBlockState().setValue(LIFE_STAGE, roof.getValue(LIFE_STAGE));
-			world.setBlock(pos, roof.setValue(LIFE_STAGE, LifeStage.STALK), 3);
+			world.setBlockAndUpdate(pos, roof.setValue(LIFE_STAGE, LifeStage.STALK));
 		}
 		
 		return state;

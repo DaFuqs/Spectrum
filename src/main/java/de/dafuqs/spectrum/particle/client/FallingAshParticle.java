@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.particle.client;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.deeper_down.client.*;
 import de.dafuqs.spectrum.registries.*;
@@ -92,10 +91,11 @@ public class FallingAshParticle extends TextureSheetParticle {
 			slowTicks = 0;
 		}
 		
+		boolean updateWindEffects = shouldUpdateWindEffectsThisTick(time);
 		if (!this.onGround && !water) {
 			this.roll += (float) (Math.PI * Math.sin(this.rotateFactor * this.age) / 2);
 			
-			if (verifySimConfig(time)) {
+			if (updateWindEffects) {
 				adjustGravityForLift();
 			}
 		} else if (water) {
@@ -109,14 +109,13 @@ public class FallingAshParticle extends TextureSheetParticle {
 		
 		adjustAlpha(water);
 		
-		
-		if (verifySimConfig(time) && Math.abs(xd) + Math.abs(zd) > 0.125) {
+		if (updateWindEffects && Math.abs(xd) + Math.abs(zd) > 0.125) {
 			applyAirflowTransforms();
 		}
 		super.tick();
 	}
 	
-	private boolean verifySimConfig(long time) {
+	private boolean shouldUpdateWindEffectsThisTick(long time) {
 		return SpectrumConfig.CONFIG.WindSim.get() && (time + simOffset) % simInterval == 0;
 	}
 	

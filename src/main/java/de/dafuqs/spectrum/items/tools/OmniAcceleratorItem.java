@@ -145,7 +145,7 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	
 	@Override
 	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
-		return 0xFFFFFF;
+		return InkColors.YELLOW_COLOR;
 	}
 	
 	@Override
@@ -171,6 +171,6 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 			return ExtendedItemBarProvider.PASS;
 		
 		var progress = Math.round(Mth.clampedLerp(0, 13, ((float) player.getTicksUsingItem() / CHARGE_TIME)));
-		return new ExtendedItemBarProvider.BarSignature(2, 13, 13, progress, 1, 0xFFFFFFFF, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
+		return new ExtendedItemBarProvider.BarSignature(2, 13, 13, progress, 1, InkColors.YELLOW_COLOR, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
 }

@@ -18,10 +18,10 @@
         "advancement_identifier": "spectrum:collect_quitoxic_reeds"
       }
     },
-    "collected_frostbite_crystal": {
+    "collected_frostbite_resource": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_frostbite_crystal"
+        "advancement_identifier": "spectrum:hidden/collect_frostbite_resource"
       }
     },
     "collected_pure_resource": {

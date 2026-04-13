@@ -1,16 +1,22 @@
 {
   "criteria": {
-    "unlocked_head_fusion": {
+    "unlocked_liquid_crystal": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/head_fusion/basic_recipes"
+        "advancement_identifier": "spectrum:unlocks/blocks/liquid_crystal"
       }
     },
-    "collected_incandescent_essence": {
+    "collected_incandescent_resource": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:hidden/collect_incandescent_resource"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "unlocked_liquid_crystal",
+      "collected_incandescent_resource"
+    ]
+  ]
 }

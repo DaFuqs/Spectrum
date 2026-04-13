@@ -27,6 +27,9 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation REVEAL_STORM_STONES = SpectrumCommon.locate("milestones/reveal_storm_stones");
 	public static final ResourceLocation REVEAL_STRATINE = locate("milestones/reveal_stratine");
 	
+	public static final ResourceLocation REVEAL_FROSTBITE_RESOURCES = SpectrumCommon.locate("milestones/reveal_frostbite_resources");
+	public static final ResourceLocation REVEAL_INCANDESCENT_RESOURCES = SpectrumCommon.locate("milestones/reveal_incandescent_resources");
+	
 	// Milestones with unlocks
 	public static final ResourceLocation APPLY_CONFLICTING_ENCHANTMENTS = SpectrumCommon.locate("milestones/unlock_conflicted_enchanting_with_enchanter");
 	public static final ResourceLocation UNLOCK_COMPLEX_REAGENTS = SpectrumCommon.locate("milestones/unlock_complex_reagents");

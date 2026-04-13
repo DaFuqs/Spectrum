@@ -24,7 +24,7 @@
   },
   "result": {
     "id": "spectrum:connection_node",
-    "count": 16
+    "count": 32
   },
-  "required_advancement": "spectrum:unlocks/blocks/pastel_network"
+  "required_advancement": "spectrum:unlocks/blocks/pastel_network_refined"
 }

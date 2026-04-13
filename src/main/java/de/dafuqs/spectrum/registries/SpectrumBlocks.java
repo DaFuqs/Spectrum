@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
-import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.blocks.block_flooder.*;
 import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
@@ -26,6 +25,7 @@ import de.dafuqs.spectrum.blocks.end_portal.*;
 import de.dafuqs.spectrum.blocks.ender.*;
 import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.blocks.farming.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
@@ -1168,8 +1168,9 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<BedrockAnvilBlock> BEDROCK_ANVIL = register(defaultSouthHorizontalFacing(blockWithItem("bedrock_anvil", () -> new BedrockAnvilBlock(BlockBehaviour.Properties.ofFullCopy(ANVIL).requiresCorrectToolForDrops().strength(8.0F, 8.0F).sound(SoundType.METAL)), InkColors.BLACK), ModelLocationUtils::getModelLocation));
 	
 	// SOLID LIQUID CRYSTAL
-	public static final DeferredBlock<Block> FROSTBITE_CRYSTAL = register(simple(blockWithItem("frostbite_crystal", () -> new Block(BlockBehaviour.Properties.ofFullCopy(GLOWSTONE).mapColor(MapColor.CLAY)), InkColors.LIGHT_BLUE)));
-	public static final DeferredBlock<Block> BLAZING_CRYSTAL = register(simple(blockWithItem("blazing_crystal", () -> new Block(BlockBehaviour.Properties.ofFullCopy(GLOWSTONE).mapColor(MapColor.COLOR_ORANGE)), () -> IS.of().fireResistant(), InkColors.ORANGE)));
+	public static final DeferredBlock<Block> FROSTBITE_CRYSTAL = register(simple(blockWithItem("frostbite_crystal", () -> new CloakedBlock(BlockBehaviour.Properties.ofFullCopy(GLOWSTONE).mapColor(MapColor.CLAY), SpectrumAdvancements.REVEAL_FROSTBITE_RESOURCES, Blocks.BLUE_ICE.defaultBlockState()), InkColors.LIGHT_BLUE)));
+	// TODO: rename to incandescent crystal (including advancements)
+	public static final DeferredBlock<Block> BLAZING_CRYSTAL = register(simple(blockWithItem("blazing_crystal", () -> new CloakedBlock(BlockBehaviour.Properties.ofFullCopy(GLOWSTONE).mapColor(MapColor.COLOR_ORANGE), SpectrumAdvancements.REVEAL_INCANDESCENT_RESOURCES, MAGMA_BLOCK.defaultBlockState()), () -> IS.of().fireResistant(), InkColors.ORANGE)));
 	
 	public static final DeferredBlock<QuitoxicReedsBlock> QUITOXIC_REEDS = register(cross(blockWithItem("quitoxic_reeds", () -> new QuitoxicReedsBlock(settings(MapColor.NONE, SoundType.GRASS, 0.0F).noCollission().offsetType(BlockBehaviour.OffsetType.XYZ).randomTicks().lightLevel(state -> state.getValue(QuitoxicReedsBlock.LOGGED).getLuminance())), InkColors.PURPLE)).withItemModel(SpectrumModelHelper::registerItemModel));
 	public static final DeferredBlock<MermaidsBrushBlock> MERMAIDS_BRUSH = register(block("mermaids_brush", () -> new MermaidsBrushBlock(settings(MapColor.NONE, SoundType.WET_GRASS, 0.0F).noCollission().randomTicks().lightLevel(state -> state.getValue(MermaidsBrushBlock.LOGGED).getLuminance()))).withBlockModel((ctx, block) -> {

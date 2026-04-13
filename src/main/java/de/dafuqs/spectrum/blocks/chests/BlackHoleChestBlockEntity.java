@@ -274,7 +274,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			ItemEntity itemEntity = itemEntry.itemEntity();
 			if (itemEntity != null && itemEntity.isAlive() && ((ItemEntityAccessor) itemEntity).getPickupDelay() != 32767 && this.acceptsItem(itemEntity.getItem().getItem())) {
 				int previousAmount = itemEntity.getItem().getCount();
-				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getItem(), this, Direction.UP);
+				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getItem(), this, Direction.NORTH);
 				
 				if (remainingStack.isEmpty()) {
 					sendPlayItemEntityAbsorbedParticle((ServerLevel) world, itemEntity);

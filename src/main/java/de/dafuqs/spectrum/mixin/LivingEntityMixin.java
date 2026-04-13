@@ -146,14 +146,6 @@ public abstract class LivingEntityMixin {
 		return original;
 	}
 	
-	@ModifyExpressionValue(method = "isBlocking", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Item;getUseDuration(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)I"))
-	private int spectrum$allowInstantBlockForParryingSwords(int original) {
-		if (useItem.getItem() instanceof ParryingSwordItem)
-			return Integer.MAX_VALUE;
-		
-		return original;
-	}
-	
 	@WrapOperation(method = "handleEntityEvent", at = @At(value = "INVOKE", target = "net/minecraft/world/entity/LivingEntity.playSound (Lnet/minecraft/sounds/SoundEvent;FF)V", ordinal = 2))
 	private void spectrum$swapBlockSound(LivingEntity instance, SoundEvent soundEvent, float v, float p, Operation<Void> original) {
 		if (!(instance.getUseItem().getItem() instanceof ParryingSwordItem parryingSword)) {

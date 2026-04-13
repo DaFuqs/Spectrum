@@ -28,7 +28,6 @@ import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
-import java.util.function.*;
 import java.util.stream.*;
 
 public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEntity implements PlayerOwnedWithName, BlockPosEventQueue.Callback<BlockPosEventQueue.Entry> {
@@ -36,19 +35,15 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 	private static final int RANGE = 12;
 	private static final ItemStack HARVEST_ITEMSTACK = ItemStack.EMPTY;
 	
-	private final BlockPosEventQueue blockPosEventTransferListener;
-	protected long compensationWorldTime;
-	private NonNullList<ItemStack> inventory;
-	private boolean listenerPaused;
+	private final BlockPosEventQueue blockPosEventTransferListener = new BlockPosEventQueue(new BlockPositionSource(this.worldPosition), RANGE, this);
+	protected long compensationWorldTime = -1;
+	private NonNullList<ItemStack> inventory = NonNullList.withSize(27, ItemStack.EMPTY);
+	private boolean listenerPaused = false;
 	private UUID ownerUUID;
 	private String ownerName;
 	
 	public CrystalApothecaryBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.CRYSTAL_APOTHECARY.get(), blockPos, blockState);
-		this.blockPosEventTransferListener = new BlockPosEventQueue(new BlockPositionSource(this.worldPosition), RANGE, this);
-		this.inventory = NonNullList.withSize(27, ItemStack.EMPTY);
-		this.listenerPaused = false;
-		this.compensationWorldTime = -1;
 	}
 	
 	@SuppressWarnings("unused")

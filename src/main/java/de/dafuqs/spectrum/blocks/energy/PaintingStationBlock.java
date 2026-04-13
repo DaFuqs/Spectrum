@@ -15,23 +15,23 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ColorPickerBlock extends BaseInkTransferBlock {
+public class PaintingStationBlock extends BaseInkTransferBlock {
 	
-	public static final MapCodec<ColorPickerBlock> CODEC = simpleCodec(ColorPickerBlock::new);
+	public static final MapCodec<PaintingStationBlock> CODEC = simpleCodec(PaintingStationBlock::new);
 	
-	public ColorPickerBlock(Properties settings) {
+	public PaintingStationBlock(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public MapCodec<? extends ColorPickerBlock> codec() {
+	public MapCodec<? extends PaintingStationBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
-		tooltip.add(Component.translatable("block.spectrum.color_picker.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("block.spectrum.painting_station.tooltip").withStyle(ChatFormatting.GRAY));
 	}
 	
 	@Override

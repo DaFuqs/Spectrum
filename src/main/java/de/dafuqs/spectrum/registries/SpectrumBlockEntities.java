@@ -70,6 +70,7 @@ public class SpectrumBlockEntities {
 	
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CrystalApothecaryBlockEntity>> CRYSTAL_APOTHECARY = register("crystal_apothecary", CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ColorPickerBlockEntity>> COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PaintingStationBlockEntity>> PAINTING_STATION = register("painting_station", PaintingStationBlockEntity::new, SpectrumBlocks.PAINTING_STATION);
 	
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CompactingChestBlockEntity>> COMPACTING_CHEST = register("compacting_chest", CompactingChestBlockEntity::new, SpectrumBlocks.COMPACTING_CHEST);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<FabricationChestBlockEntity>> FABRICATION_CHEST = register("fabrication_chest", FabricationChestBlockEntity::new, SpectrumBlocks.FABRICATION_CHEST);

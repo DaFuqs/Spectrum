@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
-import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.blocks.block_flooder.*;
 import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
@@ -26,6 +25,7 @@ import de.dafuqs.spectrum.blocks.end_portal.*;
 import de.dafuqs.spectrum.blocks.ender.*;
 import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.blocks.farming.*;
+import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
@@ -140,6 +140,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> CINDERHEARTH = register(defaultNorthHorizontalFacing(blockWithItem("cinderhearth", () -> new CinderhearthBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of().fireResistant(), InkColors.ORANGE), ModelLocationUtils::getModelLocation));
 	
 	public static final DeferredBlock<Block> COLOR_PICKER = register(defaultWestHorizontalFacing(blockWithItem("color_picker", () -> new ColorPickerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<Block> PAINTING_STATION = register(defaultWestHorizontalFacing(blockWithItem("painting_station", () -> new PaintingStationBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<Block> CRYSTAL_APOTHECARY = register(singletonWithSoup(blockWithItem("crystal_apothecary", () -> new CrystalApothecaryBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
 	
 	private static BlockBehaviour.Properties gemstone(MapColor mapColor, SoundType blockSoundGroup, int luminance) {

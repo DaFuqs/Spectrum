@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.*;
@@ -1541,58 +1542,53 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<DoorBlock> WHITE_DOOR = registerColoredDoor("white_door", InkColors.WHITE);
 	public static final DeferredBlock<DoorBlock> YELLOW_DOOR = registerColoredDoor("yellow_door", InkColors.YELLOW);
 	
-	public static DeferredBlock<StandingSignBlock> registerColoredSign(String name, InkColor color) {
-		Supplier<StandingSignBlock> sign = () -> new StandingSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()));
-		Supplier<WallSignBlock> wallSign = () -> new WallSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()));
-		Function<StandingSignBlock, Item> item = standingSignBlock -> new SignItem(new Item.Properties().stacksTo(16), standingSignBlock, wallSign.get());
-		
-		register(block(name + "_wall_sign", wallSign));
-		return register(blockWithItem(name + "_sign", sign, item, color));
+	public static Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> registerColoredSign(String name, InkColor color) {
+		DeferredBlock<WallSignBlock> wallSign = register(block(name + "_wall_sign", () -> new WallSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()))));
+		return Pair.of(register(blockWithItem(name + "_sign",
+				() -> new StandingSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor())),
+				signBlock -> new SignItem(new Item.Properties().stacksTo(16), signBlock, wallSign.get()), color)), wallSign);
 	}
 	
-	public static final DeferredBlock<StandingSignBlock> BLACK_SIGN = registerColoredSign("black", InkColors.BLACK);
-	public static final DeferredBlock<StandingSignBlock> BLUE_SIGN = registerColoredSign("blue", InkColors.BLUE);
-	public static final DeferredBlock<StandingSignBlock> BROWN_SIGN = registerColoredSign("brown", InkColors.BROWN);
-	public static final DeferredBlock<StandingSignBlock> CYAN_SIGN = registerColoredSign("cyan", InkColors.CYAN);
-	public static final DeferredBlock<StandingSignBlock> GRAY_SIGN = registerColoredSign("gray", InkColors.GRAY);
-	public static final DeferredBlock<StandingSignBlock> GREEN_SIGN = registerColoredSign("green", InkColors.GREEN);
-	public static final DeferredBlock<StandingSignBlock> LIGHT_BLUE_SIGN = registerColoredSign("light_blue", InkColors.LIGHT_BLUE);
-	public static final DeferredBlock<StandingSignBlock> LIGHT_GRAY_SIGN = registerColoredSign("light_gray", InkColors.LIGHT_GRAY);
-	public static final DeferredBlock<StandingSignBlock> LIME_SIGN = registerColoredSign("lime", InkColors.LIME);
-	public static final DeferredBlock<StandingSignBlock> MAGENTA_SIGN = registerColoredSign("magenta", InkColors.MAGENTA);
-	public static final DeferredBlock<StandingSignBlock> ORANGE_SIGN = registerColoredSign("orange", InkColors.ORANGE);
-	public static final DeferredBlock<StandingSignBlock> PINK_SIGN = registerColoredSign("pink", InkColors.PINK);
-	public static final DeferredBlock<StandingSignBlock> PURPLE_SIGN = registerColoredSign("purple", InkColors.PURPLE);
-	public static final DeferredBlock<StandingSignBlock> RED_SIGN = registerColoredSign("red", InkColors.RED);
-	public static final DeferredBlock<StandingSignBlock> WHITE_SIGN = registerColoredSign("white", InkColors.WHITE);
-	public static final DeferredBlock<StandingSignBlock> YELLOW_SIGN = registerColoredSign("yellow", InkColors.YELLOW);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BLACK_SIGN = registerColoredSign("black", InkColors.BLACK);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BLUE_SIGN = registerColoredSign("blue", InkColors.BLUE);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BROWN_SIGN = registerColoredSign("brown", InkColors.BROWN);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> CYAN_SIGN = registerColoredSign("cyan", InkColors.CYAN);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> GRAY_SIGN = registerColoredSign("gray", InkColors.GRAY);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> GREEN_SIGN = registerColoredSign("green", InkColors.GREEN);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIGHT_BLUE_SIGN = registerColoredSign("light_blue", InkColors.LIGHT_BLUE);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIGHT_GRAY_SIGN = registerColoredSign("light_gray", InkColors.LIGHT_GRAY);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIME_SIGN = registerColoredSign("lime", InkColors.LIME);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> MAGENTA_SIGN = registerColoredSign("magenta", InkColors.MAGENTA);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> ORANGE_SIGN = registerColoredSign("orange", InkColors.ORANGE);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> PINK_SIGN = registerColoredSign("pink", InkColors.PINK);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> PURPLE_SIGN = registerColoredSign("purple", InkColors.PURPLE);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> RED_SIGN = registerColoredSign("red", InkColors.RED);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> WHITE_SIGN = registerColoredSign("white", InkColors.WHITE);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> YELLOW_SIGN = registerColoredSign("yellow", InkColors.YELLOW);
 	
-	public static DeferredBlock<CeilingHangingSignBlock> registerColoredHangingSign(String name, InkColor color) {
-		Supplier<CeilingHangingSignBlock> sign = () -> new CeilingHangingSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()));
-		Supplier<WallHangingSignBlock> wallSign = () -> new WallHangingSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()));
-		
-		register(block(name + "_wall_hanging_sign", wallSign));
-		return register(blockWithItem(name + "_hanging_sign",
-				sign,
-				(block) -> new SignItem(new Item.Properties().stacksTo(16), sign.get(), wallSign.get()), color));
+	public static Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> registerColoredHangingSign(String name, InkColor color) {
+		DeferredBlock<WallHangingSignBlock> wallSign = register(block(name + "_wall_hanging_sign", () -> new WallHangingSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()))));
+		return Pair.of(register(blockWithItem(name + "_hanging_sign",
+				() -> new CeilingHangingSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor())),
+				(signBlock) -> new HangingSignItem(signBlock, wallSign.get(), new Item.Properties().stacksTo(16)), color)), wallSign);
 	}
 	
-	public static final DeferredBlock<CeilingHangingSignBlock> BLACK_HANGING_SIGN = registerColoredHangingSign("black", InkColors.BLACK);
-	public static final DeferredBlock<CeilingHangingSignBlock> BLUE_HANGING_SIGN = registerColoredHangingSign("blue", InkColors.BLUE);
-	public static final DeferredBlock<CeilingHangingSignBlock> BROWN_HANGING_SIGN = registerColoredHangingSign("brown", InkColors.BROWN);
-	public static final DeferredBlock<CeilingHangingSignBlock> CYAN_HANGING_SIGN = registerColoredHangingSign("cyan", InkColors.CYAN);
-	public static final DeferredBlock<CeilingHangingSignBlock> GRAY_HANGING_SIGN = registerColoredHangingSign("gray", InkColors.GRAY);
-	public static final DeferredBlock<CeilingHangingSignBlock> GREEN_HANGING_SIGN = registerColoredHangingSign("green", InkColors.GREEN);
-	public static final DeferredBlock<CeilingHangingSignBlock> LIGHT_BLUE_HANGING_SIGN = registerColoredHangingSign("light_blue", InkColors.LIGHT_BLUE);
-	public static final DeferredBlock<CeilingHangingSignBlock> LIGHT_GRAY_HANGING_SIGN = registerColoredHangingSign("light_gray", InkColors.LIGHT_GRAY);
-	public static final DeferredBlock<CeilingHangingSignBlock> LIME_HANGING_SIGN = registerColoredHangingSign("lime", InkColors.LIME);
-	public static final DeferredBlock<CeilingHangingSignBlock> MAGENTA_HANGING_SIGN = registerColoredHangingSign("magenta", InkColors.MAGENTA);
-	public static final DeferredBlock<CeilingHangingSignBlock> ORANGE_HANGING_SIGN = registerColoredHangingSign("orange", InkColors.ORANGE);
-	public static final DeferredBlock<CeilingHangingSignBlock> PINK_HANGING_SIGN = registerColoredHangingSign("pink", InkColors.PINK);
-	public static final DeferredBlock<CeilingHangingSignBlock> PURPLE_HANGING_SIGN = registerColoredHangingSign("purple", InkColors.PURPLE);
-	public static final DeferredBlock<CeilingHangingSignBlock> RED_HANGING_SIGN = registerColoredHangingSign("red", InkColors.RED);
-	public static final DeferredBlock<CeilingHangingSignBlock> WHITE_HANGING_SIGN = registerColoredHangingSign("white", InkColors.WHITE);
-	public static final DeferredBlock<CeilingHangingSignBlock> YELLOW_HANGING_SIGN = registerColoredHangingSign("yellow", InkColors.YELLOW);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> BLACK_HANGING_SIGN = registerColoredHangingSign("black", InkColors.BLACK);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> BLUE_HANGING_SIGN = registerColoredHangingSign("blue", InkColors.BLUE);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> BROWN_HANGING_SIGN = registerColoredHangingSign("brown", InkColors.BROWN);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> CYAN_HANGING_SIGN = registerColoredHangingSign("cyan", InkColors.CYAN);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> GRAY_HANGING_SIGN = registerColoredHangingSign("gray", InkColors.GRAY);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> GREEN_HANGING_SIGN = registerColoredHangingSign("green", InkColors.GREEN);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> LIGHT_BLUE_HANGING_SIGN = registerColoredHangingSign("light_blue", InkColors.LIGHT_BLUE);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> LIGHT_GRAY_HANGING_SIGN = registerColoredHangingSign("light_gray", InkColors.LIGHT_GRAY);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> LIME_HANGING_SIGN = registerColoredHangingSign("lime", InkColors.LIME);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> MAGENTA_HANGING_SIGN = registerColoredHangingSign("magenta", InkColors.MAGENTA);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> ORANGE_HANGING_SIGN = registerColoredHangingSign("orange", InkColors.ORANGE);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> PINK_HANGING_SIGN = registerColoredHangingSign("pink", InkColors.PINK);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> PURPLE_HANGING_SIGN = registerColoredHangingSign("purple", InkColors.PURPLE);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> RED_HANGING_SIGN = registerColoredHangingSign("red", InkColors.RED);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> WHITE_HANGING_SIGN = registerColoredHangingSign("white", InkColors.WHITE);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> YELLOW_HANGING_SIGN = registerColoredHangingSign("yellow", InkColors.YELLOW);
 	
 	public static DeferredBlock<ColoredLeavesBlock> registerColoredLeaves(String name, InkColor color) {
 		return register(singleton(blockWithItem(name, () -> new ColoredLeavesBlock(copyWithMapColor(OAK_LEAVES, color.getMapColor()), color), color), TexturedModel.LEAVES));

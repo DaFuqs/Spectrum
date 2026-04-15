@@ -1487,6 +1487,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.GREEN_BUTTON);
 					entries.accept(SpectrumBlocks.RED_BUTTON);
 					entries.accept(SpectrumBlocks.BLACK_BUTTON);
+					
 					entries.accept(SpectrumBlocks.WHITE_SLAB);
 					entries.accept(SpectrumBlocks.ORANGE_SLAB);
 					entries.accept(SpectrumBlocks.MAGENTA_SLAB);
@@ -1503,6 +1504,74 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.GREEN_SLAB);
 					entries.accept(SpectrumBlocks.RED_SLAB);
 					entries.accept(SpectrumBlocks.BLACK_SLAB);
+					
+					entries.accept(SpectrumBlocks.WHITE_SIGN);
+					entries.accept(SpectrumBlocks.ORANGE_SIGN);
+					entries.accept(SpectrumBlocks.MAGENTA_SIGN);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_SIGN);
+					entries.accept(SpectrumBlocks.YELLOW_SIGN);
+					entries.accept(SpectrumBlocks.LIME_SIGN);
+					entries.accept(SpectrumBlocks.PINK_SIGN);
+					entries.accept(SpectrumBlocks.GRAY_SIGN);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_SIGN);
+					entries.accept(SpectrumBlocks.CYAN_SIGN);
+					entries.accept(SpectrumBlocks.PURPLE_SIGN);
+					entries.accept(SpectrumBlocks.BLUE_SIGN);
+					entries.accept(SpectrumBlocks.BROWN_SIGN);
+					entries.accept(SpectrumBlocks.GREEN_SIGN);
+					entries.accept(SpectrumBlocks.RED_SIGN);
+					entries.accept(SpectrumBlocks.BLACK_SIGN);
+					
+					entries.accept(SpectrumBlocks.WHITE_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.ORANGE_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.MAGENTA_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.YELLOW_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.LIME_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.PINK_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.GRAY_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.CYAN_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.PURPLE_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.BLUE_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.BROWN_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.GREEN_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.RED_HANGING_SIGN);
+					entries.accept(SpectrumBlocks.BLACK_HANGING_SIGN);
+					
+					entries.accept(SpectrumBlocks.WHITE_DOOR);
+					entries.accept(SpectrumBlocks.ORANGE_DOOR);
+					entries.accept(SpectrumBlocks.MAGENTA_DOOR);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_DOOR);
+					entries.accept(SpectrumBlocks.YELLOW_DOOR);
+					entries.accept(SpectrumBlocks.LIME_DOOR);
+					entries.accept(SpectrumBlocks.PINK_DOOR);
+					entries.accept(SpectrumBlocks.GRAY_DOOR);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_DOOR);
+					entries.accept(SpectrumBlocks.CYAN_DOOR);
+					entries.accept(SpectrumBlocks.PURPLE_DOOR);
+					entries.accept(SpectrumBlocks.BLUE_DOOR);
+					entries.accept(SpectrumBlocks.BROWN_DOOR);
+					entries.accept(SpectrumBlocks.GREEN_DOOR);
+					entries.accept(SpectrumBlocks.RED_DOOR);
+					entries.accept(SpectrumBlocks.BLACK_DOOR);
+					
+					entries.accept(SpectrumBlocks.WHITE_TRAPDOOR);
+					entries.accept(SpectrumBlocks.ORANGE_TRAPDOOR);
+					entries.accept(SpectrumBlocks.MAGENTA_TRAPDOOR);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_TRAPDOOR);
+					entries.accept(SpectrumBlocks.YELLOW_TRAPDOOR);
+					entries.accept(SpectrumBlocks.LIME_TRAPDOOR);
+					entries.accept(SpectrumBlocks.PINK_TRAPDOOR);
+					entries.accept(SpectrumBlocks.GRAY_TRAPDOOR);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_TRAPDOOR);
+					entries.accept(SpectrumBlocks.CYAN_TRAPDOOR);
+					entries.accept(SpectrumBlocks.PURPLE_TRAPDOOR);
+					entries.accept(SpectrumBlocks.BLUE_TRAPDOOR);
+					entries.accept(SpectrumBlocks.BROWN_TRAPDOOR);
+					entries.accept(SpectrumBlocks.GREEN_TRAPDOOR);
+					entries.accept(SpectrumBlocks.RED_TRAPDOOR);
+					entries.accept(SpectrumBlocks.BLACK_TRAPDOOR);
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_MOB_HEADS, Component.translatable("itemGroup.spectrum.mob_heads"))

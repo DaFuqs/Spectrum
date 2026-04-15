@@ -1169,13 +1169,25 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.CITRINE_GLASS);
 					entries.accept(SpectrumBlocks.ONYX_GLASS);
 					entries.accept(SpectrumBlocks.MOONSTONE_GLASS);
-					entries.accept(SpectrumBlocks.RADIANT_GLASS);
 					
 					entries.accept(SpectrumBlocks.TOPAZ_GLASS_PANE);
 					entries.accept(SpectrumBlocks.AMETHYST_GLASS_PANE);
 					entries.accept(SpectrumBlocks.CITRINE_GLASS_PANE);
 					entries.accept(SpectrumBlocks.ONYX_GLASS_PANE);
 					entries.accept(SpectrumBlocks.MOONSTONE_GLASS_PANE);
+					
+					entries.accept(SpectrumBlocks.CHISELED_TOPAZ_GLASS);
+					entries.accept(SpectrumBlocks.CHISELED_AMETHYST_GLASS);
+					entries.accept(SpectrumBlocks.CHISELED_CITRINE_GLASS);
+					entries.accept(SpectrumBlocks.CHISELED_ONYX_GLASS);
+					entries.accept(SpectrumBlocks.CHISELED_MOONSTONE_GLASS);
+					entries.accept(SpectrumBlocks.CHISELED_TOPAZ_GLASS_PANE);
+					entries.accept(SpectrumBlocks.CHISELED_AMETHYST_GLASS_PANE);
+					entries.accept(SpectrumBlocks.CHISELED_CITRINE_GLASS_PANE);
+					entries.accept(SpectrumBlocks.CHISELED_ONYX_GLASS_PANE);
+					entries.accept(SpectrumBlocks.CHISELED_MOONSTONE_GLASS_PANE);
+					
+					entries.accept(SpectrumBlocks.RADIANT_GLASS);
 					entries.accept(SpectrumBlocks.RADIANT_GLASS_PANE);
 					
 					entries.accept(SpectrumBlocks.TOPAZ_CHIME);

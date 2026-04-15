@@ -480,6 +480,11 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> CITRINE_GLASS = register(simple(blockWithItem("citrine_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW), BuiltinGemstoneColor.YELLOW), InkColors.YELLOW)));
 	public static final DeferredBlock<Block> ONYX_GLASS = register(simple(blockWithItem("onyx_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK), BuiltinGemstoneColor.BLACK), InkColors.BLACK)));
 	public static final DeferredBlock<Block> MOONSTONE_GLASS = register(simple(blockWithItem("moonstone_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW), BuiltinGemstoneColor.WHITE), InkColors.WHITE)));
+	public static final DeferredBlock<Block> CHISELED_TOPAZ_GLASS = register(simple(blockWithItem("chiseled_topaz_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.TOPAZ_CLUSTER, MapColor.COLOR_CYAN), BuiltinGemstoneColor.CYAN), InkColors.CYAN)));
+	public static final DeferredBlock<Block> CHISELED_AMETHYST_GLASS = register(simple(blockWithItem("chiseled_amethyst_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SoundType.AMETHYST_CLUSTER, MapColor.COLOR_MAGENTA), BuiltinGemstoneColor.MAGENTA), InkColors.MAGENTA)));
+	public static final DeferredBlock<Block> CHISELED_CITRINE_GLASS = register(simple(blockWithItem("chiseled_citrine_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW), BuiltinGemstoneColor.YELLOW), InkColors.YELLOW)));
+	public static final DeferredBlock<Block> CHISELED_ONYX_GLASS = register(simple(blockWithItem("chiseled_onyx_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK), BuiltinGemstoneColor.BLACK), InkColors.BLACK)));
+	public static final DeferredBlock<Block> CHISELED_MOONSTONE_GLASS = register(simple(blockWithItem("chiseled_moonstone_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW), BuiltinGemstoneColor.WHITE), InkColors.WHITE)));
 	public static final DeferredBlock<Block> RADIANT_GLASS = register(simple(blockWithItem("radiant_glass", () -> new RadiantGlassBlock(gemstoneGlass(SoundType.GLASS, MapColor.SAND).lightLevel(value -> 12)), InkColors.WHITE)));
 	
 	public static final DeferredBlock<Block> TOPAZ_GLASS_PANE = register(blockWithItem("topaz_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.TOPAZ_CLUSTER, MapColor.COLOR_CYAN)), InkColors.CYAN));
@@ -487,6 +492,11 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> CITRINE_GLASS_PANE = register(blockWithItem("citrine_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW)), InkColors.YELLOW));
 	public static final DeferredBlock<Block> ONYX_GLASS_PANE = register(blockWithItem("onyx_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK)), InkColors.BLACK));
 	public static final DeferredBlock<Block> MOONSTONE_GLASS_PANE = register(blockWithItem("moonstone_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW)), InkColors.WHITE));
+	public static final DeferredBlock<Block> CHISELED_TOPAZ_GLASS_PANE = register(blockWithItem("chiseled_topaz_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.TOPAZ_CLUSTER, MapColor.COLOR_CYAN)), InkColors.CYAN));
+	public static final DeferredBlock<Block> CHISELED_AMETHYST_GLASS_PANE = register(blockWithItem("chiseled_amethyst_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SoundType.AMETHYST_CLUSTER, MapColor.COLOR_MAGENTA)), InkColors.MAGENTA));
+	public static final DeferredBlock<Block> CHISELED_CITRINE_GLASS_PANE = register(blockWithItem("chiseled_citrine_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW)), InkColors.YELLOW));
+	public static final DeferredBlock<Block> CHISELED_ONYX_GLASS_PANE = register(blockWithItem("chiseled_onyx_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK)), InkColors.BLACK));
+	public static final DeferredBlock<Block> CHISELED_MOONSTONE_GLASS_PANE = register(blockWithItem("chiseled_moonstone_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW)), InkColors.WHITE));
 	public static final DeferredBlock<Block> RADIANT_GLASS_PANE = register(blockWithItem("radiant_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SoundType.GLASS, MapColor.SAND).lightLevel(value -> 12)), InkColors.WHITE));
 	
 	public static final DeferredBlock<Block> ETHEREAL_PLATFORM = register(simple(blockWithItem("ethereal_platform", () -> new EtherealPlatformBlock(gemstoneGlass(SoundType.AMETHYST, MapColor.NONE).pushReaction(PushReaction.NORMAL)), InkColors.LIGHT_GRAY)));
@@ -2196,6 +2206,11 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(CITRINE_GLASS_PANE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(ONYX_GLASS_PANE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(MOONSTONE_GLASS_PANE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_TOPAZ_GLASS_PANE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_AMETHYST_GLASS_PANE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_CITRINE_GLASS_PANE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_ONYX_GLASS_PANE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_MOONSTONE_GLASS_PANE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(RADIANT_GLASS_PANE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(HUMMINGSTONE_GLASS_PANE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(SMALL_COAL_BUD.get(), RenderType.cutout());
@@ -2307,6 +2322,11 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(CITRINE_GLASS.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(ONYX_GLASS.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(MOONSTONE_GLASS.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_TOPAZ_GLASS.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_AMETHYST_GLASS.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_CITRINE_GLASS.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_ONYX_GLASS.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_MOONSTONE_GLASS.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(RADIANT_GLASS.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(ETHEREAL_PLATFORM.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(UNIVERSE_SPYHOLE.get(), RenderType.translucent());

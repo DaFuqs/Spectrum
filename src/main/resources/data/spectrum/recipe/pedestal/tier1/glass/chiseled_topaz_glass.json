@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "gemstone_glass",
+  "time": 20,
+  "tier": "basic",
+  "colors": {
+    "spectrum:cyan": 4
+  },
+  "experience": 1,
+  "pattern": [
+    "GPG",
+    "PGP",
+    "GPG"
+  ],
+  "key": {
+    "P": "spectrum:topaz_shard",
+    "G": "minecraft:glass"
+  },
+  "result": {
+    "id": "spectrum:chiseled_topaz_glass",
+    "count": 8
+  },
+  "required_advancement": "spectrum:hidden/collect_shards/topaz"
+}

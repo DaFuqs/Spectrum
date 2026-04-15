@@ -39,7 +39,6 @@ import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
-import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.blocks.present.*;
@@ -1416,49 +1415,49 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<PottedColoredSaplingBlock> POTTED_WHITE_SAPLING = registerPottedColoredSapling("potted_white_sapling", WHITE_SAPLING);
 	public static final DeferredBlock<PottedColoredSaplingBlock> POTTED_YELLOW_SAPLING = registerPottedColoredSapling("potted_yellow_sapling", YELLOW_SAPLING);
 	
-	public static DeferredBlock<ColoredStrippedSpectrumLogBlock> registerColoredStrippedLog(String name, InkColor color) {
-		return register(log(blockWithItem(name, () -> new ColoredStrippedSpectrumLogBlock(copyWithMapColor(STRIPPED_OAK_LOG, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color), color)));
+	public static DeferredBlock<ColoredStrippedLogBlock> registerColoredStrippedLog(String name, InkColor color) {
+		return register(log(blockWithItem(name, () -> new ColoredStrippedLogBlock(copyWithMapColor(STRIPPED_OAK_LOG, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color), color)));
 	}
 	
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_BLACK_LOG = registerColoredStrippedLog("stripped_black_log", InkColors.BLACK);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_BLUE_LOG = registerColoredStrippedLog("stripped_blue_log", InkColors.BLUE);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_BROWN_LOG = registerColoredStrippedLog("stripped_brown_log", InkColors.BROWN);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_CYAN_LOG = registerColoredStrippedLog("stripped_cyan_log", InkColors.CYAN);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_GRAY_LOG = registerColoredStrippedLog("stripped_gray_log", InkColors.GRAY);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_GREEN_LOG = registerColoredStrippedLog("stripped_green_log", InkColors.GREEN);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_LIGHT_BLUE_LOG = registerColoredStrippedLog("stripped_light_blue_log", InkColors.LIGHT_BLUE);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_LIGHT_GRAY_LOG = registerColoredStrippedLog("stripped_light_gray_log", InkColors.LIGHT_GRAY);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_LIME_LOG = registerColoredStrippedLog("stripped_lime_log", InkColors.LIME);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_MAGENTA_LOG = registerColoredStrippedLog("stripped_magenta_log", InkColors.MAGENTA);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_ORANGE_LOG = registerColoredStrippedLog("stripped_orange_log", InkColors.ORANGE);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_PINK_LOG = registerColoredStrippedLog("stripped_pink_log", InkColors.PINK);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_PURPLE_LOG = registerColoredStrippedLog("stripped_purple_log", InkColors.PURPLE);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_RED_LOG = registerColoredStrippedLog("stripped_red_log", InkColors.RED);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_WHITE_LOG = registerColoredStrippedLog("stripped_white_log", InkColors.WHITE);
-	public static final DeferredBlock<ColoredStrippedSpectrumLogBlock> STRIPPED_YELLOW_LOG = registerColoredStrippedLog("stripped_yellow_log", InkColors.YELLOW);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_BLACK_LOG = registerColoredStrippedLog("stripped_black_log", InkColors.BLACK);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_BLUE_LOG = registerColoredStrippedLog("stripped_blue_log", InkColors.BLUE);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_BROWN_LOG = registerColoredStrippedLog("stripped_brown_log", InkColors.BROWN);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_CYAN_LOG = registerColoredStrippedLog("stripped_cyan_log", InkColors.CYAN);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_GRAY_LOG = registerColoredStrippedLog("stripped_gray_log", InkColors.GRAY);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_GREEN_LOG = registerColoredStrippedLog("stripped_green_log", InkColors.GREEN);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_LIGHT_BLUE_LOG = registerColoredStrippedLog("stripped_light_blue_log", InkColors.LIGHT_BLUE);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_LIGHT_GRAY_LOG = registerColoredStrippedLog("stripped_light_gray_log", InkColors.LIGHT_GRAY);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_LIME_LOG = registerColoredStrippedLog("stripped_lime_log", InkColors.LIME);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_MAGENTA_LOG = registerColoredStrippedLog("stripped_magenta_log", InkColors.MAGENTA);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_ORANGE_LOG = registerColoredStrippedLog("stripped_orange_log", InkColors.ORANGE);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_PINK_LOG = registerColoredStrippedLog("stripped_pink_log", InkColors.PINK);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_PURPLE_LOG = registerColoredStrippedLog("stripped_purple_log", InkColors.PURPLE);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_RED_LOG = registerColoredStrippedLog("stripped_red_log", InkColors.RED);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_WHITE_LOG = registerColoredStrippedLog("stripped_white_log", InkColors.WHITE);
+	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_YELLOW_LOG = registerColoredStrippedLog("stripped_yellow_log", InkColors.YELLOW);
 	
-	public static DeferredBlock<ColoredStrippedWoodBlockSpectrum> registerColoredStrippedWood(String name, DeferredBlock<ColoredStrippedSpectrumLogBlock> logBlock, InkColor color) {
-		return register(blockWithItem(name, () -> new ColoredStrippedWoodBlockSpectrum(copyWithMapColor(STRIPPED_OAK_WOOD, logBlock.get().defaultMapColor()), color), color));
+	public static DeferredBlock<ColoredStrippedWoodBlock> registerColoredStrippedWood(String name, DeferredBlock<ColoredStrippedLogBlock> logBlock, InkColor color) {
+		return register(blockWithItem(name, () -> new ColoredStrippedWoodBlock(copyWithMapColor(STRIPPED_OAK_WOOD, logBlock.get().defaultMapColor()), color), color));
 	}
 	
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_BLACK_WOOD = registerColoredStrippedWood("stripped_black_wood", STRIPPED_BLACK_LOG, InkColors.BLACK);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_BLUE_WOOD = registerColoredStrippedWood("stripped_blue_wood", STRIPPED_BLUE_LOG, InkColors.BLUE);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_BROWN_WOOD = registerColoredStrippedWood("stripped_brown_wood", STRIPPED_BROWN_LOG, InkColors.BROWN);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_CYAN_WOOD = registerColoredStrippedWood("stripped_cyan_wood", STRIPPED_CYAN_LOG, InkColors.CYAN);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_GRAY_WOOD = registerColoredStrippedWood("stripped_gray_wood", STRIPPED_GRAY_LOG, InkColors.GRAY);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_GREEN_WOOD = registerColoredStrippedWood("stripped_green_wood", STRIPPED_GREEN_LOG, InkColors.GREEN);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_LIGHT_BLUE_WOOD = registerColoredStrippedWood("stripped_light_blue_wood", STRIPPED_LIGHT_BLUE_LOG, InkColors.LIGHT_BLUE);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_LIGHT_GRAY_WOOD = registerColoredStrippedWood("stripped_light_gray_wood", STRIPPED_LIGHT_GRAY_LOG, InkColors.LIGHT_GRAY);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_LIME_WOOD = registerColoredStrippedWood("stripped_lime_wood", STRIPPED_LIME_LOG, InkColors.LIME);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_MAGENTA_WOOD = registerColoredStrippedWood("stripped_magenta_wood", STRIPPED_MAGENTA_LOG, InkColors.MAGENTA);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_ORANGE_WOOD = registerColoredStrippedWood("stripped_orange_wood", STRIPPED_ORANGE_LOG, InkColors.ORANGE);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_PINK_WOOD = registerColoredStrippedWood("stripped_pink_wood", STRIPPED_PINK_LOG, InkColors.PINK);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_PURPLE_WOOD = registerColoredStrippedWood("stripped_purple_wood", STRIPPED_PURPLE_LOG, InkColors.PURPLE);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_RED_WOOD = registerColoredStrippedWood("stripped_red_wood", STRIPPED_RED_LOG, InkColors.RED);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_WHITE_WOOD = registerColoredStrippedWood("stripped_white_wood", STRIPPED_WHITE_LOG, InkColors.WHITE);
-	public static final DeferredBlock<ColoredStrippedWoodBlockSpectrum> STRIPPED_YELLOW_WOOD = registerColoredStrippedWood("stripped_yellow_wood", STRIPPED_YELLOW_LOG, InkColors.YELLOW);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_BLACK_WOOD = registerColoredStrippedWood("stripped_black_wood", STRIPPED_BLACK_LOG, InkColors.BLACK);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_BLUE_WOOD = registerColoredStrippedWood("stripped_blue_wood", STRIPPED_BLUE_LOG, InkColors.BLUE);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_BROWN_WOOD = registerColoredStrippedWood("stripped_brown_wood", STRIPPED_BROWN_LOG, InkColors.BROWN);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_CYAN_WOOD = registerColoredStrippedWood("stripped_cyan_wood", STRIPPED_CYAN_LOG, InkColors.CYAN);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_GRAY_WOOD = registerColoredStrippedWood("stripped_gray_wood", STRIPPED_GRAY_LOG, InkColors.GRAY);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_GREEN_WOOD = registerColoredStrippedWood("stripped_green_wood", STRIPPED_GREEN_LOG, InkColors.GREEN);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_LIGHT_BLUE_WOOD = registerColoredStrippedWood("stripped_light_blue_wood", STRIPPED_LIGHT_BLUE_LOG, InkColors.LIGHT_BLUE);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_LIGHT_GRAY_WOOD = registerColoredStrippedWood("stripped_light_gray_wood", STRIPPED_LIGHT_GRAY_LOG, InkColors.LIGHT_GRAY);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_LIME_WOOD = registerColoredStrippedWood("stripped_lime_wood", STRIPPED_LIME_LOG, InkColors.LIME);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_MAGENTA_WOOD = registerColoredStrippedWood("stripped_magenta_wood", STRIPPED_MAGENTA_LOG, InkColors.MAGENTA);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_ORANGE_WOOD = registerColoredStrippedWood("stripped_orange_wood", STRIPPED_ORANGE_LOG, InkColors.ORANGE);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_PINK_WOOD = registerColoredStrippedWood("stripped_pink_wood", STRIPPED_PINK_LOG, InkColors.PINK);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_PURPLE_WOOD = registerColoredStrippedWood("stripped_purple_wood", STRIPPED_PURPLE_LOG, InkColors.PURPLE);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_RED_WOOD = registerColoredStrippedWood("stripped_red_wood", STRIPPED_RED_LOG, InkColors.RED);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_WHITE_WOOD = registerColoredStrippedWood("stripped_white_wood", STRIPPED_WHITE_LOG, InkColors.WHITE);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_YELLOW_WOOD = registerColoredStrippedWood("stripped_yellow_wood", STRIPPED_YELLOW_LOG, InkColors.YELLOW);
 	
-	public static DeferredBlock<ColoredLogBlock> registerColoredLog(String name, Supplier<? extends ColoredStrippedSpectrumLogBlock> strippedBlock, InkColor color) {
+	public static DeferredBlock<ColoredLogBlock> registerColoredLog(String name, Supplier<? extends ColoredStrippedLogBlock> strippedBlock, InkColor color) {
 		return register(log(blockWithItem(name, () -> new ColoredLogBlock(copyWithMapColor(OAK_LOG, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), strippedBlock, color), color)));
 	}
 	
@@ -1479,7 +1478,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredLogBlock> WHITE_LOG = registerColoredLog("white_log", STRIPPED_WHITE_LOG, InkColors.WHITE);
 	public static final DeferredBlock<ColoredLogBlock> YELLOW_LOG = registerColoredLog("yellow_log", STRIPPED_YELLOW_LOG, InkColors.YELLOW);
 	
-	public static DeferredBlock<ColoredWoodBlock> registerColoredWood(String name, Supplier<? extends ColoredStrippedWoodBlockSpectrum> strippedBlock, DeferredBlock<ColoredLogBlock> logBlock, InkColor color) {
+	public static DeferredBlock<ColoredWoodBlock> registerColoredWood(String name, Supplier<? extends ColoredStrippedWoodBlock> strippedBlock, DeferredBlock<ColoredLogBlock> logBlock, InkColor color) {
 		return register(blockWithItem(name, () -> new ColoredWoodBlock(copyWithMapColor(OAK_WOOD, logBlock.get().defaultMapColor()), strippedBlock, color), color));
 	}
 	

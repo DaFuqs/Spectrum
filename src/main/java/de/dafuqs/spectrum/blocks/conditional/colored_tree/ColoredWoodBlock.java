@@ -19,7 +19,7 @@ public class ColoredWoodBlock extends FlammableLogBlock implements RevelationAwa
 	private static final Map<InkColor, ColoredWoodBlock> WOOD = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredWoodBlock(Properties settings, Supplier<? extends ColoredStrippedWoodBlockSpectrum> strippedBlock, InkColor color) {
+	public ColoredWoodBlock(Properties settings, Supplier<? extends ColoredStrippedWoodBlock> strippedBlock, InkColor color) {
 		super(settings, strippedBlock);
 		this.color = color;
 		WOOD.put(color, this);

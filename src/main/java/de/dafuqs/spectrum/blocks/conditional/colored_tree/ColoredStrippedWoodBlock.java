@@ -14,17 +14,17 @@ import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
-public class ColoredStrippedWoodBlockSpectrum extends FlammableRotatedPillarBlock implements RevelationAware, ColoredTree {
+public class ColoredStrippedWoodBlock extends FlammableRotatedPillarBlock implements RevelationAware, ColoredTree {
 	
-	public static final MapCodec<ColoredStrippedWoodBlockSpectrum> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final MapCodec<ColoredStrippedWoodBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 			propertiesCodec(),
-			InkColor.CODEC.fieldOf("color").forGetter(ColoredStrippedWoodBlockSpectrum::getColor)
-	).apply(instance, ColoredStrippedWoodBlockSpectrum::new));
+			InkColor.CODEC.fieldOf("color").forGetter(ColoredStrippedWoodBlock::getColor)
+	).apply(instance, ColoredStrippedWoodBlock::new));
 	
-	private static final Map<InkColor, ColoredStrippedWoodBlockSpectrum> WOOD = new Object2ObjectArrayMap<>();
+	private static final Map<InkColor, ColoredStrippedWoodBlock> WOOD = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredStrippedWoodBlockSpectrum(Properties settings, InkColor color) {
+	public ColoredStrippedWoodBlock(Properties settings, InkColor color) {
 		super(settings);
 		this.color = color;
 		WOOD.put(color, this);
@@ -32,7 +32,7 @@ public class ColoredStrippedWoodBlockSpectrum extends FlammableRotatedPillarBloc
 	}
 	
 	@Override
-	public MapCodec<? extends ColoredStrippedWoodBlockSpectrum> codec() {
+	public MapCodec<? extends ColoredStrippedWoodBlock> codec() {
 		return CODEC;
 	}
 	
@@ -56,11 +56,11 @@ public class ColoredStrippedWoodBlockSpectrum extends FlammableRotatedPillarBloc
 		return this.color;
 	}
 	
-	public static ColoredStrippedWoodBlockSpectrum byColor(InkColor color) {
+	public static ColoredStrippedWoodBlock byColor(InkColor color) {
 		return WOOD.get(color);
 	}
 	
-	public static Collection<ColoredStrippedWoodBlockSpectrum> all() {
+	public static Collection<ColoredStrippedWoodBlock> all() {
 		return WOOD.values();
 	}
 	

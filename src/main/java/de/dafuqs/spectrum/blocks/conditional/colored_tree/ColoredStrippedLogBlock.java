@@ -15,17 +15,17 @@ import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
-public class ColoredStrippedSpectrumLogBlock extends FlammableRotatedPillarBlock implements RevelationAware, ColoredTree {
+public class ColoredStrippedLogBlock extends FlammableRotatedPillarBlock implements RevelationAware, ColoredTree {
 	
-	public static final MapCodec<ColoredStrippedSpectrumLogBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+	public static final MapCodec<ColoredStrippedLogBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 			propertiesCodec(),
-			InkColor.CODEC.fieldOf("color").forGetter(ColoredStrippedSpectrumLogBlock::getColor)
-	).apply(instance, ColoredStrippedSpectrumLogBlock::new));
+			InkColor.CODEC.fieldOf("color").forGetter(ColoredStrippedLogBlock::getColor)
+	).apply(instance, ColoredStrippedLogBlock::new));
 	
-	private static final Map<InkColor, ColoredStrippedSpectrumLogBlock> LOGS = new Object2ObjectArrayMap<>();
+	private static final Map<InkColor, ColoredStrippedLogBlock> LOGS = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredStrippedSpectrumLogBlock(Properties settings, InkColor color) {
+	public ColoredStrippedLogBlock(Properties settings, InkColor color) {
 		super(settings);
 		this.color = color;
 		LOGS.put(color, this);
@@ -33,7 +33,7 @@ public class ColoredStrippedSpectrumLogBlock extends FlammableRotatedPillarBlock
 	}
 	
 	@Override
-	public MapCodec<? extends ColoredStrippedSpectrumLogBlock> codec() {
+	public MapCodec<? extends ColoredStrippedLogBlock> codec() {
 		return CODEC;
 	}
 	
@@ -61,11 +61,11 @@ public class ColoredStrippedSpectrumLogBlock extends FlammableRotatedPillarBlock
 		return this.color;
 	}
 	
-	public static ColoredStrippedSpectrumLogBlock byColor(InkColor color) {
+	public static ColoredStrippedLogBlock byColor(InkColor color) {
 		return LOGS.get(color);
 	}
 	
-	public static Collection<ColoredStrippedSpectrumLogBlock> all() {
+	public static Collection<ColoredStrippedLogBlock> all() {
 		return LOGS.values();
 	}
 	

@@ -997,6 +997,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.SLATE_NOXWOOD_LANTERN);
 					entries.accept(SpectrumBlocks.SLATE_NOXWOOD_LIGHT);
 					entries.accept(SpectrumBlocks.SLATE_NOXWOOD_LAMP);
+					entries.accept(SpectrumBlocks.SLATE_NOXWOOD_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.SLATE_NOXWOOD_HANGING_SIGN.getFirst());
 					entries.accept(SpectrumBlocks.EBONY_NOXSHROOM);
 					entries.accept(SpectrumBlocks.EBONY_NOXCAP_BLOCK);
 					entries.accept(SpectrumBlocks.EBONY_NOXCAP_STEM);
@@ -1018,6 +1020,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.EBONY_NOXWOOD_LANTERN);
 					entries.accept(SpectrumBlocks.EBONY_NOXWOOD_LIGHT);
 					entries.accept(SpectrumBlocks.EBONY_NOXWOOD_LAMP);
+					entries.accept(SpectrumBlocks.EBONY_NOXWOOD_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.EBONY_NOXWOOD_HANGING_SIGN.getFirst());
 					entries.accept(SpectrumBlocks.IVORY_NOXSHROOM);
 					entries.accept(SpectrumBlocks.IVORY_NOXCAP_BLOCK);
 					entries.accept(SpectrumBlocks.IVORY_NOXCAP_STEM);
@@ -1039,6 +1043,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.IVORY_NOXWOOD_LANTERN);
 					entries.accept(SpectrumBlocks.IVORY_NOXWOOD_LIGHT);
 					entries.accept(SpectrumBlocks.IVORY_NOXWOOD_LAMP);
+					entries.accept(SpectrumBlocks.IVORY_NOXWOOD_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.IVORY_NOXWOOD_HANGING_SIGN.getFirst());
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXSHROOM);
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXCAP_BLOCK);
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXCAP_STEM);
@@ -1060,6 +1066,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXWOOD_LANTERN);
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXWOOD_LIGHT);
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXWOOD_LAMP);
+					entries.accept(SpectrumBlocks.CHESTNUT_NOXWOOD_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.CHESTNUT_NOXWOOD_HANGING_SIGN.getFirst());
 					
 					entries.accept(SpectrumBlocks.WEEPING_GALA_SPRIG);
 					entries.accept(SpectrumBlocks.WEEPING_GALA_LEAVES);

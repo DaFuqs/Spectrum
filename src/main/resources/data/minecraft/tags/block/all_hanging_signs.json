@@ -1,6 +1,9 @@
 {
   "values": [
-    "spectrum:colored_hanging_signs",
-    "spectrum:colored_wall_hanging_signs"
+    "#spectrum:colored_ceiling_hanging_signs",
+    "#spectrum:colored_wall_hanging_signs",
+
+    "#spectrum:noxwood_ceiling_hanging_signs",
+    "#spectrum:noxwood_wall_hanging_signs"
   ]
 }

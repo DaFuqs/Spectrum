@@ -1,6 +1,9 @@
 {
   "values": [
-    "spectrum:colored_standing_signs",
-    "spectrum:colored_wall_signs"
+    "#spectrum:colored_standing_signs",
+    "#spectrum:colored_wall_signs",
+
+    "#spectrum:noxwood_standing_signs",
+    "#spectrum:noxwood_wall_signs"
   ]
 }

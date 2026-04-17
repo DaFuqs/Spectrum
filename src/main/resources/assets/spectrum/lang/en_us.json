@@ -2236,6 +2236,15 @@
   "block.spectrum.white_door": "White Door",
   "block.spectrum.yellow_door": "Yellow Door",
 
+  "block.spectrum.ebony_noxwood_sign": "Ebony Noxwood Sign",
+  "block.spectrum.ivory_noxwood_sign": "Ivory Noxwood Sign",
+  "block.spectrum.slate_noxwood_sign": "Slate Noxwood Sign",
+  "block.spectrum.chestnut_noxwood_sign": "Chestnut Noxwood Sign",
+  "block.spectrum.ebony_noxwood_hanging_sign": "Ebony Noxwood Hanging Sign",
+  "block.spectrum.ivory_noxwood_hanging_sign": "Ivory Noxwood Hanging Sign",
+  "block.spectrum.slate_noxwood_hanging_sign": "Slate Noxwood Hanging Sign",
+  "block.spectrum.chestnut_noxwood_hanging_sign": "Chestnut Noxwood Hanging Sign",
+
   "block.spectrum.topaz_bricks": "Topaz Bricks",
   "block.spectrum.amethyst_bricks": "Amethyst Bricks",
   "block.spectrum.citrine_bricks": "Citrine Bricks",

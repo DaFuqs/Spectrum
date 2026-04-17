@@ -601,8 +601,8 @@ public class SpectrumBlocks {
 		return register(blockWithItem(name, () -> new ColoredFenceBlock(copyWithMapColor(OAK_FENCE, baseBlock.get().defaultMapColor()), color), color));
 	}
 	
-	public static DeferredBlock<ColoredFenceGateBlock> registerColoredFenceGate(String name, DeferredBlock<ColoredPlankBlock> baseBlock, InkColor color) {
-		return register(blockWithItem(name, () -> new ColoredFenceGateBlock(copyWithMapColor(OAK_FENCE_GATE, baseBlock.get().defaultMapColor()), color), color));
+	public static DeferredBlock<ColoredFenceGateBlock> registerColoredFenceGate(String name, DeferredBlock<ColoredPlankBlock> baseBlock, WoodType woodType, InkColor color) {
+		return register(blockWithItem(name, () -> new ColoredFenceGateBlock(copyWithMapColor(OAK_FENCE_GATE, baseBlock.get().defaultMapColor()), woodType, color), color));
 	}
 	
 	public static DeferredBlock<ColoredWoodenButtonBlock> registerColoredButton(String name, DeferredBlock<ColoredPlankBlock> baseBlock, InkColor color) {
@@ -617,7 +617,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> BLACK_STAIRS = registerColoredStairs("black_stairs", BLACK_PLANKS, InkColors.BLACK);
 	public static final DeferredBlock<ColoredPressurePlateBlock> BLACK_PRESSURE_PLATE = registerColoredPressurePlate("black_pressure_plate", BLACK_PLANKS, InkColors.BLACK);
 	public static final DeferredBlock<ColoredFenceBlock> BLACK_FENCE = registerColoredFence("black_fence", BLACK_PLANKS, InkColors.BLACK);
-	public static final DeferredBlock<ColoredFenceGateBlock> BLACK_FENCE_GATE = registerColoredFenceGate("black_fence_gate", BLACK_PLANKS, InkColors.BLACK);
+	public static final DeferredBlock<ColoredFenceGateBlock> BLACK_FENCE_GATE = registerColoredFenceGate("black_fence_gate", BLACK_PLANKS, SpectrumWoodTypes.BLACK, InkColors.BLACK);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> BLACK_BUTTON = registerColoredButton("black_button", BLACK_PLANKS, InkColors.BLACK);
 	public static final DeferredBlock<ColoredSlabBlock> BLACK_SLAB = registerColoredSlab("black_slab", BLACK_PLANKS, InkColors.BLACK);
 	
@@ -625,7 +625,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> BLUE_STAIRS = registerColoredStairs("blue_stairs", BLUE_PLANKS, InkColors.BLUE);
 	public static final DeferredBlock<ColoredPressurePlateBlock> BLUE_PRESSURE_PLATE = registerColoredPressurePlate("blue_pressure_plate", BLUE_PLANKS, InkColors.BLUE);
 	public static final DeferredBlock<ColoredFenceBlock> BLUE_FENCE = registerColoredFence("blue_fence", BLUE_PLANKS, InkColors.BLUE);
-	public static final DeferredBlock<ColoredFenceGateBlock> BLUE_FENCE_GATE = registerColoredFenceGate("blue_fence_gate", BLUE_PLANKS, InkColors.BLUE);
+	public static final DeferredBlock<ColoredFenceGateBlock> BLUE_FENCE_GATE = registerColoredFenceGate("blue_fence_gate", BLUE_PLANKS, SpectrumWoodTypes.BLUE, InkColors.BLUE);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> BLUE_BUTTON = registerColoredButton("blue_button", BLUE_PLANKS, InkColors.BLUE);
 	public static final DeferredBlock<ColoredSlabBlock> BLUE_SLAB = registerColoredSlab("blue_slab", BLUE_PLANKS, InkColors.BLUE);
 	
@@ -633,7 +633,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> BROWN_STAIRS = registerColoredStairs("brown_stairs", BROWN_PLANKS, InkColors.BROWN);
 	public static final DeferredBlock<ColoredPressurePlateBlock> BROWN_PRESSURE_PLATE = registerColoredPressurePlate("brown_pressure_plate", BROWN_PLANKS, InkColors.BROWN);
 	public static final DeferredBlock<ColoredFenceBlock> BROWN_FENCE = registerColoredFence("brown_fence", BROWN_PLANKS, InkColors.BROWN);
-	public static final DeferredBlock<ColoredFenceGateBlock> BROWN_FENCE_GATE = registerColoredFenceGate("brown_fence_gate", BROWN_PLANKS, InkColors.BROWN);
+	public static final DeferredBlock<ColoredFenceGateBlock> BROWN_FENCE_GATE = registerColoredFenceGate("brown_fence_gate", BROWN_PLANKS, SpectrumWoodTypes.BROWN, InkColors.BROWN);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> BROWN_BUTTON = registerColoredButton("brown_button", BROWN_PLANKS, InkColors.BROWN);
 	public static final DeferredBlock<ColoredSlabBlock> BROWN_SLAB = registerColoredSlab("brown_slab", BROWN_PLANKS, InkColors.BROWN);
 	
@@ -641,7 +641,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> CYAN_STAIRS = registerColoredStairs("cyan_stairs", CYAN_PLANKS, InkColors.CYAN);
 	public static final DeferredBlock<ColoredPressurePlateBlock> CYAN_PRESSURE_PLATE = registerColoredPressurePlate("cyan_pressure_plate", CYAN_PLANKS, InkColors.CYAN);
 	public static final DeferredBlock<ColoredFenceBlock> CYAN_FENCE = registerColoredFence("cyan_fence", CYAN_PLANKS, InkColors.CYAN);
-	public static final DeferredBlock<ColoredFenceGateBlock> CYAN_FENCE_GATE = registerColoredFenceGate("cyan_fence_gate", CYAN_PLANKS, InkColors.CYAN);
+	public static final DeferredBlock<ColoredFenceGateBlock> CYAN_FENCE_GATE = registerColoredFenceGate("cyan_fence_gate", CYAN_PLANKS, SpectrumWoodTypes.CYAN, InkColors.CYAN);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> CYAN_BUTTON = registerColoredButton("cyan_button", CYAN_PLANKS, InkColors.CYAN);
 	public static final DeferredBlock<ColoredSlabBlock> CYAN_SLAB = registerColoredSlab("cyan_slab", CYAN_PLANKS, InkColors.CYAN);
 	
@@ -649,7 +649,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> GRAY_STAIRS = registerColoredStairs("gray_stairs", GRAY_PLANKS, InkColors.GRAY);
 	public static final DeferredBlock<ColoredPressurePlateBlock> GRAY_PRESSURE_PLATE = registerColoredPressurePlate("gray_pressure_plate", GRAY_PLANKS, InkColors.GRAY);
 	public static final DeferredBlock<ColoredFenceBlock> GRAY_FENCE = registerColoredFence("gray_fence", GRAY_PLANKS, InkColors.GRAY);
-	public static final DeferredBlock<ColoredFenceGateBlock> GRAY_FENCE_GATE = registerColoredFenceGate("gray_fence_gate", GRAY_PLANKS, InkColors.GRAY);
+	public static final DeferredBlock<ColoredFenceGateBlock> GRAY_FENCE_GATE = registerColoredFenceGate("gray_fence_gate", GRAY_PLANKS, SpectrumWoodTypes.GRAY, InkColors.GRAY);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> GRAY_BUTTON = registerColoredButton("gray_button", GRAY_PLANKS, InkColors.GRAY);
 	public static final DeferredBlock<ColoredSlabBlock> GRAY_SLAB = registerColoredSlab("gray_slab", GRAY_PLANKS, InkColors.GRAY);
 	
@@ -657,7 +657,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> GREEN_STAIRS = registerColoredStairs("green_stairs", GREEN_PLANKS, InkColors.GREEN);
 	public static final DeferredBlock<ColoredPressurePlateBlock> GREEN_PRESSURE_PLATE = registerColoredPressurePlate("green_pressure_plate", GREEN_PLANKS, InkColors.GREEN);
 	public static final DeferredBlock<ColoredFenceBlock> GREEN_FENCE = registerColoredFence("green_fence", GREEN_PLANKS, InkColors.GREEN);
-	public static final DeferredBlock<ColoredFenceGateBlock> GREEN_FENCE_GATE = registerColoredFenceGate("green_fence_gate", GREEN_PLANKS, InkColors.GREEN);
+	public static final DeferredBlock<ColoredFenceGateBlock> GREEN_FENCE_GATE = registerColoredFenceGate("green_fence_gate", GREEN_PLANKS, SpectrumWoodTypes.GREEN, InkColors.GREEN);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> GREEN_BUTTON = registerColoredButton("green_button", GREEN_PLANKS, InkColors.GREEN);
 	public static final DeferredBlock<ColoredSlabBlock> GREEN_SLAB = registerColoredSlab("green_slab", GREEN_PLANKS, InkColors.GREEN);
 	
@@ -665,7 +665,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> LIGHT_BLUE_STAIRS = registerColoredStairs("light_blue_stairs", LIGHT_BLUE_PLANKS, InkColors.LIGHT_BLUE);
 	public static final DeferredBlock<ColoredPressurePlateBlock> LIGHT_BLUE_PRESSURE_PLATE = registerColoredPressurePlate("light_blue_pressure_plate", LIGHT_BLUE_PLANKS, InkColors.LIGHT_BLUE);
 	public static final DeferredBlock<ColoredFenceBlock> LIGHT_BLUE_FENCE = registerColoredFence("light_blue_fence", LIGHT_BLUE_PLANKS, InkColors.LIGHT_BLUE);
-	public static final DeferredBlock<ColoredFenceGateBlock> LIGHT_BLUE_FENCE_GATE = registerColoredFenceGate("light_blue_fence_gate", LIGHT_BLUE_PLANKS, InkColors.LIGHT_BLUE);
+	public static final DeferredBlock<ColoredFenceGateBlock> LIGHT_BLUE_FENCE_GATE = registerColoredFenceGate("light_blue_fence_gate", LIGHT_BLUE_PLANKS, SpectrumWoodTypes.LIGHT_BLUE, InkColors.LIGHT_BLUE);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> LIGHT_BLUE_BUTTON = registerColoredButton("light_blue_button", LIGHT_BLUE_PLANKS, InkColors.LIGHT_BLUE);
 	public static final DeferredBlock<ColoredSlabBlock> LIGHT_BLUE_SLAB = registerColoredSlab("light_blue_slab", LIGHT_BLUE_PLANKS, InkColors.LIGHT_BLUE);
 	
@@ -673,7 +673,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> LIGHT_GRAY_STAIRS = registerColoredStairs("light_gray_stairs", LIGHT_GRAY_PLANKS, InkColors.LIGHT_GRAY);
 	public static final DeferredBlock<ColoredPressurePlateBlock> LIGHT_GRAY_PRESSURE_PLATE = registerColoredPressurePlate("light_gray_pressure_plate", LIGHT_GRAY_PLANKS, InkColors.LIGHT_GRAY);
 	public static final DeferredBlock<ColoredFenceBlock> LIGHT_GRAY_FENCE = registerColoredFence("light_gray_fence", LIGHT_GRAY_PLANKS, InkColors.LIGHT_GRAY);
-	public static final DeferredBlock<ColoredFenceGateBlock> LIGHT_GRAY_FENCE_GATE = registerColoredFenceGate("light_gray_fence_gate", LIGHT_GRAY_PLANKS, InkColors.LIGHT_GRAY);
+	public static final DeferredBlock<ColoredFenceGateBlock> LIGHT_GRAY_FENCE_GATE = registerColoredFenceGate("light_gray_fence_gate", LIGHT_GRAY_PLANKS, SpectrumWoodTypes.LIGHT_GRAY, InkColors.LIGHT_GRAY);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> LIGHT_GRAY_BUTTON = registerColoredButton("light_gray_button", LIGHT_GRAY_PLANKS, InkColors.LIGHT_GRAY);
 	public static final DeferredBlock<ColoredSlabBlock> LIGHT_GRAY_SLAB = registerColoredSlab("light_gray_slab", LIGHT_GRAY_PLANKS, InkColors.LIGHT_GRAY);
 	
@@ -681,7 +681,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> LIME_STAIRS = registerColoredStairs("lime_stairs", LIME_PLANKS, InkColors.LIME);
 	public static final DeferredBlock<ColoredPressurePlateBlock> LIME_PRESSURE_PLATE = registerColoredPressurePlate("lime_pressure_plate", LIME_PLANKS, InkColors.LIME);
 	public static final DeferredBlock<ColoredFenceBlock> LIME_FENCE = registerColoredFence("lime_fence", LIME_PLANKS, InkColors.LIME);
-	public static final DeferredBlock<ColoredFenceGateBlock> LIME_FENCE_GATE = registerColoredFenceGate("lime_fence_gate", LIME_PLANKS, InkColors.LIME);
+	public static final DeferredBlock<ColoredFenceGateBlock> LIME_FENCE_GATE = registerColoredFenceGate("lime_fence_gate", LIME_PLANKS, SpectrumWoodTypes.LIME, InkColors.LIME);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> LIME_BUTTON = registerColoredButton("lime_button", LIME_PLANKS, InkColors.LIME);
 	public static final DeferredBlock<ColoredSlabBlock> LIME_SLAB = registerColoredSlab("lime_slab", LIME_PLANKS, InkColors.LIME);
 	
@@ -689,7 +689,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> MAGENTA_STAIRS = registerColoredStairs("magenta_stairs", MAGENTA_PLANKS, InkColors.MAGENTA);
 	public static final DeferredBlock<ColoredPressurePlateBlock> MAGENTA_PRESSURE_PLATE = registerColoredPressurePlate("magenta_pressure_plate", MAGENTA_PLANKS, InkColors.MAGENTA);
 	public static final DeferredBlock<ColoredFenceBlock> MAGENTA_FENCE = registerColoredFence("magenta_fence", MAGENTA_PLANKS, InkColors.MAGENTA);
-	public static final DeferredBlock<ColoredFenceGateBlock> MAGENTA_FENCE_GATE = registerColoredFenceGate("magenta_fence_gate", MAGENTA_PLANKS, InkColors.MAGENTA);
+	public static final DeferredBlock<ColoredFenceGateBlock> MAGENTA_FENCE_GATE = registerColoredFenceGate("magenta_fence_gate", MAGENTA_PLANKS, SpectrumWoodTypes.MAGENTA, InkColors.MAGENTA);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> MAGENTA_BUTTON = registerColoredButton("magenta_button", MAGENTA_PLANKS, InkColors.MAGENTA);
 	public static final DeferredBlock<ColoredSlabBlock> MAGENTA_SLAB = registerColoredSlab("magenta_slab", MAGENTA_PLANKS, InkColors.MAGENTA);
 	
@@ -697,7 +697,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> ORANGE_STAIRS = registerColoredStairs("orange_stairs", ORANGE_PLANKS, InkColors.ORANGE);
 	public static final DeferredBlock<ColoredPressurePlateBlock> ORANGE_PRESSURE_PLATE = registerColoredPressurePlate("orange_pressure_plate", ORANGE_PLANKS, InkColors.ORANGE);
 	public static final DeferredBlock<ColoredFenceBlock> ORANGE_FENCE = registerColoredFence("orange_fence", ORANGE_PLANKS, InkColors.ORANGE);
-	public static final DeferredBlock<ColoredFenceGateBlock> ORANGE_FENCE_GATE = registerColoredFenceGate("orange_fence_gate", ORANGE_PLANKS, InkColors.ORANGE);
+	public static final DeferredBlock<ColoredFenceGateBlock> ORANGE_FENCE_GATE = registerColoredFenceGate("orange_fence_gate", ORANGE_PLANKS, SpectrumWoodTypes.ORANGE, InkColors.ORANGE);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> ORANGE_BUTTON = registerColoredButton("orange_button", ORANGE_PLANKS, InkColors.ORANGE);
 	public static final DeferredBlock<ColoredSlabBlock> ORANGE_SLAB = registerColoredSlab("orange_slab", ORANGE_PLANKS, InkColors.ORANGE);
 	
@@ -705,7 +705,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> PINK_STAIRS = registerColoredStairs("pink_stairs", PINK_PLANKS, InkColors.PINK);
 	public static final DeferredBlock<ColoredPressurePlateBlock> PINK_PRESSURE_PLATE = registerColoredPressurePlate("pink_pressure_plate", PINK_PLANKS, InkColors.PINK);
 	public static final DeferredBlock<ColoredFenceBlock> PINK_FENCE = registerColoredFence("pink_fence", PINK_PLANKS, InkColors.PINK);
-	public static final DeferredBlock<ColoredFenceGateBlock> PINK_FENCE_GATE = registerColoredFenceGate("pink_fence_gate", PINK_PLANKS, InkColors.PINK);
+	public static final DeferredBlock<ColoredFenceGateBlock> PINK_FENCE_GATE = registerColoredFenceGate("pink_fence_gate", PINK_PLANKS, SpectrumWoodTypes.PINK, InkColors.PINK);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> PINK_BUTTON = registerColoredButton("pink_button", PINK_PLANKS, InkColors.PINK);
 	public static final DeferredBlock<ColoredSlabBlock> PINK_SLAB = registerColoredSlab("pink_slab", PINK_PLANKS, InkColors.PINK);
 	
@@ -713,7 +713,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> PURPLE_STAIRS = registerColoredStairs("purple_stairs", PURPLE_PLANKS, InkColors.PURPLE);
 	public static final DeferredBlock<ColoredPressurePlateBlock> PURPLE_PRESSURE_PLATE = registerColoredPressurePlate("purple_pressure_plate", PURPLE_PLANKS, InkColors.PURPLE);
 	public static final DeferredBlock<ColoredFenceBlock> PURPLE_FENCE = registerColoredFence("purple_fence", PURPLE_PLANKS, InkColors.PURPLE);
-	public static final DeferredBlock<ColoredFenceGateBlock> PURPLE_FENCE_GATE = registerColoredFenceGate("purple_fence_gate", PURPLE_PLANKS, InkColors.PURPLE);
+	public static final DeferredBlock<ColoredFenceGateBlock> PURPLE_FENCE_GATE = registerColoredFenceGate("purple_fence_gate", PURPLE_PLANKS, SpectrumWoodTypes.PURPLE, InkColors.PURPLE);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> PURPLE_BUTTON = registerColoredButton("purple_button", PURPLE_PLANKS, InkColors.PURPLE);
 	public static final DeferredBlock<ColoredSlabBlock> PURPLE_SLAB = registerColoredSlab("purple_slab", PURPLE_PLANKS, InkColors.PURPLE);
 	
@@ -721,7 +721,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> RED_STAIRS = registerColoredStairs("red_stairs", RED_PLANKS, InkColors.RED);
 	public static final DeferredBlock<ColoredPressurePlateBlock> RED_PRESSURE_PLATE = registerColoredPressurePlate("red_pressure_plate", RED_PLANKS, InkColors.RED);
 	public static final DeferredBlock<ColoredFenceBlock> RED_FENCE = registerColoredFence("red_fence", RED_PLANKS, InkColors.RED);
-	public static final DeferredBlock<ColoredFenceGateBlock> RED_FENCE_GATE = registerColoredFenceGate("red_fence_gate", RED_PLANKS, InkColors.RED);
+	public static final DeferredBlock<ColoredFenceGateBlock> RED_FENCE_GATE = registerColoredFenceGate("red_fence_gate", RED_PLANKS, SpectrumWoodTypes.RED, InkColors.RED);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> RED_BUTTON = registerColoredButton("red_button", RED_PLANKS, InkColors.RED);
 	public static final DeferredBlock<ColoredSlabBlock> RED_SLAB = registerColoredSlab("red_slab", RED_PLANKS, InkColors.RED);
 	
@@ -729,7 +729,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> WHITE_STAIRS = registerColoredStairs("white_stairs", WHITE_PLANKS, InkColors.WHITE);
 	public static final DeferredBlock<ColoredPressurePlateBlock> WHITE_PRESSURE_PLATE = registerColoredPressurePlate("white_pressure_plate", WHITE_PLANKS, InkColors.WHITE);
 	public static final DeferredBlock<ColoredFenceBlock> WHITE_FENCE = registerColoredFence("white_fence", WHITE_PLANKS, InkColors.WHITE);
-	public static final DeferredBlock<ColoredFenceGateBlock> WHITE_FENCE_GATE = registerColoredFenceGate("white_fence_gate", WHITE_PLANKS, InkColors.WHITE);
+	public static final DeferredBlock<ColoredFenceGateBlock> WHITE_FENCE_GATE = registerColoredFenceGate("white_fence_gate", WHITE_PLANKS, SpectrumWoodTypes.WHITE, InkColors.WHITE);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> WHITE_BUTTON = registerColoredButton("white_button", WHITE_PLANKS, InkColors.WHITE);
 	public static final DeferredBlock<ColoredSlabBlock> WHITE_SLAB = registerColoredSlab("white_slab", WHITE_PLANKS, InkColors.WHITE);
 	
@@ -737,7 +737,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStairBlock> YELLOW_STAIRS = registerColoredStairs("yellow_stairs", YELLOW_PLANKS, InkColors.YELLOW);
 	public static final DeferredBlock<ColoredPressurePlateBlock> YELLOW_PRESSURE_PLATE = registerColoredPressurePlate("yellow_pressure_plate", YELLOW_PLANKS, InkColors.YELLOW);
 	public static final DeferredBlock<ColoredFenceBlock> YELLOW_FENCE = registerColoredFence("yellow_fence", YELLOW_PLANKS, InkColors.YELLOW);
-	public static final DeferredBlock<ColoredFenceGateBlock> YELLOW_FENCE_GATE = registerColoredFenceGate("yellow_fence_gate", YELLOW_PLANKS, InkColors.YELLOW);
+	public static final DeferredBlock<ColoredFenceGateBlock> YELLOW_FENCE_GATE = registerColoredFenceGate("yellow_fence_gate", YELLOW_PLANKS, SpectrumWoodTypes.YELLOW, InkColors.YELLOW);
 	public static final DeferredBlock<ColoredWoodenButtonBlock> YELLOW_BUTTON = registerColoredButton("yellow_button", YELLOW_PLANKS, InkColors.YELLOW);
 	public static final DeferredBlock<ColoredSlabBlock> YELLOW_SLAB = registerColoredSlab("yellow_slab", YELLOW_PLANKS, InkColors.YELLOW);
 	
@@ -913,31 +913,29 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> CHESTNUT_NOXWOOD_BUTTON = register(blockWithItem("chestnut_noxwood_button", () -> new ButtonBlock(SpectrumBlockSetTypes.NOXWOOD, NOXCAP_BUTTON_BLOCK_PRESS_TIME_TICKS, noxcap(MapColor.CRIMSON_NYLIUM).pushReaction(PushReaction.DESTROY)), InkColors.LIME));
 	public static final DeferredBlock<Block> CHESTNUT_NOXWOOD_PRESSURE_PLATE = register(blockWithItem("chestnut_noxwood_pressure_plate", () -> new PressurePlateBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.CRIMSON_NYLIUM)), InkColors.LIME));
 	
-	
-	
-	public static Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> registerNoxwoodSign(String name, MapColor mapColor) {
-		DeferredBlock<WallSignBlock> wallSign = register(block(name + "_noxwood_wall_sign", () -> new WallSignBlock(SpectrumWoodTypes.COLORED_WOOD, noxcap(mapColor))));
+	public static Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> registerSign(String name, WoodType woodType, BlockBehaviour.Properties properties) {
+		DeferredBlock<WallSignBlock> wallSign = register(block(name + "_wall_sign", () -> new WallSignBlock(woodType, properties)));
 		return Pair.of(register(blockWithItem(name + "_noxwood_sign",
-				() -> new StandingSignBlock(SpectrumWoodTypes.COLORED_WOOD, noxcap(mapColor)),
+				() -> new StandingSignBlock(woodType, properties),
 				signBlock -> new SignItem(new Item.Properties().stacksTo(16), signBlock, wallSign.get()), InkColors.BROWN)), wallSign);
 	}
 	
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> EBONY_NOXWOOD_SIGN = registerNoxwoodSign("ebony", MapColor.TERRACOTTA_BLACK);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> IVORY_NOXWOOD_SIGN = registerNoxwoodSign("ivory", MapColor.QUARTZ);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> SLATE_NOXWOOD_SIGN = registerNoxwoodSign("slate", MapColor.COLOR_GRAY);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> CHESTNUT_NOXWOOD_SIGN = registerNoxwoodSign("chestnut", MapColor.CRIMSON_NYLIUM);
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> EBONY_NOXWOOD_SIGN = registerSign("ebony_noxwood", SpectrumWoodTypes.EBONY_NOXWOOD, noxcap(MapColor.TERRACOTTA_BLACK));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> IVORY_NOXWOOD_SIGN = registerSign("ivory_noxwood", SpectrumWoodTypes.IVORY_NOXWOOD, noxcap(MapColor.QUARTZ));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> SLATE_NOXWOOD_SIGN = registerSign("slate_noxwood", SpectrumWoodTypes.SLATE_NOXWOOD, noxcap(MapColor.COLOR_GRAY));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> CHESTNUT_NOXWOOD_SIGN = registerSign("chestnut_noxwood", SpectrumWoodTypes.CHESTNUT_NOXWOOD, noxcap(MapColor.CRIMSON_NYLIUM));
 	
-	public static Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> registerNoxwoodHangingSign(String name, MapColor mapColor) {
-		DeferredBlock<WallHangingSignBlock> wallSign = register(block(name + "_noxwood_wall_hanging_sign", () -> new WallHangingSignBlock(SpectrumWoodTypes.COLORED_WOOD, noxcap(mapColor))));
-		return Pair.of(register(blockWithItem(name + "_noxwood_hanging_sign",
-				() -> new CeilingHangingSignBlock(SpectrumWoodTypes.COLORED_WOOD, noxcap(mapColor)),
+	public static Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> registerHangingSign(String name, WoodType woodType, BlockBehaviour.Properties properties) {
+		DeferredBlock<WallHangingSignBlock> wallSign = register(block(name + "_wall_hanging_sign", () -> new WallHangingSignBlock(woodType, properties)));
+		return Pair.of(register(blockWithItem(name + "_hanging_sign",
+				() -> new CeilingHangingSignBlock(woodType, properties),
 				(signBlock) -> new HangingSignItem(signBlock, wallSign.get(), new Item.Properties().stacksTo(16)), InkColors.BROWN)), wallSign);
 	}
 	
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> EBONY_NOXWOOD_HANGING_SIGN = registerNoxwoodHangingSign("ebony", MapColor.TERRACOTTA_BLACK);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> IVORY_NOXWOOD_HANGING_SIGN = registerNoxwoodHangingSign("ivory", MapColor.QUARTZ);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> SLATE_NOXWOOD_HANGING_SIGN = registerNoxwoodHangingSign("slate", MapColor.COLOR_GRAY);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> CHESTNUT_NOXWOOD_HANGING_SIGN = registerNoxwoodHangingSign("chestnut", MapColor.CRIMSON_NYLIUM);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> EBONY_NOXWOOD_HANGING_SIGN = registerHangingSign("ebony_noxwood", SpectrumWoodTypes.EBONY_NOXWOOD, noxcap(MapColor.TERRACOTTA_BLACK));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> IVORY_NOXWOOD_HANGING_SIGN = registerHangingSign("ivory_noxwood", SpectrumWoodTypes.IVORY_NOXWOOD, noxcap(MapColor.QUARTZ));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> SLATE_NOXWOOD_HANGING_SIGN = registerHangingSign("slate_noxwood", SpectrumWoodTypes.SLATE_NOXWOOD, noxcap(MapColor.COLOR_GRAY));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> CHESTNUT_NOXWOOD_HANGING_SIGN = registerHangingSign("chestnut_noxwood", SpectrumWoodTypes.CHESTNUT_NOXWOOD, noxcap(MapColor.CRIMSON_NYLIUM));
 	
 	public static BlockBehaviour.Properties galaWood(MapColor color) {
 		return settings(color, SoundType.CHERRY_WOOD, 30.0F).instrument(NoteBlockInstrument.BASS).ignitedByLava();
@@ -1568,53 +1566,39 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<DoorBlock> WHITE_DOOR = registerColoredDoor("white_door", InkColors.WHITE);
 	public static final DeferredBlock<DoorBlock> YELLOW_DOOR = registerColoredDoor("yellow_door", InkColors.YELLOW);
 	
-	public static Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> registerColoredSign(String name, InkColor color) {
-		DeferredBlock<WallSignBlock> wallSign = register(block(name + "_wall_sign", () -> new WallSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()))));
-		return Pair.of(register(blockWithItem(name + "_sign",
-				() -> new StandingSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor())),
-				signBlock -> new SignItem(new Item.Properties().stacksTo(16), signBlock, wallSign.get()), color)), wallSign);
-	}
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BLACK_SIGN = registerSign("black", SpectrumWoodTypes.BLACK, copyWithMapColor(OAK_WOOD, InkColors.BLACK.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BLUE_SIGN = registerSign("blue", SpectrumWoodTypes.BLUE, copyWithMapColor(OAK_WOOD, InkColors.BLUE.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BROWN_SIGN = registerSign("brown", SpectrumWoodTypes.BROWN, copyWithMapColor(OAK_WOOD, InkColors.BROWN.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> CYAN_SIGN = registerSign("cyan", SpectrumWoodTypes.CYAN, copyWithMapColor(OAK_WOOD, InkColors.CYAN.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> GRAY_SIGN = registerSign("gray", SpectrumWoodTypes.GRAY, copyWithMapColor(OAK_WOOD, InkColors.GRAY.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> GREEN_SIGN = registerSign("green", SpectrumWoodTypes.GREEN, copyWithMapColor(OAK_WOOD, InkColors.GREEN.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIGHT_BLUE_SIGN = registerSign("light_blue", SpectrumWoodTypes.LIGHT_BLUE, copyWithMapColor(OAK_WOOD, InkColors.LIGHT_BLUE.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIGHT_GRAY_SIGN = registerSign("light_gray", SpectrumWoodTypes.LIGHT_GRAY, copyWithMapColor(OAK_WOOD, InkColors.LIGHT_GRAY.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIME_SIGN = registerSign("lime", SpectrumWoodTypes.LIME, copyWithMapColor(OAK_WOOD, InkColors.LIME.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> MAGENTA_SIGN = registerSign("magenta", SpectrumWoodTypes.MAGENTA, copyWithMapColor(OAK_WOOD, InkColors.MAGENTA.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> ORANGE_SIGN = registerSign("orange", SpectrumWoodTypes.ORANGE, copyWithMapColor(OAK_WOOD, InkColors.ORANGE.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> PINK_SIGN = registerSign("pink", SpectrumWoodTypes.PINK, copyWithMapColor(OAK_WOOD, InkColors.PINK.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> PURPLE_SIGN = registerSign("purple", SpectrumWoodTypes.PURPLE, copyWithMapColor(OAK_WOOD, InkColors.PURPLE.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> RED_SIGN = registerSign("red", SpectrumWoodTypes.RED, copyWithMapColor(OAK_WOOD, InkColors.RED.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> WHITE_SIGN = registerSign("white", SpectrumWoodTypes.WHITE, copyWithMapColor(OAK_WOOD, InkColors.WHITE.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> YELLOW_SIGN = registerSign("yellow", SpectrumWoodTypes.YELLOW, copyWithMapColor(OAK_WOOD, InkColors.YELLOW.getMapColor()));
 	
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BLACK_SIGN = registerColoredSign("black", InkColors.BLACK);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BLUE_SIGN = registerColoredSign("blue", InkColors.BLUE);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BROWN_SIGN = registerColoredSign("brown", InkColors.BROWN);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> CYAN_SIGN = registerColoredSign("cyan", InkColors.CYAN);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> GRAY_SIGN = registerColoredSign("gray", InkColors.GRAY);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> GREEN_SIGN = registerColoredSign("green", InkColors.GREEN);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIGHT_BLUE_SIGN = registerColoredSign("light_blue", InkColors.LIGHT_BLUE);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIGHT_GRAY_SIGN = registerColoredSign("light_gray", InkColors.LIGHT_GRAY);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIME_SIGN = registerColoredSign("lime", InkColors.LIME);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> MAGENTA_SIGN = registerColoredSign("magenta", InkColors.MAGENTA);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> ORANGE_SIGN = registerColoredSign("orange", InkColors.ORANGE);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> PINK_SIGN = registerColoredSign("pink", InkColors.PINK);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> PURPLE_SIGN = registerColoredSign("purple", InkColors.PURPLE);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> RED_SIGN = registerColoredSign("red", InkColors.RED);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> WHITE_SIGN = registerColoredSign("white", InkColors.WHITE);
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> YELLOW_SIGN = registerColoredSign("yellow", InkColors.YELLOW);
-	
-	public static Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> registerColoredHangingSign(String name, InkColor color) {
-		DeferredBlock<WallHangingSignBlock> wallSign = register(block(name + "_wall_hanging_sign", () -> new WallHangingSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()))));
-		return Pair.of(register(blockWithItem(name + "_hanging_sign",
-				() -> new CeilingHangingSignBlock(SpectrumWoodTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor())),
-				(signBlock) -> new HangingSignItem(signBlock, wallSign.get(), new Item.Properties().stacksTo(16)), color)), wallSign);
-	}
-	
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> BLACK_HANGING_SIGN = registerColoredHangingSign("black", InkColors.BLACK);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> BLUE_HANGING_SIGN = registerColoredHangingSign("blue", InkColors.BLUE);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> BROWN_HANGING_SIGN = registerColoredHangingSign("brown", InkColors.BROWN);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> CYAN_HANGING_SIGN = registerColoredHangingSign("cyan", InkColors.CYAN);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> GRAY_HANGING_SIGN = registerColoredHangingSign("gray", InkColors.GRAY);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> GREEN_HANGING_SIGN = registerColoredHangingSign("green", InkColors.GREEN);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> LIGHT_BLUE_HANGING_SIGN = registerColoredHangingSign("light_blue", InkColors.LIGHT_BLUE);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> LIGHT_GRAY_HANGING_SIGN = registerColoredHangingSign("light_gray", InkColors.LIGHT_GRAY);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> LIME_HANGING_SIGN = registerColoredHangingSign("lime", InkColors.LIME);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> MAGENTA_HANGING_SIGN = registerColoredHangingSign("magenta", InkColors.MAGENTA);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> ORANGE_HANGING_SIGN = registerColoredHangingSign("orange", InkColors.ORANGE);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> PINK_HANGING_SIGN = registerColoredHangingSign("pink", InkColors.PINK);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> PURPLE_HANGING_SIGN = registerColoredHangingSign("purple", InkColors.PURPLE);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> RED_HANGING_SIGN = registerColoredHangingSign("red", InkColors.RED);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> WHITE_HANGING_SIGN = registerColoredHangingSign("white", InkColors.WHITE);
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> YELLOW_HANGING_SIGN = registerColoredHangingSign("yellow", InkColors.YELLOW);
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> BLACK_HANGING_SIGN = registerHangingSign("black", SpectrumWoodTypes.BLACK, copyWithMapColor(OAK_WOOD, InkColors.BLACK.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> BLUE_HANGING_SIGN = registerHangingSign("blue", SpectrumWoodTypes.BLUE, copyWithMapColor(OAK_WOOD, InkColors.BLUE.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> BROWN_HANGING_SIGN = registerHangingSign("brown", SpectrumWoodTypes.BROWN, copyWithMapColor(OAK_WOOD, InkColors.BROWN.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> CYAN_HANGING_SIGN = registerHangingSign("cyan", SpectrumWoodTypes.CYAN, copyWithMapColor(OAK_WOOD, InkColors.CYAN.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> GRAY_HANGING_SIGN = registerHangingSign("gray", SpectrumWoodTypes.GRAY, copyWithMapColor(OAK_WOOD, InkColors.GRAY.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> GREEN_HANGING_SIGN = registerHangingSign("green", SpectrumWoodTypes.GREEN, copyWithMapColor(OAK_WOOD, InkColors.GREEN.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> LIGHT_BLUE_HANGING_SIGN = registerHangingSign("light_blue", SpectrumWoodTypes.LIGHT_BLUE, copyWithMapColor(OAK_WOOD, InkColors.LIGHT_BLUE.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> LIGHT_GRAY_HANGING_SIGN = registerHangingSign("light_gray", SpectrumWoodTypes.LIGHT_GRAY, copyWithMapColor(OAK_WOOD, InkColors.LIGHT_GRAY.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> LIME_HANGING_SIGN = registerHangingSign("lime", SpectrumWoodTypes.LIME, copyWithMapColor(OAK_WOOD, InkColors.LIME.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> MAGENTA_HANGING_SIGN = registerHangingSign("magenta", SpectrumWoodTypes.MAGENTA, copyWithMapColor(OAK_WOOD, InkColors.MAGENTA.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> ORANGE_HANGING_SIGN = registerHangingSign("orange", SpectrumWoodTypes.ORANGE, copyWithMapColor(OAK_WOOD, InkColors.ORANGE.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> PINK_HANGING_SIGN = registerHangingSign("pink", SpectrumWoodTypes.PINK, copyWithMapColor(OAK_WOOD, InkColors.PINK.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> PURPLE_HANGING_SIGN = registerHangingSign("purple", SpectrumWoodTypes.PURPLE, copyWithMapColor(OAK_WOOD, InkColors.PURPLE.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> RED_HANGING_SIGN = registerHangingSign("red", SpectrumWoodTypes.RED, copyWithMapColor(OAK_WOOD, InkColors.RED.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> WHITE_HANGING_SIGN = registerHangingSign("white", SpectrumWoodTypes.WHITE, copyWithMapColor(OAK_WOOD, InkColors.WHITE.getMapColor()));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> YELLOW_HANGING_SIGN = registerHangingSign("yellow", SpectrumWoodTypes.YELLOW, copyWithMapColor(OAK_WOOD, InkColors.YELLOW.getMapColor()));
 	
 	public static DeferredBlock<ColoredLeavesBlock> registerColoredLeaves(String name, InkColor color) {
 		return register(singleton(blockWithItem(name, () -> new ColoredLeavesBlock(copyWithMapColor(OAK_LEAVES, color.getMapColor()), color), color), TexturedModel.LEAVES));

@@ -5,7 +5,7 @@
       "item": "spectrum:azurite_ore"
     }
   ],
-  "processingTime": 350,
+  "processing_time": 350,
   "results": [
     {
       "id": "spectrum:raw_azurite"

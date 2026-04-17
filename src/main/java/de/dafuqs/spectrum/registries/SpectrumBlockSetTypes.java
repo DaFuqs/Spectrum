@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.state.properties.*;
 
 public class SpectrumBlockSetTypes {
 	
-	public static final BlockSetType POLISHED_BASALT = new BlockSetType(
+	public static final BlockSetType POLISHED_BASALT = BlockSetType.register(new BlockSetType(
 			SpectrumCommon.MOD_ID + "_polished_basalt",
 			true, true, false,
 			BlockSetType.PressurePlateSensitivity.MOBS,
@@ -20,9 +20,9 @@ public class SpectrumBlockSetTypes {
 			SoundEvents.STONE_PRESSURE_PLATE_CLICK_ON,
 			SoundEvents.STONE_BUTTON_CLICK_OFF,
 			SoundEvents.STONE_BUTTON_CLICK_ON
-	);
+	));
 	
-	public static final BlockSetType POLISHED_CALCITE = new BlockSetType(
+	public static final BlockSetType POLISHED_CALCITE = BlockSetType.register(new BlockSetType(
 			SpectrumCommon.MOD_ID + "_polished_calcite",
 			true, true, false,
 			BlockSetType.PressurePlateSensitivity.MOBS,
@@ -35,9 +35,9 @@ public class SpectrumBlockSetTypes {
 			SoundEvents.STONE_PRESSURE_PLATE_CLICK_ON,
 			SoundEvents.STONE_BUTTON_CLICK_OFF,
 			SoundEvents.STONE_BUTTON_CLICK_ON
-	);
+	));
 	
-	public static final BlockSetType POLISHED_BLACKSLAG = new BlockSetType(
+	public static final BlockSetType POLISHED_BLACKSLAG = BlockSetType.register(new BlockSetType(
 			SpectrumCommon.MOD_ID + "_polished_blackslag",
 			true, true, false,
 			BlockSetType.PressurePlateSensitivity.MOBS,
@@ -50,8 +50,8 @@ public class SpectrumBlockSetTypes {
 			SoundEvents.STONE_PRESSURE_PLATE_CLICK_ON,
 			SoundEvents.STONE_BUTTON_CLICK_OFF,
 			SoundEvents.STONE_BUTTON_CLICK_ON
-	);
+	));
 	
-	public static final BlockSetType NOXWOOD = new BlockSetType(SpectrumCommon.MOD_ID + "_noxwood");
-	public static final BlockSetType COLORED_WOOD = new BlockSetType(SpectrumCommon.MOD_ID + "_colored_wood");
+	public static final BlockSetType NOXWOOD = BlockSetType.register(new BlockSetType(SpectrumCommon.MOD_ID + "_noxwood"));
+	public static final BlockSetType COLORED_WOOD = BlockSetType.register(new BlockSetType(SpectrumCommon.MOD_ID + "_colored_wood"));
 }

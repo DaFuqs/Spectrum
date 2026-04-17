@@ -914,10 +914,10 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> CHESTNUT_NOXWOOD_PRESSURE_PLATE = register(blockWithItem("chestnut_noxwood_pressure_plate", () -> new PressurePlateBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.CRIMSON_NYLIUM)), InkColors.LIME));
 	
 	public static Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> registerSign(String name, WoodType woodType, BlockBehaviour.Properties properties) {
-		DeferredBlock<WallSignBlock> wallSign = register(block(name + "_wall_sign", () -> new WallSignBlock(woodType, properties)));
-		return Pair.of(register(blockWithItem(name + "_noxwood_sign",
-				() -> new StandingSignBlock(woodType, properties),
-				signBlock -> new SignItem(new Item.Properties().stacksTo(16), signBlock, wallSign.get()), InkColors.BROWN)), wallSign);
+		DeferredBlock<StandingSignBlock> sign = register(block(name + "_sign", () -> new StandingSignBlock(woodType, properties)));
+		DeferredBlock<WallSignBlock> wallSign = register(block(name + "_wall_sign", () -> new WallSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(sign.get()).lootFrom(sign))));
+		SpectrumItems.register(name + "_sign", () -> new SignItem(new Item.Properties().stacksTo(16), sign.get(), wallSign.get()));
+		return Pair.of(sign, wallSign);
 	}
 	
 	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> EBONY_NOXWOOD_SIGN = registerSign("ebony_noxwood", SpectrumWoodTypes.EBONY_NOXWOOD, noxcap(MapColor.TERRACOTTA_BLACK));
@@ -926,10 +926,10 @@ public class SpectrumBlocks {
 	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> CHESTNUT_NOXWOOD_SIGN = registerSign("chestnut_noxwood", SpectrumWoodTypes.CHESTNUT_NOXWOOD, noxcap(MapColor.CRIMSON_NYLIUM));
 	
 	public static Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> registerHangingSign(String name, WoodType woodType, BlockBehaviour.Properties properties) {
-		DeferredBlock<WallHangingSignBlock> wallSign = register(block(name + "_wall_hanging_sign", () -> new WallHangingSignBlock(woodType, properties)));
-		return Pair.of(register(blockWithItem(name + "_hanging_sign",
-				() -> new CeilingHangingSignBlock(woodType, properties),
-				(signBlock) -> new HangingSignItem(signBlock, wallSign.get(), new Item.Properties().stacksTo(16)), InkColors.BROWN)), wallSign);
+		DeferredBlock<CeilingHangingSignBlock> sign = register(block(name + "_hanging_sign", () -> new CeilingHangingSignBlock(woodType, properties)));
+		DeferredBlock<WallHangingSignBlock> wallSign = register(block(name + "_wall_hanging_sign", () -> new WallHangingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(sign.get()).lootFrom(sign))));
+		SpectrumItems.register(name + "_hanging_sign", () -> new HangingSignItem(sign.get(), wallSign.get(), new Item.Properties().stacksTo(16)));
+		return Pair.of(sign, wallSign);
 	}
 	
 	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> EBONY_NOXWOOD_HANGING_SIGN = registerHangingSign("ebony_noxwood", SpectrumWoodTypes.EBONY_NOXWOOD, noxcap(MapColor.TERRACOTTA_BLACK));

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right_open",
+  "textures": {
+    "bottom": "spectrum:block/white_door_bottom",
+    "top": "spectrum:block/white_door_top"
+  }
+}

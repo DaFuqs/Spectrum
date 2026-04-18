@@ -848,6 +848,23 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.POLISHED_CALCITE_BUTTON);
 					entries.accept(SpectrumBlocks.POLISHED_CALCITE_PRESSURE_PLATE);
 					
+					entries.accept(SpectrumBlocks.WHITE_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.ORANGE_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.MAGENTA_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.YELLOW_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.LIME_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.PINK_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.GRAY_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.CYAN_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.PURPLE_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.BLUE_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.BROWN_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.GREEN_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.RED_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.BLACK_GRASS_BLOCK);
+					
 					entries.accept(SpectrumBlocks.BLACKSLAG);
 					entries.accept(SpectrumBlocks.BLACKSLAG_SLAB);
 					entries.accept(SpectrumBlocks.BLACKSLAG_WALL);

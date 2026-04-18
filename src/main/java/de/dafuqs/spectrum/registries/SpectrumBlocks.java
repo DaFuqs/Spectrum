@@ -1621,6 +1621,27 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredLeavesBlock> WHITE_LEAVES = registerColoredLeaves("white_leaves", InkColors.WHITE);
 	public static final DeferredBlock<ColoredLeavesBlock> YELLOW_LEAVES = registerColoredLeaves("yellow_leaves", InkColors.YELLOW);
 	
+	public static DeferredBlock<ColoredGrassBlock> registerColoredGrassBlock(String name, InkColor color) {
+		return register(blockWithItem(name, () -> new ColoredGrassBlock(copyWithMapColor(GRASS_BLOCK, color.getMapColor()), color), color));
+	}
+	
+	public static final DeferredBlock<ColoredGrassBlock> BLACK_GRASS_BLOCK = registerColoredGrassBlock("black_grass_block", InkColors.BLACK);
+	public static final DeferredBlock<ColoredGrassBlock> BLUE_GRASS_BLOCK = registerColoredGrassBlock("blue_grass_block", InkColors.BLUE);
+	public static final DeferredBlock<ColoredGrassBlock> BROWN_GRASS_BLOCK = registerColoredGrassBlock("brown_grass_block", InkColors.BROWN);
+	public static final DeferredBlock<ColoredGrassBlock> CYAN_GRASS_BLOCK = registerColoredGrassBlock("cyan_grass_block", InkColors.CYAN);
+	public static final DeferredBlock<ColoredGrassBlock> GRAY_GRASS_BLOCK = registerColoredGrassBlock("gray_grass_block", InkColors.GRAY);
+	public static final DeferredBlock<ColoredGrassBlock> GREEN_GRASS_BLOCK = registerColoredGrassBlock("green_grass_block", InkColors.GREEN);
+	public static final DeferredBlock<ColoredGrassBlock> LIGHT_BLUE_GRASS_BLOCK = registerColoredGrassBlock("light_blue_grass_block", InkColors.LIGHT_BLUE);
+	public static final DeferredBlock<ColoredGrassBlock> LIGHT_GRAY_GRASS_BLOCK = registerColoredGrassBlock("light_gray_grass_block", InkColors.LIGHT_GRAY);
+	public static final DeferredBlock<ColoredGrassBlock> LIME_GRASS_BLOCK = registerColoredGrassBlock("lime_grass_block", InkColors.LIME);
+	public static final DeferredBlock<ColoredGrassBlock> MAGENTA_GRASS_BLOCK = registerColoredGrassBlock("magenta_grass_block", InkColors.MAGENTA);
+	public static final DeferredBlock<ColoredGrassBlock> ORANGE_GRASS_BLOCK = registerColoredGrassBlock("orange_grass_block", InkColors.ORANGE);
+	public static final DeferredBlock<ColoredGrassBlock> PINK_GRASS_BLOCK = registerColoredGrassBlock("pink_grass_block", InkColors.PINK);
+	public static final DeferredBlock<ColoredGrassBlock> PURPLE_GRASS_BLOCK = registerColoredGrassBlock("purple_grass_block", InkColors.PURPLE);
+	public static final DeferredBlock<ColoredGrassBlock> RED_GRASS_BLOCK = registerColoredGrassBlock("red_grass_block", InkColors.RED);
+	public static final DeferredBlock<ColoredGrassBlock> WHITE_GRASS_BLOCK = registerColoredGrassBlock("white_grass_block", InkColors.WHITE);
+	public static final DeferredBlock<ColoredGrassBlock> YELLOW_GRASS_BLOCK = registerColoredGrassBlock("yellow_grass_block", InkColors.YELLOW);
+	
 	public static DeferredBlock<GlowBlock> registerGlowBlock(String name, InkColor color) {
 		return register(simple(blockWithItem(name, () -> new GlowBlock(settings(color.getMapColor(), SoundType.BASALT, 2.5F).requiresCorrectToolForDrops().lightLevel(state -> 1).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always), color), color)));
 	}

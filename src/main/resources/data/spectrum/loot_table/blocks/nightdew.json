@@ -31,9 +31,9 @@
         {
           "condition": "spectrum:sleepers_nearby",
           "range_blocks": 20,
-          "lerp_base": 0.0005,
+          "lerp_min": 0.0005,
           "lerp_max": 0.004,
-          "delta_per_sleeping_entity_by_range": 0.05
+          "sleeping_entity_count_for_max": 16
         }
       ]
     }

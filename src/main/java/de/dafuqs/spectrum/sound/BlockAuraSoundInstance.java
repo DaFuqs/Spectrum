@@ -22,7 +22,7 @@ import java.util.*;
 public class BlockAuraSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	public static final List<BlockAuraSoundInstance> INSTANCES = new ArrayList<>();
-	private static final int MAX_DISTANCE = 48;
+	private static final int MAX_DISTANCE = 32;
 	private static final int SPACING = 16;
 	private static final float MIN_VOLUME = 0.01F;
 	private static final float MAX_VOLUME = 1.0F;

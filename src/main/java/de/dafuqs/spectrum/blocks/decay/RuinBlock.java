@@ -76,37 +76,34 @@ public class RuinBlock extends DecayBlock {
 	
 	@Override
 	public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-		if (player instanceof ServerPlayer serverPlayer && shouldCreatePortalFacingUp(level, pos, state).isPresent()) {
+		if (player instanceof ServerPlayer serverPlayer && shouldCreatePortalFacingUp(level, pos, state) != null) {
 			SpectrumAdvancementCriteria.DEEPER_DOWN_PORTAL_OPENING.trigger(serverPlayer);
 		}
 		return super.playerWillDestroy(level, pos, state, player);
 	}
 	
 	@Override
-	public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable net.minecraft.world.level.block.entity.BlockEntity blockEntity, ItemStack tool) {
-		Optional<Boolean> shouldCreatePortalFacingUp = shouldCreatePortalFacingUp(level, pos, state);
-		
-		super.playerDestroy(level, player, pos, state, blockEntity, tool);
-		
-		if (shouldCreatePortalFacingUp.isPresent() && level instanceof ServerLevel serverLevel) {
-			serverLevel.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
+	protected void spawnAfterBreak(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack, boolean dropExperience) {
+		@Nullable BlockState portalBlock = shouldCreatePortalFacingUp(level, pos, state);
+		if (portalBlock != null) {
+			level.setBlockAndUpdate(pos, portalBlock);
 		}
 	}
 	
-	protected Optional<Boolean> shouldCreatePortalFacingUp(Level level, BlockPos pos, BlockState state) {
+	protected @Nullable BlockState shouldCreatePortalFacingUp(Level level, BlockPos pos, BlockState state) {
 		DecayBlock.Conversion conversion = state.getValue(RuinBlock.CONVERSION);
 		if (level.dimension() == Level.NETHER) {
 			if (pos.getY() == level.getMinBuildHeight() + level.dimensionType().logicalHeight() - 1) { // Attempt to match the nether ceiling. Tricky...
-				return Optional.of(Boolean.TRUE);
+				return SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, true);
 			} else if (pos.getY() == level.getMinBuildHeight()) {
-				return Optional.of(Boolean.FALSE);
+				return SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, false);
 			}
 		} else if (conversion == Conversion.SPECIAL || level.dimension() == Level.OVERWORLD && pos.getY() == level.getMinBuildHeight()) {
-			return Optional.of(Boolean.FALSE);
+			return SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, false);
 		} else if (level.dimension() == SpectrumDimensionKeys.DIMENSION_KEY && pos.getY() == level.getMaxBuildHeight() - 1) { // highest layer cannot be built on
-			return Optional.of(Boolean.TRUE);
+			return SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, true);
 		}
-		return Optional.empty();
+		return null;
 	}
 	
 	

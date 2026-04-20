@@ -96,7 +96,9 @@ public class RuinBlock extends DecayBlock {
 	protected Optional<Boolean> shouldCreatePortalFacingUp(Level level, BlockPos pos, BlockState state) {
 		DecayBlock.Conversion conversion = state.getValue(RuinBlock.CONVERSION);
 		if (level.dimension() == Level.NETHER) {
-			if (pos.getY() == level.getMinBuildHeight()) {
+			if (pos.getY() == level.getMinBuildHeight() + level.dimensionType().logicalHeight() - 1) { // Attempt to match the nether ceiling. Tricky...
+				return Optional.of(Boolean.TRUE);
+			} else if (pos.getY() == level.getMinBuildHeight()) {
 				return Optional.of(Boolean.FALSE);
 			}
 		} else if (conversion == Conversion.SPECIAL || level.dimension() == Level.OVERWORLD && pos.getY() == level.getMinBuildHeight()) {

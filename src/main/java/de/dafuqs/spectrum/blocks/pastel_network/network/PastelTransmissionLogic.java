@@ -143,6 +143,9 @@ public class PastelTransmissionLogic {
 			
 			ItemStack proposedStack = stack.copyWithCount((int) proposedAmount);
 			int simulatedAmount = (int) (proposedAmount - ItemHandlerHelper.insertItemStacked(destinationStorage, proposedStack, true).getCount());
+			if(simulatedAmount == 0) {
+				continue;
+			}
 			Tuple<Integer, List<ItemStack>> matchingStacks = InventoryHelper.getStackCountInInventory(proposedStack, sourceStorage, simulatedAmount);
 			
 			if (matchingStacks.getA() == 0)

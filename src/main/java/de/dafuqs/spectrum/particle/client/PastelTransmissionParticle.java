@@ -41,7 +41,7 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
 		
 		// spawning sound & particles
 		Vec3 startPos = this.travelPositions.get(0);
-		world.playLocalSound(startPos.x(), startPos.y() + 0.25, startPos.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.15F * SpectrumConfig.CONFIG.BlockSoundVolume.get() + world.random.nextFloat() / 10F, 0.8F + world.random.nextFloat() * 0.3F, true);
+		world.playLocalSound(startPos.x(), startPos.y() + 0.25, startPos.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.15F * SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() + world.random.nextFloat() / 10F, 0.8F + world.random.nextFloat() * 0.3F, true);
 		world.addParticle(ParticleTypes.BUBBLE_POP, startPos.x(), startPos.y() + 0.25, startPos.z(), 0, 0, 0);
 	}
 	
@@ -53,7 +53,7 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
 		float travelPercent = (float) this.age / this.lifetime;
 		if (travelPercent >= 1.0F) {
 			Vec3 destination = this.travelPositions.get(vertexCount);
-			level.playLocalSound(destination.x(), destination.y() + 0.25, destination.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.1F * SpectrumConfig.CONFIG.BlockSoundVolume.get() + random.nextFloat() / 10F, 0.6F + level.random.nextFloat() * 0.3F, true);
+			level.playLocalSound(destination.x(), destination.y() + 0.25, destination.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.1F * SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() + random.nextFloat() / 10F, 0.6F + level.random.nextFloat() * 0.3F, true);
 			level.addParticle(ParticleTypes.BUBBLE_POP, destination.x(), destination.y() + 0.25, destination.z(), 0, 0, 0);
 			this.remove();
 			return;

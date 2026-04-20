@@ -201,7 +201,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 				this.inkStorage.addEnergy(inkColor, amount);
 				
 				if (SpectrumConfig.CONFIG.BlockSoundVolume.get() > 0) {
-					world.playSound(null, worldPosition, SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get() / 3, 1.0F);
+					world.playSound(null, worldPosition, SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() / 3F, 1.0F);
 				}
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world,
 						new Vec3(worldPosition.getX() + 0.5, worldPosition.getY() + 0.7, worldPosition.getZ() + 0.5),

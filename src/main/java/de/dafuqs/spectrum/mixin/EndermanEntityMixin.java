@@ -29,9 +29,9 @@ public abstract class EndermanEntityMixin {
 			
 			float chance;
 			if (world.dimension().equals(Level.END)) {
-				chance = SpectrumConfig.CONFIG.EndermanHoldingTreasureInEndChance.get();
+				chance = SpectrumConfig.CONFIG.EndermanHoldingTreasureInEndChance.get().floatValue();
 			} else {
-				chance = SpectrumConfig.CONFIG.EndermanHoldingTreasureChance.get();
+				chance = SpectrumConfig.CONFIG.EndermanHoldingTreasureChance.get().floatValue();
 			}
 			
 			if (random.nextFloat() < chance) {

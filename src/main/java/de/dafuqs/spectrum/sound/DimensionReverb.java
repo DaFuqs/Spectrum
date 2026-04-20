@@ -43,8 +43,8 @@ public class DimensionReverb {
 				return;
 			}
 			
-			float reverbTime = SpectrumConfig.CONFIG.DimensionReverbDecayTime.get();
-			float reverbDensity = SpectrumConfig.CONFIG.DimensionReverbDensity.get();
+			float reverbTime = SpectrumConfig.CONFIG.DimensionReverbDecayTime.get().floatValue();
+			float reverbDensity = SpectrumConfig.CONFIG.DimensionReverbDensity.get().floatValue();
 			if (!(reverbTime > 0) && !(reverbDensity > 0)) {
 				return;
 			}

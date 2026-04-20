@@ -15,8 +15,8 @@ public enum SpectrumToolTiers implements Tier {
 	LOW_HEALTH(
 			BlockTags.INCORRECT_FOR_IRON_TOOL,
 			SpectrumConfig.CONFIG.LowHealthDurability.get(),
-			SpectrumConfig.CONFIG.LowHealthMiningSpeed.get(),
-			SpectrumConfig.CONFIG.LowHealthAttackDamage.get(),
+			SpectrumConfig.CONFIG.LowHealthMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.LowHealthAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.LowHealthEnchantability.get(),
 			Ingredient::of
 	),
@@ -24,8 +24,8 @@ public enum SpectrumToolTiers implements Tier {
 	LOW_HEALTH_MINING_LEVEL_4(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
 			SpectrumConfig.CONFIG.LowHealthDurability.get(),
-			SpectrumConfig.CONFIG.LowHealthMiningSpeed.get(),
-			SpectrumConfig.CONFIG.LowHealthAttackDamage.get(),
+			SpectrumConfig.CONFIG.LowHealthMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.LowHealthAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.LowHealthEnchantability.get(),
 			Ingredient::of
 	),
@@ -33,8 +33,8 @@ public enum SpectrumToolTiers implements Tier {
 	VOIDING(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
 			SpectrumConfig.CONFIG.VoidingDurability.get(),
-			SpectrumConfig.CONFIG.VoidingMiningSpeed.get(),
-			SpectrumConfig.CONFIG.VoidingAttackDamage.get(),
+			SpectrumConfig.CONFIG.VoidingMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.VoidingAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.VoidingEnchantability.get(),
 			Ingredient::of
 	),
@@ -42,8 +42,8 @@ public enum SpectrumToolTiers implements Tier {
 	BEDROCK(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
 			0,
-			SpectrumConfig.CONFIG.BedrockMiningSpeed.get(),
-			SpectrumConfig.CONFIG.BedrockAttackDamage.get(),
+			SpectrumConfig.CONFIG.BedrockMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.BedrockAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.BedrockEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.BEDROCK_DUST)
 	),
@@ -51,8 +51,8 @@ public enum SpectrumToolTiers implements Tier {
 	DRACONIC(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
 			SpectrumConfig.CONFIG.DraconicDurability.get(),
-			SpectrumConfig.CONFIG.DraconicMiningSpeed.get(),
-			SpectrumConfig.CONFIG.DraconicAttackDamage.get(),
+			SpectrumConfig.CONFIG.DraconicMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.DraconicAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.DraconicEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.PURE_BLOODSTONE)
 	),
@@ -60,8 +60,8 @@ public enum SpectrumToolTiers implements Tier {
 	MALACHITE(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
 			SpectrumConfig.CONFIG.MalachiteDurability.get(),
-			SpectrumConfig.CONFIG.MalachiteMiningSpeed.get(),
-			SpectrumConfig.CONFIG.MalachiteAttackDamage.get(),
+			SpectrumConfig.CONFIG.MalachiteMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.MalachiteAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.MalachiteEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.PURE_MALACHITE)
 	),
@@ -69,8 +69,8 @@ public enum SpectrumToolTiers implements Tier {
 	GLASS_CREST(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
 			SpectrumConfig.CONFIG.GlassCrestDurability.get(),
-			SpectrumConfig.CONFIG.GlassCrestMiningSpeed.get(),
-			SpectrumConfig.CONFIG.GlassCrestAttackDamage.get(),
+			SpectrumConfig.CONFIG.GlassCrestMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.GlassCrestAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.GlassCrestEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.PURE_MALACHITE)
 	),
@@ -78,8 +78,8 @@ public enum SpectrumToolTiers implements Tier {
 	VERDIGRIS(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
 			SpectrumConfig.CONFIG.VerdigrisDurability.get(),
-			SpectrumConfig.CONFIG.VerdigrisMiningSpeed.get(),
-			SpectrumConfig.CONFIG.VerdigrisAttackDamage.get(),
+			SpectrumConfig.CONFIG.VerdigrisMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.VerdigrisAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.VerdigrisEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.NIGHTDEW_SPROUT)
 	),
@@ -87,8 +87,8 @@ public enum SpectrumToolTiers implements Tier {
 	NECTAR(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
 			SpectrumConfig.CONFIG.NectarDurability.get(),
-			SpectrumConfig.CONFIG.NectarMiningSpeed.get(),
-			SpectrumConfig.CONFIG.NectarAttackDamage.get(),
+			SpectrumConfig.CONFIG.NectarMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.NectarAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.NectarEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.AETHER_VESTIGES)
 	),
@@ -96,16 +96,16 @@ public enum SpectrumToolTiers implements Tier {
 	DREAMFLAYER(
 			BlockTags.INCORRECT_FOR_IRON_TOOL,
 			SpectrumConfig.CONFIG.DreamflayerDurability.get(),
-			SpectrumConfig.CONFIG.DreamflayerMiningSpeed.get(),
-			SpectrumConfig.CONFIG.DreamflayerAttackDamage.get(),
+			SpectrumConfig.CONFIG.DreamflayerMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.DreamflayerAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.DreamflayerEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.BISMUTH_CRYSTAL)
 	),
 	
 	NIGHTFALL(BlockTags.INCORRECT_FOR_IRON_TOOL,
 			SpectrumConfig.CONFIG.NightfallDurability.get(),
-			SpectrumConfig.CONFIG.NightfallMiningSpeed.get(),
-			SpectrumConfig.CONFIG.NightfallAttackDamage.get(),
+			SpectrumConfig.CONFIG.NightfallMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.NightfallAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.NightfallEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.MIDNIGHT_CHIP)
 	);

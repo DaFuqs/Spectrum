@@ -63,7 +63,7 @@ public class ShootingStarSpawner implements CustomSpawner {
 		if (playerEntity.hasEffect(MobEffects.NIGHT_VISION)) {
 			multiplier++;
 		}
-		return SpectrumConfig.CONFIG.ShootingStarSpawnChance.get() * multiplier;
+		return SpectrumConfig.CONFIG.ShootingStarSpawnChance.get().floatValue() * multiplier;
 	}
 	
 	public static void spawnShootingStar(ServerLevel serverWorld, @NotNull Player playerEntity) {

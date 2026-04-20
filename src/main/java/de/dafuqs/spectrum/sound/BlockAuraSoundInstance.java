@@ -59,7 +59,7 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 			updatePositionAndCount();
 		}
 		
-		float targetVolume = (float) Mth.clamp((sources.size() * 0.05 - 0.5), MIN_VOLUME, MAX_VOLUME) * SpectrumConfig.CONFIG.OreAuraSoundVolume.get();
+		float targetVolume = (float) Mth.clamp((sources.size() * 0.05 - 0.5), MIN_VOLUME, MAX_VOLUME) * SpectrumConfig.CONFIG.OreAuraSoundVolume.get().floatValue();
 		
 		if (this.volumeHold < targetVolume) {
 			this.volumeHold += VOLUME_EASING_STEPS;

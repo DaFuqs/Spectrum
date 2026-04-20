@@ -49,12 +49,12 @@ public abstract class DecayBlock extends DropExperienceBlock {
 	
 	public static final EnumProperty<Conversion> CONVERSION = EnumProperty.create("conversion", Conversion.class);
 	
-	protected final float spreadChance;
+	protected final double spreadChance;
 	protected final boolean canSpreadToBlockEntities;
 	protected final float damageOnTouching;
 	protected final int tier;
 	
-	public DecayBlock(Properties settings, float spreadChance, boolean canSpreadToBlockEntities, int tier, float damageOnTouching, IntProvider xpRange) {
+	public DecayBlock(Properties settings, double spreadChance, boolean canSpreadToBlockEntities, int tier, float damageOnTouching, IntProvider xpRange) {
 		super(xpRange, settings);
 		this.spreadChance = spreadChance;
 		this.canSpreadToBlockEntities = canSpreadToBlockEntities;

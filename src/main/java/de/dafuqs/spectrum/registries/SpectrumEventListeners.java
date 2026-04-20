@@ -617,7 +617,7 @@ public class SpectrumEventListeners {
 				ItemStack mainHandStack = livingAttacker.getMainHandItem();
 				int level = SpectrumEnchantmentHelper.getLevel(livingAttacker.level().registryAccess(), SpectrumEnchantmentKeys.FIRST_STRIKE, mainHandStack);
 				if (level > 0) {
-					float additionalFirstStrikeDamage = SpectrumConfig.CONFIG.FirstStrikeDamagePerLevel.get() * level;
+					float additionalFirstStrikeDamage = SpectrumConfig.CONFIG.FirstStrikeDamagePerLevel.get().floatValue() * level;
 					event.setNewDamage(newDamage + additionalFirstStrikeDamage);
 				}
 			}
@@ -651,7 +651,7 @@ public class SpectrumEventListeners {
 		if (!source.is(DamageTypes.THORNS) && sourceEntity instanceof LivingEntity livingSource) {
 			int disarmingLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), SpectrumEnchantmentKeys.DISARMING, livingSource.getMainHandItem());
 			if (disarmingLevel > 0) {
-				float disarmingChance = disarmingLevel * (hurtEntity instanceof Player ? SpectrumConfig.CONFIG.DisarmingChancePerLevelPlayers.get() : SpectrumConfig.CONFIG.DisarmingChancePerLevelMobs.get());
+				float disarmingChance = disarmingLevel * (hurtEntity instanceof Player ? SpectrumConfig.CONFIG.DisarmingChancePerLevelPlayers.get().floatValue() : SpectrumConfig.CONFIG.DisarmingChancePerLevelMobs.get().floatValue());
 				if(level.getRandom().nextFloat() < disarmingChance) {
 					disarmEntity(hurtEntity);
 				}

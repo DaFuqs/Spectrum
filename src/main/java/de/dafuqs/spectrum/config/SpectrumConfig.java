@@ -22,31 +22,31 @@ public class SpectrumConfig {
 	}
 	
 	public final ModConfigSpec.ConfigValue<Long> ToastTimeMilliseconds;
-	public final ModConfigSpec.ConfigValue<Float> DimensionReverbDecayTime;
-	public final ModConfigSpec.ConfigValue<Float> DimensionReverbDensity;
+	public final ModConfigSpec.ConfigValue<Double> DimensionReverbDecayTime;
+	public final ModConfigSpec.ConfigValue<Double> DimensionReverbDensity;
 	public final ModConfigSpec.ConfigValue<Boolean> WindSim;
 	public final ModConfigSpec.ConfigValue<Boolean> ReducedParticles;
 	public final ModConfigSpec.ConfigValue<Integer> WindSimInterval;
 	public final ModConfigSpec.ConfigValue<Boolean> PostProcessShaders;
 	public final ModConfigSpec.ConfigValue<Boolean> AlwaysSpawnLightBlockParticles;
 	public final ModConfigSpec.ConfigValue<Boolean> PastelNetworkParticles;
-	public final ModConfigSpec.ConfigValue<Float> DimensionBrightnessMod;
+	public final ModConfigSpec.ConfigValue<Double> DimensionBrightnessMod;
 	public final ModConfigSpec.ConfigValue<List<? extends String>> IntegrationPacksToSkipLoading;
 	public final ModConfigSpec.ConfigValue<Boolean> AddItemTooltips;
 	public final ModConfigSpec.ConfigValue<Boolean> BedrockAnvilCanExceedMaxVanillaEnchantmentLevel;
-	public final ModConfigSpec.ConfigValue<Float> EndermanHoldingTreasureChance;
-	public final ModConfigSpec.ConfigValue<Float> EndermanHoldingTreasureInEndChance;
+	public final ModConfigSpec.ConfigValue<Double> EndermanHoldingTreasureChance;
+	public final ModConfigSpec.ConfigValue<Double> EndermanHoldingTreasureInEndChance;
 	public final ModConfigSpec.ConfigValue<List<? extends String>> ShootingStarDimensions;
 	public final ModConfigSpec.ConfigValue<List<? extends String>> StormStoneDimensions;
-	public final ModConfigSpec.ConfigValue<Float> StormStoneSpawnChance;
-	public final ModConfigSpec.ConfigValue<Float> ShootingStarSpawnChance;
+	public final ModConfigSpec.ConfigValue<Double> StormStoneSpawnChance;
+	public final ModConfigSpec.ConfigValue<Double> ShootingStarSpawnChance;
 	public final ModConfigSpec.ConfigValue<Integer> VanillaRecipeCraftingTimeTicks;
-	public final ModConfigSpec.ConfigValue<Float> RepairAnythingRecipeRepairPercentage;
+	public final ModConfigSpec.ConfigValue<Double> RepairAnythingRecipeRepairPercentage;
 	
-	public final ModConfigSpec.ConfigValue<Float> FadingSpreadChanceOnRandomTick;
-	public final ModConfigSpec.ConfigValue<Float> FailingDecayTickRate;
-	public final ModConfigSpec.ConfigValue<Float> RuinDecayTickRate;
-	public final ModConfigSpec.ConfigValue<Float> ForfeitureDecayTickRate;
+	public final ModConfigSpec.ConfigValue<Double> FadingSpreadChanceOnRandomTick;
+	public final ModConfigSpec.ConfigValue<Double> FailingDecayTickRate;
+	public final ModConfigSpec.ConfigValue<Double> RuinDecayTickRate;
+	public final ModConfigSpec.ConfigValue<Double> ForfeitureDecayTickRate;
 	
 	public final ModConfigSpec.ConfigValue<Boolean> CanBottleUpFading;
 	public final ModConfigSpec.ConfigValue<Boolean> CanBottleUpFailing;
@@ -60,14 +60,14 @@ public class SpectrumConfig {
 	
 	public final ModConfigSpec.ConfigValue<Boolean> LogPlacingOfDecay;
 	public final ModConfigSpec.ConfigValue<Boolean> AllowDynamicEndPortalShape;
-	public final ModConfigSpec.ConfigValue<Float> BlockSoundVolume;
-	public final ModConfigSpec.ConfigValue<Float> OreAuraSoundVolume;
+	public final ModConfigSpec.ConfigValue<Double> BlockSoundVolume;
+	public final ModConfigSpec.ConfigValue<Double> OreAuraSoundVolume;
 	public final ModConfigSpec.ConfigValue<String> NameForUnrevealedEnchantments;
-	public final ModConfigSpec.ConfigValue<Float> ImprovedCriticalExtraDamageMultiplierPerLevel;
-	public final ModConfigSpec.ConfigValue<Float> FirstStrikeDamagePerLevel;
-	public final ModConfigSpec.ConfigValue<Float> DisarmingChancePerLevelMobs;
-	public final ModConfigSpec.ConfigValue<Float> DisarmingChancePerLevelPlayers;
-	public final ModConfigSpec.ConfigValue<Float> PestControlExperienceMultiplier;
+	public final ModConfigSpec.ConfigValue<Double> ImprovedCriticalExtraDamageMultiplierPerLevel;
+	public final ModConfigSpec.ConfigValue<Double> FirstStrikeDamagePerLevel;
+	public final ModConfigSpec.ConfigValue<Double> DisarmingChancePerLevelMobs;
+	public final ModConfigSpec.ConfigValue<Double> DisarmingChancePerLevelPlayers;
+	public final ModConfigSpec.ConfigValue<Double> PestControlExperienceMultiplier;
 	
 	public final ModConfigSpec.ConfigValue<Integer> GlowVisionGogglesDuration;
 	public final ModConfigSpec.ConfigValue<Boolean> OmniAcceleratorPvP;
@@ -76,8 +76,8 @@ public class SpectrumConfig {
 	public final ModConfigSpec.ConfigValue<Integer> GemstoneArmorChestplateProtection;
 	public final ModConfigSpec.ConfigValue<Integer> GemstoneArmorLeggingsProtection;
 	public final ModConfigSpec.ConfigValue<Integer> GemstoneArmorBootsProtection;
-	public final ModConfigSpec.ConfigValue<Float> GemstoneArmorToughness;
-	public final ModConfigSpec.ConfigValue<Float> GemstoneArmorKnockbackResistance;
+	public final ModConfigSpec.ConfigValue<Double> GemstoneArmorToughness;
+	public final ModConfigSpec.ConfigValue<Double> GemstoneArmorKnockbackResistance;
 	
 	public final ModConfigSpec.ConfigValue<Integer> GemstoneArmorWeaknessAmplifier;
 	public final ModConfigSpec.ConfigValue<Integer> GemstoneArmorSlownessAmplifier;
@@ -90,56 +90,56 @@ public class SpectrumConfig {
 	public final ModConfigSpec.ConfigValue<Integer> BedrockArmorLeggingsProtection;
 	public final ModConfigSpec.ConfigValue<Integer> BedrockArmorChestplateProtection;
 	public final ModConfigSpec.ConfigValue<Integer> BedrockArmorBootsProtection;
-	public final ModConfigSpec.ConfigValue<Float> BedrockArmorToughness;
-	public final ModConfigSpec.ConfigValue<Float> BedrockArmorKnockbackResistance;
+	public final ModConfigSpec.ConfigValue<Double> BedrockArmorToughness;
+	public final ModConfigSpec.ConfigValue<Double> BedrockArmorKnockbackResistance;
 	
 	public final ModConfigSpec.ConfigValue<Integer> LowHealthDurability;
-	public final ModConfigSpec.ConfigValue<Float> LowHealthMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Float> LowHealthAttackDamage;
+	public final ModConfigSpec.ConfigValue<Double> LowHealthMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> LowHealthAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> LowHealthEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Integer> VoidingDurability;
-	public final ModConfigSpec.ConfigValue<Float> VoidingMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Float> VoidingAttackDamage;
+	public final ModConfigSpec.ConfigValue<Double> VoidingMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> VoidingAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> VoidingEnchantability;
 	
-	public final ModConfigSpec.ConfigValue<Float> BedrockMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Float> BedrockAttackDamage;
+	public final ModConfigSpec.ConfigValue<Double> BedrockMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> BedrockAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> BedrockEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Integer> DraconicDurability;
-	public final ModConfigSpec.ConfigValue<Float> DraconicMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Float> DraconicAttackDamage;
+	public final ModConfigSpec.ConfigValue<Double> DraconicMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> DraconicAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> DraconicEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Integer> MalachiteDurability;
-	public final ModConfigSpec.ConfigValue<Float> MalachiteMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Float> MalachiteAttackDamage;
+	public final ModConfigSpec.ConfigValue<Double> MalachiteMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> MalachiteAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> MalachiteEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Integer> GlassCrestDurability;
-	public final ModConfigSpec.ConfigValue<Float> GlassCrestMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Float> GlassCrestAttackDamage;
+	public final ModConfigSpec.ConfigValue<Double> GlassCrestMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> GlassCrestAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> GlassCrestEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Integer> VerdigrisDurability;
-	public final ModConfigSpec.ConfigValue<Float> VerdigrisMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Float> VerdigrisAttackDamage;
+	public final ModConfigSpec.ConfigValue<Double> VerdigrisMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> VerdigrisAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> VerdigrisEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Integer> NectarDurability;
-	public final ModConfigSpec.ConfigValue<Float> NectarMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Float> NectarAttackDamage;
+	public final ModConfigSpec.ConfigValue<Double> NectarMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> NectarAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> NectarEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Integer> DreamflayerDurability;
-	public final ModConfigSpec.ConfigValue<Float> DreamflayerMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Float> DreamflayerAttackDamage;
+	public final ModConfigSpec.ConfigValue<Double> DreamflayerMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> DreamflayerAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> DreamflayerEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Integer> NightfallDurability;
-	public final ModConfigSpec.ConfigValue<Float> NightfallMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Float> NightfallAttackDamage;
+	public final ModConfigSpec.ConfigValue<Double> NightfallMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> NightfallAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> NightfallEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Integer> MaxLevelForEffectsInLesserPotionPendant;
@@ -156,12 +156,12 @@ public class SpectrumConfig {
 		DimensionReverbDecayTime = builder
 				.translation("config.spectrum.dimension_reverb_decay_time")
 				.comment("The reverb decay time for sound effects in Spectrum's dimension")
-				.define("dimension_reverb_decay_time", 8.0F);
+				.define("dimension_reverb_decay_time", 8.0D);
 		
 		DimensionReverbDensity = builder
 				.translation("config.spectrum.dimension_reverb_density")
 				.comment("The reverb density for sound effects in Spectrum's dimension")
-				.define("dimension_reverb_density", 0.5F);
+				.define("dimension_reverb_density", 0.5D);
 		
 		WindSim = builder
 				.translation("config.spectrum.wind_sim")
@@ -194,7 +194,7 @@ public class SpectrumConfig {
 		DimensionBrightnessMod = builder
 				.translation("config.spectrum.dimension_brightness_mod")
 				.comment("Adjusts the general brightness of the dimension (0 = default; 1 = darkening disabled")
-				.define("dimension_brightness_mod", 0.0F);
+				.define("dimension_brightness_mod", 0.0D);
 		
 		IntegrationPacksToSkipLoading = builder
 				.translation("config.spectrum.integration_packs_to_skip_loading")
@@ -221,11 +221,11 @@ public class SpectrumConfig {
 			Separate value for Endermen spawning in the end, since there are LOTS of them there
 			Those blocks do not gate progression, so it is not that drastic not finding any right away.
 			Better to let players stumble about them organically instead of forcing it.""")
-				.define("enderman_holding_treasure_chance", 0.1F);
+				.define("enderman_holding_treasure_chance", 0.1D);
 		
 		EndermanHoldingTreasureInEndChance = builder
 				.translation("config.spectrum.enderman_holding_treasure_chance_in_end")
-				.define("enderman_holding_treasure_chance_in_end", 0.0075F);
+				.define("enderman_holding_treasure_chance_in_end", 0.0075D);
 		
 		ShootingStarDimensions = builder
 				.translation("config.spectrum.shooting_star_dimensions")
@@ -238,7 +238,7 @@ public class SpectrumConfig {
 			Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 100 chances per night).
 			By default, there is a 0.0075 ^= 0.75 % chance at each of those check times. Making it ~1 shooting star spawn
 			per night per player that unlocked the required progression.""")
-				.define("shooting_star_spawn_chance", 0.0075F);
+				.define("shooting_star_spawn_chance", 0.0075D);
 		
 		StormStoneDimensions = builder
 				.translation("config.spectrum.storm_stone_dimensions")
@@ -248,7 +248,7 @@ public class SpectrumConfig {
 		StormStoneSpawnChance = builder
 				.translation("config.spectrum.storm_stone_spawn_chance")
 				.comment("Chance for a lightning strike to spawn a Storm Stone")
-				.define("storm_stone_spawn_chance", 0.4F);
+				.define("storm_stone_spawn_chance", 0.4D);
 		
 		VanillaRecipeCraftingTimeTicks = builder
 				.translation("config.spectrum.vanilla_recipe_crafting_time_ticks")
@@ -261,7 +261,7 @@ public class SpectrumConfig {
 		RepairAnythingRecipeRepairPercentage = builder
 				.translation("config.spectrum.repair_anything_recipe_repair_percentage")
 				.comment("How much an item gets repaired when crafting it with Moonstruck Nectar")
-				.define("repair_anything_recipe_repair_percentage", 0.33F);
+				.define("repair_anything_recipe_repair_percentage", 0.33D);
 		
 		FadingSpreadChanceOnRandomTick = builder
 				.translation("config.spectrum.fading_spread_chance_on_random_tick")
@@ -277,19 +277,19 @@ public class SpectrumConfig {
 			1.0: Every random tick (default)
 			0.5: Every second random tick
 			0.0: Never (forbidden - players would be unable to progress)""")
-				.define("fading_spread_chance_on_random_tick", 1.0F, value -> value instanceof Float f && f > 0.0F && f <= 1.0F);
+				.define("fading_spread_chance_on_random_tick", 1.0D, value -> value instanceof Double d && d > 0.0D && d <= 1.0D);
 		
 		FailingDecayTickRate = builder
 				.translation("config.spectrum.failing_spread_chance_on_random_tick")
-				.define("failing_spread_chance_on_random_tick", 1.0F, value -> value instanceof Float f && f > 0.0F && f <= 1.0F);
+				.define("failing_spread_chance_on_random_tick", 1.0D, value -> value instanceof Double d && d > 0.0D && d <= 1.0D);
 		
 		RuinDecayTickRate = builder
 				.translation("config.spectrum.ruin_spread_chance_on_random_tick")
-				.define("ruin_spread_chance_on_random_tick", 1.0F, value -> value instanceof Float f && f > 0.0F && f <= 1.0F);
+				.define("ruin_spread_chance_on_random_tick", 1.0D, value -> value instanceof Double d && d > 0.0D && d <= 1.0D);
 		
 		ForfeitureDecayTickRate = builder
 				.translation("config.spectrum.forfeiture_spread_chance_on_random_tick")
-				.define("forfeiture_spread_chance_on_random_tick", 1.0F, value -> value instanceof Float f && f > 0.0F && f <= 1.0F);
+				.define("forfeiture_spread_chance_on_random_tick", 1.0D, value -> value instanceof Double d && d > 0.0D && d <= 1.0D);
 		
 		CanBottleUpFading = builder
 				.translation("config.spectrum.can_bottle_up_fading")
@@ -338,12 +338,12 @@ public class SpectrumConfig {
 		BlockSoundVolume = builder
 				.translation("config.spectrum.block_sound_volume")
 				.comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
-				.define("block_sound_volume", 0.5F);
+				.define("block_sound_volume", 0.5D);
 		
 		OreAuraSoundVolume = builder
 				.translation("config.spectrum.ore_aura_sound_volume")
 				.comment("The volume for audio that plays when close to certain ores")
-				.define("ore_aura_sound_volume", 0.5F);
+				.define("ore_aura_sound_volume", 0.5D);
 		
 		NameForUnrevealedEnchantments = builder
 				.translation("config.spectrum.name_for_unrevealed_enchantments")
@@ -353,27 +353,27 @@ public class SpectrumConfig {
 		ImprovedCriticalExtraDamageMultiplierPerLevel = builder
 				.translation("config.spectrum.improved_critical_extra_damage_multiplier_per_level")
 				.comment("In vanilla, crits are a flat 50 % damage bonus. Improved Critical increases this damage by additional 50 % per level by default")
-				.define("improved_critical_extra_damage_multiplier_per_level", 0.5F);
+				.define("improved_critical_extra_damage_multiplier_per_level", 0.5D);
 		
 		FirstStrikeDamagePerLevel = builder
 				.translation("config.spectrum.first_strike_damage_per_level")
 				.comment("Flat additional damage dealt with each level of the First Strike enchantment")
-				.define("first_strike_damage_per_level", 2.0F);
+				.define("first_strike_damage_per_level", 2.0D);
 		
 		DisarmingChancePerLevelMobs = builder
 				.translation("config.spectrum.disarming_chance_per_level_mobs")
 				.comment("The percentile a mobs armor/hand stacks are being dropped when hit with a Disarming enchanted weapon per the enchantments level")
-				.define("disarming_chance_per_level_mobs", 0.01F);
+				.define("disarming_chance_per_level_mobs", 0.01D);
 		
 		DisarmingChancePerLevelPlayers = builder
 				.translation("config.spectrum.disarming_chance_per_level_players")
 				.comment("If > 0 the Disarming Enchantment is able to remove armor and hand tools from a hit player. Should be a far smaller chance than for mobs")
-				.define("disarming_chance_per_level_players", 0.0025F);
+				.define("disarming_chance_per_level_players", 0.0025D);
 		
 		PestControlExperienceMultiplier = builder
 				.translation("config.spectrum.pest_control_experience_multiplier")
 				.comment("Experience dropped my mined infested blocks is multiplied by this value")
-				.define("pest_control_experience_multiplier", 2.0F);
+				.define("pest_control_experience_multiplier", 2.0D);
 		
 		GlowVisionGogglesDuration = builder
 				.translation("config.spectrum.glow_vision_goggles_duration")
@@ -403,11 +403,11 @@ public class SpectrumConfig {
 		
 		GemstoneArmorToughness = builder
 				.translation("config.spectrum.gemstone_armor_toughness")
-				.define("gemstone_armor_toughness", 0.0F);
+				.define("gemstone_armor_toughness", 0.0D);
 		
 		GemstoneArmorKnockbackResistance = builder
 				.translation("config.spectrum.gemstone_armor_knockback_resistance")
-				.define("gemstone_armor_knockback_resistance", 0.0F);
+				.define("gemstone_armor_knockback_resistance", 0.0D);
 		
 		GemstoneArmorWeaknessAmplifier = builder
 				.translation("config.spectrum.gemstone_armor_weakness_amplifier")
@@ -451,11 +451,11 @@ public class SpectrumConfig {
 		
 		BedrockArmorToughness = builder
 				.translation("config.spectrum.bedrock_armor_toughness")
-				.define("bedrock_armor_toughness", 3.0F);
+				.define("bedrock_armor_toughness", 3.0D);
 		
 		BedrockArmorKnockbackResistance = builder
 				.translation("config.spectrum.bedrock_armor_knockback_resistance")
-				.define("bedrock_armor_knockback_resistance", 0.3F);
+				.define("bedrock_armor_knockback_resistance", 0.3D);
 		
 		LowHealthDurability = builder
 				.translation("config.spectrum.low_health_durability")
@@ -464,11 +464,11 @@ public class SpectrumConfig {
 		
 		LowHealthMiningSpeed = builder
 				.translation("config.spectrum.low_health_mining_speed")
-				.define("low_health_mining_speed", 4.0F);
+				.define("low_health_mining_speed", 4.0D);
 		
 		LowHealthAttackDamage = builder
 				.translation("config.spectrum.low_health_attack_damage")
-				.define("low_health_attack_damage", 2.0F);
+				.define("low_health_attack_damage", 2.0D);
 		
 		LowHealthEnchantability = builder
 				.translation("config.spectrum.low_health_enchantability")
@@ -480,11 +480,11 @@ public class SpectrumConfig {
 		
 		VoidingMiningSpeed = builder
 				.translation("config.spectrum.voiding_mining_speed")
-				.define("voiding_mining_speed", 20.0F);
+				.define("voiding_mining_speed", 20.0D);
 		
 		VoidingAttackDamage = builder
 				.translation("config.spectrum.voiding_attack_damage")
-				.define("voiding_attack_damage", 1.0F);
+				.define("voiding_attack_damage", 1.0D);
 		
 		VoidingEnchantability = builder
 				.translation("config.spectrum.voiding_enchantability")
@@ -492,11 +492,11 @@ public class SpectrumConfig {
 		
 		BedrockMiningSpeed = builder
 				.translation("config.spectrum.bedrock_mining_speed")
-				.define("bedrock_mining_speed", 15.0F);
+				.define("bedrock_mining_speed", 15.0D);
 		
 		BedrockAttackDamage = builder
 				.translation("config.spectrum.bedrock_attack_damage")
-				.define("bedrock_attack_damage", 5.0F);
+				.define("bedrock_attack_damage", 5.0D);
 		
 		BedrockEnchantability = builder
 				.translation("config.spectrum.bedrock_enchantability")
@@ -508,11 +508,11 @@ public class SpectrumConfig {
 		
 		DraconicMiningSpeed = builder
 				.translation("config.spectrum.draconic_mining_speed")
-				.define("draconic_mining_speed", 11.5F);
+				.define("draconic_mining_speed", 11.5D);
 		
 		DraconicAttackDamage = builder
 				.translation("config.spectrum.draconic_attack_damage")
-				.define("draconic_attack_damage", 7.0F);
+				.define("draconic_attack_damage", 7.0D);
 		
 		DraconicEnchantability = builder
 				.translation("config.spectrum.draconic_enchantability")
@@ -524,11 +524,11 @@ public class SpectrumConfig {
 		
 		MalachiteMiningSpeed = builder
 				.translation("config.spectrum.malachite_mining_speed")
-				.define("malachite_mining_speed", 14.0F);
+				.define("malachite_mining_speed", 14.0D);
 		
 		MalachiteAttackDamage = builder
 				.translation("config.spectrum.malachite_attack_damage")
-				.define("malachite_attack_damage", 5.0F);
+				.define("malachite_attack_damage", 5.0D);
 		
 		MalachiteEnchantability = builder
 				.translation("config.spectrum.malachite_enchantability")
@@ -540,11 +540,11 @@ public class SpectrumConfig {
 		
 		GlassCrestMiningSpeed = builder
 				.translation("config.spectrum.glass_crest_mining_speed")
-				.define("glass_crest_mining_speed", 18.0F);
+				.define("glass_crest_mining_speed", 18.0D);
 		
 		GlassCrestAttackDamage = builder
 				.translation("config.spectrum.glass_crest_attack_damage")
-				.define("glass_crest_attack_damage", 10.0F);
+				.define("glass_crest_attack_damage", 10.0D);
 		
 		GlassCrestEnchantability = builder
 				.translation("config.spectrum.glass_crest_enchantability")
@@ -556,11 +556,11 @@ public class SpectrumConfig {
 		
 		VerdigrisMiningSpeed = builder
 				.translation("config.spectrum.verdigris_mining_speed")
-				.define("verdigris_mining_speed", 7.0F);
+				.define("verdigris_mining_speed", 7.0D);
 		
 		VerdigrisAttackDamage = builder
 				.translation("config.spectrum.verdigris_attack_damage")
-				.define("verdigris_attack_damage", 2.5F);
+				.define("verdigris_attack_damage", 2.5D);
 		
 		VerdigrisEnchantability = builder
 				.translation("config.spectrum.verdigris_enchantability")
@@ -572,11 +572,11 @@ public class SpectrumConfig {
 		
 		NectarMiningSpeed = builder
 				.translation("config.spectrum.nectar_mining_speed")
-				.define("nectar_mining_speed", 9.5F);
+				.define("nectar_mining_speed", 9.5D);
 		
 		NectarAttackDamage = builder
 				.translation("config.spectrum.nectar_attack_damage")
-				.define("nectar_attack_damage", 9.0F);
+				.define("nectar_attack_damage", 9.0D);
 		
 		NectarEnchantability = builder
 				.translation("config.spectrum.nectar_enchantability")
@@ -588,11 +588,11 @@ public class SpectrumConfig {
 		
 		DreamflayerMiningSpeed = builder
 				.translation("config.spectrum.dreamflayer_mining_speed")
-				.define("dreamflayer_mining_speed", 5.0F);
+				.define("dreamflayer_mining_speed", 5.0D);
 		
 		DreamflayerAttackDamage = builder
 				.translation("config.spectrum.dreamflayer_attack_damage")
-				.define("dreamflayer_attack_damage", 2.0F);
+				.define("dreamflayer_attack_damage", 2.0D);
 		
 		DreamflayerEnchantability = builder
 				.translation("config.spectrum.dreamflayer_enchantability")
@@ -604,11 +604,11 @@ public class SpectrumConfig {
 		
 		NightfallMiningSpeed = builder
 				.translation("config.spectrum.nightfall_mining_speed")
-				.define("nightfall_mining_speed", 2.0F);
+				.define("nightfall_mining_speed", 2.0D);
 		
 		NightfallAttackDamage = builder
 				.translation("config.spectrum.nightfall_attack_damage")
-				.define("nightfall_attack_damage", 1.0F);
+				.define("nightfall_attack_damage", 1.0D);
 		
 		NightfallEnchantability = builder
 				.translation("config.spectrum.nightfall_enchantability")

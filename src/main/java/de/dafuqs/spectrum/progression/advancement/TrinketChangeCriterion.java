@@ -48,32 +48,32 @@ public class TrinketChangeCriterion extends SimpleCriterionTrigger<TrinketChange
 	
 	public record Conditions(
 			Optional<ContextAwarePredicate> player,
-			Optional<List<ItemPredicate>> itemPredicates,
-			Optional<MinMaxBounds.Ints> totalCountRange,
-			Optional<MinMaxBounds.Ints> spectrumCountRange
+			List<ItemPredicate> itemPredicates,
+			MinMaxBounds.Ints totalCountRange,
+			MinMaxBounds.Ints spectrumCountRange
 	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<TrinketChangeCriterion.Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(TrinketChangeCriterion.Conditions::player),
-				ItemPredicate.CODEC.listOf().optionalFieldOf("items").forGetter(TrinketChangeCriterion.Conditions::itemPredicates),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("total_count").forGetter(TrinketChangeCriterion.Conditions::totalCountRange),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("spectrum_count").forGetter(TrinketChangeCriterion.Conditions::spectrumCountRange)
+				ItemPredicate.CODEC.listOf().optionalFieldOf("items", List.of()).forGetter(TrinketChangeCriterion.Conditions::itemPredicates),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("total_count", MinMaxBounds.Ints.ANY).forGetter(TrinketChangeCriterion.Conditions::totalCountRange),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("spectrum_count", MinMaxBounds.Ints.ANY).forGetter(TrinketChangeCriterion.Conditions::spectrumCountRange)
 		).apply(instance, TrinketChangeCriterion.Conditions::new));
 		
 		public boolean matches(List<ItemStack> trinketStacks, int totalCount, int spectrumCount) {
-			if(this.totalCountRange.isPresent() && !this.totalCountRange.get().matches(totalCount)) {
+			if(!this.totalCountRange.matches(totalCount)) {
 				return false;
 			}
-			if(this.spectrumCountRange.isPresent() && this.spectrumCountRange.get().matches(spectrumCount)) {
+			if(this.spectrumCountRange.matches(spectrumCount)) {
 				return false;
 			}
 			
-			int i = this.itemPredicates.orElse(List.of()).size();
+			int i = this.itemPredicates.size();
 			if (i == 0) {
 				return true;
 			}
 			
-			List<ItemPredicate> requiredTrinkets = new ObjectArrayList<>(this.itemPredicates.get());
+			List<ItemPredicate> requiredTrinkets = new ObjectArrayList<>(this.itemPredicates);
 			for (ItemStack trinketStack : trinketStacks) {
 				if (requiredTrinkets.isEmpty()) {
 					return true;

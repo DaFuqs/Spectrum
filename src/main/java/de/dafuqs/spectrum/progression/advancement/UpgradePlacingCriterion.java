@@ -26,30 +26,30 @@ public class UpgradePlacingCriterion extends SimpleCriterionTrigger<UpgradePlaci
 	public record Conditions(
 			Optional<ContextAwarePredicate> player,
 			Optional<BlockPredicate> blockPredicate,
-			Optional<MinMaxBounds.Ints> countRange,
-			Optional<MinMaxBounds.Ints> speedRange,
-			Optional<MinMaxBounds.Ints> experienceRange,
-			Optional<MinMaxBounds.Ints> efficiencyRange,
-			Optional<MinMaxBounds.Ints> yieldRange
+			MinMaxBounds.Ints countRange,
+			MinMaxBounds.Ints speedRange,
+			MinMaxBounds.Ints experienceRange,
+			MinMaxBounds.Ints efficiencyRange,
+			MinMaxBounds.Ints yieldRange
 	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
 				BlockPredicate.CODEC.optionalFieldOf("block").forGetter(Conditions::blockPredicate),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("count").forGetter(Conditions::countRange),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("speed_mod").forGetter(Conditions::speedRange),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("experience_mod").forGetter(Conditions::experienceRange),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("efficiency_mod").forGetter(Conditions::efficiencyRange),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("yield_mod").forGetter(Conditions::yieldRange)
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("count", MinMaxBounds.Ints.ANY).forGetter(Conditions::countRange),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("speed_mod", MinMaxBounds.Ints.ANY).forGetter(Conditions::speedRange),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("experience_mod", MinMaxBounds.Ints.ANY).forGetter(Conditions::experienceRange),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("efficiency_mod", MinMaxBounds.Ints.ANY).forGetter(Conditions::efficiencyRange),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("yield_mod", MinMaxBounds.Ints.ANY).forGetter(Conditions::yieldRange)
 		).apply(instance, Conditions::new));
 		
 		public boolean matches(ServerLevel world, BlockPos pos, int upgradeCount, Map<Upgradeable.UpgradeType, Integer> upgradeModifiers) {
 			return (this.blockPredicate.isEmpty() || this.blockPredicate.get().matches(world, pos))
-					&& (this.countRange.isEmpty() || this.countRange.get().matches(upgradeCount))
-					&& (this.speedRange.isEmpty() || this.speedRange.get().matches(upgradeModifiers.get(Upgradeable.UpgradeType.SPEED)))
-					&& (this.experienceRange.isEmpty() || this.experienceRange.get().matches(upgradeModifiers.get(Upgradeable.UpgradeType.EXPERIENCE)))
-					&& (this.efficiencyRange.isEmpty() || this.efficiencyRange.get().matches(upgradeModifiers.get(Upgradeable.UpgradeType.EFFICIENCY)))
-					&& (this.yieldRange.isEmpty() || this.yieldRange.get().matches(upgradeModifiers.get(Upgradeable.UpgradeType.YIELD)));
+					&& this.countRange.matches(upgradeCount)
+					&& this.speedRange.matches(upgradeModifiers.get(Upgradeable.UpgradeType.SPEED))
+					&& this.experienceRange.matches(upgradeModifiers.get(Upgradeable.UpgradeType.EXPERIENCE))
+					&& this.efficiencyRange.matches(upgradeModifiers.get(Upgradeable.UpgradeType.EFFICIENCY))
+					&& this.yieldRange.matches(upgradeModifiers.get(Upgradeable.UpgradeType.YIELD));
 		}
 	}
 	

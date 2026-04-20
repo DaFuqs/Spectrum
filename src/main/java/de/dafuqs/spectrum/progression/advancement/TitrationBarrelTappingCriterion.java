@@ -25,35 +25,30 @@ public class TitrationBarrelTappingCriterion extends SimpleCriterionTrigger<Titr
 	
 	public record Conditions(
 			Optional<ContextAwarePredicate> player,
-			Optional<List<ItemPredicate>> tappedItemsPredicate,
-			Optional<MinMaxBounds.Ints> ingameDaysAgeRange,
-			Optional<MinMaxBounds.Ints> ingredientCountRange
+			List<ItemPredicate> tappedItemsPredicate,
+			MinMaxBounds.Ints ingameDaysAgeRange,
+			MinMaxBounds.Ints ingredientCountRange
 	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(Conditions::player),
-				ItemPredicate.CODEC.listOf().optionalFieldOf("items").forGetter(Conditions::tappedItemsPredicate),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("age_ingame_days").forGetter(Conditions::ingameDaysAgeRange),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("ingredient_count").forGetter(Conditions::ingredientCountRange)
+				ItemPredicate.CODEC.listOf().optionalFieldOf("items", List.of()).forGetter(Conditions::tappedItemsPredicate),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("age_ingame_days", MinMaxBounds.Ints.ANY).forGetter(Conditions::ingameDaysAgeRange),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("ingredient_count", MinMaxBounds.Ints.ANY).forGetter(Conditions::ingredientCountRange)
 		).apply(instance, Conditions::new));
 		
 		public boolean matches(ItemStack itemStack, int ingameDaysAge, int ingredientCount) {
-			if (this.ingameDaysAgeRange.isEmpty()) return false;
-			if (this.ingredientCountRange.isEmpty()) return false;
+			if (!this.ingameDaysAgeRange.matches(ingameDaysAge)) return false;
+			if (!this.ingredientCountRange.matches(ingredientCount)) return false;
 			
-			if (this.ingameDaysAgeRange.get().matches(ingameDaysAge) && this.ingredientCountRange.get().matches(ingredientCount)) {
-				List<ItemPredicate> list = new ObjectArrayList<>(this.tappedItemsPredicate.orElse(List.of()));
-				if (list.isEmpty()) {
-					return true;
-				} else {
-					if (!itemStack.isEmpty()) {
-						list.removeIf((itemPredicate) -> itemPredicate.test(itemStack));
-					}
-					return list.isEmpty();
-				}
+			List<ItemPredicate> list = new ObjectArrayList<>(this.tappedItemsPredicate);
+			if (list.isEmpty()) {
+				return true;
 			}
-			
-			return false;
+			if (!itemStack.isEmpty()) {
+				list.removeIf((itemPredicate) -> itemPredicate.test(itemStack));
+			}
+			return list.isEmpty();
 		}
 	}
 	

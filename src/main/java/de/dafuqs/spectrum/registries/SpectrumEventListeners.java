@@ -439,13 +439,23 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	private static void canPlayerSleep(CanPlayerSleepEvent event) {
-		var player = event.getEntity();
-		var reason = event.getProblem();
+		ServerPlayer player = event.getEntity();
+		Player.BedSleepingProblem problem = event.getProblem();
 		
-		if (reason != Player.BedSleepingProblem.NOT_POSSIBLE_NOW && MiscPlayerDataAttachmentType.get(player).isSleeping()) {
+		if (problem != Player.BedSleepingProblem.NOT_POSSIBLE_NOW && MiscPlayerDataAttachmentType.get(player).isSleeping()) {
 			event.setProblem(null);
-		} else if (player.hasEffect(SpectrumMobEffects.SOMNOLENCE) && (reason == Player.BedSleepingProblem.NOT_POSSIBLE_NOW || reason == Player.BedSleepingProblem.NOT_SAFE)) {
+		} else if (player.hasEffect(SpectrumMobEffects.SOMNOLENCE) && (problem == Player.BedSleepingProblem.NOT_POSSIBLE_NOW || problem == Player.BedSleepingProblem.NOT_SAFE)) {
 			event.setProblem(null);
+		}
+	}
+	
+	@SubscribeEvent
+	private static void canPlayerContinueSleeping(CanContinueSleepingEvent event) {
+		LivingEntity entity = event.getEntity();
+		Player.BedSleepingProblem problem = event.getProblem();
+		
+		if (entity.hasEffect(SpectrumMobEffects.SOMNOLENCE) && (problem == Player.BedSleepingProblem.NOT_POSSIBLE_NOW || problem == Player.BedSleepingProblem.NOT_SAFE)) {
+			event.setContinueSleeping(true);
 		}
 	}
 	
@@ -689,8 +699,10 @@ public class SpectrumEventListeners {
 	private static void playerWakeUp(PlayerWakeUpEvent event) {
 		Player player = event.getEntity();
 		
-		MiscPlayerDataAttachmentType.get(player).resetSleepingState(false);
-		player.removeEffect(SpectrumMobEffects.SOMNOLENCE);
+		if(player.isAddedToLevel()) {
+			MiscPlayerDataAttachmentType.get(player).resetSleepingState(false);
+			player.removeEffect(SpectrumMobEffects.SOMNOLENCE);
+		}
 	}
 	
 	@SubscribeEvent

@@ -99,19 +99,17 @@ public class EnderGlassBlock extends Block {
 	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		if (!world.isClientSide) {
 			BlockState fromPosBlockState = world.getBlockState(fromPos);
-			if (fromPosBlockState.getBlock() instanceof EnderGlassBlock) {
+			if (block instanceof EnderGlassBlock) {
 				TransparencyState neighborState = fromPosBlockState.getValue(TRANSPARENCY_STATE);
 				TransparencyState currentState = state.getValue(TRANSPARENCY_STATE);
 				
 				if (neighborState != currentState) {
 					world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(TRANSPARENCY_STATE, neighborState));
 				}
-			} else {
-				if (fromPosBlockState.isSignalSource()) {
-					TransparencyState targetState = getTransparencyStateForRedstonePower(world.getBestNeighborSignal(pos));
-					if (getTransparencyState(state) != targetState) {
-						world.setBlockAndUpdate(pos, state.setValue(TRANSPARENCY_STATE, targetState));
-					}
+			} else if (fromPosBlockState.isSignalSource() || block.defaultBlockState().isSignalSource()) {
+				TransparencyState targetState = getTransparencyStateForRedstonePower(world.getBestNeighborSignal(pos));
+				if (getTransparencyState(state) != targetState) {
+					world.setBlockAndUpdate(pos, state.setValue(TRANSPARENCY_STATE, targetState));
 				}
 			}
 		}

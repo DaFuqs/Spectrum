@@ -1,3 +1,4 @@
 {
-  "parent": "bettercombat:twin_blade"
+  "parent": "spectrum:singlehanded_twin_blade",
+  "two_handed": false
 }

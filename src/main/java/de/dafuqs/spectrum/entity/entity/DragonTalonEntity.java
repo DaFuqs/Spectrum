@@ -174,7 +174,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
 			remove(RemovalReason.DISCARDED);
 			return;
 		}
-		
+		getEntityData().set(ID_LOYALTY, (byte) 4);
 		setNoPhysics(true);
 	}
 	
@@ -261,7 +261,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
 	}
 	
 	@Override
-	protected boolean tryPickup(Player player) {
+	protected boolean tryPickup(@NotNull Player player) {
 		var rootStack = DragonTalonItem.findThrownStack(player, uuid);
 		if (!rootStack.isEmpty()) {
 			SlotReservingItem.free(rootStack);

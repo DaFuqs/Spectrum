@@ -53,20 +53,20 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	
 	@Override
 	protected void throwBident(ItemStack stack, ServerLevel world, Player playerEntity) {
-		var needleEntity = new DragonTalonEntity(world);
-		needleEntity.setPickupItemStack(stack);
-		needleEntity.setOwner(playerEntity);
-		needleEntity.absMoveTo(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
-		needleEntity.shootFromRotation(playerEntity, playerEntity.getXRot(), playerEntity.getYRot(), 0.0F, getThrowSpeed(stack), 1.0F);
-		needleEntity.hasImpulse = true;
-		needleEntity.hurtMarked = true;
-		needleEntity.pickup = AbstractArrow.Pickup.ALLOWED;
+		DragonTalonEntity dragonTalon = new DragonTalonEntity(world);
+		dragonTalon.setPickupItemStack(stack);
+		dragonTalon.setOwner(playerEntity);
+		dragonTalon.absMoveTo(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
+		dragonTalon.shootFromRotation(playerEntity, playerEntity.getXRot(), playerEntity.getYRot(), 0.0F, getThrowSpeed(stack), 1.0F);
+		dragonTalon.hasImpulse = true;
+		dragonTalon.hurtMarked = true;
+		dragonTalon.pickup = AbstractArrow.Pickup.ALLOWED;
 		
-		world.addFreshEntity(needleEntity);
+		world.addFreshEntity(dragonTalon);
 		SoundEvent soundEvent = SoundEvents.TRIDENT_THROW.value();
 		
-		world.playSound(null, needleEntity, soundEvent, SoundSource.PLAYERS, 1.0F, 1.0F);
-		SlotReservingItem.reserve(stack, needleEntity.getUUID());
+		world.playSound(null, dragonTalon, soundEvent, SoundSource.PLAYERS, 1.0F, 1.0F);
+		SlotReservingItem.reserve(stack, dragonTalon.getUUID());
 	}
 	
 	@Override
@@ -103,8 +103,8 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 		
 		var reserver = SlotReservingItem.getReserver(stack);
 		if (world instanceof ServerLevel serverWorld && reserver != null) {
-			if (serverWorld.getEntity(reserver) instanceof DragonTalonEntity needle) {
-				needle.recall();
+			if (serverWorld.getEntity(reserver) instanceof DragonTalonEntity dragonTalonEntity) {
+				dragonTalonEntity.recall();
 			}
 		}
 	}

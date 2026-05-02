@@ -27,6 +27,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -188,8 +189,8 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				continue;
 			}
 			if (dyeColor.isPresent()) {
-				BlockState coloredBlockState = VariantHelper.getColoredBlock(this.level(), blockPos, inkColor);
-				if (!coloredBlockState.isAir()) {
+				@Nullable BlockState coloredBlockState = VariantHelper.getColoredBlock(this.level(), blockPos, inkColor);
+				if (coloredBlockState != null) {
 					this.level().setBlockAndUpdate(blockPos, coloredBlockState);
 				}
 			}

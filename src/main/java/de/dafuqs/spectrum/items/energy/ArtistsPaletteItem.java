@@ -52,7 +52,7 @@ public class ArtistsPaletteItem extends SpectrumCurioItem implements InkStorageI
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		tooltip.add(Component.translatable("item.spectrum.pigment_palette.tooltip.target").withStyle(ChatFormatting.GRAY));
-		getEnergyStorage(stack).addTooltip(tooltip);
+		tooltip.add(getEnergyStorage(stack).getTooltip());
 		addBannerPatternProviderTooltip(tooltip);
 	}
 	

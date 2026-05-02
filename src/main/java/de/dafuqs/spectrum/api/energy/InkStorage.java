@@ -150,6 +150,14 @@ public interface InkStorage extends Clearable {
 	// if the storage is able to store this kind of color
 	boolean accepts(InkColor color);
 	
+	default Iterable<InkColor> acceptedColors() {
+		List<InkColor> colors = new ArrayList<>();
+		for(InkColor color : InkColors.all()) {
+			if(accepts(color)) colors.add(color);
+		}
+		return colors;
+	}
+	
 	// returns the amount of energy that could not be added
 	long addEnergy(InkColor color, long amount);
 	
@@ -191,13 +199,18 @@ public interface InkStorage extends Clearable {
 	// completely empty the storage
 	void clearContent();
 	
-	void addTooltip(List<Component> tooltip);
+	MutableComponent getTooltip();
 	
 	long getRoom(InkColor color);
 	
 	static void addInkStoreBulletTooltip(List<Component> tooltip, InkColor color, long amount) {
 		MutableComponent inkName = color.getColoredInkName();
 		tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.bullet_amount", Component.literal(getShortenedNumberString(amount)).withStyle(ChatFormatting.WHITE), inkName).setStyle(inkName.getStyle()));
+	}
+	
+	static Component getInkStoreBulletTooltip(InkColor color, long amount) {
+		MutableComponent inkName = color.getColoredInkName();
+		return Component.translatable("spectrum.tooltip.ink_powered.bullet_amount", Component.literal(getShortenedNumberString(amount)).withStyle(ChatFormatting.WHITE), inkName).setStyle(inkName.getStyle());
 	}
 	
 }

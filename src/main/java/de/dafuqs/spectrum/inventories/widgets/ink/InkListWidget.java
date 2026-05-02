@@ -1,19 +1,18 @@
-package de.dafuqs.spectrum.inventories.widgets;
+package de.dafuqs.spectrum.inventories.widgets.ink;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.helpers.*;
-import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
 import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
-import java.util.*;
+import javax.annotation.Nullable;
 
-public class InkMeterWidget extends AbstractWidget {
+public class InkListWidget extends AbstractWidget {
 	
 	public static final int WIDTH_PER_COLOR = 4;
 	public static final int SPACE_BETWEEN_COLORS = 2;
@@ -21,7 +20,7 @@ public class InkMeterWidget extends AbstractWidget {
 	protected final Iterable<InkColor> colors;
 	protected final InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity;
 	
-	public InkMeterWidget(int x, int y, int height, InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity, Iterable<InkColor> colors) {
+	public InkListWidget(int x, int y, int height, InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity, Iterable<InkColor> colors) {
 		super(x, y, inkStorageBlockEntity.getEnergyStorage().getSupportedColors().size() * (WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS) - SPACE_BETWEEN_COLORS, height, Component.empty());
 		this.colors = colors;
 		this.inkStorageBlockEntity = inkStorageBlockEntity;
@@ -29,14 +28,7 @@ public class InkMeterWidget extends AbstractWidget {
 	
 	@Override
 	protected void updateWidgetNarration(@NotNull NarrationElementOutput narrationElementOutput) {
-	
-	}
-	
-	public void drawMouseoverTooltip(GuiGraphics drawContext, int x, int y) {
-		Minecraft client = Minecraft.getInstance();
-		List<Component> tooltip = new ArrayList<>();
-		inkStorageBlockEntity.getEnergyStorage().addTooltip(tooltip);
-		drawContext.renderTooltip(client.font, tooltip, Optional.empty(), x, y);
+
 	}
 	
 	@Override
@@ -54,6 +46,11 @@ public class InkMeterWidget extends AbstractWidget {
 			}
 			currentXOffset = currentXOffset + WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS;
 		}
+	}
+	
+	@Nullable
+	public Tooltip getTooltip() {
+		return Tooltip.create(inkStorageBlockEntity.getEnergyStorage().getTooltip());
 	}
 	
 }

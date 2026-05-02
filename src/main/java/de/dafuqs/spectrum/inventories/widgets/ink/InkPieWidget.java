@@ -1,23 +1,22 @@
-package de.dafuqs.spectrum.inventories.widgets;
+package de.dafuqs.spectrum.inventories.widgets.ink;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
-import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
 import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
-import java.util.*;
+import javax.annotation.Nullable;
 
 
-public class InkGaugeWidget extends AbstractWidget {
+public class InkPieWidget extends AbstractWidget {
 	
 	protected final InkStorageBlockEntity<?> blockEntity;
 	
-	public InkGaugeWidget(int x, int y, int width, int height, InkStorageBlockEntity<?> blockEntity) {
+	public InkPieWidget(int x, int y, int width, int height, InkStorageBlockEntity<?> blockEntity) {
 		super(x, y, width, height, Component.empty());
 		this.blockEntity = blockEntity;
 	}
@@ -69,21 +68,9 @@ public class InkGaugeWidget extends AbstractWidget {
 		}
 	}
 	
-	public void drawMouseoverTooltip(GuiGraphics drawContext, int x, int y) {
-		Minecraft client = Minecraft.getInstance();
-		List<Component> tooltip = new ArrayList<>();
-		for (InkColor color : InkColors.all()) {
-			long amount = blockEntity.getEnergyStorage().getEnergy(color);
-			if (amount > 0) {
-				InkStorage.addInkStoreBulletTooltip(tooltip, color, amount);
-			}
-		}
-		if (tooltip.isEmpty()) {
-			tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.empty"));
-		} else {
-			tooltip.addFirst(Component.translatable("spectrum.tooltip.ink_powered.stored"));
-		}
-		drawContext.renderTooltip(client.font, tooltip, Optional.empty(), x, y);
+	@Nullable
+	public net.minecraft.client.gui.components.Tooltip getTooltip() {
+		return Tooltip.create(blockEntity.getEnergyStorage().getTooltip());
 	}
 	
 	@Override

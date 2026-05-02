@@ -5,15 +5,17 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.widgets.*;
+import de.dafuqs.spectrum.inventories.widgets.ink.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
+import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.network.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -23,8 +25,6 @@ public class InkTransferScreen extends AbstractContainerScreen<InkTransferScreen
 	protected final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
 	
 	protected ColorSelectionWidget colorSelectionWidget;
-	protected AbstractWidget inkMeterWidget;
-	protected InkGaugeWidget inkGaugeWidget;
 	
 	public InkTransferScreen(InkTransferScreenHandler handler, Inventory playerInventory, Component title) {
 		super(handler, playerInventory, title);
@@ -34,57 +34,42 @@ public class InkTransferScreen extends AbstractContainerScreen<InkTransferScreen
 	@Override
 	protected void init() {
 		super.init();
-		
-		int startX = (this.width - this.imageWidth) / 2;
-		int startY = (this.height - this.imageHeight) / 2;
-		
-		this.colorSelectionWidget = new ColorSelectionWidget(startX + 113, startY + 55, startX + 139, startY + 25, this.menu.getBlockEntity());
+		this.colorSelectionWidget = new ColorSelectionWidget(getGuiLeft() + 113, getGuiTop() + 55, getGuiLeft() + 139, getGuiTop() + 25, this.menu.getBlockEntity());
 		this.colorSelectionWidget.setChangedListener(this);
-		addWidget(this.colorSelectionWidget);
+		addRenderableWidget(this.colorSelectionWidget);
 	}
 	
 	@Override
 	protected void renderLabels(GuiGraphics drawContext, int mouseX, int mouseY) {
 		int titleX = (imageWidth - font.width(title)) / 2;
 		int titleY = 6;
-		Component title = this.title;
-		
-		drawContext.drawString(this.font, title.getVisualOrderText(), titleX, titleY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
+		drawContext.drawString(this.font, this.title.getVisualOrderText(), titleX, titleY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
 		drawContext.drawString(this.font, this.playerInventoryTitle, InkTransferScreenHandler.PLAYER_INVENTORY_START_X, InkTransferScreenHandler.PLAYER_INVENTORY_START_Y - 10, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
 	}
 	
 	@Override
 	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
-		int startX = (this.width - this.imageWidth) / 2;
-		int startY = (this.height - this.imageHeight) / 2;
-		
 		// main background
-		drawContext.blit(BACKGROUND, startX, startY, 0, 0, imageWidth, imageHeight);
+		drawContext.blit(BACKGROUND, getGuiLeft(), getGuiTop(), 0, 0, imageWidth, imageHeight);
 		
-		this.inkGaugeWidget.render(drawContext, mouseX, mouseY, delta);
-		this.colorSelectionWidget.render(drawContext, mouseX, mouseY, delta);
+	}
+	
+	@Override
+	public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+		super.render(guiGraphics, mouseX, mouseY, delta);
 		
 		// gauge blanket
-		drawContext.blit(BACKGROUND, startX + 52, startY + 18, 176, 0, 46, 46);
+		guiGraphics.blit(BACKGROUND, getGuiLeft() + 52, getGuiTop() + 18, 176, 0, 46, 46);
+		
+		renderTooltip(guiGraphics, mouseX, mouseY);
 	}
 	
 	@Override
-	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
-		renderBackground(drawContext, mouseX, mouseY, delta);
-		super.render(drawContext, mouseX, mouseY, delta);
-		renderTooltip(drawContext, mouseX, mouseY);
-	}
-	
-	@Override
-	protected void renderTooltip(GuiGraphics drawContext, int x, int y) {
-		if (this.inkGaugeWidget.isHoveredOrFocused()) {
-			this.inkGaugeWidget.drawMouseoverTooltip(drawContext, x, y);
-		//} else if (this.inkMeterWidget.isHoveredOrFocused()) { // TODO
-		//	this.inkMeterWidget.dra(drawContext, x, y);
-		} else if (this.colorSelectionWidget.isHoveredOrFocused()) {
-			this.colorSelectionWidget.drawMouseoverTooltip(drawContext, x, y);
-		} else {
-			super.renderTooltip(drawContext, x, y);
+	protected void renderTooltip(@NotNull GuiGraphics guiGraphics, int x, int y) {
+		super.renderTooltip(guiGraphics, x, y);
+		
+		if (this.colorSelectionWidget.isMouseOver(x, y)) {
+			this.colorSelectionWidget.drawMouseoverTooltip(guiGraphics, x, y);
 		}
 	}
 	

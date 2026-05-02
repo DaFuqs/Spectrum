@@ -45,7 +45,7 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
-		getEnergyStorage(stack).addTooltip(tooltip);
+		tooltip.add(getEnergyStorage(stack).getTooltip());
 	}
 	
 	@Override

@@ -78,7 +78,7 @@ public class TintingStationBlockEntity extends BaseInkTransferBlockEntity<Indivi
 		
 		ItemStack input = getItem(INPUT_SLOT_ID);
 		Item resultItem = VariantHelper.getColoredItem(input, inkColor);
-		if(resultItem == Items.AIR) {
+		if(resultItem == null) {
 			return false;
 		}
 		

@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.api.energy.storage;
 
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.network.chat.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 import static de.dafuqs.spectrum.helpers.Support.*;
@@ -111,10 +113,12 @@ public class TotalCappedElementalMixingInkStorage extends TotalCappedInkStorage 
 	}
 	
 	@Override
-	public void addTooltip(List<Component> tooltip) {
-		tooltip.add(Component.translatable("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));
-		tooltip.add(Component.translatable("item.spectrum.artists_palette.tooltip.mix_on_demand"));
-		addInkContentTooltip(tooltip);
+	public MutableComponent getTooltip() {
+		MutableComponent c = Component.translatable("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal));
+		c.append(Component.literal("\n"));
+		c.append(Component.translatable("item.spectrum.artists_palette.tooltip.mix_on_demand"));
+		appendInkStoreBulletTooltips(c);
+		return c;
 	}
 	
 }

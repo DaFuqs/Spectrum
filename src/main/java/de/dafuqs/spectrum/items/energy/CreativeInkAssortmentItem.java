@@ -62,7 +62,7 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		CreativeOnlyItem.appendTooltip(tooltip);
-		getEnergyStorage(stack).addTooltip(tooltip);
+		tooltip.add(getEnergyStorage(stack).getTooltip());
 	}
 	
 	@Override

@@ -4,17 +4,19 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
-import de.dafuqs.spectrum.inventories.widgets.*;
+import de.dafuqs.spectrum.inventories.widgets.ink.*;
+import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
+import org.jetbrains.annotations.*;
 
 public class TintingStationScreen extends InkTransferScreen {
 	
 	protected final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
 	
-	protected InkMeterWidget inkMeterWidget;
+	protected InkListWidget inkListWidget;
 	
 	public TintingStationScreen(InkTransferScreenHandler handler, Inventory playerInventory, Component title) {
 		super(handler, playerInventory, title);
@@ -24,26 +26,24 @@ public class TintingStationScreen extends InkTransferScreen {
 	protected void init() {
 		super.init();
 		
-		int startX = (this.width - this.imageWidth) / 2;
-		int startY = (this.height - this.imageHeight) / 2;
-		
-		this.inkGaugeWidget = new InkGaugeWidget(startX + 54, startY + 21, 42, 42, this.menu.getBlockEntity());
-		addWidget(inkGaugeWidget);
-		this.inkMeterWidget = new InkMeterWidget(startX + 140, startY + 34, 40, (InkStorageBlockEntity<IndividualCappedInkStorage>) this.menu.getBlockEntity(), InkColors.all());
-		addWidget(inkMeterWidget);
+		this.inkListWidget = new InkListWidget(getGuiLeft() + 140, getGuiTop() + 34, 40, (InkStorageBlockEntity<IndividualCappedInkStorage>) this.menu.getBlockEntity(), InkColors.all());
+		addRenderableWidget(inkListWidget);
 	}
 	
 	@Override
 	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
 		super.renderBg(drawContext, delta, mouseX, mouseY);
-		int startX = (this.width - this.imageWidth) / 2;
-		int startY = (this.height - this.imageHeight) / 2;
-		
-		// main background
-		drawContext.blit(BACKGROUND, startX, startY, 0, 0, imageWidth, imageHeight);
-		// this.inkMeterWidget.render(drawContext, ((InkStorageBlockEntity<IndividualCappedInkStorage>) this.menu.getBlockEntity()).getEnergyStorage().getEnergy().keySet());
-		
+		drawContext.blit(BACKGROUND, getGuiLeft(), getGuiTop(), 0, 0, imageWidth, imageHeight);
 		super.renderBg(drawContext, delta, mouseX, mouseY);
+	}
+	
+	@Override
+	protected void renderTooltip(@NotNull GuiGraphics guiGraphics, int x, int y) {
+		super.renderTooltip(guiGraphics, x, y);
+		
+		if (this.inkListWidget.isHoveredOrFocused()) {
+			guiGraphics.renderTooltip(this.font, this.inkListWidget.getTooltip().toCharSequence(Minecraft.getInstance()), x, y);
+		}
 	}
 	
 }

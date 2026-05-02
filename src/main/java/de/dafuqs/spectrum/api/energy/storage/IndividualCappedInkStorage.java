@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.network.chat.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 import static de.dafuqs.spectrum.helpers.Support.*;
@@ -114,16 +115,23 @@ public class IndividualCappedInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public void addTooltip(List<Component> tooltip) {
-		tooltip.add(Component.translatable("item.spectrum.ink_storage.stores_ink_per_type", getShortenedNumberString(maxEnergyPerColor)));
+	public MutableComponent getTooltip() {
+		MutableComponent c = Component.translatable("item.spectrum.ink_storage.stores_ink_per_type", getShortenedNumberString(maxEnergyPerColor));
+		c.append(Component.literal("\n"));
 		
 		// we are iterating them this way to preserve the ordering
-		for (InkColor color : SpectrumRegistries.INK_COLOR) {
-			long amount = this.storedEnergy.getOrDefault(color, 0L);
-			if (amount > 0) {
-				InkStorage.addInkStoreBulletTooltip(tooltip, color, amount);
+		if(isEmpty()) {
+			c.append(Component.translatable("spectrum.tooltip.ink_powered.empty"));
+		} else {
+			for (InkColor color : SpectrumRegistries.INK_COLOR) {
+				long amount = this.storedEnergy.getOrDefault(color, 0L);
+				if (amount > 0) {
+					c.append(InkStorage.getInkStoreBulletTooltip(color, amount));
+					c.append(Component.literal("\n"));
+				}
 			}
 		}
+		return c;
 	}
 	
 	@Override

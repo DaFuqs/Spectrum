@@ -21,25 +21,25 @@ import static de.dafuqs.spectrum.helpers.RenderHelper.*;
 
 public class ColorSelectionWidget extends AbstractWidget {
 	
-	protected final BaseInkTransferBlockEntity<?> colorPicker;
+	protected final BaseInkTransferBlockEntity<?> blockEntity;
 	
 	@Nullable
 	private Consumer<Optional<Holder<InkColor>>> changedListener;
 	
 	final List<Tuple<InkColor, Boolean>> usableColors = new ArrayList<>(); // stores if a certain color should be displayed
 	
-	final int selectedDotX;
-	final int selectedDotY;
+	final int selectedIndexX;
+	final int selectedIndexY;
 	
-	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, BaseInkTransferBlockEntity<?> colorPicker) {
-		this(x, y, selectedDotX, selectedDotY, colorPicker, InkColors.BUILTIN_COLORS);
+	public ColorSelectionWidget(int x, int y, int selectedIndexX, int selectedIndexY, BaseInkTransferBlockEntity<?> blockEntity) {
+		this(x, y, selectedIndexX, selectedIndexY, blockEntity, blockEntity.getEnergyStorage().acceptedColors());
 	}
 	
-	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, BaseInkTransferBlockEntity<?> colorPicker, List<InkColor> availableColors) {
+	public ColorSelectionWidget(int x, int y, int selectedIndexX, int selectedIndexY, BaseInkTransferBlockEntity<?> blockEntity, Iterable<InkColor> availableColors) {
 		super(x, y, 56, 14, Component.literal(""));
-		this.colorPicker = colorPicker;
-		this.selectedDotX = selectedDotX;
-		this.selectedDotY = selectedDotY;
+		this.blockEntity = blockEntity;
+		this.selectedIndexX = selectedIndexX;
+		this.selectedIndexY = selectedIndexY;
 		
 		for (InkColor inkColor : availableColors) {
 			usableColors.add(new Tuple<>(inkColor, AdvancementHelper.hasAdvancementClient(inkColor.getRequiredAdvancement())));
@@ -54,6 +54,11 @@ public class ColorSelectionWidget extends AbstractWidget {
 		if (this.changedListener != null) {
 			this.changedListener.accept(newColor);
 		}
+	}
+	
+	@Override
+	public boolean isMouseOver(double mouseX, double mouseY) {
+		return super.isMouseOver(mouseX, mouseY) || (this.active && this.visible && isUnselection(mouseX, mouseY));
 	}
 	
 	@Override
@@ -74,8 +79,7 @@ public class ColorSelectionWidget extends AbstractWidget {
 			}
 		}
 		
-		// draw currently selected icon
-		this.colorPicker.getSelectedColor().ifPresent(inkColor -> fillQuad(context.pose(), selectedDotX, selectedDotY, 4, 4, inkColor.value().getColorVec()));
+		this.blockEntity.getSelectedColor().ifPresent(inkColor -> fillQuad(context.pose(), selectedIndexX, selectedIndexY, 4, 4, inkColor.value().getColorVec()));
 	}
 	
 	@Override
@@ -116,13 +120,12 @@ public class ColorSelectionWidget extends AbstractWidget {
 	protected void updateWidgetNarration(@NotNull NarrationElementOutput builder) { }
 	
 	private boolean isUnselection(double mouseX, double mouseY) {
-		return mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
+		return mouseX >= (double) selectedIndexX && mouseX < (double) (selectedIndexX + 4) && mouseY >= (double) selectedIndexY && mouseY < (double) (selectedIndexY + 4);
 	}
 	
 	public void drawMouseoverTooltip(GuiGraphics drawContext, int mouseX, int mouseY) {
 		Minecraft client = Minecraft.getInstance();
-		boolean overUnselection = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
-		if (overUnselection) {
+		if (isUnselection(mouseX, mouseY)) {
 			drawContext.renderTooltip(client.font, List.of(Component.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 		} else {
 			int xOffset = Mth.floor(mouseX) - this.getX();
@@ -131,6 +134,10 @@ public class ColorSelectionWidget extends AbstractWidget {
 			int horizontalColorOffset = xOffset / 7;
 			int verticalColorOffset = yOffset / 7;
 			int newColorIndex = horizontalColorOffset + verticalColorOffset * 8;
+			
+			if(newColorIndex < 0 || newColorIndex >= usableColors.size()) {
+				return;
+			}
 			
 			var hoveredColor = usableColors.get(newColorIndex);
 			if (hoveredColor.getB()) {
@@ -141,13 +148,4 @@ public class ColorSelectionWidget extends AbstractWidget {
 		}
 	}
 	
-	@Override
-	public void mouseMoved(double mouseX, double mouseY) {
-		super.mouseMoved(mouseX, mouseY);
-	}
-	
-	@Override
-	public @Nullable Tooltip getTooltip() {
-		return new WidgetTooltipHolder().get();
-	}
 }

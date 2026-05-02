@@ -87,8 +87,8 @@ public class ColorPickerBlockEntity extends BaseInkTransferBlockEntity<TotalCapp
 		ColorPickerScreenHandler.ScreenOpeningData.PACKET_CODEC.encode(buffer, new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
-	protected boolean tryConvertPigmentToEnergy(ServerLevel world) {
-		InkConvertingRecipe recipe = getInkConvertingRecipe(world);
+	protected boolean tryConvertPigmentToEnergy(ServerLevel level) {
+		InkConvertingRecipe recipe = getInkConvertingRecipe(level);
 		if (recipe != null) {
 			InkColor inkColor = recipe.getInkColor();
 			long amount = recipe.getInkAmount();
@@ -97,9 +97,9 @@ public class ColorPickerBlockEntity extends BaseInkTransferBlockEntity<TotalCapp
 				this.inkStorage.addEnergy(inkColor, amount);
 				
 				if (SpectrumConfig.CONFIG.BlockSoundVolume.get() > 0) {
-					world.playSound(null, worldPosition, SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() / 3F, 1.0F);
+					level.playSound(null, worldPosition, SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() / 3F, 1.0F);
 				}
-				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world,
+				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(level,
 						new Vec3(worldPosition.getX() + 0.5, worldPosition.getY() + 0.7, worldPosition.getZ() + 0.5),
 						ColoredFluidRisingParticleEffect.of(inkColor.getColorInt()),
 						5,

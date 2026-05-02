@@ -6038,6 +6038,7 @@
   "book.spectrum.guidebook.mysterious_locket.page4.text": "There also was a little note inside... who could it have belonged to?",
   "book.spectrum.guidebook.mysterious_locket.page5.text": "Now that I understand the Dreiton language, it is easy for me to decipher the inscription on the back:\\\n\\\n*Don't be silly, Asteras – the moon cannot shine, it can only reflect the light of the sun.*",
   "book.spectrum.guidebook.mysterious_locket.page5.title": "The unidentified Note",
-  "block.spectrum.painting_station": "Painting Station",
-  "block.spectrum.painting_station.tooltip": "Recolors items with color variants and fills Ink equipment"
+
+  "block.spectrum.tinting_station": "Tinting Station",
+  "block.spectrum.tinting_station.tooltip": "Fills Ink equipment and recolors items that have color variants"
 }

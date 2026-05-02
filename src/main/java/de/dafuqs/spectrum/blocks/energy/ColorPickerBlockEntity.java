@@ -79,12 +79,12 @@ public class ColorPickerBlockEntity extends BaseInkTransferBlockEntity<TotalCapp
 	
 	@Override
 	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
-		return new ColorPickerScreenHandler(syncId, playerInventory, playerInventory.player.level().getBlockEntity(new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).pos(), SpectrumBlockEntities.COLOR_PICKER.get()).orElseThrow(), new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).inkColor());
+		return new ColorPickerScreenHandler(syncId, playerInventory, this, new InkTransferScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).inkColor());
 	}
 	
 	@Override
 	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		ColorPickerScreenHandler.ScreenOpeningData.PACKET_CODEC.encode(buffer, new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
+		InkTransferScreenHandler.ScreenOpeningData.PACKET_CODEC.encode(buffer, new InkTransferScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
 	protected boolean tryConvertPigmentToEnergy(ServerLevel level) {

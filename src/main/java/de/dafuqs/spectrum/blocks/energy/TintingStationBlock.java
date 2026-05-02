@@ -15,42 +15,42 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PaintingStationBlock extends BaseInkTransferBlock {
+public class TintingStationBlock extends BaseInkTransferBlock {
 	
-	public static final MapCodec<PaintingStationBlock> CODEC = simpleCodec(PaintingStationBlock::new);
+	public static final MapCodec<TintingStationBlock> CODEC = simpleCodec(TintingStationBlock::new);
 	
-	public PaintingStationBlock(Properties settings) {
+	public TintingStationBlock(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public MapCodec<? extends PaintingStationBlock> codec() {
+	public MapCodec<? extends TintingStationBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
-		tooltip.add(Component.translatable("block.spectrum.painting_station.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("block.spectrum.tinting_station.tooltip").withStyle(ChatFormatting.GRAY));
 	}
 	
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new PaintingStationBlockEntity(pos, state);
+		return new TintingStationBlockEntity(pos, state);
 	}
 	
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.PAINTING_STATION.get(), PaintingStationBlockEntity::serverTick);
+		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.TINTING_STATION.get(), TintingStationBlockEntity::serverTick);
 	}
 	
 	@Override
 	protected void openScreen(Level world, BlockPos pos, Player player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof PaintingStationBlockEntity paintingStationBlockEntity) {
-			paintingStationBlockEntity.setOwner(player);
-			player.openMenu(paintingStationBlockEntity);
+		if (blockEntity instanceof TintingStationBlockEntity tintingStationBlockEntity) {
+			tintingStationBlockEntity.setOwner(player);
+			player.openMenu(tintingStationBlockEntity);
 		}
 	}
 	

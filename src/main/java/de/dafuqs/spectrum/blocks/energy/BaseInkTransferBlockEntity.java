@@ -125,8 +125,8 @@ public abstract class BaseInkTransferBlockEntity<T extends InkStorage> extends R
 	
 	@Override
 	public void setItem(int slot, ItemStack stack) {
+		super.setItem(slot, stack);
 		setChanged();
-		updateInClientWorld();
 	}
 	
 	@Override

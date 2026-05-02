@@ -26,7 +26,7 @@ import net.minecraft.world.phys.*;
 
 import java.util.*;
 
-public class PaintingStationBlockEntity extends BaseInkTransferBlockEntity<IndividualCappedInkStorage> implements MenuProvider {
+public class TintingStationBlockEntity extends BaseInkTransferBlockEntity<IndividualCappedInkStorage> implements MenuProvider {
 	
 	public static final int INPUT_SLOT_ID = 0;
 	public static final int OUTPUT_SLOT_ID = 1;
@@ -35,12 +35,12 @@ public class PaintingStationBlockEntity extends BaseInkTransferBlockEntity<Indiv
 	public static final long ITEM_COLORING_COST = 10;
 	public static final long STORAGE_AMOUNT = (long) Math.pow(2, 64);
 	
-	public PaintingStationBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.PAINTING_STATION.get(), blockPos, blockState, new IndividualCappedInkStorage(STORAGE_AMOUNT, Map.of()));
+	public TintingStationBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(SpectrumBlockEntities.TINTING_STATION.get(), blockPos, blockState, new IndividualCappedInkStorage(STORAGE_AMOUNT));
 	}
 	
 	@SuppressWarnings("unused")
-	public static void serverTick(Level world, BlockPos pos, BlockState state, PaintingStationBlockEntity blockEntity) {
+	public static void serverTick(Level world, BlockPos pos, BlockState state, TintingStationBlockEntity blockEntity) {
 		blockEntity.inkDirty = false;
 		if (!blockEntity.paused) {
 			boolean convertedPigment = false;
@@ -125,17 +125,17 @@ public class PaintingStationBlockEntity extends BaseInkTransferBlockEntity<Indiv
 	
 	@Override
 	protected Component getDefaultName() {
-		return Component.translatable("block.spectrum.painting_station");
+		return Component.translatable("block.spectrum.tinting_station");
 	}
 	
 	@Override
 	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
-		return new ColorPickerScreenHandler(syncId, playerInventory, playerInventory.player.level().getBlockEntity(new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).pos(), SpectrumBlockEntities.COLOR_PICKER.get()).orElseThrow(), new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).inkColor());
+		return new TintingStationScreenHandler(syncId, playerInventory, this, new InkTransferScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).inkColor());
 	}
 	
 	@Override
 	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		ColorPickerScreenHandler.ScreenOpeningData.PACKET_CODEC.encode(buffer, new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
+		InkTransferScreenHandler.ScreenOpeningData.PACKET_CODEC.encode(buffer, new InkTransferScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
 	@Override

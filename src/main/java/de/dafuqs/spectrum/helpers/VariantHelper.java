@@ -19,6 +19,7 @@ public class VariantHelper {
 	
 	private static final Map<Block, Map<InkColor, Block>> COLORED_STATE_CACHE = new HashMap<>();
 	private static final Map<Item, Map<InkColor, Item>> COLORED_ITEM_CACHE = new HashMap<>();
+	private static final Map<Block, Block> REPAIRED_STATE_CACHE = new HashMap<>();
 	
 	public static @Nullable BlockState getColoredBlock(Level world, BlockPos pos, InkColor newColor) {
 		if (world.getBlockEntity(pos) != null) {
@@ -71,27 +72,8 @@ public class VariantHelper {
 	public static void invalidateCaches() {
 		COLORED_STATE_CACHE.clear();
 		COLORED_ITEM_CACHE.clear();
+		REPAIRED_STATE_CACHE.clear();
 	}
-	
-	// cache for getCursedRepairedBlockVariant()
-	private static final Map<Block, Block> repairedStates = new HashMap<>() {{
-		put(Blocks.CRACKED_DEEPSLATE_BRICKS, Blocks.DEEPSLATE_BRICKS);
-		put(Blocks.CRACKED_DEEPSLATE_TILES, Blocks.DEEPSLATE_TILES);
-		put(Blocks.CRACKED_NETHER_BRICKS, Blocks.NETHER_BRICKS);
-		put(Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS, Blocks.POLISHED_BLACKSTONE_BRICKS);
-		put(Blocks.CRACKED_STONE_BRICKS, Blocks.STONE_BRICKS);
-		put(Blocks.INFESTED_CRACKED_STONE_BRICKS, Blocks.INFESTED_STONE_BRICKS);
-		
-		put(Blocks.DAMAGED_ANVIL, Blocks.CHIPPED_ANVIL);
-		put(Blocks.CHIPPED_ANVIL, Blocks.ANVIL);
-		
-		put(Blocks.EXPOSED_COPPER, Blocks.COPPER_BLOCK);
-		put(Blocks.WEATHERED_COPPER, Blocks.EXPOSED_COPPER);
-		put(Blocks.OXIDIZED_COPPER, Blocks.WEATHERED_COPPER);
-		put(Blocks.EXPOSED_CUT_COPPER, Blocks.CUT_COPPER);
-		put(Blocks.WEATHERED_CUT_COPPER, Blocks.EXPOSED_CUT_COPPER);
-		put(Blocks.OXIDIZED_CUT_COPPER, Blocks.WEATHERED_CUT_COPPER);
-	}};
 	
 	//TODO: unused
 	public static Block getRepairedBlockVariant(Level world, BlockPos blockPos) {
@@ -107,8 +89,8 @@ public class VariantHelper {
 		
 		Block block = blockState.getBlock();
 		
-		if (repairedStates.containsKey(block)) {
-			return repairedStates.get(block);
+		if (REPAIRED_STATE_CACHE.containsKey(block)) {
+			return REPAIRED_STATE_CACHE.get(block);
 		}
 		
 		ResourceLocation identifier = BuiltInRegistries.BLOCK.getKey(block);
@@ -128,7 +110,7 @@ public class VariantHelper {
 		}
 		
 		// cache
-		repairedStates.put(block, returnBlock);
+		REPAIRED_STATE_CACHE.put(block, returnBlock);
 		
 		return returnBlock;
 	}

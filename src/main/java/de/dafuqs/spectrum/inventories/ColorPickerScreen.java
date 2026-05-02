@@ -11,16 +11,15 @@ import org.jetbrains.annotations.*;
 
 public class ColorPickerScreen extends InkTransferScreen {
 	
-	protected final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
+	protected static final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
 	
 	protected StackedInkBarWidget stackedInkBarWidget;
 	protected InkPieWidget inkPieWidget;
 	
 	public ColorPickerScreen(InkTransferScreenHandler handler, Inventory playerInventory, Component title) {
-		super(handler, playerInventory, title);
+		super(handler, playerInventory, title, BACKGROUND);
 		this.imageHeight = 166;
 	}
-	
 	
 	@Override
 	protected void init() {
@@ -33,20 +32,14 @@ public class ColorPickerScreen extends InkTransferScreen {
 	}
 	
 	@Override
-	protected void renderBg(GuiGraphics drawContext, float partialTick, int mouseX, int mouseY) {
-		drawContext.blit(BACKGROUND, getGuiLeft(), getGuiTop(), 0, 0, imageWidth, imageHeight);
-		super.renderBg(drawContext, partialTick, mouseX, mouseY);
-	}
-	
-	@Override
 	protected void renderTooltip(@NotNull GuiGraphics guiGraphics, int x, int y) {
 		super.renderTooltip(guiGraphics, x, y);
 		
 		if (this.inkPieWidget.isHoveredOrFocused()) {
-			guiGraphics.renderTooltip(this.font, this.inkPieWidget.getTooltip().toCharSequence(Minecraft.getInstance()), x, y);
+			guiGraphics.renderTooltip(this.font, this.inkPieWidget.getTooltip().toCharSequence(this.minecraft), x, y);
 		}
 		if (this.stackedInkBarWidget.isHoveredOrFocused()) {
-			guiGraphics.renderTooltip(this.font, this.stackedInkBarWidget.getTooltip().toCharSequence(Minecraft.getInstance()), x, y);
+			guiGraphics.renderTooltip(this.font, this.stackedInkBarWidget.getTooltip().toCharSequence(this.minecraft), x, y);
 		}
 	}
 	

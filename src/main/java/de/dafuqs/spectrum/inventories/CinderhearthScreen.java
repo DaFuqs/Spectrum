@@ -75,7 +75,7 @@ public class CinderhearthScreen extends AbstractContainerScreen<CinderhearthScre
 		super.renderTooltip(drawContext, x, y);
 		
 		if (this.inkListWidget.isHoveredOrFocused()) {
-			drawContext.renderTooltip(this.font, this.inkListWidget.getTooltip().toCharSequence(Minecraft.getInstance()), x, y);
+			drawContext.renderTooltip(this.font, this.inkListWidget.getTooltip().toCharSequence(this.minecraft), x, y);
 		}
 	}
 	

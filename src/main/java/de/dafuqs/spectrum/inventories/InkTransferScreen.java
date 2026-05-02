@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.widgets.*;
-import de.dafuqs.spectrum.inventories.widgets.ink.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
-import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.core.*;
@@ -22,12 +19,12 @@ import java.util.function.*;
 
 public class InkTransferScreen extends AbstractContainerScreen<InkTransferScreenHandler> implements Consumer<Optional<Holder<InkColor>>> {
 	
-	protected final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
-	
+	protected final ResourceLocation background;
 	protected ColorSelectionWidget colorSelectionWidget;
 	
-	public InkTransferScreen(InkTransferScreenHandler handler, Inventory playerInventory, Component title) {
+	public InkTransferScreen(InkTransferScreenHandler handler, Inventory playerInventory, Component title, ResourceLocation background) {
 		super(handler, playerInventory, title);
+		this.background = background;
 		this.imageHeight = 166;
 	}
 	
@@ -48,19 +45,14 @@ public class InkTransferScreen extends AbstractContainerScreen<InkTransferScreen
 	}
 	
 	@Override
-	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
-		// main background
-		drawContext.blit(BACKGROUND, getGuiLeft(), getGuiTop(), 0, 0, imageWidth, imageHeight);
-		
+	protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
+		guiGraphics.blit(background, getGuiLeft(), getGuiTop(), 0, 0, imageWidth, imageHeight);
 	}
 	
 	@Override
 	public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
 		super.render(guiGraphics, mouseX, mouseY, delta);
-		
-		// gauge blanket
-		guiGraphics.blit(BACKGROUND, getGuiLeft() + 52, getGuiTop() + 18, 176, 0, 46, 46);
-		
+		guiGraphics.blit(background, getGuiLeft() + 52, getGuiTop() + 18, 176, 0, 46, 46); // gauge blanket
 		renderTooltip(guiGraphics, mouseX, mouseY);
 	}
 	

@@ -14,12 +14,12 @@ import org.jetbrains.annotations.*;
 
 public class TintingStationScreen extends InkTransferScreen {
 	
-	protected final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
+	protected static final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
 	
 	protected InkListWidget inkListWidget;
 	
 	public TintingStationScreen(InkTransferScreenHandler handler, Inventory playerInventory, Component title) {
-		super(handler, playerInventory, title);
+		super(handler, playerInventory, title, BACKGROUND);
 	}
 	
 	@Override
@@ -31,18 +31,11 @@ public class TintingStationScreen extends InkTransferScreen {
 	}
 	
 	@Override
-	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
-		super.renderBg(drawContext, delta, mouseX, mouseY);
-		drawContext.blit(BACKGROUND, getGuiLeft(), getGuiTop(), 0, 0, imageWidth, imageHeight);
-		super.renderBg(drawContext, delta, mouseX, mouseY);
-	}
-	
-	@Override
 	protected void renderTooltip(@NotNull GuiGraphics guiGraphics, int x, int y) {
 		super.renderTooltip(guiGraphics, x, y);
 		
 		if (this.inkListWidget.isHoveredOrFocused()) {
-			guiGraphics.renderTooltip(this.font, this.inkListWidget.getTooltip().toCharSequence(Minecraft.getInstance()), x, y);
+			guiGraphics.renderTooltip(this.font, this.inkListWidget.getTooltip().toCharSequence(this.minecraft), x, y);
 		}
 	}
 	

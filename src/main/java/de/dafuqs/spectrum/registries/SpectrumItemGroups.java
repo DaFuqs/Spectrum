@@ -230,6 +230,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.CINDERHEARTH);
 					entries.accept(SpectrumBlocks.CRYSTAL_APOTHECARY);
 					entries.accept(SpectrumBlocks.COLOR_PICKER);
+					entries.accept(SpectrumBlocks.TINTING_STATION);
 					
 					entries.accept(SpectrumBlocks.UPGRADE_SPEED);
 					entries.accept(SpectrumBlocks.UPGRADE_SPEED2);

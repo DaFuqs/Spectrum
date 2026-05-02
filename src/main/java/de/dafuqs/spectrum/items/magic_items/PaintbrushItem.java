@@ -151,13 +151,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 		}
 		
 		InkColor inkColor = optionalInkColor.get();
-		Optional<DyeColor> optionalDyeColor = inkColor.getDyeColor();
-		if (optionalDyeColor.isEmpty()) {
-			return false;
-		}
-		DyeColor dyeColor = optionalDyeColor.get();
-		
-		BlockState newBlockState = BlockVariantHelper.getCursedBlockColorVariant(context.getLevel(), context.getClickedPos(), dyeColor);
+		BlockState newBlockState = VariantHelper.getColoredBlock(context.getLevel(), context.getClickedPos(), inkColor);
 		if (newBlockState.isAir()) {
 			return false;
 		}

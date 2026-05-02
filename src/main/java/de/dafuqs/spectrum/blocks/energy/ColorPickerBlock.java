@@ -42,7 +42,7 @@ public class ColorPickerBlock extends BaseInkTransferBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.COLOR_PICKER.get(), ColorPickerBlockEntity::tick);
+		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.COLOR_PICKER.get(), ColorPickerBlockEntity::serverTick);
 	}
 	
 	@Override

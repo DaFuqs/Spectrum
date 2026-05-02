@@ -36,21 +36,21 @@ public class PaintingStationBlock extends BaseInkTransferBlock {
 	
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new ColorPickerBlockEntity(pos, state);
+		return new PaintingStationBlockEntity(pos, state);
 	}
 	
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.COLOR_PICKER.get(), ColorPickerBlockEntity::tick);
+		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.PAINTING_STATION.get(), PaintingStationBlockEntity::serverTick);
 	}
 	
 	@Override
 	protected void openScreen(Level world, BlockPos pos, Player player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof ColorPickerBlockEntity colorPickerBlockEntity) {
-			colorPickerBlockEntity.setOwner(player);
-			player.openMenu(colorPickerBlockEntity);
+		if (blockEntity instanceof PaintingStationBlockEntity paintingStationBlockEntity) {
+			paintingStationBlockEntity.setOwner(player);
+			player.openMenu(paintingStationBlockEntity);
 		}
 	}
 	

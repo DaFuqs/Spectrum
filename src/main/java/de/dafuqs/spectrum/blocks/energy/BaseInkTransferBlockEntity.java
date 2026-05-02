@@ -80,6 +80,15 @@ public abstract class BaseInkTransferBlockEntity<T extends InkStorage> extends R
 	}
 	
 	@Override
+	public void setChanged() {
+		super.setChanged();
+		if (this.level != null && !this.level.isClientSide) {
+			this.paused = false;
+			updateInClientWorld();
+		}
+	}
+	
+	@Override
 	public void setInkDirty() {
 		this.inkDirty = true;
 	}
@@ -97,30 +106,26 @@ public abstract class BaseInkTransferBlockEntity<T extends InkStorage> extends R
 	@Override
 	protected void setItems(NonNullList<ItemStack> list) {
 		this.inventory = list;
-		this.paused = false;
-		updateInClientWorld();
+		setChanged();
 	}
 	
 	@Override
 	public ItemStack removeItem(int slot, int amount) {
 		ItemStack itemStack = super.removeItem(slot, amount);
-		this.paused = false;
-		updateInClientWorld();
+		setChanged();
 		return itemStack;
 	}
 	
 	@Override
 	public ItemStack removeItemNoUpdate(int slot) {
 		ItemStack itemStack = super.removeItemNoUpdate(slot);
-		this.paused = false;
-		updateInClientWorld();
+		setChanged();
 		return itemStack;
 	}
 	
 	@Override
 	public void setItem(int slot, ItemStack stack) {
-		super.setItem(slot, stack);
-		this.paused = false;
+		setChanged();
 		updateInClientWorld();
 	}
 	
@@ -167,7 +172,6 @@ public abstract class BaseInkTransferBlockEntity<T extends InkStorage> extends R
 	
 	public void setSelectedColor(Optional<Holder<InkColor>> inkColor) {
 		this.selectedColor = inkColor;
-		this.paused = false;
 		this.setChanged();
 	}
 	

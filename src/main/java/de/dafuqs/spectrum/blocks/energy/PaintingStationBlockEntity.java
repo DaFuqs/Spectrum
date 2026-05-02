@@ -4,63 +4,111 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.components.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.recipe.color_picker.*;
+import de.dafuqs.spectrum.networking.s2c_payloads.*;
+import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import net.minecraft.world.phys.*;
 
 import java.util.*;
 
 public class PaintingStationBlockEntity extends BaseInkTransferBlockEntity<IndividualCappedInkStorage> implements MenuProvider {
 	
+	public static final int INPUT_SLOT_ID = 0;
+	public static final int OUTPUT_SLOT_ID = 1;
+	
 	public static final long TICKS_PER_CONVERSION = 5;
 	public static final long ITEM_COLORING_COST = 10;
 	public static final long STORAGE_AMOUNT = (long) Math.pow(2, 64);
-	protected @Nullable InkConvertingRecipe cachedRecipe;
 	
 	public PaintingStationBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.PAINTING_STATION.get(), blockPos, blockState, new IndividualCappedInkStorage(STORAGE_AMOUNT, Map.of()));
 	}
 	
 	@SuppressWarnings("unused")
-	public static void tick(Level world, BlockPos pos, BlockState state, PaintingStationBlockEntity blockEntity) {
-		if (!world.isClientSide) {
-			blockEntity.inkDirty = false;
-			if (!blockEntity.paused) {
-				boolean convertedPigment = false;
-				boolean didSomething = true;
-				
-				Optional<Holder<InkColor>> selectedColor = blockEntity.getSelectedColor();
-				InkStorage inkStorage = blockEntity.getEnergyStorage();
-				
-				if (selectedColor.isPresent() && world.getGameTime() % TICKS_PER_CONVERSION == 0) {
-					if (inkStorage.getEnergy(selectedColor.get().value()) >= ITEM_COLORING_COST) {
-						didSomething = blockEntity.tryColorItem(selectedColor);
-					}
-				} else {
-					didSomething = blockEntity.tryFillInkContainer();
-				}
-				
-				if (didSomething) {
-					blockEntity.updateInClientWorld();
-					blockEntity.setInkDirty();
-					blockEntity.setChanged();
-				} else {
-					blockEntity.paused = true;
-				}
+	public static void serverTick(Level world, BlockPos pos, BlockState state, PaintingStationBlockEntity blockEntity) {
+		blockEntity.inkDirty = false;
+		if (!blockEntity.paused) {
+			boolean convertedPigment = false;
+			boolean didSomething = true;
+			
+			Optional<Holder<InkColor>> selectedColor = blockEntity.getSelectedColor();
+			InkStorage inkStorage = blockEntity.getEnergyStorage();
+			
+			if (selectedColor.isPresent() && world.getGameTime() % TICKS_PER_CONVERSION == 0) {
+				didSomething = blockEntity.tryColorStack(selectedColor.get().value());
+			}
+			
+			if(!didSomething) {
+				didSomething = blockEntity.tryFillInkContainer();
+			}
+			
+			if (didSomething) {
+				blockEntity.setInkDirty();
+				blockEntity.setChanged();
+			} else {
+				blockEntity.paused = true;
 			}
 		}
+	}
+	
+	public boolean tryColorStack(InkColor inkColor) {
+		if(inkStorage.getEnergy(inkColor) < ITEM_COLORING_COST) {
+			return false;
+		}
+		
+		ItemStack output = getItem(OUTPUT_SLOT_ID);
+		if(output.getCount() >= output.getMaxStackSize()){
+			return false;
+		}
+		
+		ItemStack input = getItem(INPUT_SLOT_ID);
+		Item resultItem = VariantHelper.getColoredItem(input, inkColor);
+		if(resultItem == Items.AIR) {
+			return false;
+		}
+		
+		ItemStack resultStack = resultItem.getDefaultInstance();
+		resultStack.applyComponents(input.getComponents());
+		
+		if(output.isEmpty()) {
+			setItem(OUTPUT_SLOT_ID, resultStack);
+		} else if(ItemStack.isSameItemSameComponents(output, resultStack)) {
+			input.shrink(1);
+			output.grow(1);
+		} else {
+			return false;
+		}
+		
+		input.shrink(1);
+		inkStorage.addEnergy(inkColor, -ITEM_COLORING_COST);
+		
+		if (SpectrumConfig.CONFIG.BlockSoundVolume.get() > 0) {
+			level.playSound(null, worldPosition, SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get() / 3, 1.0F);
+			
+			PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) level,
+					new Vec3(worldPosition.getX() + 0.5, worldPosition.getY() + 0.7, worldPosition.getZ() + 0.5),
+					ColoredFluidRisingParticleEffect.of(inkColor.getColorInt()),
+					5,
+					new Vec3(0.22, 0.0, 0.22),
+					new Vec3(0.0, 0.1, 0.0)
+			);
+		}
+		return true;
 	}
 	
 	@Override

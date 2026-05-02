@@ -40,26 +40,22 @@ public class ColorPickerBlockEntity extends BaseInkTransferBlockEntity<TotalCapp
 	}
 	
 	@SuppressWarnings("unused")
-	public static void tick(Level world, BlockPos pos, BlockState state, ColorPickerBlockEntity blockEntity) {
-		if (!world.isClientSide) {
-			blockEntity.inkDirty = false;
-			if (!blockEntity.paused) {
-				boolean convertedPigment = false;
-				boolean shouldPause = true;
-				if (world.getGameTime() % TICKS_PER_CONVERSION == 0) {
-					convertedPigment = blockEntity.tryConvertPigmentToEnergy((ServerLevel) world);
-				} else {
-					shouldPause = false;
-				}
-				boolean filledContainer = blockEntity.tryFillInkContainer(); // that's an OR
-				
-				if (convertedPigment || filledContainer) {
-					blockEntity.updateInClientWorld();
-					blockEntity.setInkDirty();
-					blockEntity.setChanged();
-				} else if (shouldPause) {
-					blockEntity.paused = true;
-				}
+	public static void serverTick(Level world, BlockPos pos, BlockState state, ColorPickerBlockEntity blockEntity) {
+		blockEntity.inkDirty = false;
+		if (!blockEntity.paused) {
+			boolean convertedPigment = false;
+			boolean shouldPause = true;
+			if (world.getGameTime() % TICKS_PER_CONVERSION == 0) {
+				convertedPigment = blockEntity.tryConvertPigmentToEnergy((ServerLevel) world);
+			} else {
+				shouldPause = false;
+			}
+			boolean filledContainer = blockEntity.tryFillInkContainer(); // that's an OR
+			
+			if (convertedPigment || filledContainer) {
+				blockEntity.setChanged();
+			} else if (shouldPause) {
+				blockEntity.paused = true;
 			}
 		}
 	}

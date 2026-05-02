@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -9,67 +10,67 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
-public class BlockVariantHelper {
+public class VariantHelper {
 	
-	// cache for cursedBlockColorVariant()
-	private static final Map<Block, Map<DyeColor, Block>> coloredStates = new HashMap<>();
-	// ordered color strings so "light_" variants match before non-light
-	private static final List<String> COLOR_STRINGS = List.of("light_blue", "light_gray", "white", "orange", "magenta", "yellow", "lime", "pink", "gray", "cyan", "purple", "blue", "brown", "green", "red", "black");
+	private static final Map<Block, Map<InkColor, Block>> COLORED_STATE_CACHE = new HashMap<>();
+	private static final Map<Item, Map<InkColor, Item>> COLORED_ITEM_CACHE = new HashMap<>();
 	
-	public static BlockState getCursedBlockColorVariant(Level world, BlockPos blockPos, DyeColor newColor) {
-		BlockEntity blockEntity = world.getBlockEntity(blockPos);
-		if (blockEntity != null) {
-			return Blocks.AIR.defaultBlockState();
+	public static @Nullable BlockState getColoredBlock(Level world, BlockPos pos, InkColor newColor) {
+		if (world.getBlockEntity(pos) != null) {
+			return null;
 		}
 		
-		BlockState blockState = world.getBlockState(blockPos);
-		
-		if (blockState.is(SpectrumBlockTags.INK_EFFECT_BLACKLISTED) || blockState.getDestroySpeed(world, blockPos) == -1) {
-			return Blocks.AIR.defaultBlockState();
+		BlockState state = world.getBlockState(pos);
+		if (state.is(SpectrumBlockTags.COLORING_BLACKLISTED) || state.getDestroySpeed(world, pos) == -1) {
+			return null;
 		}
 		
-		Block block = blockState.getBlock();
-		if (coloredStates.containsKey(block)) {
-			Map<DyeColor, Block> colorMap = coloredStates.get(block);
-			if (colorMap.containsKey(newColor)) {
-				Block newBlock = colorMap.get(newColor);
-				return newBlock.withPropertiesOf(blockState);
+		Block block = state.getBlock();
+		Block result = recolorRegistryObject(block, newColor, COLORED_STATE_CACHE, BuiltInRegistries.BLOCK::getKey, BuiltInRegistries.BLOCK::get);
+		return result != null ? result.withPropertiesOf(state) : null;
+	}
+	
+	public static @Nullable Item getColoredItem(ItemStack stack, InkColor newColor) {
+		if (stack.is(SpectrumItemTags.COLORING_BLACKLISTED)) {
+			return null;
+		}
+		Item item = stack.getItem();
+		return recolorRegistryObject(item, newColor, COLORED_ITEM_CACHE, BuiltInRegistries.ITEM::getKey, BuiltInRegistries.ITEM::get);
+	}
+	
+	public static @Nullable <T> T recolorRegistryObject(T original, InkColor newColor, Map<T, Map<InkColor, T>> cache, Function<T, ResourceLocation> idGetter, Function<ResourceLocation, T> lookup) {
+		Map<InkColor, T> colorMap = cache.computeIfAbsent(original, k -> new HashMap<>());
+		return colorMap.computeIfAbsent(newColor, color -> {
+			ResourceLocation id = idGetter.apply(original);
+			String[] parts = id.getPath().split("_");
+			
+			for (int i = 0; i < parts.length; i++) {
+				int finalI = i;
+				InkColor matched = SpectrumRegistries.INK_COLOR.stream()
+								.filter(c -> c.toString().equals(parts[finalI]))
+								.findFirst()
+								.orElse(null);
+				
+				if (matched != null) {
+					parts[i] = color.toString();
+					String newPath = String.join("_", parts);
+					ResourceLocation newId = ResourceLocation.fromNamespaceAndPath(id.getNamespace(), newPath);
+					T newObj = lookup.apply(newId);
+					return !newObj.equals(original) ? newObj : null;
+				}
 			}
-		}
-		
-		ResourceLocation identifier = BuiltInRegistries.BLOCK.getKey(block);
-		
-		String newPath = null;
-		for (String colorString : COLOR_STRINGS) {
-			if (identifier.getPath().contains(colorString)) {
-				newPath = identifier.getPath().replace(colorString, newColor.toString());
-				break;
-			}
-		}
-		
-		Block returnBlock = Blocks.AIR;
-		if (newPath != null) {
-			ResourceLocation newIdentifier = ResourceLocation.fromNamespaceAndPath(identifier.getNamespace(), newPath);
-			Block newIdentifierBlock = BuiltInRegistries.BLOCK.get(newIdentifier);
-			if (newIdentifierBlock != block) {
-				returnBlock = newIdentifierBlock;
-			}
-		}
-		
-		// cache
-		if (coloredStates.containsKey(block)) {
-			Map<DyeColor, Block> colorMap = coloredStates.get(block);
-			colorMap.put(newColor, returnBlock);
-		} else {
-			Map<DyeColor, Block> colorMap = new HashMap<>();
-			colorMap.put(newColor, returnBlock);
-			coloredStates.put(block, colorMap);
-		}
-		
-		return returnBlock.withPropertiesOf(blockState);
+			return null;
+		});
+	}
+	
+	public static void invalidateCaches() {
+		COLORED_STATE_CACHE.clear();
+		COLORED_ITEM_CACHE.clear();
 	}
 	
 	// cache for getCursedRepairedBlockVariant()
@@ -93,14 +94,14 @@ public class BlockVariantHelper {
 	}};
 	
 	//TODO: unused
-	public static Block getCursedRepairedBlockVariant(Level world, BlockPos blockPos) {
+	public static Block getRepairedBlockVariant(Level world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity != null) {
 			return Blocks.AIR;
 		}
 		
 		BlockState blockState = world.getBlockState(blockPos);
-		if (blockState.is(SpectrumBlockTags.INK_EFFECT_BLACKLISTED)) {
+		if (blockState.is(SpectrumBlockTags.COLORING_BLACKLISTED)) {
 			return Blocks.AIR;
 		}
 		

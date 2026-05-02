@@ -37,8 +37,8 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	public ItemStack assemble(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, HolderLookup.Provider drm) {
 		SpiritInstillerBlockEntity spiritInstillerBlockEntity = recipeInput.getInstance();
 		GameProfile gameProfile = getSkullOwner(recipeInput.getItem(SpiritInstillerRecipe.CENTER_INGREDIENT));
-		if (gameProfile != null && SpectrumCommon.minecraftServer != null) {
-			ServerPlayer revivedPlayer = SpectrumCommon.minecraftServer.getPlayerList().getPlayerByName(gameProfile.getName());
+		if (gameProfile != null) {
+			ServerPlayer revivedPlayer = recipeInput.getInstance().getLevel().getServer().getPlayerList().getPlayerByName(gameProfile.getName());
 			if (revivedPlayer != null) {
 				HardcoreDeathAttachmentType.clearHardcoreDeath(revivedPlayer);
 				revivedPlayer.setGameMode(revivedPlayer.server.getDefaultGameType());
@@ -64,11 +64,11 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 		ItemStack instillerStack = inventory.getItem(0);
 		if (instillerStack.is(Blocks.PLAYER_HEAD.asItem())) {
 			GameProfile gameProfile = getSkullOwner(instillerStack);
-			if (gameProfile == null || SpectrumCommon.minecraftServer == null) {
+			if (gameProfile == null) {
 				return false;
 			}
 			
-			PlayerList playerManager = SpectrumCommon.minecraftServer.getPlayerList();
+			PlayerList playerManager = inventory.getInstance().getLevel().getServer().getPlayerList();
 			ServerPlayer playerToRevive = gameProfile.getId() == null ? playerManager.getPlayerByName(gameProfile.getName()) : playerManager.getPlayer(gameProfile.getId());
 			return playerToRevive != null && HardcoreDeathAttachmentType.hasHardcoreDeath(playerToRevive);
 		}

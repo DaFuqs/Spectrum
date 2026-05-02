@@ -20,9 +20,7 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.bus.api.*;
@@ -48,9 +46,7 @@ public class SpectrumCommon {
 	public static final String MOD_ID = "spectrum";
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
-	// Todo: move to filter classes
-	public static final Map<ResourceLocation, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
-
+	
 	public static void logInfo(String message) {
 		LOGGER.info("{}", message);
 	}

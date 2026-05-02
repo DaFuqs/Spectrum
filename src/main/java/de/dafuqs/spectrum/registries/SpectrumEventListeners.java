@@ -464,8 +464,9 @@ public class SpectrumEventListeners {
 		event.addListener(new ResourceManagerReloadListener() {
 			@Override
 			public void onResourceManagerReload(ResourceManager resourceManager) {
-				AutoCraftingMode.clearCache();
-				SpectrumCommon.CACHED_ITEM_TAG_MAP.clear();
+				AutoCraftingMode.invalidateCache();
+				VariantHelper.invalidateCaches();
+				FilterConfigurable.invalidateCache();
 				
 				if (SpectrumCommon.minecraftServer != null) {
 					FirestarterIdolBlock.addBlockSmeltingRecipes(SpectrumCommon.minecraftServer);

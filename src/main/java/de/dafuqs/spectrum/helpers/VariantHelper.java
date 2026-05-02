@@ -21,7 +21,7 @@ public class VariantHelper {
 	private static final Map<Item, Map<InkColor, Item>> COLORED_ITEM_CACHE = new HashMap<>();
 	private static final Map<Block, Block> REPAIRED_STATE_CACHE = new HashMap<>();
 	
-	public static @Nullable BlockState getColoredBlock(Level world, BlockPos pos, InkColor newColor) {
+	public static @Nullable BlockState getColoredBlockState(Level world, BlockPos pos, InkColor newColor) {
 		if (world.getBlockEntity(pos) != null) {
 			return null;
 		}
@@ -32,7 +32,7 @@ public class VariantHelper {
 		}
 		
 		Block block = state.getBlock();
-		Block result = recolorRegistryObject(block, newColor, COLORED_STATE_CACHE, BuiltInRegistries.BLOCK::getKey, BuiltInRegistries.BLOCK::get);
+		Block result = recolorRegistryObject(block, newColor, COLORED_STATE_CACHE, BuiltInRegistries.BLOCK::getKey, BuiltInRegistries.BLOCK::get, Blocks.AIR);
 		return result != null ? result.withPropertiesOf(state) : null;
 	}
 	
@@ -40,16 +40,18 @@ public class VariantHelper {
 		if (stack.is(SpectrumItemTags.COLORING_BLACKLISTED)) {
 			return null;
 		}
+		
 		Item item = stack.getItem();
-		return recolorRegistryObject(item, newColor, COLORED_ITEM_CACHE, BuiltInRegistries.ITEM::getKey, BuiltInRegistries.ITEM::get);
+		return recolorRegistryObject(item, newColor, COLORED_ITEM_CACHE, BuiltInRegistries.ITEM::getKey, BuiltInRegistries.ITEM::get, Items.AIR);
 	}
 	
-	public static @Nullable <T> T recolorRegistryObject(T original, InkColor newColor, Map<T, Map<InkColor, T>> cache, Function<T, ResourceLocation> idGetter, Function<ResourceLocation, T> lookup) {
+	public static @Nullable <T> T recolorRegistryObject(T original, InkColor newColor, Map<T, Map<InkColor, T>> cache, Function<T, ResourceLocation> idGetter, Function<ResourceLocation, T> lookup, T defaultToIgnore) {
 		Map<InkColor, T> colorMap = cache.computeIfAbsent(original, k -> new HashMap<>());
 		return colorMap.computeIfAbsent(newColor, color -> {
 			ResourceLocation id = idGetter.apply(original);
 			String[] parts = id.getPath().split("_");
 			
+			// Option 1: try replacing an existing color ("red_concrete" => "light_blue_concrete")
 			for (int i = 0; i < parts.length; i++) {
 				int finalI = i;
 				InkColor matched = SpectrumRegistries.INK_COLOR.stream()
@@ -62,10 +64,19 @@ public class VariantHelper {
 					String newPath = String.join("_", parts);
 					ResourceLocation newId = ResourceLocation.fromNamespaceAndPath(id.getNamespace(), newPath);
 					T newObj = lookup.apply(newId);
-					return !newObj.equals(original) ? newObj : null;
+					return (newObj != defaultToIgnore && !newObj.equals(original)) ? newObj : null;
 				}
 			}
-			return null;
+			
+			// Option 2: prefix the color ("concrete" => "light_blue_concrete")
+			T newObj = lookup.apply(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), color.getID().getPath() + "_" + id.getPath()));
+			if(newObj != defaultToIgnore && !newObj.equals(original)) {
+				return newObj;
+			}
+			
+			// Option 3: prefix the color + "stained" ("glass" => "red_stained_glass")
+			newObj = lookup.apply(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), color.getID().getPath() + "_stained_" + id.getPath()));
+			return (newObj != defaultToIgnore && !newObj.equals(original)) ? newObj : null;
 		});
 	}
 	

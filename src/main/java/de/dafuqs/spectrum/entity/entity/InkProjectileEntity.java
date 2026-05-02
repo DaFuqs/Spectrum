@@ -189,7 +189,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				continue;
 			}
 			if (dyeColor.isPresent()) {
-				@Nullable BlockState coloredBlockState = VariantHelper.getColoredBlock(this.level(), blockPos, inkColor);
+				@Nullable BlockState coloredBlockState = VariantHelper.getColoredBlockState(this.level(), blockPos, inkColor);
 				if (coloredBlockState != null) {
 					this.level().setBlockAndUpdate(blockPos, coloredBlockState);
 				}

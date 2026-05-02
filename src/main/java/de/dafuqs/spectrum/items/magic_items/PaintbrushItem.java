@@ -151,7 +151,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 		}
 		
 		InkColor inkColor = optionalInkColor.get();
-		@Nullable BlockState newBlockState = VariantHelper.getColoredBlock(context.getLevel(), context.getClickedPos(), inkColor);
+		@Nullable BlockState newBlockState = VariantHelper.getColoredBlockState(context.getLevel(), context.getClickedPos(), inkColor);
 		if (newBlockState == null) {
 			return false;
 		}

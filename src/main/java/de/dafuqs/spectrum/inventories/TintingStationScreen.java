@@ -4,32 +4,21 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
-import de.dafuqs.spectrum.blocks.energy.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.widgets.*;
-import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screens.inventory.*;
-import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
-import net.neoforged.neoforge.network.*;
 
-import java.util.*;
-import java.util.function.*;
-
-public class ColorPickerScreen extends InkTransferScreen {
+public class TintingStationScreen extends InkTransferScreen {
 	
 	protected final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
 	
-	protected StackedInkMeterWidget inkMeterWidget;
+	protected InkMeterWidget inkMeterWidget;
 	
-	public ColorPickerScreen(InkTransferScreenHandler handler, Inventory playerInventory, Component title) {
+	public TintingStationScreen(InkTransferScreenHandler handler, Inventory playerInventory, Component title) {
 		super(handler, playerInventory, title);
-		this.imageHeight = 166;
 	}
-	
 	
 	@Override
 	protected void init() {
@@ -39,21 +28,22 @@ public class ColorPickerScreen extends InkTransferScreen {
 		int startY = (this.height - this.imageHeight) / 2;
 		
 		this.inkGaugeWidget = new InkGaugeWidget(startX + 54, startY + 21, 42, 42, this.menu.getBlockEntity());
-		addWidget(this.inkGaugeWidget);
-		this.inkMeterWidget = new StackedInkMeterWidget(startX + 100, startY + 21, 4, 40, this.menu.getBlockEntity());
+		addWidget(inkGaugeWidget);
+		this.inkMeterWidget = new InkMeterWidget(startX + 140, startY + 34, 40, (InkStorageBlockEntity<IndividualCappedInkStorage>) this.menu.getBlockEntity(), InkColors.all());
 		addWidget(inkMeterWidget);
 	}
 	
 	@Override
-	protected void renderBg(GuiGraphics drawContext, float partialTick, int mouseX, int mouseY) {
+	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
+		super.renderBg(drawContext, delta, mouseX, mouseY);
 		int startX = (this.width - this.imageWidth) / 2;
 		int startY = (this.height - this.imageHeight) / 2;
 		
 		// main background
 		drawContext.blit(BACKGROUND, startX, startY, 0, 0, imageWidth, imageHeight);
-		// this.inkMeterWidget.render(drawContext, mouseX, mouseY, partialTick);
+		// this.inkMeterWidget.render(drawContext, ((InkStorageBlockEntity<IndividualCappedInkStorage>) this.menu.getBlockEntity()).getEnergyStorage().getEnergy().keySet());
 		
-		super.renderBg(drawContext, partialTick, mouseX, mouseY);
+		super.renderBg(drawContext, delta, mouseX, mouseY);
 	}
 	
 }

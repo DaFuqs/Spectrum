@@ -31,6 +31,7 @@ public class SpectrumScreenHandlerTypes {
 	public static MenuType<BlackHoleChestScreenHandler> BLACK_HOLE_CHEST = registerExtended(SpectrumScreenHandlerIDs.BLACK_HOLE_CHEST, BlackHoleChestScreenHandler::new, FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC);
 	public static MenuType<PotionWorkshopScreenHandler> POTION_WORKSHOP = registerSimple(SpectrumScreenHandlerIDs.POTION_WORKSHOP, PotionWorkshopScreenHandler::new);
 	public static MenuType<ColorPickerScreenHandler> COLOR_PICKER = registerExtended(SpectrumScreenHandlerIDs.COLOR_PICKER, ColorPickerScreenHandler::new, ColorPickerScreenHandler.ScreenOpeningData.PACKET_CODEC);
+	public static MenuType<TintingStationScreenHandler> TINTING_STATION = registerExtended(SpectrumScreenHandlerIDs.TINTING_STATION, TintingStationScreenHandler::new, ColorPickerScreenHandler.ScreenOpeningData.PACKET_CODEC);
 	public static MenuType<CinderhearthScreenHandler> CINDERHEARTH = registerExtended(SpectrumScreenHandlerIDs.CINDERHEARTH, CinderhearthScreenHandler::new, BlockPos.STREAM_CODEC);
 	public static MenuType<FilteringScreenHandler> FILTERING = registerExtended(SpectrumScreenHandlerIDs.FILTERING, FilteringScreenHandler::new, FilterConfigurable.ExtendedData.PACKET_CODEC);
 	public static MenuType<BagOfHoldingScreenHandler> BAG_OF_HOLDING = registerSimple(SpectrumScreenHandlerIDs.BAG_OF_HOLDING, BagOfHoldingScreenHandler::new);
@@ -76,6 +77,7 @@ public class SpectrumScreenHandlerTypes {
 		event.register(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, BlackHoleChestScreen::new);
 		event.register(SpectrumScreenHandlerTypes.POTION_WORKSHOP, PotionWorkshopScreen::new);
 		event.register(SpectrumScreenHandlerTypes.COLOR_PICKER, ColorPickerScreen::new);
+		event.register(SpectrumScreenHandlerTypes.TINTING_STATION, TintingStationScreen::new);
 		event.register(SpectrumScreenHandlerTypes.CINDERHEARTH, CinderhearthScreen::new);
 		event.register(SpectrumScreenHandlerTypes.FILTERING, FilteringScreen::new);
 		event.register(SpectrumScreenHandlerTypes.BAG_OF_HOLDING, ContainerScreen::new);

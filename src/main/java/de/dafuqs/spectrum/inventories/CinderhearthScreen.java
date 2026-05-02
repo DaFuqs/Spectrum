@@ -29,7 +29,8 @@ public class CinderhearthScreen extends AbstractContainerScreen<CinderhearthScre
 		int startX = (this.width - this.imageWidth) / 2;
 		int startY = (this.height - this.imageHeight) / 2;
 		
-		this.inkMeterWidget = new InkMeterWidget(startX + 140, startY + 34, 40, this, this.menu.getBlockEntity());
+		this.inkMeterWidget = new InkMeterWidget(startX + 140, startY + 34, 40, this.menu.getBlockEntity(), CinderhearthBlockEntity.USED_INK_COLORS);
+		addWidget(inkMeterWidget);
 	}
 	
 	@Override
@@ -40,18 +41,18 @@ public class CinderhearthScreen extends AbstractContainerScreen<CinderhearthScre
 		Component title = this.title;
 		
 		drawContext.drawString(this.font, title, titleX, titleY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
-		drawContext.drawString(this.font, this.playerInventoryTitle, ColorPickerScreenHandler.PLAYER_INVENTORY_START_X, ColorPickerScreenHandler.PLAYER_INVENTORY_START_Y - 10, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
+		drawContext.drawString(this.font, this.playerInventoryTitle, InkTransferScreenHandler.PLAYER_INVENTORY_START_X, InkTransferScreenHandler.PLAYER_INVENTORY_START_Y - 10, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
 	}
 	
 	@Override
-	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
+	protected void renderBg(GuiGraphics drawContext, float partialTick, int mouseX, int mouseY) {
 		int startX = (this.width - this.imageWidth) / 2;
 		int startY = (this.height - this.imageHeight) / 2;
 		
 		// main background
 		drawContext.blit(BACKGROUND, startX, startY, 0, 0, imageWidth, imageHeight);
 		
-		this.inkMeterWidget.draw(drawContext, CinderhearthBlockEntity.USED_INK_COLORS);
+		// this.inkMeterWidget.render(drawContext, mouseX, mouseY, partialTick);
 		
 		int craftingTime = this.menu.getCraftingTime();
 		int craftingTimeTotal = this.menu.getCraftingTimeTotal();

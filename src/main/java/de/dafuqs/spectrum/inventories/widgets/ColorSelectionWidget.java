@@ -8,7 +8,6 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
-import net.minecraft.client.gui.screens.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
@@ -22,27 +21,25 @@ import static de.dafuqs.spectrum.helpers.RenderHelper.*;
 
 public class ColorSelectionWidget extends AbstractWidget {
 	
-	protected final ColorPickerBlockEntity colorPicker;
+	protected final BaseInkTransferBlockEntity<?> colorPicker;
 	
 	@Nullable
 	private Consumer<Optional<Holder<InkColor>>> changedListener;
-	protected final Screen screen;
 	
 	final List<Tuple<InkColor, Boolean>> usableColors = new ArrayList<>(); // stores if a certain color should be displayed
 	
 	final int selectedDotX;
 	final int selectedDotY;
 	
-	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, Screen screen, ColorPickerBlockEntity colorPicker) {
-		this(x, y, selectedDotX, selectedDotY, screen, colorPicker, InkColors.BUILTIN_COLORS);
+	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, BaseInkTransferBlockEntity<?> colorPicker) {
+		this(x, y, selectedDotX, selectedDotY, colorPicker, InkColors.BUILTIN_COLORS);
 	}
 	
-	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, Screen screen, ColorPickerBlockEntity colorPicker, List<InkColor> availableColors) {
+	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, BaseInkTransferBlockEntity<?> colorPicker, List<InkColor> availableColors) {
 		super(x, y, 56, 14, Component.literal(""));
 		this.colorPicker = colorPicker;
 		this.selectedDotX = selectedDotX;
 		this.selectedDotY = selectedDotY;
-		this.screen = screen;
 		
 		for (InkColor inkColor : availableColors) {
 			usableColors.add(new Tuple<>(inkColor, AdvancementHelper.hasAdvancementClient(inkColor.getRequiredAdvancement())));
@@ -122,10 +119,6 @@ public class ColorSelectionWidget extends AbstractWidget {
 		return mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 	}
 	
-	public boolean isMouseOver(double mouseX, double mouseY) {
-		return super.isMouseOver(mouseX, mouseY) || (this.active && this.visible && isUnselection(mouseX, mouseY));
-	}
-	
 	public void drawMouseoverTooltip(GuiGraphics drawContext, int mouseX, int mouseY) {
 		Minecraft client = Minecraft.getInstance();
 		boolean overUnselection = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
@@ -146,5 +139,15 @@ public class ColorSelectionWidget extends AbstractWidget {
 				drawContext.renderTooltip(client.font, List.of(Component.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 			}
 		}
+	}
+	
+	@Override
+	public void mouseMoved(double mouseX, double mouseY) {
+		super.mouseMoved(mouseX, mouseY);
+	}
+	
+	@Override
+	public @Nullable Tooltip getTooltip() {
+		return new WidgetTooltipHolder().get();
 	}
 }

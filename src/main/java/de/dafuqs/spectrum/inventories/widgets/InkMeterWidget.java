@@ -7,61 +7,28 @@ import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
-import net.minecraft.client.gui.components.events.*;
 import net.minecraft.client.gui.narration.*;
-import net.minecraft.client.gui.screens.*;
 import net.minecraft.network.chat.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-
-public class InkMeterWidget implements Renderable, GuiEventListener, NarratableEntry {
+public class InkMeterWidget extends AbstractWidget {
 	
 	public static final int WIDTH_PER_COLOR = 4;
 	public static final int SPACE_BETWEEN_COLORS = 2;
 	
-	public final int x;
-	public final int y;
-	public final int width;
-	public final int height;
-	protected boolean hovered;
-	protected boolean focused;
-	
-	protected final Screen screen;
+	protected final Iterable<InkColor> colors;
 	protected final InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity;
 	
-	public InkMeterWidget(int x, int y, int height, Screen screen, InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity) {
-		this.x = x;
-		this.y = y;
-		this.width = inkStorageBlockEntity.getEnergyStorage().getSupportedColors().size() * (WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS) - SPACE_BETWEEN_COLORS;
-		this.height = height;
-		
-		this.screen = screen;
+	public InkMeterWidget(int x, int y, int height, InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity, Iterable<InkColor> colors) {
+		super(x, y, inkStorageBlockEntity.getEnergyStorage().getSupportedColors().size() * (WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS) - SPACE_BETWEEN_COLORS, height, Component.empty());
+		this.colors = colors;
 		this.inkStorageBlockEntity = inkStorageBlockEntity;
 	}
 	
 	@Override
-	public boolean isMouseOver(double mouseX, double mouseY) {
-		return mouseX >= (double) this.x && mouseX < (double) (this.x + this.width) && mouseY >= (double) this.y && mouseY < (double) (this.y + this.height);
-	}
-	
-	@Override
-	public void setFocused(boolean focused) {
-		this.focused = focused;
-	}
-	
-	@Override
-	public boolean isFocused() {
-		return focused;
-	}
-	
-	@Override
-	public NarrationPriority narrationPriority() {
-		return this.hovered ? NarrationPriority.HOVERED : NarrationPriority.NONE;
-	}
-	
-	@Override
-	public void updateNarration(NarrationElementOutput builder) {
+	protected void updateWidgetNarration(@NotNull NarrationElementOutput narrationElementOutput) {
 	
 	}
 	
@@ -72,8 +39,9 @@ public class InkMeterWidget implements Renderable, GuiEventListener, NarratableE
 		drawContext.renderTooltip(client.font, tooltip, Optional.empty(), x, y);
 	}
 	
-	public void draw(GuiGraphics drawContext, List<InkColor> colors) {
-		int startHeight = this.y + this.height;
+	@Override
+	protected void renderWidget(@NotNull GuiGraphics guiGraphics, int i, int i1, float v) {
+		int startHeight = getY() + getHeight();
 		int currentXOffset = 0;
 		
 		IndividualCappedInkStorage inkStorage = inkStorageBlockEntity.getEnergyStorage();
@@ -81,16 +49,11 @@ public class InkMeterWidget implements Renderable, GuiEventListener, NarratableE
 		for (InkColor color : colors) {
 			long amount = inkStorage.getEnergy(color);
 			if (amount > 0) {
-				int height = Math.max(1, Math.round(((float) amount / ((float) total / this.height))));
-				RenderHelper.fillQuad(drawContext.pose(), this.x + currentXOffset, startHeight - height, height, WIDTH_PER_COLOR, color.getColorVec());
+				int height = Math.max(1, Math.round(((float) amount / ((float) total / getHeight()))));
+				RenderHelper.fillQuad(guiGraphics.pose(), getX() + currentXOffset, startHeight - height, height, WIDTH_PER_COLOR, color.getColorVec());
 			}
 			currentXOffset = currentXOffset + WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS;
 		}
-	}
-	
-	@Override
-	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
-		this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
 	}
 	
 }

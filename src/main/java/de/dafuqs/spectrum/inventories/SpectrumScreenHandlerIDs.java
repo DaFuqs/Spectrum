@@ -17,6 +17,7 @@ public class SpectrumScreenHandlerIDs {
 	public static final ResourceLocation BLACK_HOLE_CHEST = SpectrumCommon.locate("black_hole_chest");
 	public static final ResourceLocation POTION_WORKSHOP = SpectrumCommon.locate("potion_workshop");
 	public static final ResourceLocation COLOR_PICKER = SpectrumCommon.locate("color_picker");
+	public static final ResourceLocation TINTING_STATION = SpectrumCommon.locate("tinting_station");
 	public static final ResourceLocation CINDERHEARTH = SpectrumCommon.locate("cinderhearth");
 	public static final ResourceLocation FILTERING = SpectrumCommon.locate("filtering");
 	public static final ResourceLocation BAG_OF_HOLDING = SpectrumCommon.locate("bag_of_holding");

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.energy;
 
-import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
@@ -10,15 +9,12 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
-import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.color_picker.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.network.protocol.*;
-import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.*;
@@ -27,54 +23,43 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity implements PlayerOwned, InkStorageBlockEntity<TotalCappedInkStorage>, MenuProvider {
+public class ColorPickerBlockEntity extends BaseInkTransferBlockEntity<TotalCappedInkStorage> implements MenuProvider {
 	
-	public static final int INVENTORY_SIZE = 2; // input & output slots
-	public static final int INPUT_SLOT_ID = 0;
-	public static final int OUTPUT_SLOT_ID = 1;
 	public static final long TICKS_PER_CONVERSION = 5;
-	public static final long STORAGE_AMOUNT = 64 * 64 * 64 * 100;
-	
-	public NonNullList<ItemStack> inventory;
-	protected TotalCappedInkStorage inkStorage;
-	protected boolean paused;
-	protected boolean inkDirty;
+	public static final long STORAGE_AMOUNT = (long) Math.pow(2, 16);
 	protected @Nullable InkConvertingRecipe cachedRecipe;
-	protected Optional<Holder<InkColor>> selectedColor = Optional.empty();
-	private UUID ownerUUID;
 	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.COLOR_PICKER.get(), blockPos, blockState);
-		
-		this.inventory = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
-		this.inkStorage = new TotalCappedInkStorage(STORAGE_AMOUNT, Map.of());
+		super(SpectrumBlockEntities.COLOR_PICKER.get(), blockPos, blockState, new TotalCappedInkStorage(STORAGE_AMOUNT, Map.of()));
 	}
 	
 	@SuppressWarnings("unused")
 	public static void serverTick(Level world, BlockPos pos, BlockState state, ColorPickerBlockEntity blockEntity) {
-		blockEntity.inkDirty = false;
-		if (!blockEntity.paused) {
-			boolean convertedPigment = false;
-			boolean shouldPause = true;
-			if (world.getGameTime() % TICKS_PER_CONVERSION == 0) {
-				convertedPigment = blockEntity.tryConvertPigmentToEnergy((ServerLevel) world);
-			} else {
-				shouldPause = false;
-			}
-			boolean filledContainer = blockEntity.tryFillInkContainer(); // that's an OR
-			
-			if (convertedPigment || filledContainer) {
-				blockEntity.setChanged();
-			} else if (shouldPause) {
-				blockEntity.paused = true;
+		if (!world.isClientSide) {
+			blockEntity.inkDirty = false;
+			if (!blockEntity.paused) {
+				boolean convertedPigment = false;
+				boolean shouldPause = true;
+				if (world.getGameTime() % TICKS_PER_CONVERSION == 0) {
+					convertedPigment = blockEntity.tryConvertPigmentToEnergy((ServerLevel) world);
+				} else {
+					shouldPause = false;
+				}
+				boolean filledContainer = blockEntity.tryFillInkContainer(); // that's an OR
+				
+				if (convertedPigment || filledContainer) {
+					blockEntity.updateInClientWorld();
+					blockEntity.setInkDirty();
+					blockEntity.setChanged();
+				} else if (shouldPause) {
+					blockEntity.paused = true;
+				}
 			}
 		}
 	}
@@ -98,16 +83,16 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 	
 	@Override
 	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
-		return new ColorPickerScreenHandler(syncId, playerInventory, this, new InkTransferScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).inkColor());
+		return new ColorPickerScreenHandler(syncId, playerInventory, playerInventory.player.level().getBlockEntity(new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).pos(), SpectrumBlockEntities.COLOR_PICKER.get()).orElseThrow(), new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).inkColor());
 	}
 	
 	@Override
 	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		InkTransferScreenHandler.ScreenOpeningData.PACKET_CODEC.encode(buffer, new InkTransferScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
+		ColorPickerScreenHandler.ScreenOpeningData.PACKET_CODEC.encode(buffer, new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
-	protected boolean tryConvertPigmentToEnergy(ServerLevel level) {
-		InkConvertingRecipe recipe = getInkConvertingRecipe(level);
+	protected boolean tryConvertPigmentToEnergy(ServerLevel world) {
+		InkConvertingRecipe recipe = getInkConvertingRecipe(world);
 		if (recipe != null) {
 			InkColor inkColor = recipe.getInkColor();
 			long amount = recipe.getInkAmount();
@@ -118,7 +103,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 				if (SpectrumConfig.CONFIG.BlockSoundVolume.get() > 0) {
 					level.playSound(null, worldPosition, SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() / 3F, 1.0F);
 				}
-				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(level,
+				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world,
 						new Vec3(worldPosition.getX() + 0.5, worldPosition.getY() + 0.7, worldPosition.getZ() + 0.5),
 						ColoredFluidRisingParticleEffect.of(inkColor.getColorInt()),
 						5,

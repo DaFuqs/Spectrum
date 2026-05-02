@@ -1,9 +1,12 @@
 package de.dafuqs.spectrum.api.energy;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
+import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -202,11 +205,6 @@ public interface InkStorage extends Clearable {
 	MutableComponent getTooltip();
 	
 	long getRoom(InkColor color);
-	
-	static void addInkStoreBulletTooltip(List<Component> tooltip, InkColor color, long amount) {
-		MutableComponent inkName = color.getColoredInkName();
-		tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.bullet_amount", Component.literal(getShortenedNumberString(amount)).withStyle(ChatFormatting.WHITE), inkName).setStyle(inkName.getStyle()));
-	}
 	
 	static Component getInkStoreBulletTooltip(InkColor color, long amount) {
 		MutableComponent inkName = color.getColoredInkName();

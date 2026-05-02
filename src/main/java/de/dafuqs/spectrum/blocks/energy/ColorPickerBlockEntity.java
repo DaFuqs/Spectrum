@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.energy;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
@@ -9,12 +10,15 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.color_picker.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.network.protocol.*;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.*;
@@ -23,20 +27,35 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ColorPickerBlockEntity extends BaseInkTransferBlockEntity<TotalCappedInkStorage> implements MenuProvider {
+public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity implements PlayerOwned, InkStorageBlockEntity<TotalCappedInkStorage>, MenuProvider {
 	
+	public static final int INVENTORY_SIZE = 2; // input & output slots
+	public static final int INPUT_SLOT_ID = 0;
+	public static final int OUTPUT_SLOT_ID = 1;
 	public static final long TICKS_PER_CONVERSION = 5;
-	public static final long STORAGE_AMOUNT = (long) Math.pow(2, 16);
+	public static final long STORAGE_AMOUNT = 64 * 64 * 64 * 100;
+	
+	public NonNullList<ItemStack> inventory;
+	protected TotalCappedInkStorage inkStorage;
+	protected boolean paused;
+	protected boolean inkDirty;
 	protected @Nullable InkConvertingRecipe cachedRecipe;
+	protected Optional<Holder<InkColor>> selectedColor = Optional.empty();
+	private UUID ownerUUID;
 	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.COLOR_PICKER.get(), blockPos, blockState, new TotalCappedInkStorage(STORAGE_AMOUNT, Map.of()));
+		super(SpectrumBlockEntities.COLOR_PICKER.get(), blockPos, blockState);
+		
+		this.inventory = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
+		this.inkStorage = new TotalCappedInkStorage(STORAGE_AMOUNT, Map.of());
 	}
 	
 	@SuppressWarnings("unused")

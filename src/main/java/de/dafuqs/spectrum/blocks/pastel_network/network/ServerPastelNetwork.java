@@ -89,16 +89,11 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 	@Override
 	public String getNodeDebugText() {
 		return super.getNodeDebugText() +
-				" - Prov: " +
-				getLoadedNodes(PastelNodeType.PROVIDER).size() +
-				" - Send: " +
-				getLoadedNodes(PastelNodeType.SENDER).size() +
-				" - Gath: " +
-				getLoadedNodes(PastelNodeType.GATHER).size() +
-				" - Stor: " +
-				getLoadedNodes(PastelNodeType.STORAGE).size() +
-				" - Conn: " +
-				getLoadedNodes(PastelNodeType.CONNECTION).size();
+				" - Prov: " + getLoadedNodes(PastelNodeType.PROVIDER).size() +
+				" - Send: " + getLoadedNodes(PastelNodeType.SENDER).size() +
+				" - Gath: " + getLoadedNodes(PastelNodeType.GATHER).size() +
+				" - Stor: " + getLoadedNodes(PastelNodeType.STORAGE).size() +
+				" - Conn: " + getLoadedNodes(PastelNodeType.CONNECTION).size();
 	}
 	
 	@Override

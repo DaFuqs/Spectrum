@@ -17,7 +17,7 @@ public class SpectrumTexturedModels {
 	public static final TexturedModel.Provider BASE_TRANS_LIGHT_CORE = TexturedModel.createDefault(b -> new TextureMapping().put(CASE, getBlockTexture(b)).put(BASE, getBlockTexture(b, "_base")).put(GLASS, getBlockTexture(b, "_glass")).put(SHELL, getBlockTexture(b, "_shell")).put(FILAMENT, getBlockTexture(b, "_filament")).put(ENDS, getBlockTexture(b, "_ends")), SpectrumModels.BASE_TRANS_LIGHT_CORE);
 	public static final TexturedModel.Provider CHIME = TexturedModel.createDefault(b -> new TextureMapping().put(BASE, SpectrumTextures.BALCITE_CHIME_BASE).put(GEMSTONE, getBlockTexture(b)), SpectrumModels.CHIME);
 	public static final TexturedModel.Provider CUBE_COLUMN_MIRRORED = TexturedModel.createDefault(TextureMapping::logColumn, ModelTemplates.CUBE_COLUMN_MIRRORED);
-	public static final TexturedModel.Provider CUSHION = TexturedModel.createDefault(b -> SpectrumTextureMaps.sideTopBottom(b, "_side", b, "_top", b, "_bottom"), SpectrumModels.CUSHION);
+	public static final TexturedModel.Provider CUSHION = TexturedModel.createDefault(TextureMapping::cubeBottomTop, SpectrumModels.CUSHION);
 	public static final TexturedModel.Provider FUSION_SHRINE = TexturedModel.createDefault(b -> new TextureMapping().put(SHRINE, getBlockTexture(b)).put(PARTICLE, getBlockTexture(b, "_breaking")), SpectrumModels.FUSION_SHRINE);
 	public static final TexturedModel.Provider ROUNDEL = TexturedModel.createDefault(b -> new TextureMapping().put(ALL, getBlockTexture(b)), SpectrumModels.ROUNDEL);
 	public static final TexturedModel.Provider SHOOTING_STAR = TexturedModel.createDefault(b -> new TextureMapping().put(CORE, getBlockTexture(b)).put(SIDE, getBlockTexture(b, "_side")), SpectrumModels.SHOOTING_STAR);

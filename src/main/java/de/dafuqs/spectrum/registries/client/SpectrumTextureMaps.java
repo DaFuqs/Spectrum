@@ -31,6 +31,13 @@ public class SpectrumTextureMaps {
 		return new TextureMapping().put(FLOWER, flower).put(PARTICLE, particle);
 	}
 	
+	public static TextureMapping infested(Block infested, Block normal) {
+		ResourceLocation normTex = getBlockTexture(normal, "_top");
+		TextureMapping   normMap = TextureMapping.particle(normTex).put(UP, normTex).put(DOWN, normTex);
+		return normMap.put(NORTH, getBlockTexture(infested, "_north")).put(EAST, getBlockTexture(infested, "_east"))
+					  .put(SOUTH, getBlockTexture(infested, "_south")).put(WEST, getBlockTexture(infested, "_west"));
+	}
+	
 	public static TextureMapping innerOuter(Block innerBlock, String innerSuffix, Block outerBlock, String outerSuffix) {
 		return innerOuter(getBlockTexture(innerBlock, innerSuffix), getBlockTexture(outerBlock, outerSuffix));
 	}
@@ -65,6 +72,10 @@ public class SpectrumTextureMaps {
 	
 	public static TextureMapping sideLine(ResourceLocation side, ResourceLocation line) {
 		return new TextureMapping().put(SIDE, side).put(LINE, line);
+	}
+	
+	public static TextureMapping sideTexture(Block block) {
+		return new TextureMapping().put(SIDE, getBlockTexture(block, "_side")).put(TEXTURE, getBlockTexture(block));
 	}
 	
 	public static TextureMapping sideTop(Block sideBlock, String sideSuffix, Block topBlock, String topSuffix) {

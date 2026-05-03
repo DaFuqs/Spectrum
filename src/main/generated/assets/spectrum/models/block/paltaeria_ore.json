@@ -1,8 +1,5 @@
 {
   "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "spectrum:block/paltaeria_ore"
-  },
   "display": {
     "ground": {
       "rotation": [
@@ -10,16 +7,19 @@
         0,
         180
       ],
-      "translation": [
-        0,
-        -4.5,
-        0
-      ],
       "scale": [
         0.25,
         0.25,
         0.25
+      ],
+      "translation": [
+        0,
+        -4.5,
+        0
       ]
     }
+  },
+  "textures": {
+    "all": "spectrum:block/paltaeria_ore"
   }
 }

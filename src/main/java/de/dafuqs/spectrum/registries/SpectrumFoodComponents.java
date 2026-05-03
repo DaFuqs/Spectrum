@@ -213,33 +213,33 @@ public class SpectrumFoodComponents {
 			.build();
 	
 	public static final FoodProperties ROCK_CANDY = new FoodProperties.Builder()
-			.nutrition(2).saturationModifier(SAT_POOR).fast()
+			.nutrition(2).saturationModifier(SAT_POOR).fast().alwaysEdible()
 			.effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 15, 4), 1.0F)
 			.build();
 	
 	public static final FoodProperties TOPAZ_ROCK_CANDY = new FoodProperties.Builder()
-			.nutrition(2).saturationModifier(SAT_POOR).fast()
+			.nutrition(2).saturationModifier(SAT_POOR).fast().alwaysEdible()
 			.effect(new MobEffectInstance(MobEffects.ABSORPTION, 20 * 15), 1.0F)
 			.build();
 	
 	public static final FoodProperties AMETHYST_ROCK_CANDY = new FoodProperties.Builder()
-			.nutrition(2).saturationModifier(SAT_POOR).fast()
-			.effect(new MobEffectInstance(MobEffects.DIG_SPEED, 20 * 15, 4), 1.0F)
+			.nutrition(2).saturationModifier(SAT_POOR).fast().alwaysEdible()
+			.effect(new MobEffectInstance(MobEffects.DIG_SPEED, 20 * 15, 2), 1.0F)
 			.build();
 	
 	public static final FoodProperties CITRINE_ROCK_CANDY = new FoodProperties.Builder()
-			.nutrition(2).saturationModifier(SAT_POOR).fast()
+			.nutrition(2).saturationModifier(SAT_POOR).fast().alwaysEdible()
 			.effect(new MobEffectInstance(MobEffects.JUMP, 20 * 15, 2), 1.0F)
 			.build();
 	
 	public static final FoodProperties ONYX_ROCK_CANDY = new FoodProperties.Builder()
-			.nutrition(2).saturationModifier(SAT_POOR).fast()
+			.nutrition(2).saturationModifier(SAT_POOR).fast().alwaysEdible()
 			.effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20 * 15, 1), 1.0F)
 			.build();
 	
 	public static final FoodProperties MOONSTONE_ROCK_CANDY = new FoodProperties.Builder()
-			.nutrition(2).saturationModifier(SAT_POOR).fast()
-			.effect(new MobEffectInstance(MobEffects.INVISIBILITY, 20 * 15), 1.0F)
+			.nutrition(2).saturationModifier(SAT_POOR).fast().alwaysEdible()
+			.effect(new MobEffectInstance(SpectrumStatusEffects.IMMUNITY, 20 * 15), 1.0F)
 			.build();
 	
 	public static final FoodProperties BLOODBOIL_SYRUP = new FoodProperties.Builder()

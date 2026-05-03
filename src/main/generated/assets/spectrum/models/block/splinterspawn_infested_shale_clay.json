@@ -1,10 +1,12 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "all": "spectrum:block/shale_clay_top",
-    "north": "spectrum:block/splinterspawn_infested_shale_clay_north",
+    "down": "spectrum:block/shale_clay_top",
     "east": "spectrum:block/splinterspawn_infested_shale_clay_east",
+    "north": "spectrum:block/splinterspawn_infested_shale_clay_north",
+    "particle": "spectrum:block/shale_clay_top",
     "south": "spectrum:block/splinterspawn_infested_shale_clay_south",
+    "up": "spectrum:block/shale_clay_top",
     "west": "spectrum:block/splinterspawn_infested_shale_clay_west"
   }
 }

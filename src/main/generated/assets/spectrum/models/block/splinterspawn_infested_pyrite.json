@@ -1,10 +1,12 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "all": "spectrum:block/pyrite_top",
-    "north": "spectrum:block/splinterspawn_infested_pyrite_north",
+    "down": "spectrum:block/pyrite_top",
     "east": "spectrum:block/splinterspawn_infested_pyrite_east",
+    "north": "spectrum:block/splinterspawn_infested_pyrite_north",
+    "particle": "spectrum:block/pyrite_top",
     "south": "spectrum:block/splinterspawn_infested_pyrite_south",
+    "up": "spectrum:block/pyrite_top",
     "west": "spectrum:block/splinterspawn_infested_pyrite_west"
   }
 }

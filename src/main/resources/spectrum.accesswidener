@@ -34,6 +34,7 @@ extendable	method	net/minecraft/world/level/saveddata/maps/MapItemSavedData	addD
 accessible	field	net/minecraft/world/level/storage/loot/LootTable	pools	Ljava/util/List;
 accessible	field	net/minecraft/world/level/block/LiquidBlock	fluid	Lnet/minecraft/world/level/material/FlowingFluid;
 accessible	field	net/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider	fullBlock	Lnet/minecraft/resources/ResourceLocation;
+accessible	field	net/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider	skipGeneratingModelsFor	Ljava/util/Set;
 accessible	field	net/minecraft/world/level/storage/loot/parameters/LootContextParamSets	REGISTRY	Lcom/google/common/collect/BiMap;
 mutable	field	net/minecraft/world/level/saveddata/maps/MapItemSavedData	dimension	Lnet/minecraft/resources/ResourceKey;
 accessible	method	net/minecraft/client/particle/DripParticle$FallingParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/material/Fluid;I)V

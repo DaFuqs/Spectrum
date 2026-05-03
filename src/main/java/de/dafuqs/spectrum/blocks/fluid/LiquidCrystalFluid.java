@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
@@ -11,6 +12,7 @@ import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
@@ -84,16 +86,17 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		
-		if (!world.isClientSide && entity instanceof LivingEntity livingEntity) {
-			// just check every x ticks for performance and slow healing
-			if (world.getGameTime() % 200 == 0) {
-				MobEffectInstance regenerationInstance = livingEntity.getEffect(MobEffects.REGENERATION);
-				if (regenerationInstance == null) {
-					MobEffectInstance newRegenerationInstance = new MobEffectInstance(MobEffects.REGENERATION, 80);
-					livingEntity.addEffect(newRegenerationInstance);
-				}
-			}
-		}
+		// just check every x ticks for performance and slow healing
+		if (!world.isClientSide() && world.getGameTime() % 200 == 0
+				&& entity instanceof LivingEntity livingEntity
+				&& livingEntity.getEffect(MobEffects.REGENERATION) == null)
+			livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80));
+		
+		// Since this "recipe" operates on multiple stacks
+		// it does not work as a default fluid processing recipe
+		// and thus has to be checked manually
+		if (entity instanceof ItemEntity itemEntity)
+			RockCandyItem.tickSugarStickGrowing(itemEntity);
 	}
 	
 	@Override

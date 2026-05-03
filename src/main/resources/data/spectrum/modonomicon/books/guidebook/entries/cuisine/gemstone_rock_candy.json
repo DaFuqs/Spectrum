@@ -1,0 +1,43 @@
+{
+  "name": "book.spectrum.guidebook.gemstone_rock_candy.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/collect_gemstone_rock_candy"
+  },
+  "icon": {
+    "item": "spectrum:topaz_rock_candy"
+  },
+  "category": "spectrum:cuisine",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/rock_candy"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 7,
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "items": [
+        {
+          "id": "spectrum:topaz_rock_candy"
+        },
+        {
+          "id": "spectrum:amethyst_rock_candy"
+        },
+        {
+          "id": "spectrum:citrine_rock_candy"
+        }
+      ],
+      "title": "book.spectrum.guidebook.gemstone_rock_candy.name",
+      "text": "book.spectrum.guidebook.gemstone_rock_candy.about.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.gemstone_rock_candy.that_joke_again.text"
+    }
+  ]
+}

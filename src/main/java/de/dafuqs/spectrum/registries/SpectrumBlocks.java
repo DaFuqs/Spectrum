@@ -44,7 +44,6 @@ import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.redstone.*;
-import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
@@ -95,7 +94,6 @@ import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
-import vazkii.botania.api.item.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -339,8 +337,13 @@ public class SpectrumBlocks {
 	public static final Block PYRITE_TILE_WALL = register(blockWithItem("pyrite_tile_wall", new WallBlock(BlockBehaviour.Properties.ofFullCopy(PYRITE_TILES)), InkColors.BROWN));
 	public static final BlockFamily PYRITE_TILE_FAMILY = SpectrumModelHelper.registerBlockFamilyExceptBase(new BlockFamily.Builder(PYRITE_TILES).stairs(PYRITE_TILE_STAIRS).slab(PYRITE_TILE_SLAB).wall(PYRITE_TILE_WALL).getFamily(), TexturedModel.createDefault(b -> TextureMapping.cube(PYRITE_PLATING), ModelTemplates.CUBE_ALL));
 	
-	public static final Block SPLINTERSPAWN_INFESTED_PYRITE = register(parented(blockWithItem("splinterspawn_infested_pyrite", new RotatedPillarSplinterspawnInfestedBlock(PYRITE, BlockBehaviour.Properties.ofFullCopy(PYRITE)), InkColors.BROWN), b -> PYRITE));
-	public static final Block SPLINTERSPAWN_INFESTED_SHALE_CLAY = register(parented(blockWithItem("splinterspawn_infested_shale_clay", new SplinterspawnInfestedBlock(SHALE_CLAY, BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY)), InkColors.BROWN), b -> SHALE_CLAY));
+	public static <T extends Block> BlockRegistrar<T> infested(BlockRegistrar<T> registrar, Block normal) {
+		return singleton(registrar.withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, normal)),
+				TexturedModel.createDefault(infested -> SpectrumTextureMaps.infested(infested, normal), ModelTemplates.CUBE));
+	}
+	
+	public static final Block SPLINTERSPAWN_INFESTED_PYRITE = register(infested(blockWithItem("splinterspawn_infested_pyrite", new RotatedPillarSplinterspawnInfestedBlock(PYRITE, BlockBehaviour.Properties.ofFullCopy(PYRITE)), InkColors.BROWN), PYRITE));
+	public static final Block SPLINTERSPAWN_INFESTED_SHALE_CLAY = register(infested(blockWithItem("splinterspawn_infested_shale_clay", new SplinterspawnInfestedBlock(SHALE_CLAY, BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY)), InkColors.BROWN), SHALE_CLAY));
 	
 	public static final Block DRAGONBONE = register(axisRotated(blockWithItem("dragonbone", new DragonboneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BONE_BLOCK).strength(-1.0F, 22.0F).pushReaction(PushReaction.BLOCK)), InkColors.GREEN), TexturedModel.COLUMN));
 	public static final Block CRACKED_DRAGONBONE = register(axisRotated(blockWithItem("cracked_dragonbone", new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BONE_BLOCK).strength(100.0F, 1200.0F).pushReaction(PushReaction.BLOCK)), InkColors.GREEN), TexturedModel.COLUMN));
@@ -589,19 +592,6 @@ public class SpectrumBlocks {
 	public static final Block RUIN = register(decay(block("ruin", new RuinBlock(decay(MapColor.COLOR_BLACK, SoundType.STONE, 100.0F, 3600000.0F, PushReaction.BLOCK)))));
 	public static final Block FORFEITURE = register(decay(block("forfeiture", new ForfeitureBlock(decay(MapColor.COLOR_BLACK, SoundType.STONE, 100.0F, 3600000.0F, PushReaction.BLOCK)))));
 	public static final Block DECAY_AWAY = register(simple(block("decay_away", new DecayAwayBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT).pushReaction(PushReaction.DESTROY)))));
-	
-	// ROCK CANDY
-	private static BlockBehaviour.Properties rockCandy(Block block) {
-		return BlockBehaviour.Properties.ofFullCopy(block).pushReaction(PushReaction.DESTROY).destroyTime(0.5F).lightLevel(ROCK_CANDY_LUMINANCE).randomTicks();
-	}
-	
-	private static final ToIntFunction<BlockState> ROCK_CANDY_LUMINANCE = state -> Math.max(15, state.getValue(BlockStateProperties.AGE_2) * 3 + (state.getValue(SugarStickBlock.LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? LiquidCrystalFluidBlock.LUMINANCE : 8));
-	public static final Block SUGAR_STICK = register(sugarStick(blockWithItem("sugar_stick", new SugarStickBlock(rockCandy(Blocks.SMALL_AMETHYST_BUD), RockCandy.RockCandyVariant.SUGAR), InkColors.PINK), b -> b));
-	public static final Block TOPAZ_SUGAR_STICK = register(sugarStick(blockWithItem("topaz_sugar_stick", new SugarStickBlock(rockCandy(SMALL_TOPAZ_BUD), RockCandy.RockCandyVariant.TOPAZ), InkColors.PINK), b -> TOPAZ_GLASS));
-	public static final Block AMETHYST_SUGAR_STICK = register(sugarStick(blockWithItem("amethyst_sugar_stick", new SugarStickBlock(rockCandy(Blocks.SMALL_AMETHYST_BUD), RockCandy.RockCandyVariant.AMETHYST), InkColors.PINK), b -> AMETHYST_GLASS));
-	public static final Block CITRINE_SUGAR_STICK = register(sugarStick(blockWithItem("citrine_sugar_stick", new SugarStickBlock(rockCandy(SMALL_CITRINE_BUD), RockCandy.RockCandyVariant.CITRINE), InkColors.PINK), b -> CITRINE_GLASS));
-	public static final Block ONYX_SUGAR_STICK = register(sugarStick(blockWithItem("onyx_sugar_stick", new SugarStickBlock(rockCandy(SMALL_ONYX_BUD), RockCandy.RockCandyVariant.ONYX), InkColors.PINK), b -> ONYX_GLASS));
-	public static final Block MOONSTONE_SUGAR_STICK = register(sugarStick(blockWithItem("moonstone_sugar_stick", new SugarStickBlock(rockCandy(SMALL_MOONSTONE_BUD), RockCandy.RockCandyVariant.MOONSTONE), InkColors.PINK), b -> MOONSTONE_GLASS));
 	
 	// PASTEL NETWORK
 	private static BlockBehaviour.Properties pastelNode(SoundType soundGroup) {
@@ -888,7 +878,7 @@ public class SpectrumBlocks {
 	public static final Block SLATE_NOXWOOD_TRAPDOOR = register(cutout(blockWithItem("slate_noxwood_trapdoor", new TrapDoorBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.COLOR_GRAY)), InkColors.LIME)));
 	public static final Block SLATE_NOXWOOD_BUTTON = register(blockWithItem("slate_noxwood_button", new ButtonBlock(SpectrumBlockSetTypes.NOXWOOD, NOXCAP_BUTTON_BLOCK_PRESS_TIME_TICKS, noxcap(MapColor.COLOR_GRAY).pushReaction(PushReaction.DESTROY)), InkColors.LIME));
 	public static final Block SLATE_NOXWOOD_PRESSURE_PLATE = register(blockWithItem("slate_noxwood_pressure_plate", new PressurePlateBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.COLOR_GRAY)), InkColors.LIME));
-	public static final BlockFamily SLATE_NOXWOOD_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(SLATE_NOXWOOD_PLANKS).stairs(SLATE_NOXWOOD_STAIRS).slab(SLATE_NOXWOOD_SLAB).fence(SLATE_NOXWOOD_FENCE).fenceGate(SLATE_NOXWOOD_FENCE_GATE).door(SLATE_NOXWOOD_DOOR).trapdoor(SLATE_NOXWOOD_TRAPDOOR).button(SLATE_NOXWOOD_BUTTON).pressurePlate(SLATE_NOXWOOD_PRESSURE_PLATE).getFamily());
+	public static final BlockFamily SLATE_NOXWOOD_FAMILY = SpectrumModelHelper.registerBlockFamilyWithImprovedModels(new BlockFamily.Builder(SLATE_NOXWOOD_PLANKS).stairs(SLATE_NOXWOOD_STAIRS).slab(SLATE_NOXWOOD_SLAB).fence(SLATE_NOXWOOD_FENCE).fenceGate(SLATE_NOXWOOD_FENCE_GATE).door(SLATE_NOXWOOD_DOOR).trapdoor(SLATE_NOXWOOD_TRAPDOOR).button(SLATE_NOXWOOD_BUTTON).pressurePlate(SLATE_NOXWOOD_PRESSURE_PLATE).getFamily());
 	
 	public static final RotatedPillarBlock STRIPPED_EBONY_NOXCAP_STEM = register(axisRotated(blockWithItem("stripped_ebony_noxcap_stem", new RotatedPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK)), InkColors.LIME), TexturedModel.COLUMN_ALT));
 	public static final Block STRIPPED_EBONY_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("stripped_ebony_noxcap_hyphae", new RotatedPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK)), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> STRIPPED_EBONY_NOXCAP_STEM, "", b -> STRIPPED_EBONY_NOXCAP_STEM, "")));
@@ -912,7 +902,7 @@ public class SpectrumBlocks {
 	public static final Block EBONY_NOXWOOD_TRAPDOOR = register(cutout(blockWithItem("ebony_noxwood_trapdoor", new TrapDoorBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.TERRACOTTA_BLACK)), InkColors.LIME)));
 	public static final Block EBONY_NOXWOOD_BUTTON = register(blockWithItem("ebony_noxwood_button", new ButtonBlock(SpectrumBlockSetTypes.NOXWOOD, NOXCAP_BUTTON_BLOCK_PRESS_TIME_TICKS, noxcap(MapColor.TERRACOTTA_BLACK).pushReaction(PushReaction.DESTROY)), InkColors.LIME));
 	public static final Block EBONY_NOXWOOD_PRESSURE_PLATE = register(blockWithItem("ebony_noxwood_pressure_plate", new PressurePlateBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.TERRACOTTA_BLACK)), InkColors.LIME));
-	public static final BlockFamily EBONY_NOXWOOD_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(EBONY_NOXWOOD_PLANKS).stairs(EBONY_NOXWOOD_STAIRS).slab(EBONY_NOXWOOD_SLAB).fence(EBONY_NOXWOOD_FENCE).fenceGate(EBONY_NOXWOOD_FENCE_GATE).door(EBONY_NOXWOOD_DOOR).trapdoor(EBONY_NOXWOOD_TRAPDOOR).button(EBONY_NOXWOOD_BUTTON).pressurePlate(EBONY_NOXWOOD_PRESSURE_PLATE).getFamily());
+	public static final BlockFamily EBONY_NOXWOOD_FAMILY = SpectrumModelHelper.registerBlockFamilyWithImprovedModels(new BlockFamily.Builder(EBONY_NOXWOOD_PLANKS).stairs(EBONY_NOXWOOD_STAIRS).slab(EBONY_NOXWOOD_SLAB).fence(EBONY_NOXWOOD_FENCE).fenceGate(EBONY_NOXWOOD_FENCE_GATE).door(EBONY_NOXWOOD_DOOR).trapdoor(EBONY_NOXWOOD_TRAPDOOR).button(EBONY_NOXWOOD_BUTTON).pressurePlate(EBONY_NOXWOOD_PRESSURE_PLATE).getFamily());
 	
 	public static final RotatedPillarBlock STRIPPED_IVORY_NOXCAP_STEM = register(axisRotated(blockWithItem("stripped_ivory_noxcap_stem", new RotatedPillarBlock(noxcap(MapColor.QUARTZ)), InkColors.LIME), TexturedModel.COLUMN_ALT));
 	public static final Block STRIPPED_IVORY_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("stripped_ivory_noxcap_hyphae", new RotatedPillarBlock(noxcap(MapColor.QUARTZ)), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> STRIPPED_IVORY_NOXCAP_STEM, "", b -> STRIPPED_IVORY_NOXCAP_STEM, "")));
@@ -936,7 +926,7 @@ public class SpectrumBlocks {
 	public static final Block IVORY_NOXWOOD_TRAPDOOR = register(cutout(blockWithItem("ivory_noxwood_trapdoor", new TrapDoorBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.QUARTZ)), InkColors.LIME)));
 	public static final Block IVORY_NOXWOOD_BUTTON = register(blockWithItem("ivory_noxwood_button", new ButtonBlock(SpectrumBlockSetTypes.NOXWOOD, NOXCAP_BUTTON_BLOCK_PRESS_TIME_TICKS, noxcap(MapColor.QUARTZ).pushReaction(PushReaction.DESTROY)), InkColors.LIME));
 	public static final Block IVORY_NOXWOOD_PRESSURE_PLATE = register(blockWithItem("ivory_noxwood_pressure_plate", new PressurePlateBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.QUARTZ)), InkColors.LIME));
-	public static final BlockFamily IVORY_NOXWOOD_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(IVORY_NOXWOOD_PLANKS).stairs(IVORY_NOXWOOD_STAIRS).slab(IVORY_NOXWOOD_SLAB).fence(IVORY_NOXWOOD_FENCE).fenceGate(IVORY_NOXWOOD_FENCE_GATE).door(IVORY_NOXWOOD_DOOR).trapdoor(IVORY_NOXWOOD_TRAPDOOR).button(IVORY_NOXWOOD_BUTTON).pressurePlate(IVORY_NOXWOOD_PRESSURE_PLATE).getFamily());
+	public static final BlockFamily IVORY_NOXWOOD_FAMILY = SpectrumModelHelper.registerBlockFamilyWithImprovedModels(new BlockFamily.Builder(IVORY_NOXWOOD_PLANKS).stairs(IVORY_NOXWOOD_STAIRS).slab(IVORY_NOXWOOD_SLAB).fence(IVORY_NOXWOOD_FENCE).fenceGate(IVORY_NOXWOOD_FENCE_GATE).door(IVORY_NOXWOOD_DOOR).trapdoor(IVORY_NOXWOOD_TRAPDOOR).button(IVORY_NOXWOOD_BUTTON).pressurePlate(IVORY_NOXWOOD_PRESSURE_PLATE).getFamily());
 	
 	public static final RotatedPillarBlock STRIPPED_CHESTNUT_NOXCAP_STEM = register(axisRotated(blockWithItem("stripped_chestnut_noxcap_stem", new RotatedPillarBlock(noxcap(MapColor.CRIMSON_NYLIUM)), InkColors.LIME), TexturedModel.COLUMN_ALT));
 	public static final Block STRIPPED_CHESTNUT_NOXCAP_HYPHAE = register(axisRotated(blockWithItem("stripped_chestnut_noxcap_hyphae", new RotatedPillarBlock(noxcap(MapColor.QUARTZ)), InkColors.LIME), SpectrumTexturedModels.cubeColumn(b -> STRIPPED_CHESTNUT_NOXCAP_STEM, "", b -> STRIPPED_CHESTNUT_NOXCAP_STEM, "")));
@@ -960,7 +950,7 @@ public class SpectrumBlocks {
 	public static final Block CHESTNUT_NOXWOOD_TRAPDOOR = register(cutout(blockWithItem("chestnut_noxwood_trapdoor", new TrapDoorBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.CRIMSON_NYLIUM)), InkColors.LIME)));
 	public static final Block CHESTNUT_NOXWOOD_BUTTON = register(blockWithItem("chestnut_noxwood_button", new ButtonBlock(SpectrumBlockSetTypes.NOXWOOD, NOXCAP_BUTTON_BLOCK_PRESS_TIME_TICKS, noxcap(MapColor.CRIMSON_NYLIUM).pushReaction(PushReaction.DESTROY)), InkColors.LIME));
 	public static final Block CHESTNUT_NOXWOOD_PRESSURE_PLATE = register(blockWithItem("chestnut_noxwood_pressure_plate", new PressurePlateBlock(SpectrumBlockSetTypes.NOXWOOD, noxcap(MapColor.CRIMSON_NYLIUM)), InkColors.LIME));
-	public static final BlockFamily CHESTNUT_NOXWOOD_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(CHESTNUT_NOXWOOD_PLANKS).stairs(CHESTNUT_NOXWOOD_STAIRS).slab(CHESTNUT_NOXWOOD_SLAB).fence(CHESTNUT_NOXWOOD_FENCE).fenceGate(CHESTNUT_NOXWOOD_FENCE_GATE).door(CHESTNUT_NOXWOOD_DOOR).trapdoor(CHESTNUT_NOXWOOD_TRAPDOOR).button(CHESTNUT_NOXWOOD_BUTTON).pressurePlate(CHESTNUT_NOXWOOD_PRESSURE_PLATE).getFamily());
+	public static final BlockFamily CHESTNUT_NOXWOOD_FAMILY = SpectrumModelHelper.registerBlockFamilyWithImprovedModels(new BlockFamily.Builder(CHESTNUT_NOXWOOD_PLANKS).stairs(CHESTNUT_NOXWOOD_STAIRS).slab(CHESTNUT_NOXWOOD_SLAB).fence(CHESTNUT_NOXWOOD_FENCE).fenceGate(CHESTNUT_NOXWOOD_FENCE_GATE).door(CHESTNUT_NOXWOOD_DOOR).trapdoor(CHESTNUT_NOXWOOD_TRAPDOOR).button(CHESTNUT_NOXWOOD_BUTTON).pressurePlate(CHESTNUT_NOXWOOD_PRESSURE_PLATE).getFamily());
 	
 	public static BlockBehaviour.Properties galaWood(MapColor color) {
 		return settings(color, SoundType.CHERRY_WOOD, 30.0F).instrument(NoteBlockInstrument.BASS).ignitedByLava();
@@ -993,7 +983,7 @@ public class SpectrumBlocks {
 	public static final Block WEEPING_GALA_TRAPDOOR = register(burnable(blockWithItem("weeping_gala_trapdoor", new TrapDoorBlock(GALA_BLOCK_SET_TYPE, galaWood(MapColor.COLOR_BROWN)), InkColors.LIME), 600));
 	public static final Block WEEPING_GALA_BUTTON = register(burnable(blockWithItem("weeping_gala_button", woodenButton(GALA_BLOCK_SET_TYPE), InkColors.LIME), 200));
 	public static final Block WEEPING_GALA_PRESSURE_PLATE = register(burnable(blockWithItem("weeping_gala_pressure_plate", new PressurePlateBlock(GALA_BLOCK_SET_TYPE, galaWood(MapColor.COLOR_BROWN)), InkColors.LIME), 600));
-	public static final BlockFamily WEEPING_GALA_FAMILY = SpectrumModelHelper.registerBlockFamily(new BlockFamily.Builder(WEEPING_GALA_PLANKS).stairs(WEEPING_GALA_STAIRS).slab(WEEPING_GALA_SLAB).fence(WEEPING_GALA_FENCE).fenceGate(WEEPING_GALA_FENCE_GATE).door(WEEPING_GALA_DOOR).trapdoor(WEEPING_GALA_TRAPDOOR).button(WEEPING_GALA_BUTTON).pressurePlate(WEEPING_GALA_PRESSURE_PLATE).getFamily());
+	public static final BlockFamily WEEPING_GALA_FAMILY = SpectrumModelHelper.registerBlockFamilyWithImprovedModels(new BlockFamily.Builder(WEEPING_GALA_PLANKS).stairs(WEEPING_GALA_STAIRS).slab(WEEPING_GALA_SLAB).fence(WEEPING_GALA_FENCE).fenceGate(WEEPING_GALA_FENCE_GATE).door(WEEPING_GALA_DOOR).trapdoor(WEEPING_GALA_TRAPDOOR).button(WEEPING_GALA_BUTTON).pressurePlate(WEEPING_GALA_PRESSURE_PLATE).getFamily());
 	
 	public static final Block WEEPING_GALA_PILLAR = register(axisRotated(blockWithItem("weeping_gala_pillar", new RotatedPillarBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME), TexturedModel.COLUMN));
 	public static final Block WEEPING_GALA_BARREL = register(barrellike(blockWithItem("weeping_gala_barrel", new BarrelBlock(galaWood(MapColor.COLOR_BROWN)), InkColors.LIME), b -> b, "_bottom"));
@@ -1202,15 +1192,24 @@ public class SpectrumBlocks {
 	public static final Block LARGE_BLOODSTONE_BUD = register(cluster(blockWithItem("large_bloodstone_bud", new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 4), SpectrumClusterBlock.GrowthStage.LARGE), IS.of(Rarity.UNCOMMON), InkColors.RED), SpectrumModels.CRYSTALLARIEUM_FARMABLE));
 	public static final Block SMALL_BLOODSTONE_BUD = register(cluster(blockWithItem("small_bloodstone_bud", new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumBlockSoundGroups.ONYX_CLUSTER, 3), SpectrumClusterBlock.GrowthStage.SMALL), IS.of(Rarity.UNCOMMON), InkColors.RED), SpectrumModels.CRYSTALLARIEUM_FARMABLE));
 	
-	public static final Block STRATINE_ORE = register(simple(blockWithItem("stratine_ore", new CloakedOreBlock(UniformInt.of(3, 5), netherrackOre(), SpectrumAdvancements.REVEAL_STRATINE, Blocks.NETHERRACK.defaultBlockState()), block -> new FloatBlockItem(block, IS.of().fireResistant(), -0.01F), InkColors.RED)));
-	public static final Block PALTAERIA_ORE = register(simple(blockWithItem("paltaeria_ore", new CloakedOreBlock(UniformInt.of(2, 4), endstoneOre(), SpectrumAdvancements.REVEAL_PALTAERIA, Blocks.END_STONE.defaultBlockState()), block -> new FloatBlockItem(block, IS.of(), 0.01F), InkColors.CYAN)));
+	public static <T extends Block> BlockRegistrar<T> paltaeria(BlockRegistrar<T> registrar, TexturedModel.Provider factory) {
+		return registrar.withBlockModel((ctx, block) ->
+				SpectrumModelHelper.createVariantsSupplier(block, factory.create(block, SpectrumModelHelper.paltaeriaModifier(ctx.modelOutput, 0.25f))));
+	}
+	
+	public static <T extends Block> BlockRegistrar<T> simpal(BlockRegistrar<T> registrar) {
+		return paltaeria(registrar, TexturedModel.CUBE);
+	}
+	
+	public static final Block STRATINE_ORE  = register(simple(blockWithItem("stratine_ore", new CloakedOreBlock(UniformInt.of(3, 5), netherrackOre(), SpectrumAdvancements.REVEAL_STRATINE, Blocks.NETHERRACK.defaultBlockState()), block -> new FloatBlockItem(block, IS.of().fireResistant(), -0.01F), InkColors.RED)));
+	public static final Block PALTAERIA_ORE = register(simpal(blockWithItem("paltaeria_ore", new CloakedOreBlock(UniformInt.of(2, 4), endstoneOre(), SpectrumAdvancements.REVEAL_PALTAERIA, Blocks.END_STONE.defaultBlockState()), block -> new FloatBlockItem(block, IS.of(), 0.01F), InkColors.CYAN)));
 	
 	private static BlockBehaviour.Properties gravityBlock(MapColor mapColor) {
 		return settings(mapColor, SoundType.METAL, 4.0F, 6.0F).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops();
 	}
 	
-	public static final FloatBlock PALTAERIA_FLOATBLOCK = register(singleton(blockWithItem("paltaeria_floatblock", new FloatBlock(gravityBlock(MapColor.COLOR_LIGHT_BLUE), 0.2F), block -> new FloatBlockItem(block, IS.of().fireResistant(), 0.02F), InkColors.RED), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
-	public static final FloatBlock STRATINE_FLOATBLOCK = register(singleton(blockWithItem("stratine_floatblock", new FloatBlock(gravityBlock(MapColor.NETHER), -0.2F), block -> new FloatBlockItem(block, IS.of(), -0.02F), InkColors.CYAN), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
+	public static final FloatBlock PALTAERIA_FLOATBLOCK = register(paltaeria(blockWithItem("paltaeria_floatblock", new FloatBlock(gravityBlock(MapColor.COLOR_LIGHT_BLUE), 0.2F), block -> new FloatBlockItem(block, IS.of().fireResistant(), 0.02F), InkColors.RED), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
+	public static final FloatBlock STRATINE_FLOATBLOCK  = register(singleton(blockWithItem("stratine_floatblock", new FloatBlock(gravityBlock(MapColor.NETHER), -0.2F), block -> new FloatBlockItem(block, IS.of(), -0.02F), InkColors.CYAN), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
 	public static final FloatBlock HOVER_BLOCK = register(singleton(blockWithItem("hover_block", new FloatBlock(gravityBlock(MapColor.DIAMOND), 0.0F), block -> new FloatBlockItem(block, IS.of(), 0F) {
 		@Override
 		public double applyGravity(ItemStack stack, Level world, Entity entity) {
@@ -1238,7 +1237,7 @@ public class SpectrumBlocks {
 	public static final Block FABRICATION_CHEST = register(cutout(defaultNorthHorizontalFacing(blockWithItem("fabrication_chest", new FabricationChestBlock(settings(MapColor.COLOR_ORANGE, SoundType.STONE, 4.0F, 4.0F).requiresCorrectToolForDrops().noOcclusion()), InkColors.YELLOW), ModelLocationUtils::getModelLocation)).withPredefinedItemModel());
 	public static final Block BLACK_HOLE_CHEST = register(translucent(defaultNorthHorizontalFacing(blockWithItem("black_hole_chest", new BlackHoleChestBlock(settings(MapColor.COLOR_BLACK, SoundType.STONE, 4.0F, 4.0F).requiresCorrectToolForDrops().noOcclusion()), InkColors.LIGHT_GRAY), ModelLocationUtils::getModelLocation)));
 	public static final Block PARTICLE_SPAWNER = register(cutout(blockWithItem("particle_spawner", new ParticleSpawnerBlock(settings(MapColor.TERRACOTTA_WHITE, SoundType.AMETHYST, 5.0F, 6.0F).requiresCorrectToolForDrops().noOcclusion()), InkColors.PINK)).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_off")).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(BlockStateProperties.POWERED, SpectrumModels.PARTICLE_SPAWNER.create(block, SpectrumTextureMaps.top(block, "_top"), ctx.modelOutput), SpectrumModels.PARTICLE_SPAWNER.createWithSuffix(block, "_off", SpectrumTextureMaps.top(block, "_top_off"), ctx.modelOutput)))));
-	public static final Block CREATIVE_PARTICLE_SPAWNER = register(cutout(singletonWithSoup(blockWithItem("creative_particle_spawner", new CreativeParticleSpawnerBlock(BlockBehaviour.Properties.ofFullCopy(PARTICLE_SPAWNER).strength(-1.0F, 3600000.8F).noLootTable()), block -> new BlockItem(block, IS.of(Rarity.EPIC)), InkColors.PINK), (Function<Block, ResourceLocation>) b -> ModelLocationUtils.getModelLocation(PARTICLE_SPAWNER))).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, PARTICLE_SPAWNER, "_off")));
+	public static final Block CREATIVE_PARTICLE_SPAWNER = register(cutout(singletonWithSoup(blockWithItem("creative_particle_spawner", new CreativeParticleSpawnerBlock(BlockBehaviour.Properties.ofFullCopy(PARTICLE_SPAWNER).strength(-1.0F, 3600000.8F).noLootTable()), block -> new BlockItem(block, IS.of(Rarity.EPIC)), InkColors.PINK), b -> ModelLocationUtils.getModelLocation(PARTICLE_SPAWNER))).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, PARTICLE_SPAWNER, "_off")));
 	public static final Block BEDROCK_ANVIL = register(defaultSouthHorizontalFacing(blockWithItem("bedrock_anvil", new BedrockAnvilBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ANVIL).requiresCorrectToolForDrops().strength(8.0F, 8.0F).sound(SoundType.METAL)), InkColors.BLACK), ModelLocationUtils::getModelLocation));
 	
 	// SOLID LIQUID CRYSTAL

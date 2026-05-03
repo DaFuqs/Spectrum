@@ -1,10 +1,5 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "spectrum:block/paltaeria_floatblock_bottom",
-    "side": "spectrum:block/paltaeria_floatblock",
-    "top": "spectrum:block/paltaeria_floatblock_top"
-  },
   "display": {
     "ground": {
       "rotation": [
@@ -12,16 +7,21 @@
         0,
         180
       ],
-      "translation": [
-        0,
-        -4.5,
-        0
-      ],
       "scale": [
         0.25,
         0.25,
         0.25
+      ],
+      "translation": [
+        0,
+        -4.5,
+        0
       ]
     }
+  },
+  "textures": {
+    "bottom": "spectrum:block/paltaeria_floatblock_bottom",
+    "side": "spectrum:block/paltaeria_floatblock",
+    "top": "spectrum:block/paltaeria_floatblock_top"
   }
 }

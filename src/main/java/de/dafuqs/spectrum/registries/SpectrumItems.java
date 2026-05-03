@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
-import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.data.*;
 import de.dafuqs.spectrum.entity.*;
@@ -31,7 +30,6 @@ import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
-import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
@@ -40,9 +38,7 @@ import net.minecraft.data.models.model.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
-import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
@@ -250,8 +246,13 @@ public class SpectrumItems {
 	public static final Item SHIMMERSTONE_GEM = register(simple(item("shimmerstone_gem", new CloakedItemWithLoomPattern(IS.of(), ((RevelationAware) SpectrumBlocks.SHIMMERSTONE_ORE).getCloakAdvancementIdentifier(), YELLOW_DYE, SpectrumBannerPatterns.SHIMMERSTONE), InkColors.YELLOW)));
 	public static final Item RAW_AZURITE = register(simple(item("raw_azurite", new CloakedItemWithLoomPattern(IS.of(), SpectrumBlocks.AZURITE_ORE.getCloakAdvancementIdentifier(), BLUE_DYE, SpectrumBannerPatterns.RAW_AZURITE), InkColors.BLUE)));
 	public static final Item PURE_AZURITE = register(simple(item("pure_azurite", new CloakedItem(IS.of(), SpectrumBlocks.AZURITE_ORE.getCloakAdvancementIdentifier(), BLUE_DYE), InkColors.BLUE)));
-	public static final CloakedFloatItem PALTAERIA_FRAGMENTS = register(simple(item("paltaeria_fragments", new CloakedFloatItem(IS.of(), 0.00125F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
-	public static final CloakedFloatItem PALTAERIA_GEM = register(simple(item("paltaeria_gem", new CloakedFloatItem(IS.of(16), 0.01F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
+	
+	public static <T extends Item> ItemRegistrar<T> paltie(ItemRegistrar<T> registrar) {
+		return registrar.withItemModel((ctx, item) -> ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(item), SpectrumModelHelper.paltaeriaModifier(ctx.output, 0.5f)));
+	}
+	
+	public static final CloakedFloatItem PALTAERIA_FRAGMENTS = register(paltie(item("paltaeria_fragments", new CloakedFloatItem(IS.of(), 0.00125F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
+	public static final CloakedFloatItem PALTAERIA_GEM = register(paltie(item("paltaeria_gem", new CloakedFloatItem(IS.of(16), 0.01F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
 	public static final CloakedFloatItem STRATINE_FRAGMENTS = register(simple(item("stratine_fragments", new CloakedFloatItem(IS.of().fireResistant(), -0.00125F, ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), RED_DYE), InkColors.RED)));
 	public static final CloakedFloatItem STRATINE_GEM = register(simple(item("stratine_gem", new CloakedFloatItem(IS.of(16).fireResistant(), -0.01F, ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), RED_DYE), InkColors.RED)));
 	public static final Item PYRITE_CHUNK = register(simple(item("pyrite_chunk", new Item(IS.of()), InkColors.PURPLE)));
@@ -277,12 +278,19 @@ public class SpectrumItems {
 	public static final Item JADEITE_PETALS = register(simple(item("jadeite_petals", new Item(IS.of(Rarity.UNCOMMON)), InkColors.BROWN)));
 	public static final Item BLOOD_ORCHID_PETAL = register(simple(item("blood_orchid_petal", new CloakedItem(IS.of(), SpectrumAdvancements.REVEAL_BLOOD_ORCHID_PETALS, RED_DYE), InkColors.RED)));
 	
-	public static final Item ROCK_CANDY = register(simple(item("rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.SUGAR), InkColors.PINK)));
-	public static final Item TOPAZ_ROCK_CANDY = register(simple(item("topaz_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ), InkColors.CYAN)));
-	public static final Item AMETHYST_ROCK_CANDY = register(simple(item("amethyst_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.AMETHYST_ROCK_CANDY), RockCandy.RockCandyVariant.AMETHYST), InkColors.MAGENTA)));
-	public static final Item CITRINE_ROCK_CANDY = register(simple(item("citrine_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.CITRINE_ROCK_CANDY), RockCandy.RockCandyVariant.CITRINE), InkColors.YELLOW)));
-	public static final Item ONYX_ROCK_CANDY = register(simple(item("onyx_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.ONYX_ROCK_CANDY), RockCandy.RockCandyVariant.ONYX), InkColors.BLACK)));
-	public static final Item MOONSTONE_ROCK_CANDY = register(simple(item("moonstone_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.MOONSTONE_ROCK_CANDY), RockCandy.RockCandyVariant.MOONSTONE), InkColors.WHITE)));
+	public static final Item SUGAR_STICK = register(simple(item("sugar_stick", new RockCandyItem(IS.of().food(SpectrumFoodComponents.ROCK_CANDY), RockCandyItem.RockCandyVariant.SUGAR, false), InkColors.PINK)));
+	public static final Item TOPAZ_SUGAR_STICK = register(simple(item("topaz_sugar_stick", new RockCandyItem(IS.of().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandyItem.RockCandyVariant.TOPAZ, false), InkColors.CYAN)));
+	public static final Item AMETHYST_SUGAR_STICK = register(simple(item("amethyst_sugar_stick", new RockCandyItem(IS.of().food(SpectrumFoodComponents.AMETHYST_ROCK_CANDY), RockCandyItem.RockCandyVariant.AMETHYST, false), InkColors.MAGENTA)));
+	public static final Item CITRINE_SUGAR_STICK = register(simple(item("citrine_sugar_stick", new RockCandyItem(IS.of().food(SpectrumFoodComponents.CITRINE_ROCK_CANDY), RockCandyItem.RockCandyVariant.CITRINE, false), InkColors.YELLOW)));
+	public static final Item ONYX_SUGAR_STICK = register(simple(item("onyx_sugar_stick", new RockCandyItem(IS.of().food(SpectrumFoodComponents.ONYX_ROCK_CANDY), RockCandyItem.RockCandyVariant.ONYX, false), InkColors.BLACK)));
+	public static final Item MOONSTONE_SUGAR_STICK = register(simple(item("moonstone_sugar_stick", new RockCandyItem(IS.of().food(SpectrumFoodComponents.MOONSTONE_ROCK_CANDY), RockCandyItem.RockCandyVariant.MOONSTONE, false), InkColors.WHITE)));
+	
+	public static final Item ROCK_CANDY = register(simple(item("rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.ROCK_CANDY), RockCandyItem.RockCandyVariant.SUGAR, true), InkColors.PINK)));
+	public static final Item TOPAZ_ROCK_CANDY = register(simple(item("topaz_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandyItem.RockCandyVariant.TOPAZ, true), InkColors.CYAN)));
+	public static final Item AMETHYST_ROCK_CANDY = register(simple(item("amethyst_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.AMETHYST_ROCK_CANDY), RockCandyItem.RockCandyVariant.AMETHYST, true), InkColors.MAGENTA)));
+	public static final Item CITRINE_ROCK_CANDY = register(simple(item("citrine_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.CITRINE_ROCK_CANDY), RockCandyItem.RockCandyVariant.CITRINE, true), InkColors.YELLOW)));
+	public static final Item ONYX_ROCK_CANDY = register(simple(item("onyx_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.ONYX_ROCK_CANDY), RockCandyItem.RockCandyVariant.ONYX, true), InkColors.BLACK)));
+	public static final Item MOONSTONE_ROCK_CANDY = register(simple(item("moonstone_rock_candy", new RockCandyItem(IS.of().food(SpectrumFoodComponents.MOONSTONE_ROCK_CANDY), RockCandyItem.RockCandyVariant.MOONSTONE, true), InkColors.WHITE)));
 	
 	public static final Item BLOODBOIL_SYRUP = register(simple(item("bloodboil_syrup", new DrinkItem(IS.of().food(SpectrumFoodComponents.BLOODBOIL_SYRUP).craftRemainder(GLASS_BOTTLE)), InkColors.RED)));
 	public static final Item MILKY_RESIN = register(simple(item("milky_resin", new Item(IS.of(Rarity.UNCOMMON)), InkColors.LIGHT_GRAY)));
@@ -305,7 +313,7 @@ public class SpectrumItems {
 	public static final Item BODACIOUS_BERRY_BAR = register(simple(item("bodacious_berry_bar", new Item(IS.of().food(SpectrumFoodComponents.BODACIOUS_BERRY_BAR)), InkColors.PINK)));
 	public static final Item DEMON_TEA = register(simple(item("demon_tea", new DrinkItem(IS.of().food(SpectrumFoodComponents.DEMON_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)), InkColors.RED)));
 	
-	public static final Item CHEONG = register(layered(item("cheong", new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.CHEONG), "item.spectrum.cheong.tooltip"), InkColors.PINK), "", "_overlay", "_cap"));
+	public static final Item CHEONG = register(simple(item("cheong", new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.CHEONG), "item.spectrum.cheong.tooltip"), InkColors.PINK)));
 	public static final Item MERMAIDS_JAM = register(simple(item("mermaids_jam", new Item(IS.of().food(SpectrumFoodComponents.MERMAIDS_JAM)), InkColors.PINK)));
 	public static final Item MERMAIDS_POPCORN = register(simple(item("mermaids_popcorn", new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.MERMAIDS_POPCORN), "item.spectrum.mermaids_popcorn.tooltip"), InkColors.PINK)));
 	public static final Item LE_FISHE_AU_CHOCOLAT = register(simple(item("le_fishe_au_chocolat", new Item(IS.of().food(SpectrumFoodComponents.LE_FISHE_AU_CHOCOLAT).jukeboxPlayable(SpectrumJukeboxSongs.MUSIC_LE_FISHE_AU_CHOCOLAT)), InkColors.PINK)));

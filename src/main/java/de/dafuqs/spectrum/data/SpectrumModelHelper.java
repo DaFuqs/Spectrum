@@ -10,6 +10,7 @@ import net.minecraft.data.models.*;
 import net.minecraft.data.models.blockstates.*;
 import net.minecraft.data.models.model.*;
 import net.minecraft.resources.*;
+import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
@@ -142,6 +143,69 @@ public class SpectrumModelHelper {
 			texturePool.generateFor(family);
 		});
 		return family;
+	}
+	
+	public static void improvedDoor(Block doorBlock, BlockModelGenerators ctx) {
+		TextureMapping   map = TextureMapping.cubeBottomTop(doorBlock);
+		ResourceLocation tlc = SpectrumModels.DOOR_BOTTOM_LEFT		.create(doorBlock, map, ctx.modelOutput);
+		ResourceLocation tlo = SpectrumModels.DOOR_BOTTOM_LEFT_OPEN	.create(doorBlock, map, ctx.modelOutput);
+		ResourceLocation trc = SpectrumModels.DOOR_BOTTOM_RIGHT		.create(doorBlock, map, ctx.modelOutput);
+		ResourceLocation tro = SpectrumModels.DOOR_BOTTOM_RIGHT_OPEN.create(doorBlock, map, ctx.modelOutput);
+		ResourceLocation blc = SpectrumModels.DOOR_TOP_LEFT			.create(doorBlock, map, ctx.modelOutput);
+		ResourceLocation blo = SpectrumModels.DOOR_TOP_LEFT_OPEN	.create(doorBlock, map, ctx.modelOutput);
+		ResourceLocation brc = SpectrumModels.DOOR_TOP_RIGHT		.create(doorBlock, map, ctx.modelOutput);
+		ResourceLocation bro = SpectrumModels.DOOR_TOP_RIGHT_OPEN	.create(doorBlock, map, ctx.modelOutput);
+		ctx.createSimpleFlatItemModel(doorBlock.asItem());
+		ctx.blockStateOutput.accept(BlockModelGenerators.createDoor(doorBlock, tlc, tlo, trc, tro, blc, blo, brc, bro));
+	}
+	
+	public static void improvedOrientableTrapdoor(Block orientableTrapdoorBlock, BlockModelGenerators ctx) {
+		TextureMapping   map = SpectrumTextureMaps.sideTexture(orientableTrapdoorBlock);
+		ResourceLocation top = SpectrumModels.TEMPLATE_ORIENTABLE_TRAPDOOR_TOP	 .create(orientableTrapdoorBlock, map, ctx.modelOutput);
+		ResourceLocation btm = SpectrumModels.TEMPLATE_ORIENTABLE_TRAPDOOR_BOTTOM.create(orientableTrapdoorBlock, map, ctx.modelOutput);
+		ResourceLocation opn = SpectrumModels.TEMPLATE_ORIENTABLE_TRAPDOOR_OPEN	 .create(orientableTrapdoorBlock, map, ctx.modelOutput);
+		ctx.blockStateOutput.accept(BlockModelGenerators.createOrientableTrapdoor(orientableTrapdoorBlock, top, btm, opn));
+		ctx.delegateItemModel(orientableTrapdoorBlock, btm);
+	}
+	
+	public static BlockFamily registerBlockFamilyWithImprovedModels(BlockFamily family) {
+		BLOCK_STATE_MODEL_REGISTRAR.defer(ctx -> {
+			BlockModelGenerators.BlockFamilyProvider texturePool = ctx.family(family.getBaseBlock());
+			Block trap = family.get(BlockFamily.Variant.TRAPDOOR);
+			Block door = family.get(BlockFamily.Variant.DOOR);
+			texturePool.skipGeneratingModelsFor.add(trap);
+			texturePool.skipGeneratingModelsFor.add(door);
+			texturePool.generateFor(family);
+			improvedDoor(door, ctx);
+			improvedOrientableTrapdoor(trap, ctx); // assumes orientable trapdoor
+		});
+		
+		return family;
+	}
+	
+	// Model modifiers
+	
+	public static Supplier<JsonElement> paltaeriaModifier(Supplier<JsonElement> original, float s) {
+		return () -> {
+			JsonObject obj = original.get().getAsJsonObject();
+			// construct display tag
+			JsonObject transforms = new JsonObject(), transform   = new JsonObject();
+			JsonArray  rotation   = new JsonArray(),  translation = new JsonArray(), scale = new JsonArray();
+			List.of(s,  s,   s).forEach(scale::add);
+			List.of(0,  0, 180).forEach(rotation::add);
+			List.of(0, -4.5, 0).forEach(translation::add);
+			// root.display.ground
+			transform.add("scale", scale);
+			transform.add("rotation", rotation);
+			transform.add("translation", translation);
+			transforms.add("ground", transform); // root.display
+			obj.add("display", transforms);      // root
+			return obj;
+		};
+	}
+	
+	public static BiConsumer<ResourceLocation, Supplier<JsonElement>> paltaeriaModifier(BiConsumer<ResourceLocation, Supplier<JsonElement>> original, float scale) {
+		return (loc, supplier) -> original.accept(loc, paltaeriaModifier(supplier, scale));
 	}
 	
 	// Variant Suppliers

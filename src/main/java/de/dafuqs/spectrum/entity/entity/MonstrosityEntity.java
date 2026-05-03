@@ -79,7 +79,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		this.noCulling = true;
 		this.previousHealth = getHealth();
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (theOneAndOnly != null) {
 				this.remove(RemovalReason.DISCARDED);
 				return;
@@ -92,7 +92,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	public void remove(RemovalReason reason) {
 		super.remove(reason);
 		
-		if (!level().isClientSide) {
+		if (!level().isClientSide()) {
 			MonstrosityEntity.theOneAndOnly = null;
 		}
 	}

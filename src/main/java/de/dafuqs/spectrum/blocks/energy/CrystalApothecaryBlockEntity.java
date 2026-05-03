@@ -50,7 +50,7 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 	
 	@SuppressWarnings("unused")
 	public static void tick(Level world, BlockPos pos, BlockState state, CrystalApothecaryBlockEntity blockEntity) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			blockEntity.blockPosEventTransferListener.tick(world);
 			if (world.getGameTime() % 1000 == 0) {
 				blockEntity.listenerPaused = false; // try to reset from time to time, to search for new clusters, even if full
@@ -103,7 +103,7 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 			CrystalApothecarySimulationsDataLoader.SimulatedBlockGrowthEntry drop = CrystalApothecarySimulationsDataLoader.COMPENSATIONS.get(match.getKey());
 			
 			int compensatedItemCount = (int) (drop.compensatedStack().getCount() * match.getValue() * gameRuleTickModifier * ticksToCompensate) / drop.ticksForCompensationLootPerValidNeighbor();
-			compensatedItemCount *= 0.8 + world.random.nextFloat() * 0.4;
+			compensatedItemCount = (int) ((double)compensatedItemCount * (0.8 + world.random.nextDouble() * 0.4));
 			if (compensatedItemCount > 0) {
 				ItemStack compensatedStack = drop.compensatedStack().copy();
 				compensatedStack.setCount(compensatedItemCount);

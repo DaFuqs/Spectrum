@@ -26,7 +26,7 @@ public class PerturbedEyeItem extends Item {
 		BlockPos blockPos = context.getClickedPos();
 		BlockState blockState = world.getBlockState(blockPos);
 		if (blockState.is(Blocks.END_PORTAL_FRAME) || blockState.is(SpectrumBlocks.CRACKED_END_PORTAL_FRAME)) {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return InteractionResult.SUCCESS;
 			} else {
 				BlockState targetBlockState;

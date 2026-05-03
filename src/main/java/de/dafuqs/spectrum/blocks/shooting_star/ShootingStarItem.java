@@ -45,7 +45,7 @@ public class ShootingStarItem extends BlockItem implements ShootingStar {
 			// place as entity
 			Level world = context.getLevel();
 			
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				ItemStack itemStack = context.getItemInHand();
 				Vec3 hitPos = context.getClickLocation();
 				Player user = context.getPlayer();
@@ -65,7 +65,7 @@ public class ShootingStarItem extends BlockItem implements ShootingStar {
 				}
 			}
 			
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		}
 	}
 

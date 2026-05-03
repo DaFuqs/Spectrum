@@ -35,7 +35,7 @@ public class HeartboundChestBlock extends SpectrumChestBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? createTickerHelper(type, SpectrumBlockEntities.HEARTBOUND_CHEST, HeartboundChestBlockEntity::clientTick) : null;
+		return world.isClientSide() ? createTickerHelper(type, SpectrumBlockEntities.HEARTBOUND_CHEST, HeartboundChestBlockEntity::clientTick) : null;
 	}
 	
 	@Override

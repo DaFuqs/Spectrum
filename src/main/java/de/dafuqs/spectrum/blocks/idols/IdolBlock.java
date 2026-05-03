@@ -46,7 +46,7 @@ public abstract class IdolBlock extends Block {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (!hasCooldown(state) && trigger((ServerLevel) world, pos, state, player, hit.getDirection())) {
 				playTriggerParticles((ServerLevel) world, pos);
 				playTriggerSound(world, pos);
@@ -67,7 +67,7 @@ public abstract class IdolBlock extends Block {
 	@Override
 	public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
 		super.stepOn(world, pos, state, entity);
-		if (!world.isClientSide && !hasCooldown(state)) {
+		if (!world.isClientSide() && !hasCooldown(state)) {
 			if (trigger((ServerLevel) world, pos, state, entity, Direction.UP)) {
 				playTriggerParticles((ServerLevel) world, pos);
 				playTriggerSound(world, pos);
@@ -78,7 +78,7 @@ public abstract class IdolBlock extends Block {
 	
 	@Override
 	public void onProjectileHit(Level world, BlockState state, BlockHitResult hit, Projectile projectile) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			BlockPos hitPos = hit.getBlockPos();
 			if (!hasCooldown(state) && trigger((ServerLevel) world, hitPos, state, projectile.getOwner(), hit.getDirection())) {
 				playTriggerParticles((ServerLevel) world, hit.getBlockPos());

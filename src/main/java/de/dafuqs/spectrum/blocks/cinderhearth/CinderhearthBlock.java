@@ -68,12 +68,12 @@ public class CinderhearthBlock extends BaseEntityBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.CINDERHEARTH, CinderhearthBlockEntity::serverTick);
+		return world.isClientSide() ? null : createTickerHelper(type, SpectrumBlockEntities.CINDERHEARTH, CinderhearthBlockEntity::serverTick);
 	}
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			verifyStructure(world, pos, null);
 			return InteractionResult.SUCCESS;
 		} else {
@@ -208,7 +208,7 @@ public class CinderhearthBlock extends BaseEntityBlock {
 		
 		boolean structureValid = completedStructure != CinderhearthBlockEntity.CinderHearthStructureType.NONE;
 		
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			if (!structureValid) {
 				ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.CINDERHEARTH), SpectrumMultiblocks.CINDERHEARTH_TEXT, blockPos.below(4), rotation);
 			}

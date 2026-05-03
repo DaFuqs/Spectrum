@@ -60,7 +60,7 @@ public class CrystalApothecaryBlock extends BaseEntityBlock {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);

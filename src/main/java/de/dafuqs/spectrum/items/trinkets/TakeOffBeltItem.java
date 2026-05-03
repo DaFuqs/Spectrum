@@ -58,7 +58,7 @@ public class TakeOffBeltItem extends SpectrumTrinketItem {
 		Level world = entity.level();
 		super.tick(stack, slot, entity);
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (entity.isShiftKeyDown() && entity.onGround()) {
 				if (sneakingTimes.containsKey(entity)) {
 					long sneakTicks = world.getGameTime() - sneakingTimes.get(entity);

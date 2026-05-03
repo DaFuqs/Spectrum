@@ -33,7 +33,7 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 		
 		PlayerEntityAccessor playerEntityAccessor = ((PlayerEntityAccessor) user);
 		if (playerEntityAccessor.getSpectrumBobber() != null) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				int damage = playerEntityAccessor.getSpectrumBobber().use(itemStack);
 				itemStack.hurtAndBreak(damage, user, LivingEntity.getSlotForHand(hand));
 			}

@@ -111,7 +111,7 @@ public class ShootingStarEntity extends Entity {
 		double previousZVelocity = this.getDeltaMovement().z();
 		
 		Level world = this.level();
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			this.noPhysics = false;
 		} else {
 			this.noPhysics = !this.level().noCollision(this, this.getBoundingBox().deflate(1.0E-7D));
@@ -165,7 +165,7 @@ public class ShootingStarEntity extends Entity {
 			}
 		});
 		
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			if (!playerPlaced && !hardened) {
 				if (this.onGround()) {
 					if (world.random.nextInt(10) == 0) {

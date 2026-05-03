@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
-import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
@@ -42,18 +41,18 @@ public class StarCandyItem extends Item {
 		
 		switch(this.rarity) {
 			case GLEAMING ->  {
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					WhispyCircletItem.removeSingleStatusEffect(user, MobEffectCategory.HARMFUL);
 				}
 			}
 			case ENCHANTED ->  {
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					WhispyCircletItem.removeNegativeStatusEffects(user);
 				}
 			}
 			case MAGNIFICENT -> {
 				user.heal(user.getMaxHealth());
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					WhispyCircletItem.removeNegativeStatusEffects(user);
 				}
 				if (user instanceof Player player) {
@@ -70,15 +69,10 @@ public class StarCandyItem extends Item {
 		super.appendHoverText(stack, context, tooltip, type);
 		
 		switch(this.rarity) {
-			case SUGARY ->  {
-				tooltip.add(Component.translatable("item.spectrum.star_candy.tooltip.sugary").withStyle(ChatFormatting.GRAY));
-			}
-			case GLEAMING ->  {
-				tooltip.add(Component.translatable("item.spectrum.star_candy.tooltip.cure_single_effect").withStyle(ChatFormatting.GRAY));
-			}
-			case ENCHANTED ->  {
-				tooltip.add(Component.translatable("item.spectrum.star_candy.tooltip.cure_all_effects").withStyle(ChatFormatting.GRAY));
-			}
+			case SUGARY		-> tooltip.add(Component.translatable("item.spectrum.star_candy.tooltip.sugary").withStyle(ChatFormatting.GRAY));
+			case GLEAMING	-> tooltip.add(Component.translatable("item.spectrum.star_candy.tooltip.cure_single_effect").withStyle(ChatFormatting.GRAY));
+			case ENCHANTED  -> tooltip.add(Component.translatable("item.spectrum.star_candy.tooltip.cure_all_effects").withStyle(ChatFormatting.GRAY));
+			
 			case MAGNIFICENT -> {
 				tooltip.add(Component.translatable("item.spectrum.star_candy.tooltip.cure_all_effects").withStyle(ChatFormatting.GRAY));
 				tooltip.add(Component.translatable("item.spectrum.star_candy.tooltip.fully_heal_and_hunger").withStyle(ChatFormatting.GRAY));

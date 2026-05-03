@@ -164,7 +164,7 @@ public interface Upgradeable {
 			}
 		}
 		
-		if (advancementPlayerUUID != null && !world.isClientSide) {
+		if (advancementPlayerUUID != null && !world.isClientSide()) {
 			ServerPlayer player = (ServerPlayer) PlayerOwned.getPlayerEntityIfOnline(advancementPlayerUUID);
 			if (player != null) {
 				SpectrumAdvancementCriteria.UPGRADE_PLACING.trigger(player, (ServerLevel) world, blockPos, upgradeCount, upgradeMods);

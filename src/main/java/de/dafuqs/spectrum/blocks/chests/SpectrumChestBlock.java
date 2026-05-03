@@ -45,7 +45,7 @@ public abstract class SpectrumChestBlock extends BaseEntityBlock {
 
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		} else {
 			this.openScreen(world, pos, player);

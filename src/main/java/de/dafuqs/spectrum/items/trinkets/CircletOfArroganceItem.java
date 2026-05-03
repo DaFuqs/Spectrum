@@ -37,7 +37,7 @@ public class CircletOfArroganceItem extends SpectrumTrinketItem {
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         super.tick(stack, slot, entity);
 		Level world = entity.level();
-		if (!world.isClientSide && world.getGameTime() % TRIGGER_EVERY_X_TICKS == 0) {
+		if (!world.isClientSide() && world.getGameTime() % TRIGGER_EVERY_X_TICKS == 0) {
             giveEffect(entity);
         }
     }

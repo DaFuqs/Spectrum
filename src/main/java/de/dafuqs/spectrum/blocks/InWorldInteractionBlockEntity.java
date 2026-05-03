@@ -81,7 +81,7 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	@Override
 	public void inventoryChanged() {
 		this.setChanged();
-		if (level != null && !level.isClientSide) {
+		if (level != null && !level.isClientSide()) {
 			updateInClientWorld();
 		}
 	}

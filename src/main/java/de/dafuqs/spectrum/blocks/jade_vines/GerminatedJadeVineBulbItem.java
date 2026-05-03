@@ -30,7 +30,7 @@ public class GerminatedJadeVineBulbItem extends CloakedItem {
 		BlockPos pos = context.getClickedPos();
 		
 		if (JadeVineRootsBlock.canBePlantedOn(world.getBlockState(pos)) && world.getBlockState(pos.below()).isAir()) {
-			if (context.getLevel().isClientSide) {
+			if (context.getLevel().isClientSide()) {
 				for (int i = 0; i < 16; i++) {
 					JadeVine.spawnParticlesClient(world, pos);
 					JadeVine.spawnParticlesClient(world, pos.below());

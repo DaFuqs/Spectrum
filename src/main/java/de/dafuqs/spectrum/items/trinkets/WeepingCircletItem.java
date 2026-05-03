@@ -53,7 +53,7 @@ public class WeepingCircletItem extends SpectrumTrinketItem {
 	
 	private void doEffects(LivingEntity entity, boolean always) {
 		Level world = entity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			long time = entity.level().getGameTime();
 			if (entity.isEyeInFluid(SpectrumFluidTags.ACTIVATES_WEEPING_CIRCLET)) {
 				if (always || time % TRIGGER_EVERY_X_TICKS == 0) {

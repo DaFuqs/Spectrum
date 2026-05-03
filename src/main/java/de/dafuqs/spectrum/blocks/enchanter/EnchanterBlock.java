@@ -49,7 +49,7 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(Level world) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.ENCHANTER));
 		}
 	}
@@ -63,7 +63,7 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
 		} else {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.ENCHANTER), SpectrumMultiblocks.ENCHANTER_TEXT, blockPos.below(4), Rotation.NONE);
 			}
 		}
@@ -80,7 +80,7 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.ENCHANTER, world.isClientSide ? EnchanterBlockEntity::clientTick : EnchanterBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.ENCHANTER, world.isClientSide() ? EnchanterBlockEntity::clientTick : EnchanterBlockEntity::serverTick);
 	}
 	
 	@Override
@@ -92,7 +92,7 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			verifyStructure(world, pos, null);
 			return ItemInteractionResult.SUCCESS;
 		} else {

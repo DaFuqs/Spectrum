@@ -37,7 +37,7 @@ public class BismuthBudBlock extends SpectrumClusterBlock {
 	@Override
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.randomTick(state, world, pos, random);
-		if (!world.isClientSide && grownBlock != null && searchAndConsumeBlock(world, pos, GROWTH_CHECK_RADIUS, CONSUMED_TAG_TO_GROW, CONSUMED_TARGET_STATE, GROWTH_CHECK_TRIES, random)) {
+		if (!world.isClientSide() && grownBlock != null && searchAndConsumeBlock(world, pos, GROWTH_CHECK_RADIUS, CONSUMED_TAG_TO_GROW, CONSUMED_TARGET_STATE, GROWTH_CHECK_TRIES, random)) {
 			BlockState newState = grownBlock.defaultBlockState().setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED));
 			world.setBlockAndUpdate(pos, newState);
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.CHAIN_PLACE, SoundSource.BLOCKS, 0.8F, 0.9F + random.nextFloat() * 0.2F);

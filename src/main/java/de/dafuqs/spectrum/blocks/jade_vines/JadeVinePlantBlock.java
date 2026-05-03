@@ -108,7 +108,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 			boolean harvested = false;
 			
 			if (handStack.is(Items.GLASS_BOTTLE)) {
-				if (world.isClientSide) {
+				if (world.isClientSide()) {
 					return ItemInteractionResult.SUCCESS;
 				} else {
 					if (player instanceof ServerPlayer serverPlayerEntity) {
@@ -130,9 +130,9 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 				player.displayClientMessage(Component.translatable("message.spectrum.needs_item_to_harvest").append(Items.GLASS_BOTTLE.getDescription()), true);
 			}
 			
-			return ItemInteractionResult.sidedSuccess(world.isClientSide);
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		} else if (growthStage.canHarvestPetals()) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				setHarvested(state, (ServerLevel) world, pos);
 				
 				List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, player.getMainHandItem(), SpectrumLootTables.JADE_VINE_HARVESTING_PETALS);
@@ -140,7 +140,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 					player.getInventory().placeItemBackInInventory(harvestedStack);
 				}
 			}
-			return ItemInteractionResult.sidedSuccess(world.isClientSide);
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		}
 		
 		return super.useItemOn(handStack, state, world, pos, player, hand, hit);
@@ -190,7 +190,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 	
 	@Override
 	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (!player.isCreative()) {
 				dropResources(state, world, pos, null, player, player.getMainHandItem());
 			}

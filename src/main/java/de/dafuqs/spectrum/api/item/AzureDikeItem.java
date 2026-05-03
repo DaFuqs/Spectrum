@@ -27,7 +27,7 @@ public interface AzureDikeItem {
 	
 	default void recalculate(LivingEntity livingEntity) {
 		Level world = livingEntity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			AzureDikeComponent azureDikeComponent = AzureDikeProvider.AZURE_DIKE_COMPONENT.get(livingEntity);
 			
 			Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(livingEntity);

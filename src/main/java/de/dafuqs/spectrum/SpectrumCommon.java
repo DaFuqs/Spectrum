@@ -56,8 +56,18 @@ public class SpectrumCommon implements ModInitializer {
 		LOGGER.warn("[Spectrum] {}", message);
 	}
 	
+	@SuppressWarnings("StringConcatenationArgumentToLogCall") // while tempting, the "correct" version doesn't actually handle the throwable properly
+	public static void logWarning(String message, Throwable t) {
+		LOGGER.warn("[Spectrum] " + message, t);
+	}
+	
 	public static void logError(String message) {
 		LOGGER.error("[Spectrum] {}", message);
+	}
+	
+	@SuppressWarnings("StringConcatenationArgumentToLogCall") // while tempting, the "correct" version doesn't actually handle the throwable properly
+	public static void logError(String message, Throwable t) {
+		LOGGER.error("[Spectrum] " + message, t);
 	}
 	
 	public static ResourceLocation locate(String name) {

@@ -57,7 +57,7 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		boolean wasTriggered = state.getValue(TRIGGERED);
 		
 		if (isTriggered && !wasTriggered) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				this.destroy((ServerLevel) world, pos, state.getValue(ORIENTATION).front());
 			}
 			world.setBlock(pos, state.setValue(TRIGGERED, true), Block.UPDATE_INVISIBLE);

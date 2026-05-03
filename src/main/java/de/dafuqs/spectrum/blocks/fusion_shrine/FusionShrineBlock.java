@@ -68,11 +68,8 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(Level world) {
-		if (world.isClientSide) {
-			if (world.isClientSide()) {
-				ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.FUSION_SHRINE));
-			}
-		}
+		if (world.isClientSide())
+			ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.FUSION_SHRINE));
 	}
 	
 	/*
@@ -104,7 +101,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
 		} else {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				ModonomiconHelper.renderMultiblock(multiblock, SpectrumMultiblocks.FUSION_SHRINE_TEXT, blockPos.below(2), Rotation.NONE);
 			} else if (world.getBlockEntity(blockPos) instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
 				fusionShrineBlockEntity.scatterContents(world);
@@ -159,7 +156,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			// Specially handle fluid items
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (entity instanceof ItemEntity itemEntity && blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
@@ -212,7 +209,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			verifyStructure(world, pos, null);
 			return ItemInteractionResult.SUCCESS;
 		} else {
@@ -249,7 +246,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.FUSION_SHRINE, world.isClientSide ? FusionShrineBlockEntity::clientTick : FusionShrineBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.FUSION_SHRINE, world.isClientSide() ? FusionShrineBlockEntity::clientTick : FusionShrineBlockEntity::serverTick);
 	}
 	
 	static {

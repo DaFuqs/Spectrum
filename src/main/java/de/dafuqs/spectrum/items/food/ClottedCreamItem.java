@@ -13,7 +13,7 @@ public class ClottedCreamItem extends ItemWithTooltip {
 	
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			user.removeAllEffects();
 		}
 		

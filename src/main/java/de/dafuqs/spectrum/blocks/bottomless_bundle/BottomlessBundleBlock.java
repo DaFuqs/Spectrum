@@ -71,7 +71,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (player.isShiftKeyDown()) {
 				world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
 					long amount = bottomlessBundleBlockEntity.storage.amount;
@@ -163,16 +163,16 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	}
 	
 	protected BlockState rotate(BlockState state, Rotation rotation) {
-		return (BlockState) state.setValue(ROTATION, rotation.rotate((Integer) state.getValue(ROTATION), MAX_ROTATIONS));
+		return state.setValue(ROTATION, rotation.rotate(state.getValue(ROTATION), MAX_ROTATIONS));
 	}
 	
 	protected BlockState mirror(BlockState state, Mirror mirror) {
-		return (BlockState) state.setValue(ROTATION, mirror.mirror((Integer) state.getValue(ROTATION), MAX_ROTATIONS));
+		return state.setValue(ROTATION, mirror.mirror(state.getValue(ROTATION), MAX_ROTATIONS));
 	}
 	
 	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 				bottomlessBundleBlockEntity.setBundle(itemStack.copy(), world.registryAccess());

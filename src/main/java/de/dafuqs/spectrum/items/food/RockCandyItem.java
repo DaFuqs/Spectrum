@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.items.food;
 
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.sounds.*;
@@ -72,7 +71,7 @@ public class RockCandyItem extends Item {
 			@Nullable RockCandyVariant itemVariant = RockCandyVariant.getFor(otherStack);
 			if (itemVariant == null) continue;
 			
-			Item newItem = stack.getItem() instanceof RockCandyItem ? ROCK_CANDY_VARIANTS.get(itemVariant) : SUGAR_STICK_VARIANTS.get(itemVariant);
+			Item newItem = (stack.getItem() instanceof RockCandyItem ? ROCK_CANDY_VARIANTS : SUGAR_STICK_VARIANTS).get(itemVariant);
 			otherStack.shrink(REQUIRED_ITEM_COUNT_PER_STAGE);
 			
 			ItemStack newStack = new ItemStack(newItem);

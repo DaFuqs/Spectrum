@@ -43,7 +43,7 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		} else {
 			if (world.getBlockEntity(pos) instanceof BlockPlacerBlockEntity blockPlacerBlockEntity) {
@@ -89,13 +89,11 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 						stack.shrink(1);
 					}
 				}
-				;
 				world.levelEvent(LevelEvent.SOUND_DISPENSER_DISPENSE, pointer.pos(), 0);
 				world.levelEvent(LevelEvent.PARTICLES_SHOOT_SMOKE, pointer.pos(), pointer.state().getValue(BlockPlacerBlock.ORIENTATION).front().get3DDataValue());
 				world.gameEvent(null, GameEvent.BLOCK_PLACE, placementPos);
 			} catch (Exception e) {
-				SpectrumCommon.logError("Block Placer encountered an error placing a block at " + placementPos + " when placing " + BuiltInRegistries.ITEM.getKey(blockItem));
-				e.printStackTrace();
+				SpectrumCommon.logError("Block Placer encountered an error placing a block at " + placementPos + " when placing " + BuiltInRegistries.ITEM.getKey(blockItem), e);
 			}
 		} else {
 			world.levelEvent(LevelEvent.SOUND_DISPENSER_FAIL, pointer.pos(), 0);

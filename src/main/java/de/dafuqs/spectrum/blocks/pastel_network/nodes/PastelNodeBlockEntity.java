@@ -250,7 +250,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 		
 		if (level != null) {
-			networkUUID.ifPresent(uuid -> ServerPastelNetworkManager.get((ServerLevel) level).getNetwork(uuid).ifPresent(n -> n.updateNodePriority(this, oldPriority)));
+			networkUUID.flatMap(uuid -> ServerPastelNetworkManager.get((ServerLevel) level).getNetwork(uuid)).ifPresent(n -> n.updateNodePriority(this, oldPriority));
 			if (getBlockState().getValue(BlockStateProperties.LIT) != lit)
 				level.setBlockAndUpdate(worldPosition, getBlockState().setValue(BlockStateProperties.LIT, lit));
 		}
@@ -361,12 +361,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (creationStamp != -1) {
 			nbt.putLong("creationStamp", creationStamp);
 		}
-		if (this.networkUUID.isPresent()) {
-			nbt.putUUID("NetworkUUID", this.networkUUID.get());
-		}
-		if (this.color.isPresent()) {
-			nbt.putInt("ColorId", this.color.get().getId());
-		}
+		this.networkUUID.ifPresent(uuid -> nbt.putUUID("NetworkUUID", uuid));
+		this.color.ifPresent(dyeColor -> nbt.putInt("ColorId", dyeColor.getId()));
 		nbt.putUUID("NodeID", this.nodeId);
 		nbt.putBoolean("Triggered", this.triggered);
 		nbt.putBoolean("Waiting", this.waiting);
@@ -410,7 +406,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public void onBroken() {
-		if (level != null && !level.isClientSide) {
+		if (level != null && !level.isClientSide()) {
 			Pastel.getServerInstance().removeNode(this, NodeRemovalReason.BROKEN);
 		}
 	}
@@ -588,8 +584,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 				try {
 					network.addEdge(this, entry); // Sometimes throws 'IllegalStateException("Attempted to add an edge to a foreign network")' (why? idk. better safe than sorry)
 				} catch (Exception e) {
-					SpectrumCommon.logWarning("PastelNodeBlockEntity can't connectToNearbyNodes: " + e.getMessage());
-					e.printStackTrace();
+					SpectrumCommon.logWarning("PastelNodeBlockEntity can't connectToNearbyNodes", e);
 				}
 			}
 		} else if (foundNetworkCount == 1) {
@@ -656,10 +651,10 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	
 	public int getPastelNetworkColor() {
 		Optional<DyeColor> color = getColor();
-		return color.isPresent() ? color.get().getTextureDiffuseColor() : SpectrumColorHelper.getRandomColor(getNodeId().hashCode());
+		return color.map(DyeColor::getTextureDiffuseColor).orElseGet(() -> SpectrumColorHelper.getRandomColor(getNodeId().hashCode()));
 	}
 	
-	enum ConnectionState {
+	public enum ConnectionState {
 		DISCONNECTED,
 		CONNECTED,
 		ACTIVE,

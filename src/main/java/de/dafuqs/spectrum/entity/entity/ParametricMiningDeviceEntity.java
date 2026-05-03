@@ -43,7 +43,7 @@ public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 	@Override
 	protected void onHitBlock(BlockHitResult blockHitResult) {
 		Level world = this.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			Entity owner = getOwner();
 			Player playerOwner = owner instanceof Player player ? player : null;
 			ModularExplosionDefinition.explode((ServerLevel) world, blockHitResult.getBlockPos(), blockHitResult.getDirection().getOpposite(), playerOwner, getItem());

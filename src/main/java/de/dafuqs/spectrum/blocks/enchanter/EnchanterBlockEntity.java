@@ -616,7 +616,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				enchanter.currentRecipe = upgrade;
 				enchanter.currentItemProcessingTime = 0;
 				
-				var level = enchanter.items.get(0).get(DataComponents.STORED_ENCHANTMENTS).getLevel(upgrade.value().getEnchantment());
+				var level = enchanter.items.getFirst().get(DataComponents.STORED_ENCHANTMENTS).getLevel(upgrade.value().getEnchantment());
 				enchanter.craftingTimeTotal = upgrade.value().getItemScaling().apply(level);
 				
 				EnchanterInventory testInventory = new EnchanterInventory();
@@ -682,7 +682,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		
 		this.currentRecipe = null;
 		this.currentRecipe = MultiblockCrafter.getRecipeHolderFromNbt(level, nbt);
-		if (this.currentRecipe == null && this.level != null && this.level.isClientSide) {
+		if (this.currentRecipe == null && this.level != null && this.level.isClientSide()) {
 			stopCraftingMusic();
 		}
 		

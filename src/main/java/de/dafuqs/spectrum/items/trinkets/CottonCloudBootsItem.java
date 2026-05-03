@@ -27,7 +27,7 @@ public class CottonCloudBootsItem extends SpectrumTrinketItem {
 			Vec3 velocity = entity.getDeltaMovement();
 			if (velocity.y < 0) {
 				entity.setDeltaMovement(entity.getDeltaMovement().multiply(1, 0.1, 1));
-				if (world.isClientSide) {
+				if (world.isClientSide()) {
 					RandomSource random = world.random;
 					world.addParticle(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(),
 							0.125 - random.nextFloat() * 0.25, 0.04 - random.nextFloat() * 0.08, 0.125 - random.nextFloat() * 0.25);

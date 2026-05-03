@@ -71,7 +71,7 @@ public class BloodOrchidBlock extends FlowerBlock implements BonemealableBlock, 
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		int age = state.getValue(AGE);
 		if (age > 0) {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return InteractionResult.SUCCESS;
 			} else {
 				world.setBlockAndUpdate(pos, state.setValue(AGE, age - 1));

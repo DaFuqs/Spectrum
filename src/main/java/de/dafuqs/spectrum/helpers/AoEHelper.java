@@ -90,7 +90,7 @@ public class AoEHelper {
 		ChunkPos chunkPos = world.getChunk(pos).getPos();
 		if (world.hasChunk(chunkPos.x, chunkPos.z)) {
 			BlockState blockstate = world.getBlockState(pos);
-			if (!world.isClientSide && !blockstate.isAir() && blockstate.getDestroyProgress(player, world, pos) > 0 && filter.test(blockstate)) {
+			if (!world.isClientSide() && !blockstate.isAir() && blockstate.getDestroyProgress(player, world, pos) > 0 && filter.test(blockstate)) {
 				ItemStack save = player.getMainHandItem();
 				player.setItemInHand(InteractionHand.MAIN_HAND, stack);
 				((ServerPlayer) player).connection.send(new ClientboundLevelEventPacket(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(blockstate), false));

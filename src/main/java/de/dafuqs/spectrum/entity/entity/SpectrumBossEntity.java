@@ -119,7 +119,7 @@ public class SpectrumBossEntity extends FlyingMob {
 		// => should they battle in a team the kill counts for all players
 		// instead of just the one that did the killing blow like in vanilla
 		Level world = this.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			for (Player closeByPlayer : this.level().getEntities(EntityType.PLAYER, getBoundingBox().inflate(24), Entity::isAlive)) {
 				CriteriaTriggers.ENTITY_KILLED_PLAYER.trigger((ServerPlayer) closeByPlayer, this, damageSource);
 			}
@@ -135,18 +135,8 @@ public class SpectrumBossEntity extends FlyingMob {
 	}
 	
 	@Override
-	public boolean checkSpawnRules(LevelAccessor world, MobSpawnType spawnReason) {
-		return true;
-	}
-	
-	@Override
 	public boolean requiresCustomPersistence() {
 		return true;
-	}
-	
-	@Override
-	protected boolean shouldDespawnInPeaceful() {
-		return false;
 	}
 	
 	@Override

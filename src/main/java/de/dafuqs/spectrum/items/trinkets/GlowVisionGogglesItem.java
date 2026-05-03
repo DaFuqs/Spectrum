@@ -31,7 +31,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 		super.tick(stack, slot, entity);
 		
 		Level world = entity.level();
-		if (world != null && !world.isClientSide && world.getGameTime() % 20 == 0) {
+		if (world != null && !world.isClientSide() && world.getGameTime() % 20 == 0) {
 			if (entity instanceof ServerPlayer serverPlayerEntity) {
 				giveEffect(world, serverPlayerEntity);
 			}
@@ -42,7 +42,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.onEquip(stack, slot, entity);
 		Level world = entity.level();
-		if (world != null && !world.isClientSide && entity instanceof ServerPlayer serverPlayerEntity) {
+		if (world != null && !world.isClientSide() && entity instanceof ServerPlayer serverPlayerEntity) {
 			giveEffect(world, serverPlayerEntity);
 		}
 	}

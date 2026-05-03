@@ -164,7 +164,7 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 	public void aiStep() {
 		Level world = this.level();
 		super.aiStep();
-		if (!world.isClientSide && this.ticksLeftToFindPOI > 0) {
+		if (!world.isClientSide() && this.ticksLeftToFindPOI > 0) {
 			--this.ticksLeftToFindPOI;
 		}
 	}
@@ -175,7 +175,7 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 		ItemStack itemStack = player.getItemInHand(hand);
 		if (this.isFood(itemStack)) {
 			int i = this.getAge();
-			if (!world.isClientSide && i == 0 && this.canFallInLove() && this.random.nextInt(5) == 0) {
+			if (!world.isClientSide() && i == 0 && this.canFallInLove() && this.random.nextInt(5) == 0) {
 				// yes, this also overrides the existing owner
 				// there is no god besides the new god
 				this.usePlayerItem(player, hand, itemStack);
@@ -187,10 +187,10 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 			if (this.isBaby()) {
 				this.usePlayerItem(player, hand, itemStack);
 				this.ageUp(getSpeedUpSecondsWhenFeeding(-i), true);
-				return InteractionResult.sidedSuccess(world.isClientSide);
+				return InteractionResult.sidedSuccess(world.isClientSide());
 			}
 			
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return InteractionResult.CONSUME;
 			}
 		}

@@ -50,7 +50,7 @@ public class FloatBlock extends FallingBlock {
 	}
 	
 	private void checkForLaunch(Level world, BlockPos pos) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (gravityMod == 0) {
 				launch(world, pos);
 				return;

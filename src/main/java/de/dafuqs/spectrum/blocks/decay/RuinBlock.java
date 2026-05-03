@@ -39,7 +39,7 @@ public class RuinBlock extends DecayBlock {
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.setPlacedBy(world, pos, state, placer, itemStack);
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			world.playSound(null, pos, SpectrumSoundEvents.RUIN_PLACED, SoundSource.BLOCKS, 0.5F, 1.0F);
 		} else {
 			RandomSource random = world.getRandom();
@@ -88,9 +88,7 @@ public class RuinBlock extends DecayBlock {
 		
 		if (newState.isAir()) {
 			Optional<Boolean> shouldCreatePortalFacingUp = shouldCreatePortalFacingUp(level, pos, state);
-			if (shouldCreatePortalFacingUp.isPresent()) {
-				level.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
-			}
+			shouldCreatePortalFacingUp.ifPresent(aBoolean -> level.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, aBoolean)));
 		}
 	}
 	

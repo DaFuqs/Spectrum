@@ -27,7 +27,7 @@ public class LightSpearEntity extends LightShardBaseEntity {
     public void tick() {
         super.tick();
 		
-		targetEntity.ifPresent(entity -> this.lookAt(EntityAnchorArgument.Anchor.EYES, entity.position()));
+		if (target != null) this.lookAt(EntityAnchorArgument.Anchor.EYES, target.position());
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class AscensionStatusEffect extends MobEffect {
 	
 	@Override
 	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
-		if (entity.level().isClientSide) {
+		if (entity.level().isClientSide()) {
 			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredSparkleRisingParticleEffect.WHITE, VectorPattern.EIGHT, 0.2);
 		} else if (applyDivinity) {
 			entity.addEffect(new MobEffectInstance(SpectrumStatusEffects.DIVINITY, MUSIC_DURATION_TICKS - MUSIC_INTRO_TICKS, DivinityStatusEffect.ASCENSION_AMPLIFIER));

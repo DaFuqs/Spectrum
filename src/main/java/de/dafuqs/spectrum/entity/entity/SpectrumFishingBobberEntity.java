@@ -161,7 +161,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 		Player playerEntity = this.getPlayerOwner();
 		if (playerEntity == null) {
 			this.discard();
-		} else if (this.level().isClientSide || !this.removeIfInvalid(playerEntity)) {
+		} else if (this.level().isClientSide() || !this.removeIfInvalid(playerEntity)) {
 			if (this.onGround()) {
 				this.removalTimer++;
 				if (this.removalTimer >= 1200) {
@@ -230,7 +230,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 							this.setDeltaMovement(this.getDeltaMovement().add(0.0, -0.1 * (double) this.velocityRandom.nextFloat() * (double) this.velocityRandom.nextFloat(), 0.0));
 						}
 						
-						if (!this.level().isClientSide) {
+						if (!this.level().isClientSide()) {
 							this.tickFishingLogic(blockPos);
 						}
 					} else {
@@ -281,7 +281,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 	@Override
 	public void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			this.updateHookedEntityId(entityHitResult.getEntity());
 		}
 	}
@@ -482,7 +482,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 	@Override
 	public void handleEntityEvent(byte status) {
 		if (status == EntityEvent.FISHING_ROD_REEL_IN
-				&& this.level().isClientSide
+				&& this.level().isClientSide()
 				&& this.hookedEntity instanceof Player
 				&& ((Player) this.hookedEntity).isLocalPlayer()) {
 			this.pullHookedEntity(this.hookedEntity);

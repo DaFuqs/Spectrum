@@ -76,12 +76,12 @@ public class ColorPickerBlock extends HorizontalDirectionalBlock implements Enti
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntity::tick);
+		return world.isClientSide() ? null : Support.checkType(type, SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntity::tick);
 	}
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		} else {
 			this.openScreen(world, pos, player);

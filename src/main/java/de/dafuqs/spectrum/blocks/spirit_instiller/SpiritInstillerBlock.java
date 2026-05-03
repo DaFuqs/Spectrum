@@ -47,7 +47,7 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(Level world) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER));
 		}
 	}
@@ -80,7 +80,7 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
 		} else {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				Multiblock currentMultiBlock = MultiblockPreviewRenderer.getMultiblock();
 				if (currentMultiBlock == multiblock) {
 					lastBlockRotation = Rotation.values()[(MultiblockPreviewRenderer.getFacingRotation().ordinal() + 1) % Rotation.values().length]; // cycle rotation
@@ -104,7 +104,7 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.SPIRIT_INSTILLER, world.isClientSide ? SpiritInstillerBlockEntity::clientTick : SpiritInstillerBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.SPIRIT_INSTILLER, world.isClientSide() ? SpiritInstillerBlockEntity::clientTick : SpiritInstillerBlockEntity::serverTick);
 	}
 	
 	@Override
@@ -122,7 +122,7 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 				verifyStructure(world, pos, null, spiritInstillerBlockEntity);
 			}

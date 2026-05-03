@@ -34,7 +34,7 @@ public abstract class ProjectileEntityMixin {
 		Projectile thisEntity = (Projectile) (Object) this;
 		if (!thisEntity.getType().is(SpectrumEntityTypeTags.UNDEFLECTABLE)) {
 			Level world = thisEntity.level();
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				Entity entity = entityHitResult.getEntity();
 				if (entity instanceof LivingEntity livingEntity) {
 					boolean protect = false;

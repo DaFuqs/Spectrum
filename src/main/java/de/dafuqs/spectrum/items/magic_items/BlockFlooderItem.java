@@ -23,7 +23,7 @@ public class BlockFlooderItem extends Item {
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
 		ItemStack itemStack = user.getItemInHand(hand);
 		world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.ENTITY_BLOCK_FLOODER_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			BlockFlooderProjectile blockFlooderProjectile = new BlockFlooderProjectile(world, user);
 			blockFlooderProjectile.setItem(itemStack);
 			blockFlooderProjectile.shootFromRotation(user, user.getXRot(), user.getYRot(), 0.0F, 1.5F, 1.0F);

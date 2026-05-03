@@ -110,7 +110,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		super.tick(stack, slot, entity);
 		
 		Level world = entity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			long time = entity.level().getGameTime();
 			if (time % TRIGGER_EVERY_X_TICKS == 0) {
 				shortenNegativeStatusEffects(entity, NEGATIVE_EFFECT_SHORTENING_TICKS);

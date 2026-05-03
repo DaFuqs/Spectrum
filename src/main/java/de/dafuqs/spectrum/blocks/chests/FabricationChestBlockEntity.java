@@ -41,7 +41,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	public static void tick(Level world, BlockPos pos, BlockState state, FabricationChestBlockEntity chest) {
 		chest.age++;
 		// TODO: that should run in `clientTick() instead` (same for other chests)
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 
 			chest.lastYaw = chest.yaw;
 			chest.yaw += chest.yawMod;

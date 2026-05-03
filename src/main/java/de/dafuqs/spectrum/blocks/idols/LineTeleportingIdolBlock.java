@@ -59,7 +59,7 @@ public class LineTeleportingIdolBlock extends IdolBlock {
 	
 	@Override
 	public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
-		if (!world.isClientSide && !hasCooldown(state)) {
+		if (!world.isClientSide() && !hasCooldown(state)) {
 			if (trigger((ServerLevel) world, pos, state, entity, getLookDirection(entity, true, false).getOpposite())) { // we want the movement direction here, instead of only "top"
 				playTriggerParticles((ServerLevel) world, pos);
 				playTriggerSound(world, pos);

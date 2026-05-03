@@ -34,8 +34,8 @@ public abstract class LightShardBaseEntity extends Projectile {
 	public static final float DEFAULT_ACCELERATION = 0.03F;
 
 	protected float scaleOffset, damage, detectionRange;
-	protected Optional<UUID> target = Optional.empty();
-	protected Optional<LivingEntity> targetEntity = Optional.empty();
+	protected @Nullable UUID targetUUID;
+	protected @Nullable LivingEntity target;
 	protected Vec3 initialVelocity = Vec3.ZERO;
 	protected Predicate<LivingEntity> targetPredicate;
 	
@@ -100,29 +100,20 @@ public abstract class LightShardBaseEntity extends Projectile {
 		var hitResult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
 		onHit(hitResult);
 		
-		if (this.targetEntity.isEmpty() || !isValidTarget(targetEntity.get())) {
+		if (this.target == null || !isValidTarget(target)) {
 			Level world = this.level();
-			if (world.isClientSide)
+			if (world.isClientSide())
 				return;
 			
 			if (random.nextFloat() > 0.25)
 				return;
 			
 			findSuitableTargets((ServerLevel) this.level());
-		}
-		
-		if (this.targetEntity.isPresent() && isValidTarget(targetEntity.get())) {
-			var entity = targetEntity.get();
-			
-			var transformVector = entity
+		} else push(target
 					.position()
-					.add(0, entity.getBbHeight() / 2, 0)
+					.add(0, target.getBbHeight() / 2, 0)
 					.subtract(position())
-					.normalize();
-			
-			var accelerationVector = transformVector.scale(DEFAULT_ACCELERATION);
-			push(accelerationVector.x, accelerationVector.y, accelerationVector.z);
-		}
+					.normalize().scale(DEFAULT_ACCELERATION));
 	}
 	
 	protected void setTargetPredicate(@NotNull Predicate<LivingEntity> targetPredicate) {
@@ -209,10 +200,6 @@ public abstract class LightShardBaseEntity extends Projectile {
 	}
 	
 	@Override
-	public void onClientRemoval() {
-	}
-
-	@Override
 	public void remove(RemovalReason reason) {
 		super.remove(reason);
 		var bound = random.nextInt(11);
@@ -285,14 +272,14 @@ public abstract class LightShardBaseEntity extends Projectile {
 	}
 	
 	public void setTarget(@NotNull LivingEntity target) {
-		this.target = Optional.ofNullable(target.getUUID());
-		this.targetEntity = Optional.of(target);
+		this.targetUUID = target.getUUID();
+		this.target     = target;
 	}
 
 	@Override
 	protected void addAdditionalSaveData(CompoundTag nbt) {
 		super.addAdditionalSaveData(nbt);
-		target.ifPresent(uuid -> nbt.putUUID("target", uuid));
+		if (targetUUID != null) nbt.putUUID("target", targetUUID);
 		nbt.putDouble("initX", initialVelocity.x);
 		nbt.putDouble("initY", initialVelocity.y);
 		nbt.putDouble("initZ", initialVelocity.z);
@@ -305,9 +292,7 @@ public abstract class LightShardBaseEntity extends Projectile {
 	@Override
 	protected void readAdditionalSaveData(CompoundTag nbt) {
 		super.readAdditionalSaveData(nbt);
-		if (nbt.contains("target")) {
-			target = Optional.ofNullable(nbt.getUUID("target"));
-		}
+		if (nbt.contains("target")) targetUUID = nbt.getUUID("target");
 		
 		initialVelocity = new Vec3(
 				nbt.getDouble("initX"),

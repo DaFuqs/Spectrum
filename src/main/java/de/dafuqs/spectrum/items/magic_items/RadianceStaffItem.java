@@ -100,7 +100,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.RADIANCE_STAFF_CHARGING, SoundSource.PLAYERS, 1.0F, 1.0F);
 		}
 		return ItemUtils.startUsingInstantly(world, user, hand);
@@ -122,7 +122,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	@Override
 	public @NotNull InteractionResult useOn(UseOnContext context) {
 		Level world = context.getLevel();
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		}
 		

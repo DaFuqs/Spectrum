@@ -86,12 +86,12 @@ public class BottomlessBundleItem extends BlockItem implements InventoryInsertio
 			ItemStack handStack = user.getItemInHand(hand);
 			if (handStack.has(DataComponents.LOCK)) {
 				handStack.remove(DataComponents.LOCK);
-				if (world.isClientSide) {
+				if (world.isClientSide()) {
 					playZipSound(user, 0.8F);
 				}
 			} else {
 				handStack.set(DataComponents.LOCK, LockCode.NO_LOCK);
-				if (world.isClientSide) {
+				if (world.isClientSide()) {
 					playZipSound(user, 1.0F);
 				}
 			}

@@ -69,7 +69,7 @@ public class SpectrumEventListeners {
 	
 	public static void register() {
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
-			if (!world.isClientSide && !player.isSpectator()) {
+			if (!world.isClientSide() && !player.isSpectator()) {
 				
 				ItemStack mainHandStack = player.getMainHandItem();
 				if (mainHandStack.getItem() instanceof ExchangeStaffItem exchangeStaffItem) {
@@ -145,8 +145,7 @@ public class SpectrumEventListeners {
 			try {
 				Pastel.getServerInstance().tick();
 			} catch (Exception e) {
-				SpectrumCommon.logError("Error in the Pastel Network transmission loop.");
-				e.printStackTrace();
+				SpectrumCommon.logError("Error in the Pastel Network transmission loop.", e);
 			}
 			
 			PlayerList playerManager = server.getPlayerList();
@@ -357,17 +356,13 @@ public class SpectrumEventListeners {
 			// prevent damage and grant fire resistance
 			if (source.is(DamageTypes.LAVA)) {
 				Optional<ItemStack> ashenCircletStack = SpectrumTrinketItem.getFirstEquipped(entity, SpectrumItems.ASHEN_CIRCLET);
-				if (ashenCircletStack.isPresent()) {
-					if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), entity.level()) == 0) {
-						AshenCircletItem.grantFireResistance(ashenCircletStack.get(), entity);
-						return false;
-					}
+				if (ashenCircletStack.isPresent() && AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), entity.level()) == 0) {
+					AshenCircletItem.grantFireResistance(ashenCircletStack.get(), entity);
+					return false;
 				}
-			} else if (source.is(DamageTypeTags.IS_FIRE) && SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.ASHEN_CIRCLET)) {
-				return false;
 			}
 			
-			return true;
+			return !source.is(DamageTypeTags.IS_FIRE) || !SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.ASHEN_CIRCLET);
 		});
 		
 		ServerLifecycleEvents.SERVER_STOPPING.register(minecraftServer -> PotionWorkshopBrewingRecipe.clearMemorizedRecipes());

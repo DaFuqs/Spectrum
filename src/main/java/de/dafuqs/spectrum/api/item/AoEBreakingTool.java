@@ -13,7 +13,7 @@ public interface AoEBreakingTool {
 	default void afterBreakingBlock(ItemStack stack, BlockPos pos, Player player) {
 		Level world = player.level();
 		BlockHitResult hitResult = (BlockHitResult) player.pick(10, 1, false);
-		if (!world.isClientSide && hitResult.getType() == HitResult.Type.BLOCK) {
+		if (!world.isClientSide() && hitResult.getType() == HitResult.Type.BLOCK) {
 			Direction side = hitResult.getDirection();
 			if (!canUseAoE(player, stack)) {
 				return;

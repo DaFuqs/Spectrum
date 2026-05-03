@@ -36,7 +36,7 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 			return super.use(world, user, hand);
 		}
 		
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			startSoundInstance(user);
 		}
 		return ItemUtils.startUsingInstantly(world, user, hand);
@@ -114,17 +114,11 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 	
 	public static boolean isPrimeTimeElapsed(Level world, ItemStack stack) {
 		Optional<Long> timestamp = getPrimeTime(stack);
-		if (timestamp.isEmpty()) {
-			return false;
-		}
-		return world.getGameTime() - timestamp.get() >= 100;
+		return timestamp.isPresent() && world.getGameTime() - timestamp.get() >= 100;
 	}
 	
 	private static Optional<Long> getPrimeTime(ItemStack stack) {
-		if (stack.has(SpectrumDataComponentTypes.TIMESTAMP)) {
-			return Optional.of(stack.get(SpectrumDataComponentTypes.TIMESTAMP));
-		}
-		return Optional.empty();
+		return Optional.ofNullable(stack.get(SpectrumDataComponentTypes.TIMESTAMP));
 	}
 	
 	@Override

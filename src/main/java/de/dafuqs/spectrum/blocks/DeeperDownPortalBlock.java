@@ -58,7 +58,7 @@ public class DeeperDownPortalBlock extends Block {
 	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onPlace(state, world, pos, oldState, notify);
 		
-		if (!world.isClientSide) { // that should be a given, but in modded you never know
+		if (!world.isClientSide()) { // that should be a given, but in modded you never know
 			PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world, Vec3.atCenterOf(pos), SpectrumParticleTypes.VOID_FOG, 30, new Vec3(0.5, 0.0, 0.5), Vec3.ZERO);
 			if (!hasNeighboringPortals(world, pos)) {
 				world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.DEEPER_DOWN_PORTAL_OPEN, SoundSource.BLOCKS, 0.75F, 0.75F);
@@ -73,7 +73,7 @@ public class DeeperDownPortalBlock extends Block {
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		if (handStack.is(SpectrumItems.BEDROCK_DUST)) {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return ItemInteractionResult.SUCCESS;
 			} else {
 				BlockState placedState = Blocks.BEDROCK.defaultBlockState();

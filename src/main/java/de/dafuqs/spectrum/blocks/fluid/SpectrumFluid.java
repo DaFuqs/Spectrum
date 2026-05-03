@@ -94,7 +94,7 @@ public abstract class SpectrumFluid extends FlowingFluid {
 	public abstract ParticleOptions getSplashParticle();
 	
 	public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (entity instanceof ItemEntity itemEntity && !itemEntity.hasPickUpDelay() && !itemEntity.isRemoved()) {
 				if (world.random.nextInt(40) == 0) {
 					ItemStack itemStack = itemEntity.getItem();

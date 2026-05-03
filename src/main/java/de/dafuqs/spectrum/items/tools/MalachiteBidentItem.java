@@ -21,7 +21,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
-import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
@@ -84,7 +83,7 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 				
 				if (canStartRiptide(player, stack)) {
 					riptide(world, player, stack, getRiptideLevel(world.registryAccess(), stack));
-				} else if (!world.isClientSide) {
+				} else if (!world.isClientSide()) {
 					stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(user.getUsedItemHand()));
 					throwBident(stack, (ServerLevel) world, player);
 				}

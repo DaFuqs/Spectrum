@@ -37,7 +37,7 @@ public class FailingBlock extends DecayBlock {
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.setPlacedBy(world, pos, state, placer, itemStack);
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			world.playSound(null, pos, SpectrumSoundEvents.FAILING_PLACED, SoundSource.BLOCKS, 0.5F, 1.0F);
 		} else {
 			RandomSource random = world.getRandom();

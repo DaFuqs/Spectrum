@@ -56,7 +56,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		
 		var storedRecipe = getStoredRecipe(world, itemStack);
 		if (storedRecipe == null || user.isShiftKeyDown()) {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return InteractionResultHolder.success(user.getItemInHand(hand));
 			} else {
 				user.openMenu(createScreenHandlerFactory(world, (ServerPlayer) user, itemStack));
@@ -67,7 +67,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 				return InteractionResultHolder.pass(user.getItemInHand(hand));
 			} else {
 				if (tryCraftRecipe(user, storedRecipe.value(), world)) {
-					if (world.isClientSide) {
+					if (world.isClientSide()) {
 						return InteractionResultHolder.success(user.getItemInHand(hand));
 					} else {
 						return InteractionResultHolder.consume(user.getItemInHand(hand));
@@ -88,7 +88,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		
 		Container playerInventory = serverPlayerEntity.getInventory();
 		boolean hasInInventory = InventoryHelper.hasInInventory(ingredients, playerInventory);
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			return hasInInventory;
 		}
 		

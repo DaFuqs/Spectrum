@@ -54,7 +54,7 @@ public class PotionPendantItem extends SpectrumTrinketItem implements InkPowered
     public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		Level world = entity.level();
 		super.onEquip(stack, slot, entity);
-		if (!world.isClientSide && entity instanceof Player player) {
+		if (!world.isClientSide() && entity instanceof Player player) {
 			grantEffects(stack, player);
 		}
 	}
@@ -63,7 +63,7 @@ public class PotionPendantItem extends SpectrumTrinketItem implements InkPowered
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		Level world = entity.level();
 		super.tick(stack, slot, entity);
-		if (!world.isClientSide && entity.level().getGameTime() % TRIGGER_EVERY_X_TICKS == 0 && entity instanceof Player player) {
+		if (!world.isClientSide() && entity.level().getGameTime() % TRIGGER_EVERY_X_TICKS == 0 && entity instanceof Player player) {
 			grantEffects(stack, player);
 		}
 	}

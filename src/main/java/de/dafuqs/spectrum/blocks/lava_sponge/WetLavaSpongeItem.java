@@ -21,7 +21,7 @@ public class WetLavaSpongeItem extends BlockItem {
 	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		if (world != null && entity != null) {
 			// play fire sound, set player and surroundings on fire
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				RandomSource random = world.getRandom();
 				if (random.nextInt(50) == 0) {
 					entity.playSound(SoundEvents.FIRE_EXTINGUISH, 0.4F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.2F);

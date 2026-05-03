@@ -46,7 +46,7 @@ public class ItemRoundelBlock extends InWorldInteractionBlock implements Paintbr
 			return actionResult;
 		}
 		
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			return ItemInteractionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -66,7 +66,7 @@ public class ItemRoundelBlock extends InWorldInteractionBlock implements Paintbr
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof ItemRoundelBlockEntity itemRoundelBlockEntity) {
 			itemRoundelBlockEntity.reverse();
-			return ItemInteractionResult.sidedSuccess(world.isClientSide);
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		}
 		return ItemInteractionResult.FAIL;
 	}

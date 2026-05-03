@@ -108,7 +108,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (entity instanceof LivingEntity livingEntity) {
 				if (!livingEntity.isDeadOrDying() && world.getGameTime() % 20 == 0) {
 					var damageMult = 1F;

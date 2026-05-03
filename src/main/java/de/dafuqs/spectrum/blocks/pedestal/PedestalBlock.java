@@ -72,7 +72,7 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(Level world) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_SIMPLE));
 			ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_ADVANCED));
 			ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_COMPLEX));
@@ -181,7 +181,7 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 			return actionResult;
 		}
 		
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			return ItemInteractionResult.SUCCESS;
 		} else {
 			this.openScreen(world, pos, player);
@@ -246,12 +246,12 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.PEDESTAL, world.isClientSide ? PedestalBlockEntity::clientTick : PedestalBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.PEDESTAL, world.isClientSide() ? PedestalBlockEntity::clientTick : PedestalBlockEntity::serverTick);
 	}
 	
 	@Override
 	public void neighborChanged(BlockState state, @NotNull Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (this.checkGettingPowered(world, pos)) {
 				this.power(world, pos);
 			} else {
@@ -315,12 +315,12 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 				return ItemInteractionResult.FAIL;
 			}
 			
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				pedestalBlockEntity.shouldCraft = true;
 				PlayPedestalStartCraftingParticlePayload.spawnPedestalStartCraftingParticles(pedestalBlockEntity);
 			}
 			
-			return ItemInteractionResult.sidedSuccess(world.isClientSide);
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		}
 		return ItemInteractionResult.FAIL;
 	}

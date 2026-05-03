@@ -163,9 +163,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 	public void addAdditionalSaveData(CompoundTag nbt) {
 		super.addAdditionalSaveData(nbt);
 		this.addPersistentAngerSaveData(nbt);
-		this.getKindlingVariant().unwrapKey().ifPresent((resourceKey) -> {
-			nbt.putString("variant", resourceKey.location().toString());
-		});
+		this.getKindlingVariant().unwrapKey().ifPresent((resourceKey) -> nbt.putString("variant", resourceKey.location().toString()));
 		nbt.putInt("chillTime", getChillTime());
 		nbt.putInt("eepyTime", getEepyTime());
 		nbt.putInt("clip_time", getClipTime());
@@ -340,9 +338,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 		playSound(SpectrumSoundEvents.DEEP_CRYSTAL_RING, 2F, 0.334F);
 		playSound(SoundEvents.ENDER_DRAGON_AMBIENT, 1F, 2F);
 		
-		((ServerLevel) world).getPlayers(p -> p.distanceTo(this) < 64).forEach(p -> {
-			Support.grantAdvancementCriterion(p, "ascend_kindling", "he_explarded");
-		});
+		((ServerLevel) world).getPlayers(p -> p.distanceTo(this) < 64).forEach(p -> Support.grantAdvancementCriterion(p, "ascend_kindling", "he_explarded"));
 
 		for (int i = 0; i < 5; i++) {
 			((ServerLevel) world).sendParticles(ParticleTypes.DRAGON_BREATH, getRandomX(1.5), getY() + random.nextDouble(), getRandomZ(1.5), random.nextInt(6) + 1, 0, random.nextFloat() / 3, 0, 0);
@@ -474,7 +470,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 				
 				this.shear(SoundSource.PLAYERS);
 				this.gameEvent(GameEvent.SHEAR, player);
-				if (!this.level().isClientSide) {
+				if (!this.level().isClientSide()) {
 					handStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
 				}
 			}
@@ -491,7 +487,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 				
 				if (!this.isTamed()) {
 					this.makeMad();
-					return InteractionResult.sidedSuccess(this.level().isClientSide);
+					return InteractionResult.sidedSuccess(this.level().isClientSide());
 				}
 			}
 			
@@ -529,18 +525,18 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 		
 		if (this.isBaby()) {
 			this.level().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0), this.getRandomY() + 0.5, this.getRandomZ(1.0), 0.0, 0.0, 0.0);
-			if (!this.level().isClientSide) {
+			if (!this.level().isClientSide()) {
 				this.ageUp(20);
 			}
 			canEat = true;
-		} else if (!this.level().isClientSide && !this.isInLove()) {
+		} else if (!this.level().isClientSide() && !this.isInLove()) {
 			this.setInLove(player);
 			canEat = true;
 		}
 		
 		if ((canEat || !this.isTamed()) && this.getTemper() < this.getMaxTemper()) {
 			canEat = true;
-			if (!this.level().isClientSide) {
+			if (!this.level().isClientSide()) {
 				this.modifyTemper(3);
 			}
 		}

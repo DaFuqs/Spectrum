@@ -84,7 +84,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 		}
 		user.awardStat(Stats.ITEM_USED.get(this));
 		
-		return InteractionResultHolder.sidedSuccess(user.getItemInHand(hand), world.isClientSide);
+		return InteractionResultHolder.sidedSuccess(user.getItemInHand(hand), world.isClientSide());
 	}
 	
 	public void openGuidebook() {

@@ -36,7 +36,7 @@ public class EverpromiseRibbonItem extends Item implements PrioritizedEntityInte
 		
 		if (stack.get(DataComponents.CUSTOM_NAME) != null && !(entity instanceof Player)) {
 			if (entity.isAlive()) {
-				if (world.isClientSide) {
+				if (world.isClientSide()) {
 					Level entityWorld = entity.level();
 					RandomSource random = entityWorld.random;
 					for (int i = 0; i < 7; ++i) {
@@ -62,7 +62,7 @@ public class EverpromiseRibbonItem extends Item implements PrioritizedEntityInte
 				}
 			}
 			
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		} else {
 			return InteractionResult.PASS;
 		}

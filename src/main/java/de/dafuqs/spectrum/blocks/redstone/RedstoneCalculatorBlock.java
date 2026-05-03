@@ -66,7 +66,7 @@ public class RedstoneCalculatorBlock extends DiodeBlock implements EntityBlock {
 
 			this.update(world, pos, state);
 			
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		}
 	}
 	

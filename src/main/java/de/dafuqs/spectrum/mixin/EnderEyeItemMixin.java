@@ -37,7 +37,7 @@ public abstract class EnderEyeItemMixin {
 		}
 		
 		if (eyeAdded) {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				callbackInfoReturnable.setReturnValue(InteractionResult.SUCCESS);
 			} else {
 				context.getItemInHand().shrink(1);

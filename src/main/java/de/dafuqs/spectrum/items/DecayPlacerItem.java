@@ -37,7 +37,7 @@ public class DecayPlacerItem extends ItemNameBlockItem {
 				}
 			}
 		}
-		if (!world.isClientSide && actionResult.consumesAction() && context.getPlayer() != null && !context.getPlayer().isCreative()) {
+		if (!world.isClientSide() && actionResult.consumesAction() && context.getPlayer() != null && !context.getPlayer().isCreative()) {
 			context.getPlayer().getInventory().placeItemBackInInventory(Items.GLASS_BOTTLE.getDefaultInstance());
 		}
 		return actionResult;

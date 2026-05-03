@@ -57,11 +57,11 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 		
 		if (handStack.getItem() instanceof DyeItem dyeItem && isAlive() && getColor() != dyeItem.getDyeColor()) {
 			world.playSound(player, this, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				setColor(dyeItem.getDyeColor());
 				handStack.shrink(1);
 			}
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		} else if (handStack.is(Items.BUCKET) && !this.isBaby()) {
 			player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
 			ItemStack itemStack2 = ItemUtils.createFilledResult(handStack, player, Items.MILK_BUCKET.getDefaultInstance());

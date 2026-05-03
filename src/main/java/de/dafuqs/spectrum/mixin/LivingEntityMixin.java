@@ -397,7 +397,7 @@ public abstract class LivingEntityMixin {
 		Vec3 velocity = thisEntity.getDeltaMovement();
 		thisEntity.setDeltaMovement(velocity.x(), 0.5, velocity.z());
 		Level world = thisEntity.level();
-		if (world.isClientSide) { // it is split here so the particles spawn immediately, without network lag
+		if (world.isClientSide()) { // it is split here so the particles spawn immediately, without network lag
 			ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
 			ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.level(), thisEntity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
 		} else if (thisEntity instanceof ServerPlayer serverPlayerEntity) {
@@ -591,7 +591,7 @@ public abstract class LivingEntityMixin {
 	private void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;
 		Level world = thisEntity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (thisEntity instanceof Mob thisMobEntity) {
 				for (ItemStack armorItemStack : thisMobEntity.getArmorSlots()) {
 					if (armorItemStack.getItem() instanceof ArmorWithHitEffect armorWithHitEffect) {

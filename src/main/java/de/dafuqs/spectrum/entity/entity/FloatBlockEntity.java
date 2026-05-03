@@ -128,7 +128,7 @@ public class FloatBlockEntity extends Entity {
 			this.setDeltaMovement(this.getDeltaMovement().scale(0.98D));
 			
 			// recalculate fall damage
-			if (!level().isClientSide) {
+			if (!level().isClientSide()) {
 				this.dealDamage();
 			}
 		}
@@ -136,7 +136,7 @@ public class FloatBlockEntity extends Entity {
 		this.moveEntities();
 		this.move(MoverType.SELF, this.getDeltaMovement());
 		
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			if (this.verticalCollision) {
 				trySetBlock();
 			} else if (this.tickCount > 100 && this.level().isOutsideBuildHeight(this.blockPosition())) {

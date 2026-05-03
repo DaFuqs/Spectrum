@@ -282,12 +282,12 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 			ItemStack exchangedStack = ItemUtils.createFilledResult(handStack, player, bucketedStack, false);
 			player.setItemInHand(hand, exchangedStack);
 			Level world = entity.level();
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) player, bucketedStack);
 			}
 			
 			entity.discard();
-			return Optional.of(InteractionResult.sidedSuccess(world.isClientSide));
+			return Optional.of(InteractionResult.sidedSuccess(world.isClientSide()));
 		} else {
 			return Optional.empty();
 		}

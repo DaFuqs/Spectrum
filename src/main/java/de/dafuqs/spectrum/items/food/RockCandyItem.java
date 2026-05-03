@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.items.food;
 
-import com.simibubi.create.infrastructure.config.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.effect.*;

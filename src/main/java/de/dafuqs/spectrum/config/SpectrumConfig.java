@@ -21,7 +21,7 @@ public class SpectrumConfig {
 		CONFIG_SPEC = pair.getRight();
 	}
 	
-	public final ModConfigSpec.ConfigValue<Long> ToastTimeMilliseconds;
+	public final ModConfigSpec.ConfigValue<Integer> ToastTimeMilliseconds;
 	public final ModConfigSpec.ConfigValue<Double> DimensionReverbDecayTime;
 	public final ModConfigSpec.ConfigValue<Double> DimensionReverbDensity;
 	public final ModConfigSpec.ConfigValue<Boolean> WindSim;
@@ -151,7 +151,7 @@ public class SpectrumConfig {
 		ToastTimeMilliseconds = builder
 				.translation("config.spectrum.toast_milliseconds")
 				.comment("The duration in milliseconds ingame recipe/unlock popups stay on the screen")
-				.define("toast_milliseconds", 7500L);
+				.define("toast_milliseconds", 7500);
 		
 		DimensionReverbDecayTime = builder
 				.translation("config.spectrum.dimension_reverb_decay_time")

@@ -6,10 +6,10 @@
         "advancement_identifier": "spectrum:milestones/unlock_complex_reagents"
       }
     },
-    "broke_decayed_bedrock": {
+    "collected_shimmerstone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/break_decayed_bedrock"
+        "advancement_identifier": "spectrum:collect_shimmerstone"
       }
     }
   }

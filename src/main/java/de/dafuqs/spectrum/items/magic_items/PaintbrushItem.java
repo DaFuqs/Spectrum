@@ -107,12 +107,11 @@ public class PaintbrushItem extends Item implements SignApplicator {
 	}
 	
 	@Override
-	public InteractionResult useOn(UseOnContext context) {
-		Level world = context.getLevel();
+	public @NotNull InteractionResult onItemUseFirst(@NotNull ItemStack stack, UseOnContext context) {
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(context.getLevel().isClientSide());
 		}
-		return super.useOn(context);
+		return super.onItemUseFirst(stack, context);
 	}
 	
 	private boolean tryColorBlock(UseOnContext context) {

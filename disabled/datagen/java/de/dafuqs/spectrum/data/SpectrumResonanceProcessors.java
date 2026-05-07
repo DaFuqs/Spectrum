@@ -22,7 +22,7 @@ public class SpectrumResonanceProcessors {
 	
 	private static final DeferredRegister<ResonanceProcessor> REGISTRAR = DeferredRegister.create(SpectrumRegistryKeys.RESONANCE_PROCESSOR, SpectrumCommon.MOD_ID);
 	
-	public static final ResourceKey<ResonanceProcessor> PURE_RESONANCES_FROM_ORE = register("pure_resonances_from_ore", ctx -> ModifyDropsResonanceProcessor
+	public static final ResourceKey<ResonanceProcessor> PURE_RESOURCES_FROM_ORE = register("pure_resources_from_ore", ctx -> ModifyDropsResonanceProcessor
 			.builder(BrokenBlockPredicate.Builder.create().registryEntryList(ctx.blocks().getOrThrow(Tags.Blocks.ORES)).build())
 			.addModifiedDrop(Ingredient.of(Items.COAL), SpectrumItems.PURE_COAL.get())
 			.addModifiedDrop(Ingredient.of(Items.RAW_COPPER), SpectrumItems.PURE_COPPER.get())

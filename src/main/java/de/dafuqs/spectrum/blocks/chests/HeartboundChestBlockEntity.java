@@ -182,4 +182,16 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 			return this.ownerUUID.equals(uuid);
 		}
 	}
+	
+	// Called when the chunk is first loaded to initialize this be
+	// used to sync the owner UUID to the client to make the break animation work/not work correctly
+	@Override
+	public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider registryLookup) {
+		CompoundTag nbt = new CompoundTag();
+		if (this.ownerUUID != null) {
+			nbt.putUUID("OwnerUUID", this.ownerUUID);
+		}
+		return nbt;
+	}
+	
 }

@@ -80,7 +80,6 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 		return items;
 	}
 	
-	
 	@Override
 	public void inventoryChanged() {
 		this.setChanged();

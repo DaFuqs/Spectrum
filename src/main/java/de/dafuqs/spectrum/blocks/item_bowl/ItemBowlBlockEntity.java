@@ -1,16 +1,15 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
@@ -19,6 +18,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
@@ -132,6 +132,14 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 			}
 			
 			level.playSound(null, this.worldPosition, SpectrumSoundEvents.CRAFTING_DING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue(), 0.7F + level.random.nextFloat() * 0.6F);
+		}
+	}
+	
+	@Override
+	public void inventoryChanged() {
+		super.inventoryChanged();
+		if(this.level != null) {
+			ItemBowlBlock.updateConnectedMultiBlocks(this.level, this.worldPosition);
 		}
 	}
 	

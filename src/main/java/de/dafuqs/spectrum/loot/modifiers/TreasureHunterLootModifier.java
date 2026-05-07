@@ -62,15 +62,13 @@ public class TreasureHunterLootModifier extends LootModifier {
 		}
 		
 		ItemStack damageSourceWeapon = damageSource.getWeaponItem();
-		if (damageSourceWeapon == null) {
-			return original;
-		}
-		
 		int treasureHunterLevel;
 		if(damageSource.is(SpectrumDamageTypeTags.ALWAYS_DROPS_MOB_HEAD)) {
 			treasureHunterLevel = Integer.MAX_VALUE;
-		} else {
+		} else if(damageSourceWeapon != null) {
 			treasureHunterLevel = SpectrumEnchantmentHelper.getLevel(killed.registryAccess(), SpectrumEnchantmentKeys.TREASURE_HUNTER, damageSourceWeapon);
+		} else {
+			return original;
 		}
 		
 		if(treasureHunterLevel <= 0) {

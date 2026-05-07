@@ -120,7 +120,12 @@ public class SpectrumSkullBlock extends SkullBlock {
 			return Optional.of(SkullBlock.Types.PIGLIN);
 		}
 		
-		return Optional.ofNullable(ENTITY_TYPE_TO_SKULL_TYPE.get(entityType));
+		for(Map.Entry<Supplier<? extends EntityType<?>>, SpectrumSkullType> e : ENTITY_TYPE_TO_SKULL_TYPE.entrySet()) {
+			if(e.getKey().get().equals(entityType)) {
+				return Optional.of(e.getValue());
+			}
+		}
+		return Optional.empty();
 	}
 	
 	@Contract(pure = true)

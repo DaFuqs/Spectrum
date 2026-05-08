@@ -19,13 +19,12 @@ public class PedestalRecipeInput implements RecipeInput {
 			new ItemStack(SpectrumItems.MOONSTONE_POWDER.get(), 64)
 	);
 	
-	@Nullable
 	private final Level level;
 	private final Player player;
 	private final CraftingInput craftingGridInput;
 	private final List<ItemStack> gemstonePowderStacks;
 	
-	public PedestalRecipeInput(Level level, CraftingInput craftingGridInput, List<ItemStack> gemstonePowderStacks, @Nullable Player player) {
+	public PedestalRecipeInput(@NotNull Level level, CraftingInput craftingGridInput, List<ItemStack> gemstonePowderStacks, @Nullable Player player) {
 		this.level = level;
 		this.player = player;
 		this.craftingGridInput = craftingGridInput;
@@ -36,7 +35,7 @@ public class PedestalRecipeInput implements RecipeInput {
 		return craftingGridInput;
 	}
 	
-	public static PedestalRecipeInput create(Level level, List<ItemStack> stacks, @Nullable Player player) {
+	public static PedestalRecipeInput create(@NotNull Level level, List<ItemStack> stacks, @Nullable Player player) {
 		return new PedestalRecipeInput(level, CraftingInput.of(3, 3, stacks.subList(0, 9)), stacks.subList(9, 14), player);
 	}
 	

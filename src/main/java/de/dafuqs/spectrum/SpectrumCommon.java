@@ -21,6 +21,7 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
+import net.minecraft.server.commands.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;

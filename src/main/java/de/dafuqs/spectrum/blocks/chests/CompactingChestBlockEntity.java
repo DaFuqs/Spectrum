@@ -36,8 +36,8 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	private RecipeHolder<CraftingRecipe> lastCraftingRecipe; // cache
 	private ItemStack lastCraftedStack; // cache
 	
-	private boolean isOpen;
-	public long craftingTimeStamp;
+	protected boolean isOpen;
+	protected long craftingTimeStamp;
 	
 	protected FlowAnimator animator;
 	protected FlowData<Float> _piston = FlowData.NULL();
@@ -64,6 +64,14 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.COMPACTING_CHEST.get(), blockPos, blockState);
+	}
+	
+	public long getCraftingTimeStamp() {
+		return craftingTimeStamp;
+	}
+	
+	public void setCraftingTimeStamp(long craftingTimeStamp) {
+		this.craftingTimeStamp = craftingTimeStamp;
 	}
 	
 	@SuppressWarnings("unused")

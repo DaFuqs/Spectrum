@@ -25,14 +25,14 @@ public record CompactingChestStatusUpdatePayload(BlockPos pos, long timeStamp) i
 	);
 	
 	public static void sendCompactingChestStatusUpdate(CompactingChestBlockEntity chest) {
-		PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) chest.getLevel(), new ChunkPos(chest.getBlockPos()), new CompactingChestStatusUpdatePayload(chest.getBlockPos(), chest.craftingTimeStamp));
+		PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) chest.getLevel(), new ChunkPos(chest.getBlockPos()), new CompactingChestStatusUpdatePayload(chest.getBlockPos(), chest.getCraftingTimeStamp()));
 	}
 	
 	@SuppressWarnings("resource")
 	public static void execute(CompactingChestStatusUpdatePayload payload, IPayloadContext context) {
 		Level level = context.player().level();
 		Optional<CompactingChestBlockEntity> entity = level.getBlockEntity(payload.pos, SpectrumBlockEntities.COMPACTING_CHEST.get());
-		entity.ifPresent(compactingChestBlockEntity -> compactingChestBlockEntity.craftingTimeStamp = payload.timeStamp());
+		entity.ifPresent(compactingChestBlockEntity -> compactingChestBlockEntity.setCraftingTimeStamp(payload.timeStamp()));
 	}
 	
 	@Override

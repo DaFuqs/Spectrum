@@ -839,9 +839,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		return this.pedestalVariant.getRecipeTier();
 	}
 	
-	
-	@NotNull
-	private PedestalRecipeTier getStructureTier() {
+	private @NotNull PedestalRecipeTier getStructureTier() {
 		Multiblock multiblock;
 		
 		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_COMPLEX);

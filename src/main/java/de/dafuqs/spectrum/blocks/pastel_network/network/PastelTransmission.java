@@ -78,10 +78,9 @@ public class PastelTransmission implements SchedulerMap.Callback {
 			return;
 		}
 		
-		@NotNull BlockPos destinationPos = nodePositions.get(nodePositions.size() - 1);
+		@NotNull BlockPos destinationPos = nodePositions.getLast();
 		@Nullable PastelNodeBlockEntity destinationNode = this.network.getLoadedNodeAt(destinationPos);
 		Level level = this.network.getLevel();
-		
 		payload.arriveAtDestination(level, destinationPos, destinationNode);
 	}
 	

@@ -136,8 +136,9 @@ public class PastelTransmissionLogic {
 			proposals.put(stack, proposals.getOrDefault(stack, 0L) + stack.getCount());
 		}
 		
-		for (ItemStack stack : proposals.keySet()) {
-			long proposedAmount = Math.min(Math.min(proposals.get(stack), sourceNode.getMaxTransferredAmount()), totalAvailableStorage);
+		for (Map.Entry<ItemStack, Long> proposal : proposals.entrySet()) {
+			ItemStack stack = proposal.getKey();
+			long proposedAmount = Math.min(Math.min(proposal.getValue(), sourceNode.getMaxTransferredAmount()), totalAvailableStorage);
 			if (proposedAmount == 0)
 				continue;
 			

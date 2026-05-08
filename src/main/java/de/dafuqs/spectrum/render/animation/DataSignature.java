@@ -27,11 +27,10 @@ public final class DataSignature<N extends Number> {
 		this.initialValue = initialValue;
 		this.stateHolder = Collections.unmodifiableMap(holderData);
 		this.defaultKeyFrame = Objects.requireNonNullElseGet(defaultKeyFrame, () -> KeyFrame.simple(initialValue));
-		
 	}
 	
 	FlowData<N> instantiate() {
-		var data = handler.createData(this);
+		FlowData<N> data = handler.createData(this);
 		for (Map.Entry<FlowState, KeyFrame<N>> flowState : stateHolder.entrySet()) {
 			data.addStateListener(flowState.getKey(), flowState.getValue());
 		}

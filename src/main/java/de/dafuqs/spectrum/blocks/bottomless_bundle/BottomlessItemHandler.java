@@ -17,8 +17,8 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 	private final long capacity;
 	private final boolean deletesOverflow;
 	private final boolean locked;
-	public ItemStack variant;
-	public long count;
+	private ItemStack variant;
+	private long count;
 	
 	public BottomlessItemHandler(long capacity, boolean deletesOverflow, boolean locked, ItemStack variant, long count) {
 		this.capacity = capacity;

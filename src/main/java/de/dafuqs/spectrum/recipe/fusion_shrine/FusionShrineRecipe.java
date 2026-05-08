@@ -166,7 +166,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 	}
 	
 	public boolean areYieldAndEfficiencyUpgradesDisabled() {
-		return copyComponents || noBenefitsFromYieldAndEfficiencyUpgrades;
+		return noBenefitsFromYieldAndEfficiencyUpgrades;
 	}
 	
 	/**
@@ -279,7 +279,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 				ItemStack currentStack = fusionShrineBlockEntity.getItem(i);
 				if (ingredientStack.test(currentStack)) {
 					int reducedAmount = recipesCrafted * ingredientStack.getCount();
-					int reducedAmountAfterMod = efficiencyModifier == 1 ? reducedAmount : Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
+					int reducedAmountAfterMod = i == 0 && copyComponents ? reducedAmount
+							: efficiencyModifier == 1 ? reducedAmount : Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
 					
 					ItemStack currentRemainder = currentStack.getCraftingRemainingItem();
 					currentStack.shrink(reducedAmountAfterMod);

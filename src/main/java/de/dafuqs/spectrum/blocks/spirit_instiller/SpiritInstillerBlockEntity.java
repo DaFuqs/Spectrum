@@ -283,7 +283,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		var recipe = spiritInstillerBlockEntity.currentRecipe;
 		
 		double efficiencyModifier = 1.0;
-		if (!recipe.value().areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY) != 1.0) {
+		if (!recipe.value().areYieldAndEfficiencyUpgradesDisabled()) {
 			efficiencyModifier = 1.0 / spiritInstillerBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY);
 		}
 		
@@ -291,7 +291,8 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		BlockEntity rightBowlBlockEntity = world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true));
 		if (leftBowlBlockEntity instanceof ItemBowlBlockEntity leftBowl && rightBowlBlockEntity instanceof ItemBowlBlockEntity rightBowl) {
 			// center ingredient
-			int decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(recipe.value().getIngredientStacks().get(SpiritInstillerRecipe.CENTER_INGREDIENT).getCount() * efficiencyModifier, world.random);
+			int centerIngredientCount = recipe.value().getIngredientStacks().get(SpiritInstillerRecipe.CENTER_INGREDIENT).getCount();
+			int decreasedAmountAfterEfficiencyMod = recipe.value().copyComponents() ? centerIngredientCount : Support.getIntFromDecimalWithChance(centerIngredientCount * efficiencyModifier, world.random);
 			if (decreasedAmountAfterEfficiencyMod > 0) {
 				spiritInstillerBlockEntity.getItem(0).shrink(decreasedAmountAfterEfficiencyMod);
 			}

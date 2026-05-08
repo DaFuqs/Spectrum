@@ -471,10 +471,10 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		ItemStack existingCenterStack = enchanterBlockEntity.getItem(0);
 		
 		// decrement stacks in item bowls
+		double efficiencyModifier = 1.0 / enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY);
 		for (int i = 0; i < 8; i++) {
 			int resultAmountAfterEfficiencyMod = 1;
-			if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY) != 1.0) {
-				double efficiencyModifier = 1.0 / enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY);
+			if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && efficiencyModifier != 1.0) {
 				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, world.random);
 			}
 			
@@ -494,11 +494,14 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			resultStack.setCount(resultCountMod);
 		}
 		
-		if (existingCenterStack.getCount() > 1) {
+		boolean decrementCenterStack = enchanterRecipe.copyComponents() || Support.getIntFromDecimalWithChance(efficiencyModifier, world.random) == 1;
+		if(decrementCenterStack) {
 			existingCenterStack.shrink(1);
-			MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, enchanterBlockEntity.worldPosition, resultStack, resultStack.getCount(), MultiblockCrafter.RECIPE_STACK_VELOCITY);
-		} else {
+		}
+		if(existingCenterStack.isEmpty()) {
 			enchanterBlockEntity.setItem(0, resultStack);
+		} else {
+			MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, enchanterBlockEntity.worldPosition, resultStack, resultStack.getCount(), MultiblockCrafter.RECIPE_STACK_VELOCITY);
 		}
 		
 		// vanilla

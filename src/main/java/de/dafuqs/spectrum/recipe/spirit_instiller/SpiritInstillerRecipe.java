@@ -93,16 +93,18 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 		return defaultedList;
 	}
 	
+	public boolean copyComponents() {
+		return this.copyComponents;
+	}
+	
 	@Override
 	public ItemStack assemble(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, HolderLookup.Provider drm) {
-		ItemStack resultStack = ItemStack.EMPTY;
+		ItemStack resultStack = getResultItem(drm).copy();
 		SpiritInstillerBlockEntity spiritInstillerBlockEntity = recipeInput.getInstance();
 		Upgradeable.UpgradeHolder upgradeHolder = spiritInstillerBlockEntity.getUpgradeHolder();
 		Level world = spiritInstillerBlockEntity.getLevel();
 		if (world == null) return ItemStack.EMPTY;
 		BlockPos pos = spiritInstillerBlockEntity.getBlockPos();
-		
-		resultStack = getResultItem(drm).copy();
 		
 		// Yield upgrade
 		if (!areYieldAndEfficiencyUpgradesDisabled() && upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD) != 1.0) {

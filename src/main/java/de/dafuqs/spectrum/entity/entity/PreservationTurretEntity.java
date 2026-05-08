@@ -200,9 +200,9 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 			return;
 		}
 		if (this.openProgress > peekAmount) {
-			this.openProgress = Mth.clamp(this.openProgress - 0.05F, f, 1.0F);
+			this.openProgress = Mth.clamp(this.openProgress - 0.05F, peekAmount, 1.0F);
 		} else {
-			this.openProgress = Mth.clamp(this.openProgress + 0.05F, 0.0F, f);
+			this.openProgress = Mth.clamp(this.openProgress + 0.05F, 0.0F, peekAmount);
 		}
 	}
 	

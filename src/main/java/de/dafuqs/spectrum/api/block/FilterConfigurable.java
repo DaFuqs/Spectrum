@@ -18,8 +18,8 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import org.apache.commons.lang3.*;
 import net.neoforged.neoforge.network.*;
+import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -38,7 +38,7 @@ public interface FilterConfigurable {
 	}
 	
 	default boolean acceptsItem(Item item) {
-		if (item == null || item.equals(Items.AIR)) {
+		if (item.equals(Items.AIR)) {
 			return false;
 		}
 		
@@ -183,16 +183,7 @@ public interface FilterConfigurable {
 		
 		void clickShadowSlot(int syncId, int id, ItemStack shadowStack);
 		
-		class FromHandler implements ShadowSlotClicker {
-			public final @NotNull AbstractContainerMenu handler;
-			public final @NotNull Player player;
-			public final int syncId;
-			
-			public FromHandler(@NotNull AbstractContainerMenu screenHandler, @NotNull Player player, int syncId) {
-				this.handler = screenHandler;
-				this.player = player;
-				this.syncId = syncId;
-			}
+		record FromHandler(@NotNull AbstractContainerMenu handler, @NotNull Player player, int syncId) implements ShadowSlotClicker {
 			
 			@Override
 			public void clickShadowSlot(int syncId, @Nullable Slot slot, ItemStack shadowStack) {

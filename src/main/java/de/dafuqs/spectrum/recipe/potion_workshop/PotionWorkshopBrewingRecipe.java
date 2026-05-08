@@ -73,12 +73,11 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		return null;
 	}
 	
-	public static final List<PotionWorkshopBrewingRecipe> beneficialRecipes = new ArrayList<>();
-	public static final List<PotionWorkshopBrewingRecipe> harmfulRecipes = new ArrayList<>();
+	protected static final List<PotionWorkshopBrewingRecipe> beneficialRecipes = new ArrayList<>();
+	protected static final List<PotionWorkshopBrewingRecipe> harmfulRecipes = new ArrayList<>();
 	public static PotionWorkshopBrewingRecipe immunityRecipe = null;
 	
 	public final PotionRecipeEffect recipeData;
-	
 	protected ItemStack cachedOutput;
 	
 	public static void clearMemorizedRecipes() {

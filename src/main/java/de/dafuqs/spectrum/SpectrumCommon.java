@@ -16,6 +16,7 @@ import de.dafuqs.spectrum.loot.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.resources.*;
@@ -166,7 +167,6 @@ public class SpectrumCommon {
 		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
 		SpectrumOmniAcceleratorProjectiles.register();
 		SpectrumItemProjectileBehaviors.register();
-
 		SpectrumEntityColorProcessors.register();
 		
 		logInfo("Registering Commands...");
@@ -186,6 +186,7 @@ public class SpectrumCommon {
 			event.addListener(EntityFishingDataLoader.INSTANCE);
 			event.addListener(CrystalApothecarySimulationsDataLoader.INSTANCE);
 			ColorRegistry.registerColorRegistries(event);
+			PotionWorkshopBrewingRecipe.clearMemorizedRecipes();
 		});
 		
 		NeoForge.EVENT_BUS.addListener((Consumer<ServerStartingEvent>) event -> {

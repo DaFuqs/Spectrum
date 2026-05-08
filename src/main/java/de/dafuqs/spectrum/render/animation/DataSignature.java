@@ -32,8 +32,8 @@ public final class DataSignature<N extends Number> {
 	
 	FlowData<N> instantiate() {
 		var data = handler.createData(this);
-		for (FlowState flowState : stateHolder.keySet()) {
-			data.addStateListener(flowState, stateHolder.get(flowState));
+		for (Map.Entry<FlowState, KeyFrame<N>> flowState : stateHolder.entrySet()) {
+			data.addStateListener(flowState.getKey(), flowState.getValue());
 		}
 		return data;
 	}

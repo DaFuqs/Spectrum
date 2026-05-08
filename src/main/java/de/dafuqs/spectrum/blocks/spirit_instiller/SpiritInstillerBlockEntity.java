@@ -240,7 +240,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			testAndUnlockRecipeAdvancements(serverPlayerEntity, spiritInstillerBlockEntity.currentRecipe, canCraft);
 		}
 		
-		return canCraft & spiritInstillerBlockEntity.currentRecipe.value().canPlayerCraft(lastInteractedPlayer) && spiritInstillerBlockEntity.currentRecipe.value().canCraftWithStacks(spiritInstillerBlockEntity.getRecipeInput());
+		return canCraft && spiritInstillerBlockEntity.currentRecipe.value().canPlayerCraft(lastInteractedPlayer) && spiritInstillerBlockEntity.currentRecipe.value().canCraftWithStacks(spiritInstillerBlockEntity.getRecipeInput());
 	}
 	
 	public static void testAndUnlockRecipeAdvancements(ServerPlayer player, RecipeHolder<SpiritInstillerRecipe> spiritInstillerRecipe, boolean canActuallyCraft) {

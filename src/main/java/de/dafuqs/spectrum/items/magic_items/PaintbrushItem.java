@@ -107,7 +107,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 	}
 	
 	@Override
-	public @NotNull InteractionResult onItemUseFirst(@NotNull ItemStack stack, UseOnContext context) {
+	public InteractionResult onItemUseFirst(@NotNull ItemStack stack, UseOnContext context) {
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
 			return InteractionResult.sidedSuccess(context.getLevel().isClientSide());
 		}

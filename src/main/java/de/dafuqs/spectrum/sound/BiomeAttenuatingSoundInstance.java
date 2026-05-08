@@ -14,10 +14,10 @@ import org.jetbrains.annotations.*;
 
 public class BiomeAttenuatingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 
-    @Nullable public static BiomeAttenuatingSoundInstance WIND_HIGH = null;
-    @Nullable public static BiomeAttenuatingSoundInstance WIND_LOW = null;
-    @Nullable public static BiomeAttenuatingSoundInstance SHOWER = null;
-    @Nullable public static BiomeAttenuatingSoundInstance LAMENTS = null;
+    @Nullable protected static BiomeAttenuatingSoundInstance WIND_HIGH = null;
+    @Nullable protected static BiomeAttenuatingSoundInstance WIND_LOW = null;
+    @Nullable protected static BiomeAttenuatingSoundInstance SHOWER = null;
+    @Nullable protected static BiomeAttenuatingSoundInstance LAMENTS = null;
     private static boolean clear = true;
 	private final Minecraft client = Minecraft.getInstance();
     private static final int MAX_DURATION = 80;

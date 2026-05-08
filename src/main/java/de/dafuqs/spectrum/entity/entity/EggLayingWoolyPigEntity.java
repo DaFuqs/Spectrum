@@ -43,7 +43,7 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 	
 	private int eatGrassTimer;
 	private EatBlockGoal eatGrassGoal;
-	public int eggLayTime;
+	protected int eggLayTime;
 	
 	public EggLayingWoolyPigEntity(EntityType<? extends Animal> entityType, Level world) {
 		super(entityType, world);

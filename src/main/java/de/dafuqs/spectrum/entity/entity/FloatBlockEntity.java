@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jetbrains.annotations.*;
 
 import java.util.function.*;
 
@@ -42,7 +43,7 @@ public class FloatBlockEntity extends Entity {
 	private static final EntityDataAccessor<Long> LAUNCH_TIME = SynchedEntityData.defineId(FloatBlockEntity.class, EntityDataSerializers.LONG);
 	private static final EntityDataAccessor<Float> GRAVITY_MODIFIER = SynchedEntityData.defineId(FloatBlockEntity.class, EntityDataSerializers.FLOAT);
 	
-	public int moveTime;
+	protected int moveTime;
 	protected CompoundTag blockEntityData;
 	protected BlockState blockState = Blocks.STONE.defaultBlockState();
 	protected boolean canSetBlock = true;
@@ -83,8 +84,8 @@ public class FloatBlockEntity extends Entity {
 	 * @return The bounding box of this entity
 	 */
 	@Override
-	protected AABB makeBoundingBox() {
-		if (this.entityData == null || this.blockState == null) {
+	protected @NotNull AABB makeBoundingBox() {
+		if (this.blockState == null) {
 			return super.makeBoundingBox();
 		}
 		BlockPos origin = this.entityData.get(ORIGIN);

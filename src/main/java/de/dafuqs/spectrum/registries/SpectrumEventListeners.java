@@ -23,6 +23,7 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.advancements.*;
 import net.minecraft.client.resources.model.*;
@@ -463,7 +464,7 @@ public class SpectrumEventListeners {
 	private static void onReloadResources(AddReloadListenerEvent event) {
 		event.addListener(new ResourceManagerReloadListener() {
 			@Override
-			public void onResourceManagerReload(ResourceManager resourceManager) {
+			public void onResourceManagerReload(@NotNull ResourceManager resourceManager) {
 				AutoCraftingMode.clearCache();
 				SpectrumCommon.CACHED_ITEM_TAG_MAP.clear();
 				

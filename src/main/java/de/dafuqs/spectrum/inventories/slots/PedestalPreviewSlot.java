@@ -8,6 +8,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
 public class PedestalPreviewSlot extends ReadOnlySlot implements SlotWithOnClickAction {
 	public PedestalPreviewSlot(Container inventory, int index, int x, int y) {
@@ -15,7 +16,7 @@ public class PedestalPreviewSlot extends ReadOnlySlot implements SlotWithOnClick
 	}
 	
 	@Override
-	public ItemStack getItem() {
+	public @NotNull ItemStack getItem() {
 		if (this.container instanceof PedestalBlockEntity pedestalBlockEntity) {
 			return pedestalBlockEntity.getCurrentCraftingRecipeOutput();
 		}
@@ -27,7 +28,7 @@ public class PedestalPreviewSlot extends ReadOnlySlot implements SlotWithOnClick
 	public boolean onClicked(ItemStack heldStack, ClickAction type, Player player) {
 		if (this.container instanceof PedestalBlockEntity pedestalBlockEntity) {
 			if (player instanceof ServerPlayer serverPlayerEntity) {
-				if (pedestalBlockEntity.currentRecipe != null) {
+				if (pedestalBlockEntity.getCurrentRecipe() != null) {
 					Support.grantAdvancementCriterion(serverPlayerEntity, "fail_to_take_item_out_of_pedestal", "try_take_out_item_from_pedestal");
 				}
 			}

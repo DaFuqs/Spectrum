@@ -195,13 +195,14 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 	
 	private void tickOpenProgress() {
 		this.prevOpenProgress = this.openProgress;
-		float peekAmount = (float) this.getPeekAmount() * 0.01F;
-		if (this.openProgress != peekAmount) {
-			if (this.openProgress > peekAmount) {
-				this.openProgress = Mth.clamp(this.openProgress - 0.05F, peekAmount, 1.0F);
-			} else {
-				this.openProgress = Mth.clamp(this.openProgress + 0.05F, 0.0F, peekAmount);
-			}
+		float peekAmount = this.getPeekAmount() * 0.01F;
+		if (this.openProgress == peekAmount) {
+			return;
+		}
+		if (this.openProgress > peekAmount) {
+			this.openProgress = Mth.clamp(this.openProgress - 0.05F, f, 1.0F);
+		} else {
+			this.openProgress = Mth.clamp(this.openProgress + 0.05F, 0.0F, f);
 		}
 	}
 	
@@ -330,15 +331,6 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 	
 	private void setAttachedFace(Direction face) {
 		this.entityData.set(ATTACHED_FACE, face);
-	}
-	
-	@Override
-	public void onSyncedDataUpdated(EntityDataAccessor<?> data) {
-		if (ATTACHED_FACE.equals(data)) {
-			this.setBoundingBox(this.makeBoundingBox());
-		}
-		
-		super.onSyncedDataUpdated(data);
 	}
 	
 	private int getPeekAmount() {

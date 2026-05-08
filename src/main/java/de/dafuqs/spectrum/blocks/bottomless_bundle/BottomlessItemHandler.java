@@ -48,6 +48,11 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 		return deletesOverflow;
 	}
 	
+	public void setStack(ItemStack bundledStack) {
+		this.variant = bundledStack.copyWithCount(1);
+		this.count = bundledStack.getCount();
+	}
+	
 	// returns the amount that could get inserted
 	private long insert(ItemStack insertedVariant, long maxAmount) {
 		if (!isItemValid(0, insertedVariant)) return 0L;
@@ -156,5 +161,4 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 			
 		};
 	}
-	
 }

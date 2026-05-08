@@ -210,8 +210,7 @@ public class BottomlessBundleItem extends BlockItem {
 		ItemStack bundledStack = bundledVariant.copyWithCount((int) Math.min(Integer.MAX_VALUE, handler.count()));
 		bundledStack.inventoryTick(world, entity, slot, selected);
 		if (!ItemStack.isSameItemSameComponents(bundledVariant, bundledStack) || bundledStack.getCount() != handler.count()) {
-			handler.variant = bundledStack;
-			handler.count = bundledVariant.getCount();
+			handler.setStack(bundledStack);
 			stack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(handler));
 		}
 	}

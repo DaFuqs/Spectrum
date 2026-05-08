@@ -35,11 +35,7 @@ public class MidnightAberrationItem extends CloakedItem {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
 		if (!world.isClientSide && world.getGameTime() % 20 == 0 && entity instanceof ServerPlayer player && !player.isCreative()) {
-			if (stack.has(SpectrumDataComponentTypes.STABLE))
-				return;
-			
-			// check if it's a real stack in the player's inventory or just a proxy item (like a Bottomless Bundle)
-			if (player.getInventory().getItem(slot) != stack) {
+			if (stack.has(SpectrumDataComponentTypes.STABLE)) {
 				return;
 			}
 			
@@ -54,7 +50,7 @@ public class MidnightAberrationItem extends CloakedItem {
 			}
 			
 			if (world.random.nextFloat() < 0.2F) {
-				stack.shrink(1);
+ 				stack.shrink(1);
 				player.getInventory().placeItemBackInInventory(Items.GUNPOWDER.getDefaultInstance());
 				world.playSound(null, player, SpectrumSoundEvents.MIDNIGHT_ABERRATION_CRUMBLING, SoundSource.PLAYERS, 0.5F, 1.0F);
 				

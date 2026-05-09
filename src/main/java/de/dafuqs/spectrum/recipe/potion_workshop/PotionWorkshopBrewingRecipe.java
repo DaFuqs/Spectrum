@@ -103,7 +103,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 		if (recipeData.statusEffect().value().getCategory() == MobEffectCategory.BENEFICIAL) {
 			for (PotionWorkshopBrewingRecipe ae : beneficialRecipes) {
-				if (ae.recipeData.statusEffect().value() == recipeData.statusEffect()) {
+				if (ae.recipeData.statusEffect().value() == recipeData.statusEffect().value()) {
 					return;
 				}
 			}
@@ -372,7 +372,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	private boolean containsEffect(List<InkPoweredStatusEffectInstance> effects, MobEffect statusEffect) {
 		for (InkPoweredStatusEffectInstance existingInstance : effects) {
-			if (existingInstance.getStatusEffectInstance().getEffect() == statusEffect) {
+			if (existingInstance.getStatusEffectInstance().getEffect().value() == statusEffect) {
 				return true;
 			}
 		}

@@ -212,7 +212,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 		FluidState fluidState = world.getFluidState(blockPos);
 		if (fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8) {
 			return defaultBlockState().setValue(LOGGED, FluidLogging.State.WATER);
-		} else if (fluidState.getType().equals(SpectrumFluids.LIQUID_CRYSTAL)) {
+		} else if (fluidState.getType().equals(SpectrumFluids.LIQUID_CRYSTAL.get().getSource())) {
 			return defaultBlockState().setValue(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);
 		}
 		return defaultBlockState();

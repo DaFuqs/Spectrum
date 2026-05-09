@@ -13,6 +13,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.client.event.*;
 import org.joml.*;
 
+import javax.annotation.*;
 import java.lang.Math;
 import java.util.function.Supplier;
 
@@ -238,7 +239,7 @@ public class EnvironmentalRendering {
 	}
 	
 	static class InterpolationMemory<T> {
-		private T current, last;
+		private @Nullable T current, last;
 		
 		public void accept(T newHead) {
 			if (!ready()) {
@@ -260,11 +261,11 @@ public class EnvironmentalRendering {
 			current = value;
 		}
 		
-		public T current() {
+		public @Nullable T current() {
 			return current;
 		}
 		
-		public T last() {
+		public @Nullable T last() {
 			return last;
 		}
 		

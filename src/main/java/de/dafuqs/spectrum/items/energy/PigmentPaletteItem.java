@@ -16,7 +16,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -44,7 +44,7 @@ public class PigmentPaletteItem extends SpectrumCurioItem implements InkStorageI
 	
 	// Omitting this would crash outside the dev env o.O
 	@Override
-	public @NotNull ItemStack getDefaultInstance() {
+	public ItemStack getDefaultInstance() {
 		return super.getDefaultInstance();
 	}
 	
@@ -67,7 +67,7 @@ public class PigmentPaletteItem extends SpectrumCurioItem implements InkStorageI
 	}
 	
 	@Override
-	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		var storage = getEnergyStorage(stack);
 		var colors = new ArrayList<InkColor>();
 		

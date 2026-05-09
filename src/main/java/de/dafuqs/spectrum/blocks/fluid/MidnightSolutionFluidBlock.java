@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	
@@ -40,7 +40,7 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 		return new Tuple<>(SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH, SpectrumParticleTypes.MIDNIGHT_SOLUTION_FISHING);
 	}
 	
-	public static boolean tryConvertNeighbor(@NotNull Level world, BlockPos fromPos) {
+	public static boolean tryConvertNeighbor(Level world, BlockPos fromPos) {
 		FluidState fluidState = world.getFluidState(fromPos);
 		if (!fluidState.isEmpty() && fluidState.is(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED)) {
 			world.setBlockAndUpdate(fromPos, SpectrumBlocks.MIDNIGHT_SOLUTION.get().defaultBlockState());
@@ -50,7 +50,7 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 		return false;
 	}
 	
-	public static void fizz(@NotNull LevelAccessor world, BlockPos pos) {
+	public static void fizz(LevelAccessor world, BlockPos pos) {
 		world.levelEvent(LevelEvent.LAVA_FIZZ, pos, 0);
 	}
 	
@@ -109,7 +109,7 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	@Override
-	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState, Direction direction) {
+	public @Nullable BlockState handleFluidCollision(Level world, FluidState state, FluidState otherState, Direction direction) {
 		if (otherState.is(FluidTags.LAVA)) return Blocks.BLACKSTONE.defaultBlockState();
 		if (otherState.is(SpectrumFluidTags.SLUDGE)) return SpectrumBlocks.BLACK_SLUDGE.get().defaultBlockState();
 		return null;

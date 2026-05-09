@@ -17,7 +17,7 @@ import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.joml.*;
 
 import java.util.function.*;
@@ -92,17 +92,17 @@ public class SpectrumFluids {
 		
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			@Override
-			public @NotNull ResourceLocation getStillTexture() {
+			public ResourceLocation getStillTexture() {
 				return still;
 			}
 			
 			@Override
-			public @NotNull ResourceLocation getFlowingTexture() {
+			public ResourceLocation getFlowingTexture() {
 				return flowing;
 			}
 			
 			@Override
-			public void renderOverlay(@NotNull Minecraft mc, @NotNull PoseStack stack) {
+			public void renderOverlay(Minecraft mc, PoseStack stack) {
 				renderFluidOverlay(mc, stack, overlay, overlayAlpha);
 			}
 			

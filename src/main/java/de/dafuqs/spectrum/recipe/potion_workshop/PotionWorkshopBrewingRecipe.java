@@ -20,7 +20,7 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -58,7 +58,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	;
 	
-	public static @Nullable PotionWorkshopBrewingRecipe getInverseRecipe(@NotNull Holder<MobEffect> statusEffect, MobEffectCategory sourceCategory, BiMap<Holder<MobEffect>, Holder<MobEffect>> map) {
+	public static @Nullable PotionWorkshopBrewingRecipe getInverseRecipe(Holder<MobEffect> statusEffect, MobEffectCategory sourceCategory, BiMap<Holder<MobEffect>, Holder<MobEffect>> map) {
 		if (statusEffect.value().getCategory() == sourceCategory) {
 			Holder<MobEffect> beneficialEffect = map.getOrDefault(statusEffect, null);
 			if (beneficialEffect == null) {
@@ -73,13 +73,12 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		return null;
 	}
 	
-	public static final List<PotionWorkshopBrewingRecipe> beneficialRecipes = new ArrayList<>();
-	public static final List<PotionWorkshopBrewingRecipe> harmfulRecipes = new ArrayList<>();
-	public static PotionWorkshopBrewingRecipe immunityRecipe = null;
+	protected static final List<PotionWorkshopBrewingRecipe> beneficialRecipes = new ArrayList<>();
+	protected static final List<PotionWorkshopBrewingRecipe> harmfulRecipes = new ArrayList<>();
+	public static @Nullable PotionWorkshopBrewingRecipe immunityRecipe = null;
 	
 	public final PotionRecipeEffect recipeData;
-	
-	protected ItemStack cachedOutput;
+	protected @Nullable ItemStack cachedOutput;
 	
 	public static void clearMemorizedRecipes() {
 		beneficialRecipes.clear();
@@ -104,7 +103,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 		if (recipeData.statusEffect().value().getCategory() == MobEffectCategory.BENEFICIAL) {
 			for (PotionWorkshopBrewingRecipe ae : beneficialRecipes) {
-				if (ae.recipeData.statusEffect().value() == recipeData.statusEffect()) {
+				if (ae.recipeData.statusEffect().value() == recipeData.statusEffect().value()) {
 					return;
 				}
 			}
@@ -271,7 +270,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		return effects;
 	}
 	
-	private static void addLastEffect(ItemStack baseIngredient, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, RandomSource random, List<InkPoweredStatusEffectInstance> effects) {
+	private static void addLastEffect(ItemStack baseIngredient, PotionMod potionMod, @Nullable PotionWorkshopBrewingRecipe lastRecipe, RandomSource random, List<InkPoweredStatusEffectInstance> effects) {
 		if (lastRecipe != null && (potionMod.chanceToAddLastEffect() >= 1 || random.nextFloat() < potionMod.chanceToAddLastEffect()) && lastRecipe.recipeData.isApplicableTo(baseIngredient, potionMod)) {
 			PotionMod lastEffectMod = new PotionMod.Builder(potionMod)
 					.potencyMultiplier(potionMod.lastEffectPotencyMultiplier())
@@ -373,14 +372,14 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	private boolean containsEffect(List<InkPoweredStatusEffectInstance> effects, MobEffect statusEffect) {
 		for (InkPoweredStatusEffectInstance existingInstance : effects) {
-			if (existingInstance.getStatusEffectInstance().getEffect() == statusEffect) {
+			if (existingInstance.getStatusEffectInstance().getEffect().value() == statusEffect) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	private List<InkPoweredStatusEffectInstance> applyPotentDecreasingEffect(@NotNull List<InkPoweredStatusEffectInstance> statusEffectInstances, RandomSource random) {
+	private List<InkPoweredStatusEffectInstance> applyPotentDecreasingEffect(List<InkPoweredStatusEffectInstance> statusEffectInstances, RandomSource random) {
 		List<InkPoweredStatusEffectInstance> splitInstances = new ArrayList<>();
 		
 		for (InkPoweredStatusEffectInstance poweredInstance : statusEffectInstances) {

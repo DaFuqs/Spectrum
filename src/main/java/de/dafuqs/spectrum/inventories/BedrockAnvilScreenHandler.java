@@ -17,7 +17,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import org.apache.commons.lang3.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -31,8 +31,8 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 	
 	private final DataSlot levelCost;
 	private int repairItemCount;
-	private String newItemName;
-	private String newLoreString;
+	private @Nullable String newItemName;
+	private @Nullable String newLoreString;
 	
 	public BedrockAnvilScreenHandler(int syncId, Inventory inventory) {
 		this(syncId, inventory, ContainerLevelAccess.NULL);

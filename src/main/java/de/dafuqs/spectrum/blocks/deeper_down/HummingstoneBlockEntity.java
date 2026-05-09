@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class HummingstoneBlockEntity extends BlockEntity implements HummingstoneEventQueue.Callback<HummingstoneEventQueue.EventEntry> {
 	
@@ -21,7 +21,7 @@ public class HummingstoneBlockEntity extends BlockEntity implements Hummingstone
 	}
 	
 	@SuppressWarnings("unused")
-	public static void serverTick(@NotNull Level world, BlockPos pos, BlockState state, @NotNull HummingstoneBlockEntity blockEntity) {
+	public static void serverTick(Level world, BlockPos pos, BlockState state, HummingstoneBlockEntity blockEntity) {
 		blockEntity.listener.tick(world);
 	}
 	

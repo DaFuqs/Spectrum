@@ -10,7 +10,7 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class ShaleClayBlock extends Block implements Weathering {
 	

@@ -7,7 +7,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.saveddata.maps.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;

@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -23,7 +23,7 @@ public class EnchantmentCanvasItem extends Item {
 	 * clicked onto another stack
 	 */
 	@Override
-	public boolean overrideStackedOnOther(@NotNull ItemStack stack, @NotNull Slot slot, @NotNull ClickAction clickType, @NotNull Player player) {
+	public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction clickType, Player player) {
 		if (clickType == ClickAction.SECONDARY) {
 			ItemStack otherStack = slot.getItem();
 			if (otherStack.getCount() == 1 && tryExchangeEnchantments(stack, otherStack, player)) {
@@ -38,7 +38,7 @@ public class EnchantmentCanvasItem extends Item {
 	 * itemStack is right-clicked onto this
 	 */
 	@Override
-	public boolean overrideOtherStackedOnMe(@NotNull ItemStack stack, @NotNull ItemStack otherStack, @NotNull Slot slot, @NotNull ClickAction clickType, @NotNull Player player, @NotNull SlotAccess cursorStackReference) {
+	public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack otherStack, Slot slot, ClickAction clickType, Player player, SlotAccess cursorStackReference) {
 		if (clickType == ClickAction.SECONDARY && otherStack.getCount() == 1 && slot.allowModification(player)) {
 			if (tryExchangeEnchantments(stack, otherStack, player)) {
 				playExchangeSound(player);
@@ -89,7 +89,7 @@ public class EnchantmentCanvasItem extends Item {
 	}
 	
 	@Override
-	public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag type) {
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		Optional<Item> boundItem = getItemBoundTo(stack);
 		if (boundItem.isPresent()) {
 			tooltip.add(Component.translatable("item.spectrum.enchantment_canvas.tooltip.bound_to", boundItem.get().getDescription()));
@@ -111,7 +111,7 @@ public class EnchantmentCanvasItem extends Item {
 	}
 	
 	@Override
-	public boolean isFoil(@NotNull ItemStack stack) {
+	public boolean isFoil(ItemStack stack) {
 		return super.isFoil(stack) || stack.has(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS);
 	}
 	

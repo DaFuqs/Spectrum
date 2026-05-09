@@ -13,7 +13,7 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -27,10 +27,10 @@ public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<Sp
 	
 	public static final String NAME = "fishing_rod_hooked";
 	
-	public void trigger(ServerPlayer player, ItemStack rod, SpectrumFishingHook bobber, Entity fishedEntity, Collection<ItemStack> fishingLoots) {
+	public void trigger(ServerPlayer player, ItemStack rod, SpectrumFishingHook bobber, @Nullable Entity fishedEntity, Collection<ItemStack> fishingLoots) {
 		LootContext bobberContext = EntityPredicate.createContext(player, bobber);
-		LootContext hookedEntityContext = bobber.getHookedIn() == null ? null : EntityPredicate.createContext(player, bobber.getHookedIn());
-		LootContext fishedEntityContext = fishedEntity == null ? null : EntityPredicate.createContext(player, fishedEntity);
+		@Nullable LootContext hookedEntityContext = bobber.getHookedIn() == null ? null : EntityPredicate.createContext(player, bobber.getHookedIn());
+		@Nullable LootContext fishedEntityContext = fishedEntity == null ? null : EntityPredicate.createContext(player, fishedEntity);
 		this.trigger(player, (conditions) -> conditions.matches(rod, bobberContext, hookedEntityContext, fishedEntityContext, fishingLoots, (ServerLevel) bobber.level(), bobber.blockPosition()));
 		
 		// also trigger vanilla fishing criterion
@@ -42,7 +42,7 @@ public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<Sp
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	
@@ -66,7 +66,7 @@ public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<Sp
 				FluidPredicate.CODEC.optionalFieldOf("fluid").forGetter(Conditions::fluidPredicate)
 		).apply(instance, Conditions::new));
 		
-		public boolean matches(ItemStack rod, LootContext bobberContext, LootContext hookedEntityContext, LootContext fishedEntityContext, Collection<ItemStack> fishingLoots, ServerLevel world, BlockPos blockPos) {
+		public boolean matches(ItemStack rod, LootContext bobberContext, @Nullable LootContext hookedEntityContext, @Nullable LootContext fishedEntityContext, Collection<ItemStack> fishingLoots, ServerLevel world, BlockPos blockPos) {
 			if (this.rod.isPresent() && !this.rod.get().test(rod)) return false;
 			if (this.bobber.isPresent() && !this.bobber.get().matches(bobberContext)) return false;
 			if (this.fluidPredicate.isPresent() && !this.fluidPredicate.get().matches(world, blockPos)) return false;

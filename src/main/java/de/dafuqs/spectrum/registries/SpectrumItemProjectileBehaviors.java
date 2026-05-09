@@ -24,7 +24,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -287,7 +287,11 @@ public class SpectrumItemProjectileBehaviors {
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
-				var recipe = CraftingTabletItem.getStoredRecipe(projectile.level(), stack).value();
+				RecipeHolder<?> storedRecipe = CraftingTabletItem.getStoredRecipe(projectile.level(), stack);
+				if(storedRecipe == null) {
+					return stack;
+				}
+				var recipe = storedRecipe.value();
 				if (recipe instanceof CraftingRecipe craftingRecipe && hitResult.getEntity() instanceof ServerPlayer target) {
 					CraftingTabletItem.tryCraftRecipe(target, craftingRecipe, projectile.level());
 				}

@@ -28,7 +28,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -263,7 +263,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
 		return player.isCreative() || InkPowered.hasAvailableInk(player, INK_COST) || player.getInventory().contains(ITEM_COST);
 	}
 	
-	private void playDenySound(@NotNull Level world, @NotNull Player playerEntity) {
+	private void playDenySound(Level world, Player playerEntity) {
 		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundSource.PLAYERS, 1.0F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
 	}
 	
@@ -278,12 +278,12 @@ public class NaturesStaffItem extends Item implements InkPowered {
 	}
 	
 	@Override
-	public int getEnchantmentValue(@NotNull ItemStack stack) {
+	public int getEnchantmentValue(ItemStack stack) {
 		return 10;
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.EFFICIENCY);
 	}
 	

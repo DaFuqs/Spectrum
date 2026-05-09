@@ -13,7 +13,7 @@ import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class SpectrumLootConditionTypes {
 	
@@ -29,7 +29,7 @@ public class SpectrumLootConditionTypes {
 		).apply(instance, SleepersNearbyLootCondition::new));
 		
 		@Override
-		public @NotNull LootItemConditionType getType() {
+		public LootItemConditionType getType() {
 			return SLEEPERS_NEARBY.get();
 		}
 		

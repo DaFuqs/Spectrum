@@ -7,7 +7,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -23,7 +23,7 @@ public interface Preenchanted {
 		return builder.toImmutable();
 	}
 	
-	static @NotNull <T extends Item & Preenchanted> ItemStack getDefaultEnchantedStack(HolderLookup.Provider lookup, T item) {
+	static <T extends Item & Preenchanted> ItemStack getDefaultEnchantedStack(HolderLookup.Provider lookup, T item) {
 		ItemStack stack = new ItemStack(item);
 		stack.set(DataComponents.ENCHANTMENTS, buildDefaultEnchantments(lookup, item));
 		return stack;

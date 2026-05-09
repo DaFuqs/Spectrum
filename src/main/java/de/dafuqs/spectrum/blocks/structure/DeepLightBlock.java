@@ -6,7 +6,7 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class DeepLightBlock extends HorizontalDirectionalBlock implements EntityBlock {
 	

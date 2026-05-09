@@ -12,7 +12,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class JadeVineRootsBlockEntity extends BlockEntity {
 	
@@ -53,7 +53,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 		}
 	}
 	
-	public boolean isLaterNight(@NotNull Level world) {
+	public boolean isLaterNight(Level world) {
 		long dayTime = world.getDayTime();
 		if (TimeHelper.getTimeOfDay(dayTime).isNight()) { // timeOfDay % 24000 >= 13000 && timeOfDay % 24000 < 23000
 			return TimeHelper.getDay(dayTime + 1000) != TimeHelper.getDay(lastGrowthTick + 1000);

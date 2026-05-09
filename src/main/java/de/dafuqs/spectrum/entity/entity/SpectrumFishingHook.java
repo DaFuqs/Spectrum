@@ -35,7 +35,7 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.slf4j.*;
 
 import java.util.*;
@@ -89,8 +89,8 @@ public abstract class SpectrumFishingHook extends FishingHook {
 		vec3 = vec3.multiply(0.6 / d3 + this.random.triangle(0.5, 0.0103365), 0.6 / d3 + this.random.triangle(0.5, 0.0103365), 0.6 / d3 + this.random.triangle(0.5, 0.0103365));
 		this.setDeltaMovement(vec3);
 		//noinspection SuspiciousNameCombination
-		this.setYRot((float)(Mth.atan2(vec3.x, vec3.z) * 180.0F / (float)Math.PI));
-		this.setXRot((float)(Mth.atan2(vec3.y, vec3.horizontalDistance()) * 180.0F / (float)Math.PI));
+		this.setYRot((float)(Mth.atan2(vec3.x, vec3.z) * 180.0F / Math.PI));
+		this.setXRot((float)(Mth.atan2(vec3.y, vec3.horizontalDistance()) * 180.0F / Math.PI));
 		this.yRotO = this.getYRot();
 		this.xRotO = this.getXRot();
 	}

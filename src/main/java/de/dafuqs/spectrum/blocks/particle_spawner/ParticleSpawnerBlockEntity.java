@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class ParticleSpawnerBlockEntity extends BlockEntity implements MenuProvider {
 	

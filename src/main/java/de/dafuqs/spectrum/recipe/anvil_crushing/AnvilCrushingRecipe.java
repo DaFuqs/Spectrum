@@ -17,6 +17,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 public class AnvilCrushingRecipe extends GatedSpectrumRecipe<SingleRecipeInput> {
@@ -99,7 +100,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe<SingleRecipeInput> 
 		return crushedItemsPerPointOfDamage;
 	}
 	
-	public SoundEvent getSoundEvent() {
+	public @Nullable SoundEvent getSoundEvent() {
 		return BuiltInRegistries.SOUND_EVENT.get(soundEvent);
 	}
 	

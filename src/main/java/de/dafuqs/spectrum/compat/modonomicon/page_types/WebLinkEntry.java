@@ -11,6 +11,8 @@ import net.minecraft.network.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 
+import javax.annotation.*;
+
 /**
  * A node that is a link to another existing entry
  * similar to com.klikli_dev.modonomicon.book.entries.CategoryLinkBookEntry,
@@ -20,7 +22,7 @@ public class WebLinkEntry extends BookEntry {
 	
 	private final String url;
 	
-	public WebLinkEntry(ResourceLocation id, BookEntryData data, ResourceLocation commandToRunOnFirstReadId, String url) {
+	public WebLinkEntry(ResourceLocation id, BookEntryData data, @Nullable ResourceLocation commandToRunOnFirstReadId, String url) {
 		super(id, data, commandToRunOnFirstReadId);
 		this.url = url;
 	}

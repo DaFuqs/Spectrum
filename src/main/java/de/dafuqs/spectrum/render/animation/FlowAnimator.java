@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.render.animation;
 
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -13,10 +13,10 @@ public class FlowAnimator {
 	
 	final Map<FlowState, StateInfo> trackedStates;
 	final Set<FlowData<?>> liveData = new HashSet<>();
-	private @NotNull StateInfo info;
+	private StateInfo info;
 	int interpProgress;
 	
-	private FlowAnimator(Map<FlowState, StateInfo> trackedStates, @NotNull FlowState initialState) {
+	private FlowAnimator(Map<FlowState, StateInfo> trackedStates, FlowState initialState) {
 		this.trackedStates = trackedStates;
 		this.info = trackedStates.get(initialState);
 		interpProgress = info.interpTime;
@@ -44,7 +44,7 @@ public class FlowAnimator {
 	 *
 	 * @see FlowData#notifyStateChange(FlowState, boolean)
 	 */
-	public void swapState(@NotNull FlowState newState) {
+	public void swapState(FlowState newState) {
 		if (newState == info.state || !trackedStates.containsKey(newState))
 			return;
 		
@@ -93,9 +93,9 @@ public class FlowAnimator {
 			private final Map<FlowState, KeyFrame<N>> stateHolder = new HashMap<>();
 			private final String reference;
 			private final FlowHandler<N> handler;
-			private Interpolation interpolation = Interpolation.LINEAR;
-			private KeyFrame<N> defaultKeyFrame;
-			private N initialValue;
+			private @Nullable Interpolation interpolation = Interpolation.LINEAR;
+			private @Nullable KeyFrame<N> defaultKeyFrame;
+			private @Nullable N initialValue;
 			
 			public DataBuilder(Builder<T> builder, String reference, FlowHandler<N> handler) {
 				this.builder = builder;
@@ -142,7 +142,6 @@ public class FlowAnimator {
 			
 			public void push() {
 				var clazz = builder.clazz;
-				assert handler != null;
 				assert interpolation != null;
 				assert !stateHolder.isEmpty();
 				
@@ -174,7 +173,7 @@ public class FlowAnimator {
 			this.targetClazz = targetClazz;
 		}
 		
-		public FlowAnimator create(@NotNull FlowState initialState, T instance) {
+		public FlowAnimator create(FlowState initialState, T instance) {
 			if (!targetClazz.isInstance(instance))
 				throw new IllegalStateException("Attempted to create an animator for an incompatible object");
 			

@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -108,7 +108,7 @@ public class MoonstoneStrike {
 		
 		for (Entity entity : world.getEntities(this.entity, new AABB(minX, minY, minZ, maxX, maxY, maxZ))) {
 			//TODO: Can we convert this into an explosion subclass?
-			if (!entity.ignoreExplosion(null)) {
+			//if (!entity.ignoreExplosion(null)) {
 				double unitDist = Math.sqrt(entity.distanceToSqr(center)) / (double) reach;
 				
 				if (unitDist <= 1.0) { // Within a sphere of the explosion
@@ -144,7 +144,7 @@ public class MoonstoneStrike {
 						
 						entity.onExplosionHit(this.entity);
 					}
-				}
+				//}
 			}
 		}
 	}

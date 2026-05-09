@@ -16,7 +16,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.CreativeModeTab.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.block.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -115,11 +115,11 @@ public class MemoryItem extends BlockItem {
 		return getMemory(stack).ticksToManifest();
 	}
 	
-	public static void setTicksToManifest(@NotNull ItemStack itemStack, int newTicksToManifest) {
+	public static void setTicksToManifest(ItemStack itemStack, int newTicksToManifest) {
 		itemStack.update(SpectrumDataComponentTypes.MEMORY, MemoryComponent.DEFAULT, comp -> new MemoryComponent.Builder(comp).ticksToManifest(newTicksToManifest).build());
 	}
 	
-	public static void setSpawnAsAdult(@NotNull ItemStack itemStack, boolean spawnAsAdult) {
+	public static void setSpawnAsAdult(ItemStack itemStack, boolean spawnAsAdult) {
 		itemStack.update(SpectrumDataComponentTypes.MEMORY, MemoryComponent.DEFAULT, comp -> new MemoryComponent.Builder(comp).spawnAsAdult(spawnAsAdult).build());
 	}
 	
@@ -135,7 +135,7 @@ public class MemoryItem extends BlockItem {
 		return getMemory(stack).unrecognizable();
 	}
 	
-	public static void makeUnrecognizable(@NotNull ItemStack itemStack) {
+	public static void makeUnrecognizable(ItemStack itemStack) {
 		itemStack.update(SpectrumDataComponentTypes.MEMORY, MemoryComponent.DEFAULT, comp -> new MemoryComponent.Builder(comp).unrecognizable().build());
 	}
 	

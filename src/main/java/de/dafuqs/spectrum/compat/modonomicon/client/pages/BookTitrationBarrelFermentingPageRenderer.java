@@ -18,14 +18,15 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.fluids.crafting.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 public class BookTitrationBarrelFermentingPageRenderer extends BookGatedRecipePageRenderer<TitrationBarrelRecipe, BookGatedRecipePage<TitrationBarrelRecipe>> {
 	
 	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/titration_barrel.png");
 	
-	private final BookTextHolder durationText1;
-	private final BookTextHolder durationText2;
+	private final @Nullable BookTextHolder durationText1;
+	private final @Nullable BookTextHolder durationText2;
 	
 	public BookTitrationBarrelFermentingPageRenderer(BookGatedRecipePage<TitrationBarrelRecipe> page) {
 		super(page);

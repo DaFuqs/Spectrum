@@ -11,7 +11,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -27,7 +27,7 @@ public class BedrockFishingRodItem extends SpectrumFishingRodItem implements Pre
 	}
 	
 	@Override
-	public boolean isEnchantable(@NotNull ItemStack stack) {
+	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
 	

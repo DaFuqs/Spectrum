@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.api.energy;
 
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 /**
  * Defines that an object holds a PigmentEnergyStorage
@@ -20,7 +20,7 @@ public interface InkStorageBlockEntity<PStorage extends InkStorage> {
 	 *
 	 * @return the effective upgrade value, or 1 if no upgrades of that type used or ink could not be drained
 	 */
-	default float drainInkForUpgrades(@NotNull Upgradeable upgradeable, @NotNull Upgradeable.UpgradeType upgradeType, @NotNull InkColor color, boolean useEfficiency) {
+	default float drainInkForUpgrades(Upgradeable upgradeable, Upgradeable.UpgradeType upgradeType, InkColor color, boolean useEfficiency) {
 		Upgradeable.UpgradeHolder upgradeHolder = upgradeable.getUpgradeHolder();
 		if (upgradeHolder.getRawValue(upgradeType) == 0) {
 			return 1;
@@ -41,7 +41,7 @@ public interface InkStorageBlockEntity<PStorage extends InkStorage> {
 	 *
 	 * @return true if ink could be drained, false if not.
 	 */
-	default boolean drainInkForUpgradesRequired(@NotNull Upgradeable upgradeable, @NotNull Upgradeable.UpgradeType upgradeType, @NotNull InkColor color, boolean useEfficiency) {
+	default boolean drainInkForUpgradesRequired(Upgradeable upgradeable, Upgradeable.UpgradeType upgradeType, InkColor color, boolean useEfficiency) {
 		Upgradeable.UpgradeHolder upgradeHolder = upgradeable.getUpgradeHolder();
 		long inkToDrain = useEfficiency ? upgradeHolder.getEffectiveCostUsingEfficiency(upgradeType) : upgradeHolder.getEffectiveCost(upgradeType);
 		if (getEnergyStorage().drainEnergy(color, inkToDrain) == inkToDrain) {
@@ -58,7 +58,7 @@ public interface InkStorageBlockEntity<PStorage extends InkStorage> {
 	 *
 	 * @return true if ink could be drained, false if not.
 	 */
-	default boolean drainInkForUpgradesRequired(@NotNull Upgradeable upgradeable, @NotNull InkColor color, long amount, boolean useEfficiency) {
+	default boolean drainInkForUpgradesRequired(Upgradeable upgradeable, InkColor color, long amount, boolean useEfficiency) {
 		long inkToDrain = useEfficiency ? upgradeable.getUpgradeHolder().getEffectiveCostUsingEfficiency(amount) : amount;
 		if (getEnergyStorage().drainEnergy(color, inkToDrain) == inkToDrain) {
 			setInkDirty();

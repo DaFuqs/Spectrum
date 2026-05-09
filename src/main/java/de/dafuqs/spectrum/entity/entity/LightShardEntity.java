@@ -8,7 +8,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.function.*;
 
@@ -23,7 +23,7 @@ public class LightShardEntity extends LightShardBaseEntity {
 		spriteId = world.getRandom().nextInt(4);
 	}
 	
-	public LightShardEntity(Level world, LivingEntity owner, float damageMod, float lifeSpanTicks) {
+	public LightShardEntity(Level world, @Nullable LivingEntity owner, float damageMod, float lifeSpanTicks) {
 		super(SpectrumEntityTypes.LIGHT_SHARD.get(), world, owner, 48, damageMod, lifeSpanTicks);
 		scaleOffset /= 1.5F;
 		spriteId = world.getRandom().nextInt(4);

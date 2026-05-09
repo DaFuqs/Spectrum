@@ -9,7 +9,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -42,7 +42,7 @@ public class AscensionMobEffect extends MobEffect {
 	}
 	
 	@Override
-	public void onEffectStarted(@NotNull LivingEntity entity, int amplifier) {
+	public void onEffectStarted(LivingEntity entity, int amplifier) {
 		super.onEffectStarted(entity, amplifier);
 		if (entity instanceof ServerPlayer player) {
 			PlayAscensionAppliedEffectsPayload.playAscensionAppliedEffects(player);
@@ -50,7 +50,7 @@ public class AscensionMobEffect extends MobEffect {
 	}
 	
 	@Override
-	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+	public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
 		cures.add(SpectrumEffectCures.COMMAND_ONLY);
 	}
 	

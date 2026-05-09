@@ -17,7 +17,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
@@ -41,7 +41,7 @@ public class FabricationChestBlockEntityRenderer implements BlockEntityRenderer<
 		this.rings = root.getChild("rings");
 	}
 	
-	public static @NotNull LayerDefinition getTexturedModelData() {
+	public static LayerDefinition getTexturedModelData() {
 		MeshDefinition modelData = new MeshDefinition();
 		PartDefinition modelPartData = modelData.getRoot();
 		PartDefinition root = modelPartData.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
@@ -59,7 +59,7 @@ public class FabricationChestBlockEntityRenderer implements BlockEntityRenderer<
 	}
 	
 	@Override
-	public void render(FabricationChestBlockEntity chest, float tickDelta, PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light, int overlay) {
+	public void render(FabricationChestBlockEntity chest, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
 		Level world = chest.getLevel();
 		boolean bl = world != null;
 		BlockState blockState = bl ? chest.getBlockState() : SpectrumBlocks.FABRICATION_CHEST.get().defaultBlockState().setValue(ChestBlock.FACING, Direction.SOUTH);

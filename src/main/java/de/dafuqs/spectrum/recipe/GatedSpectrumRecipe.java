@@ -6,7 +6,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -23,7 +23,7 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 	}
 	
 	@Override
-	public @NotNull String getGroup() {
+	public String getGroup() {
 		return this.group;
 	}
 	
@@ -43,7 +43,7 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 	}
 	
 	@Override
-	public ResourceLocation getRecipeTypeUnlockIdentifier() {
+	public @Nullable ResourceLocation getRecipeTypeUnlockIdentifier() {
 		return null;
 	}
 	
@@ -58,7 +58,7 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 		return stack;
 	}
 	
-	protected static @NotNull ItemStack copyComponents(ItemStack recipeOutput, ItemStack stackToCopyComponentsFrom) {
+	protected static ItemStack copyComponents(ItemStack recipeOutput, ItemStack stackToCopyComponentsFrom) {
 		var originalEnchantments = recipeOutput.getEnchantments();
 		recipeOutput = stackToCopyComponentsFrom.transmuteCopy(recipeOutput.getItem(), recipeOutput.getCount());
 		for (Holder<Enchantment> enchantment : originalEnchantments.keySet()) {

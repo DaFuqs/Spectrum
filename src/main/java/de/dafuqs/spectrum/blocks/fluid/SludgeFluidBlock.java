@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class SludgeFluidBlock extends SpectrumFluidBlock {
 	
@@ -48,7 +48,7 @@ public class SludgeFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	@Override
-	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState, Direction direction) {
+	public @Nullable BlockState handleFluidCollision(Level world, FluidState state, FluidState otherState, Direction direction) {
 		if (otherState.is(FluidTags.WATER)) {
 			return direction == Direction.DOWN ? Blocks.COARSE_DIRT.defaultBlockState() : Blocks.DIRT.defaultBlockState();
 		}

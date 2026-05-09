@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.logging.*;
 
@@ -42,7 +42,7 @@ public record PlayAscensionAppliedEffectsPayload() implements CustomPacketPayloa
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

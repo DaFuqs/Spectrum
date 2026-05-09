@@ -15,7 +15,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -26,13 +26,13 @@ public class ParametricMiningDeviceItem extends BlockItem implements Preenchante
 	}
 	
 	@Override
-	public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, List<Component> tooltip, @NotNull TooltipFlag type) {
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		tooltip.add(Component.translatable("block.spectrum.parametric_mining_device.tooltip").withStyle(ChatFormatting.GRAY));
 		super.appendHoverText(stack, context, tooltip, type);
 	}
 	
 	@Override
-	public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player user, @NotNull InteractionHand hand) {
+	public InteractionResultHolder<ItemStack> use(Level level, Player user, InteractionHand hand) {
 		var stack = user.getItemInHand(hand);
 		if (stack.is(this)) {
 			level.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.BLOCK_PARAMETRIC_MINING_DEVICE_THROWN, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
@@ -55,12 +55,12 @@ public class ParametricMiningDeviceItem extends BlockItem implements Preenchante
 	}
 	
 	@Override
-	public int getEnchantmentValue(@NotNull ItemStack stack) {
+	public int getEnchantmentValue(ItemStack stack) {
 		return 12;
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(SpectrumEnchantmentTags.ON_ARCANE_CHARGES);
 	}
 	

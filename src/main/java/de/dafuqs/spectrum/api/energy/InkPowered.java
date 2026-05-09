@@ -20,7 +20,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;
@@ -39,7 +39,7 @@ public interface InkPowered {
 		return canUse(client.player);
 	}
 	
-	static boolean canUse(Player playerEntity) {
+	static boolean canUse(@Nullable Player playerEntity) {
 		return AdvancementHelper.hasAdvancement(playerEntity, InkPowered.REQUIRED_ADVANCEMENT);
 	}
 	
@@ -67,7 +67,7 @@ public interface InkPowered {
 		}
 	}
 	
-	private static long tryDrainEnergy(@NotNull ItemStack stack, InkColor color, long amount, @Nullable Player player) {
+	private static long tryDrainEnergy(ItemStack stack, InkColor color, long amount, @Nullable Player player) {
 		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 			if (!inkStorageItem.getDrainability().canDrain(player != null)) {
 				return 0;
@@ -88,7 +88,7 @@ public interface InkPowered {
 		return 0;
 	}
 	
-	private static long tryGetEnergy(@NotNull ItemStack stack, InkColor color) {
+	private static long tryGetEnergy(ItemStack stack, InkColor color) {
 		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 			return inkStorageItem.getEnergyStorage(stack).getEnergy(color);
 		}
@@ -101,7 +101,7 @@ public interface InkPowered {
 	 * If not enough energy is available it will be drained as much as is available
 	 * but return will still be false
 	 **/
-	static boolean tryDrainEnergy(@NotNull Container inventory, InkColor color, long amount) {
+	static boolean tryDrainEnergy(Container inventory, InkColor color, long amount) {
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
 			ItemStack currentStack = inventory.getItem(i);
 			if (!currentStack.isEmpty()) { // fast fail
@@ -114,11 +114,11 @@ public interface InkPowered {
 		return false;
 	}
 	
-	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkAmount inkAmount) {
+	static boolean tryDrainEnergy(Player player, InkAmount inkAmount) {
 		return tryDrainEnergy(player, inkAmount.color(), inkAmount.amount());
 	}
 	
-	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkAmount inkAmount, float costModifier) {
+	static boolean tryDrainEnergy(Player player, InkAmount inkAmount, float costModifier) {
 		return tryDrainEnergy(player, inkAmount.color(), Support.getIntFromDecimalWithChance(inkAmount.amount() * costModifier, player.getRandom()));
 	}
 	
@@ -134,7 +134,7 @@ public interface InkPowered {
 	 * - Trinket Slots
 	 * - Inventory
 	 **/
-	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkColor color, long amount) {
+	static boolean tryDrainEnergy(Player player, InkColor color, long amount) {
 		if (player.isCreative()) {
 			return true;
 		}
@@ -176,11 +176,11 @@ public interface InkPowered {
 		return false;
 	}
 	
-	static boolean hasAvailableInk(Player player, InkAmount inkAmount) {
+	static boolean hasAvailableInk(@Nullable Player player, InkAmount inkAmount) {
 		return hasAvailableInk(player, inkAmount.color(), inkAmount.amount());
 	}
 	
-	static boolean hasAvailableInk(Player player, InkColor color, long amount) {
+	static boolean hasAvailableInk(@Nullable Player player, InkColor color, long amount) {
 		if (!canUse(player)) {
 			return false;
 		}
@@ -229,7 +229,7 @@ public interface InkPowered {
 		return false;
 	}
 	
-	static long getAvailableInk(@NotNull Player player, InkColor color) {
+	static long getAvailableInk(Player player, InkColor color) {
 		if (player.isCreative()) {
 			return Long.MAX_VALUE;
 		}
@@ -258,7 +258,7 @@ public interface InkPowered {
 		return available;
 	}
 	
-	default boolean payForUse(Player player, ItemStack stack, @NotNull InkAmount inkAmount, @Nullable Ingredient itemCost) {
+	default boolean payForUse(Player player, ItemStack stack, InkAmount inkAmount, @Nullable Ingredient itemCost) {
 		boolean paid = player.isCreative(); // free for creative players
 		if (!paid) { // try pay with ink
 			paid = InkPowered.tryDrainEnergy(player, inkAmount, getInkCostMod(player.level().registryAccess(), stack));

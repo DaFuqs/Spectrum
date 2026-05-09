@@ -25,7 +25,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.phys.*;
 import org.apache.commons.lang3.mutable.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -261,7 +261,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
 	}
 	
 	@Override
-	protected boolean tryPickup(@NotNull Player player) {
+	protected boolean tryPickup(Player player) {
 		var rootStack = DragonTalonItem.findThrownStack(player, uuid);
 		if (!rootStack.isEmpty()) {
 			SlotReservingItem.free(rootStack);

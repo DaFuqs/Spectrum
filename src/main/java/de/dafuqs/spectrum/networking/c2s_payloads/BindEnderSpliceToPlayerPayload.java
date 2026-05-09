@@ -9,7 +9,7 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public record BindEnderSpliceToPlayerPayload(int entityId) implements CustomPacketPayload {
 	
@@ -17,7 +17,7 @@ public record BindEnderSpliceToPlayerPayload(int entityId) implements CustomPack
 	public static final StreamCodec<FriendlyByteBuf, BindEnderSpliceToPlayerPayload> CODEC = StreamCodec.composite(ByteBufCodecs.INT, BindEnderSpliceToPlayerPayload::entityId, BindEnderSpliceToPlayerPayload::new);
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

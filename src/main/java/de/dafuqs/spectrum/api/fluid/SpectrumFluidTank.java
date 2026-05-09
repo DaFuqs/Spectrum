@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.api.fluid;
 
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class SpectrumFluidTank extends FluidTank {
     private final Callback updateCallback;
@@ -17,7 +17,7 @@ public class SpectrumFluidTank extends FluidTank {
         this.updateCallback.onFluidContentsChanged();
     }
 
-    public void setFluid(@NotNull FluidStack stack) {
+    public void setFluid(FluidStack stack) {
         super.setFluid(stack);
         this.updateCallback.onFluidContentsChanged();
     }

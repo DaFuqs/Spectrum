@@ -14,7 +14,7 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.common.conditions.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -41,7 +41,7 @@ public class BiomeRenderingDataLoader extends SimpleJsonResourceReloadListener {
 	}
 	
 	@Override
-	protected void apply(Map<ResourceLocation, JsonElement> files, @NotNull ResourceManager resourceManager, @NotNull ProfilerFiller profiler) {
+	protected void apply(Map<ResourceLocation, JsonElement> files, ResourceManager resourceManager, ProfilerFiller profiler) {
 		DATA.clear();
 		
 		ConditionalOps<JsonElement> ops = makeConditionalOps();

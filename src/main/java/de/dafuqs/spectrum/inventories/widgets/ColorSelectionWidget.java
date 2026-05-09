@@ -12,7 +12,7 @@ import net.minecraft.client.gui.screens.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -60,7 +60,7 @@ public class ColorSelectionWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void renderWidget(@NotNull GuiGraphics context, int mouseX, int mouseY, float delta) {
+	protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
 		// draw selection icons
 		int i = -1;
 		int currentX = this.getX() + 1;
@@ -116,7 +116,7 @@ public class ColorSelectionWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void updateWidgetNarration(@NotNull NarrationElementOutput builder) { }
+	protected void updateWidgetNarration(NarrationElementOutput builder) { }
 	
 	private boolean isUnselection(double mouseX, double mouseY) {
 		return mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);

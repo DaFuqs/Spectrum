@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.component.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public record StoredExperiencePredicate(MinMaxBounds.Ints experience) implements SingleComponentItemPredicate<Integer> {
 	
@@ -16,12 +16,12 @@ public record StoredExperiencePredicate(MinMaxBounds.Ints experience) implements
 	}
 	
 	@Override
-	public @NotNull DataComponentType<Integer> componentType() {
+	public DataComponentType<Integer> componentType() {
 		return SpectrumDataComponentTypes.STORED_EXPERIENCE.get();
 	}
 	
 	@Override
-	public boolean matches(@NotNull ItemStack stack, @NotNull Integer component) {
+	public boolean matches(ItemStack stack, Integer component) {
 		return experience.matches(component);
 	}
 	

@@ -49,7 +49,7 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	// NOTE: firstFluid and secondFluid are assumed to be not null without checking,
 	// since the default Create event handlers for pipe collisions would throw a NullPointerException otherwise.
-	private static BlockState handleBidirectionalCollision(Level world, @NotNull Fluid firstFluid, @NotNull Fluid secondFluid) {
+	private static @Nullable BlockState handleBidirectionalCollision(Level world, Fluid firstFluid, Fluid secondFluid) {
 		final FluidState firstState = firstFluid.defaultFluidState();
 		final FluidState secondState = secondFluid.defaultFluidState();
 		
@@ -61,7 +61,7 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		return spectrumFluidCollision(world, secondState, firstState);
 	}
 	
-	private static BlockState spectrumFluidCollision(Level world, FluidState state, FluidState otherState) {
+	private static @Nullable BlockState spectrumFluidCollision(Level world, FluidState state, FluidState otherState) {
 		if (state.createLegacyBlock().getBlock() instanceof SpectrumFluidBlock spectrumFluid)
 			return spectrumFluid.handleFluidCollision(world, state, otherState, Direction.DOWN);
 		return null;

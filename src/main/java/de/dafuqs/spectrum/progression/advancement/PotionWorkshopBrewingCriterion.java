@@ -14,7 +14,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -61,7 +61,7 @@ public class PotionWorkshopBrewingCriterion extends SimpleCriterionTrigger<Potio
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

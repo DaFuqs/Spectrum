@@ -106,9 +106,6 @@ public class SpectrumModelPredicateProviders {
 				entity != null && CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
 		
 		ItemProperties.register(crossbowItem, ResourceLocation.parse("projectile"), (stack, world, entity, seed) -> {
-			if (stack == null) {
-				return 0F;
-			}
 			ItemStack projectile = MalachiteCrossbowItem.getFirstProjectile(stack);
 			if (projectile.isEmpty()) {
 				return 0F;

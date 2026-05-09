@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -70,7 +70,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		return SpiritInstillerBlock.UPGRADE_BLOCK_OFFSETS;
 	}
 	
-	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, @NotNull SpiritInstillerBlockEntity instiller) {
+	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, SpiritInstillerBlockEntity instiller) {
 		if (instiller.animator == null) {
 			instiller.animator = FACTORY.create(FlowStates.INIT, instiller);
 		} else {
@@ -138,7 +138,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			
 			if (spiritInstillerBlockEntity.craftingTime == 1) {
 				PlayBlockBoundSoundInstancePayload.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING, (ServerLevel) world, spiritInstillerBlockEntity.worldPosition, Integer.MAX_VALUE);
-			} else if (spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.01
+			} else if (spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.01)
 					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.25)
 					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.5)
 					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.75)
@@ -156,7 +156,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 	}
 	
-	private static void calculateCurrentRecipe(@NotNull Level world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	private static void calculateCurrentRecipe(Level world, SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		// test the cached recipe => faster
 		if (spiritInstillerBlockEntity.currentRecipe != null && !spiritInstillerBlockEntity.isEmpty()) {
 			if (spiritInstillerBlockEntity.currentRecipe.value().matches(spiritInstillerBlockEntity.getRecipeInput(), world)) {
@@ -195,7 +195,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		spiritInstillerBlockEntity.updateInClientWorld();
 	}
 	
-	public static BlockPos getItemBowlPos(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, boolean right) {
+	public static BlockPos getItemBowlPos(SpiritInstillerBlockEntity spiritInstillerBlockEntity, boolean right) {
 		BlockPos blockPos = spiritInstillerBlockEntity.worldPosition;
 		switch (spiritInstillerBlockEntity.multiblockRotation) {
 			case NONE, CLOCKWISE_180 -> {
@@ -215,7 +215,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 	}
 	
-	private static boolean checkRecipeRequirements(Level world, BlockPos blockPos, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	private static boolean checkRecipeRequirements(Level world, BlockPos blockPos, SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		Player lastInteractedPlayer = PlayerOwned.getPlayerIfOnline(world, spiritInstillerBlockEntity.ownerUUID);
 		if (lastInteractedPlayer == null) {
 			return false;
@@ -240,7 +240,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			testAndUnlockRecipeAdvancements(serverPlayerEntity, spiritInstillerBlockEntity.currentRecipe, canCraft);
 		}
 		
-		return canCraft & spiritInstillerBlockEntity.currentRecipe.value().canPlayerCraft(lastInteractedPlayer) && spiritInstillerBlockEntity.currentRecipe.value().canCraftWithStacks(spiritInstillerBlockEntity.getRecipeInput());
+		return canCraft && spiritInstillerBlockEntity.currentRecipe.value().canPlayerCraft(lastInteractedPlayer) && spiritInstillerBlockEntity.currentRecipe.value().canCraftWithStacks(spiritInstillerBlockEntity.getRecipeInput());
 	}
 	
 	public static void testAndUnlockRecipeAdvancements(ServerPlayer player, RecipeHolder<SpiritInstillerRecipe> spiritInstillerRecipe, boolean canActuallyCraft) {
@@ -259,7 +259,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 	}
 	
-	public static void craftSpiritInstillerRecipe(Level world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull RecipeHolder<SpiritInstillerRecipe> spiritInstillerRecipe) {
+	public static void craftSpiritInstillerRecipe(Level world, SpiritInstillerBlockEntity spiritInstillerBlockEntity, RecipeHolder<SpiritInstillerRecipe> spiritInstillerRecipe) {
 		ItemStack resultStack = spiritInstillerRecipe.value().assemble(spiritInstillerBlockEntity.getRecipeInput(), world.registryAccess());
 		decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity);
 		if (!resultStack.isEmpty()) {
@@ -277,7 +277,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		spiritInstillerBlockEntity.inventoryChanged();
 	}
 	
-	public static void decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	public static void decrementItemsInInstillerAndBowls(SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		Level world = spiritInstillerBlockEntity.getLevel();
 		if (world == null) return;
 		var recipe = spiritInstillerBlockEntity.currentRecipe;
@@ -322,7 +322,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 	}
 	
-	public static void playCraftingFinishedEffects(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	public static void playCraftingFinishedEffects(SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		Level world = spiritInstillerBlockEntity.getLevel();
 		if (world == null) return;
 		world.playSound(null, spiritInstillerBlockEntity.worldPosition, SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING_FINISHED, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -392,12 +392,12 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	
 	// Called when the chunk is first loaded to initialize this on the clients
 	
-	private void doChimeParticles(@NotNull Level world) {
+	private void doChimeParticles(Level world) {
 		doChimeInstillingParticles(world, worldPosition.offset(getItemBowlHorizontalPositionOffset(false).above(3)));
 		doChimeInstillingParticles(world, worldPosition.offset(getItemBowlHorizontalPositionOffset(true).above(3)));
 	}
 	
-	public void doChimeInstillingParticles(@NotNull Level world, BlockPos pos) {
+	public void doChimeInstillingParticles(Level world, BlockPos pos) {
 		BlockState blockState = world.getBlockState(pos);
 		if (blockState.getBlock() instanceof GemstoneChimeBlock gemstoneChimeBlock) {
 			RandomSource random = world.random;
@@ -414,7 +414,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 	}
 	
-	private void doItemBowlOrbs(@NotNull Level world) {
+	private void doItemBowlOrbs(Level world) {
 		BlockPos itemBowlPos = worldPosition.offset(getItemBowlHorizontalPositionOffset(false).above());
 		BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {

@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public abstract class InWorldInteractionBlockEntity extends BlockEntity implements RandomizableContainer, ImplementedInventory {
 	

@@ -26,7 +26,7 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -43,7 +43,7 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 	
 	private int eatGrassTimer;
 	private EatBlockGoal eatGrassGoal;
-	public int eggLayTime;
+	protected int eggLayTime;
 	
 	public EggLayingWoolyPigEntity(EntityType<? extends Animal> entityType, Level world) {
 		super(entityType, world);

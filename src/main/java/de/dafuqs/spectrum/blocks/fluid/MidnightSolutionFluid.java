@@ -27,37 +27,37 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	
 	@Override
-	public @NotNull FluidType getFluidType() {
+	public FluidType getFluidType() {
 		return SpectrumFluids.MIDNIGHT_SOLUTION_TYPE.get();
 	}
 	
 	@Override
-	public @NotNull Fluid getSource() {
+	public Fluid getSource() {
 		return SpectrumFluids.MIDNIGHT_SOLUTION.get();
 	}
 	
 	@Override
-	public @NotNull Fluid getFlowing() {
+	public Fluid getFlowing() {
 		return SpectrumFluids.FLOWING_MIDNIGHT_SOLUTION.get();
 	}
 	
 	@Override
-	public @NotNull Item getBucket() {
+	public Item getBucket() {
 		return SpectrumItems.MIDNIGHT_SOLUTION_BUCKET.get();
 	}
 	
 	@Override
-	protected @NotNull BlockState createLegacyBlock(FluidState fluidState) {
+	protected BlockState createLegacyBlock(FluidState fluidState) {
 		return SpectrumBlocks.MIDNIGHT_SOLUTION.get().defaultBlockState().setValue(BlockStateProperties.LEVEL, getLegacyLevel(fluidState));
 	}
 	
 	@Override
-	public boolean isSame(@NotNull Fluid fluid) {
+	public boolean isSame(Fluid fluid) {
 		return fluid == SpectrumFluids.MIDNIGHT_SOLUTION.get() || fluid == SpectrumFluids.FLOWING_MIDNIGHT_SOLUTION.get();
 	}
 	

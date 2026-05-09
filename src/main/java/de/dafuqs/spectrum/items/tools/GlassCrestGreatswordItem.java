@@ -25,7 +25,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -148,7 +148,7 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	}
 	
 	@Override
-	public BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		if (player == null || !player.isUsingItem())
 			return ExtendedItemBarProvider.PASS;
 		

@@ -25,7 +25,7 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -103,7 +103,7 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 			CrystalApothecarySimulationsDataLoader.SimulatedBlockGrowthEntry drop = CrystalApothecarySimulationsDataLoader.COMPENSATIONS.get(match.getKey());
 			
 			int compensatedItemCount = (int) (drop.compensatedStack().getCount() * match.getValue() * gameRuleTickModifier * ticksToCompensate) / drop.ticksForCompensationLootPerValidNeighbor();
-			compensatedItemCount *= 0.8 + world.random.nextFloat() * 0.4;
+			compensatedItemCount *= (int) (0.8 + world.random.nextFloat() * 0.4);
 			if (compensatedItemCount > 0) {
 				ItemStack compensatedStack = drop.compensatedStack().copy();
 				compensatedStack.setCount(compensatedItemCount);
@@ -323,7 +323,7 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 		}
 	}
 	
-	private static @NotNull Stream<BlockPos> streamAffectedBlocks(BlockPos worldPosition) {
+	private static Stream<BlockPos> streamAffectedBlocks(BlockPos worldPosition) {
 		return BlockPos.withinManhattanStream(worldPosition, RANGE, RANGE, RANGE)
 				.filter(blockPos -> blockPos.closerThan(worldPosition, RANGE));
 	}

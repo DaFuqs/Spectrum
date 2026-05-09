@@ -6,7 +6,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public abstract class GlassAmpouleItem extends Item {
 	
@@ -42,6 +42,6 @@ public abstract class GlassAmpouleItem extends Item {
 		return world.isClientSide() ? InteractionResult.FAIL : InteractionResult.PASS;
 	}
 	
-	public abstract boolean trigger(Level world, ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target, Vec3 position);
+	public abstract boolean trigger(Level world, ItemStack stack, @Nullable LivingEntity attacker, @Nullable LivingEntity target, Vec3 position);
 	
 }

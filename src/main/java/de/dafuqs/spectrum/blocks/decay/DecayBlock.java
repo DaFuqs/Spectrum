@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.ticks.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -158,7 +158,7 @@ public abstract class DecayBlock extends DropExperienceBlock {
 		}
 	}
 	
-	protected boolean trySpreadInDirection(@NotNull Level world, BlockState state, @NotNull BlockPos originPos, Direction direction) {
+	protected boolean trySpreadInDirection(Level world, BlockState state, BlockPos originPos, Direction direction) {
 		BlockPos targetPos = originPos.relative(direction);
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		

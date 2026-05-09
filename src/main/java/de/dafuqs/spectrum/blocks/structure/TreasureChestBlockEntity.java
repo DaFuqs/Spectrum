@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -109,16 +109,16 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 		}
 	}
 	
-	public boolean hasOpenedThisChestBefore(@NotNull Player player) {
+	public boolean hasOpenedThisChestBefore(Player player) {
 		return this.playersThatOpenedAlready.contains(player.getUUID());
 	}
 	
-	public void rememberPlayer(@NotNull Player player) {
+	public void rememberPlayer(Player player) {
 		this.playersThatOpenedAlready.add(player.getUUID());
 		this.setChanged();
 	}
 	
-	public void supplyInventory(@NotNull Player player) {
+	public void supplyInventory(Player player) {
 		if (player instanceof ServerPlayer serverPlayer) {
 			LootTable lootTable = serverPlayer.serverLevel().getServer().reloadableRegistries().getLootTable(this.lootTable);
 			var builder = new LootParams.Builder(serverPlayer.serverLevel()).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.worldPosition));

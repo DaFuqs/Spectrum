@@ -7,7 +7,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public abstract class BidentBaseEntity extends ThrownTrident {
 	
@@ -30,12 +30,12 @@ public abstract class BidentBaseEntity extends ThrownTrident {
 	}
 	
 	@Override
-	public @NotNull ItemStack getDefaultPickupItem() {
+	public ItemStack getDefaultPickupItem() {
 		return entityData.get(STACK);
 	}
 	
 	@Override
-	protected @NotNull SoundEvent getDefaultHitGroundSoundEvent() {
+	protected SoundEvent getDefaultHitGroundSoundEvent() {
 		return SpectrumSoundEvents.BIDENT_HIT_GROUND;
 	}
 	

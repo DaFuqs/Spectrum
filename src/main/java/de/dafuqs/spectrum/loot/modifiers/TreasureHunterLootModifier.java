@@ -23,7 +23,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -52,11 +52,13 @@ public class TreasureHunterLootModifier extends LootModifier {
 	}
 	
 	@Override
-	protected @NotNull ObjectArrayList<ItemStack> doApply(@NotNull ObjectArrayList<ItemStack> original, LootContext lootContext) {
+	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> original, LootContext lootContext) {
 		Entity killed = lootContext.getParamOrNull(LootContextParams.THIS_ENTITY);
-		Player player = lootContext.getParamOrNull(LootContextParams.LAST_DAMAGE_PLAYER);
-		DamageSource damageSource = lootContext.getParamOrNull(LootContextParams.DAMAGE_SOURCE);
+		if (killed == null) {
+			return original;
+		}
 		
+		DamageSource damageSource = lootContext.getParamOrNull(LootContextParams.DAMAGE_SOURCE);
 		if (damageSource == null) {
 			return original;
 		}
@@ -75,6 +77,7 @@ public class TreasureHunterLootModifier extends LootModifier {
 			return original;
 		}
 		
+		Player player = lootContext.getParamOrNull(LootContextParams.LAST_DAMAGE_PLAYER);
 		ServerLevel serverLevel = (ServerLevel) killed.level();
 		Vec3 pos = killed.position();
 		RandomSource random = lootContext.getRandom();
@@ -96,7 +99,7 @@ public class TreasureHunterLootModifier extends LootModifier {
 	}
 	
 	@Override
-	public @NotNull MapCodec<? extends IGlobalLootModifier> codec() {
+	public MapCodec<? extends IGlobalLootModifier> codec() {
 		return CODEC;
 	}
 	

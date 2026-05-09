@@ -8,7 +8,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.decoration.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class PhantomGlowFrameEntity extends PhantomFrameEntity {
 	
@@ -25,7 +25,7 @@ public class PhantomGlowFrameEntity extends PhantomFrameEntity {
 	}
 	
 	@Override
-	protected @NotNull ItemStack getFrameItemStack() {
+	protected ItemStack getFrameItemStack() {
 		return new ItemStack(SpectrumItems.GLOW_PHANTOM_FRAME.get());
 	}
 	

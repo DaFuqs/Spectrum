@@ -8,7 +8,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -72,7 +72,7 @@ public class SleepMobEffect extends MobEffect {
 	/**
 	 * @return -1 = false
 	 */
-	public static float getSleepScaling(LivingEntity entity) {
+	public static float getSleepScaling(@Nullable LivingEntity entity) {
 		if (entity == null) return -1;
 		var potency = getGeneralSleepResistanceIfEntityHasSoporificEffect(entity);
 		
@@ -100,7 +100,7 @@ public class SleepMobEffect extends MobEffect {
 	}
 	
 	@Override
-	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+	public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
 		Holder<MobEffect> holder = effectInstance.getEffect();
 		
 		if (holder.equals(SpectrumMobEffects.SOMNOLENCE) || holder.equals(SpectrumMobEffects.CALMING)) {
@@ -110,7 +110,7 @@ public class SleepMobEffect extends MobEffect {
 	
 	// Sleep effects don't scale except for calming
 	@Override
-	public void addAttributeModifiers(@NotNull AttributeMap attributeMap, int amplifier) {
+	public void addAttributeModifiers(AttributeMap attributeMap, int amplifier) {
 		super.addAttributeModifiers(attributeMap, scales ? amplifier : 0);
 	}
 	

@@ -5,7 +5,7 @@ import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class FlammableRotatedPillarBlock extends RotatedPillarBlock {
 	
@@ -19,12 +19,12 @@ public class FlammableRotatedPillarBlock extends RotatedPillarBlock {
 	}
 	
 	@Override
-	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+	public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return 5;
 	}
 	
 	@Override
-	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+	public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return 5;
 	}
 	

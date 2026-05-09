@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.blocks.upgrade.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -19,7 +19,7 @@ public class UpgradePlacingCriterion extends SimpleCriterionTrigger<UpgradePlaci
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

@@ -18,6 +18,9 @@ import net.minecraft.world.level.block.state.pattern.*;
 import net.minecraft.world.level.block.state.predicate.*;
 import org.jetbrains.annotations.*;
 
+import javax.annotation.*;
+import javax.annotation.Nullable;
+
 import java.util.*;
 import java.util.function.*;
 
@@ -129,7 +132,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 	}
 	
 	@Contract(pure = true)
-	public static @NotNull Collection<Block> getMobHeads() {
+	public static Collection<Block> getMobHeads() {
 		return MOB_HEADS.values();
 	}
 	

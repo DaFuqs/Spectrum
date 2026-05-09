@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import javax.annotation.*;
 
 import java.util.function.*;
 
@@ -42,8 +43,8 @@ public class FloatBlockEntity extends Entity {
 	private static final EntityDataAccessor<Long> LAUNCH_TIME = SynchedEntityData.defineId(FloatBlockEntity.class, EntityDataSerializers.LONG);
 	private static final EntityDataAccessor<Float> GRAVITY_MODIFIER = SynchedEntityData.defineId(FloatBlockEntity.class, EntityDataSerializers.FLOAT);
 	
-	public int moveTime;
-	protected CompoundTag blockEntityData;
+	protected int moveTime;
+	protected @Nullable CompoundTag blockEntityData;
 	protected BlockState blockState = Blocks.STONE.defaultBlockState();
 	protected boolean canSetBlock = true;
 	protected boolean collides;
@@ -84,9 +85,6 @@ public class FloatBlockEntity extends Entity {
 	 */
 	@Override
 	protected AABB makeBoundingBox() {
-		if (this.entityData == null || this.blockState == null) {
-			return super.makeBoundingBox();
-		}
 		BlockPos origin = this.entityData.get(ORIGIN);
 		VoxelShape shape = this.blockState.getCollisionShape(level(), origin);
 		if (shape.isEmpty()) {
@@ -167,7 +165,7 @@ public class FloatBlockEntity extends Entity {
 				return InteractionResult.SUCCESS;
 			} else {
 				Item item = this.blockState.getBlock().asItem();
-				if (item != null) {
+				if (item != Items.AIR) {
 					player.getInventory().placeItemBackInInventory(item.getDefaultInstance());
 				}
 				this.discard();

@@ -30,7 +30,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.phys.*;
 import org.apache.commons.lang3.mutable.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -446,7 +446,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 	
 	private ItemStack getRootStack() {
 		if (getOwner() instanceof Player player) {
-			return DraconicTwinswordItem.findThrownStack(player, uuid);
+			return DragonTalonItem.findThrownStack(player, uuid);
 		}
 		return ItemStack.EMPTY;
 	}
@@ -468,7 +468,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 			return false;
 		}
 		
-		var rootStack = DraconicTwinswordItem.findThrownStack(player, uuid);
+		var rootStack = DragonTalonItem.findThrownStack(player, uuid);
 		if (!rootStack.isEmpty()) {
 			if (this.level().isClientSide())
 				return true;

@@ -11,7 +11,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 
 public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & LidBlockEntity> implements BlockEntityRenderer<T> {
@@ -28,7 +28,7 @@ public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & LidBlockEn
 	}
 	
 	@Override
-	public void render(T entity, float tickDelta, @NotNull PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light, int overlay) {
+	public void render(T entity, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
 		Level world = entity.getLevel();
 		boolean bl = world != null;
 		BlockState blockState = bl ? entity.getBlockState() : SpectrumBlocks.HEARTBOUND_CHEST.get().defaultBlockState().setValue(ChestBlock.FACING, Direction.SOUTH);

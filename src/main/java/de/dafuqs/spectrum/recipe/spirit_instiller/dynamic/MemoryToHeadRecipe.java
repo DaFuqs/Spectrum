@@ -39,7 +39,7 @@ public class MemoryToHeadRecipe extends SpiritInstillerRecipe {
 	public ItemStack assemble(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, HolderLookup.Provider drm) {
 		SpiritInstillerBlockEntity spiritInstillerBlockEntity = recipeInput.getInstance();
 		ItemStack resultStack = ItemStack.EMPTY;
-		ServerLevel world = (ServerLevel) spiritInstillerBlockEntity.getLevel();
+		ServerLevel level = (ServerLevel) spiritInstillerBlockEntity.getLevel();
 		BlockPos pos = spiritInstillerBlockEntity.getBlockPos();
 		
 		Optional<ResolvableProfile> profile = MemoryItem.getPlayer(recipeInput.getItem(0));
@@ -56,15 +56,15 @@ public class MemoryToHeadRecipe extends SpiritInstillerRecipe {
 			 * A single entity type can have multiple head items associated with it (like fox or shulker variants)
 			 * and finding out which exact mob variant is in that memory would be even more cursed
 			 */
-			Optional<Entity> optionalEntity = MemoryBlockEntity.hatchEntity(world, pos, spiritInstillerBlockEntity.getItem(0));
+			Optional<Entity> optionalEntity = MemoryBlockEntity.hatchEntity(level, pos, spiritInstillerBlockEntity.getItem(0));
 			if (optionalEntity.isPresent()) {
-				if (optionalEntity.get() instanceof LivingEntity livingEntity && world != null) {
-					LootTable lootTable = world.getServer().reloadableRegistries().getLootTable(livingEntity.getLootTable());
+				if (optionalEntity.get() instanceof LivingEntity livingEntity) {
+					LootTable lootTable = level.getServer().reloadableRegistries().getLootTable(livingEntity.getLootTable());
 					
-					LootParams.Builder builder = new LootParams.Builder(world)
+					LootParams.Builder builder = new LootParams.Builder(level)
 							.withParameter(LootContextParams.THIS_ENTITY, livingEntity)
 							.withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
-							.withParameter(LootContextParams.DAMAGE_SOURCE, SpectrumDamageTypes.mobHeadDrop(world));
+							.withParameter(LootContextParams.DAMAGE_SOURCE, SpectrumDamageTypes.mobHeadDrop(level));
 					
 					LootParams lootContextParameterSet = builder.create(LootContextParamSets.ENTITY);
 					List<ItemStack> loot = lootTable.getRandomItems(lootContextParameterSet, livingEntity.getLootTableSeed());
@@ -80,8 +80,7 @@ public class MemoryToHeadRecipe extends SpiritInstillerRecipe {
 			}
 		}
 		
-		
-		spawnXPAndGrantAdvancements(resultStack, spiritInstillerBlockEntity, spiritInstillerBlockEntity.getUpgradeHolder(), world, pos);
+		spawnXPAndGrantAdvancements(resultStack, spiritInstillerBlockEntity, spiritInstillerBlockEntity.getUpgradeHolder(), level, pos);
 		return resultStack;
 	}
 	

@@ -11,7 +11,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public record ParticleSpawnerConfigurationC2SPayload(ParticleSpawnerConfiguration configuration) implements CustomPacketPayload {
 	
@@ -45,7 +45,7 @@ public record ParticleSpawnerConfigurationC2SPayload(ParticleSpawnerConfiguratio
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

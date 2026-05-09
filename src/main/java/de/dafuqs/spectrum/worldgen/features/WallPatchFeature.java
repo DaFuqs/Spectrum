@@ -81,10 +81,8 @@ public class WallPatchFeature extends Feature<WallPatchFeatureConfig> {
 				stateToPlace = stateToPlace.setValue(BlockStateProperties.FACING, direction.getOpposite());
 			}
 			
-			if (stateToPlace != null) {
-				world.setBlock(currPos, stateToPlace, 3);
-				success = true;
-			}
+			world.setBlock(currPos, stateToPlace, 3);
+			success = true;
 		}
 		
 		return success;

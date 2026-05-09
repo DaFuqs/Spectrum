@@ -9,7 +9,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import oshi.util.tuples.*;
 
 import java.util.*;
@@ -68,7 +68,7 @@ public class BuildingHelper {
 	/**
 	 * A simple implementation of a breadth first search
 	 */
-	public static @NotNull List<BlockPos> getConnectedBlocks(@NotNull Level world, @NotNull BlockPos blockPos, long maxCount, int maxRange) {
+	public static List<BlockPos> getConnectedBlocks(Level world, BlockPos blockPos, long maxCount, int maxRange) {
 		BlockState originState = world.getBlockState(blockPos);
 		Block originBlock = originState.getBlock();
 		
@@ -106,7 +106,7 @@ public class BuildingHelper {
 		return connectedPositions;
 	}
 	
-	public static @NotNull List<BlockPos> calculateBuildingStaffSelection(@NotNull Level world, @NotNull BlockPos originPos, Direction direction, long maxCount, int maxRange, boolean sameBlockOnly) {
+	public static List<BlockPos> calculateBuildingStaffSelection(Level world, BlockPos originPos, Direction direction, long maxCount, int maxRange, boolean sameBlockOnly) {
 		BlockPos offsetPos = originPos.relative(direction);
 		BlockState originState = world.getBlockState(originPos);
 		
@@ -143,7 +143,7 @@ public class BuildingHelper {
 		return selectedPositions;
 	}
 	
-	private static @NotNull List<BlockPos> getValidNeighbors(Level world, BlockPos startPos, Direction facingDirection, BlockState originState, boolean similarBlockOnly) {
+	private static List<BlockPos> getValidNeighbors(Level world, BlockPos startPos, Direction facingDirection, BlockState originState, boolean similarBlockOnly) {
 		List<BlockPos> foundNeighbors = new ArrayList<>();
 		for (Vec3i neighborVectors : getNeighborVectors(facingDirection)) {
 			BlockPos targetPos = startPos.offset(neighborVectors);
@@ -167,7 +167,7 @@ public class BuildingHelper {
 		return foundNeighbors;
 	}
 	
-	private static @NotNull List<Vec3i> getNeighborVectors(@NotNull Direction direction) {
+	private static List<Vec3i> getNeighborVectors(Direction direction) {
 		if (direction.getAxis() == Direction.Axis.Y) {
 			return NEIGHBOR_VECTORS_Y;
 		} else {

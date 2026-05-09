@@ -31,6 +31,9 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.gameevent.vibrations.*;
 import net.minecraft.world.phys.*;
+import javax.annotation.*;
+import javax.annotation.Nullable;
+
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
@@ -195,13 +198,14 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 	
 	private void tickOpenProgress() {
 		this.prevOpenProgress = this.openProgress;
-		float peekAmount = (float) this.getPeekAmount() * 0.01F;
-		if (this.openProgress != peekAmount) {
-			if (this.openProgress > peekAmount) {
-				this.openProgress = Mth.clamp(this.openProgress - 0.05F, peekAmount, 1.0F);
-			} else {
-				this.openProgress = Mth.clamp(this.openProgress + 0.05F, 0.0F, peekAmount);
-			}
+		float peekAmount = this.getPeekAmount() * 0.01F;
+		if (this.openProgress == peekAmount) {
+			return;
+		}
+		if (this.openProgress > peekAmount) {
+			this.openProgress = Mth.clamp(this.openProgress - 0.05F, peekAmount, 1.0F);
+		} else {
+			this.openProgress = Mth.clamp(this.openProgress + 0.05F, 0.0F, peekAmount);
 		}
 	}
 	
@@ -332,15 +336,6 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 		this.entityData.set(ATTACHED_FACE, face);
 	}
 	
-	@Override
-	public void onSyncedDataUpdated(EntityDataAccessor<?> data) {
-		if (ATTACHED_FACE.equals(data)) {
-			this.setBoundingBox(this.makeBoundingBox());
-		}
-		
-		super.onSyncedDataUpdated(data);
-	}
-	
 	private int getPeekAmount() {
 		return this.entityData.get(PEEK_AMOUNT);
 	}
@@ -405,12 +400,6 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 				&& this.level().clip(new ClipContext(thisEyePos, entityEyePos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this)).getType() == net.minecraft.world.phys.HitResult.Type.MISS;
 	}
 	
-	@Override
-	public float getPickRadius() {
-		return 0.0F;
-	}
-	
-	@Contract("null->false")
 	public boolean isValidTarget(@Nullable Entity entity) {
 		return entity instanceof LivingEntity livingEntity
 				&& this.level() == entity.level()
@@ -446,7 +435,7 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 			Vector3f vec3f3 = new Vector3f((float) xOffset, (float) yOffset, (float) zOffset);
 			float g = vec3f2.dot(vec3f3);
 			float h = southVectorCopy.dot(vec3f3);
-			return !(Math.abs(g) > 1.0E-5F) && !(Math.abs(h) > 1.0E-5F) ? Optional.empty() : Optional.of((float) (Mth.atan2((-g), h) * 57.2957763671875));
+			return !(Math.abs(g) > 1.0E-5F) && !(Math.abs(h) > 1.0E-5F) ? Optional.empty() : Optional.of((float) (Mth.atan2((-g), h) * 180F / Math.PI));
 		}
 		
 		@Override

@@ -12,7 +12,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -68,7 +68,7 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 	}
 	
 	// the clocks use is blocked if the world has a fixed daylight cycle, or gamerule doDayLightCycle is set to false
-	private static TimeToggleResult canAdvanceTime(@NotNull Level world) {
+	private static TimeToggleResult canAdvanceTime(Level world) {
 		GameRules.BooleanValue doDaylightCycleRule = world.getGameRules().getRule(GameRules.RULE_DAYLIGHT);
 		if (doDaylightCycleRule.get()) {
 			if (world.dimensionType().hasFixedTime()) {
@@ -81,7 +81,7 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 		}
 	}
 	
-	private static void advanceTime(@NotNull ServerLevel world, int additionalTime) {
+	private static void advanceTime(ServerLevel world, int additionalTime) {
 		StartSkyLerpingPayload.startSkyLerping(world, additionalTime);
 		long timeOfDay = world.getDayTime();
 		world.setDayTime(timeOfDay + additionalTime);

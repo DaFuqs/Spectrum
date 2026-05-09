@@ -27,7 +27,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -51,7 +51,7 @@ public class BottomlessBundleItem extends BlockItem {
 	}
 	
 	@Override
-	public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player user, @NotNull InteractionHand hand) {
+	public InteractionResultHolder<ItemStack> use(Level level, Player user, InteractionHand hand) {
 		ItemStack handStack = user.getItemInHand(hand);
 		if (user.isShiftKeyDown()) {
 			
@@ -98,7 +98,7 @@ public class BottomlessBundleItem extends BlockItem {
 	}
 	
 	@Override
-	public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack bundleStack) {
+	public Optional<TooltipComponent> getTooltipImage(ItemStack bundleStack) {
 		BottomlessComponent itemHandler = bundleStack.get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
 		if(itemHandler == null) {
 			return Optional.empty();
@@ -107,7 +107,7 @@ public class BottomlessBundleItem extends BlockItem {
 	}
 	
 	@Override
-	public void appendHoverText(@NotNull ItemStack bundleStack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag tooltipFlag) {
+	public void appendHoverText(ItemStack bundleStack, TooltipContext context, List<Component> tooltip, TooltipFlag tooltipFlag) {
 		BottomlessComponent component = BottomlessComponent.get(bundleStack, context.registries(), false);
 		BottomlessItemHandler itemHandler = component.handler();
 		boolean locked = itemHandler.locked();
@@ -145,7 +145,7 @@ public class BottomlessBundleItem extends BlockItem {
 	 * Only fired clientside!
 	 */
 	@Override
-	public boolean overrideStackedOnOther(ItemStack bundleStack, @NotNull Slot slot, @NotNull ClickAction clickType, @NotNull Player player) {
+	public boolean overrideStackedOnOther(ItemStack bundleStack, Slot slot, ClickAction clickType, Player player) {
 		if (bundleStack.getCount() != 1 || clickType != ClickAction.SECONDARY) {
 			return false;
 		}
@@ -199,7 +199,7 @@ public class BottomlessBundleItem extends BlockItem {
 	}
 	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		// We unbundle, tick and then rebundle the stack, in case inventory tick would modify components, count or other properties
 		// The slot isn't technically correct, since it's the slot of the bundle, not that of the bundled stack
 		
@@ -210,8 +210,7 @@ public class BottomlessBundleItem extends BlockItem {
 		ItemStack bundledStack = bundledVariant.copyWithCount((int) Math.min(Integer.MAX_VALUE, handler.count()));
 		bundledStack.inventoryTick(world, entity, slot, selected);
 		if (!ItemStack.isSameItemSameComponents(bundledVariant, bundledStack) || bundledStack.getCount() != handler.count()) {
-			handler.variant = bundledStack;
-			handler.count = bundledVariant.getCount();
+			handler.setStack(bundledStack);
 			stack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(handler));
 		}
 	}
@@ -238,7 +237,7 @@ public class BottomlessBundleItem extends BlockItem {
 	}
 	
 	@Override
-	public int getEnchantmentValue(@NotNull ItemStack stack) {
+	public int getEnchantmentValue(ItemStack stack) {
 		return 5;
 	}
 	
@@ -288,7 +287,7 @@ public class BottomlessBundleItem extends BlockItem {
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.POWER);
 	}
 	

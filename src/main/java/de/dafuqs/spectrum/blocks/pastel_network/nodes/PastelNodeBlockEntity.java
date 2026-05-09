@@ -34,7 +34,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.Optional;
@@ -47,7 +47,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	public static final int DEFAULT_FILTER_SLOT_ROWS = 1;
 	public static final int RANGE = 12;
 	
-	@NotNull
 	protected UUID nodeId = UUID.randomUUID();
 	protected Optional<UUID> networkUUID = Optional.empty();
 	protected Optional<PastelUpgradeSignature> outerRing, innerRing, redstoneRing;
@@ -72,7 +71,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	private final List<ItemStack> filterItems;
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
 	long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
-	private ConnectionState connectionState;
+	private @Nullable ConnectionState connectionState;
 	
 	private final Object2BooleanMap<TagKey<Item>> filteredTags;
 	private boolean allTagsDeny = true;
@@ -95,7 +94,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return level.getCapability(Capabilities.ItemHandler.BLOCK, this.getBlockPos().relative(direction.getOpposite()), direction);
 	}
 	
-	public static void tick(@NotNull Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
+	public static void tick(Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
 		if (!node.isInitialized && !world.isClientSide()) { // kinda onLoad()?
 			node.getServerNetwork().ifPresent(network -> network.initializeNode(node));
 			node.isInitialized = true;
@@ -398,7 +397,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 	}
 	
-	public @NotNull UUID getNodeId() {
+	public UUID getNodeId() {
 		return nodeId;
 	}
 	
@@ -504,7 +503,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	@Override
-	public void writeClientSideData(@NotNull AbstractContainerMenu menu, @NotNull RegistryFriendlyByteBuf buffer) {
+	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
 		FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.encode(buffer, new FilterConfigurable.ExtendedDataWithPos(this.getBlockPos(), this));
 	}
 	

@@ -12,7 +12,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.joml.*;
 
 import java.lang.Math;
@@ -39,7 +39,7 @@ public class MonstrosityEntityRenderer extends EntityRenderer<MonstrosityEntity>
 	}
 	
 	@Override
-	public void render(@NotNull MonstrosityEntity entity, float entityYaw, float partialTick, PoseStack poseStack, @NotNull MultiBufferSource bufferSource, int packedLight) {
+	public void render(MonstrosityEntity entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
 		poseStack.pushPose();
 		
 		poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
@@ -62,7 +62,7 @@ public class MonstrosityEntityRenderer extends EntityRenderer<MonstrosityEntity>
 			if (random.nextFloat() < FLAVOR_TEXT_CHANCE) {
 				sequence = TEXTS[random.nextInt(MAX_FLAVOR_TEXT_EXCLUSIVE)].getVisualOrderText();
 			} else {
-				int length = (int) Math.max(bbWidth * 0.5F, random.nextIntBetweenInclusive((int) (bbWidth * 5F), (int) (bbWidth * 12F - Math.abs(yOffset) / 4)));
+				int length = (int) Math.max(bbWidth * 0.5F, random.nextIntBetweenInclusive((int) (bbWidth * 5F), (int) (bbWidth * 12F - Math.abs(yOffset) / 4F)));
 				sequence = FormattedCharSequence.forward(new String(new char[length]).replace("\0", "0"), STYLE);
 			}
 			
@@ -77,7 +77,7 @@ public class MonstrosityEntityRenderer extends EntityRenderer<MonstrosityEntity>
 	}
 	
 	@Override
-	public @NotNull ResourceLocation getTextureLocation(@NotNull MonstrosityEntity entity) {
+	public ResourceLocation getTextureLocation(MonstrosityEntity entity) {
 		return TextureAtlas.LOCATION_BLOCKS;
 	}
 	

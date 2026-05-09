@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.*;
 import net.neoforged.neoforge.items.IItemHandler;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -17,8 +17,8 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 	private final long capacity;
 	private final boolean deletesOverflow;
 	private final boolean locked;
-	public ItemStack variant;
-	public long count;
+	private ItemStack variant;
+	private long count;
 	
 	public BottomlessItemHandler(long capacity, boolean deletesOverflow, boolean locked, ItemStack variant, long count) {
 		this.capacity = capacity;
@@ -48,6 +48,11 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 		return deletesOverflow;
 	}
 	
+	public void setStack(ItemStack bundledStack) {
+		this.variant = bundledStack.copyWithCount(1);
+		this.count = bundledStack.getCount();
+	}
+	
 	// returns the amount that could get inserted
 	private long insert(ItemStack insertedVariant, long maxAmount) {
 		if (!isItemValid(0, insertedVariant)) return 0L;
@@ -73,12 +78,12 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 	}
 	
 	@Override
-	public @NotNull ItemStack getStackInSlot(int slot) {
+	public ItemStack getStackInSlot(int slot) {
 		return variant.copyWithCount((int) Math.min(variant.getMaxStackSize(), this.count));
 	}
 
 	@Override
-	public @NotNull ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
 		if (stack.isEmpty())
 			return ItemStack.EMPTY;
 		
@@ -95,7 +100,7 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 	}
 	
 	@Override
-	public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+	public ItemStack extractItem(int slot, int amount, boolean simulate) {
 		if (amount == 0) {
 			return ItemStack.EMPTY;
 		}
@@ -128,12 +133,10 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 		if (toInsert.isEmpty()) return false;
 		if (!toInsert.canFitInsideContainerItems()) return false;
 		
-		if(this.locked()) {
-			return ItemStack.isSameItemSameComponents(this.variant, toInsert);
-		} else {
+		if (!this.locked()) {
 			if (this.isEmpty()) return true;
-			return ItemStack.isSameItemSameComponents(this.variant, toInsert);
 		}
+		return ItemStack.isSameItemSameComponents(this.variant, toInsert);
 	}
 	
 	public boolean isEmpty() {
@@ -141,7 +144,7 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 	}
 	
 	@Override
-	public @NotNull Iterator<ItemStack> iterator() {
+	public Iterator<ItemStack> iterator() {
 		return new Iterator<>() {
 			
 			@Override
@@ -156,5 +159,4 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 			
 		};
 	}
-	
 }

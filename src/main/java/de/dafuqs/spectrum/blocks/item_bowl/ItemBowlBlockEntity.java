@@ -21,7 +21,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -40,7 +40,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 	}
 	
 	@SuppressWarnings("unused")
-	public static void clientTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, ItemBowlBlockEntity itemBowlBlockEntity) {
+	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, ItemBowlBlockEntity itemBowlBlockEntity) {
 		ItemStack storedStack = itemBowlBlockEntity.getItem(0);
 		if (!storedStack.isEmpty()) {
 			Optional<InkColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getInkColor(storedStack.getItem());

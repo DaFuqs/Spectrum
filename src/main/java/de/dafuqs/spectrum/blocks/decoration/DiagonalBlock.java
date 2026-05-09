@@ -5,7 +5,7 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class DiagonalBlock extends Block {
 	

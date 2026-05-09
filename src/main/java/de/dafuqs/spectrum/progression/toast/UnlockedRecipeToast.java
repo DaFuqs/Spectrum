@@ -18,7 +18,7 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -30,35 +30,34 @@ public class UnlockedRecipeToast implements Toast {
 	private final Component text;
 	private final List<ItemStack> itemStacks;
 	private final SoundEvent soundEvent = SpectrumSoundEvents.NEW_RECIPE;
-	private boolean soundPlayed;
+	private boolean soundPlayed = false;
 	
 	public UnlockedRecipeToast(Component title, Component text, List<ItemStack> itemStacks) {
 		this.title = title;
 		this.text = text;
 		this.itemStacks = itemStacks;
-		this.soundPlayed = false;
 	}
 	
-	public static void showRecipeToast(@NotNull Minecraft client, ItemStack itemStack, Component title) {
+	public static void showRecipeToast(Minecraft client, ItemStack itemStack, Component title) {
 		Component text = getTextForItemStack(itemStack);
 		client.getToasts().addToast(new UnlockedRecipeToast(title, text, new ArrayList<>() {{
 			add(itemStack);
 		}}));
 	}
 	
-	public static void showRecipeGroupToast(@NotNull Minecraft client, String groupName, List<ItemStack> itemStacks, Component title) {
+	public static void showRecipeGroupToast(Minecraft client, String groupName, List<ItemStack> itemStacks, Component title) {
 		Component text = Component.translatable("recipeGroup.spectrum." + groupName);
 		client.getToasts().addToast(new UnlockedRecipeToast(title, text, itemStacks));
 	}
 	
-	public static void showLotsOfRecipesToast(@NotNull Minecraft client, List<ItemStack> itemStacks) {
+	public static void showLotsOfRecipesToast(Minecraft client, List<ItemStack> itemStacks) {
 		client.getToasts().addToast(new UnlockedRecipeToast(
 				Component.translatable("spectrum.toast.lots_of_recipes_unlocked.title"),
 				Component.translatable("spectrum.toast.lots_of_recipes_unlocked.description", itemStacks.size()),
 				itemStacks));
 	}
 	
-	public static Component getTextForItemStack(@NotNull ItemStack itemStack) {
+	public static Component getTextForItemStack(ItemStack itemStack) {
 		if (itemStack.is(Items.ENCHANTED_BOOK)) {
 			// special handling for enchanted books
 			// Instead of the text "enchanted book" the toast will
@@ -80,7 +79,7 @@ public class UnlockedRecipeToast implements Toast {
 	}
 	
 	@Override
-	public Toast.@NotNull Visibility render(GuiGraphics drawContext, @NotNull ToastComponent manager, long startTime) {
+	public Toast.Visibility render(GuiGraphics drawContext, ToastComponent manager, long startTime) {
 		drawContext.blit(TEXTURE, 0, 0, 0, 32, this.width(), this.height());
 		
 		Minecraft client = manager.getMinecraft();
@@ -91,9 +90,7 @@ public class UnlockedRecipeToast implements Toast {
 		long toastTimeMilliseconds = SpectrumConfig.CONFIG.ToastTimeMilliseconds.get();
 		if (!this.soundPlayed && startTime > 0L) {
 			this.soundPlayed = true;
-			if (this.soundEvent != null) {
-				manager.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(this.soundEvent, 1.0F, 1.0F));
-			}
+			manager.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(this.soundEvent, 1.0F, 1.0F));
 		}
 		
 		int itemStackIndex = (int) (startTime / Math.max(1, toastTimeMilliseconds / this.itemStacks.size()) % this.itemStacks.size());

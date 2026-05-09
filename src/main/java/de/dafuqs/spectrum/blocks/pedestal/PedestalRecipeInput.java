@@ -5,7 +5,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -19,7 +19,6 @@ public class PedestalRecipeInput implements RecipeInput {
 			new ItemStack(SpectrumItems.MOONSTONE_POWDER.get(), 64)
 	);
 	
-	@Nullable
 	private final Level level;
 	private final Player player;
 	private final CraftingInput craftingGridInput;
@@ -71,7 +70,7 @@ public class PedestalRecipeInput implements RecipeInput {
 		return this.player;
 	}
 	
-	public @NotNull Level getLevel() {
+	public Level getLevel() {
 		return this.level;
 	}
 	

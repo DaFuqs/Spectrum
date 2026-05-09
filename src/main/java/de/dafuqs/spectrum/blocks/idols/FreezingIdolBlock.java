@@ -11,7 +11,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -44,7 +44,7 @@ public class FreezingIdolBlock extends IdolBlock {
 		return null;
 	}
 	
-	public static void freeze(@NotNull ServerLevel world, BlockPos blockPos) {
+	public static void freeze(ServerLevel world, BlockPos blockPos) {
 		BlockState sourceState = world.getBlockState(blockPos);
 		if (FREEZING_MAP.containsKey(sourceState.getBlock())) {
 			Tuple<BlockState, Float> recipe = FREEZING_MAP.get(sourceState.getBlock());

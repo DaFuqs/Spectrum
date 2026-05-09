@@ -13,7 +13,7 @@ import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.jgrapht.alg.connectivity.*;
 import org.jgrapht.graph.*;
 
@@ -239,12 +239,10 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 			// this part of the network has at least 2 nodes
 			// => collect all nodes and pick a network UUID
 			PastelNodeBlockEntity initialNode = null;
-			Set<PastelNodeBlockEntity> blockEntities = new ObjectArraySet<>();
 			for (BlockPos pos : smallerSet) {
 				Optional<PastelNodeBlockEntity> blockEntity = level.getBlockEntity(pos, SpectrumBlockEntities.PASTEL_NODE.get());
 				if (blockEntity.isPresent()) {
 					disconnectedBEs.add(blockEntity.get());
-					blockEntities.add(blockEntity.get());
 					if (initialNode == null) {
 						initialNode = blockEntity.get();
 					}

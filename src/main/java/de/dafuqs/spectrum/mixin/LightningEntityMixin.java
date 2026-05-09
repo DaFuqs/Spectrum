@@ -8,7 +8,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -31,7 +31,7 @@ public abstract class LightningEntityMixin {
 	}
 	
 	@Unique
-	private void spectrum$spawnStormStone(@NotNull Level world, BlockPos affectedBlockPos) {
+	private void spectrum$spawnStormStone(Level world, BlockPos affectedBlockPos) {
 		BlockState blockState = world.getBlockState(affectedBlockPos);
 		BlockPos aboveGroundBlockPos;
 		

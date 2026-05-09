@@ -14,6 +14,9 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
 
+import javax.annotation.*;
+import javax.annotation.Nullable;
+
 import java.util.*;
 
 public enum PedestalRecipeTier implements StringRepresentable {
@@ -57,11 +60,11 @@ public enum PedestalRecipeTier implements StringRepresentable {
 		return Optional.empty();
 	}
 	
-	public boolean hasUnlocked(Player playerEntity) {
+	public boolean hasUnlocked(@Nullable Player playerEntity) {
 		return AdvancementHelper.hasAdvancement(playerEntity, unlockAdvancementId);
 	}
 	
-	public static Optional<PedestalRecipeTier> hasJustUnlockedANewRecipeTier(@NotNull ResourceLocation advancementIdentifier) {
+	public static Optional<PedestalRecipeTier> hasJustUnlockedANewRecipeTier(ResourceLocation advancementIdentifier) {
 		if (advancementIdentifier.equals(BASIC.unlockAdvancementId)) {
 			return Optional.of(PedestalRecipeTier.BASIC);
 		} else if (advancementIdentifier.equals(SIMPLE.unlockAdvancementId)) {
@@ -73,7 +76,6 @@ public enum PedestalRecipeTier implements StringRepresentable {
 		}
 		return Optional.empty();
 	}
-	
 	
 	@Contract(pure = true)
 	public @Nullable ResourceLocation getStructureID(Player player) {
@@ -115,7 +117,7 @@ public enum PedestalRecipeTier implements StringRepresentable {
 	}
 	
 	@Override
-	public @NotNull String getSerializedName() {
+	public String getSerializedName() {
 		return name().toLowerCase();
 	}
 }

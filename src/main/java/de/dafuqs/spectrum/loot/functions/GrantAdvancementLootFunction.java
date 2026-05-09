@@ -14,7 +14,7 @@ import net.minecraft.world.level.storage.loot.LootContext.*;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -34,15 +34,15 @@ public class GrantAdvancementLootFunction extends LootItemConditionalFunction {
 		this.ids = ids;
 	}
 	
-	public @NotNull LootItemFunctionType<GrantAdvancementLootFunction> getType() {
+	public LootItemFunctionType<GrantAdvancementLootFunction> getType() {
 		return SpectrumLootFunctionTypes.GRANT_ADVANCEMENT;
 	}
 	
-	public @NotNull Set<LootContextParam<?>> getReferencedContextParams() {
+	public Set<LootContextParam<?>> getReferencedContextParams() {
 		return ImmutableSet.of(this.entity.getParam());
 	}
 	
-	public @NotNull ItemStack run(@NotNull ItemStack stack, LootContext context) {
+	public ItemStack run(ItemStack stack, LootContext context) {
 		Entity entity = context.getParamOrNull(this.entity.getParam());
 		if (entity instanceof ServerPlayer player) {
 			for (ResourceLocation id : this.ids) {

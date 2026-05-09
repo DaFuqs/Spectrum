@@ -15,7 +15,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.saveddata.maps.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -24,11 +24,9 @@ public class ArtisansAtlasState extends MapItemSavedData {
 	private final MapStateAccessor accessor;
 	private Set<BlockPos> targets;
 	private BlockPos displayedCenter;
-	private ResourceLocation targetId;
-	@Nullable
-	private Vec3i displayDelta;
-	@Nullable
-	private StructureLocatorAsync locator;
+	private @Nullable ResourceLocation targetId;
+	private @Nullable Vec3i displayDelta;
+	private @Nullable StructureLocatorAsync locator;
 	
 	public ArtisansAtlasState(byte scale, boolean locked, ResourceKey<Level> dimension) {
 		this(0, 0, scale, false, false, locked, dimension);
@@ -226,7 +224,7 @@ public class ArtisansAtlasState extends MapItemSavedData {
 		return false;
 	}
 	
-	private void addTargetIcon(LevelAccessor world, BlockPos target) {
+	private void addTargetIcon(LevelAccessor world, @Nullable BlockPos target) {
 		if (target != null) {
 			addDecoration(MapDecorationTypes.TARGET_POINT, world, getTargetKey(target), target.getX(), target.getZ(), 180, null);
 		}

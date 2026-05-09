@@ -19,27 +19,27 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.fluids.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public abstract class DragonrotFluid extends SpectrumFluid {
 	
 	@Override
-	public @NotNull FluidType getFluidType() {
+	public FluidType getFluidType() {
 		return SpectrumFluids.DRAGONROT_TYPE.get();
 	}
 	
 	@Override
-	public @NotNull Fluid getSource() {
+	public Fluid getSource() {
 		return SpectrumFluids.DRAGONROT.get();
 	}
 	
 	@Override
-	public @NotNull Fluid getFlowing() {
+	public Fluid getFlowing() {
 		return SpectrumFluids.FLOWING_DRAGONROT.get();
 	}
 	
 	@Override
-	public @NotNull Item getBucket() {
+	public Item getBucket() {
 		return SpectrumItems.DRAGONROT_BUCKET.get();
 	}
 	
@@ -49,7 +49,7 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 	}
 	
 	@Override
-	public boolean isSame(@NotNull Fluid fluid) {
+	public boolean isSame(Fluid fluid) {
 		return fluid == SpectrumFluids.DRAGONROT.get() || fluid == SpectrumFluids.FLOWING_DRAGONROT.get();
 	}
 	

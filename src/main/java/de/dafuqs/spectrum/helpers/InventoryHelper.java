@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.items.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -33,7 +33,7 @@ public class InventoryHelper {
 		return count;
 	}
 	
-	public static boolean removeFromInventoryWithRemainders(@NotNull Player playerEntity, @NotNull ItemStack stackToRemove) {
+	public static boolean removeFromInventoryWithRemainders(Player playerEntity, ItemStack stackToRemove) {
 		if (playerEntity.isCreative()) {
 			return true;
 		}
@@ -481,7 +481,7 @@ public class InventoryHelper {
 	 * @return true if all stacks can be fully placed into the inventory, false otherwise
 	 */
 	public static boolean canFitStacks(List<ItemStack> inventory, List<ItemStack> stacks) {
-		if (stacks == null || stacks.isEmpty()) {
+		if (stacks.isEmpty()) {
 			return true;
 		}
 		
@@ -494,8 +494,7 @@ public class InventoryHelper {
 			for (ItemStack s : inventory) sim.add(s == null ? ItemStack.EMPTY : s.copy());
 			
 			// First try to merge into existing stacks
-			for (int i = 0; i < sim.size(); i++) {
-				ItemStack slot = sim.get(i);
+			for (ItemStack slot : sim) {
 				if (slot.isEmpty()) continue;
 				if (ItemStack.isSameItemSameComponents(slot, remaining)) {
 					int space = Math.min(slot.getMaxStackSize(), remaining.getMaxStackSize()) - slot.getCount();
@@ -536,7 +535,7 @@ public class InventoryHelper {
 		List<ItemStack> list = new ArrayList<>();
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
 			ItemStack s = inventory.getItem(i);
-			list.add(s == null ? ItemStack.EMPTY : s.copy());
+			list.add(s.copy());
 		}
 		return canFitStacks(list, stacks);
 	}

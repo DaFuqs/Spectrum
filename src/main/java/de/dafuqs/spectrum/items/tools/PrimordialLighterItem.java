@@ -19,14 +19,14 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
 public class PrimordialLighterItem extends FlintAndSteelItem implements CreativeOnlyItem {
 	
 	public static final DispenseItemBehavior DISPENSER_BEHAVIOR = new OptionalDispenseItemBehavior() {
-		protected @NotNull ItemStack execute(BlockSource pointer, @NotNull ItemStack stack) {
+		protected ItemStack execute(BlockSource pointer, ItemStack stack) {
 			var world = pointer.level();
 			this.setSuccess(true);
 			Direction direction = pointer.state().getValue(DispenserBlock.FACING);

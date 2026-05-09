@@ -33,7 +33,7 @@ public class BookHintPage extends BookTextPage {
 		var condition = json.has("condition")
 				? BookCondition.fromJson(entryId, json.getAsJsonObject("condition"), provider)
 				: new BookNoneCondition();
-		var completionAdvancement = ResourceLocation.tryParse(GsonHelper.getAsString(json, "completion_advancement"));
+		var completionAdvancement = ResourceLocation.parse(GsonHelper.getAsString(json, "completion_advancement"));
 		IngredientStack cost = IngredientStack.EMPTY;
 		if (json.has("amount")) {
 			var ingredient = GsonHelper.getAsJsonObject(json, "amount");

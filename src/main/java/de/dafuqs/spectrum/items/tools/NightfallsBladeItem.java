@@ -19,7 +19,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -51,7 +51,7 @@ public class NightfallsBladeItem extends TieredItem implements InkPoweredPotionF
 	}
 	
 	@Override
-	public long adjustFinalCostFor(@NotNull InkPoweredStatusEffectInstance instance) {
+	public long adjustFinalCostFor(InkPoweredStatusEffectInstance instance) {
 		return Math.round(Math.pow(instance.getInkCost().amount(), 1.75 + instance.getStatusEffectInstance().getAmplifier()));
 	}
 	

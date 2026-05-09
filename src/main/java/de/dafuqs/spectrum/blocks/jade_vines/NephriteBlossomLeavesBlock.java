@@ -99,7 +99,7 @@ public class NephriteBlossomLeavesBlock extends FlammableLeavesBlock implements 
 	
 	@Override
 	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
-		var age = state.getValue(AGE);
+		int age = state.getValue(AGE);
 		if (age == MAX_AGE)
 			return;
 		

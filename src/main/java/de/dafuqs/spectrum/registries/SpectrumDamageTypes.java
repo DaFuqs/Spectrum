@@ -9,7 +9,7 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
@@ -160,7 +160,7 @@ public class SpectrumDamageTypes {
 
 	public static class MoonstoneStrikeDamageSource extends DamageSource {
 		
-		public MoonstoneStrikeDamageSource(Level world, LivingEntity attacker) {
+		public MoonstoneStrikeDamageSource(Level world, @Nullable LivingEntity attacker) {
 			super(world.damageSources().damageTypes.getHolderOrThrow(MOONSTONE_STRIKE), attacker);
 		}
 	}

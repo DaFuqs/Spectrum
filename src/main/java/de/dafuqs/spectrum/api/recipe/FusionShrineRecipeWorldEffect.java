@@ -12,7 +12,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 /**
  * Effects that are played when crafting with the fusion shrine
@@ -43,7 +43,7 @@ public interface FusionShrineRecipeWorldEffect {
 	}
 	
 	static FusionShrineRecipeWorldEffect fromString(String string) {
-		if (string == null || string.isBlank()) {
+		if (string.isBlank()) {
 			return NOTHING;
 		}
 		if (string.startsWith("/")) {
@@ -115,7 +115,7 @@ public interface FusionShrineRecipeWorldEffect {
 		}
 		
 		@Override
-		public void sendSystemMessage(@NotNull Component message) {
+		public void sendSystemMessage(Component message) {
 		}
 		
 		@Override

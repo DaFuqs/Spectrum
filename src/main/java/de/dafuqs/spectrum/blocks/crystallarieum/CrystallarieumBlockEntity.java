@@ -24,7 +24,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -57,8 +57,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	protected boolean canWork;
 	float rotation = 0F;
 	
-	protected FlowAnimator animator;
-	@NotNull
+	protected @Nullable FlowAnimator animator;
 	protected FlowData<Float> _alpha = FlowData.NULL(), _speed = FlowData.NULL(), _bounce = FlowData.NULL();
 	
 	public CrystallarieumBlockEntity(BlockPos pos, BlockState state) {
@@ -68,7 +67,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	}
 	
 	@SuppressWarnings("unused")
-	public static void clientTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
+	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
 		if (crystallarieum.animator == null) {
 			crystallarieum.animator = FACTORY.create(FlowStates.INIT, crystallarieum);
 		} else {
@@ -102,7 +101,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	}
 	
 	@SuppressWarnings("unused")
-	public static void serverTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
+	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
 		if (crystallarieum.canWork) {
 			transferInk(crystallarieum);
 			
@@ -121,7 +120,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	 * Progress the recipe
 	 * gets called 1/second
 	 */
-	private static void tickRecipe(@NotNull Level world, BlockPos blockPos, CrystallarieumBlockEntity crystallarieum, @NotNull RecipeHolder<CrystallarieumRecipe> recipe) {
+	private static void tickRecipe(Level world, BlockPos blockPos, CrystallarieumBlockEntity crystallarieum, RecipeHolder<CrystallarieumRecipe> recipe) {
 		if (crystallarieum.currentCatalyst == CrystallarieumCatalyst.EMPTY && !recipe.value().growsWithoutCatalyst()) {
 			return;
 		}

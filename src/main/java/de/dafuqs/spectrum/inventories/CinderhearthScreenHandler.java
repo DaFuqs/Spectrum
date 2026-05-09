@@ -12,6 +12,8 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 
+import javax.annotation.*;
+
 public class CinderhearthScreenHandler extends AbstractContainerMenu {
 	
 	public static final int PLAYER_INVENTORY_START_X = 8;
@@ -21,7 +23,7 @@ public class CinderhearthScreenHandler extends AbstractContainerMenu {
 	private final CinderhearthBlockEntity blockEntity;
 	private final ContainerData propertyDelegate;
 	
-	public final ServerPlayer player;
+	public final @Nullable ServerPlayer player;
 	
 	// clientside
 	public CinderhearthScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {

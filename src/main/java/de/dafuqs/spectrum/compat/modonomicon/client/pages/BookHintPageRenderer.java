@@ -15,7 +15,7 @@ import net.minecraft.client.gui.components.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
 import net.neoforged.neoforge.network.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -121,7 +121,7 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 		return out;
 	}
 	
-	private BookTextHolder obfuscateText(BookTextHolder text, @Nullable BookTextHolder splitText, int start) {
+	private @Nullable BookTextHolder obfuscateText(BookTextHolder text, @Nullable BookTextHolder splitText, int start) {
 		if (mc.level == null) return BookTextHolder.EMPTY;
 		
 		if (revealProgress == 0) {

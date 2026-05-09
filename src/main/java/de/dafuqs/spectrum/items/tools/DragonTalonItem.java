@@ -21,7 +21,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -101,7 +101,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 			return;
 		}
 		
-		var reserver = SlotReservingItem.getReserver(stack);
+		@Nullable UUID reserver = SlotReservingItem.getReserver(stack);
 		if (world instanceof ServerLevel serverWorld && reserver != null) {
 			if (serverWorld.getEntity(reserver) instanceof DragonTalonEntity dragonTalonEntity) {
 				dragonTalonEntity.recall();
@@ -110,7 +110,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	}
 	
 	@Override
-	public boolean isFoil(@NotNull ItemStack stack) {
+	public boolean isFoil(ItemStack stack) {
 		return super.isFoil(stack) && !SlotReservingItem.isReservingSlot(stack);
 	}
 	
@@ -145,7 +145,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	}
 	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		if (entity instanceof Player player) {
 			if (player.getCooldowns().isOnCooldown(stack.getItem()) || SlotReservingItem.isReservingSlot(stack)) {
 				stack.remove(DataComponents.ATTRIBUTE_MODIFIERS);
@@ -187,7 +187,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.CHANNELING) || enchantment.is(Enchantments.PIERCING);
 	}
 }

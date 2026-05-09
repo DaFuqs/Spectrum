@@ -15,7 +15,7 @@ import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 	
@@ -32,12 +32,12 @@ public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 	}
 	
 	@Override
-	protected void onHitEntity(@NotNull EntityHitResult hitResult) {
+	protected void onHitEntity(EntityHitResult hitResult) {
 		explodeAt(hitResult.getLocation());
 	}
 	
 	@Override
-	protected void onHitBlock(@NotNull BlockHitResult hitResult) {
+	protected void onHitBlock(BlockHitResult hitResult) {
 		explodeAt(Vec3.atCenterOf(hitResult.getBlockPos()));
 	}
 	
@@ -84,7 +84,7 @@ public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 	}
 	
 	@Override
-	protected @NotNull Item getDefaultItem() {
+	protected Item getDefaultItem() {
 		return SpectrumBlocks.PARAMETRIC_MINING_DEVICE.asItem();
 	}
 	

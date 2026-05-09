@@ -22,24 +22,12 @@ public class ZigZagParticle extends TextureSheetParticle {
 		
 		// randomize the current velocity for sharp turns
 		if (age % 8 == 0) {
-			//setVelocity(0.06 - random.nextFloat() * 0.12, 0.06 - random.nextFloat() * 0.12, 0.06 - random.nextFloat() * 0.12);
-			
 			switch (level.random.nextInt(6)) {
-				case 1: {
-					setParticleSpeed(xd, zd, yd);
-				}
-				case 2: {
-					setParticleSpeed(zd, yd, xd);
-				}
-				case 3: {
-					setParticleSpeed(zd, xd, yd);
-				}
-				case 4: {
-					setParticleSpeed(yd, xd, zd);
-				}
-				default: {
-					setParticleSpeed(yd, zd, xd);
-				}
+				case 1 -> setParticleSpeed(xd, zd, yd);
+				case 2 -> setParticleSpeed(zd, yd, xd);
+				case 3 -> setParticleSpeed(zd, xd, yd);
+				case 4 -> setParticleSpeed(yd, xd, zd);
+				default -> setParticleSpeed(yd, zd, xd);
 			}
 		}
 	}

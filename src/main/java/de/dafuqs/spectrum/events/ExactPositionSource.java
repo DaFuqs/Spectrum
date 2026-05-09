@@ -8,7 +8,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -27,23 +27,23 @@ public class ExactPositionSource implements PositionSource {
 	}
 	
 	@Override
-	public @NotNull Optional<Vec3> getPosition(@NotNull Level level) {
+	public Optional<Vec3> getPosition(Level level) {
 		return Optional.of(this.pos);
 	}
 	
 	@Override
-	public @NotNull PositionSourceType<?> getType() {
+	public PositionSourceType<?> getType() {
 		return SpectrumPositionSources.EXACT.get();
 	}
 	
 	public static class Type implements PositionSourceType<ExactPositionSource> {
 		public Type() { }
 		
-		public @NotNull MapCodec<ExactPositionSource> codec() {
+		public MapCodec<ExactPositionSource> codec() {
 			return ExactPositionSource.CODEC;
 		}
 		
-		public @NotNull StreamCodec<ByteBuf, ExactPositionSource> streamCodec() {
+		public StreamCodec<ByteBuf, ExactPositionSource> streamCodec() {
 			return ExactPositionSource.PACKET_CODEC;
 		}
 	}

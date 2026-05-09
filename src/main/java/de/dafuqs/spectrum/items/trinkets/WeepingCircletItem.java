@@ -13,7 +13,7 @@ import net.minecraft.world.entity.animal.axolotl.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;
@@ -68,7 +68,7 @@ public class WeepingCircletItem extends SpectrumCurioItem {
 		}
 	}
 	
-	private void healLovingAxolotls(@NotNull ServerPlayer entity) {
+	private void healLovingAxolotls(ServerPlayer entity) {
 		Level world = entity.level();
 		List<Axolotl> nearbyAxolotls = entity.level().getEntities(EntityType.AXOLOTL, AABB.ofSize(entity.position(), MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE), LivingEntity::isAlive);
 		for (Axolotl axolotlEntity : nearbyAxolotls) {

@@ -16,14 +16,15 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRenderer<CinderhearthRecipe, BookGatedRecipePage<CinderhearthRecipe>> {
 	
 	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/cinderhearth.png");
 	
-	private List<BookTextHolder> chanceTexts1 = null;
-	private List<BookTextHolder> chanceTexts2 = null;
+	private @Nullable List<BookTextHolder> chanceTexts1 = null;
+	private @Nullable List<BookTextHolder> chanceTexts2 = null;
 	
 	public BookCinderhearthSmeltingPageRenderer(BookGatedRecipePage<CinderhearthRecipe> page) {
 		super(page);
@@ -43,9 +44,7 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
 		}
 	}
 	
-	private List<BookTextHolder> createChanceTexts(CinderhearthRecipe recipe) {
-		if (recipe == null) return null;
-		
+	private @Nullable List<BookTextHolder> createChanceTexts(CinderhearthRecipe recipe) {
 		Level world = Minecraft.getInstance().level;
 		if (world == null) return null;
 		

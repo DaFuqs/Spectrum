@@ -21,7 +21,7 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -71,8 +71,8 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 			if (player.isShiftKeyDown()) {
 				BlockEntity be = world.getBlockEntity(pos);
 				if (be instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-					long amount = bottomlessBundleBlockEntity.storage().count;
-					ItemStack variant = bottomlessBundleBlockEntity.storage().variant;
+					long amount = bottomlessBundleBlockEntity.storage().count();
+					ItemStack variant = bottomlessBundleBlockEntity.storage().variant();
 					long maxStoredAmount = bottomlessBundleBlockEntity.storage().getCapacity();
 					if (variant == null || variant.isEmpty()) {
 						player.displayClientMessage(Component.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), true);
@@ -131,7 +131,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-			float curr = bottomlessBundleBlockEntity.storage().count;
+			float curr = bottomlessBundleBlockEntity.storage().count();
 			float max = bottomlessBundleBlockEntity.storage().getCapacity();
 			int signal = Mth.floor(curr / max * 14.0f) + (curr > 0 ? 1 : 0);
 			return signal;

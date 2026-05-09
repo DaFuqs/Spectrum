@@ -6,6 +6,8 @@ import net.minecraft.world.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 
+import javax.annotation.*;
+
 public final class PastelUpgradeSignature {
 
 	public static final String INNER_RING_BASE_PATH = "textures/block/pastel_node_inner_ring_";
@@ -58,7 +60,7 @@ public final class PastelUpgradeSignature {
 		private final Item upgradeItem;
 		private final Category category;
 		private final String namespace;
-		private String name, outerRing, innerRing;
+		private @Nullable String name, outerRing, innerRing;
 		private int stackMod, speedMod, slotRowMod;
 		private float stackMult = 1, speedMult = 1;
 		private boolean light, priority, triggerTransfer, lamp, sensor;
@@ -124,28 +126,28 @@ public final class PastelUpgradeSignature {
 			return this;
 		}
 
-		public Builder light(boolean light) {
-			this.light = light;
+		public Builder light() {
+			this.light = true;
 			return this;
 		}
 
-		public Builder priority(boolean priority) {
-			this.priority = priority;
+		public Builder priority() {
+			this.priority = true;
 			return this;
 		}
 
-		public Builder triggerTransfer(boolean triggerTransfer) {
-			this.triggerTransfer = triggerTransfer;
+		public Builder triggerTransfer() {
+			this.triggerTransfer = true;
 			return this;
 		}
 
-		public Builder lamp(boolean lamp) {
-			this.lamp = lamp;
+		public Builder lamp() {
+			this.lamp = true;
 			return this;
 		}
 
-		public Builder sensor(boolean sensor) {
-			this.sensor = sensor;
+		public Builder sensor() {
+			this.sensor = true;
 			return this;
 		}
 
@@ -209,10 +211,10 @@ public final class PastelUpgradeSignature {
 
 		private void verify() {
 			if (name == null)
-				throw new IllegalStateException("Name can't be null");
+				throw new IllegalStateException("PastelUpgradeSignature name can't be null");
 
 			if (outerRing == null)
-				throw new IllegalStateException("Main path can't be null");
+				throw new IllegalStateException("PastelUpgradeSignature main path can't be null");
 		}
 	}
 

@@ -127,11 +127,11 @@ public class EraserEntityModel extends HierarchicalModel<EraserEntity> {
 		this.head.xRot = headPitch * 0.017453292F;
 		
 		float i = -(Mth.cos(limbAngle * 0.6662F * 2.0F + 0.0F * PI) * 0.4F) * limbDistance;
-		float j = -(Mth.cos(limbAngle * 0.6662F * 2.0F + 1.0F * PI) * 0.4F) * limbDistance;
+		float j = -(Mth.cos(limbAngle * 0.6662F * 2.0F + PI) * 0.4F) * limbDistance;
 		float k = -(Mth.cos(limbAngle * 0.6662F * 2.0F + 0.5F * 3.1415927F) * 0.4F) * limbDistance;
 		float l = -(Mth.cos(limbAngle * 0.6662F * 2.0F + 1.5F * PI) * 0.4F) * limbDistance;
 		float m = Math.abs(Mth.sin(limbAngle * 0.6662F + 0.0F * PI) * 0.4F) * limbDistance;
-		float n = Math.abs(Mth.sin(limbAngle * 0.6662F + 1.0F * PI) * 0.4F) * limbDistance;
+		float n = Math.abs(Mth.sin(limbAngle * 0.6662F + PI) * 0.4F) * limbDistance;
 		float o = Math.abs(Mth.sin(limbAngle * 0.6662F + 0.5F * 3.1415927F) * 0.4F) * limbDistance;
 		float p = Math.abs(Mth.sin(limbAngle * 0.6662F + 1.5F * PI) * 0.4F) * limbDistance;
 		

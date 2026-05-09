@@ -15,7 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -173,8 +173,12 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 						world.scheduleTick(pos, state.getBlock(), 2 + random.nextInt(5));
 					}
 				} else {
-					world.setBlock(pos, targetState, 3);
 					Player owner = PlayerOwned.getPlayerIfOnline(world, blockFlooderBlockEntity.getOwnerUUID());
+					if(owner == null) {
+						return;
+					}
+					
+					world.setBlock(pos, targetState, 3);
 					if (!owner.isCreative()) {
 						List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(new ItemStack(targetState.getBlock().asItem()), owner.getInventory());
 						for (ItemStack remainder : remainders) {

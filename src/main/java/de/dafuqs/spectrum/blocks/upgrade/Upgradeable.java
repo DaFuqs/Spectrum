@@ -8,7 +8,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -64,7 +64,7 @@ public interface Upgradeable {
 			return nbtList;
 		}
 		
-		public static UpgradeHolder fromNbt(@NotNull ListTag nbtList) {
+		public static UpgradeHolder fromNbt(ListTag nbtList) {
 			Map<UpgradeType, Integer> map = new HashMap<>();
 			for (UpgradeType upgradeType : UpgradeType.values()) {
 				map.put(upgradeType, 0);
@@ -108,7 +108,7 @@ public interface Upgradeable {
 
 	}
 	
-	static @NotNull UpgradeHolder calculateUpgradeMods4(Level world, @NotNull BlockPos blockPos, int offsetHorizontal, int offsetUp, @Nullable UUID advancementPlayerUUID) {
+	static UpgradeHolder calculateUpgradeMods4(Level world, BlockPos blockPos, int offsetHorizontal, int offsetUp, @Nullable UUID advancementPlayerUUID) {
 		List<BlockPos> posList = new ArrayList<>();
 		posList.add(blockPos.offset(offsetHorizontal, offsetUp, offsetHorizontal));
 		posList.add(blockPos.offset(offsetHorizontal, offsetUp, -offsetHorizontal));
@@ -118,11 +118,11 @@ public interface Upgradeable {
 		return calculateUpgrades(world, blockPos, posList, advancementPlayerUUID);
 	}
 	
-	static @NotNull UpgradeHolder calculateUpgradeMods2(Level world, BlockPos blockPos, @NotNull Rotation multiblockRotation, int offsetHorizontal, int offsetUp, @Nullable UUID advancementPlayerUUID) {
+	static UpgradeHolder calculateUpgradeMods2(Level world, BlockPos blockPos, Rotation multiblockRotation, int offsetHorizontal, int offsetUp, @Nullable UUID advancementPlayerUUID) {
 		return calculateUpgradeMods2(world, blockPos, multiblockRotation, offsetHorizontal, offsetHorizontal, offsetUp, advancementPlayerUUID);
 	}
 	
-	static @NotNull UpgradeHolder calculateUpgradeMods2(Level world, BlockPos blockPos, @NotNull Rotation multiblockRotation, int offsetSide, int offsetBack, int offsetUp, @Nullable UUID advancementPlayerUUID) {
+	static UpgradeHolder calculateUpgradeMods2(Level world, BlockPos blockPos, Rotation multiblockRotation, int offsetSide, int offsetBack, int offsetUp, @Nullable UUID advancementPlayerUUID) {
 		List<BlockPos> positions = new ArrayList<>();
 		switch (multiblockRotation) {
 			case NONE -> {
@@ -146,7 +146,7 @@ public interface Upgradeable {
 		return calculateUpgrades(world, blockPos, positions, advancementPlayerUUID);
 	}
 	
-	private static @NotNull UpgradeHolder calculateUpgrades(Level world, BlockPos blockPos, @NotNull List<BlockPos> positions, @Nullable UUID advancementPlayerUUID) {
+	private static UpgradeHolder calculateUpgrades(Level world, BlockPos blockPos, List<BlockPos> positions, @Nullable UUID advancementPlayerUUID) {
 		// create a hash map of upgrade types and mods
 		HashMap<UpgradeType, Integer> upgradeMods = new HashMap<>();
 		for (UpgradeType upgradeType : UpgradeType.values()) {

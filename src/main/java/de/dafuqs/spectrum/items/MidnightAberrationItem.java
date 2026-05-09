@@ -13,7 +13,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -31,15 +31,11 @@ public class MidnightAberrationItem extends CloakedItem {
 	}
 	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
 		if (!world.isClientSide && world.getGameTime() % 20 == 0 && entity instanceof ServerPlayer player && !player.isCreative()) {
-			if (stack.has(SpectrumDataComponentTypes.STABLE))
-				return;
-			
-			// check if it's a real stack in the player's inventory or just a proxy item (like a Bottomless Bundle)
-			if (player.getInventory().getItem(slot) != stack) {
+			if (stack.has(SpectrumDataComponentTypes.STABLE)) {
 				return;
 			}
 			
@@ -54,7 +50,7 @@ public class MidnightAberrationItem extends CloakedItem {
 			}
 			
 			if (world.random.nextFloat() < 0.2F) {
-				stack.shrink(1);
+ 				stack.shrink(1);
 				player.getInventory().placeItemBackInInventory(Items.GUNPOWDER.getDefaultInstance());
 				world.playSound(null, player, SpectrumSoundEvents.MIDNIGHT_ABERRATION_CRUMBLING, SoundSource.PLAYERS, 0.5F, 1.0F);
 				

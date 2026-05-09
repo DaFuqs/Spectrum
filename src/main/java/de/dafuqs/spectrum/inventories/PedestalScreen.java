@@ -16,6 +16,8 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.block.*;
 import org.jetbrains.annotations.*;
 
+import javax.annotation.*;
+
 public class PedestalScreen extends AbstractContainerScreen<PedestalScreenHandler> {
 	
 	public static final ResourceLocation BACKGROUND1 = SpectrumCommon.locate("textures/gui/container/pedestal1.png");
@@ -38,7 +40,7 @@ public class PedestalScreen extends AbstractContainerScreen<PedestalScreenHandle
 	}
 	
 	@Contract(pure = true)
-	public static ResourceLocation getBackgroundTextureForTier(@NotNull PedestalRecipeTier recipeTier) {
+	public static ResourceLocation getBackgroundTextureForTier(PedestalRecipeTier recipeTier) {
 		switch (recipeTier) {
 			case COMPLEX -> {
 				return BACKGROUND4;

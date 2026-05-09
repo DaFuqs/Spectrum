@@ -23,7 +23,7 @@ public class PedestalCraftingDisplaySerializer {
 		});
 	}
 	
-	static @NotNull PedestalCraftingDisplay simple(List<EntryIngredient> inputs, List<EntryIngredient> outputs, int width, int height, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, String recipeTier, boolean secret) {
+	static PedestalCraftingDisplay simple(List<EntryIngredient> inputs, List<EntryIngredient> outputs, int width, int height, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, String recipeTier, boolean secret) {
 		return new PedestalCraftingDisplay(inputs, outputs, width, height, experience, craftingTime, requiredAdvancementIdentifier, recipeTier, secret);
 	}*/
 	

@@ -6,6 +6,8 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 
+import javax.annotation.*;
+
 public class SpectrumMultiblocks {
 	
 	public static final Component PEDESTAL_SIMPLE_TEXT = Component.translatable("multiblock.spectrum.pedestal_simple");
@@ -29,7 +31,7 @@ public class SpectrumMultiblocks {
 	public static final ResourceLocation CINDERHEARTH = SpectrumCommon.locate("cinderhearth");
 	public static final ResourceLocation CINDERHEARTH_WITHOUT_LAVA = SpectrumCommon.locate("cinderhearth_no_lava");
 	
-	public static Multiblock get(ResourceLocation id) {
+	public static Multiblock get(@Nullable ResourceLocation id) {
 		return ModonomiconAPI.get().getMultiblock(id);
 	}
 	

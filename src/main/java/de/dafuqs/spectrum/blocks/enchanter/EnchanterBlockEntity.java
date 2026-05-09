@@ -424,7 +424,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			return -1;
 		}
 		
-		Integer requiredExperience = getEnchantingPrice(stack, enchantment, level);
+		int requiredExperience = getEnchantingPrice(stack, enchantment, level);
 		if (conflicts) {
 			requiredExperience *= 4;
 		}

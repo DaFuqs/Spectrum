@@ -43,7 +43,7 @@ public class ParticleHelper {
 				f = random.triangle(0, scale.z);
 			} else {
 				d = random.nextDouble() * 2 * scale.x - scale.x;
-				e = random.nextDouble() * 2 * scale.y - scale.y + -bonusYOffset;
+				e = random.nextDouble() * 2 * scale.y - scale.y - bonusYOffset;
 				f = random.nextDouble() * 2 * scale.z - scale.z;
 			}
 			

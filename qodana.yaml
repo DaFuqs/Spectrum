@@ -46,3 +46,6 @@ projectJDK: "21" #(Applied in CI/CD pipeline)
 
 #Specify Qodana linter for analysis (Applied in CI/CD pipeline)
 linter: jetbrains/qodana-jvm:2025.3
+exclude:
+    -   name: OptionalUsedAsFieldOrParameterType
+    -   name: AutoCloseableResource

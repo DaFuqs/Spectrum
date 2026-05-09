@@ -133,12 +133,10 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 		if (toInsert.isEmpty()) return false;
 		if (!toInsert.canFitInsideContainerItems()) return false;
 		
-		if(this.locked()) {
-			return ItemStack.isSameItemSameComponents(this.variant, toInsert);
-		} else {
+		if (!this.locked()) {
 			if (this.isEmpty()) return true;
-			return ItemStack.isSameItemSameComponents(this.variant, toInsert);
 		}
+		return ItemStack.isSameItemSameComponents(this.variant, toInsert);
 	}
 	
 	public boolean isEmpty() {

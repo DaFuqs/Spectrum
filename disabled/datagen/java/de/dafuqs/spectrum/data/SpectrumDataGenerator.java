@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class SpectrumDataGenerator implements DataGeneratorEntrypoint {
 	@Override

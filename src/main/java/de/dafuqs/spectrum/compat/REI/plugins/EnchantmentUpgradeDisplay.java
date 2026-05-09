@@ -15,7 +15,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -32,7 +32,7 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	
 	int index = 0;
 	
-	public EnchantmentUpgradeDisplay(@NotNull RecipeHolder<EnchantmentUpgradeRecipe> recipeEntry) {
+	public EnchantmentUpgradeDisplay(RecipeHolder<EnchantmentUpgradeRecipe> recipeEntry) {
 		super(recipeEntry, buildIngredients(recipeEntry.value()), buildOutputs(recipeEntry.value()));
 		
 		var recipe = recipeEntry.value();

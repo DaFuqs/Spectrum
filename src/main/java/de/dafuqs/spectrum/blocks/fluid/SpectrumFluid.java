@@ -17,19 +17,19 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
 public abstract class SpectrumFluid extends FlowingFluid {
 	
 	@Override
-	public boolean isSame(@NotNull Fluid fluid) {
+	public boolean isSame(Fluid fluid) {
 		return fluid == getSource() || fluid == getFlowing();
 	}
 	
 	@Override
-	protected boolean canConvertToSource(@NotNull Level world) {
+	protected boolean canConvertToSource(Level world) {
 		return false;
 	}
 	
@@ -121,7 +121,7 @@ public abstract class SpectrumFluid extends FlowingFluid {
 	
 	public abstract RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType();
 	
-	public @Nullable <R extends FluidConvertingRecipe> R getConversionRecipeFor(RecipeType<R> recipeType, @NotNull Level world, ItemStack itemStack) {
+	public @Nullable <R extends FluidConvertingRecipe> R getConversionRecipeFor(RecipeType<R> recipeType, Level world, ItemStack itemStack) {
 		RecipeHolder<R> entry = world.getRecipeManager().getRecipeFor(recipeType, new SingleRecipeInput(itemStack), world).orElse(null);
 		return entry == null ? null : entry.value();
 	}

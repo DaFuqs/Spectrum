@@ -12,7 +12,7 @@ public abstract class EntityTypeMixin {
 	@Inject(at = @At("TAIL"), method = "trackDeltas", cancellable = true)
 	public void alwaysUpdateVelocity(CallbackInfoReturnable<Boolean> cir) {
 		Object thisObject = this;
-		if (thisObject == SpectrumEntityTypes.PHANTOM_FRAME || thisObject == SpectrumEntityTypes.GLOW_PHANTOM_FRAME || thisObject == SpectrumEntityTypes.KINDLING_COUGH) {
+		if (thisObject == SpectrumEntityTypes.PHANTOM_FRAME.get() || thisObject == SpectrumEntityTypes.GLOW_PHANTOM_FRAME.get() || thisObject == SpectrumEntityTypes.KINDLING_COUGH.get()) {
 			cir.setReturnValue(false);
 		}
 	}

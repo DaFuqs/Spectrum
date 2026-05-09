@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -63,7 +63,7 @@ public class MermaidsGemItem extends ItemNameBlockItem implements RevelationAwar
 	}
 	
 	@Override
-	public boolean overrideStackedOnOther(@NotNull ItemStack gemStack, @NotNull Slot slot, @NotNull ClickAction clickType, @NotNull Player player) {
+	public boolean overrideStackedOnOther(ItemStack gemStack, Slot slot, ClickAction clickType, Player player) {
 
 		
 		ItemStack slotStack = slot.getItem();

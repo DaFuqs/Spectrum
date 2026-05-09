@@ -12,7 +12,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions particle, int amount, Vec3 velocity) implements CustomPacketPayload {
 	
@@ -43,7 +43,7 @@ public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions par
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithExactVelocity(ServerLevel world, @NotNull Vec3 position, @NotNull ParticleOptions particleEffect, int amount, @NotNull Vec3 velocity) {
+	public static void playParticleWithExactVelocity(ServerLevel world, Vec3 position, ParticleOptions particleEffect, int amount, Vec3 velocity) {
 		PacketDistributor.sendToPlayersTrackingChunk(
 				world, new ChunkPos(BlockPos.containing(position)),
 				new PlayParticleWithExactVelocityPayload(position, particleEffect, amount, velocity)
@@ -63,7 +63,7 @@ public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions par
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

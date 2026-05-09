@@ -8,10 +8,12 @@ import net.minecraft.client.resources.sounds.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
 
+import javax.annotation.*;
+
 
 public class DivinitySoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
-	private static DivinitySoundInstance INSTANCE = null;
+	private static @Nullable DivinitySoundInstance INSTANCE = null;
 	
 	private int time = 0;
 	private boolean done;

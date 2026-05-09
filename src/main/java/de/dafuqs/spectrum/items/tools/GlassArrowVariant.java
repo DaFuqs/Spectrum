@@ -5,6 +5,8 @@ import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.world.item.*;
 
+import javax.annotation.*;
+
 public class GlassArrowVariant {
 	
 	public static final GlassArrowVariant MALACHITE = register("malachite");

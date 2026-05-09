@@ -7,7 +7,7 @@ import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public abstract class BedrockArmorItem extends ArmorItem implements Preenchanted {
 
@@ -28,12 +28,12 @@ public abstract class BedrockArmorItem extends ArmorItem implements Preenchanted
 	}
 	
 	@Override
-	public @NotNull ResourceLocation getArmorTexture(@NotNull ItemStack stack, @NotNull Entity entity, @NotNull EquipmentSlot slot, ArmorMaterial.@NotNull Layer layer, boolean innerModel) {
+	public ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
 		return SpectrumModelLayerLocations.BEDROCK_ARMOR_ID;
 	}
 	
 	@Override
-	public boolean isFoil(@NotNull ItemStack stack) {
+	public boolean isFoil(ItemStack stack) {
 		return false;
 	}
 	

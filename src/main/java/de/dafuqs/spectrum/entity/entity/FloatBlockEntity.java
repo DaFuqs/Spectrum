@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.function.*;
 
@@ -84,7 +84,7 @@ public class FloatBlockEntity extends Entity {
 	 * @return The bounding box of this entity
 	 */
 	@Override
-	protected @NotNull AABB makeBoundingBox() {
+	protected AABB makeBoundingBox() {
 		if (this.blockState == null) {
 			return super.makeBoundingBox();
 		}

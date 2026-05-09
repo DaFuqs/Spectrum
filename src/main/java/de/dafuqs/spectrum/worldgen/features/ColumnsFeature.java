@@ -9,7 +9,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.levelgen.feature.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
 	
-	private static ImmutableList<Block> CANNOT_REPLACE_BLOCKS = null;
+	private static @Nullable ImmutableList<Block> CANNOT_REPLACE_BLOCKS = null;
 	private static final int BIG_MAX_OFFSET = 5;
 	private static final int BIG_COUNT = 50;
 	private static final int SMALL_MAX_OFFSET = 8;
@@ -29,7 +29,7 @@ public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
 	}
 	
 	@Override
-	public boolean place(@NotNull FeaturePlaceContext<ColumnsFeatureConfig> context) {
+	public boolean place(FeaturePlaceContext<ColumnsFeatureConfig> context) {
 		if(CANNOT_REPLACE_BLOCKS == null) {
 			CANNOT_REPLACE_BLOCKS = ImmutableList.of(Blocks.BEDROCK, Blocks.CHEST, Blocks.SPAWNER, SpectrumBlocks.DOWNSTONE.get());
 		}

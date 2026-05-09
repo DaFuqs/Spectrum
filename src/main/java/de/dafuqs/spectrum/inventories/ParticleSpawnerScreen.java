@@ -18,7 +18,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.lwjgl.glfw.*;
 
 import java.util.*;
@@ -320,7 +320,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		}
 	}
 	
-	private @NotNull EditBox addTextFieldWidget(int x, int y, Component text, String defaultText, Predicate<String> textPredicate) {
+	private EditBox addTextFieldWidget(int x, int y, Component text, String defaultText, Predicate<String> textPredicate) {
 		EditBox textFieldWidget = new EditBox(this.font, x, y, 31, 16, text);
 		
 		textFieldWidget.setFilter(textPredicate);
@@ -337,7 +337,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		return textFieldWidget;
 	}
 	
-	private @NotNull Button addParticleButton(int x, int y) {
+	private Button addParticleButton(int x, int y) {
 		Button button = Button.builder(Component.translatable("gui.spectrum.button.particles"), this::particleButtonPressed)
 				.size(20, 20)
 				.pos(x, y)
@@ -388,7 +388,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		this.onValuesChanged();
 	}
 	
-	private void onTextBoxValueChanged(@NotNull String newValue) {
+	private void onTextBoxValueChanged(String newValue) {
 		onValuesChanged();
 	}
 	
@@ -425,7 +425,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		}
 	}
 	
-	protected boolean isPositiveWholeNumberUnderThousand(@NotNull String text) {
+	protected boolean isPositiveWholeNumberUnderThousand(String text) {
 		try {
 			return Integer.parseInt(text) < 1000;
 		} catch (NumberFormatException e) {
@@ -433,7 +433,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		}
 	}
 	
-	protected boolean isBetweenZeroAndOne(@NotNull String text) {
+	protected boolean isBetweenZeroAndOne(String text) {
 		try {
 			float f = Float.parseFloat(text);
 			return f >= 0 && f <= 1;

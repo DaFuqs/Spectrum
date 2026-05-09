@@ -9,9 +9,9 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
-public record BottomlessComponent(@NotNull BottomlessItemHandler handler) {
+public record BottomlessComponent(BottomlessItemHandler handler) {
 	
 	private static final long MAX_STORED_AMOUNT_BASE = 20000;
 	
@@ -42,7 +42,7 @@ public record BottomlessComponent(@NotNull BottomlessItemHandler handler) {
 	 * @param recalculateEnchantmentDependentValuesAndSet set the component if enchantment changed (always true serverside)
 	 * @return the component
 	 */
-	public @NotNull static BottomlessComponent get(ItemStack bottomlessBundle, @Nullable HolderLookup.Provider registryLookup, boolean recalculateEnchantmentDependentValuesAndSet) {
+	public static BottomlessComponent get(ItemStack bottomlessBundle, @Nullable HolderLookup.Provider registryLookup, boolean recalculateEnchantmentDependentValuesAndSet) {
 		@Nullable BottomlessComponent existing = bottomlessBundle.get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
 		
 		ItemStack storedStack = ItemStack.EMPTY;

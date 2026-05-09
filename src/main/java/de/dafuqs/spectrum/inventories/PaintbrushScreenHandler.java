@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler implements InkColorSelectedPacketReceiver {
@@ -49,7 +50,7 @@ public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler im
 	}
 	
 	@Override
-	public BlockEntity getBlockEntity() {
+	public @Nullable BlockEntity getBlockEntity() {
 		return null;
 	}
 	

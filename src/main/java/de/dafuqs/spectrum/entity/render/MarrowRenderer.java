@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.resources.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 @OnlyIn(Dist.CLIENT)
 public class MarrowRenderer extends SkeletonRenderer<Marrow> {
@@ -20,7 +20,7 @@ public class MarrowRenderer extends SkeletonRenderer<Marrow> {
 		this.addLayer(new SkeletonClothingLayer<>(this, context.getModelSet(), SpectrumModelLayerLocations.MARROW_OUTER_LAYER, MARROW_CLOTHES_LOCATION));
 	}
 	
-	public @NotNull ResourceLocation getTextureLocation(@NotNull Marrow entity) {
+	public ResourceLocation getTextureLocation(Marrow entity) {
 		return MARROW_SKELETON_LOCATION;
 	}
 }

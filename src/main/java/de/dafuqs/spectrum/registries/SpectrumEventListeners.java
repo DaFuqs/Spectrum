@@ -66,7 +66,7 @@ import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
 
@@ -108,8 +108,7 @@ public class SpectrumEventListeners {
 					if (storedBlock.isPresent()
 							&& storedBlock.get() != targetBlockState.getBlock()
 							&& storedBlock.get().asItem() != Items.AIR
-							&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandItem(),
-							true, direction)) {
+							&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandItem(), true, direction)) {
 						return InteractionResult.SUCCESS;
 					}
 				}
@@ -464,7 +463,7 @@ public class SpectrumEventListeners {
 	private static void onReloadResources(AddReloadListenerEvent event) {
 		event.addListener(new ResourceManagerReloadListener() {
 			@Override
-			public void onResourceManagerReload(@NotNull ResourceManager resourceManager) {
+			public void onResourceManagerReload(ResourceManager resourceManager) {
 				AutoCraftingMode.clearCache();
 				SpectrumCommon.CACHED_ITEM_TAG_MAP.clear();
 				
@@ -478,7 +477,7 @@ public class SpectrumEventListeners {
 			}
 			
 			@Override
-			public @NotNull String getName() {
+			public String getName() {
 				return SpectrumCommon.MOD_ID + ":resources_cleanup";
 			}
 		});

@@ -31,6 +31,9 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.gameevent.vibrations.*;
 import net.minecraft.world.phys.*;
+import javax.annotation.*;
+import javax.annotation.Nullable;
+
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
@@ -397,12 +400,6 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 				&& this.level().clip(new ClipContext(thisEyePos, entityEyePos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this)).getType() == net.minecraft.world.phys.HitResult.Type.MISS;
 	}
 	
-	@Override
-	public float getPickRadius() {
-		return 0.0F;
-	}
-	
-	@Contract("null->false")
 	public boolean isValidTarget(@Nullable Entity entity) {
 		return entity instanceof LivingEntity livingEntity
 				&& this.level() == entity.level()
@@ -438,7 +435,7 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 			Vector3f vec3f3 = new Vector3f((float) xOffset, (float) yOffset, (float) zOffset);
 			float g = vec3f2.dot(vec3f3);
 			float h = southVectorCopy.dot(vec3f3);
-			return !(Math.abs(g) > 1.0E-5F) && !(Math.abs(h) > 1.0E-5F) ? Optional.empty() : Optional.of((float) (Mth.atan2((-g), h) * 57.2957763671875));
+			return !(Math.abs(g) > 1.0E-5F) && !(Math.abs(h) > 1.0E-5F) ? Optional.empty() : Optional.of((float) (Mth.atan2((-g), h) * 180F / Math.PI));
 		}
 		
 		@Override

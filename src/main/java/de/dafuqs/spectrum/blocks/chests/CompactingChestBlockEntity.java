@@ -22,7 +22,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.items.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -31,15 +31,14 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	private static final FlowAnimator.Factory<CompactingChestBlockEntity> FACTORY;
 	
-	@NotNull
 	private AutoCraftingMode mode = AutoCraftingMode.ThreeXThree;
-	private RecipeHolder<CraftingRecipe> lastCraftingRecipe; // cache
-	private ItemStack lastCraftedStack; // cache
+	private @Nullable RecipeHolder<CraftingRecipe> lastCraftingRecipe; // cache
+	private @Nullable ItemStack lastCraftedStack; // cache
 	
 	protected boolean isOpen;
 	protected long craftingTimeStamp;
 	
-	protected FlowAnimator animator;
+	protected @Nullable FlowAnimator animator;
 	protected FlowData<Float> _piston = FlowData.NULL();
 	protected FlowData<Float> _driver = FlowData.NULL();
 	protected FlowData<Float> _cap = FlowData.NULL();
@@ -294,7 +293,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	@Override
-	protected @NotNull Component getDefaultName() {
+	protected Component getDefaultName() {
 		return Component.translatable("block.spectrum.compacting_chest");
 	}
 	

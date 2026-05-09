@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class RedstoneTransceiverBlockEntity extends BlockEntity implements WirelessRedstoneSignalEventQueue.Callback<WirelessRedstoneSignalEventQueue.Entry> {
 	
@@ -33,7 +33,7 @@ public class RedstoneTransceiverBlockEntity extends BlockEntity implements Wirel
 		return world.getBlockState(blockPos).getValue(RedstoneTransceiverBlock.SENDER);
 	}
 	
-	public static void serverTick(@NotNull Level world, BlockPos pos, BlockState state, @NotNull RedstoneTransceiverBlockEntity blockEntity) {
+	public static void serverTick(Level world, BlockPos pos, BlockState state, RedstoneTransceiverBlockEntity blockEntity) {
 		if (isSender(world, pos)) {
 			if (blockEntity.currentSignal != blockEntity.cachedSignal) {
 				blockEntity.currentSignal = blockEntity.cachedSignal;

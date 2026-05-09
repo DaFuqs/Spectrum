@@ -14,7 +14,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public record PotionRecipeEffect(
 		boolean applicableToPotions,
@@ -70,7 +70,7 @@ public record PotionRecipeEffect(
 		return PACKET_CODEC.decode(buf);
 	}
 	
-	public @Nullable InkPoweredStatusEffectInstance getStatusEffectInstance(@NotNull PotionMod potionMod, RandomSource random) {
+	public @Nullable InkPoweredStatusEffectInstance getStatusEffectInstance(PotionMod potionMod, RandomSource random) {
 		float potency = potionMod.flatPotencyBonus();
 		int durationTicks = baseDurationTicks() + potionMod.flatDurationBonusTicks();
 		switch (statusEffect().value().getCategory()) {

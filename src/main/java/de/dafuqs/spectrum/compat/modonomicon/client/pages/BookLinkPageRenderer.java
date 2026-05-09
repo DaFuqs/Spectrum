@@ -5,7 +5,7 @@ import com.klikli_dev.modonomicon.client.render.page.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.network.chat.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class BookLinkPageRenderer extends BookTextPageRenderer {
 	

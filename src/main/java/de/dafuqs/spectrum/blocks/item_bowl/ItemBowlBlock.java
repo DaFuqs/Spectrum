@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -94,7 +94,7 @@ public class ItemBowlBlock extends InWorldInteractionBlock {
 	/**
 	 * When placed or removed the item bowl searches for a valid block entity and triggers it to update its current recipe
 	 */
-	public static void updateConnectedMultiBlocks(@NotNull Level world, @NotNull BlockPos pos) {
+	public static void updateConnectedMultiBlocks(Level world, BlockPos pos) {
 		for (Vec3i offset : POSSIBLE_CRAFTER_OFFSETS) {
 			BlockEntity blockEntity = world.getBlockEntity(pos.offset(offset));
 			if (blockEntity instanceof InWorldInteractionBlockEntity inWorldInteractionBlockEntity) {

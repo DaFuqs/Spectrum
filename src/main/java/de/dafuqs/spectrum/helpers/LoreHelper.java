@@ -4,13 +4,13 @@ import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
 public class LoreHelper {
 	
-	public static @NotNull List<Component> getLoreTextArrayFromString(@NotNull String string) {
+	public static List<Component> getLoreTextArrayFromString(String string) {
 		List<Component> loreText = new ArrayList<>();
 		
 		for (String split : string.split("\\\\n")) {
@@ -20,7 +20,7 @@ public class LoreHelper {
 		return loreText;
 	}
 	
-	public static @NotNull String getStringFromLoreTextArray(@NotNull List<Component> lore) {
+	public static String getStringFromLoreTextArray(List<Component> lore) {
 		if (lore.isEmpty()) {
 			return "";
 		} else {
@@ -35,7 +35,7 @@ public class LoreHelper {
 		}
 	}
 	
-	public static void setLore(@NotNull ItemStack itemStack, @Nullable List<Component> lore) {
+	public static void setLore(ItemStack itemStack, @Nullable List<Component> lore) {
 		if (lore == null || lore.isEmpty()) {
 			itemStack.remove(DataComponents.LORE);
 		} else {
@@ -44,7 +44,7 @@ public class LoreHelper {
 		}
 	}
 	
-	public static void setLore(@NotNull ItemStack stack, @Nullable Component lore) {
+	public static void setLore(ItemStack stack, @Nullable Component lore) {
 		if (lore == null) {
 			stack.remove(DataComponents.LORE);
 		} else {
@@ -53,15 +53,15 @@ public class LoreHelper {
 		}
 	}
 	
-	public static void removeLore(@NotNull ItemStack itemStack) {
+	public static void removeLore(ItemStack itemStack) {
 		itemStack.remove(DataComponents.LORE);
 	}
 	
-	public static boolean hasLore(@NotNull ItemStack itemStack) {
+	public static boolean hasLore(ItemStack itemStack) {
 		return itemStack.get(DataComponents.LORE) == null;
 	}
 	
-	public static @NotNull List<Component> getLoreList(@NotNull ItemStack itemStack) {
+	public static List<Component> getLoreList(ItemStack itemStack) {
 		ItemLore component = itemStack.get(DataComponents.LORE);
 		if (component == null) {
 			return new ArrayList<>();

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.render.animation;
 
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.lang.reflect.*;
 import java.util.*;

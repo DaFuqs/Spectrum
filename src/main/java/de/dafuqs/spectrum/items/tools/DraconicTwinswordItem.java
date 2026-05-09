@@ -22,7 +22,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -56,7 +56,6 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 		super.releaseUsing(stack, world, user, remainingUseTicks);
 	}
 	
-	@NotNull
 	private static DraconicTwinswordEntity initiateTwinswordEntity(ItemStack stack, Level world, LivingEntity user, float strength) {
 		var twinsword = new DraconicTwinswordEntity(world);
 		twinsword.setOwner(user);
@@ -101,7 +100,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	}
 	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		if (entity instanceof Player player) {
 			if (player.getCooldowns().isOnCooldown(stack.getItem()) || SlotReservingItem.isReservingSlot(stack)) {
 				stack.remove(DataComponents.ATTRIBUTE_MODIFIERS);
@@ -152,17 +151,6 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 		player.playNotifySound(SpectrumSoundEvents.METALLIC_UNSHEATHE, SoundSource.PLAYERS, 0.5F, 0.8F + player.getRandom().nextFloat() * 0.4F);
 	}
 	
-	public static ItemStack findThrownStack(Player player, UUID id) {
-		var inventory = player.getInventory();
-		for (int i = 0; i < inventory.getContainerSize(); i++) {
-			var stack = inventory.getItem(i);
-			if (SlotReservingItem.isReserver(stack, id)) {
-				return stack;
-			}
-		}
-		return ItemStack.EMPTY;
-	}
-	
 	@Override
 	public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 		return Map.of(Enchantments.SWEEPING_EDGE, 5);
@@ -182,7 +170,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	}
 	
 	@Override
-	public BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		if (player == null || SlotReservingItem.isReservingSlot(stack) || !player.isUsingItem())
 			return ExtendedItemBarProvider.PASS;
 		
@@ -205,7 +193,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.CHANNELING) || enchantment.is(Enchantments.PIERCING);
 	}
 }

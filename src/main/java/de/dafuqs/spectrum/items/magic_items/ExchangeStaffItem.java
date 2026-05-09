@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import oshi.util.tuples.*;
 
 import java.util.*;
@@ -46,7 +46,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	// but not useless at the end
 	// this way the player does not need to craft 5 tiers
 	// of staffs that each do basically feel the same
-	public static int getRange(Player playerEntity) {
+	public static int getRange(@Nullable Player playerEntity) {
 		if (playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
 		} else {
@@ -70,15 +70,15 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	}
 	
 	@Override
-	public boolean canInteractWith(BlockState state, BlockGetter world, BlockPos pos, Player player) {
+	public boolean canInteractWith(BlockState state, BlockGetter world, BlockPos pos, @Nullable Player player) {
 		return super.canInteractWith(state, world, pos, player) && state.getDestroySpeed(world, pos) < 20;
 	}
 	
-	public static boolean exchange(Level world, BlockPos pos, @NotNull Player player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack, Direction side) {
+	public static boolean exchange(Level world, BlockPos pos, Player player, Block targetBlock, ItemStack exchangeStaffItemStack, Direction side) {
 		return exchange(world, pos, player, targetBlock, exchangeStaffItemStack, false, side);
 	}
 	
-	public static boolean exchange(Level world, BlockPos pos, @NotNull Player player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack, boolean single, Direction side) {
+	public static boolean exchange(Level world, BlockPos pos, Player player, Block targetBlock, ItemStack exchangeStaffItemStack, boolean single, Direction side) {
 		Triplet<Block, Item, Integer> replaceData = countSuitableReplacementItems(player, targetBlock, single,
 				INK_COST_PER_BLOCK);
 		
@@ -112,18 +112,14 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 				}
 				world.setBlockAndUpdate(targetPosition, Blocks.AIR.defaultBlockState());
 				
-				stateToPlace = targetBlock.getStateForPlacement(new BuildingStaffPlacementContext(world, player,
-						new BlockHitResult(Vec3.atBottomCenterOf(targetPosition), side, targetPosition, false)));
+				stateToPlace = targetBlock.getStateForPlacement(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3.atBottomCenterOf(targetPosition), side, targetPosition, false)));
 				if (stateToPlace != null && stateToPlace.canSurvive(world, targetPosition)) {
 					if (blocksReplaced == 0) {
-						world.playSound(null, player.blockPosition(), stateToPlace.getSoundType().getPlaceSound(),
-								SoundSource.PLAYERS, stateToPlace.getSoundType().getVolume(),
-								stateToPlace.getSoundType().getPitch());
+						world.playSound(null, player.blockPosition(), stateToPlace.getSoundType().getPlaceSound(), SoundSource.PLAYERS, stateToPlace.getSoundType().getVolume(), stateToPlace.getSoundType().getPitch());
 					}
 					
 					if (!world.setBlockAndUpdate(targetPosition, stateToPlace)) {
-						ItemEntity itemEntity = new ItemEntity(world, targetPosition.getX(), targetPosition.getY(),
-								targetPosition.getZ(), new ItemStack(consumedItem));
+						ItemEntity itemEntity = new ItemEntity(world, targetPosition.getX(), targetPosition.getY(), targetPosition.getZ(), new ItemStack(consumedItem));
 						itemEntity.setTarget(player.getUUID());
 						itemEntity.setNoPickUpDelay();
 						world.addFreshEntity(itemEntity);
@@ -147,11 +143,11 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 		return true;
 	}
 	
-	public void storeBlockAsTarget(@NotNull ItemStack exchangeStaffItemStack, Block block) {
+	public void storeBlockAsTarget(ItemStack exchangeStaffItemStack, Block block) {
 		exchangeStaffItemStack.set(SpectrumDataComponentTypes.STORED_BLOCK, BuiltInRegistries.BLOCK.getKey(block));
 	}
 	
-	public static Optional<Block> getStoredBlock(@NotNull ItemStack exchangeStaffItemStack) {
+	public static Optional<Block> getStoredBlock(ItemStack exchangeStaffItemStack) {
 		ResourceLocation blockId = exchangeStaffItemStack.get(SpectrumDataComponentTypes.STORED_BLOCK);
 		if (blockId != null) {
 			Block targetBlock = BuiltInRegistries.BLOCK.get(blockId);
@@ -230,7 +226,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	}
 	
 	@Override
-	public int getEnchantmentValue(@NotNull ItemStack stack) {
+	public int getEnchantmentValue(ItemStack stack) {
 		return 3;
 	}
 	
@@ -240,7 +236,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.FORTUNE) || enchantment.is(Enchantments.SILK_TOUCH);
 	}
 	

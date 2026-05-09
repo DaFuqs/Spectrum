@@ -13,7 +13,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -161,7 +161,7 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	@Override
-	public int @NotNull [] getSlotsForFace(@NotNull Direction side) {
+	public int [] getSlotsForFace(Direction side) {
 		return new int[0];
 	}
 	
@@ -186,7 +186,7 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	// Called when the chunk is first loaded to initialize this be
 	// used to sync the owner UUID to the client to make the break animation work/not work correctly
 	@Override
-	public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider registryLookup) {
+	public CompoundTag getUpdateTag(HolderLookup.Provider registryLookup) {
 		CompoundTag nbt = new CompoundTag();
 		if (this.ownerUUID != null) {
 			nbt.putUUID("OwnerUUID", this.ownerUUID);

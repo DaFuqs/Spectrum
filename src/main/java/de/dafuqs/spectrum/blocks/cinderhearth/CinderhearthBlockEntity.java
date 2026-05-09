@@ -33,7 +33,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -67,7 +67,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	protected final CraftingDelegate propertyDelegate = new CraftingDelegate();
 	
 	@Override
-	public int @NotNull [] getSlotsForFace(Direction side) {
+	public int [] getSlotsForFace(Direction side) {
 		switch (side) {
 			case UP -> {
 				return new int[]{INPUT_SLOT_ID};
@@ -82,7 +82,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	}
 	
 	@Override
-	public boolean canPlaceItemThroughFace(int slot, @NotNull ItemStack stack, @Nullable Direction dir) {
+	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction dir) {
 		switch (slot) {
 			case INK_PROVIDER_SLOT_ID -> {
 				return stack.getItem() instanceof InkStorageItem<?> inkStorageItem && (inkStorageItem.getDrainability().canDrain(false));
@@ -97,7 +97,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	}
 	
 	@Override
-	public boolean canTakeItemThroughFace(int slot, @NotNull ItemStack stack, @NotNull Direction dir) {
+	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction dir) {
 		return true;
 	}
 	
@@ -337,7 +337,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		return false;
 	}
 	
-	private static void calculateRecipe(@NotNull Level world, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
+	private static void calculateRecipe(Level world, CinderhearthBlockEntity cinderhearthBlockEntity) {
 		var input = new SingleRecipeInput(cinderhearthBlockEntity.getItem(0));
 		
 		// test the cached recipe => faster
@@ -363,7 +363,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		}
 	}
 	
-	private static boolean checkRecipeRequirements(Level world, BlockPos blockPos, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
+	private static boolean checkRecipeRequirements(Level world, BlockPos blockPos, CinderhearthBlockEntity cinderhearthBlockEntity) {
 		Player lastInteractedPlayer = PlayerOwned.getPlayerIfOnline(world, cinderhearthBlockEntity.ownerUUID);
 		if (lastInteractedPlayer == null) {
 			return false;
@@ -381,7 +381,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		return true;
 	}
 	
-	public static void craftBlastingRecipe(Level world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull BlastingRecipe blastingRecipe) {
+	public static void craftBlastingRecipe(Level world, CinderhearthBlockEntity cinderhearth, BlastingRecipe blastingRecipe) {
 		// calculate outputs
 		ItemStack inputStack = cinderhearth.getItem(INPUT_SLOT_ID);
 		float yieldMod = inputStack.is(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, cinderhearth.usesEfficiency);
@@ -404,7 +404,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		craftRecipe(cinderhearth, inputStack, outputs, blastingRecipe.getExperience());
 	}
 	
-	public static void craftCinderhearthRecipe(Level world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull CinderhearthRecipe cinderhearthRecipe) {
+	public static void craftCinderhearthRecipe(Level world, CinderhearthBlockEntity cinderhearth, CinderhearthRecipe cinderhearthRecipe) {
 		// calculate outputs
 		ItemStack inputStack = cinderhearth.getItem(INPUT_SLOT_ID);
 		float yieldMod = inputStack.is(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, cinderhearth.usesEfficiency);
@@ -414,7 +414,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		craftRecipe(cinderhearth, inputStack, outputs, cinderhearthRecipe.getExperience());
 	}
 	
-	private static void craftRecipe(@NotNull CinderhearthBlockEntity cinderhearth, ItemStack inputStack, List<ItemStack> outputs, float experience) {
+	private static void craftRecipe(CinderhearthBlockEntity cinderhearth, ItemStack inputStack, List<ItemStack> outputs, float experience) {
 		var world = cinderhearth.level;
 		if (world == null) return;
 		
@@ -468,7 +468,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		}
 	}
 	
-	public static void playCraftingFinishedEffects(@NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
+	public static void playCraftingFinishedEffects(CinderhearthBlockEntity cinderhearthBlockEntity) {
 		Direction.Axis axis = null;
 		Direction direction = Direction.UP;
 		if (!(cinderhearthBlockEntity.level instanceof ServerLevel world)) return;
@@ -527,7 +527,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	}
 	
 	@Override
-	public void setItem(int slot, @NotNull ItemStack stack) {
+	public void setItem(int slot, ItemStack stack) {
 		this.inventory.set(slot, stack);
 		if (stack.getCount() > this.getMaxStackSize()) {
 			stack.setCount(this.getMaxStackSize());

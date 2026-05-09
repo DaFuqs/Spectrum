@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.monster.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 @OnlyIn(Dist.CLIENT)
 public class SplinterspawnRenderer extends SilverfishRenderer {
@@ -17,7 +17,7 @@ public class SplinterspawnRenderer extends SilverfishRenderer {
 	}
 	
 	@Override
-	public @NotNull ResourceLocation getTextureLocation(@NotNull Silverfish entity) {
+	public ResourceLocation getTextureLocation(Silverfish entity) {
 		return SPLINTERSPAWN_LOCATION;
 	}
 }

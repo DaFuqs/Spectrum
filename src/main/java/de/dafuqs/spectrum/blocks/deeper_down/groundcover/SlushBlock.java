@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.common.util.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class SlushBlock extends RotatedPillarBlock implements BonemealableBlock {
 	

@@ -3,11 +3,13 @@ package de.dafuqs.spectrum.render;
 import net.minecraft.util.*;
 import net.minecraft.world.level.dimension.*;
 
+import javax.annotation.*;
+
 public class SkyLerper {
 	
 	public static final int ANIMATION_TICKS = 40;
 	
-	private DimensionType activeDimensionType = null;
+	private @Nullable DimensionType activeDimensionType = null;
 	private long sourceDayTime = -1; // -1 when not active
 	private float sourceTimeDelta;
 	private long targetDayTime;

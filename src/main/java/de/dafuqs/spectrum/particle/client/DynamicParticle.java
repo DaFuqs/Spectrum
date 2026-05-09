@@ -8,7 +8,7 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.registries.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 
 public class DynamicParticle extends TextureSheetParticle {
@@ -38,7 +38,7 @@ public class DynamicParticle extends TextureSheetParticle {
 		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 	
-	public void apply(@NotNull DynamicParticleEffect effect) {
+	public void apply(DynamicParticleEffect effect) {
 		this.setSprite(sprite);
 		this.setLifetime(effect.lifetimeTicks());
 		this.scale(effect.scale());

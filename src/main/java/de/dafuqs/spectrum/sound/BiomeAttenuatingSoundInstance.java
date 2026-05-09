@@ -10,7 +10,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.biome.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class BiomeAttenuatingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 

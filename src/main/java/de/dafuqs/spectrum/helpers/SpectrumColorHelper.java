@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.items.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.joml.*;
 
 import java.awt.*;
@@ -70,7 +70,6 @@ public class SpectrumColorHelper {
 		return Color.getHSBColor((float) seed / Integer.MAX_VALUE, 0.7F, 0.9F).getRGB();
 	}
 	
-	@NotNull
 	public static Vector3f colorIntToVec(int color) {
 		Color colorObj = new Color(color);
 		float[] argb = new float[4];
@@ -83,7 +82,7 @@ public class SpectrumColorHelper {
 		return colorObj.getRGB();
 	}
 	
-	public static Optional<DyeColor> getDyeColorOfItemStack(@NotNull ItemStack itemStack) {
+	public static Optional<DyeColor> getDyeColorOfItemStack(ItemStack itemStack) {
 		if (!itemStack.isEmpty()) {
 			Item item = itemStack.getItem();
 			if (item instanceof DyeItem dyeItem) {

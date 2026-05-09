@@ -15,7 +15,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, PedestalRecipeTier newTier) implements CustomPacketPayload {
 	
@@ -26,7 +26,7 @@ public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, Pedestal
 			PlayPedestalUpgradedParticlePayload::new
 	);
 	
-	public static void spawnPedestalUpgradeParticles(PedestalBlockEntity pedestalBlockEntity, @NotNull PedestalVariant newPedestalVariant) {
+	public static void spawnPedestalUpgradeParticles(PedestalBlockEntity pedestalBlockEntity, PedestalVariant newPedestalVariant) {
 		PacketDistributor.sendToPlayersTrackingChunk(
 				(ServerLevel) pedestalBlockEntity.getLevel(), new ChunkPos(pedestalBlockEntity.getBlockPos()),
 				new PlayPedestalUpgradedParticlePayload(pedestalBlockEntity.getBlockPos(), newPedestalVariant.getRecipeTier())
@@ -42,7 +42,7 @@ public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, Pedestal
 	 *
 	 * @param newPedestalRecipeTier The tier the pedestal has been upgraded to
 	 */
-	public static void spawnUpgradeParticleEffectsForTier(Level world, BlockPos blockPos, @NotNull PedestalRecipeTier newPedestalRecipeTier) {
+	public static void spawnUpgradeParticleEffectsForTier(Level world, BlockPos blockPos, PedestalRecipeTier newPedestalRecipeTier) {
 		RandomSource random = world.getRandom();
 		
 		switch (newPedestalRecipeTier) {
@@ -111,7 +111,7 @@ public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, Pedestal
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

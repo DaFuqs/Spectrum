@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -20,7 +20,7 @@ public class CompletedMultiblockCriterion extends SimpleCriterionTrigger<Complet
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

@@ -18,34 +18,34 @@ import net.minecraft.core.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import net.neoforged.neoforge.items.wrapper.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class SpectrumCapabilities {
 
     public static void register(RegisterCapabilitiesEvent event) {
 		// ItemHandler.BLOCK
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.FUSION_SHRINE.get(), (@NotNull FusionShrineBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));;
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.PEDESTAL.get(), (@NotNull PedestalBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.SPIRIT_INSTILLER.get(), (@NotNull SpiritInstillerBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.ENCHANTER.get(), (@NotNull EnchanterBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CINDERHEARTH.get(), (@NotNull CinderhearthBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CRYSTALLARIEUM.get(), (@NotNull CrystallarieumBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.FUSION_SHRINE.get(), (FusionShrineBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));;
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.PEDESTAL.get(), (PedestalBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.SPIRIT_INSTILLER.get(), (SpiritInstillerBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.ENCHANTER.get(), (EnchanterBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CINDERHEARTH.get(), (CinderhearthBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CRYSTALLARIEUM.get(), (CrystallarieumBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.TITRATION_BARREL.get(), (titrationBarrel, direction) -> {
 			if(!titrationBarrel.isInteractionAllowed()) {
 				new InvWrapper(titrationBarrel);
 			}
 			return null;
 		});
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.POTION_WORKSHOP.get(), (@NotNull PotionWorkshopBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.BLOCK_PLACER.get(), (@NotNull BlockPlacerBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.BOTTOMLESS_BUNDLE.get(), (@NotNull BottomlessBundleBlockEntity blockEntity, Direction direction) -> blockEntity.storage());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.ITEM_BOWL.get(), (@NotNull ItemBowlBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.COLOR_PICKER.get(), (@NotNull ColorPickerBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CRYSTAL_APOTHECARY.get(), (@NotNull CrystalApothecaryBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.BLACK_HOLE_CHEST.get(), (@NotNull BlackHoleChestBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.FABRICATION_CHEST.get(), (@NotNull FabricationChestBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.COMPACTING_CHEST.get(), (@NotNull CompactingChestBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.AMPHORA.get(), (@NotNull AmphoraBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.POTION_WORKSHOP.get(), (PotionWorkshopBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.BLOCK_PLACER.get(), (BlockPlacerBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.BOTTOMLESS_BUNDLE.get(), (BottomlessBundleBlockEntity blockEntity, Direction direction) -> blockEntity.storage());
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.ITEM_BOWL.get(), (ItemBowlBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.COLOR_PICKER.get(), (ColorPickerBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CRYSTAL_APOTHECARY.get(), (CrystalApothecaryBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.BLACK_HOLE_CHEST.get(), (BlackHoleChestBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.FABRICATION_CHEST.get(), (FabricationChestBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.COMPACTING_CHEST.get(), (CompactingChestBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.AMPHORA.get(), (AmphoraBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
 		
 		// FluidHandler.BLOCK
 		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, SpectrumBlockEntities.FUSION_SHRINE.get(), (blockEntity, context) -> blockEntity.getFluidTank());

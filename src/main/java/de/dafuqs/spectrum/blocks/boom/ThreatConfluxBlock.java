@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.*;
@@ -43,7 +43,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 		}
 		
 		@Override
-		public @NotNull String getSerializedName() {
+		public String getSerializedName() {
 			return this.name;
 		}
 		
@@ -67,12 +67,12 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	}
 	
 	@Override
-	public @NotNull MapCodec<? extends ThreatConfluxBlock> codec() {
+	public MapCodec<? extends ThreatConfluxBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
-	public @NotNull BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
 		if (!world.isClientSide() && state.getValue(ARMED).explodesWhenBroken()) {
 			explode((ServerLevel) world, pos);
 		}
@@ -80,7 +80,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	}
 	
 	@Override
-	protected @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 		if (state.getValue(ARMED).explodesWhenBroken() && stack.is(SpectrumItems.MIDNIGHT_CHIP)) {
 			level.setBlockAndUpdate(pos, state.setValue(ARMED, ArmedState.NOT_ARMED));
 			level.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_DISARM, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -127,7 +127,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	}
 	
 	@Override
-	public @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return state.getValue(ARMED).explodesWhenBroken() ? ARMED_SHAPE : UNARMED_SHAPE;
 	}
 	

@@ -6,7 +6,7 @@ import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.client.gui.screens.inventory.tooltip.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public interface SpectrumTooltipComponent extends ClientTooltipComponent {
 	
@@ -45,7 +45,7 @@ public interface SpectrumTooltipComponent extends ClientTooltipComponent {
 		draw(context, x, y, Sprite.DOTTED_SLOT);
 	}
 	
-	private static void draw(GuiGraphics context, int x, int y, @NotNull Sprite sprite) {
+	private static void draw(GuiGraphics context, int x, int y, Sprite sprite) {
 		context.blit(TEXTURE, x, y, sprite.u, sprite.v, sprite.width, sprite.height, 128, 128);
 	}
 	

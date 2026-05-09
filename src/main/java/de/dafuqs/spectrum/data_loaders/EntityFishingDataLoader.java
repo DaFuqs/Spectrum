@@ -17,7 +17,7 @@ import net.minecraft.util.random.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -76,7 +76,7 @@ public class EntityFishingDataLoader extends SimpleJsonResourceReloadListener {
 	}
 	
 	@Override
-	protected void apply(Map<ResourceLocation, JsonElement> prepared, @NotNull ResourceManager manager, @NotNull ProfilerFiller profiler) {
+	protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
 		ENTITY_FISHING_ENTRIES.clear();
 		ENTITY_FISHING_ENTRIES_WITH_DIMENSION.clear();
 		

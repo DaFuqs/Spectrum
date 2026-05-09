@@ -23,15 +23,13 @@ public class MessageToast implements Toast {
 	private final ItemStack itemStack;
 	private final Component titleText;
 	private final Component messageText;
-	private final SoundEvent soundEvent;
-	private boolean soundPlayed;
+	private final SoundEvent soundEvent = SpectrumSoundEvents.NEW_REVELATION;
+	private boolean soundPlayed = false;
 	
 	public MessageToast(ItemStack itemStack, String text) {
 		this.itemStack = itemStack;
-		this.soundEvent = SpectrumSoundEvents.NEW_REVELATION;
 		this.titleText = Component.translatable("spectrum.toast.message." + text + ".title");
 		this.messageText = Component.translatable("spectrum.toast.message." + text + ".text");
-		this.soundPlayed = false;
 	}
 	
 	public static void showMessageToast(Minecraft client, ItemStack itemStack, String string) {
@@ -73,9 +71,7 @@ public class MessageToast implements Toast {
 		
 		if (!this.soundPlayed && startTime > 0L) {
 			this.soundPlayed = true;
-			if (this.soundEvent != null) {
-				manager.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(this.soundEvent, 1.0F, 0.75F));
-			}
+			manager.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(this.soundEvent, 1.0F, 0.75F));
 		}
 		drawContext.renderItem(itemStack, 8, 8);
 		return startTime >= toastTimeMilliseconds ? Visibility.HIDE : Visibility.SHOW;

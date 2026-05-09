@@ -8,7 +8,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class PedestalPreviewSlot extends ReadOnlySlot implements SlotWithOnClickAction {
 	public PedestalPreviewSlot(Container inventory, int index, int x, int y) {
@@ -16,7 +16,7 @@ public class PedestalPreviewSlot extends ReadOnlySlot implements SlotWithOnClick
 	}
 	
 	@Override
-	public @NotNull ItemStack getItem() {
+	public ItemStack getItem() {
 		if (this.container instanceof PedestalBlockEntity pedestalBlockEntity) {
 			return pedestalBlockEntity.getCurrentCraftingRecipeOutput();
 		}

@@ -5,7 +5,7 @@ import net.minecraft.core.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -33,7 +33,7 @@ public class ImmunityMobEffect extends MobEffect {
 	}
 	
 	// TODO: can this use an effect cure?
-	public static void removeOtherMobEffects(@NotNull LivingEntity entity) {
+	public static void removeOtherMobEffects(LivingEntity entity) {
 		Set<Holder<MobEffect>> effectsToRemove = new HashSet<>();
 		for (MobEffectInstance instance : entity.getActiveEffects()) {
 			if (!instance.getEffect().is(SpectrumMobEffectTags.BYPASSES_IMMUNITY)) {
@@ -47,7 +47,7 @@ public class ImmunityMobEffect extends MobEffect {
 	}
 	
 	@Override
-	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+	public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
 		cures.add(SpectrumEffectCures.COMMAND_ONLY);
 	}
 	

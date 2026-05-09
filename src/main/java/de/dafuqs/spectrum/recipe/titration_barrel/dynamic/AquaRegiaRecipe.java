@@ -14,7 +14,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import net.neoforged.neoforge.fluids.crafting.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -44,7 +44,7 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 	}
 	
 	@Override
-	protected @NotNull List<MobEffectInstance> getEffects(boolean nectar, double bloominess, double alcPercent) {
+	protected List<MobEffectInstance> getEffects(boolean nectar, double bloominess, double alcPercent) {
 		List<MobEffectInstance> effects = new ArrayList<>();
 		
 		int effectDuration = 1800;
@@ -114,7 +114,7 @@ public class AquaRegiaRecipe extends SweetenableTitrationBarrelRecipe {
 	}
 	
 	@Override
-	public @NotNull RecipeSerializer<?> getSerializer() {
+	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.TITRATION_BARREL_AQUA_REGIA;
 	}
 	

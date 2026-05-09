@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.resources.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 
 public class KindlingEntityRenderer extends MobRenderer<KindlingEntity, KindlingEntityModel> {
@@ -29,7 +29,7 @@ public class KindlingEntityRenderer extends MobRenderer<KindlingEntity, Kindling
 	}
 	
 	@Override
-	public ResourceLocation getTextureLocation(@NotNull KindlingEntity entity) {
+	public ResourceLocation getTextureLocation(KindlingEntity entity) {
 		KindlingVariant variant = entity.getKindlingVariant().value();
 		boolean isClipped = entity.isClipped();
 		if (entity.getRemainingPersistentAngerTime() > 0) {

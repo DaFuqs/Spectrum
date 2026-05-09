@@ -10,7 +10,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.levelgen.blockpredicates.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.function.*;
 
@@ -34,7 +34,7 @@ public class ExclusionsLibCompat {
 			return false;
 		}
 		
-		public @NotNull BlockPredicateType<?> type() {
+		public BlockPredicateType<?> type() {
 			return BlockPredicateType.TRUE;
 		}
 	}

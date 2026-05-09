@@ -4,7 +4,7 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.crafting.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -12,7 +12,7 @@ import static net.minecraft.world.level.material.Fluids.*;
 
 public class FluidIngredientREI {
 	
-	public static EntryIngredient into(@NotNull FluidIngredient ingredient) {
+	public static EntryIngredient into(FluidIngredient ingredient) {
         Objects.requireNonNull(ingredient);
         // Return empty stack if ingredient is empty.
         // Semi-redundant: the sole caller of this *checks if input is empty*.

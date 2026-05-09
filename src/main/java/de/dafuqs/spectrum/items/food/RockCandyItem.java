@@ -109,7 +109,7 @@ public class RockCandyItem extends Item {
 	}
 	
 	// *technically* we should prob. check if the entities share the same fluid pool, but eh
-	private static @NotNull List<ItemEntity> searchSecondaryIngredients(ItemEntity itemEntity, Level level, AABB boundingBox) {
+	private static List<ItemEntity> searchSecondaryIngredients(ItemEntity itemEntity, Level level, AABB boundingBox) {
 		return level.getEntitiesOfClass(ItemEntity.class, boundingBox.inflate(ITEM_SEARCH_RANGE),
 				entity -> !entity.hasPickUpDelay() && entity.isAlive() && entity != itemEntity && entity.isInFluidType(SpectrumFluids.LIQUID_CRYSTAL_TYPE.get()) && RockCandyVariant.getFor(entity.getItem()) != null);
 	}
@@ -159,7 +159,7 @@ public class RockCandyItem extends Item {
 		}
 		
 		@Override
-		public @NotNull String getSerializedName() {
+		public String getSerializedName() {
 			return this.toString().toLowerCase(Locale.ROOT);
 		}
 		

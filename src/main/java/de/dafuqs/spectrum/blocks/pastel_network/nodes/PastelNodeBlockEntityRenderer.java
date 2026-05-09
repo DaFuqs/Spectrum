@@ -20,7 +20,7 @@ import net.minecraft.client.resources.model.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<PastelNodeBlockEntity> {
 	
@@ -43,7 +43,7 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 		this.base = getItemNodeBaseTexturedModelData().bakeRoot();
 	}
 	
-	public static @NotNull LayerDefinition getItemNodeBaseTexturedModelData() {
+	public static LayerDefinition getItemNodeBaseTexturedModelData() {
 		MeshDefinition modelData = new MeshDefinition();
 		PartDefinition modelPartData = modelData.getRoot();
 		modelPartData.addOrReplaceChild("base", CubeListBuilder.create().texOffs(6, 0).addBox(-1.0F, 1.1F, -1.0F, 2.0F, 0.0F, 2.0F), PartPose.ZERO);
@@ -55,7 +55,7 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 	}
 	
 	@Override
-	public void render(PastelNodeBlockEntity node, float tickDelta, @NotNull PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light, int overlay) {
+	public void render(PastelNodeBlockEntity node, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
 		if (node.getState() == null)
 			return;
 		

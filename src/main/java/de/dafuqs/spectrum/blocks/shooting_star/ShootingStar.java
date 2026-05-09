@@ -11,6 +11,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.storage.loot.*;
+import javax.annotation.*;
+
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
@@ -38,7 +40,7 @@ public interface ShootingStar {
 			this.lootTable = lootTable;
 		}
 		
-		public static Variant getWeightedRandomType(@NotNull RandomSource random) {
+		public static Variant getWeightedRandomType(RandomSource random) {
 			int r = random.nextInt(8);
 			if (r == 0) {
 				return FIERY;
@@ -75,11 +77,11 @@ public interface ShootingStar {
 		}
 		
 		@Contract("_ -> new")
-		public static @NotNull ResourceKey<LootTable> getLootTable(int index) {
+		public static ResourceKey<LootTable> getLootTable(int index) {
 			return values()[index].getLootTable();
 		}
 		
-		public @NotNull ResourceKey<LootTable> getLootTable() {
+		public ResourceKey<LootTable> getLootTable() {
 			return this.lootTable;
 		}
 		
@@ -107,7 +109,7 @@ public interface ShootingStar {
 			}
 		}
 		
-		public @NotNull Vector3f getRandomParticleColor(RandomSource random) {
+		public Vector3f getRandomParticleColor(RandomSource random) {
 			switch (this) {
 				case GLISTERING -> {
 					int r = random.nextInt(5);

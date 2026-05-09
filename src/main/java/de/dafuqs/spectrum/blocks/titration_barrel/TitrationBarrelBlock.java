@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -317,7 +317,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 		super.onRemove(state, world, pos, newState, moved);
 	}
 	
-	public static void scatterContents(@NotNull Level world, BlockPos pos) {
+	public static void scatterContents(Level world, BlockPos pos) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof TitrationBarrelBlockEntity titrationBarrelBlockEntity) {
 			Containers.dropContents(world, pos, titrationBarrelBlockEntity);

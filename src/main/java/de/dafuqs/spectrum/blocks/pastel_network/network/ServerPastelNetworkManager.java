@@ -7,7 +7,7 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.saveddata.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -87,7 +87,7 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 		return manager;
 	}
 	
-	private static @NotNull HashMap<PastelTransmission, Integer> fromTag(CompoundTag tag, ServerPastelNetwork network) {
+	private static HashMap<PastelTransmission, Integer> fromTag(CompoundTag tag, ServerPastelNetwork network) {
 		var transmissions = tag.getList("transmissions", Tag.TAG_COMPOUND);
 		var timers = tag.getIntArray("timers");
 		var map = new HashMap<PastelTransmission, Integer>();

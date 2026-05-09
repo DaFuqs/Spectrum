@@ -12,7 +12,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.joml.*;
 
 import java.lang.Math;
@@ -39,7 +39,7 @@ public class MonstrosityEntityRenderer extends EntityRenderer<MonstrosityEntity>
 	}
 	
 	@Override
-	public void render(@NotNull MonstrosityEntity entity, float entityYaw, float partialTick, PoseStack poseStack, @NotNull MultiBufferSource bufferSource, int packedLight) {
+	public void render(MonstrosityEntity entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
 		poseStack.pushPose();
 		
 		poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
@@ -77,7 +77,7 @@ public class MonstrosityEntityRenderer extends EntityRenderer<MonstrosityEntity>
 	}
 	
 	@Override
-	public @NotNull ResourceLocation getTextureLocation(@NotNull MonstrosityEntity entity) {
+	public ResourceLocation getTextureLocation(MonstrosityEntity entity) {
 		return TextureAtlas.LOCATION_BLOCKS;
 	}
 	

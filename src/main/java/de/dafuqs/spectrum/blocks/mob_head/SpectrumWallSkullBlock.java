@@ -10,6 +10,9 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
+import javax.annotation.*;
+import javax.annotation.Nullable;
+
 import java.util.*;
 
 public class SpectrumWallSkullBlock extends WallSkullBlock {
@@ -38,7 +41,7 @@ public class SpectrumWallSkullBlock extends WallSkullBlock {
 	}
 	
 	@Contract(pure = true)
-	public static @NotNull Collection<Block> getMobWallHeads() {
+	public static Collection<Block> getMobWallHeads() {
 		return SpectrumWallSkullBlock.MOB_WALL_HEADS.values();
 	}
 	

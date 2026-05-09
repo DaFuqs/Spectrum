@@ -10,7 +10,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public record SetShadowSlotPayload(int screenHandlerSyncId, int slotId, ItemStack shadowStack) implements CustomPacketPayload {
 	
@@ -23,7 +23,7 @@ public record SetShadowSlotPayload(int screenHandlerSyncId, int slotId, ItemStac
 	);
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

@@ -24,7 +24,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -240,7 +240,6 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 			}
 			case 3 -> {
 				statusEffect = MobEffects.CONFUSION;
-				amplifier = 0;
 			}
 			case 4, 5, 6 -> {
 				statusEffect = SpectrumMobEffects.STIFFNESS;
@@ -328,17 +327,17 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 	}
 	
 	@Override
-	public @NotNull ItemStack getBucketItemStack() {
+	public ItemStack getBucketItemStack() {
 		return new ItemStack(SpectrumItems.BUCKET_OF_ERASER.get());
 	}
 	
 	@Override
-	public @NotNull SoundEvent getPickupSound() {
+	public SoundEvent getPickupSound() {
 		return SoundEvents.BUCKET_FILL;
 	}
 	
 	public static class SwarmingSpiderData extends SpiderEffectsGroupData {
-		public Holder<MobEffect> effect;
+		public @Nullable Holder<MobEffect> effect;
 		public int amplifier = 0;
 		
 		public SwarmingSpiderData() {

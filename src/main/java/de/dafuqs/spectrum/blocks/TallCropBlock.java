@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 /**
  * A crop block that is two blocks tall.
@@ -109,7 +109,7 @@ public class TallCropBlock extends CropBlock {
      * Returns the bottom block state for the given age.
      */
     @Override
-	public @NotNull BlockState getStateForAge(int age) {
+	public BlockState getStateForAge(int age) {
         return this.withAgeAndHalf(age, DoubleBlockHalf.LOWER);
     }
     

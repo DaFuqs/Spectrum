@@ -20,7 +20,7 @@ import net.minecraft.world.level.*;
 import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.client.textures.*;
 import net.neoforged.neoforge.fluids.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 
 public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEntity> implements BlockEntityRenderer<T> {
@@ -44,7 +44,7 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 	}
 	
 	@Override
-	public void render(CrystallarieumBlockEntity crystal, float tickDelta, @NotNull PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light, int overlay) {
+	public void render(CrystallarieumBlockEntity crystal, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
 		if (crystal.animator == null)
 			return;
 		

@@ -15,7 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.joml.*;
 
 public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor color) implements CustomPacketPayload {
@@ -28,7 +28,7 @@ public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor c
 	);
 	
 	public static void sendPlayFusionCraftingFinishedParticles(
-			Level world, BlockPos pos, @NotNull ItemStack itemStack) {
+			Level world, BlockPos pos, ItemStack itemStack) {
 		InkColor inkColor = ColorRegistry.ITEM_COLORS.getInkColor(itemStack.getItem(), InkColors.LIGHT_GRAY);
 		PacketDistributor.sendToPlayersTrackingChunk(
 				(ServerLevel) world, new ChunkPos(pos), new PlayFusionCraftingFinishedParticlePayload(pos, inkColor));
@@ -51,7 +51,7 @@ public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor c
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

@@ -26,6 +26,9 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import org.jetbrains.annotations.*;
 
+import javax.annotation.*;
+import javax.annotation.Nullable;
+
 import java.util.*;
 
 public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
@@ -42,7 +45,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	@Contract("_ -> new")
-	public static @NotNull Tuple<Integer, Integer> getEggColorsForEntity(EntityType<?> entityType) {
+	public static Tuple<Integer, Integer> getEggColorsForEntity(EntityType<?> entityType) {
 		SpawnEggItem spawnEggItem = SpawnEggItem.byId(entityType);
 		if (spawnEggItem != null) {
 			return new Tuple<>(spawnEggItem.getColor(0), spawnEggItem.getColor(1));
@@ -50,7 +53,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		return new Tuple<>(0x222222, 0xDDDDDD);
 	}
 	
-	public static int getManifestAdvanceSteps(@NotNull Level world, @NotNull BlockPos blockPos) {
+	public static int getManifestAdvanceSteps(Level world, BlockPos blockPos) {
 		BlockState belowBlockState = world.getBlockState(blockPos.below());
 		if (belowBlockState.is(SpectrumBlockTags.MEMORY_NEVER_MANIFESTERS)) {
 			return 0;
@@ -63,7 +66,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 	}
 	
-	public void setData(LivingEntity placer, @NotNull ItemStack memoryStack) {
+	public void setData(LivingEntity placer, ItemStack memoryStack) {
 		if (placer instanceof Player playerEntity) {
 			setOwner(playerEntity);
 			if (playerEntity instanceof ServerPlayer serverPlayer && MemoryItem.getEntityType(memoryStack).isEmpty()) {
@@ -134,7 +137,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 	}
 	
-	protected void manifestFromBlock(@NotNull ServerLevel world, BlockPos blockPos) {
+	protected void manifestFromBlock(ServerLevel world, BlockPos blockPos) {
 		BlockState blockState = world.getBlockState(blockPos);
 		if (blockState.getBlock() instanceof SimpleWaterloggedBlock && blockState.getValue(BlockStateProperties.WATERLOGGED)) {
 			world.setBlockAndUpdate(blockPos, Blocks.WATER.defaultBlockState());
@@ -144,7 +147,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		manifest(world, blockPos, this.memoryItemStack, this.ownerUUID);
 	}
 	
-	public static boolean manifest(@NotNull ServerLevel world, BlockPos blockPos, ItemStack memoryItemStack, @Nullable UUID ownerUUID) {
+	public static boolean manifest(ServerLevel world, BlockPos blockPos, ItemStack memoryItemStack, @Nullable UUID ownerUUID) {
 		Optional<Entity> hatchedEntityOptional = hatchEntity(world, blockPos, memoryItemStack);
 		
 		if (hatchedEntityOptional.isPresent()) {
@@ -240,7 +243,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	@Override
-	public void setOwner(@NotNull Player playerEntity) {
+	public void setOwner(Player playerEntity) {
 		this.ownerUUID = playerEntity.getUUID();
 		setChanged();
 	}

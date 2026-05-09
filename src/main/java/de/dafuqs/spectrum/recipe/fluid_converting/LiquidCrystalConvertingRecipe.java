@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -14,27 +14,27 @@ public class LiquidCrystalConvertingRecipe extends FluidConvertingRecipe {
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/enter_liquid_crystal");
 	private static final Set<Item> outputItems = new HashSet<>();
 	
-	public LiquidCrystalConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
+	public LiquidCrystalConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Ingredient inputIngredient, ItemStack outputItemStack) {
 		super(group, secret, requiredAdvancementIdentifier, inputIngredient, outputItemStack);
 		outputItems.add(outputItemStack.getItem());
 	}
 	
-	public static boolean isExistingOutputItem(@NotNull ItemStack itemStack) {
+	public static boolean isExistingOutputItem(ItemStack itemStack) {
 		return outputItems.contains(itemStack.getItem());
 	}
 	
 	@Override
-	public @NotNull ItemStack getToastSymbol() {
+	public ItemStack getToastSymbol() {
 		return new ItemStack(SpectrumItems.LIQUID_CRYSTAL_BUCKET.get());
 	}
 	
 	@Override
-	public @NotNull RecipeSerializer<?> getSerializer() {
+	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.LIQUID_CRYSTAL_CONVERTING_SERIALIZER;
 	}
 	
 	@Override
-	public @NotNull RecipeType<?> getType() {
+	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING;
 	}
 	

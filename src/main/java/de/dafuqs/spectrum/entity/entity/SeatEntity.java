@@ -11,7 +11,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -76,7 +76,7 @@ public class SeatEntity extends Entity {
 		return entityData.get(CUSHION);
 	}
 	
-	public void setCushion(@NotNull BlockState state) {
+	public void setCushion(BlockState state) {
 		entityData.set(CUSHION, Optional.of(state));
 	}
 	

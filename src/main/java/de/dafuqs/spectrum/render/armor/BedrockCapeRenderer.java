@@ -18,11 +18,11 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.client.event.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class BedrockCapeRenderer {
 	
-	private static <T extends Entity> void registerCapeLayer(EntityRenderer<T> baseRenderer) {
+	private static <T extends Entity> void registerCapeLayer(@Nullable EntityRenderer<T> baseRenderer) {
 		if (!(baseRenderer instanceof LivingEntityRenderer<?, ?> livingRenderer)) {
 			return;
 		}
@@ -60,7 +60,7 @@ public class BedrockCapeRenderer {
 		}
 		
 		@Override
-		public void render(@NotNull PoseStack poseStack, @NotNull MultiBufferSource bufferSource, int packedLight, @NotNull LivingEntity livingEntity,
+		public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, LivingEntity livingEntity,
 						   float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
 			
 			ItemStack chestStack = livingEntity.getItemBySlot(EquipmentSlot.CHEST);

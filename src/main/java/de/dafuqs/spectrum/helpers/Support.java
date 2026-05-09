@@ -18,6 +18,9 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
+import javax.annotation.*;
+import javax.annotation.Nullable;
+
 import java.math.*;
 import java.text.*;
 import java.util.*;
@@ -52,7 +55,7 @@ public class Support {
 		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
 	}
 	
-	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
+	public static Optional<TagKey<Block>> getFirstMatchingBlockTag(BlockState blockState, List<TagKey<Block>> tags) {
 		return blockState.getTags().filter(tags::contains).findFirst();
 	}
 	
@@ -119,7 +122,7 @@ public class Support {
 		}
 	}
 	
-	public static int getIntFromDecimalWithChance(double d, @NotNull RandomSource random) {
+	public static int getIntFromDecimalWithChance(double d, RandomSource random) {
 		boolean roundUp = (random.nextFloat() < d % 1);
 		if (roundUp) {
 			return ((int) d) + 1;
@@ -136,7 +139,7 @@ public class Support {
 	 * @param horizontalFacing the facing direction
 	 * @return the blockpos with forwardUpRight offset from origin when facing horizontalFacing
 	 */
-	public static BlockPos directionalOffset(BlockPos origin, Vec3i forwardUpRight, @NotNull Direction horizontalFacing) {
+	public static BlockPos directionalOffset(BlockPos origin, Vec3i forwardUpRight, Direction horizontalFacing) {
 		switch (horizontalFacing) {
 			case NORTH -> {
 				return origin.offset(forwardUpRight.getZ(), forwardUpRight.getY(), -forwardUpRight.getX());
@@ -157,7 +160,7 @@ public class Support {
 		}
 	}
 	
-	public static void grantAdvancementCriterion(@NotNull ServerPlayer serverPlayerEntity, ResourceLocation advancementIdentifier, String criterion) {
+	public static void grantAdvancementCriterion(ServerPlayer serverPlayerEntity, ResourceLocation advancementIdentifier, String criterion) {
 		if (serverPlayerEntity.getServer() == null) {
 			return;
 		}
@@ -174,11 +177,11 @@ public class Support {
 		}
 	}
 	
-	public static void grantAdvancementCriterion(@NotNull ServerPlayer serverPlayerEntity, String advancementString, String criterion) {
+	public static void grantAdvancementCriterion(ServerPlayer serverPlayerEntity, String advancementString, String criterion) {
 		grantAdvancementCriterion(serverPlayerEntity, SpectrumCommon.locate(advancementString), criterion);
 	}
 	
-	public static @NotNull String getReadableDimensionString(@NotNull String dimensionKeyString) {
+	public static String getReadableDimensionString(String dimensionKeyString) {
 		switch (dimensionKeyString) {
 			case "minecraft:overworld" -> {
 				return "Overworld";
@@ -203,7 +206,7 @@ public class Support {
 	}
 	
 	@Contract(pure = true)
-	public static Direction directionFromRotation(@NotNull Rotation blockRotation) {
+	public static Direction directionFromRotation(Rotation blockRotation) {
 		switch (blockRotation) {
 			case NONE -> {
 				return Direction.NORTH;
@@ -221,7 +224,7 @@ public class Support {
 	}
 	
 	@Contract(pure = true)
-	public static Rotation rotationFromDirection(@NotNull Direction direction) {
+	public static Rotation rotationFromDirection(Direction direction) {
 		switch (direction) {
 			case EAST -> {
 				return Rotation.CLOCKWISE_90;

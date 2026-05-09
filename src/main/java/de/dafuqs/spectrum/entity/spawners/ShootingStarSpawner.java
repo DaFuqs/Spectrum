@@ -14,7 +14,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class ShootingStarSpawner implements CustomSpawner {
 	
@@ -52,7 +52,7 @@ public class ShootingStarSpawner implements CustomSpawner {
 	// If the player explicitly searches for shooting stars give them a small boost :)
 	// That these things increase the visibility of shooting stars is explicitly stated
 	// in the guidebook, just not that these actually give a boost, too
-	protected static float getShootingStarChanceWithMultiplier(@NotNull Player playerEntity) {
+	protected static float getShootingStarChanceWithMultiplier(Player playerEntity) {
 		int multiplier = 1;
 		for (ItemStack handStack : playerEntity.getHandSlots()) {
 			if (handStack != null && handStack.is(Items.SPYGLASS)) {
@@ -66,7 +66,7 @@ public class ShootingStarSpawner implements CustomSpawner {
 		return SpectrumConfig.CONFIG.ShootingStarSpawnChance.get().floatValue() * multiplier;
 	}
 	
-	public static void spawnShootingStar(ServerLevel serverWorld, @NotNull Player playerEntity) {
+	public static void spawnShootingStar(ServerLevel serverWorld, Player playerEntity) {
 		RandomSource rs = serverWorld.getRandom();
 		Vec3 spawnPos = playerEntity.position().add(rs.nextIntBetweenInclusive(-48, 48), 200, rs.nextIntBetweenInclusive(-48, 48));
 		

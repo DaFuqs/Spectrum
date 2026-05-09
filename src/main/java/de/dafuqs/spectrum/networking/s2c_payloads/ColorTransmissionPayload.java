@@ -10,7 +10,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public record ColorTransmissionPayload(BlockPos pos, ColoredTransmission transmission) implements CustomPacketPayload {
 	
@@ -21,7 +21,7 @@ public record ColorTransmissionPayload(BlockPos pos, ColoredTransmission transmi
 			ColorTransmissionPayload::new
 	);
 	
-	public static void playColorTransmissionParticle(ServerLevel world, @NotNull ColoredTransmission transmission) {
+	public static void playColorTransmissionParticle(ServerLevel world, ColoredTransmission transmission) {
 		var pos = BlockPos.containing(transmission.getOrigin());
 		PacketDistributor.sendToPlayersTrackingChunk(
 				world, new ChunkPos(pos), new ColorTransmissionPayload(pos, transmission));
@@ -35,7 +35,7 @@ public record ColorTransmissionPayload(BlockPos pos, ColoredTransmission transmi
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

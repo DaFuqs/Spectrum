@@ -6,6 +6,8 @@ import net.minecraft.world.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 
+import javax.annotation.*;
+
 public final class PastelUpgradeSignature {
 
 	public static final String INNER_RING_BASE_PATH = "textures/block/pastel_node_inner_ring_";
@@ -58,7 +60,7 @@ public final class PastelUpgradeSignature {
 		private final Item upgradeItem;
 		private final Category category;
 		private final String namespace;
-		private String name, outerRing, innerRing;
+		private @Nullable String name, outerRing, innerRing;
 		private int stackMod, speedMod, slotRowMod;
 		private float stackMult = 1, speedMult = 1;
 		private boolean light, priority, triggerTransfer, lamp, sensor;

@@ -5,7 +5,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -24,7 +24,7 @@ public class PedestalRecipeInput implements RecipeInput {
 	private final CraftingInput craftingGridInput;
 	private final List<ItemStack> gemstonePowderStacks;
 	
-	public PedestalRecipeInput(@NotNull Level level, CraftingInput craftingGridInput, List<ItemStack> gemstonePowderStacks, @Nullable Player player) {
+	public PedestalRecipeInput(Level level, CraftingInput craftingGridInput, List<ItemStack> gemstonePowderStacks, @Nullable Player player) {
 		this.level = level;
 		this.player = player;
 		this.craftingGridInput = craftingGridInput;
@@ -35,7 +35,7 @@ public class PedestalRecipeInput implements RecipeInput {
 		return craftingGridInput;
 	}
 	
-	public static PedestalRecipeInput create(@NotNull Level level, List<ItemStack> stacks, @Nullable Player player) {
+	public static PedestalRecipeInput create(Level level, List<ItemStack> stacks, @Nullable Player player) {
 		return new PedestalRecipeInput(level, CraftingInput.of(3, 3, stacks.subList(0, 9)), stacks.subList(9, 14), player);
 	}
 	
@@ -70,7 +70,7 @@ public class PedestalRecipeInput implements RecipeInput {
 		return this.player;
 	}
 	
-	public @NotNull Level getLevel() {
+	public Level getLevel() {
 		return this.level;
 	}
 	

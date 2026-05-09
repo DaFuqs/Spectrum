@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -53,7 +53,7 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 	}
 	
 	@Override
-	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, @NotNull Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		if (world.isClientSide) {
 			return ItemInteractionResult.SUCCESS;
 		} else {
@@ -64,7 +64,7 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 		}
 	}
 	
-	public void toggleSendingMode(@NotNull Level world, BlockPos blockPos, @NotNull BlockState state) {
+	public void toggleSendingMode(Level world, BlockPos blockPos, BlockState state) {
 		BlockState newState = state.setValue(SENDER, !state.getValue(SENDER));
 		world.setBlock(blockPos, newState, Block.UPDATE_CLIENTS);
 		
@@ -80,7 +80,7 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 	// Better move it to the block entity and use a dynamic renderer?
 	// ram usage <=> rendering impact
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, POWERED, SENDER, CHANNEL);
 	}
 	
@@ -114,7 +114,7 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 	 * The block entity caches the output signal for performance
 	 */
 	@Override
-	protected int getOutputSignal(@NotNull BlockGetter world, BlockPos pos, BlockState state) {
+	protected int getOutputSignal(BlockGetter world, BlockPos pos, BlockState state) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		return blockEntity instanceof RedstoneTransceiverBlockEntity ? ((RedstoneTransceiverBlockEntity) blockEntity).getCurrentSignal() : 0;
 	}

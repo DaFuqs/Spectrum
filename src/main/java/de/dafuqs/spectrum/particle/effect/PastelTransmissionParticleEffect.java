@@ -9,7 +9,7 @@ import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -31,12 +31,12 @@ public record PastelTransmissionParticleEffect(List<BlockPos> nodePositions, Pas
 	);
 	
 	@Override
-	public @NotNull ParticleType<PastelTransmissionParticleEffect> getType() {
+	public ParticleType<PastelTransmissionParticleEffect> getType() {
 		return SpectrumParticleTypes.PASTEL_TRANSMISSION;
 	}
 	
 	@Override
-	public @NotNull String toString() {
+	public String toString() {
 		int nodeCount = this.nodePositions.size();
 		BlockPos source = this.nodePositions.getFirst();
 		BlockPos destination = this.nodePositions.getLast();

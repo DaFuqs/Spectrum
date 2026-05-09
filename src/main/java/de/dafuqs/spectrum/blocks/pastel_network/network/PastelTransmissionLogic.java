@@ -8,7 +8,7 @@ import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.items.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.jgrapht.*;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.*;

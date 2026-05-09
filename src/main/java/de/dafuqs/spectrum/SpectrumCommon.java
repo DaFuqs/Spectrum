@@ -38,7 +38,7 @@ import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
 import net.neoforged.neoforge.network.event.*;
 import net.neoforged.neoforge.network.registration.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.slf4j.*;
 
 import java.util.*;

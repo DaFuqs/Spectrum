@@ -37,7 +37,7 @@ public class ParticleSpawnerScreenHandler extends AbstractContainerMenu {
 	
 	@Override
 	public boolean stillValid(Player player) {
-		return this.blockEntity != null && !this.blockEntity.isRemoved();
+		return !this.blockEntity.isRemoved();
 	}
 	
 }

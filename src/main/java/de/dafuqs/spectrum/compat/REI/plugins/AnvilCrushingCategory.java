@@ -12,7 +12,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -38,7 +38,7 @@ public class AnvilCrushingCategory extends GatedDisplayCategory<AnvilCrushingDis
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull AnvilCrushingDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, AnvilCrushingDisplay display) {
 		widgets.add(Widgets.createArrow(new Point(startPoint.x + 50, startPoint.y - 8 + 23)));
 		widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y - 8 + 24)));
 		

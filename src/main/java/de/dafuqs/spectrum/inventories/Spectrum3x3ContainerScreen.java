@@ -8,6 +8,8 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
 
+import javax.annotation.*;
+
 public class Spectrum3x3ContainerScreen extends AbstractContainerScreen<Spectrum3x3ContainerScreenHandler> {
 	
 	private static final ResourceLocation TIER_1_TEXTURE_3x3 = SpectrumCommon.locate("textures/gui/container/generic_3x3_tier_1.png");
@@ -46,7 +48,7 @@ public class Spectrum3x3ContainerScreen extends AbstractContainerScreen<Spectrum
 	}
 	
 	@Contract(pure = true)
-	private ResourceLocation getBackground(@NotNull ScreenBackgroundVariant tier) {
+	private ResourceLocation getBackground(ScreenBackgroundVariant tier) {
 		switch (tier) {
 			case EARLYGAME -> {
 				return TIER_1_TEXTURE_3x3;

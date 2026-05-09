@@ -47,7 +47,7 @@ public class SpectrumColorProviders {
 		event.register((blockState, blockAndTintGetter, blockPos, i) -> event.getBlockColors().getColor(Blocks.FERN.defaultBlockState(), blockAndTintGetter, blockPos, i), SpectrumBlocks.CLOVER.get(), SpectrumBlocks.FOUR_LEAF_CLOVER.get());
 		
 		event.register((state, blockAndTintGetter, pos, tintIndex) -> {
-			if (blockAndTintGetter == null) {
+			if (blockAndTintGetter == null || pos == null) {
 				return 0x0;
 			}
 			if (blockAndTintGetter.getBlockEntity(pos) instanceof MemoryBlockEntity memoryBlockEntity) {

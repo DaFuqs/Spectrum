@@ -11,7 +11,7 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
 
@@ -41,7 +41,7 @@ public record PastelNetworkEdgeSyncPayload(UUID networkUUID, int color, Graph<Bl
 		}
 		
 		@Override
-		public @NotNull Graph<BlockPos, DefaultEdge> decode(RegistryFriendlyByteBuf buf) {
+		public Graph<BlockPos, DefaultEdge> decode(RegistryFriendlyByteBuf buf) {
 			Graph<BlockPos, DefaultEdge> graph = new SimpleGraph<>(DefaultEdge.class);
 			
 			int vertexCount = buf.readInt();
@@ -100,7 +100,7 @@ public record PastelNetworkEdgeSyncPayload(UUID networkUUID, int color, Graph<Bl
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

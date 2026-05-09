@@ -30,6 +30,9 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 
+import javax.annotation.*;
+import javax.annotation.Nullable;
+
 import java.util.*;
 import java.util.stream.*;
 
@@ -57,7 +60,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 	
 	@SuppressWarnings("unused")
-	public static void tick(@NotNull Level world, BlockPos pos, BlockState state, BlackHoleChestBlockEntity chest) {
+	public static void tick(Level world, BlockPos pos, BlockState state, BlackHoleChestBlockEntity chest) {
 		chest.age++;
 		
 		if (chest.isOpen) {
@@ -170,7 +173,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		return hasXPStorage;
 	}
 	
-	private static void searchForNearbyEntities(@NotNull BlackHoleChestBlockEntity blockEntity) {
+	private static void searchForNearbyEntities(BlackHoleChestBlockEntity blockEntity) {
 		var world = blockEntity.getLevel();
 		if (world == null)
 			return;
@@ -191,7 +194,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 	
 	@Contract("_, _ -> new")
-	protected static @NotNull AABB getBoxWithRadius(BlockPos blockPos, int radius) {
+	protected static AABB getBoxWithRadius(BlockPos blockPos, int radius) {
 		return AABB.ofSize(Vec3.atCenterOf(blockPos), radius, radius, radius);
 	}
 	
@@ -290,13 +293,13 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		}
 	}
 	
-	public static void sendPlayItemEntityAbsorbedParticle(ServerLevel world, @NotNull ItemEntity itemEntity) {
+	public static void sendPlayItemEntityAbsorbedParticle(ServerLevel world, ItemEntity itemEntity) {
 		PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity(world, itemEntity.position(),
 				SpectrumParticleTypes.BLUE_BUBBLE_POP,
 				1, Vec3.ZERO);
 	}
 	
-	public static void sendPlayExperienceOrbEntityAbsorbedParticle(ServerLevel world, @NotNull ExperienceOrb experienceOrbEntity) {
+	public static void sendPlayExperienceOrbEntityAbsorbedParticle(ServerLevel world, ExperienceOrb experienceOrbEntity) {
 		PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity(world, experienceOrbEntity.position(),
 				SpectrumParticleTypes.GREEN_BUBBLE_POP,
 				1, Vec3.ZERO);
@@ -359,7 +362,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 	
 	@Override
-	public int @NotNull [] getSlotsForFace(Direction direction) {
+	public int [] getSlotsForFace(Direction direction) {
 		if(direction == Direction.UP) {
 			return new int[]{EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT};
 		}
@@ -383,7 +386,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 	
 	@Override
-	public @NotNull ItemStack removeItem(int slot, int amount) {
+	public ItemStack removeItem(int slot, int amount) {
 		var stack = super.removeItem(slot, amount);
 		if (!stack.isEmpty())
 			updateFullState(false);
@@ -391,7 +394,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 	
 	@Override
-	public @NotNull ItemStack removeItemNoUpdate(int slot) {
+	public ItemStack removeItemNoUpdate(int slot) {
 		var stack = super.removeItemNoUpdate(slot);
 		if (!stack.isEmpty())
 			updateFullState(false);

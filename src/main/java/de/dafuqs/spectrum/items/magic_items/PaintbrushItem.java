@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.fml.loading.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -107,7 +107,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 	}
 	
 	@Override
-	public InteractionResult onItemUseFirst(@NotNull ItemStack stack, UseOnContext context) {
+	public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
 			return InteractionResult.sidedSuccess(context.getLevel().isClientSide());
 		}
@@ -175,7 +175,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 		return false;
 	}
 	
-	private boolean payBlockColorCost(Player player, InkColor inkColor) {
+	private boolean payBlockColorCost(@Nullable Player player, InkColor inkColor) {
 		if (player == null) {
 			return false;
 		}

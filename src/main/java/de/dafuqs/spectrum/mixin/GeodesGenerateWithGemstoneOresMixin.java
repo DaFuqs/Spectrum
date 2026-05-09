@@ -13,6 +13,8 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
+import javax.annotation.*;
+
 @Mixin(GeodeFeature.class)
 public abstract class GeodesGenerateWithGemstoneOresMixin {
 	
@@ -31,30 +33,28 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 	@Unique
 	private void spectrum$generateGemstoneOres(FeaturePlaceContext<GeodeConfiguration> context) {
 		BlockState gemBlock = context.config().geodeBlockSettings.innerLayerProvider.getState(context.random(), context.origin());
-		if (gemBlock != null) {
-			BlockState oreBlockState = spectrum$getGemstoneOreForGeodeBlock(gemBlock);
-			if (oreBlockState != null) { // do not handle other modded geodes
-				BlockState blackslagOreBlockState = spectrum$getGemstoneBlackslagOreForGeodeBlock(gemBlock);
-				BlockState deepslateOreBlockState = spectrum$getGemstoneDeepslateOreForGeodeBlock(gemBlock);
-				WorldGenLevel world = context.level();
-				RandomSource random = context.random();
-				// having steps for distance with a fixed amount assures
-				// that the ore amount gets less with distance from the center
-				for (int distance = 5; distance < 14; distance++) {
-					for (int i = 0; i < 24; i++) {
-						int xOffset = (random.nextInt(distance + 1) * 2 - distance);
-						int yOffset = (random.nextInt(distance + 1) * 2 - distance);
-						int zOffset = (random.nextInt(distance + 1) * 2 - distance);
-						
-						BlockPos pos = context.origin().offset(xOffset, yOffset, zOffset);
-						BlockState state = world.getBlockState(pos);
-						if (state.is(SpectrumBlockTags.BLACKSLAG_ORE_REPLACEABLES)) {
-							world.setBlock(pos, blackslagOreBlockState, 3);
-						} else if (state.is(BlockTags.DEEPSLATE_ORE_REPLACEABLES)) {
-							world.setBlock(pos, deepslateOreBlockState, 3);
-						} else if (world.getBlockState(pos).is(BlockTags.STONE_ORE_REPLACEABLES)) {
-							world.setBlock(pos, oreBlockState, 3);
-						}
+		BlockState oreBlockState = spectrum$getGemstoneOreForGeodeBlock(gemBlock);
+		if (oreBlockState != null) { // do not handle other modded geodes
+			BlockState blackslagOreBlockState = spectrum$getGemstoneBlackslagOreForGeodeBlock(gemBlock);
+			BlockState deepslateOreBlockState = spectrum$getGemstoneDeepslateOreForGeodeBlock(gemBlock);
+			WorldGenLevel world = context.level();
+			RandomSource random = context.random();
+			// having steps for distance with a fixed amount assures
+			// that the ore amount gets less with distance from the center
+			for (int distance = 5; distance < 14; distance++) {
+				for (int i = 0; i < 24; i++) {
+					int xOffset = (random.nextInt(distance + 1) * 2 - distance);
+					int yOffset = (random.nextInt(distance + 1) * 2 - distance);
+					int zOffset = (random.nextInt(distance + 1) * 2 - distance);
+					
+					BlockPos pos = context.origin().offset(xOffset, yOffset, zOffset);
+					BlockState state = world.getBlockState(pos);
+					if (state.is(SpectrumBlockTags.BLACKSLAG_ORE_REPLACEABLES)) {
+						world.setBlock(pos, blackslagOreBlockState, 3);
+					} else if (state.is(BlockTags.DEEPSLATE_ORE_REPLACEABLES)) {
+						world.setBlock(pos, deepslateOreBlockState, 3);
+					} else if (world.getBlockState(pos).is(BlockTags.STONE_ORE_REPLACEABLES)) {
+						world.setBlock(pos, oreBlockState, 3);
 					}
 				}
 			}
@@ -69,7 +69,7 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 	 * @return the matching ore for that block state. Does return null if no matching ore exists. For example if another mod adds additional geodes
 	 */
 	@Unique
-	private BlockState spectrum$getGemstoneOreForGeodeBlock(BlockState blockState) {
+	private @Nullable BlockState spectrum$getGemstoneOreForGeodeBlock(BlockState blockState) {
 		Block block = blockState.getBlock();
 		if (block.equals(Blocks.AMETHYST_BLOCK)) {
 			return SpectrumBlocks.AMETHYST_ORE.get().defaultBlockState();
@@ -93,7 +93,7 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 	 * @return the matching ore for that block state. Does return null if no matching ore exists. For example if another mod adds additional geodes
 	 */
 	@Unique
-	private BlockState spectrum$getGemstoneDeepslateOreForGeodeBlock(BlockState blockState) {
+	private @Nullable BlockState spectrum$getGemstoneDeepslateOreForGeodeBlock(BlockState blockState) {
 		Block block = blockState.getBlock();
 		if (block.equals(Blocks.AMETHYST_BLOCK)) {
 			return SpectrumBlocks.DEEPSLATE_AMETHYST_ORE.get().defaultBlockState();
@@ -117,7 +117,7 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 	 * @return the matching ore for that block state. Does return null if no matching ore exists. For example if another mod adds additional geodes
 	 */
 	@Unique
-	private BlockState spectrum$getGemstoneBlackslagOreForGeodeBlock(BlockState blockState) {
+	private @Nullable BlockState spectrum$getGemstoneBlackslagOreForGeodeBlock(BlockState blockState) {
 		Block block = blockState.getBlock();
 		if (block.equals(Blocks.AMETHYST_BLOCK)) {
 			return SpectrumBlocks.BLACKSLAG_AMETHYST_ORE.get().defaultBlockState();

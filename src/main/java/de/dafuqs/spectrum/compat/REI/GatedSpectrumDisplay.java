@@ -10,13 +10,13 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
 public abstract class GatedSpectrumDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
-	private final ResourceLocation requiredAdvancementIdentifier;
+	private final @Nullable ResourceLocation requiredAdvancementIdentifier;
 	private final boolean secret;
 	private final @Nullable Component secretHintText;
 	

@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -125,7 +125,7 @@ public abstract class LightShardBaseEntity extends Projectile {
 		}
 	}
 	
-	protected void setTargetPredicate(@NotNull Predicate<LivingEntity> targetPredicate) {
+	protected void setTargetPredicate(Predicate<LivingEntity> targetPredicate) {
 		this.targetPredicate = targetPredicate;
 	}
 	
@@ -280,8 +280,8 @@ public abstract class LightShardBaseEntity extends Projectile {
 		return Math.round(getMaxAge() / 4F);
 	}
 	
-	public void setTarget(@NotNull LivingEntity target) {
-		this.target = Optional.ofNullable(target.getUUID());
+	public void setTarget(LivingEntity target) {
+		this.target = Optional.of(target.getUUID());
 		this.targetEntity = Optional.of(target);
 	}
 	
@@ -302,7 +302,7 @@ public abstract class LightShardBaseEntity extends Projectile {
 	protected void readAdditionalSaveData(CompoundTag nbt) {
 		super.readAdditionalSaveData(nbt);
 		if (nbt.contains("target")) {
-			target = Optional.ofNullable(nbt.getUUID("target"));
+			target = Optional.of(nbt.getUUID("target"));
 		}
 		
 		initialVelocity = new Vec3(

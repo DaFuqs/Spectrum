@@ -27,7 +27,7 @@ import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -42,13 +42,13 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	}
 	
 	@Shadow
-	public abstract @NotNull Iterable<ItemStack> getHandSlots();
+	public abstract Iterable<ItemStack> getHandSlots();
 	
 	@Shadow
 	private int sleepCounter;
 	
 	@Shadow
-	public abstract boolean hurt(@NotNull DamageSource source, float amount);
+	public abstract boolean hurt(DamageSource source, float amount);
 	
 	@Shadow
 	protected abstract boolean canPlayerFitWithinBlocksAndEntitiesWhen(Pose pose);

@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.neoforged.neoforge.common.util.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 public class EntityHelper {
@@ -26,7 +27,7 @@ public class EntityHelper {
 		}
 	}
 	
-	public static boolean isRealPlayer(Entity entity) {
+	public static boolean isRealPlayer(@Nullable Entity entity) {
 		return !(entity instanceof FakePlayer);
 	}
 	

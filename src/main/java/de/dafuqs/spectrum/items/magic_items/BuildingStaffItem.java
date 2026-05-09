@@ -15,7 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import oshi.util.tuples.*;
 
 public abstract class BuildingStaffItem extends Item implements PrioritizedBlockInteraction, InkPowered {
@@ -26,7 +26,7 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 		super(settings);
 	}
 	
-	public boolean canInteractWith(BlockState state, BlockGetter world, BlockPos pos, Player player) {
+	public boolean canInteractWith(BlockState state, BlockGetter world, BlockPos pos, @Nullable Player player) {
 		if (state.getBlock().asItem() == Items.AIR) {
 			return false;
 		}
@@ -44,7 +44,7 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 	/**
 	 * @return The block to place, the blockItem to consume, the amount
 	 */
-	protected static Triplet<Block, Item, Integer> countSuitableReplacementItems(@NotNull Player player, @NotNull Block targetBlock, boolean single, int inkCostPerBlock) {
+	protected static Triplet<Block, Item, Integer> countSuitableReplacementItems(Player player, Block targetBlock, boolean single, int inkCostPerBlock) {
 		if (player.isCreative()) {
 			return new Triplet<>(targetBlock, targetBlock.asItem(), single ? 1 : Integer.MAX_VALUE);
 		}

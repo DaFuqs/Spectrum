@@ -10,7 +10,7 @@ import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -33,7 +33,7 @@ public class CinderhearthCategory extends GatedDisplayCategory<CinderhearthDispl
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull CinderhearthDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, CinderhearthDisplay display) {
 		widgets.add(Widgets.createSlot(new Point(startPoint.x - 6, startPoint.y + 2)).markInput().entries(display.getInputEntries().get(0))); // input slot
 		widgets.add(Widgets.createBurningFire(new Point(startPoint.x - 6, startPoint.y + 1 + 20)).animationDurationMS(10000));
 		widgets.add(Widgets.createArrow(new Point(startPoint.x - 6 + 18, startPoint.y + 2 + 5)).animationDurationTicks(display.craftingTime));

@@ -3,14 +3,13 @@ package de.dafuqs.spectrum.helpers.enchantments;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
 // See: SmeltItemFunction
 public class FoundryHelper {
 	
-	@NotNull
 	public static List<ItemStack> applyFoundry(Level world, List<ItemStack> originalStacks) {
 		List<ItemStack> returnItemStacks = new ArrayList<>();
 		

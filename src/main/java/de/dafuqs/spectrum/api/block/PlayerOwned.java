@@ -5,13 +5,13 @@ import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 public interface PlayerOwned {
 	
-	UUID getOwnerUUID();
+	@Nullable UUID getOwnerUUID();
 	
 	void setOwner(Player playerEntity);
 	
@@ -24,12 +24,12 @@ public interface PlayerOwned {
 	}
 	
 	@Nullable
-	default Player getOwnerIfOnline(Level level) {
+	default Player getOwnerIfOnline(@Nullable Level level) {
 		return getPlayerIfOnline(level, this.getOwnerUUID());
 	}
 	
 	@Nullable
-	static Player getPlayerIfOnline(Level level, UUID ownerUUID) {
+	static Player getPlayerIfOnline(@Nullable Level level, @Nullable UUID ownerUUID) {
 		if (ownerUUID == null || level == null) {
 			return null;
 		}
@@ -40,7 +40,7 @@ public interface PlayerOwned {
 		}
 	}
 	
-	static void writeOwnerUUID(CompoundTag nbt, UUID ownerUUID) {
+	static void writeOwnerUUID(CompoundTag nbt, @Nullable UUID ownerUUID) {
 		if (ownerUUID != null) {
 			nbt.putUUID("OwnerUUID", ownerUUID);
 		}

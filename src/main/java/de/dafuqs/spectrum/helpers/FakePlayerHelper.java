@@ -14,7 +14,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.common.util.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -24,7 +24,7 @@ public class FakePlayerHelper {
 	private static final Map<UUID, FakePlayer> FAKE_PLAYER_CACHE = new Object2ObjectArrayMap<>();
 	
 	public static @Nullable Player getFakePlayer(ServerLevel level, PlayerOwned playerOwned) {
-		UUID ownerUUID = playerOwned.getOwnerUUID();
+		@Nullable UUID ownerUUID = playerOwned.getOwnerUUID();
 		if(ownerUUID == null) return null;
 		
 		return FAKE_PLAYER_CACHE.computeIfAbsent(ownerUUID, uuid -> {

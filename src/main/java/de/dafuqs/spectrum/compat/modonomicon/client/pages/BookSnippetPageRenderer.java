@@ -9,7 +9,7 @@ import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> implements PageWithTextRenderer {
 	

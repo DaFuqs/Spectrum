@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.*;
 import net.neoforged.neoforge.items.IItemHandler;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -78,12 +78,12 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 	}
 	
 	@Override
-	public @NotNull ItemStack getStackInSlot(int slot) {
+	public ItemStack getStackInSlot(int slot) {
 		return variant.copyWithCount((int) Math.min(variant.getMaxStackSize(), this.count));
 	}
 
 	@Override
-	public @NotNull ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
 		if (stack.isEmpty())
 			return ItemStack.EMPTY;
 		
@@ -100,7 +100,7 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 	}
 	
 	@Override
-	public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+	public ItemStack extractItem(int slot, int amount, boolean simulate) {
 		if (amount == 0) {
 			return ItemStack.EMPTY;
 		}
@@ -144,7 +144,7 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 	}
 	
 	@Override
-	public @NotNull Iterator<ItemStack> iterator() {
+	public Iterator<ItemStack> iterator() {
 		return new Iterator<>() {
 			
 			@Override

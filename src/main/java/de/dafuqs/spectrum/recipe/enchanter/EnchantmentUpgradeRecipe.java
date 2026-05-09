@@ -173,7 +173,7 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 	// Janky Hack
 	public Item getBulkItem() {
 		var match = bulkItem.getItems();
-		if (match != null && match.length > 0)
+		if (match.length > 0)
 			return bulkItem.getItems()[0].getItem();
 		return Items.AIR;
 	}

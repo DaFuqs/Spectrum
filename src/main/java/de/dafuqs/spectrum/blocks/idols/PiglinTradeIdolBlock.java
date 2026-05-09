@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -30,7 +30,7 @@ public class PiglinTradeIdolBlock extends IdolBlock {
 		return null;
 	}
 	
-	private static List<ItemStack> getBarteredStacks(@NotNull ServerLevel world, BlockPos blockPos) {
+	private static List<ItemStack> getBarteredStacks(ServerLevel world, BlockPos blockPos) {
 		Piglin piglin = new Piglin(EntityType.PIGLIN, world);
 		piglin.setPosRaw(blockPos.getX(), blockPos.getY(), blockPos.getZ());
 		

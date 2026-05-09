@@ -21,6 +21,7 @@ import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import oshi.util.tuples.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 public class ConstructorsStaffItem extends BuildingStaffItem {
@@ -37,7 +38,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 	// but not useless at the end
 	// this way the player does not need to craft 5 tiers
 	// of staffs that each do basically feel the same
-	public static int getRange(Player playerEntity) {
+	public static int getRange(@Nullable Player playerEntity) {
 		if (playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
 		} else {

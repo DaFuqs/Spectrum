@@ -12,7 +12,7 @@ import net.minecraft.resources.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.util.profiling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -33,7 +33,7 @@ public class ColorMappingDataLoader<T> extends SimpleJsonResourceReloadListener 
 	}
 	
 	@Override
-	protected void apply(Map<ResourceLocation, JsonElement> prepared, @NotNull ResourceManager manager, @NotNull ProfilerFiller profiler) {
+	protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
 		mappings.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			
@@ -60,15 +60,15 @@ public class ColorMappingDataLoader<T> extends SimpleJsonResourceReloadListener 
 		});
 	}
 	
-	protected @NotNull String getFileStringForLocation(ResourceLocation identifier) {
+	protected String getFileStringForLocation(ResourceLocation identifier) {
 		return identifier.getNamespace() + ":" + this.directory + "/" + identifier.getPath() + ".json";
 	}
 	
-	public @NotNull Optional<InkColor> getInkColor(T value) {
+	public Optional<InkColor> getInkColor(T value) {
 		return Optional.ofNullable(mappings.get(value));
 	}
 	
-	public @NotNull InkColor getInkColor(T value, InkColor fallback) {
+	public InkColor getInkColor(T value, InkColor fallback) {
 		return mappings.getOrDefault(value, fallback);
 	}
 	

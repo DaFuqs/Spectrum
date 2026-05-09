@@ -24,7 +24,7 @@ import net.minecraft.world.level.saveddata.maps.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -303,7 +303,7 @@ public class ArtisansAtlasItem extends MapItem {
 	}
 	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		if (!world.isClientSide) {
 			MapItemSavedData state = getSavedData(stack, world);
 			if (state instanceof ArtisansAtlasState atlasState) {

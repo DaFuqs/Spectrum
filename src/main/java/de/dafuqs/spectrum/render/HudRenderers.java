@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 
 public class HudRenderers {
@@ -20,7 +20,7 @@ public class HudRenderers {
 	private static final Component MISSING_INK_TEXT = Component.translatable("item.spectrum.constructors_staff.tooltip.missing_ink");
 	private static final Component NONE_TEXT = Component.translatable("item.spectrum.constructors_staff.tooltip.none_in_inventory");
 	
-	private static ItemStack itemStackToRender;
+	private static @Nullable ItemStack itemStackToRender;
 	private static int amount;
 	private static boolean missingInk;
 	
@@ -42,7 +42,7 @@ public class HudRenderers {
 	private static class AzureDikeLayer implements LayeredDraw.Layer {
 		
 		@Override
-		public void render(@NotNull GuiGraphics drawContext, @NotNull DeltaTracker deltaTracker) {
+		public void render(GuiGraphics drawContext, DeltaTracker deltaTracker) {
 			var minecraft = Minecraft.getInstance();
 			
 			if (minecraft.options.hideGui || minecraft.gameMode == null || !minecraft.gameMode.canHurtPlayer()) {

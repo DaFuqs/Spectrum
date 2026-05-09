@@ -7,6 +7,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
+import net.neoforged.neoforge.event.*;
 
 import java.util.*;
 
@@ -40,13 +41,15 @@ public class MonstrositySpawner implements CustomSpawner {
 			// a monstrosity should spawn for the player
 			// do we already have one? If no create one
 			MonstrosityEntity monstrosity = SpectrumEntityTypes.MONSTROSITY.get().create(world);
-			DifficultyInstance localDifficulty = world.getCurrentDifficultyAt(playerEntity.blockPosition());
-			monstrosity.finalizeSpawn(world, localDifficulty, MobSpawnType.NATURAL, null);
-			world.addFreshEntityWithPassengers(monstrosity);
-			
-			monstrosity.setTarget(playerEntity);
-			monstrosity.moveTo(playerEntity.blockPosition(), 0.0F, 0.0F);
-			monstrosity.playAmbientSound();
+			if(monstrosity != null) {
+				DifficultyInstance localDifficulty = world.getCurrentDifficultyAt(playerEntity.blockPosition());
+				EventHooks.finalizeMobSpawn(monstrosity, world, localDifficulty, MobSpawnType.NATURAL, null);
+				world.addFreshEntityWithPassengers(monstrosity);
+				
+				monstrosity.setTarget(playerEntity);
+				monstrosity.moveTo(playerEntity.blockPosition(), 0.0F, 0.0F);
+				monstrosity.playAmbientSound();
+			}
 			
 			return 1;
 		}

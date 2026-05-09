@@ -4,9 +4,12 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.*;
 import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
@@ -16,20 +19,23 @@ import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import javax.annotation.*;
+import java.util.*;
 
 public class UpgradeBlock extends BaseEntityBlock {
 	
 	protected static final VoxelShape SHAPE_UP = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 	
+	private final String tooltipString;
 	private final Upgradeable.UpgradeType upgradeType;
 	private final int upgradeMod;
 	private final int effectColor;
 	
-	public UpgradeBlock(Properties settings, Upgradeable.UpgradeType upgradeType, int upgradeMod, int effectColor) {
+	public UpgradeBlock(Properties settings, Upgradeable.UpgradeType upgradeType, int upgradeMod, int effectColor, String tooltipString) {
 		super(settings);
 		this.upgradeType = upgradeType;
 		this.upgradeMod = upgradeMod;
 		this.effectColor = effectColor;
+		this.tooltipString = tooltipString;
 	}
 
 	@Override
@@ -118,6 +124,12 @@ public class UpgradeBlock extends BaseEntityBlock {
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new UpgradeBlockEntity(pos, state);
+	}
+	
+	@Override
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum." + this.tooltipString + ".tooltip").withStyle(ChatFormatting.GRAY));
 	}
 	
 }

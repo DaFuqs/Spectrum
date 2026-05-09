@@ -121,7 +121,7 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 		return out;
 	}
 	
-	private BookTextHolder obfuscateText(BookTextHolder text, @Nullable BookTextHolder splitText, int start) {
+	private @Nullable BookTextHolder obfuscateText(BookTextHolder text, @Nullable BookTextHolder splitText, int start) {
 		if (mc.level == null) return BookTextHolder.EMPTY;
 		
 		if (revealProgress == 0) {

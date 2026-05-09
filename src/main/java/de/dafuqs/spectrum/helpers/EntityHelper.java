@@ -31,7 +31,7 @@ public class EntityHelper {
 		return !(entity instanceof FakePlayer);
 	}
 	
-	public static boolean isRealPlayerProjectileOrPet(Entity entity) {
+	public static boolean isRealPlayerProjectileOrPet(@Nullable Entity entity) {
 		if (entity instanceof TamableAnimal tameableEntity) {
 			Entity owner = tameableEntity.getOwner();
 			return isRealPlayer(owner);

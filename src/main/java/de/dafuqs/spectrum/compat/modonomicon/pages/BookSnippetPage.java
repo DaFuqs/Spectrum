@@ -41,7 +41,7 @@ public class BookSnippetPage extends BookTextPage {
 		var condition = json.has("condition")
 				? BookCondition.fromJson(entryId, json.getAsJsonObject("condition"), provider)
 				: new BookNoneCondition();
-		var resourcePath = ResourceLocation.tryParse(GsonHelper.getAsString(json, "resource_path"));
+		var resourcePath = ResourceLocation.parse(GsonHelper.getAsString(json, "resource_path"));
 		var resourceWidth = GsonHelper.getAsInt(json, "resource_width");
 		var resourceHeight = GsonHelper.getAsInt(json, "resource_height");
 		var textureX = GsonHelper.getAsInt(json, "texture_x");

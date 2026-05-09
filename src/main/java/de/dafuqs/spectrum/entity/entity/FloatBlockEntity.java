@@ -44,7 +44,7 @@ public class FloatBlockEntity extends Entity {
 	private static final EntityDataAccessor<Float> GRAVITY_MODIFIER = SynchedEntityData.defineId(FloatBlockEntity.class, EntityDataSerializers.FLOAT);
 	
 	protected int moveTime;
-	protected CompoundTag blockEntityData;
+	protected @Nullable CompoundTag blockEntityData;
 	protected BlockState blockState = Blocks.STONE.defaultBlockState();
 	protected boolean canSetBlock = true;
 	protected boolean collides;
@@ -85,9 +85,6 @@ public class FloatBlockEntity extends Entity {
 	 */
 	@Override
 	protected AABB makeBoundingBox() {
-		if (this.blockState == null) {
-			return super.makeBoundingBox();
-		}
 		BlockPos origin = this.entityData.get(ORIGIN);
 		VoxelShape shape = this.blockState.getCollisionShape(level(), origin);
 		if (shape.isEmpty()) {
@@ -168,7 +165,7 @@ public class FloatBlockEntity extends Entity {
 				return InteractionResult.SUCCESS;
 			} else {
 				Item item = this.blockState.getBlock().asItem();
-				if (item != null) {
+				if (item != Items.AIR) {
 					player.getInventory().placeItemBackInInventory(item.getDefaultInstance());
 				}
 				this.discard();

@@ -30,7 +30,7 @@ public class BookStatusEffectPage extends BookTextPage {
 		var condition = json.has("condition")
 				? BookCondition.fromJson(entryId, json.getAsJsonObject("condition"), provider)
 				: new BookNoneCondition();
-		var statusEffectId = json.has("status_effect_id") ? ResourceLocation.tryParse(GsonHelper.getAsString(json, "status_effect_id")) : null;
+		var statusEffectId = ResourceLocation.parse(GsonHelper.getAsString(json, "status_effect_id"));
 		return new BookStatusEffectPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, statusEffectId);
 	}
 	

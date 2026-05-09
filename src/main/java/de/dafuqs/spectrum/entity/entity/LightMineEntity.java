@@ -32,7 +32,7 @@ public class LightMineEntity extends LightShardBaseEntity {
 		super(entityType, world);
 	}
 	
-	public LightMineEntity(Level world, LivingEntity owner, float detectionRange, float damage, float lifeSpanTicks) {
+	public LightMineEntity(Level world, @Nullable LivingEntity owner, float detectionRange, float damage, float lifeSpanTicks) {
 		super(SpectrumEntityTypes.LIGHT_MINE.get(), world, owner, detectionRange, damage, lifeSpanTicks);
 	}
 	

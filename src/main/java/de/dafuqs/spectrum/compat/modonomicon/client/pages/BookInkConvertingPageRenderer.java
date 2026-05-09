@@ -62,7 +62,7 @@ public class BookInkConvertingPageRenderer extends BookGatedRecipePageRenderer<I
 		drawContext.blit(BACKGROUND_TEXTURE, recipeX, recipeY, 0, 0, 35, 30, 128, 128);
 		
 		if (!second) {
-			renderTitle(drawContext, recipeY, second);
+			renderTitle(drawContext, recipeY, false);
 		}
 		
 		// the ingredient

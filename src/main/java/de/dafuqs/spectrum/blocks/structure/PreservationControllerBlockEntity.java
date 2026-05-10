@@ -20,21 +20,23 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import org.jspecify.annotations.Nullable;
+
 import javax.annotation.*;
 
 import java.util.*;
 
 public class PreservationControllerBlockEntity extends BlockEntity {
 	
-	private Vec3i entranceOffset;
-	private Vec3i checkRange;
-	private ResourceLocation requiredAdvancement;
-	private MobEffect requiredEffect;
-	private String checkName;
+	private @Nullable Vec3i entranceOffset;
+	private @Nullable Vec3i checkRange;
+	private @Nullable ResourceLocation requiredAdvancement;
+	private @Nullable MobEffect requiredEffect;
+	private @Nullable String checkName;
 	
-	private AABB checkBox;
-	private Vec3i checkBoxOffset;
-	private BlockPos destinationPos;
+	private @Nullable AABB checkBox;
+	private @Nullable Vec3i checkBoxOffset;
+	private @Nullable BlockPos destinationPos;
 	
 	private boolean spawnParticles;
 	

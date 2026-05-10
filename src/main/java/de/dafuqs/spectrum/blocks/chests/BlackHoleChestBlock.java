@@ -37,16 +37,6 @@ public class BlackHoleChestBlock extends SpectrumChestBlock {
 	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return createTickerHelper(type, SpectrumBlockEntities.BLACK_HOLE_CHEST.get(), BlackHoleChestBlockEntity::tick);
 	}
-	
-	@Override
-	public void openScreen(Level world, BlockPos pos, Player player) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof BlackHoleChestBlockEntity blackHoleChestBlockEntity) {
-			if (!isChestBlocked(world, pos)) {
-				player.openMenu(blackHoleChestBlockEntity);
-			}
-		}
-	}
 
 	@Override
 	public <T extends BlockEntity> @Nullable GameEventListener getListener(ServerLevel world, T blockEntity) {

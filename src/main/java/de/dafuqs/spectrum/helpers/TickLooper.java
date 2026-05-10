@@ -52,7 +52,7 @@ public final class TickLooper {
 		return "TickLooper (" + currentTick + "/" + maxTick + ")";
 	}
 	
-	public static TickLooper readNbt(CompoundTag nbt) {
+	public static TickLooper fromNbt(CompoundTag nbt) {
 		return new TickLooper(nbt.getInt("max"), nbt.getInt("current"));
 	}
 	

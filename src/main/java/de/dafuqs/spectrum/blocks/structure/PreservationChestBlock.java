@@ -28,20 +28,6 @@ public class PreservationChestBlock extends SpectrumChestBlock {
 	}
 	
 	@Override
-	public void openScreen(Level world, BlockPos pos, Player player) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof PreservationChestBlockEntity preservationChestBlockEntity) {
-			if (!isChestBlocked(world, pos)) {
-				if (preservationChestBlockEntity.canOpen(player)) {
-					player.openMenu(preservationChestBlockEntity);
-				} else {
-					world.playSound(null, pos, SoundEvents.CHEST_LOCKED, SoundSource.PLAYERS, 1.0F, 1.0F);
-				}
-			}
-		}
-	}
-	
-	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PreservationChestBlockEntity(pos, state);
 	}

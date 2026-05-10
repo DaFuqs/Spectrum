@@ -37,16 +37,6 @@ public class FabricationChestBlock extends SpectrumChestBlock {
 	}
 	
 	@Override
-	public void openScreen(Level world, BlockPos pos, Player player) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof FabricationChestBlockEntity fabricationChestBlockEntity) {
-			if (!isChestBlocked(world, pos)) {
-				player.openMenu(fabricationChestBlockEntity);
-			}
-		}
-	}
-	
-	@Override
 	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
 	}

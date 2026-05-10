@@ -20,11 +20,9 @@ import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import org.jspecify.annotations.Nullable;
 
-import java.util.*;
-
 public class PreservationChestBlockEntity extends SpectrumChestBlockEntity {
 	
-	private final List<UUID> playersThatOpenedAlready = new ArrayList<>();
+	private UUIDMemory uuidMemory = new UUIDMemory();
 	private @Nullable ResourceLocation requiredAdvancementIdentifierToOpen;
 	private @Nullable Vec3i controllerOffset;
 	
@@ -46,15 +44,7 @@ public class PreservationChestBlockEntity extends SpectrumChestBlockEntity {
 			tag.putInt("ControllerOffsetZ", this.controllerOffset.getZ());
 		}
 		
-		if (!playersThatOpenedAlready.isEmpty()) {
-			ListTag uuidList = new ListTag();
-			for (UUID uuid : playersThatOpenedAlready) {
-				CompoundTag nbtCompound = new CompoundTag();
-				nbtCompound.putUUID("UUID", uuid);
-				uuidList.add(nbtCompound);
-			}
-			tag.put("OpenedPlayers", uuidList);
-		}
+		tag.put("player_memory", this.uuidMemory.toNbt());
 	}
 	
 	@Override
@@ -74,19 +64,11 @@ public class PreservationChestBlockEntity extends SpectrumChestBlockEntity {
 		if (tag.contains("RequiredAdvancement", Tag.TAG_STRING)) {
 			this.requiredAdvancementIdentifierToOpen = ResourceLocation.tryParse(tag.getString("RequiredAdvancement"));
 		}
-		
 		if (tag.contains("ControllerOffsetX")) {
 			this.controllerOffset = new Vec3i(tag.getInt("ControllerOffsetX"), tag.getInt("ControllerOffsetY"), tag.getInt("ControllerOffsetZ"));
 		}
-		
-		this.playersThatOpenedAlready.clear();
-		if (tag.contains("OpenedPlayers", Tag.TAG_LIST)) {
-			ListTag list = tag.getList("OpenedPlayers", Tag.TAG_COMPOUND);
-			for (int i = 0; i < list.size(); i++) {
-				CompoundTag compound = list.getCompound(i);
-				UUID uuid = compound.getUUID("UUID");
-				this.playersThatOpenedAlready.add(uuid);
-			}
+		if(tag.contains("player_memory")) {
+			this.uuidMemory = UUIDMemory.fromNbt(tag.getCompound("player_memory"));
 		}
 	}
 	
@@ -103,19 +85,11 @@ public class PreservationChestBlockEntity extends SpectrumChestBlockEntity {
 	// Generate new loot for each player that has never opened this chest before
 	@Override
 	public void unpackLootTable(@Nullable Player player) {
-		if (player != null && this.lootTable != null && this.getLevel() != null && !hasOpenedThisChestBefore(player)) {
+		if (player != null && this.lootTable != null && this.getLevel() != null && !this.uuidMemory.hasUUID(player)) {
 			supplyInventory(player);
-			rememberPlayer(player);
+			this.uuidMemory.addUUID(player);
+			this.setChanged();
 		}
-	}
-	
-	public boolean hasOpenedThisChestBefore(Player player) {
-		return this.playersThatOpenedAlready.contains(player.getUUID());
-	}
-	
-	public void rememberPlayer(Player player) {
-		this.playersThatOpenedAlready.add(player.getUUID());
-		this.setChanged();
 	}
 	
 	public void supplyInventory(Player player) {

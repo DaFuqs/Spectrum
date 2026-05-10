@@ -1,10 +1,12 @@
 package de.dafuqs.spectrum.inventories;
 
+import com.kwpugh.gobber2.mixin.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
@@ -65,7 +67,6 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 		for (i = 0; i < 9; ++i) {
 			this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 24 + 142));
 		}
-		
 	}
 	
 	protected boolean isValidBlock(BlockState state) {
@@ -114,8 +115,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 			ItemStack outputStack = inputStack.copy();
 			ItemStack repairSlotStack = this.inputSlots.getItem(SECOND_INPUT_SLOT_INDEX);
 			ItemEnchantments.Mutable builder = new ItemEnchantments.Mutable(EnchantmentHelper.getEnchantmentsForCrafting(outputStack));
-			repairLevelCost += (long) inputStack.getOrDefault(DataComponents.REPAIR_COST, 0)
-					+ (long) repairSlotStack.getOrDefault(DataComponents.REPAIR_COST, 0);
+			repairLevelCost += (long) inputStack.getOrDefault(DataComponents.REPAIR_COST, 0) + (long) repairSlotStack.getOrDefault(DataComponents.REPAIR_COST, 0);
 			this.repairItemCount = 0;
 			boolean pigmentInRepairSlot = repairSlotStack.getItem() instanceof PigmentItem;
 			if (pigmentInRepairSlot) {
@@ -222,7 +222,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 			// We tweaked the way renaming is handled
 			// - renamings are free
 			// - name coloring via pigment
-			if (pigmentInRepairSlot || this.newItemName != null && !StringUtil.isBlank(this.newItemName)) {
+			if (this.newItemName != null && !StringUtil.isBlank(this.newItemName)) {
 				MutableComponent newName = Component.literal(this.newItemName);
 				if (inputStack.getHoverName() instanceof MutableComponent inputText) {
 					newName.setStyle(inputText.getStyle());
@@ -231,9 +231,13 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 				if (pigmentInRepairSlot) {
 					int newColor = ((PigmentItem) repairSlotStack.getItem()).getInkColor().getColorInt();
 					newName = newName.setStyle(newName.getStyle().withColor(newColor));
+					outputStack.set(DataComponents.CUSTOM_NAME, newName);
+				} else if(this.newItemName.equals(inputStack.getHoverName().getString())) {
+					outputStack.remove(DataComponents.CUSTOM_NAME);
+				} else {
+					outputStack.set(DataComponents.CUSTOM_NAME, newName);
 				}
 				
-				outputStack.set(DataComponents.CUSTOM_NAME, newName);
 			} else if (inputStack.has(DataComponents.CUSTOM_NAME)) {
 				outputStack.remove(DataComponents.CUSTOM_NAME);
 			}
@@ -264,7 +268,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 //				itemStack2 = ItemStack.EMPTY;
 //			}
 			
-			if (!combined || pigmentInRepairSlot) { // We added this if - Renames are free
+			if (!combined && pigmentInRepairSlot) { // We added this if - Renames are free
 				this.levelCost.set(0);
 			} else if (!outputStack.isEmpty()) {
 				int repairCost = outputStack.getOrDefault(DataComponents.REPAIR_COST, 0);
@@ -313,7 +317,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 		return string.length() <= maxLength ? string : null;
 	}
 	
-	public boolean setNewItemLore(@Nullable String newLoreString) {
+	public boolean setNewItemLore(String newLoreString) {
 		String string = sanitize(newLoreString, MAX_LORE_LENGTH);
 		if (string != null && !string.equals(this.newLoreString)) {
 			this.newLoreString = string;

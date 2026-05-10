@@ -20,7 +20,7 @@ public class PedestalRecipeInput implements RecipeInput {
 	);
 	
 	private final Level level;
-	private final Player player;
+	private final @Nullable Player player;
 	private final CraftingInput craftingGridInput;
 	private final List<ItemStack> gemstonePowderStacks;
 	

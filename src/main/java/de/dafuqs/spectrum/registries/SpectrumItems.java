@@ -350,8 +350,8 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> ALOE_LEAF = register("aloe_leaf", () -> new ItemNameBlockItem(SpectrumBlocks.ALOE.get(), IS.of().food(SpectrumFoodComponents.ALOE_LEAF)));
 	public static final DeferredItem<Item> SAWBLADE_HOLLY_BERRY = register("sawblade_holly_berry", () -> new ItemNameBlockItem(SpectrumBlocks.SAWBLADE_HOLLY_BUSH.get(), IS.of().food(Foods.SWEET_BERRIES)));
 	public static final DeferredItem<Item> PRICKLY_BAYLEAF = register("prickly_bayleaf", () -> new Item(IS.of().food(SpectrumFoodComponents.PRICKLY_BAYLEAF)));
-	public static final DeferredItem<Item> TRIPLE_MEAT_POT_STEW = register("triple_meat_pot_stew", () -> new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW)));
-	public static final DeferredItem<Item> DRAGONBONE_BROTH = register("dragonbone_broth", () -> new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.DRAGONBONE_BROTH)));
+	public static final DeferredItem<Item> TRIPLE_MEAT_POT_STEW = register("triple_meat_pot_stew", () -> new Item(IS.of(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW)));
+	public static final DeferredItem<Item> DRAGONBONE_BROTH = register("dragonbone_broth", () -> new Item(IS.of(8).food(SpectrumFoodComponents.DRAGONBONE_BROTH)));
 	public static final DeferredItem<Item> DOOMBLOOM_SEED = register("doombloom_seed", () -> new ItemNameBlockItem(SpectrumBlocks.DOOMBLOOM.get(), IS.of().fireResistant().fireResistant().component(SpectrumDataComponentTypes.DAMAGE_IMMUNE, List.of(DamageTypeTags.IS_FIRE, DamageTypeTags.IS_EXPLOSION))));
 	
 	public static final DeferredItem<Item> GLISTERING_MELON_SEEDS = register("glistering_melon_seeds", () -> new ItemNameBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM.get(), IS.of()));

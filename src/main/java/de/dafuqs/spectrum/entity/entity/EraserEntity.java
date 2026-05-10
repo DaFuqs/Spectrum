@@ -229,7 +229,7 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 		
 		Holder<MobEffect> statusEffect;
 		int amplifier = 0;
-		switch (world.random.nextInt(30)) {
+		switch (world.getRandom().nextInt(30)) {
 			case 1 -> {
 				statusEffect = MobEffects.MOVEMENT_SPEED;
 				amplifier = random.nextInt(2);

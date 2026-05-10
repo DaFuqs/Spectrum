@@ -70,7 +70,7 @@ public class RadiancePinItem extends SpectrumTrinketItem {
                 }
                 if (placed) {
 					sendSmallLightCreatedParticle((ServerLevel) world, pos);
-					world.playSound(null, entity.getX() + 0.5, entity.getY() + 0.5, entity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundSource.PLAYERS, 0.08F, 0.9F + world.random.nextFloat() * 0.2F);
+					world.playSound(null, entity.getX() + 0.5, entity.getY() + 0.5, entity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundSource.PLAYERS, 0.08F, 0.9F + world.getRandom().nextFloat() * 0.2F);
                 }
             }
         }

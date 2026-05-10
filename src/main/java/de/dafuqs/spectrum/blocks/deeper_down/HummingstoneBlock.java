@@ -152,14 +152,14 @@ public class HummingstoneBlock extends BaseEntityBlock {
 		if (!state.getValue(HUMMING)) {
 			world.setBlockAndUpdate(pos, state.setValue(HUMMING, true));
 		}
-		if (!causedByOtherHum || world.random.nextFloat() < CHANCE_TO_ECHO_HUM_EVENT) {
+		if (!causedByOtherHum || world.getRandom().nextFloat() < CHANCE_TO_ECHO_HUM_EVENT) {
 			world.gameEvent(entity, SpectrumGameEvents.HUMMINGSTONE_HUMMING, pos);
 		}
 	}
 	
 	public static void stopHumming(Level world, BlockPos pos, BlockState state) {
 		world.setBlockAndUpdate(pos, state.setValue(HUMMING, false));
-		world.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 0.5F, 0.5F + world.random.nextFloat() * 1.2F);
+		world.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 0.5F, 0.5F + world.getRandom().nextFloat() * 1.2F);
 	}
 	
 	public static void onHymn(Level world, BlockPos pos, @Nullable Entity entity) {
@@ -168,7 +168,7 @@ public class HummingstoneBlock extends BaseEntityBlock {
 		}
 		
 		world.gameEvent(entity, SpectrumGameEvents.HUMMINGSTONE_HYMN, pos);
-		world.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.25F, 0.5F + world.random.nextFloat() * 1.2F);
+		world.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.25F, 0.5F + world.getRandom().nextFloat() * 1.2F);
 		world.destroyBlock(pos, false);
 		popResource(world, pos, SpectrumItems.RESONANCE_SHARD.getDefaultInstance());
 		

@@ -147,7 +147,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 			// try placing a light
 			BlockPos targetPos = pos.relative(direction);
 			if (placeLight(world, targetPos, (ServerPlayer) player, context.getItemInHand())) {
-				RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayer) player, world.random.nextInt(5), world.random.nextInt(5));
+				RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayer) player, world.getRandom().nextInt(5), world.getRandom().nextInt(5));
 			} else {
 				RadianceStaffItem.playDenySound(world, player);
 			}

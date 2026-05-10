@@ -1861,7 +1861,7 @@ public class SpectrumBlocks {
 	public static final Block EVOKER_IDOL = register(idol(blockWithItem("evoker_idol", new EntitySummoningIdolBlock(idol(SpectrumBlockSoundGroups.EVOKER_IDOL), ParticleTypes.ANGRY_VILLAGER, EntityType.VEX) {
 		@Override
 		public void afterSummon(ServerLevel world, Entity entity) {
-			((Vex) entity).setLimitedLife(20 * (30 + world.random.nextInt(90)));
+			((Vex) entity).setLimitedLife(20 * (30 + world.getRandom().nextInt(90)));
 		}
 	}, InkColors.PINK)));
 	public static final Block FISH_IDOL = register(idol(blockWithItem("fish_idol", new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.FISH_IDOL), ParticleTypes.SPLASH, MobEffects.WATER_BREATHING, 0, 200), InkColors.PINK)));
@@ -1909,7 +1909,7 @@ public class SpectrumBlocks {
 	public static final Block SNOW_GOLEM_IDOL = register(idol(blockWithItem("snow_golem_idol", new ProjectileIdolBlock(idol(SpectrumBlockSoundGroups.SNOW_GOLEM_IDOL), ParticleTypes.SNOWFLAKE, EntityType.SNOWBALL, SoundEvents.ARROW_SHOOT, 3.0F, 1.1F) {
 		@Override
 		public Projectile createProjectile(ServerLevel world, BlockPos mobBlockPos, Position position, Direction side) {
-			world.playSound(null, mobBlockPos.getX(), mobBlockPos.getY(), mobBlockPos.getZ(), SoundEvents.SNOW_GOLEM_SHOOT, SoundSource.BLOCKS, 1.0F, 0.4F / world.random.nextFloat() * 0.4F + 0.8F);
+			world.playSound(null, mobBlockPos.getX(), mobBlockPos.getY(), mobBlockPos.getZ(), SoundEvents.SNOW_GOLEM_SHOOT, SoundSource.BLOCKS, 1.0F, 0.4F / world.getRandom().nextFloat() * 0.4F + 0.8F);
 			return new Snowball(world, position.x(), position.y(), position.z());
 		}
 	}, InkColors.PINK)));

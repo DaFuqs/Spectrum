@@ -60,7 +60,7 @@ public class OverchargingSoundInstance extends AbstractSoundInstance implements 
 	
 	private void spawnParticles(Player player) {
 		Level world = player.getCommandSenderWorld();
-		RandomSource random = world.random;
+		RandomSource random = world.getRandom();
 		
 		Vec3 pos = player.position();
 		player.getCommandSenderWorld().addParticle(ColoredCraftingParticleEffect.WHITE,

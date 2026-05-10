@@ -45,14 +45,14 @@ public class ShootingStarEntity extends Entity {
 	public ShootingStarEntity(EntityType<? extends ShootingStarEntity> entityType, Level world) {
 		super(entityType, world);
 		this.hoverHeight = (float) (Math.random() * Math.PI * 2.0D);
-		this.availableHits = 5 + world.random.nextInt(3);
+		this.availableHits = 5 + world.getRandom().nextInt(3);
 		this.lastCollisionCount = 0;
 	}
 	
 	public ShootingStarEntity(Level world, double x, double y, double z, ShootingStar.Variant type, boolean playerPlaced, int availableHits, boolean hardened) {
 		this(SpectrumEntityTypes.SHOOTING_STAR, world);
 		this.setPos(x, y, z);
-		this.setYRot(this.random.nextFloat() * 360.0F);
+		this.setYRot(this.getRandom().nextFloat() * 360.0F);
 		this.setShootingStarType(type, playerPlaced, availableHits, hardened);
 		this.lastCollisionCount = 0;
 	}
@@ -62,7 +62,7 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	public static void playHitParticles(Level world, double x, double y, double z, ShootingStar.Variant type, int amount) {
-		RandomSource random = world.random;
+		RandomSource random = world.getRandom();
 		// Everything in this lambda is running on the render thread
 		
 		for (int i = 0; i < amount; i++) {
@@ -168,11 +168,11 @@ public class ShootingStarEntity extends Entity {
 		if (world.isClientSide()) {
 			if (!playerPlaced && !hardened) {
 				if (this.onGround()) {
-					if (world.random.nextInt(10) == 0) {
+					if (world.getRandom().nextInt(10) == 0) {
 						playGroundParticles();
 					}
 				} else {
-					if (world.random.nextBoolean()) {
+					if (world.getRandom().nextBoolean()) {
 						playFallingParticles();
 					}
 				}
@@ -276,7 +276,7 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	public void playFallingParticles() {
-		float randomScale = this.random.nextFloat() * 0.4F + 0.7F;
+		float randomScale = this.getRandom().nextFloat() * 0.4F + 0.7F;
 		ParticleOptions particleEffect = new DynamicParticleEffect((float) ((random.nextDouble() - 0.5F) * 0.05F - 0.125F), getShootingStarType().getRandomParticleColor(random), randomScale, 120, false, true, true);
 		this.level().addParticle(particleEffect, this.getX(), this.getEyeY(), this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.1, 0.2 - random.nextFloat() * 0.4);
 	}

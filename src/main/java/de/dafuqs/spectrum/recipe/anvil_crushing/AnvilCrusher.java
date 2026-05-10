@@ -50,7 +50,7 @@ public class AnvilCrusher {
 				
 				// Spawn XP depending on how much is crafted, but at least 1
 				float craftingXPFloat = recipe.getExperience() * crushingInputAmount;
-				int craftingXP = Support.getIntFromDecimalWithChance(craftingXPFloat, world.random);
+				int craftingXP = Support.getIntFromDecimalWithChance(craftingXPFloat, world.getRandom());
 				
 				if (craftingXP > 0) {
 					ExperienceOrb experienceOrbEntity = new ExperienceOrb(world, position.x, position.y, position.z, craftingXP);

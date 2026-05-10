@@ -116,7 +116,7 @@ public class SnappingIvyBlock extends BushBlock implements BonemealableBlock {
 		BlockState newState = state.setValue(SNAPPED, close);
 		world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
 		world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(newState));
-		world.playSound(null, pos, close ? SoundEvents.BIG_DRIPLEAF_TILT_DOWN : SoundEvents.BIG_DRIPLEAF_TILT_UP, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.8F, 1.2F));
+		world.playSound(null, pos, close ? SoundEvents.BIG_DRIPLEAF_TILT_DOWN : SoundEvents.BIG_DRIPLEAF_TILT_UP, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.getRandom(), 0.8F, 1.2F));
     }
     
 }

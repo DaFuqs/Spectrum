@@ -47,7 +47,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		}
 		
 		Level world = entity.level();
-		int randomIndex = world.random.nextInt(negativeEffects.size());
+		int randomIndex = world.getRandom().nextInt(negativeEffects.size());
 		entity.removeEffect(negativeEffects.get(randomIndex).getEffect());
 	}
 	

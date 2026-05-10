@@ -56,7 +56,7 @@ public class MidnightAberrationItem extends CloakedItem implements FabricItem {
 				return;
 			}
 			
-			if (world.random.nextFloat() < 0.2F) {
+			if (world.getRandom().nextFloat() < 0.2F) {
 				stack.shrink(1);
 				player.getInventory().placeItemBackInInventory(Items.GUNPOWDER.getDefaultInstance());
 				world.playSound(null, player, SpectrumSoundEvents.MIDNIGHT_ABERRATION_CRUMBLING, SoundSource.PLAYERS, 0.5F, 1.0F);

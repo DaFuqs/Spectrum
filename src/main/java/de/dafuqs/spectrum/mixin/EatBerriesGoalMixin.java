@@ -48,7 +48,7 @@ public abstract class EatBerriesGoalMixin extends MoveToBlockGoal {
 	private void spectrum$pickSawbladeHollyBerries(BlockState state) {
 		Level world = foxEntity.level();
 		int age = state.getValue(SawbladeHollyBushBlock.AGE);
-		int berriesPlucked = 1 + world.random.nextInt(2) + (age == SawbladeHollyBushBlock.MAX_AGE ? 1 : 0);
+		int berriesPlucked = 1 + world.getRandom().nextInt(2) + (age == SawbladeHollyBushBlock.MAX_AGE ? 1 : 0);
 		ItemStack itemStack = foxEntity.getItemBySlot(EquipmentSlot.MAINHAND);
 		if (itemStack.isEmpty()) {
 			foxEntity.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY));

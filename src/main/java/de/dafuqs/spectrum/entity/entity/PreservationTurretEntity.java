@@ -505,8 +505,8 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 				}
 				
 				target.hurt(level().damageSources().mobAttack(PreservationTurretEntity.this), DAMAGE);
-				PreservationTurretEntity.this.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 2.0F, 1.0F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
-				target.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 1.0F, 0.5F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
+				PreservationTurretEntity.this.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 2.0F, 1.0F + 0.2F * (PreservationTurretEntity.this.getRandom().nextFloat() - PreservationTurretEntity.this.getRandom().nextFloat()));
+				target.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 1.0F, 0.5F + 0.2F * (PreservationTurretEntity.this.getRandom().nextFloat() - PreservationTurretEntity.this.getRandom().nextFloat()));
 
 				super.tick();
 			}

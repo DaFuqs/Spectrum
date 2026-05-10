@@ -74,7 +74,7 @@ public class WeepingCircletItem extends SpectrumTrinketItem {
 		for (Axolotl axolotlEntity : nearbyAxolotls) {
 			if (axolotlEntity.getHealth() < axolotlEntity.getMaxHealth() && axolotlEntity.getLoveCause() != null && axolotlEntity.getLoveCause().equals(entity)) {
 				axolotlEntity.heal(AXOLOTL_HEALING);
-				entity.playSound(SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
+				entity.playSound(SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) axolotlEntity.level(), axolotlEntity.position(), ParticleTypes.WAX_OFF, 10, new Vec3(0.5, 0.5, 0.5), new Vec3(0, 0, 0));
 			}
 		}

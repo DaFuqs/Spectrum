@@ -47,7 +47,7 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 	
 	public EggLayingWoolyPigEntity(EntityType<? extends Animal> entityType, Level world) {
 		super(entityType, world);
-		this.eggLayTime = this.random.nextInt(12000) + 12000;
+		this.eggLayTime = this.getRandom().nextInt(12000) + 12000;
 	}
 	
 	@Override
@@ -128,9 +128,9 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 		}
 		
 		if (!this.level().isClientSide() && this.isAlive() && !this.isBaby() && --this.eggLayTime <= 0) {
-			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.getRandom().nextFloat() - this.getRandom().nextFloat()) * 0.2F + 1.0F);
 			this.spawnAtLocation(Items.EGG);
-			this.eggLayTime = this.random.nextInt(6000) + 6000;
+			this.eggLayTime = this.getRandom().nextInt(6000) + 6000;
 		}
 		
 		super.aiStep();
@@ -150,7 +150,7 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 		EggLayingWoolyPigEntity child = SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.create(world);
 		if (child != null) {
 			child.setColor(this.getChildColor(this, other));
-			if (world.random.nextInt(50) == 0) {
+			if (world.getRandom().nextInt(50) == 0) {
 				child.setHatless(true);
 			}
 		}
@@ -233,7 +233,7 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 		for (ItemStack droppedStack : getShearedStacks((ServerLevel) world)) {
 			ItemEntity itemEntity = this.spawnAtLocation(droppedStack, 1);
 			if (itemEntity != null) {
-				itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F));
+				itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((this.getRandom().nextFloat() - this.getRandom().nextFloat()) * 0.1F, this.getRandom().nextFloat() * 0.05F, (this.getRandom().nextFloat() - this.getRandom().nextFloat()) * 0.1F));
 			}
 		}
 	}
@@ -309,7 +309,7 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 		if (optionalItem.isPresent() && optionalItem.get() instanceof DyeItem dyeItem) {
 			return dyeItem.getDyeColor();
 		}
-		return world.random.nextBoolean() ? dyeColor : dyeColor2;
+		return world.getRandom().nextBoolean() ? dyeColor : dyeColor2;
 	}
 	
 	private static CraftingInput createChildColorRecipeInput(DyeColor firstColor, DyeColor secondColor) {

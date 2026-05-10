@@ -126,7 +126,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 					if (entityType.isPresent()) {
 						MemoryItem.setTicksToManifest(this.memoryItemStack, newTicksToManifest);
 						PlayMemoryManifestingParticlesPayload.playMemoryManifestingParticles(world, blockPos, entityType.get(), 3);
-						world.playSound(null, this.worldPosition, SpectrumSoundEvents.BLOCK_MEMORY_ADVANCE, SoundSource.BLOCKS, 0.7F, 0.9F + world.random.nextFloat() * 0.2F);
+						world.playSound(null, this.worldPosition, SpectrumSoundEvents.BLOCK_MEMORY_ADVANCE, SoundSource.BLOCKS, 0.7F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 						this.setChanged();
 					}
 				}

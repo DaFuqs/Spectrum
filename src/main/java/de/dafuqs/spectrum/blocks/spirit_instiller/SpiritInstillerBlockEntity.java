@@ -233,7 +233,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		boolean canCraft = true;
 		if (!playerCanCraft || !structureComplete) {
 			if (!structureComplete) {
-				world.playSound(null, spiritInstillerBlockEntity.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
+				world.playSound(null, spiritInstillerBlockEntity.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 			}
 			
 			canCraft = false;
@@ -294,7 +294,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		BlockEntity rightBowlBlockEntity = world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true));
 		if (leftBowlBlockEntity instanceof ItemBowlBlockEntity leftBowl && rightBowlBlockEntity instanceof ItemBowlBlockEntity rightBowl) {
 			// center ingredient
-			int decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(recipe.value().getIngredientStacks().get(SpiritInstillerRecipe.CENTER_INGREDIENT).getCount() * efficiencyModifier, world.random);
+			int decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(recipe.value().getIngredientStacks().get(SpiritInstillerRecipe.CENTER_INGREDIENT).getCount() * efficiencyModifier, world.getRandom());
 			if (decreasedAmountAfterEfficiencyMod > 0) {
 				spiritInstillerBlockEntity.getItem(0).shrink(decreasedAmountAfterEfficiencyMod);
 			}
@@ -302,8 +302,8 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			List<IngredientStack> ingredientStacks = recipe.value().getIngredientStacks();
 			
 			// first side ingredient
-			int amountAfterEfficiencyModFirst = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).getCount() * efficiencyModifier, world.random);
-			int amountAfterEfficiencyModSecond = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.SECOND_INGREDIENT).getCount() * efficiencyModifier, world.random);
+			int amountAfterEfficiencyModFirst = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).getCount() * efficiencyModifier, world.getRandom());
+			int amountAfterEfficiencyModSecond = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.SECOND_INGREDIENT).getCount() * efficiencyModifier, world.getRandom());
 			boolean leftIsFirstIngredient = ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).test(leftBowl.getItem(0));
 			Vec3 particlePos = new Vec3(spiritInstillerBlockEntity.worldPosition.getX() + 0.5, spiritInstillerBlockEntity.worldPosition.getY() + 1, spiritInstillerBlockEntity.worldPosition.getZ() + 0.5);
 			if (leftIsFirstIngredient) {
@@ -400,7 +400,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	public void doChimeInstillingParticles(@NotNull Level world, BlockPos pos) {
 		BlockState blockState = world.getBlockState(pos);
 		if (blockState.getBlock() instanceof GemstoneChimeBlock gemstoneChimeBlock) {
-			RandomSource random = world.random;
+			RandomSource random = world.getRandom();
 			ParticleOptions particleEffect = gemstoneChimeBlock.getParticleEffect();
 			for (int i = 0; i < 12; i++) {
 				world.addParticle(particleEffect,

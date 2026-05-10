@@ -48,7 +48,7 @@ public class FreezingIdolBlock extends IdolBlock {
 		BlockState sourceState = world.getBlockState(blockPos);
 		if (FREEZING_MAP.containsKey(sourceState.getBlock())) {
 			Tuple<BlockState, Float> recipe = FREEZING_MAP.get(sourceState.getBlock());
-			if (recipe.getB() >= 1.0F || world.random.nextFloat() < recipe.getB()) {
+			if (recipe.getB() >= 1.0F || world.getRandom().nextFloat() < recipe.getB()) {
 				// freeze
 				world.setBlockAndUpdate(blockPos, recipe.getA());
 				world.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, blockPos, Block.getId(recipe.getA())); // processed in WorldRenderer processGlobalEvent()
@@ -57,7 +57,7 @@ public class FreezingIdolBlock extends IdolBlock {
 		}
 		if (FREEZING_STATE_MAP.containsKey(sourceState)) {
 			Tuple<BlockState, Float> recipe = FREEZING_STATE_MAP.get(sourceState);
-			if (recipe.getB() >= 1.0F || world.random.nextFloat() < recipe.getB()) {
+			if (recipe.getB() >= 1.0F || world.getRandom().nextFloat() < recipe.getB()) {
 				// freeze
 				world.setBlockAndUpdate(blockPos, recipe.getA());
 				world.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, blockPos, Block.getId(recipe.getA())); // processed in WorldRenderer processGlobalEvent()

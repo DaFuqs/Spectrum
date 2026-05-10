@@ -241,12 +241,12 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		// process reagents
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 		
-		int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod), world.random);
+		int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod), world.getRandom());
 		int brewedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxBrewedPotionsAmount);
 		
 		// calculate outputs
 		ItemStack bottles = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID);
-		List<ItemStack> results = brewingRecipe.value().getPotions(bottles, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, world.random, brewedAmount);
+		List<ItemStack> results = brewingRecipe.value().getPotions(bottles, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, world.getRandom(), brewedAmount);
 		
 		// trigger advancements for all brewed potions
 		ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline();
@@ -279,12 +279,12 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		// process reagents
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 		
-		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod) * PotionWorkshopBrewingRecipe.ARROW_COUNT_MULTIPLIER, world.random);
+		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod) * PotionWorkshopBrewingRecipe.ARROW_COUNT_MULTIPLIER, world.getRandom());
 		int tippedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxTippedArrowsAmount);
 		
 		// calculate outputs
 		ItemStack arrows = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID);
-		ItemStack tippedArrows = brewingRecipe.value().getTippedArrows(arrows, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, tippedAmount, world.random);
+		ItemStack tippedArrows = brewingRecipe.value().getTippedArrows(arrows, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, tippedAmount, world.getRandom());
 		
 		// trigger advancements for all brewed potions
 		ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline();
@@ -307,14 +307,14 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 			// process reagents
 			PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 			
-			int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod), potionWorkshopBlockEntity.level.random);
+			int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(brewingRecipe.value().getModifiedYield(potionMod), potionWorkshopBlockEntity.level.getRandom());
 			if (maxBrewedPotionsAmount < 1) {
 				ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline();
 				if (serverPlayerEntity != null) {
 					SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potionFillableStack, 0, potionWorkshopBlockEntity, potionMod.flags());
 				}
 			} else {
-				brewingRecipe.value().fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.level.random);
+				brewingRecipe.value().fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.level.getRandom());
 				potionWorkshopBlockEntity.inventory.set(BASE_INPUT_SLOT_ID, ItemStack.EMPTY);
 				InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potionFillableStack, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 				
@@ -351,7 +351,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 			for (int slot : REAGENT_SLOTS) {
 				ItemStack slotStack = potionWorkshopBlockEntity.getItem(slot);
 				if (!slotStack.isEmpty()) {
-					PotionWorkshopReactingRecipe.combine(builder, slotStack, world.random);
+					PotionWorkshopReactingRecipe.combine(builder, slotStack, world.getRandom());
 				}
 			}
 		}
@@ -441,7 +441,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	
 	private void playSound(SoundEvent soundEvent) {
 		if (level == null) return;
-		RandomSource random = level.random;
+		RandomSource random = level.getRandom();
 		level.playSound(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), soundEvent, SoundSource.BLOCKS, 0.9F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
 	}
 	

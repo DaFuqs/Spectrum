@@ -25,7 +25,7 @@ public interface JadeVine {
 	static void spawnBloomParticlesClient(Level world, BlockPos blockPos) {
 		spawnParticlesClient(world, blockPos, SpectrumParticleTypes.JADE_VINES_BLOOM);
 		
-		RandomSource random = world.random;
+		RandomSource random = world.getRandom();
 		double x = blockPos.getX() + 0.2 + (random.nextFloat() * 0.6);
 		double y = blockPos.getY() + 0.2 + (random.nextFloat() * 0.6);
 		double z = blockPos.getZ() + 0.2 + (random.nextFloat() * 0.6);
@@ -37,7 +37,7 @@ public interface JadeVine {
 	}
 	
 	private static void spawnParticlesClient(Level world, BlockPos blockPos, ParticleOptions particleType) {
-		RandomSource random = world.random;
+		RandomSource random = world.getRandom();
 		double x = blockPos.getX() + 0.2 + (random.nextFloat() * 0.6);
 		double y = blockPos.getY() + 0.2 + (random.nextFloat() * 0.6);
 		double z = blockPos.getZ() + 0.2 + (random.nextFloat() * 0.6);

@@ -59,7 +59,7 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 			SpectrumCommon.LOGGER.warn("Ignoring block place attempt for Block Player without matching block entity at {}", pos);
 		} else {
 			BlockSource pointer = new BlockSource(world, pos, state, blockEntity);
-			int slot = blockEntity.getRandomSlot(world.random);
+			int slot = blockEntity.getRandomSlot(world.getRandom());
 			if (slot < 0) {
 				world.levelEvent(LevelEvent.SOUND_DISPENSER_FAIL, pos, 0);
 				world.gameEvent(GameEvent.BLOCK_ACTIVATE, pos, GameEvent.Context.of(blockEntity.getBlockState()));

@@ -38,7 +38,7 @@ public class EverpromiseRibbonItem extends Item implements PrioritizedEntityInte
 			if (entity.isAlive()) {
 				if (world.isClientSide()) {
 					Level entityWorld = entity.level();
-					RandomSource random = entityWorld.random;
+					RandomSource random = entityWorld.getRandom();
 					for (int i = 0; i < 7; ++i) {
 						world.addParticle(ParticleTypes.HEART, entity.getRandomX(1.0), entity.getRandomY() + 0.5, entity.getRandomZ(1.0),
 								random.nextGaussian() * 0.02, random.nextGaussian() * 0.02, random.nextGaussian() * 0.02);

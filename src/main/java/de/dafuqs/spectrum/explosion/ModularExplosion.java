@@ -103,7 +103,7 @@ public class ModularExplosion {
 	// the client does not know about the block entities data
 	// we have to send it from server => client
 	private static void playVisualEffects(ServerLevel world, Vec3 pos, List<ExplosionModifier> effectModifiers, double blastRadius) {
-		world.playSound(null, pos.x(), pos.y(), pos.z(), SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.NEUTRAL, 1, 0.8F + world.random.nextFloat() * 0.4F);
+		world.playSound(null, pos.x(), pos.y(), pos.z(), SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.NEUTRAL, 1, 0.8F + world.getRandom().nextFloat() * 0.4F);
 		
 		RandomSource random = world.getRandom();
 		ArrayList<ParticleOptions> types = new ArrayList<>(effectModifiers.stream().map(ExplosionModifier::getParticleEffects).filter(Optional::isPresent).map(Optional::get).toList());
@@ -132,7 +132,7 @@ public class ModularExplosion {
 			if (!GenericClaimModsCompat.canBreak(world, p, owner)) {
 				continue;
 			}
-			if (shape.isAffected(center, p) && processBlock(world, owner, world.random, center, p, drops, miningStack, explosion)) {
+			if (shape.isAffected(center, p) && processBlock(world, owner, world.getRandom(), center, p, drops, miningStack, explosion)) {
 				affectedBlocks.add(new BlockPos(p.getX(), p.getY(), p.getZ()));
 			}
 		}

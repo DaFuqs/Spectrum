@@ -122,7 +122,7 @@ public abstract class DecayBlock extends DropExperienceBlock {
 			if (!(updatedBlock instanceof DecayBlock) && !(updatedBlock instanceof DecayAwayBlock)) {
 				@Nullable BlockState spreadState = this.getSpreadState(state, updatedState, world, fromPos);
 				if (spreadState != null) {
-					world.scheduleTick(pos, this, 40 + world.random.nextInt(200), TickPriority.EXTREMELY_LOW);
+					world.scheduleTick(pos, this, 40 + world.getRandom().nextInt(200), TickPriority.EXTREMELY_LOW);
 				}
 			}
 		}

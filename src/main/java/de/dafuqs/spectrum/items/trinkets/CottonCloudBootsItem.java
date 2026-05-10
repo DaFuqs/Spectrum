@@ -22,14 +22,14 @@ public class CottonCloudBootsItem extends SpectrumTrinketItem {
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
-		Level world = entity.level();
+		Level level = entity.level();
 		if (entity.isSprinting() && !entity.onGround() && !entity.isShiftKeyDown()) {
-			Vec3 velocity = entity.getDeltaMovement();
-			if (velocity.y < 0) {
+			Vec3 deltaMovement = entity.getDeltaMovement();
+			if (deltaMovement.y < 0) {
 				entity.setDeltaMovement(entity.getDeltaMovement().multiply(1, 0.1, 1));
-				if (world.isClientSide()) {
-					RandomSource random = world.random;
-					world.addParticle(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(),
+				if (level.isClientSide()) {
+					RandomSource random = level.getRandom();
+					level.addParticle(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(),
 							0.125 - random.nextFloat() * 0.25, 0.04 - random.nextFloat() * 0.08, 0.125 - random.nextFloat() * 0.25);
 				}
 			}

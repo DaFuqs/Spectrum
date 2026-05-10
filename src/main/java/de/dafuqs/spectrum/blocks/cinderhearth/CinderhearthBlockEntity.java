@@ -371,7 +371,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		
 		cinderhearthBlockEntity.structure = CinderhearthBlock.verifyStructure(world, blockPos, null);
 		if (cinderhearthBlockEntity.structure == CinderHearthStructureType.NONE) {
-			world.playSound(null, cinderhearthBlockEntity.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
+			world.playSound(null, cinderhearthBlockEntity.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 			return false;
 		}
 		
@@ -388,7 +388,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		ItemStack output = blastingRecipe.getResultItem(world.registryAccess()).copy();
 		List<ItemStack> outputs = new ArrayList<>();
 		if (yieldMod > 1) {
-			int outputCount = Support.getIntFromDecimalWithChance(output.getCount() * yieldMod, world.random);
+			int outputCount = Support.getIntFromDecimalWithChance(output.getCount() * yieldMod, world.getRandom());
 			while (outputCount > 0) { // if the rolled count exceeds the max stack size we need to split them (unstackable items, counts > 64, ...)
 				int count = Math.min(outputCount, output.getMaxStackSize());
 				ItemStack outputStack = output.copy();
@@ -408,7 +408,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		// calculate outputs
 		ItemStack inputStack = cinderhearth.getItem(INPUT_SLOT_ID);
 		float yieldMod = inputStack.is(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, cinderhearth.usesEfficiency);
-		List<ItemStack> outputs = cinderhearthRecipe.getRolledOutputs(world.random, yieldMod);
+		List<ItemStack> outputs = cinderhearthRecipe.getRolledOutputs(world.getRandom(), yieldMod);
 		
 		// craft
 		craftRecipe(cinderhearth, inputStack, outputs, cinderhearthRecipe.getExperience());
@@ -448,7 +448,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 			
 			// grant experience & advancements
 			float experienceMod = cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.EXPERIENCE, InkColors.PURPLE, cinderhearth.usesEfficiency);
-			int finalExperience = Support.getIntFromDecimalWithChance(experience * experienceMod, world.random);
+			int finalExperience = Support.getIntFromDecimalWithChance(experience * experienceMod, world.getRandom());
 			ExperienceStorageItem.addStoredExperience(world.registryAccess(), cinderhearth.getItem(EXPERIENCE_STORAGE_ITEM_SLOT_ID), finalExperience);
 			cinderhearth.grantPlayerCinderhearthSmeltingAdvancement(inputStackCopy, outputs, finalExperience);
 		} else {

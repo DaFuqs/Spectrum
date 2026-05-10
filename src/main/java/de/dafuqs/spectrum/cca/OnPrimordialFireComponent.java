@@ -162,14 +162,14 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 			if (fluidHeight > 0) {
 				
 				Level world = this.provider.level();
-				RandomSource random = world.random;
+				RandomSource random = world.getRandom();
 				Vec3 pos = this.provider.position();
 
 				for (int i = 0; i < 2; i++) {
 					world.addParticle(ParticleTypes.BUBBLE_POP, this.provider.getRandomX(1), pos.y() + Math.min(fluidHeight, provider.getBbHeight()) * random.nextFloat(), this.provider.getRandomZ(1), 0.0, 0.04, 0.0);
 					world.addParticle(ParticleTypes.SMOKE, this.provider.getRandomX(1), pos.y() + Math.min(fluidHeight, provider.getBbHeight()) * random.nextFloat(), this.provider.getRandomZ(1), 0.0, 0.04, 0.0);
 				}
-				if (world.random.nextInt(12) == 0) {
+				if (world.getRandom().nextInt(12) == 0) {
 					provider.playSound(SoundEvents.FIRE_EXTINGUISH, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
 				}
 			}

@@ -33,7 +33,7 @@ public class DecayPlacerItem extends ItemNameBlockItem {
 				
 				BlockState placedBlockState = context.getLevel().getBlockState(blockPos);
 				if (placedBlockState.is(SpectrumBlockTags.DECAY)) {
-					context.getLevel().scheduleTick(blockPos, placedBlockState.getBlock(), 40 + world.random.nextInt(200), TickPriority.EXTREMELY_LOW);
+					context.getLevel().scheduleTick(blockPos, placedBlockState.getBlock(), 40 + world.getRandom().nextInt(200), TickPriority.EXTREMELY_LOW);
 				}
 			}
 		}

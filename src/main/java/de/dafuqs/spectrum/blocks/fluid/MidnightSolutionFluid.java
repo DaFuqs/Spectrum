@@ -82,9 +82,9 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 			}
 		}
 		
-		boolean converted = BlackMateriaBlock.spreadBlackMateria(world, pos, world.random, MidnightSolutionFluidBlock.SPREAD_BLOCKSTATE);
+		boolean converted = BlackMateriaBlock.spreadBlackMateria(world, pos, world.getRandom(), MidnightSolutionFluidBlock.SPREAD_BLOCKSTATE);
 		if (converted) {
-			world.scheduleTick(pos, state.getType(), 400 + world.random.nextInt(800));
+			world.scheduleTick(pos, state.getType(), 400 + world.getRandom().nextInt(800));
 		}
 	}
 	
@@ -127,7 +127,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 					}
 				}
 			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.hasPickUpDelay()) {
-				if (world.random.nextInt(120) == 0) {
+				if (world.getRandom().nextInt(120) == 0) {
 					disenchantItemAndSpawnXP(world, itemEntity);
 				}
 			}
@@ -147,7 +147,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 		// basically disenchanting the item
 		ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(itemStack);
 		if (!enchantments.isEmpty()) {
-			int randomEnchantmentIndex = world.random.nextInt(enchantments.size());
+			int randomEnchantmentIndex = world.getRandom().nextInt(enchantments.size());
 			Object2IntMap.Entry<Holder<Enchantment>> entryToRemove = enchantments.entrySet().stream().toList().get(randomEnchantmentIndex);
 			Tuple<ItemStack, Integer> result = SpectrumEnchantmentHelper.removeEnchantments(itemStack, entryToRemove.getKey());
 			
@@ -160,7 +160,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 			ItemEnchantments canvasEnchantments = itemStack.get(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS);
 			Item boundItem = BuiltInRegistries.ITEM.get(itemStack.get(SpectrumDataComponentTypes.BOUND_ITEM));
 			if (!canvasEnchantments.isEmpty()) {
-				int randomEnchantmentIndex = world.random.nextInt(canvasEnchantments.size());
+				int randomEnchantmentIndex = world.getRandom().nextInt(canvasEnchantments.size());
 				Object2IntMap.Entry<Holder<Enchantment>> entryToRemove = canvasEnchantments.entrySet().stream().toList().get(randomEnchantmentIndex);
 				
 				var builder = new ItemEnchantments.Mutable(canvasEnchantments);

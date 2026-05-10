@@ -40,7 +40,7 @@ public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1,
 	@Environment(EnvType.CLIENT)
 	public static void execute(PlayMemoryManifestingParticlesPayload payload, ClientPlayNetworking.Context context) {
 		Minecraft client = context.client();
-		RandomSource random = client.level.random;
+		RandomSource random = client.level.getRandom();
 		
 		Vector3f colorVec1 = SpectrumColorHelper.colorIntToVec(payload.eggColor1);
 		Vector3f colorVec2 = SpectrumColorHelper.colorIntToVec(payload.eggColor2);

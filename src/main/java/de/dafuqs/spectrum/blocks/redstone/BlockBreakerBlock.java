@@ -76,7 +76,7 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		
 		float hardness = blockState.getDestroySpeed(world, breakingPos);
 		if (hardness < 0 || hardness > 50) {
-			world.playSound(null, breakerPos, SpectrumSoundEvents.REDSTONE_MECHANISM_BREAK_BLOCK, SoundSource.BLOCKS, 0.15f, (2.0f + world.random.nextFloat()));
+			world.playSound(null, breakerPos, SpectrumSoundEvents.REDSTONE_MECHANISM_BREAK_BLOCK, SoundSource.BLOCKS, 0.15f, (2.0f + world.getRandom().nextFloat()));
 			return;
 		}
 		
@@ -100,7 +100,7 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		FluidState fluidState = world.getFluidState(pos);
 		
 		world.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(blockState));
-		world.playSound(null, pos, blockState.getSoundType().getBreakSound(), SoundSource.BLOCKS, 0.2f, (1.0f + world.random.nextFloat()) * 2f);
+		world.playSound(null, pos, blockState.getSoundType().getBreakSound(), SoundSource.BLOCKS, 0.2f, (1.0f + world.getRandom().nextFloat()) * 2f);
 		
 		BlockEntity blockEntity = blockState.hasBlockEntity() ? world.getBlockEntity(pos) : null;
 		if (BREAK_STACK == null) { // we initialize the item here instead of it being final because of load order shenanigans

@@ -56,8 +56,8 @@ public class MoonstoneStrike {
         MoonstoneStrike moonstoneStrike = new MoonstoneStrike(world, entity, damageSource, x, y, z, power, knockbackMod);
 		
 		if (world.isClientSide()) {
-			world.playLocalSound(x, y, z, SpectrumSoundEvents.MOONSTONE_STRIKE, SoundSource.BLOCKS, 4.0F, (1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.2F) * 0.7F, false);
-			world.playLocalSound(x, y, z, SpectrumSoundEvents.SOFT_HUM, SoundSource.BLOCKS, 0.5F, (1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.2F) * 0.7F, false);
+			world.playLocalSound(x, y, z, SpectrumSoundEvents.MOONSTONE_STRIKE, SoundSource.BLOCKS, 4.0F, (1.0F + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.2F) * 0.7F, false);
+			world.playLocalSound(x, y, z, SpectrumSoundEvents.SOFT_HUM, SoundSource.BLOCKS, 0.5F, (1.0F + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.2F) * 0.7F, false);
 			world.addParticle(SpectrumParticleTypes.MOONSTONE_STRIKE, x, y, z, 1.0, 0.0, 0.0);
         } else {
             moonstoneStrike.damageAndKnockbackEntities();

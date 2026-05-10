@@ -85,7 +85,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 				ServerLevel serverWorld = ((ServerLevel) world);
 				for (int i = 0; i < 5; ++i) {
 					serverWorld.sendParticles(ParticleTypes.SMOKE,
-							pos.getX() + serverWorld.random.nextDouble(), pos.getY() + serverWorld.random.nextDouble(), pos.getZ() + serverWorld.random.nextDouble(),
+							pos.getX() + serverWorld.getRandom().nextDouble(), pos.getY() + serverWorld.getRandom().nextDouble(), pos.getZ() + serverWorld.getRandom().nextDouble(),
 							5, 0.0, 0.0, 0.0, 0.05);
 				}
 			}

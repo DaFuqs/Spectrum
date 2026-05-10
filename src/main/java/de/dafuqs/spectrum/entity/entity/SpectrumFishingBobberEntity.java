@@ -106,9 +106,9 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 		Vec3 vec3d = new Vec3(-i, Mth.clamp(-(k / j), -5.0F, 5.0F), -h);
 		double m = vec3d.length();
 		vec3d = vec3d.multiply(
-				0.6 / m + this.random.triangle(0.5, 0.0103365),
-				0.6 / m + this.random.triangle(0.5, 0.0103365),
-				0.6 / m + this.random.triangle(0.5, 0.0103365)
+				0.6 / m + this.getRandom().triangle(0.5, 0.0103365),
+				0.6 / m + this.getRandom().triangle(0.5, 0.0103365),
+				0.6 / m + this.getRandom().triangle(0.5, 0.0103365)
 		);
 		this.setDeltaMovement(vec3d);
 		//noinspection SuspiciousNameCombination
@@ -217,7 +217,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 						d += Math.signum(d) * 0.1;
 					}
 					
-					this.setDeltaMovement(vec3d.x * 0.9, vec3d.y - d * (double) this.random.nextFloat() * 0.2, vec3d.z * 0.9);
+					this.setDeltaMovement(vec3d.x * 0.9, vec3d.y - d * (double) this.getRandom().nextFloat() * 0.2, vec3d.z * 0.9);
 					if (this.hookCountdown <= 0 && this.fishTravelCountdown <= 0) {
 						this.inOpenWater = true;
 					} else {
@@ -301,11 +301,11 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 		ServerLevel serverWorld = (ServerLevel) this.level();
 		int i = 1;
 		BlockPos blockPos = pos.above();
-		if (this.random.nextFloat() < 0.25F && this.level().isRainingAt(blockPos)) {
+		if (this.getRandom().nextFloat() < 0.25F && this.level().isRainingAt(blockPos)) {
 			i++;
 		}
 		
-		if (this.random.nextFloat() < 0.5F && !this.level().canSeeSky(blockPos)) {
+		if (this.getRandom().nextFloat() < 0.5F && !this.level().canSeeSky(blockPos)) {
 			i--;
 		}
 		
@@ -319,7 +319,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 		} else if (this.fishTravelCountdown > 0) {
 			this.fishTravelCountdown -= i;
 			if (this.fishTravelCountdown > 0)
-				this.fishAngle = this.fishAngle + (float) this.random.triangle(0.0, 9.188);
+				this.fishAngle = this.fishAngle + (float) this.getRandom().triangle(0.0, 9.188);
 			float f = this.fishAngle * (float) (Math.PI / 180.0);
 			float g = Mth.sin(f);
 			float h = Mth.cos(f);
@@ -330,7 +330,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 			Tuple<SimpleParticleType, SimpleParticleType> particles = getFluidParticles(blockState);
 			if (this.fishTravelCountdown > 0) {
 				if (particles != null) {
-					if (this.random.nextFloat() < 0.15F) {
+					if (this.getRandom().nextFloat() < 0.15F) {
 						serverWorld.sendParticles(particles.getA(), d, e - 0.1F, j, 1, g, 0.1, h, 0.0);
 					}
 					float k = g * 0.04F;
@@ -339,7 +339,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 					serverWorld.sendParticles(particles.getB(), d, e, j, 0, (-l), 0.01, k, 1.0);
 				}
 			} else if (particles != null) {
-				this.playSound(SoundEvents.FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
+				this.playSound(SoundEvents.FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.getRandom().nextFloat() - this.getRandom().nextFloat()) * 0.4F);
 				double m = this.getY() + 0.5;
 				serverWorld.sendParticles(
 						particles.getA(), this.getX(), m, this.getZ(), (int) (1.0F + this.getBbWidth() * 20.0F), this.getBbWidth(), 0.0, this.getBbWidth(), 0.2F
@@ -347,7 +347,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 				serverWorld.sendParticles(
 						particles.getB(), this.getX(), m, this.getZ(), (int) (1.0F + this.getBbWidth() * 20.0F), this.getBbWidth(), 0.0, this.getBbWidth(), 0.2F
 				);
-				this.hookCountdown = Mth.nextInt(this.random, 20, 40);
+				this.hookCountdown = Mth.nextInt(this.getRandom(), 20, 40);
 				this.getEntityData().set(CAUGHT_FISH, true);
 			}
 		} else if (this.waitCountdown > 0) {
@@ -361,25 +361,25 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 				f += (float) (60 - this.waitCountdown) * 0.01F;
 			}
 			
-			if (this.random.nextFloat() < f) {
-				float g = Mth.nextFloat(this.random, 0.0F, 360.0F) * (float) (Math.PI / 180.0);
-				float h = Mth.nextFloat(this.random, 25.0F, 60.0F);
+			if (this.getRandom().nextFloat() < f) {
+				float g = Mth.nextFloat(this.getRandom(), 0.0F, 360.0F) * (float) (Math.PI / 180.0);
+				float h = Mth.nextFloat(this.getRandom(), 25.0F, 60.0F);
 				double d = this.getX() + (double) (Mth.sin(g) * h) * 0.1;
 				double e = ((float) Mth.floor(this.getY()) + 1.0);
 				double j = this.getZ() + (double) (Mth.cos(g) * h) * 0.1;
 				BlockState blockState = serverWorld.getBlockState(BlockPos.containing(d, e - 1.0, j));
 				Tuple<SimpleParticleType, SimpleParticleType> particles = getFluidParticles(blockState);
 				if (particles != null) {
-					serverWorld.sendParticles(particles.getA(), d, e, j, 2 + this.random.nextInt(2), 0.1F, 0.0, 0.1F, 0.0);
+					serverWorld.sendParticles(particles.getA(), d, e, j, 2 + this.getRandom().nextInt(2), 0.1F, 0.0, 0.1F, 0.0);
 				}
 			}
 			
 			if (this.waitCountdown <= 0) {
-				this.fishAngle = Mth.nextFloat(this.random, 0.0F, 360.0F);
-				this.fishTravelCountdown = Mth.nextInt(this.random, 20, 80);
+				this.fishAngle = Mth.nextFloat(this.getRandom(), 0.0F, 360.0F);
+				this.fishTravelCountdown = Mth.nextInt(this.getRandom(), 20, 80);
 			}
 		} else {
-			this.waitCountdown = Mth.nextInt(this.random, 100, 600);
+			this.waitCountdown = Mth.nextInt(this.getRandom(), 100, 600);
 			this.waitCountdown = this.waitCountdown - this.waitTimeReductionTicks;
 			this.waitCountdown = Math.max(1, this.waitCountdown);
 		}
@@ -639,7 +639,7 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 		
 		float exuberanceMod = ExuberanceHelper.getExuberanceMod(this.exuberanceLevel);
 		for (ItemStack itemStack : list) {
-			int experienceAmount = this.random.nextInt((int) (6 * exuberanceMod) + 1);
+			int experienceAmount = this.getRandom().nextInt((int) (6 * exuberanceMod) + 1);
 			
 			if (this.inventoryInsertion) {
 				playerEntity.getInventory().placeItemBackInInventory(itemStack);

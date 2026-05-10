@@ -52,7 +52,7 @@ public class AbyssalVineBlock extends TriStateVineBlock {
 
         reference.setProperty(BERRIES, false);
         reference.update(world);
-		world.playSound(null, pos, SoundEvents.CAVE_VINES_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.8F, 1.2F));
+		world.playSound(null, pos, SoundEvents.CAVE_VINES_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.getRandom(), 0.8F, 1.2F));
 		player.getInventory().placeItemBackInInventory(SpectrumItems.FISSURE_PLUM.getDefaultInstance());
 		
 		world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, reference.getState()));

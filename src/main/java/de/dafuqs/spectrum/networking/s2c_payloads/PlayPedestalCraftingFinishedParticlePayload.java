@@ -35,7 +35,7 @@ public record PlayPedestalCraftingFinishedParticlePayload(BlockPos pedestalPos, 
 	public static void execute(PlayPedestalCraftingFinishedParticlePayload payload, ClientPlayNetworking.Context context) {
 		Minecraft client = context.client();
 		ClientLevel world = client.level;
-		RandomSource random = world.random;
+		RandomSource random = world.getRandom();
 		
 		for (int i = 0; i < 10; i++) {
 			world.addParticle(new ItemParticleOption(ParticleTypes.ITEM, payload.craftedStack), payload.pedestalPos.getX() + 0.5, payload.pedestalPos.getY() + 1, payload.pedestalPos.getZ() + 0.5, 0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3);

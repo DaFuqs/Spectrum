@@ -178,15 +178,15 @@ public class SpectrumConfig implements ConfigData {
 	public float BedrockArmorKnockbackResistance = 0.3F;
 	
 	// Tool Material Stats
-	public int LowHealthDurability = 16;
-	public float LowHealthMiningSpeed = 4.0F;
-	public float LowHealthAttackDamage = 2.0F;
-	public int LowHealthEnchantability = 10;
+	public int GemstoneDurability = 16;
+	public float GemstoneMiningSpeed = 4.0F;
+	public float GemstoneAttackDamage = 2.0F;
+	public int GemstoneEnchantability = 10;
 	
-	public int VoidingDurability = 1143;
-	public float VoidingMiningSpeed = 20.0F;
-	public float VoidingAttackDamage = 1.0F;
-	public int VoidingEnchantability = 5;
+	public int OblivionDurability = 1143;
+	public float OblivionMiningSpeed = 20.0F;
+	public float OblivionAttackDamage = 1.0F;
+	public int OblivionEnchantability = 5;
 	
 	public int BedrockDurability = 0;
 	public float BedrockMiningSpeed = 15.0F;
@@ -208,25 +208,25 @@ public class SpectrumConfig implements ConfigData {
 	public float GlassCrestAttackDamage = 10.0F;
 	public int GlassCrestEnchantability = 5;
 	
-	public int VerdigrisDurability = 1536;
-	public float VerdigrisMiningSpeed = 7.0F;
-	public float VerdigrisAttackDamage = 2.5F;
-	public int VerdigrisEnchantability = 14;
+	public int KnottedSwordDurability = 1536;
+	public float KnottedSwordMiningSpeed = 7.0F;
+	public float KnottedSwordAttackDamage = 2.5F;
+	public int KnottedSwordEnchantability = 14;
 	
-	public int NectarDurability = 6144;
-	public float NectarMiningSpeed = 9.5F;
-	public float NectarAttackDamage = 9.0F;
-	public int NectarEnchantability = 30;
+	public int NectarLanceDurability = 6144;
+	public float NectarLanceMiningSpeed = 9.5F;
+	public float NectarLanceAttackDamage = 9.0F;
+	public int NectarLanceEnchantability = 30;
 	
 	public int DreamflayerDurability = 650;
 	public float DreamflayerMiningSpeed = 5.0F;
 	public float DreamflayerAttackDamage = 2.0F;
 	public int DreamflayerEnchantability = 20;
 	
-	public int NightfallDurability = 650;
-	public float NightfallMiningSpeed = 2.0F;
-	public float NightfallAttackDamage = 1.0F;
-	public int NightfallEnchantability = 0;
+	public int NightfallsBladeDurability = 650;
+	public float NightfallsBladeMiningSpeed = 2.0F;
+	public float NightfallsBladeAttackDamage = 1.0F;
+	public int NightfallsBladeEnchantability = 0;
 	
 	public int MaxLevelForEffectsInLesserPotionPendant = 3;
 	public int MaxLevelForEffectsInGreaterPotionPendant = 1;

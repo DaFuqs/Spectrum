@@ -6,6 +6,7 @@ import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.animal.horse.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -25,12 +26,12 @@ public class EntityHelper {
 		}
 	}
 	
-	public static boolean isRealPlayer(Entity entity) {
+	public static boolean isRealPlayer(@Nullable Entity entity) {
 		// this should filter out most fake players (kibe, FAPI)
 		return entity instanceof Player && entity.getClass().getCanonicalName().startsWith("net.minecraft");
 	}
 	
-	public static boolean isRealPlayerProjectileOrPet(Entity entity) {
+	public static boolean isRealPlayerProjectileOrPet(@Nullable Entity entity) {
 		if (entity instanceof TamableAnimal tameableEntity) {
 			Entity owner = tameableEntity.getOwner();
 			return isRealPlayer(owner);

@@ -38,9 +38,10 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	protected final int craftingTime;
 	protected final float experience;
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
+	protected final boolean copyComponents;
 	
 	public SpiritInstillerRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier,
-								 IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack output, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades) {
+								 IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack output, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, boolean copyComponents) {
 		
 		super(group, secret, requiredAdvancementIdentifier);
 		
@@ -51,6 +52,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 		this.craftingTime = craftingTime;
 		this.experience = experience;
 		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
+		this.copyComponents = copyComponents;
 		
 		registerInToastManager(getType(), this);
 	}
@@ -89,16 +91,18 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 		return defaultedList;
 	}
 	
+	public boolean copyComponents() {
+		return this.copyComponents;
+	}
+	
 	@Override
 	public ItemStack assemble(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, HolderLookup.Provider drm) {
-		ItemStack resultStack = ItemStack.EMPTY;
+		ItemStack resultStack = getResultItem(drm).copy();
 		SpiritInstillerBlockEntity spiritInstillerBlockEntity = recipeInput.getInstance();
 		Upgradeable.UpgradeHolder upgradeHolder = spiritInstillerBlockEntity.getUpgradeHolder();
 		Level world = spiritInstillerBlockEntity.getLevel();
 		if (world == null) return ItemStack.EMPTY;
 		BlockPos pos = spiritInstillerBlockEntity.getBlockPos();
-		
-		resultStack = getResultItem(drm).copy();
 		
 		// Yield upgrade
 		if (!areYieldAndEfficiencyUpgradesDisabled() && upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD) != 1.0) {
@@ -192,7 +196,8 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 				ItemStack.STRICT_CODEC.fieldOf("result").forGetter(recipe -> recipe.output),
 				Codec.INT.optionalFieldOf("time", 200).forGetter(recipe -> recipe.craftingTime),
 				Codec.FLOAT.optionalFieldOf("experience", 1.0f).forGetter(recipe -> recipe.experience),
-				Codec.BOOL.optionalFieldOf("disable_yield_and_efficiency_upgrades", false).forGetter(recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades)
+				Codec.BOOL.optionalFieldOf("disable_yield_and_efficiency_upgrades", false).forGetter(recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades),
+				Codec.BOOL.optionalFieldOf("copy_components", false).forGetter(recipe -> recipe.copyComponents)
 		).apply(i, SpiritInstillerRecipe::new));
 		
 		private static final StreamCodec<RegistryFriendlyByteBuf, SpiritInstillerRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
@@ -206,6 +211,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 				ByteBufCodecs.VAR_INT, recipe -> recipe.craftingTime,
 				ByteBufCodecs.FLOAT, recipe -> recipe.experience,
 				ByteBufCodecs.BOOL, recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades,
+				ByteBufCodecs.BOOL, recipe -> recipe.copyComponents,
 				SpiritInstillerRecipe::new
 		);
 		

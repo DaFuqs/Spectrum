@@ -67,20 +67,7 @@ public class SpectrumShaders {
 	}
 	
 	public static void tickNoise(Minecraft client) {
-		Entity cameraEntity = client.getCameraEntity();
-		if (cameraEntity == null) return;
-		
-		float intensity = 0.0F;
-		
-		MonstrosityEntity monstrosity = MonstrosityEntity.getTheOneAndOnlyServer();
-		if(monstrosity != null) {
-			float distance = cameraEntity.distanceTo(monstrosity) - monstrosity.getBbWidth();
-			float alpha = 1.0F - distance * 0.025F;
-			if(alpha > 0) {
-				intensity = alpha;
-			}
-		}
-		
+		float intensity = calculateNoiseEdgeIntensity(client);
 		if (intensity > 0) {
 			if (noiseEdgePostProcess.isEmpty()) {
 				noiseEdgePostProcess = SpectrumShaders.loadPostProcess(client, SpectrumShaders.NOISE_EDGE_ID);
@@ -91,6 +78,22 @@ public class SpectrumShaders {
 			noiseEdgePostProcess.get().close();
 			noiseEdgePostProcess = Optional.empty();
 		}
+	}
+	
+	private static float calculateNoiseEdgeIntensity(Minecraft client) {
+		Entity cameraEntity = client.getCameraEntity();
+		if (cameraEntity == null) return 0;
+		
+		List<? extends MonstrosityEntity> monstrosities = MonstrosityEntity.getMonstrosities(cameraEntity.level(), cameraEntity.getEyePosition(), 64);
+		if (monstrosities.isEmpty()) return 0;
+		
+		float minDistance = Integer.MAX_VALUE;
+		for (MonstrosityEntity monstrosity : monstrosities) {
+			float distance = cameraEntity.distanceTo(monstrosity) - monstrosity.getBbWidth();
+			minDistance = Math.min(minDistance, distance);
+		}
+		
+		return Math.max(0.0F, 1.0F - minDistance * 0.025F);
 	}
 	
 }

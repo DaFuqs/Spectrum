@@ -14,10 +14,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 
-@EnvironmentInterfaces({@EnvironmentInterface(
-		value = EnvType.CLIENT,
-		itf = LidBlockEntity.class
-)})
+@EnvironmentInterface(value = EnvType.CLIENT, itf = LidBlockEntity.class)
 public abstract class SpectrumChestBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity {
 	
 	public final ContainerOpenersCounter stateManager;
@@ -144,17 +141,16 @@ public abstract class SpectrumChestBlockEntity extends RandomizableContainerBloc
 		super.loadAdditional(tag, registryLookup);
 		
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		if (!this.tryLoadLootTable(tag)) {
-			ContainerHelper.loadAllItems(tag, this.inventory, registryLookup);
-		}
+		this.tryLoadLootTable(tag);
+		ContainerHelper.loadAllItems(tag, this.inventory, registryLookup);
+		
 	}
 	
 	@Override
 	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(tag, registryLookup);
-		if (!this.trySaveLootTable(tag)) {
-			ContainerHelper.saveAllItems(tag, this.inventory, registryLookup);
-		}
+		this.trySaveLootTable(tag);
+		ContainerHelper.saveAllItems(tag, this.inventory, registryLookup);
 	}
 	
 	public SoundEvent getOpenSound() {

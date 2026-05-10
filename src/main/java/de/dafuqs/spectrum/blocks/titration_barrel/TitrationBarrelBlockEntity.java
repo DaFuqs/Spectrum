@@ -167,7 +167,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 		Component message = null;
 		
 		int daysSealed = getSealMinecraftDays();
-		int inventoryCount = InventoryHelper.countItemsInInventory(this.getItems());
+		int inventoryCount = InventoryHelper.countItemsInInventory(this);
 		
 		Optional<RecipeHolder<ITitrationBarrelRecipe>> optionalRecipe = getRecipeForInventory(world);
 		if (optionalRecipe.isEmpty()) {
@@ -199,7 +199,6 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 						
 						this.extractedBottles += 1;
 						shouldReset = isEmpty(biome.getBaseTemperature(), this.extractedBottles, recipe);
-						
 					}
 				} else {
 					message = Component.translatable("block.spectrum.titration_barrel.recipe_not_unlocked");
@@ -261,7 +260,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 	}
 	
 	public boolean canBeSealed(@Nullable Player player) {
-		int itemCount = InventoryHelper.countItemsInInventory(getItems());
+		int itemCount = InventoryHelper.countItemsInInventory(this);
 		Fluid fluid = fluidStorage.variant.getFluid();
 		if (itemCount == 0 && fluid == Fluids.EMPTY) {
 			return true; // tap empty barrel advancement

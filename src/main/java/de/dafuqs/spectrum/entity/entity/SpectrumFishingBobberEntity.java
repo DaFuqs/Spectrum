@@ -112,8 +112,8 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 		);
 		this.setDeltaMovement(vec3d);
 		//noinspection SuspiciousNameCombination
-		this.setYRot((float) (Mth.atan2(vec3d.x, vec3d.z) * 180.0f / (float) Math.PI));
-		this.setXRot((float) (Mth.atan2(vec3d.y, vec3d.horizontalDistance()) * 180.0f / (float) Math.PI));
+		this.setYRot((float) (Mth.atan2(vec3d.x, vec3d.z) * 180.0f / Math.PI));
+		this.setXRot((float) (Mth.atan2(vec3d.y, vec3d.horizontalDistance()) * 180.0f / Math.PI));
 		this.yRotO = this.getYRot();
 		this.xRotO = this.getXRot();
 	}

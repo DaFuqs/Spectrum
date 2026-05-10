@@ -32,15 +32,4 @@ public class CompactingChestBlock extends SpectrumChestBlock {
 	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return createTickerHelper(type, SpectrumBlockEntities.COMPACTING_CHEST, CompactingChestBlockEntity::tick);
 	}
-	
-	@Override
-	public void openScreen(Level world, BlockPos pos, Player player) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof CompactingChestBlockEntity compactingChestBlockEntity) {
-			if (!isChestBlocked(world, pos)) {
-				player.openMenu(compactingChestBlockEntity);
-			}
-		}
-	}
-	
 }

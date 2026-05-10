@@ -32,7 +32,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 	}
 	
 	private static EntryIngredient buildOutputs(ITitrationBarrelRecipe recipe) {
-		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData() != null) {
+		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData().isPresent()) {
 			return EntryIngredients.ofItemStacks(titrationBarrelRecipe.getOutputVariations(TitrationBarrelRecipe.FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS));
 		} else {
 			return EntryIngredients.of(recipe.getResultItem(BasicDisplay.registryAccess()));

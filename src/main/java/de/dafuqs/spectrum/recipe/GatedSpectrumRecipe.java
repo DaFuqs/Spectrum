@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.recipe;
 
 import de.dafuqs.spectrum.api.recipe.*;
+import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.enchantment.*;
 import org.jspecify.annotations.Nullable;
 
 import java.util.*;
@@ -54,6 +56,15 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 		ItemStack stack = item.getDefaultInstance();
 		stack.setCount(count);
 		return stack;
+	}
+	
+	protected static ItemStack copyComponents(ItemStack recipeOutput, ItemStack stackToCopyComponentsFrom) {
+		var originalEnchantments = recipeOutput.getEnchantments();
+		recipeOutput = stackToCopyComponentsFrom.transmuteCopy(recipeOutput.getItem(), recipeOutput.getCount());
+		for (Holder<Enchantment> enchantment : originalEnchantments.keySet()) {
+			recipeOutput.enchant(enchantment, originalEnchantments.getLevel(enchantment));
+		}
+		return recipeOutput;
 	}
 	
 }

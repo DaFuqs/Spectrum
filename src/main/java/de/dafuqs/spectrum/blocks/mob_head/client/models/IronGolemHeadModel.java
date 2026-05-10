@@ -15,9 +15,7 @@ public class IronGolemHeadModel extends SpectrumSkullModel {
     @SuppressWarnings("unused")
 	public static LayerDefinition getTexturedModelData() {
 		MeshDefinition modelData = new MeshDefinition();
-		PartDefinition modelPartData = modelData.getRoot();
-		
-		PartDefinition head = modelPartData.addOrReplaceChild(
+		modelData.getRoot().addOrReplaceChild(
 				PartNames.HEAD,
 				CubeListBuilder.create()
 						.texOffs(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F)

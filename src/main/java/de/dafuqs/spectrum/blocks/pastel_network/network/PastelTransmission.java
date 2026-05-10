@@ -84,12 +84,10 @@ public class PastelTransmission implements SchedulerMap.Callback {
     }
 
     private void arriveAtDestination() {
-		if (nodePositions.isEmpty()) {
-            return;
-        }
+		if (network == null || nodePositions.isEmpty()) return;
 		
-		BlockPos destinationPos = nodePositions.get(nodePositions.size() - 1);
-		@Nullable PastelNodeBlockEntity destinationNode = this.network.getLoadedNodeAt(destinationPos);
+		BlockPos destinationPos = nodePositions.getLast();
+		PastelNodeBlockEntity destinationNode = this.network.getLoadedNodeAt(destinationPos);
 		Level world = this.network.getWorld();
 		
 		int inserted = 0;

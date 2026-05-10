@@ -168,7 +168,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	}
 	
 	public boolean areYieldAndEfficiencyUpgradesDisabled() {
-		return copyComponents || noBenefitsFromYieldAndEfficiencyUpgrades;
+		return noBenefitsFromYieldAndEfficiencyUpgrades;
 	}
 
 	/**
@@ -269,11 +269,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 		}
 		
 		if (this.copyComponents) {
-			var originalEnchantments = output.getEnchantments();
-			output = memory.transmuteCopy(output.getItem(), output.getCount());
-			for (Holder<Enchantment> enchantment : originalEnchantments.keySet()) {
-				output.enchant(enchantment, originalEnchantments.getLevel(enchantment));
-			}
+			output = copyComponents(output, memory);
 		}
 		
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results
@@ -285,7 +281,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 				ItemStack currentStack = fusionShrineBlockEntity.getItem(i);
 				if (ingredientStack.test(currentStack)) {
 					int reducedAmount = recipesCrafted * ingredientStack.getCount();
-					int reducedAmountAfterMod = efficiencyModifier == 1 ? reducedAmount : Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.getRandom());
+					int reducedAmountAfterMod = i == 0 && copyComponents ? reducedAmount
+							: efficiencyModifier == 1 ? reducedAmount : Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
 					
 					ItemStack currentRemainder = currentStack.getRecipeRemainder();
 					currentStack.shrink(reducedAmountAfterMod);

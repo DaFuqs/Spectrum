@@ -2,11 +2,10 @@ package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.render.animation.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
-import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
@@ -20,30 +19,36 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public class CompactingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory<BlockPos> {
 	
-	private static final Map<AutoCraftingMode, Map<ItemVariant, Optional<RecipeHolder<CraftingRecipe>>>> cache = new EnumMap<>(AutoCraftingMode.class);
-	private AutoCraftingMode autoCraftingMode;
-	private RecipeHolder<CraftingRecipe> lastCraftingRecipe; // cache
-	private ItemVariant lastItemVariant; // cache
-	private boolean hasToCraft, isOpen;
-	private State state = State.CLOSED;
-	float pistonPos, pistonTarget, lastPistonTarget, driverPos, driverTarget, lastDriverTarget, capPos, capTarget, lastCapTarget;
-	long interpTicks, interpLength = 1, activeTicks, craftingTicks;
+	private static final FlowAnimator.Factory<CompactingChestBlockEntity> FACTORY;
+	
+	private AutoCraftingMode mode = AutoCraftingMode.ThreeXThree;
+	private @Nullable RecipeHolder<CraftingRecipe> lastCraftingRecipe; // cache
+	private @Nullable ItemStack lastCraftedStack; // cache
+	
+	protected boolean isOpen;
+	protected long craftingTimeStamp;
+	
+	protected @Nullable FlowAnimator animator;
+	protected FlowData<Float> _piston = FlowData.NULL();
+	protected FlowData<Float> _driver = FlowData.NULL();
+	protected FlowData<Float> _cap = FlowData.NULL();
 	
 	private final ContainerData propertyDelegate = new ContainerData() {
 		@Override
 		public int get(int index) {
-			if (index == 0) return autoCraftingMode.ordinal();
+			if (index == 0) return mode.ordinal();
 			return 0;
 		}
 		
 		@Override
 		public void set(int index, int value) {
-			if (index == 0) autoCraftingMode = AutoCraftingMode.values()[value];
+			if (index == 0) mode = AutoCraftingMode.values()[value];
 		}
 		
 		@Override
@@ -54,81 +59,143 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.COMPACTING_CHEST, blockPos, blockState);
-		this.autoCraftingMode = AutoCraftingMode.ThreeXThree;
-		this.lastItemVariant = null;
-		this.lastCraftingRecipe = null;
-		this.hasToCraft = false;
+	}
+	
+	public long getCraftingTimeStamp() {
+		return craftingTimeStamp;
+	}
+	
+	public void setCraftingTimeStamp(long craftingTimeStamp) {
+		this.craftingTimeStamp = craftingTimeStamp;
 	}
 	
 	@SuppressWarnings("unused")
 	public static void tick(Level world, BlockPos pos, BlockState state, CompactingChestBlockEntity chest) {
-		if (!world.isClientSide()) {
-			CompactingChestStatusUpdatePayload.sendCompactingChestStatusUpdate(chest);
+		if (world.isClientSide())
+			chest.updateAnimator();
+		else
+			chest.process();
+	}
+	
+	private void updateAnimator() {
+		if (animator == null)
+			animator = FACTORY.create(FlowStates.CLOSED, this);
+		
+		animator.tick();
+		
+		if (isOpen) {
+			animator.swapState(FlowStates.OPEN);
+		} else if (level.getGameTime() - craftingTimeStamp < 20) {
+			animator.swapState(FlowStates.ACTIVE);
+		} else {
+			animator.swapState(FlowStates.CLOSED);
+		}
+	}
+	
+	private void process() {
+		int requiredItemCount = mode.getSize();
+		
+		// search for items
+		Optional<RecipeHolder<CraftingRecipe>> optionalCraftingRecipe = Optional.empty();
+		NonNullList<ItemStack> inventory = this.getItems();
+		
+		// try last recipe
+		if (lastCraftingRecipe != null) {
+			if (InventoryHelper.isItemCountInInventory(this, lastCraftedStack, requiredItemCount)) {
+				optionalCraftingRecipe = Optional.ofNullable(lastCraftingRecipe);
+			} else {
+				lastCraftingRecipe = null;
+				lastCraftedStack = null;
+			}
+		}
+		// search for other recipes
+		if (optionalCraftingRecipe.isEmpty()) {
+			optionalCraftingRecipe = searchRecipeToCraft();
 		}
 		
-		if (world.isClientSide()) {
-			if (chest.hasToCraft()) {
-				chest.craftingTicks = 20;
-			} else {
-				chest.craftingTicks--;
+		if (optionalCraftingRecipe.isPresent() && this.lastCraftedStack != null) {
+			boolean success = tryCraftInInventory(inventory, optionalCraftingRecipe.get(), this.lastCraftedStack);
+			if (success) {
+				this.lastCraftingRecipe = optionalCraftingRecipe.get();
+				craftingTimeStamp = level.getGameTime();
+				produceRunningEffects();
+				
+				if (level.getGameTime() % 5 == 0) {
+					CompactingChestStatusUpdatePayload.sendCompactingChestStatusUpdate(this);
+					((ServerLevel) level).getChunkSource().blockChanged(worldPosition);
+				}
+			}
+		}
+	}
+	
+	public Optional<RecipeHolder<CraftingRecipe>> searchRecipeToCraft() {
+		if (level == null) return Optional.empty();
+		
+		Set<AutoCraftingMode.ItemStackHash> triedHashes = new  HashSet<>();
+		for (ItemStack itemStack : inventory) {
+			if (itemStack.isEmpty()) continue;
+			
+			AutoCraftingMode.ItemStackHash hash = new AutoCraftingMode.ItemStackHash(itemStack);
+			if(triedHashes.contains(hash)) continue; // don't try similar stacks more than once
+			triedHashes.add(hash);
+			
+			int requiredItemCount = this.mode.getSize();
+			Tuple<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(itemStack, inventory, requiredItemCount);
+			if (stackPair.getA() < requiredItemCount) continue;
+			
+			Map<AutoCraftingMode.ItemStackHash, Optional<RecipeHolder<CraftingRecipe>>> currentCache = AutoCraftingMode.getCache(mode);
+			ItemStack itemVariant = itemStack.copyWithCount(1);
+			
+			Optional<RecipeHolder<CraftingRecipe>> recipe = currentCache.get(hash);
+			
+			// not yet tried
+			if (recipe == null) {
+				CraftingInput input = this.mode.createRecipeInput(itemStack).input();
+				var optionalCraftingRecipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, input, level);
+				if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().value().assemble(input, level.registryAccess()).isEmpty())
+					optionalCraftingRecipe = Optional.empty();
+				currentCache.put(hash, optionalCraftingRecipe);
+				this.lastCraftedStack = itemVariant;
+				if (optionalCraftingRecipe.isPresent()) this.lastCraftingRecipe = optionalCraftingRecipe.get();
+				return optionalCraftingRecipe;
 			}
 			
-			if (chest.craftingTicks >= 0) {
-				chest.activeTicks++;
-			} else {
-				chest.activeTicks = 0;
+			// valid combination
+			if (recipe.isPresent()) {
+				this.lastCraftedStack = itemVariant;
+				this.lastCraftingRecipe = recipe.get();
+				return recipe;
 			}
+		}
+		
+		return Optional.empty();
+	}
+	
+	public boolean tryCraftInInventory(NonNullList<ItemStack> inventory, RecipeHolder<CraftingRecipe> craftingRecipe, ItemStack itemVariant) {
+		if (level == null)
+			return false;
+		
+		ItemStack inputStack = itemVariant.copyWithCount(this.mode.getSize());
+		List<ItemStack> remainders = InventoryHelper.decrementInInventoryAndReturnRemainders(inputStack, this);
+		
+		boolean spaceInInventory;
+		
+		List<ItemStack> additionItemStacks = new ArrayList<>();
+		additionItemStacks.add(craftingRecipe.value().getResultItem(level.registryAccess()));
+		additionItemStacks.addAll(remainders);
+		
+		spaceInInventory = smartAddToInventory(additionItemStacks, inventory, true);
+		if (spaceInInventory) {
+			// craft
+			smartAddToInventory(additionItemStacks, inventory, false);
+			this.setItems(inventory);
 			
-			if (chest.isOpen()) {
-				chest.changeState(State.OPEN);
-				chest.interpLength = 5;
-			} else if (chest.craftingTicks >= 0) {
-				chest.changeState(State.CRAFTING);
-				chest.interpLength = 20;
-			} else {
-				chest.changeState(State.CLOSED);
-				chest.interpLength = 15;
-			}
-			if (chest.interpTicks < chest.interpLength) {
-				chest.interpTicks++;
-			}
+			// cache
+			return true;
 		} else {
-			if (chest.hasToCraft) {
-				boolean couldCraft = chest.tryCraftOnce();
-				if (!couldCraft) {
-					chest.shouldCraft(false);
-				}
-				if (world.getGameTime() % 6 == 0) {
-					chest.produceRunningEffects();
-				}
-			}
+			smartAddToInventory(List.of(inputStack), inventory, false);
+			return false;
 		}
-	}
-	
-	public void produceRunningEffects() {
-		if (level instanceof ServerLevel server) {
-			var random = level.getRandom();
-			if (random.nextFloat() < 0.125F) {
-				server.playSound(null, worldPosition, SoundEvents.REDSTONE_TORCH_BURNOUT, SoundSource.BLOCKS, 0.05F + random.nextFloat() * 0.1F, 0.334F + random.nextFloat() / 2F);
-				for (int i = 0; i < 4 + random.nextInt(5); i++) {
-					server.sendParticles(ParticleTypes.CLOUD, worldPosition.getX() + random.nextFloat(), worldPosition.getY() + 0.975 + random.nextFloat() * 0.667F, worldPosition.getZ() + random.nextFloat(), 0, 0, random.nextFloat() / 20F + 0.02F, 0, 1);
-				}
-			}
-		}
-	}
-	
-	public void changeState(State state) {
-		if (this.state != state) {
-			this.state = state;
-			lastPistonTarget = pistonPos;
-			lastDriverTarget = driverPos;
-			lastCapTarget = capPos;
-			interpTicks = 0;
-		}
-	}
-	
-	public State getState() {
-		return state;
 	}
 	
 	private static boolean smartAddToInventory(List<ItemStack> itemStacks, List<ItemStack> inventory, boolean test) {
@@ -196,8 +263,21 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		return false;
 	}
 	
-	public static void clearCache() {
-		cache.clear();
+	public void produceRunningEffects() {
+		var random = level.getRandom();
+		if (random.nextFloat() < 0.04F) {
+			level.playSound(
+					null, worldPosition, SoundEvents.REDSTONE_TORCH_BURNOUT, SoundSource.BLOCKS,
+					0.05F + random.nextFloat() * 0.1F, 0.334F + random.nextFloat() / 2F
+			);
+			for (int i = 0; i < 4 + random.nextInt(5); i++) {
+				((ServerLevel) level).sendParticles(
+						ParticleTypes.CLOUD, worldPosition.getX() + random.nextFloat(),
+						worldPosition.getY() + 1 + random.nextFloat() * 0.667F, worldPosition.getZ() + random.nextFloat(),
+						0, 0, random.nextFloat() / 20F + 0.02F, 0, 1
+				);
+			}
+		}
 	}
 	
 	@Override
@@ -210,61 +290,14 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		super.loadAdditional(tag, registryLookup);
 		if (tag.contains("AutoCraftingMode", Tag.TAG_ANY_NUMERIC)) {
 			int autoCraftingModeInt = tag.getInt("AutoCraftingMode");
-			this.autoCraftingMode = AutoCraftingMode.values()[autoCraftingModeInt];
+			this.mode = AutoCraftingMode.values()[autoCraftingModeInt];
 		}
 	}
 	
 	@Override
 	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(tag, registryLookup);
-		tag.putInt("AutoCraftingMode", this.autoCraftingMode.ordinal());
-	}
-	
-	@Override
-	public int getContainerSize() {
-		return 27;
-	}
-	
-	@Override
-	public void setItem(int slot, ItemStack stack) {
-		super.setItem(slot, stack);
-		shouldCraft(true);
-	}
-	
-	private boolean tryCraftOnce() {
-		Optional<RecipeHolder<CraftingRecipe>> optionalCraftingRecipe = Optional.empty();
-		NonNullList<ItemStack> inventory = this.getItems();
-		
-		// try last recipe
-		if (lastCraftingRecipe != null) {
-			int requiredItemCount = this.autoCraftingMode.getSize();
-			if (InventoryHelper.isItemCountInInventory(inventory, lastItemVariant, requiredItemCount)) {
-				optionalCraftingRecipe = Optional.ofNullable(lastCraftingRecipe);
-			} else {
-				lastCraftingRecipe = null;
-				lastItemVariant = null;
-			}
-		}
-		// search for other recipes
-		if (optionalCraftingRecipe.isEmpty()) {
-			optionalCraftingRecipe = searchRecipeToCraft();
-		}
-		
-		if (optionalCraftingRecipe.isPresent() && this.lastItemVariant != null) {
-			if (tryCraftInInventory(inventory, optionalCraftingRecipe.get(), this.lastItemVariant)) {
-				this.lastCraftingRecipe = optionalCraftingRecipe.get();
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean isOpen() {
-		return isOpen;
-	}
-	
-	public void shouldCraft(boolean hasToCraft) {
-		this.hasToCraft = hasToCraft;
+		tag.putInt("AutoCraftingMode", this.mode.ordinal());
 	}
 	
 	@Override
@@ -273,78 +306,6 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 			isOpen = data > 0;
 		}
 		return super.triggerEvent(type, data);
-	}
-	
-	public boolean hasToCraft() {
-		return hasToCraft;
-	}
-	
-	public Optional<RecipeHolder<CraftingRecipe>> searchRecipeToCraft() {
-		if (level == null)
-			return Optional.empty();
-		
-		for (ItemStack itemStack : inventory) {
-			if (itemStack.isEmpty()) {
-				continue;
-			}
-			
-			int requiredItemCount = this.autoCraftingMode.getSize();
-			Tuple<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(itemStack, inventory, requiredItemCount);
-			if (stackPair.getA() >= requiredItemCount) {
-				var currentCache = cache.computeIfAbsent(autoCraftingMode, mode -> new HashMap<>());
-				ItemVariant itemVariant = ItemVariant.of(itemStack);
-				
-				var recipe = currentCache.get(itemVariant);
-				if (recipe != null) {
-					if (recipe.isEmpty()) {
-						continue;
-					}
-					this.lastItemVariant = itemVariant;
-					return recipe;
-				}
-				
-				CraftingInput input = this.autoCraftingMode.createRecipeInput(itemVariant).input();
-				var optionalCraftingRecipe = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, input, level);
-				if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().value().assemble(input, level.registryAccess()).isEmpty()) {
-					optionalCraftingRecipe = Optional.empty();
-					currentCache.put(itemVariant, optionalCraftingRecipe);
-				} else {
-					currentCache.put(itemVariant, optionalCraftingRecipe);
-					
-					this.lastItemVariant = itemVariant;
-					return optionalCraftingRecipe;
-				}
-			}
-		}
-		
-		return Optional.empty();
-	}
-	
-	public boolean tryCraftInInventory(NonNullList<ItemStack> inventory, RecipeHolder<CraftingRecipe> craftingRecipe, ItemVariant itemVariant) {
-		if (level == null)
-			return false;
-		
-		ItemStack inputStack = itemVariant.toStack(this.autoCraftingMode.getSize());
-		List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(inputStack, this);
-		
-		boolean spaceInInventory;
-		
-		List<ItemStack> additionItemStacks = new ArrayList<>();
-		additionItemStacks.add(craftingRecipe.value().getResultItem(level.registryAccess()));
-		additionItemStacks.addAll(remainders);
-		
-		spaceInInventory = smartAddToInventory(additionItemStacks, inventory, true);
-		if (spaceInInventory) {
-			// craft
-			smartAddToInventory(additionItemStacks, inventory, false);
-			this.setItems(inventory);
-			
-			// cache
-			return true;
-		} else {
-			smartAddToInventory(List.of(inputStack), inventory, false);
-			return false;
-		}
 	}
 	
 	@Override
@@ -357,9 +318,15 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		return SpectrumSoundEvents.COMPACTING_CHEST_CLOSE;
 	}
 	
-	public void applySettings(ChangeCompactingChestSettingsPayload packet) {
-		this.autoCraftingMode = packet.mode();
+	public void applySettings(AutoCraftingMode mode) {
+		if (this.mode == mode)
+			return;
+		
+		this.mode = mode;
 		this.lastCraftingRecipe = null;
+		this.lastCraftedStack = null;
+		
+		setChanged();
 	}
 	
 	@Override
@@ -372,10 +339,40 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		return worldPosition;
 	}
 	
-	public enum State {
-		OPEN,
-		CRAFTING,
-		CLOSED
+	@Override
+	public int getContainerSize() {
+		return 27;
 	}
 	
+	static {
+		var builder = new FlowAnimator.Builder<>(CompactingChestBlockEntity.class);
+		builder.stateInfo(FlowStates.OPEN, 5);
+		builder.stateInfo(FlowStates.ACTIVE, 20);
+		builder.stateInfo(FlowStates.CLOSED, 14);
+		
+		builder.handle("piston", FlowHandlers.FLOAT)
+				.initial(0F)
+				.loopback(FlowStates.CLOSED)
+				.forStates(14F, FlowStates.OPEN)
+				.forStates(KeyFrame.sine(0.1F, 5, 4), FlowStates.ACTIVE)
+				.interpolate(Interpolation.CUBIC_IN)
+				.push();
+		
+		builder.handle("driver", FlowHandlers.FLOAT)
+				.initial(0F)
+				.loopback(FlowStates.CLOSED)
+				.forStates(6F, FlowStates.OPEN)
+				.forStates(KeyFrame.sine(0.1F, 5, 5, 13), FlowStates.ACTIVE)
+				.interpolate(Interpolation.CUBIC_IN)
+				.push();
+		
+		builder.handle("cap", FlowHandlers.FLOAT)
+				.initial(0F)
+				.loopback(FlowStates.CLOSED, FlowStates.ACTIVE)
+				.forStates(5F, FlowStates.OPEN)
+				.interpolate(Interpolation.CUBIC_IN)
+				.push();
+		
+		FACTORY = builder.build();
+	}
 }

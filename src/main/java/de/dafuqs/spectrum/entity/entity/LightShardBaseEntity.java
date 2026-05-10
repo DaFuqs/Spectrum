@@ -44,7 +44,7 @@ public abstract class LightShardBaseEntity extends Projectile {
 		this.scaleOffset = world.getRandom().nextFloat() + 0.15F;
 	}
 	
-	public LightShardBaseEntity(EntityType<? extends Projectile> entityType, Level world, LivingEntity owner, float detectionRange, float damage, float lifeSpanTicks) {
+	public LightShardBaseEntity(EntityType<? extends Projectile> entityType, Level world, @Nullable LivingEntity owner, float detectionRange, float damage, float lifeSpanTicks) {
 		super(entityType, world);
 		
 		this.setOwner(owner);

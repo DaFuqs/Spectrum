@@ -30,7 +30,8 @@ public class BlackslagVegetationBlock extends SnowyDirtBlock {
 		}
 	}
 	
-	private static boolean canSurvive(BlockState state, BlockGetter world, BlockPos pos) {
+	@Override
+	protected boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
 		BlockPos blockPos = pos.above();
 		BlockState blockState = world.getBlockState(blockPos);
 		if (blockState.is(Blocks.SNOW) && blockState.getValue(SnowLayerBlock.LAYERS) == 1) {

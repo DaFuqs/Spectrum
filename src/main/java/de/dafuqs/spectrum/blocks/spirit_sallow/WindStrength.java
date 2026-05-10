@@ -11,10 +11,9 @@ public class WindStrength {
 	private static final SimplexNoise SAMPLER = new SimplexNoise(new LegacyRandomSource(0));
 	
 	private static long cachedTick;
+	private static Vec3 cachedValue;
 	
-	public Vec3 cachedValue;
-	
-	public Vec3 getWindStrength(Level world) {
+	public static Vec3 getWindStrength(Level world) {
 		long tick = world.getGameTime();
 		if (tick != cachedTick) {
 			float tickDelta = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
@@ -25,7 +24,6 @@ public class WindStrength {
 			);
 			cachedTick = tick;
 		}
-		
 		return cachedValue;
 	}
 	

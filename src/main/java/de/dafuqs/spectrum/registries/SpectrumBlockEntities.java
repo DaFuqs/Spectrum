@@ -65,7 +65,7 @@ public class SpectrumBlockEntities {
 	public static BlockEntityType<FabricationChestBlockEntity> FABRICATION_CHEST;
 	public static BlockEntityType<HeartboundChestBlockEntity> HEARTBOUND_CHEST;
 	public static BlockEntityType<BlackHoleChestBlockEntity> BLACK_HOLE_CHEST;
-	public static BlockEntityType<TreasureChestBlockEntity> PRESERVATION_CHEST;
+	public static BlockEntityType<PreservationChestBlockEntity> PRESERVATION_CHEST;
 	public static BlockEntityType<AmphoraBlockEntity> AMPHORA;
 
 	public static BlockEntityType<ProjectorBlockEntity> PROJECTOR;
@@ -109,7 +109,7 @@ public class SpectrumBlockEntities {
 		FABRICATION_CHEST = register("fabrication_chest", FabricationChestBlockEntity::new, SpectrumBlocks.FABRICATION_CHEST);
 		HEARTBOUND_CHEST = register("heartbound_chest", HeartboundChestBlockEntity::new, SpectrumBlocks.HEARTBOUND_CHEST);
 		BLACK_HOLE_CHEST = register("black_hole_chest", BlackHoleChestBlockEntity::new, SpectrumBlocks.BLACK_HOLE_CHEST);
-		PRESERVATION_CHEST = register("preservation_chest", TreasureChestBlockEntity::new, SpectrumBlocks.PRESERVATION_CHEST);
+		PRESERVATION_CHEST = register("preservation_chest", PreservationChestBlockEntity::new, SpectrumBlocks.PRESERVATION_CHEST);
 		AMPHORA = register("amphora", AmphoraBlockEntity::new, SpectrumBlocks.CHESTNUT_NOXWOOD_AMPHORA, SpectrumBlocks.EBONY_NOXWOOD_AMPHORA, SpectrumBlocks.SLATE_NOXWOOD_AMPHORA, SpectrumBlocks.IVORY_NOXWOOD_AMPHORA, SpectrumBlocks.WEEPING_GALA_AMPHORA);
 		PROJECTOR = register("projector", ProjectorBlockEntity::new, SpectrumBlocks.PYRITE_PROJECTOR);
 		PLAYER_DETECTOR = register("player_detector", PlayerDetectorBlockEntity::new, SpectrumBlocks.PLAYER_DETECTOR);
@@ -140,10 +140,10 @@ public class SpectrumBlockEntities {
 		PLAYER_TRACKING = register("player_tracking", PlayerTrackerBlockEntity::new, SpectrumBlocks.MANXI, SpectrumBlocks.PRESERVATION_ITEM_BOWL);
 
 		// All the upgrades
-		List<Block> upgradeBlocksList = UpgradeBlock.getUpgradeBlocks();
-		Block[] upgradeBlocksArray = new Block[upgradeBlocksList.size()];
-		upgradeBlocksArray = upgradeBlocksList.toArray(upgradeBlocksArray);
-		UPGRADE_BLOCK = register("upgrade_block", UpgradeBlockEntity::new, upgradeBlocksArray);
+		UPGRADE_BLOCK = register("upgrade_block", UpgradeBlockEntity::new, SpectrumBlocks.UPGRADE_SPEED, SpectrumBlocks.UPGRADE_SPEED2, SpectrumBlocks.UPGRADE_SPEED3,
+				SpectrumBlocks.UPGRADE_EFFICIENCY, SpectrumBlocks.UPGRADE_EFFICIENCY2,
+				SpectrumBlocks.UPGRADE_EXPERIENCE, SpectrumBlocks.UPGRADE_EXPERIENCE2,
+				SpectrumBlocks.UPGRADE_YIELD, SpectrumBlocks.UPGRADE_YIELD2);
 		
 		// All the skulls
 		List<Block> skullBlocksList = new ArrayList<>();

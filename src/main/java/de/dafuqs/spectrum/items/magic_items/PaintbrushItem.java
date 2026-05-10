@@ -191,7 +191,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 		if (dyeColor.isEmpty()) {
 			return false;
 		}
-		return InventoryHelper.removeFromInventoryWithRemainders(player, PigmentItem.byColor(inkColor).getDefaultInstance());
+		return InventoryHelper.decrementInPlayerInventory(player, PigmentItem.byColor(inkColor).getDefaultInstance());
 	}
 	
 	@Override

@@ -31,9 +31,9 @@ public final class DataSignature<N extends Number> {
 	}
 	
 	FlowData<N> instantiate() {
-		var data = handler.createData(this);
-		for (FlowState flowState : stateHolder.keySet()) {
-			data.addStateListener(flowState, stateHolder.get(flowState));
+		FlowData<N> data = handler.createData(this);
+		for (Map.Entry<FlowState, KeyFrame<N>> flowState : stateHolder.entrySet()) {
+			data.addStateListener(flowState.getKey(), flowState.getValue());
 		}
 		return data;
 	}
@@ -53,7 +53,8 @@ public final class DataSignature<N extends Number> {
 		return DUMMY;
 	}
 	
-	@SuppressWarnings({"rawtypes", "unchecked"})
+	// TODO: this value is prone to violent explosion please come up with a safer dummy value
+	@SuppressWarnings({"rawtypes", "unchecked", "DataFlowIssue"})
 	private static final DataSignature DUMMY = new DataSignature(null, null, null, null, null, Collections.EMPTY_MAP);
 	
 }

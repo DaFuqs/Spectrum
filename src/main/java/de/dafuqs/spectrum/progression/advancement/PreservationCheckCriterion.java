@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -13,7 +14,7 @@ public class PreservationCheckCriterion extends SimpleCriterionTrigger<Preservat
 	
 	public static final ResourceLocation ID = SpectrumCommon.locate("preservation_check");
 	
-	public void trigger(ServerPlayer player, String checkName, boolean checkPassed) {
+	public void trigger(ServerPlayer player, @Nullable String checkName, boolean checkPassed) {
 		this.trigger(player, (conditions) -> conditions.matches(checkName, checkPassed));
 	}
 	
@@ -34,7 +35,7 @@ public class PreservationCheckCriterion extends SimpleCriterionTrigger<Preservat
 				Codec.BOOL.optionalFieldOf("check_passed").forGetter(Conditions::checkPassed)
 		).apply(instance, Conditions::new));
 		
-		public boolean matches(String name, boolean checkPassed) {
+		public boolean matches(@Nullable String name, boolean checkPassed) {
 			return (this.checkPassed.isEmpty() || this.checkPassed.get() == checkPassed)
 					&& (this.checkName.isEmpty() || this.checkName.get().equals(name));
 		}

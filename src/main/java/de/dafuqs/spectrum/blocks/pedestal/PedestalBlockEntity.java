@@ -61,7 +61,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	protected long cachedMaxPedestalTierTick;
 	protected UpgradeHolder upgrades = new UpgradeHolder();
 	protected boolean inventoryChanged;
-	public @Nullable RecipeHolder<?> currentRecipe;
+	protected @Nullable RecipeHolder<?> currentRecipe;
 	
 	private static final int RECIPE_RECALCULATION_TICKS = 4;
 	protected long cachedRecipeTime = Long.MIN_VALUE;

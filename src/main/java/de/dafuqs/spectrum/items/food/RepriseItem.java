@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.food.beverages;
+package de.dafuqs.spectrum.items.food;
 
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;

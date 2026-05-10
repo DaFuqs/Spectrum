@@ -11,8 +11,6 @@ import net.minecraft.world.phys.*;
 @Environment(EnvType.CLIENT)
 public class WindParticle extends TextureSheetParticle {
 	
-	private static final WindStrength wind = new WindStrength();
-	
 	protected WindParticle(ClientLevel clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 		super(clientWorld, x, y - 0.125D, z, velocityX, velocityY, velocityZ);
 		
@@ -27,7 +25,7 @@ public class WindParticle extends TextureSheetParticle {
 	public void tick() {
 		super.tick();
 		
-		Vec3 windStrength = wind.getWindStrength(level);
+		Vec3 windStrength = WindStrength.getWindStrength(level);
 		this.xd += windStrength.x() * 0.004;
 		this.yd += windStrength.y() * 0.001;
 		this.zd += windStrength.z() * 0.004;

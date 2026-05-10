@@ -53,13 +53,8 @@ public final class FlowData<N extends Number> {
 	}
 	
 	public void setNextKeyFrame(KeyFrame<N> keyFrame) {
-		if (valueTarget) {
-			this.pastKeyFrame = KeyFrame.simple(value);
-			this.nextKeyFrame = keyFrame;
-		} else {
-			this.pastKeyFrame = nextKeyFrame;
-			this.nextKeyFrame = keyFrame;
-		}
+		this.pastKeyFrame = valueTarget ? KeyFrame.simple(value) : nextKeyFrame;
+		this.nextKeyFrame = keyFrame;
 	}
 	
 	public void clear(boolean hard) {

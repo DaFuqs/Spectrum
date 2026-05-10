@@ -166,16 +166,17 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 		if (!world.isClientSide()) {
 			if (world.getBlockEntity(pos) instanceof BlockFlooderBlockEntity blockFlooderBlockEntity) {
 				BlockState targetState = blockFlooderBlockEntity.getTargetBlockState();
-				if (targetState == null || targetState.isAir()) {
+				if (targetState.isAir()) {
 					boolean scheduleUpdate = calculateTargetBlockAndPropagate(state, world, pos, world.getRandom());
 					if (scheduleUpdate) {
 						world.scheduleTick(pos, state.getBlock(), 2 + random.nextInt(5));
 					}
 				} else {
-					world.setBlock(pos, targetState, 3);
 					Player owner = PlayerOwned.getPlayerEntityIfOnline(blockFlooderBlockEntity.getOwnerUUID());
+					if (owner == null) return;
+					world.setBlock(pos, targetState, 3);
 					if (!owner.isCreative()) {
-						List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(new ItemStack(targetState.getBlock().asItem()), owner.getInventory());
+						List<ItemStack> remainders = InventoryHelper.decrementInInventoryAndReturnRemainders(new ItemStack(targetState.getBlock().asItem()), owner.getInventory());
 						for (ItemStack remainder : remainders) {
 							owner.getInventory().placeItemBackInInventory(remainder);
 						}

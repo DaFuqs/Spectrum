@@ -60,12 +60,12 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	protected final ContainerData propertyDelegate;
 	protected NonNullList<ItemStack> inventory;
 	protected boolean inventoryChanged;
-	protected RecipeHolder<? extends PotionWorkshopRecipe> currentRecipe;
+	protected @Nullable RecipeHolder<? extends PotionWorkshopRecipe> currentRecipe;
 	protected int brewTime;
 	protected int brewTimeTotal;
 	protected int potionColor;
-	protected UUID ownerUUID;
-	protected RecipeHolder<PotionWorkshopBrewingRecipe> lastBrewedRecipe;
+	protected @Nullable UUID ownerUUID;
+	protected @Nullable RecipeHolder<PotionWorkshopBrewingRecipe> lastBrewedRecipe;
 	
 	public PotionWorkshopBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.POTION_WORKSHOP, pos, state);
@@ -288,7 +288,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		
 		// trigger advancements for all brewed potions
 		ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline();
-		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, tippedArrows, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
+		InventoryHelper.addToInventory(potionWorkshopBlockEntity, tippedArrows, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, tippedArrows, tippedArrows.getCount(), potionWorkshopBlockEntity, potionMod.flags());
 		}
@@ -316,7 +316,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 			} else {
 				brewingRecipe.value().fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.level.getRandom());
 				potionWorkshopBlockEntity.inventory.set(BASE_INPUT_SLOT_ID, ItemStack.EMPTY);
-				InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potionFillableStack, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
+				InventoryHelper.addToInventory(potionWorkshopBlockEntity, potionFillableStack, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 				
 				// trigger advancements
 				ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline();
@@ -405,8 +405,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	}
 	
 	private static void addToInventoryOrSpawn(PotionWorkshopBlockEntity potionWorkshopBlockEntity, ItemStack currentRemainder) {
-		currentRemainder = InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, currentRemainder, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
-		if (!currentRemainder.isEmpty()) {
+		boolean couldBeAdded = InventoryHelper.addToInventory(potionWorkshopBlockEntity, currentRemainder, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
+		if (!couldBeAdded) {
 			Containers.dropItemStack(potionWorkshopBlockEntity.level, potionWorkshopBlockEntity.worldPosition.getX(), potionWorkshopBlockEntity.worldPosition.getY(), potionWorkshopBlockEntity.worldPosition.getZ(), currentRemainder);
 		}
 	}
@@ -446,7 +446,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	}
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
@@ -538,7 +538,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		return canPlaceItem(slot, stack);
 	}
 	
-	private boolean hasFourthReagentSlotUnlocked(Player playerEntity) {
+	private boolean hasFourthReagentSlotUnlocked(@Nullable Player playerEntity) {
 		if (playerEntity == null) {
 			return false;
 		} else {

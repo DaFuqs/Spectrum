@@ -41,11 +41,6 @@ public class MidnightAberrationItem extends CloakedItem implements FabricItem {
 			if (stack.has(SpectrumDataComponentTypes.STABLE))
 				return;
 			
-			// check if it's a real stack in the player's inventory or just a proxy item (like a Bottomless Bundle)
-			if (player.getInventory().getItem(slot) != stack) {
-				return;
-			}
-			
 			if (!stack.has(SpectrumDataComponentTypes.TIMESTAMP)) {
 				stack.set(SpectrumDataComponentTypes.TIMESTAMP, world.getGameTime());
 				return;

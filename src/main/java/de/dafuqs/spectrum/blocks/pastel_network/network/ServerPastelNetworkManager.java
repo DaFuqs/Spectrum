@@ -97,12 +97,9 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 			if (result.isEmpty())
 				continue;
 			
-			var trans = result.get().getFirst();
-			trans.setNetwork(network);
-			map.put(
-					trans,
-					timers[i]
-			);
+			PastelTransmission transmission = result.get().getFirst();
+			transmission.setNetwork(network);
+			map.put(transmission, timers[i]);
 		}
 		return map;
 	}

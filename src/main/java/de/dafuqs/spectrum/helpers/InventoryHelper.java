@@ -33,7 +33,7 @@ public class InventoryHelper {
 		return count;
 	}
 	
-	public static boolean removeFromInventoryWithRemainders(Player playerEntity, ItemStack stackToRemove) {
+	public static boolean decrementInPlayerInventory(Player playerEntity, ItemStack stackToRemove) {
 		if (playerEntity.isCreative()) {
 			return true;
 		}
@@ -84,17 +84,8 @@ public class InventoryHelper {
 		return true;
 	}
 	
-	public static boolean isItemCountInInventory(List<ItemStack> inventory, ItemVariant itemVariant, int maxSearchAmount) {
-		int count = 0;
-		for (ItemStack inventoryStack : inventory) {
-			if (itemVariant.matches(inventoryStack)) {
-				count += inventoryStack.getCount();
-				if (count >= maxSearchAmount) {
-					return true;
-				}
-			}
-		}
-		return false;
+	public static boolean isItemCountInInventory(Container inventory, ItemStack itemVariant, int maxSearchAmount) {
+		return ContainerHelper.clearOrCountMatchingItems(inventory, stack -> ItemStack.isSameItemSameComponents(itemVariant, stack), maxSearchAmount, true) >= maxSearchAmount;
 	}
 	
 	public static Tuple<Integer, List<ItemStack>> getStackCountInInventory(ItemStack itemStack, List<ItemStack> inventory, int maxSearchAmount) {
@@ -214,8 +205,8 @@ public class InventoryHelper {
 		for (int i = rangeStart; i < rangeEnd; i++) {
 			ItemStack inventoryStack = inventory.getItem(i);
 			if (inventoryStack.isEmpty()) {
-				inventory.setItem(i, stacksToAdd.get(0));
-				stacksToAdd.remove(0);
+				inventory.setItem(i, stacksToAdd.getFirst());
+				stacksToAdd.removeFirst();
 				if (stacksToAdd.isEmpty()) {
 					return true;
 				}
@@ -235,23 +226,6 @@ public class InventoryHelper {
 			}
 		}
 		return false;
-	}
-	
-	public static ItemStack addToInventory(List<ItemStack> inventory, ItemStack itemStack, int rangeStart, int rangeEnd) {
-		for (int i = rangeStart; i < rangeEnd; i++) {
-			ItemStack currentStack = inventory.get(i);
-			if (currentStack.isEmpty()) {
-				inventory.set(i, itemStack);
-				return ItemStack.EMPTY;
-			} else if (itemStack.isStackable()) {
-				combineStacks(currentStack, itemStack);
-				if (itemStack.isEmpty()) {
-					return itemStack;
-				}
-			}
-		}
-		
-		return itemStack;
 	}
 	
 	// TODO: lots of code overlap with hasInInventory()
@@ -343,8 +317,7 @@ public class InventoryHelper {
 		return ingredientsToFind.isEmpty();
 	}
 	
-	// return are the recipe remainders
-	public static List<ItemStack> removeFromInventoryWithRemainders(List<Ingredient> ingredients, Container inventory) {
+	public static List<ItemStack> decrementInInventoryAndReturnRemainders(List<Ingredient> ingredients, Container inventory) {
 		List<ItemStack> remainders = new ArrayList<>();
 		
 		List<Ingredient> requiredIngredients = new ArrayList<>();
@@ -400,9 +373,8 @@ public class InventoryHelper {
 		return remainders;
 	}
 	
-	// return are the recipe remainders
-	// TODO lots of code overlap with removeFromInventoryWithRemainders()
-	public static List<ItemStack> removeIngredientStacksFromInventoryWithRemainders(List<IngredientStack> ingredients, Container inventory) {
+	// TODO lots of code overlap with decrementInInventoryAndReturnRemainders()
+	public static List<ItemStack> decrementIngredientStacksInInventoryAndReturnRemainders(List<IngredientStack> ingredients, Container inventory) {
 		List<ItemStack> remainders = new ArrayList<>();
 		
 		List<Ingredient> requiredIngredients = new ArrayList<>();
@@ -453,8 +425,7 @@ public class InventoryHelper {
 		
 		return remainders;
 	}
-
-	@SuppressWarnings("UnstableApiUsage")
+	
 	public static boolean canFitStacks(List<ItemStack> stacks, Container inventory) {
 		var storage = InventoryStorage.of(inventory, null);
 
@@ -489,7 +460,7 @@ public class InventoryHelper {
 	}
 	
 	// returns recipe remainders
-	public static List<ItemStack> removeFromInventoryWithRemainders(ItemStack removeItemStack, Container inventory) {
+	public static List<ItemStack> decrementInInventoryAndReturnRemainders(ItemStack removeItemStack, Container inventory) {
 		List<ItemStack> remainders = new ArrayList<>();
 		
 		int removeItemStackCount = removeItemStack.getCount();

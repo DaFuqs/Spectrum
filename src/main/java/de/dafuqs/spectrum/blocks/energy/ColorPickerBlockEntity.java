@@ -43,7 +43,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 	public static final long TICKS_PER_CONVERSION = 5;
 	public static final long STORAGE_AMOUNT = 64 * 64 * 64 * 100;
 	
-	public NonNullList<ItemStack> inventory;
+	protected NonNullList<ItemStack> inventory;
 	protected TotalCappedInkStorage inkStorage;
 	protected boolean paused;
 	protected boolean inkDirty;

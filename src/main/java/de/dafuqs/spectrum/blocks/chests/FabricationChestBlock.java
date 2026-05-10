@@ -35,16 +35,6 @@ public class FabricationChestBlock extends SpectrumChestBlock {
 	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return createTickerHelper(type, SpectrumBlockEntities.FABRICATION_CHEST, FabricationChestBlockEntity::tick);
 	}
-	
-	@Override
-	public void openScreen(Level world, BlockPos pos, Player player) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof FabricationChestBlockEntity fabricationChestBlockEntity) {
-			if (!isChestBlocked(world, pos)) {
-				player.openMenu(fabricationChestBlockEntity);
-			}
-		}
-	}
 
 	@Override
 	public RenderShape getRenderShape(BlockState state) {

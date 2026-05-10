@@ -11,8 +11,7 @@ import net.minecraft.world.level.material.*;
 import org.jspecify.annotations.Nullable;
 
 public class SpectrumBuddingBlock extends SpectrumGemstoneBlock {
-
-	private static final Direction[] DIRECTIONS = Direction.values();
+	
 	private final Block smallBlock;
 	private final Block mediumBlock;
 	private final Block largeBlock;

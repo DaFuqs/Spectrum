@@ -27,7 +27,7 @@ public class StarCandyRecipe extends ShapelessPedestalRecipe {
 		Player player = input.getPlayer();
 		
 		//TODO: use a random seeded with the games time or similar
-		// so calculations are consistent between client, server, guis & recipe output
+		// so calculations are consistent between client, server, GUIs & recipe output
 		RandomSource r = input.getLevel().getRandom();
 		double luck = player == null ? 0 : player.getAttributeValue(Attributes.LUCK);
 		

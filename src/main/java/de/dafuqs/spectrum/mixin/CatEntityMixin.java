@@ -27,7 +27,6 @@ public abstract class CatEntityMixin extends TamableAnimal {
 	@Inject(at = @At("HEAD"), method = "mobInteract")
 	private void spectrum$feedKitten(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
 		ItemStack itemStack = player.getItemInHand(hand);
-		Item item = itemStack.getItem();
 		
 		if (this.level().isClientSide()) return;
 		if (!this.hasCustomName()) return;
@@ -37,7 +36,7 @@ public abstract class CatEntityMixin extends TamableAnimal {
 		
 		boolean howMany = customName.equals("AAA") || customName.equals("AAA ❣");
 		if (player instanceof ServerPlayer serverPlayerEntity) {
-			if (item.equals(SpectrumItems.STRATINE_GEM) && this.hasEffect(MobEffects.LEVITATION) && howMany) {
+			if (itemStack.is(SpectrumItems.STRATINE_GEM) && this.hasEffect(MobEffects.LEVITATION) && howMany) {
 				Support.grantAdvancementCriterion(serverPlayerEntity, ResourceLocation.fromNamespaceAndPath("spectrum", "midgame/become_enlightened"), "confirmed");
 				this.removeEffect(MobEffects.LEVITATION);
 				this.addEffect(new MobEffectInstance(

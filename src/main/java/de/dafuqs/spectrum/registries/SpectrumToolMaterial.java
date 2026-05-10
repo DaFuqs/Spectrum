@@ -11,30 +11,30 @@ import java.util.function.Supplier;
 
 public enum SpectrumToolMaterial implements Tier {
 	
-	LOW_HEALTH(
+	GEMSTONE(
 			BlockTags.INCORRECT_FOR_IRON_TOOL,
-			SpectrumCommon.CONFIG.LowHealthDurability,
-			SpectrumCommon.CONFIG.LowHealthMiningSpeed,
-			SpectrumCommon.CONFIG.LowHealthAttackDamage,
-			SpectrumCommon.CONFIG.LowHealthEnchantability,
+			SpectrumCommon.CONFIG.GemstoneDurability,
+			SpectrumCommon.CONFIG.GemstoneMiningSpeed,
+			SpectrumCommon.CONFIG.GemstoneAttackDamage,
+			SpectrumCommon.CONFIG.GemstoneEnchantability,
 			Ingredient::of
 	),
 	
-	LOW_HEALTH_MINING_LEVEL_4(
+	GEMSTONE_MINING_LEVEL_4(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
-			SpectrumCommon.CONFIG.LowHealthDurability,
-			SpectrumCommon.CONFIG.LowHealthMiningSpeed,
-			SpectrumCommon.CONFIG.LowHealthAttackDamage,
-			SpectrumCommon.CONFIG.LowHealthEnchantability,
+			SpectrumCommon.CONFIG.GemstoneDurability,
+			SpectrumCommon.CONFIG.GemstoneMiningSpeed,
+			SpectrumCommon.CONFIG.GemstoneAttackDamage,
+			SpectrumCommon.CONFIG.GemstoneEnchantability,
 			Ingredient::of
 	),
 	
-	VOIDING(
+	OBLIVION(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
-			SpectrumCommon.CONFIG.VoidingDurability,
-			SpectrumCommon.CONFIG.VoidingMiningSpeed,
-			SpectrumCommon.CONFIG.VoidingAttackDamage,
-			SpectrumCommon.CONFIG.VoidingEnchantability,
+			SpectrumCommon.CONFIG.OblivionDurability,
+			SpectrumCommon.CONFIG.OblivionMiningSpeed,
+			SpectrumCommon.CONFIG.OblivionAttackDamage,
+			SpectrumCommon.CONFIG.OblivionEnchantability,
 			Ingredient::of
 	),
 	
@@ -74,21 +74,21 @@ public enum SpectrumToolMaterial implements Tier {
 			() -> Ingredient.of(SpectrumItems.PURE_MALACHITE)
 	),
 	
-	VERDIGRIS(
+	KNOTTED_SWORD(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
-			SpectrumCommon.CONFIG.VerdigrisDurability,
-			SpectrumCommon.CONFIG.VerdigrisMiningSpeed,
-			SpectrumCommon.CONFIG.VerdigrisAttackDamage,
-			SpectrumCommon.CONFIG.VerdigrisEnchantability,
+			SpectrumCommon.CONFIG.KnottedSwordDurability,
+			SpectrumCommon.CONFIG.KnottedSwordMiningSpeed,
+			SpectrumCommon.CONFIG.KnottedSwordAttackDamage,
+			SpectrumCommon.CONFIG.KnottedSwordEnchantability,
 			() -> Ingredient.of(SpectrumItems.NIGHTDEW_SPROUT)
 	),
 	
-	NECTAR(
+	NECTAR_LANCE(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
-			SpectrumCommon.CONFIG.NectarDurability,
-			SpectrumCommon.CONFIG.NectarMiningSpeed,
-			SpectrumCommon.CONFIG.NectarAttackDamage,
-			SpectrumCommon.CONFIG.NectarEnchantability,
+			SpectrumCommon.CONFIG.NectarLanceDurability,
+			SpectrumCommon.CONFIG.NectarLanceMiningSpeed,
+			SpectrumCommon.CONFIG.NectarLanceAttackDamage,
+			SpectrumCommon.CONFIG.NectarLanceEnchantability,
 			() -> Ingredient.of(SpectrumItems.AETHER_VESTIGES)
 	),
 	
@@ -101,11 +101,11 @@ public enum SpectrumToolMaterial implements Tier {
 			() -> Ingredient.of(SpectrumItems.BISMUTH_CRYSTAL)
 	),
 	
-	NIGHTFALL(BlockTags.INCORRECT_FOR_IRON_TOOL,
-			SpectrumCommon.CONFIG.NightfallDurability,
-			SpectrumCommon.CONFIG.NightfallMiningSpeed,
-			SpectrumCommon.CONFIG.NightfallAttackDamage,
-			SpectrumCommon.CONFIG.NightfallEnchantability,
+	NIGHTFALLS_BLADE(BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
+			SpectrumCommon.CONFIG.NightfallsBladeDurability,
+			SpectrumCommon.CONFIG.NightfallsBladeMiningSpeed,
+			SpectrumCommon.CONFIG.NightfallsBladeAttackDamage,
+			SpectrumCommon.CONFIG.NightfallsBladeEnchantability,
 			() -> Ingredient.of(SpectrumItems.MIDNIGHT_CHIP)
 	);
 	

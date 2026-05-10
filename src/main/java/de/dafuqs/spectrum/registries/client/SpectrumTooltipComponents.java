@@ -13,8 +13,6 @@ public class SpectrumTooltipComponents {
 				return new CraftingTabletTooltipComponent(craftingTabletTooltipData);
 			} else if (data instanceof BottomlessBundleTooltipData bottomlessBundleTooltipData) {
 				return new BottomlessBundleTooltipComponent(bottomlessBundleTooltipData);
-			} else if (data instanceof PresentTooltipData presentTooltipData) {
-				return new PresentTooltipComponent(presentTooltipData);
 			}
 			return null;
 		}));

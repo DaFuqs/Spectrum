@@ -87,6 +87,11 @@ public class PastelNetwork<W extends Level> {
         return false;
     }
 	
+	@Override
+	public int hashCode() {
+		return this.uuid.hashCode();
+	}
+	
 	public CompoundTag graphToNbt() {
 		var vertices = new ArrayList<>(graph.vertexSet());
 		var graphStorage = new CompoundTag();

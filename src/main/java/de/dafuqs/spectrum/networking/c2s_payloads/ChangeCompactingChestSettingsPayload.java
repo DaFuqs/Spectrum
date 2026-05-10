@@ -14,8 +14,7 @@ public record ChangeCompactingChestSettingsPayload(AutoCraftingMode mode) implem
 	
 	public static final CustomPacketPayload.Type<ChangeCompactingChestSettingsPayload> ID = SpectrumC2SPackets.makeId("change_compacting_chest_settings");
 	public static final StreamCodec<FriendlyByteBuf, ChangeCompactingChestSettingsPayload> CODEC = StreamCodec.composite(
-			PacketCodecHelper.enumOf(AutoCraftingMode::values),
-			ChangeCompactingChestSettingsPayload::mode,
+			PacketCodecHelper.enumOf(AutoCraftingMode::values), ChangeCompactingChestSettingsPayload::mode,
 			ChangeCompactingChestSettingsPayload::new
 	);
 	
@@ -26,7 +25,7 @@ public record ChangeCompactingChestSettingsPayload(AutoCraftingMode mode) implem
 				BlockEntity blockEntity = compactingChestScreenHandler.getBlockEntity();
 				if (blockEntity instanceof CompactingChestBlockEntity compactingChestBlockEntity) {
 					// apply the new settings
-					compactingChestBlockEntity.applySettings(payload);
+					compactingChestBlockEntity.applySettings(payload.mode());
 				}
 			}
 		};

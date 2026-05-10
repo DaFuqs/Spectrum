@@ -22,8 +22,12 @@ public class DrinkItem extends Item {
 	}
 	
 	public DrinkItem(Properties settings, String tooltip) {
+		this(settings, Component.translatable(tooltip));
+	}
+	
+	public DrinkItem(Properties settings, MutableComponent component) {
 		super(settings);
-		this.tooltip = Component.translatable(tooltip).withStyle(ChatFormatting.GRAY);
+		this.tooltip = component.withStyle(ChatFormatting.GRAY);
 	}
 	
 	@Override

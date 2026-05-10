@@ -30,7 +30,7 @@ public record GuidebookHintBoughtPayload(ResourceLocation completionAdvancement,
 	public static ServerPlayNetworking.PlayPayloadHandler<GuidebookHintBoughtPayload> getPayloadHandler() {
 		return (payload, context) -> {
 			ServerPlayer player = context.player();
-			for (ItemStack remainder : InventoryHelper.removeIngredientStacksFromInventoryWithRemainders(List.of(payload.payment()), player.getInventory())) {
+			for (ItemStack remainder : InventoryHelper.decrementIngredientStacksInInventoryAndReturnRemainders(List.of(payload.payment()), player.getInventory())) {
 				InventoryHelper.smartAddToInventory(remainder, player.getInventory(), null);
 			}
 			

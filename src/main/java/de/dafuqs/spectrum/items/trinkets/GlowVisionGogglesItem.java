@@ -60,7 +60,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 					paid = InkPowered.tryDrainEnergy(serverPlayerEntity, INK_COST);
 				}
 				if (!paid) {  // try pay with item
-					paid = InventoryHelper.removeFromInventoryWithRemainders(serverPlayerEntity, ITEM_COST);
+					paid = InventoryHelper.decrementInPlayerInventory(serverPlayerEntity, ITEM_COST);
 				}
 				
 				if (paid) {

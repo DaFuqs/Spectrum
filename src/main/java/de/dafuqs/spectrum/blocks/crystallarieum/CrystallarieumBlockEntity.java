@@ -224,7 +224,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("InkStorage")).ifPresent(storage ->
 				this.inkStorage = new IndividualCappedInkStorage(storage.maxPerColor(), storage.storedEnergy()));
 		if (nbt.contains("Looper", Tag.TAG_COMPOUND)) {
-			this.tickLooper = TickLooper.readNbt(nbt.getCompound("Looper"));
+			this.tickLooper = TickLooper.fromNbt(nbt.getCompound("Looper"));
 		}
 		
 		this.fluidStorage.variant = CodecHelper.fromNbt(FluidVariant.CODEC, nbt.get("FluidVariant"), FluidVariant.blank());

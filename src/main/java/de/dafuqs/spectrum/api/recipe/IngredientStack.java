@@ -24,8 +24,8 @@ public class IngredientStack implements CustomIngredient {
 	private final int count;
 	
 	// These are from the codec, to handle encoding
-	private Item item = null;
-	private TagKey<Item> tag = null;
+	private @Nullable Item item = null;
+	private @Nullable TagKey<Item> tag = null;
 	
 	public static final IngredientStack EMPTY = new IngredientStack(Ingredient.EMPTY, DataComponentPredicate.EMPTY, DataComponentPatch.EMPTY, 0);
 	

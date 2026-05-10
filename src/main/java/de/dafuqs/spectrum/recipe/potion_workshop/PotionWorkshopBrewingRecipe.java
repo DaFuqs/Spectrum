@@ -56,30 +56,24 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		HARMFUL_TO_BENEFICIAL_EFFECT.put(SpectrumStatusEffects.DENSITY, SpectrumStatusEffects.LIGHTWEIGHT);
 	}
 	
-	;
-	
 	public static @Nullable PotionWorkshopBrewingRecipe getInverseRecipe(Holder<MobEffect> statusEffect, MobEffectCategory sourceCategory, BiMap<Holder<MobEffect>, Holder<MobEffect>> map) {
 		if (statusEffect.value().getCategory() == sourceCategory) {
-			Holder<MobEffect> beneficialEffect = map.getOrDefault(statusEffect, null);
-			if (beneficialEffect == null) {
-				return null;
-			}
-			for (PotionWorkshopBrewingRecipe positiveRecipe : beneficialRecipes) {
-				if (positiveRecipe.recipeData.statusEffect() == beneficialEffect) {
-					return positiveRecipe;
-				}
-			}
+			Holder<MobEffect> beneficialEffect = map.get(statusEffect);
+			if (beneficialEffect == null) return null;
+			
+			for (PotionWorkshopBrewingRecipe positiveRecipe : beneficialRecipes)
+				if (positiveRecipe.recipeData.statusEffect() == beneficialEffect) return positiveRecipe;
 		}
 		return null;
 	}
 	
-	public static final List<PotionWorkshopBrewingRecipe> beneficialRecipes = new ArrayList<>();
-	public static final List<PotionWorkshopBrewingRecipe> harmfulRecipes = new ArrayList<>();
-	public static PotionWorkshopBrewingRecipe immunityRecipe = null;
+	protected static final List<PotionWorkshopBrewingRecipe> beneficialRecipes = new ArrayList<>();
+	protected static final List<PotionWorkshopBrewingRecipe> harmfulRecipes = new ArrayList<>();
+	public static @Nullable PotionWorkshopBrewingRecipe immunityRecipe = null;
 	
 	public final PotionRecipeEffect recipeData;
 	
-	protected ItemStack cachedOutput;
+	protected @Nullable ItemStack cachedOutput;
 	
 	public static void clearMemorizedRecipes() {
 		beneficialRecipes.clear();
@@ -104,14 +98,14 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 		if (recipeData.statusEffect().value().getCategory() == MobEffectCategory.BENEFICIAL) {
 			for (PotionWorkshopBrewingRecipe ae : beneficialRecipes) {
-				if (ae.recipeData.statusEffect().value() == recipeData.statusEffect()) {
+				if (ae.recipeData.statusEffect().value() == recipeData.statusEffect().value()) {
 					return;
 				}
 			}
 			beneficialRecipes.add(this);
 		} else if (recipeData.statusEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
 			for (PotionWorkshopBrewingRecipe ae : harmfulRecipes) {
-				if (ae.recipeData.statusEffect() == recipeData.statusEffect()) {
+				if (ae.recipeData.statusEffect().value() == recipeData.statusEffect().value()) {
 					return;
 				}
 			}
@@ -373,7 +367,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	private boolean containsEffect(List<InkPoweredStatusEffectInstance> effects, MobEffect statusEffect) {
 		for (InkPoweredStatusEffectInstance existingInstance : effects) {
-			if (existingInstance.getStatusEffectInstance().getEffect() == statusEffect) {
+			if (existingInstance.getStatusEffectInstance().getEffect().value() == statusEffect) {
 				return true;
 			}
 		}

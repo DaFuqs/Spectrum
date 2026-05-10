@@ -135,7 +135,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 			}
 			
 			if (!player.isCreative()) {
-				InventoryHelper.removeFromInventoryWithRemainders(player,
+				InventoryHelper.decrementInPlayerInventory(player,
 						new ItemStack(consumedItem, targetPositions.size()));
 				for (ItemStack stack : stacks) {
 					player.getInventory().placeItemBackInInventory(stack);

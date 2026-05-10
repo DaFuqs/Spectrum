@@ -5,6 +5,7 @@
   "ingredient1": "spectrum:evernectar",
   "ingredient2": "spectrum:aether_vestiges",
   "center_ingredient": "spectrum:knotted_sword",
+  "copy_components": true,
   "result": {
     "id": "spectrum:nectar_lance"
   },

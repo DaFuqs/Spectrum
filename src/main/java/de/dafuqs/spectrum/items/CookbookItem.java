@@ -35,11 +35,7 @@ public class CookbookItem extends Item {
 			
 			return InteractionResultHolder.success(user.getItemInHand(hand));
 		} else {
-			try {
-				openGuidebookPage(this.bookAddress);
-			} catch (NullPointerException e) {
-				SpectrumCommon.logError(user.getName().getString() + " used a CookbookItem to open the guidebook page " + this.bookAddress + " but it does not exist");
-			}
+			openGuidebookPage(this.bookAddress);
 		}
 		
 		return InteractionResultHolder.consume(user.getItemInHand(hand));

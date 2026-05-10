@@ -19,7 +19,7 @@ public class LightSpearEntity extends LightShardBaseEntity {
         super(entityType, world);
     }
 	
-	public LightSpearEntity(Level world, LivingEntity owner, float damage, int lifeSpanTicks) {
+	public LightSpearEntity(Level world, @Nullable LivingEntity owner, float damage, int lifeSpanTicks) {
 		super(SpectrumEntityTypes.LIGHT_SPEAR, world, owner, 48, damage, lifeSpanTicks);
 	}
 

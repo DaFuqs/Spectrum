@@ -59,7 +59,7 @@ public class MonstrosityEntityRenderer extends EntityRenderer<MonstrosityEntity>
 			if (random.nextFloat() < FLAVOR_TEXT_CHANCE) {
 				sequence = TEXTS[random.nextInt(MAX_FLAVOR_TEXT_EXCLUSIVE)].getVisualOrderText();
 			} else {
-				int length = (int) Math.max(bbWidth * 0.5F, random.nextIntBetweenInclusive((int) (bbWidth * 5F), (int) (bbWidth * 12F - Math.abs(yOffset) / 4)));
+				int length = (int) Math.max(bbWidth * 0.5F, random.nextIntBetweenInclusive((int) (bbWidth * 5F), (int) (bbWidth * 12F - Math.abs(yOffset) / 4F)));
 				sequence = FormattedCharSequence.forward(new String(new char[length]).replace("\0", "0"), STYLE);
 			}
 			

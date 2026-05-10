@@ -43,7 +43,7 @@ public class CinderhearthCategory extends GatedDisplayCategory<CinderhearthDispl
 		for (int i = 0; i < outputs.size(); i++) {
 			Tuple<ItemStack, Float> currentOutput = outputs.get(i);
 			ItemStack outputStack = currentOutput.getA();
-			Float chance = currentOutput.getB();
+			float chance = currentOutput.getB();
 			
 			Point point = new Point(startPoint.x - 6 + 49 + i * 28, startPoint.y + 1 + 5);
 			widgets.add(Widgets.createResultSlotBackground(point));

@@ -15,23 +15,17 @@ import net.minecraft.world.level.biome.*;
 
 @Environment(EnvType.CLIENT)
 public class HowlingSpireEffects {
-	
-	public static int spireTicks, lastSpireTicks;
-	
 	private static boolean initialized = false;
 	
 	private static final long ASH_UPDATE_INTERVAL = 1600;
 	private static final double BASE_ASH_VELOCITY = 0.25;
 	private static double targetAshVelocity = 0.215, lastAshVelocity = 0.215, ashScaleA = 20000, ashScaleB = 2200, ashScaleC = 200;
-	private static int ashSwitchTicks = 50, ashSpawns;
+	private static int ashSwitchTicks = 50, ashSpawns, spireTicks;
 	private static Direction.Axis ashAxis = Direction.Axis.X;
 	private static Minecraft client = Minecraft.getInstance();
 	
 	public static void clientTick(ClientLevel world, Entity cameraEntity, Holder<Biome> biome) {
-		if (client.isPaused())
-			return;
-
-		lastSpireTicks = spireTicks;
+		if (client.isPaused()) return;
 		BiomeAttenuatingSoundInstance.update(biome);
 		
 		boolean inHowlingSpires = biome.is(SpectrumBiomes.HOWLING_SPIRES);

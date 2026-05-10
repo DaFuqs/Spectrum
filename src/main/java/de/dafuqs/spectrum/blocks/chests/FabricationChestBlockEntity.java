@@ -207,7 +207,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 				ItemStack outputItemStack = recipe.value().getResultItem(level.registryAccess());
 				ItemStack currentItemStack = chest.inventory.get(RESULT_SLOTS[index]);
 				if (InventoryHelper.canCombineItemStacks(currentItemStack, outputItemStack) && InventoryHelper.hasInInventory(ingredients, chest)) {
-					List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(ingredients, chest);
+					List<ItemStack> remainders = InventoryHelper.decrementInInventoryAndReturnRemainders(ingredients, chest);
 					
 					if (currentItemStack.isEmpty()) {
 						chest.inventory.set(RESULT_SLOTS[index], outputItemStack.copy());

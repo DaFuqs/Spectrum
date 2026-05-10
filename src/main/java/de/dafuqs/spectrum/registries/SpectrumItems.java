@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import com.klikli_dev.modonomicon.registry.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.color.*;
@@ -17,7 +18,6 @@ import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
-import de.dafuqs.spectrum.items.food.beverages.*;
 import de.dafuqs.spectrum.items.item_frame.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
@@ -59,7 +59,7 @@ public class SpectrumItems {
 	public static final DeferredRegistrar ITEM_REGISTRAR = new DeferredRegistrar();
 	
 	// Main items
-	public static final Item GUIDEBOOK = register(simple(item("guidebook", new GuidebookItem(IS.of(1)), InkColors.WHITE)));
+	public static final Item GUIDEBOOK = register(simple(item("guidebook", new GuidebookItem(IS.of(1).component(DataComponentRegistry.BOOK_ID.get(), GuidebookItem.GUIDEBOOK_ID)), InkColors.WHITE)));
 	public static final Item PAINTBRUSH = register(item("paintbrush", new PaintbrushItem(IS.of(1)), InkColors.WHITE));
 	public static final Item CRAFTING_TABLET = register(simple(item("crafting_tablet", new CraftingTabletItem(IS.of(1)), InkColors.LIGHT_GRAY)));
 	
@@ -105,21 +105,21 @@ public class SpectrumItems {
 	
 	// Preenchanted tools
 	public static final PreenchantedMultiToolItem MULTITOOL = register(handheld(item("multitool", new PreenchantedMultiToolItem(Tiers.IRON, 2, -2.4F, IS.of(Rarity.UNCOMMON).durability(Tiers.IRON.getUses())), InkColors.BROWN)));
-	public static final GlintlessPickaxe TENDER_PICKAXE = register(handheld(item("tender_pickaxe", new GlintlessPickaxe(SpectrumToolMaterial.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.LOW_HEALTH, 1, -2.8F))) {
+	public static final GlintlessPickaxe TENDER_PICKAXE = register(handheld(item("tender_pickaxe", new GlintlessPickaxe(SpectrumToolMaterial.GEMSTONE, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.GEMSTONE.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.GEMSTONE, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.SILK_TOUCH, 1);
 		}
 	}, InkColors.BLUE)));
-	public static final GlintlessPickaxe LUCKY_PICKAXE = register(handheld(item("lucky_pickaxe", new GlintlessPickaxe(SpectrumToolMaterial.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.LOW_HEALTH, 1, -2.8F))) {
+	public static final GlintlessPickaxe LUCKY_PICKAXE = register(handheld(item("lucky_pickaxe", new GlintlessPickaxe(SpectrumToolMaterial.GEMSTONE, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.GEMSTONE.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.GEMSTONE, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.FORTUNE, 3);
 		}
 	}, InkColors.LIGHT_BLUE)));
-	public static final RazorFalchionItem RAZOR_FALCHION = register(handheld(item("razor_falchion", new RazorFalchionItem(SpectrumToolMaterial.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.LOW_HEALTH.getUses()).attributes(SwordItem.createAttributes(SpectrumToolMaterial.LOW_HEALTH, 4, -2.2F))), InkColors.RED)));
-	public static final OblivionPickaxeItem OBLIVION_PICKAXE = register(handheld(item("oblivion_pickaxe", new OblivionPickaxeItem(SpectrumToolMaterial.VOIDING, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.VOIDING.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.VOIDING, 1, -2.8F))), InkColors.GRAY)));
-	public static final GlintlessPickaxe RESONANT_PICKAXE = register(handheld(item("resonant_pickaxe", new GlintlessPickaxe(SpectrumToolMaterial.LOW_HEALTH_MINING_LEVEL_4, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.LOW_HEALTH_MINING_LEVEL_4, 1, -2.8F))) {
+	public static final RazorFalchionItem RAZOR_FALCHION = register(handheld(item("razor_falchion", new RazorFalchionItem(SpectrumToolMaterial.GEMSTONE, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.GEMSTONE.getUses()).attributes(SwordItem.createAttributes(SpectrumToolMaterial.GEMSTONE, 4, -2.2F))), InkColors.RED)));
+	public static final OblivionPickaxeItem OBLIVION_PICKAXE = register(handheld(item("oblivion_pickaxe", new OblivionPickaxeItem(SpectrumToolMaterial.OBLIVION, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.OBLIVION.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.OBLIVION, 1, -2.8F))), InkColors.GRAY)));
+	public static final GlintlessPickaxe RESONANT_PICKAXE = register(handheld(item("resonant_pickaxe", new GlintlessPickaxe(SpectrumToolMaterial.GEMSTONE_MINING_LEVEL_4, IS.of(Rarity.UNCOMMON).durability(SpectrumToolMaterial.GEMSTONE.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolMaterial.GEMSTONE_MINING_LEVEL_4, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(SpectrumEnchantments.RESONANCE, 1);
@@ -181,8 +181,8 @@ public class SpectrumItems {
 	public static final NightfallsBladeItem NIGHTFALLS_BLADE = register(item("nightfalls_blade", new NightfallsBladeItem(Tiers.DIAMOND, 3, -2.4F, IS.of(1, Rarity.UNCOMMON)), InkColors.GRAY).withItemModel((ctx, item) -> SpectrumModelHelper.registerLayeredItemModel(ctx, item, SpectrumModels.HANDHELD_THREE_LAYERS, "", "_tint", "_overlay")));
 	public static final DraconicTwinswordItem DRACONIC_TWINSWORD = register(item("draconic_twinsword", new DraconicTwinswordItem(SpectrumToolMaterial.DRACONIC, 6, -3.0F, IS.of(1, Rarity.RARE)), InkColors.YELLOW));
 	public static final DragonTalonItem DRAGON_TALON = register(item("dragon_talon", new DragonTalonItem(SpectrumToolMaterial.DRACONIC, -3.0, -1.0, IS.of(1, Rarity.RARE).durability(SpectrumToolMaterial.DRACONIC.getUses())), InkColors.YELLOW));
-	public static final LightGreatswordItem KNOTTED_SWORD = register(item("knotted_sword", new LightGreatswordItem(SpectrumToolMaterial.VERDIGRIS, 3, -2.4F, 0.25F, 0.5F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.VERDIGRIS.getUses())), InkColors.GREEN));
-	public static final NectarLanceItem NECTAR_LANCE = register(item("nectar_lance", new NectarLanceItem(SpectrumToolMaterial.NECTAR, 0, -2.4F, 0.5F, 1.5F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).durability(SpectrumToolMaterial.NECTAR.getUses())), InkColors.PURPLE));
+	public static final LightGreatswordItem KNOTTED_SWORD = register(item("knotted_sword", new LightGreatswordItem(SpectrumToolMaterial.KNOTTED_SWORD, 3, -2.4F, 0.25F, 0.5F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolMaterial.KNOTTED_SWORD.getUses())), InkColors.GREEN));
+	public static final NectarLanceItem NECTAR_LANCE = register(item("nectar_lance", new NectarLanceItem(SpectrumToolMaterial.NECTAR_LANCE, 0, -2.4F, 0.5F, 1.5F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).durability(SpectrumToolMaterial.NECTAR_LANCE.getUses())), InkColors.PURPLE));
 	
 	// Bedrock Armor
 	public static final BedrockArmorItem BEDROCK_HELMET = register(simple(item("bedrock_helmet", new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.HELMET, IS.of(Rarity.UNCOMMON).fireResistant().durability(70 * 13).component(DataComponents.UNBREAKABLE, new Unbreakable(false))) {
@@ -297,19 +297,19 @@ public class SpectrumItems {
 	
 	// Food & drinks
 	public static final Item SCONE = register(simple(item("scone", new Item(IS.of().food(SpectrumFoodComponents.SCONE)), InkColors.PINK)));
-	public static final Item MOONSTRUCK_NECTAR = register(simple(item("moonstruck_nectar", new MoonstruckNectarItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).craftRemainder(GLASS_BOTTLE)), InkColors.LIME)));
+	public static final Item MOONSTRUCK_NECTAR = register(simple(item("moonstruck_nectar", new DrinkItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).craftRemainder(GLASS_BOTTLE), Component.translatable("item.spectrum.moonstruck_nectar.tooltip").append("\n").append(Component.translatable("item.spectrum.moonstruck_nectar.tooltip2"))), InkColors.LIME)));
 	public static final Item JADE_JELLY = register(simple(item("jade_jelly", new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.JADE_JELLY), "item.spectrum.jade_jelly.tooltip"), InkColors.LIME)));
 	public static final Item GLASS_PEACH = register(simple(item("glass_peach", new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.GLASS_PEACH), "item.spectrum.glass_peach.tooltip"), InkColors.PINK)));
 	public static final Item FISSURE_PLUM = register(simple(item("fissure_plum", new AliasedTooltipItem(SpectrumBlocks.ABYSSAL_VINES, IS.of().food(SpectrumFoodComponents.FISSURE_PLUM), "item.spectrum.fissure_plum.tooltip"), InkColors.BROWN)));
 	public static final Item NIGHTDEW_SPROUT = register(simple(item("nightdew_sprout", new AliasedTooltipItem(SpectrumBlocks.NIGHTDEW, IS.of().food(SpectrumFoodComponents.NIGHTDEW_SPROUT), "item.spectrum.nightdew_sprout.tooltip"), InkColors.PURPLE)));
 	public static final Item NECTARDEW_BURGEON = register(simple(item("nectardew_burgeon", new NectardewBurgeonItem(IS.of().food(SpectrumFoodComponents.NECTARDEW_BURGEON), "item.spectrum.nectardew_burgeon.tooltip", SpectrumAdvancements.COLLECT_NECTARDEW, SpectrumItems.NIGHTDEW_SPROUT), InkColors.PURPLE)));
-	public static final Item RESTORATION_TEA = register(simple(item("restoration_tea", new RestorationTeaItem(IS.of().food(SpectrumFoodComponents.RESTORATION_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.RESTORATION_TEA_SCONE_BONUS))), InkColors.PINK)));
-	public static final Item KIMCHI = register(simple(item("kimchi", new KimchiItem(IS.of().food(SpectrumFoodComponents.KIMCHI)), InkColors.PINK)));
+	public static final Item RESTORATION_TEA = register(simple(item("restoration_tea", new DrinkItem(IS.of().food(SpectrumFoodComponents.RESTORATION_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.RESTORATION_TEA_SCONE_BONUS)), Component.translatable("item.spectrum.restoration_tea.tooltip").append("\n").append(Component.translatable("item.spectrum.restoration_tea.tooltip2"))), InkColors.PINK)));
+	public static final Item KIMCHI = register(simple(item("kimchi", new Item(IS.of().food(SpectrumFoodComponents.KIMCHI)), InkColors.PINK)));
 	public static final Item CLOTTED_CREAM = register(simple(item("clotted_cream", new ClottedCreamItem(IS.of().food(SpectrumFoodComponents.CLOTTED_CREAM), new String[]{"item.spectrum.clotted_cream.tooltip", "item.spectrum.clotted_cream.tooltip2"}), InkColors.PINK)));
 	public static final Item FRESH_CHOCOLATE = register(simple(item("fresh_chocolate", new Item(IS.of().food(SpectrumFoodComponents.FRESH_CHOCOLATE)), InkColors.PINK)));
 	public static final Item HOT_CHOCOLATE = register(simple(item("hot_chocolate", new DrinkItem(IS.of().food(SpectrumFoodComponents.HOT_CHOCOLATE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.HOT_CHOCOLATE_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)), InkColors.PINK)));
 	public static final Item KARAK_CHAI = register(simple(item("karak_chai", new DrinkItem(IS.of().food(SpectrumFoodComponents.KARAK_CHAI).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.KARAK_CHAI_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)), InkColors.PINK)));
-	public static final Item AZALEA_TEA = register(simple(item("azalea_tea", new AzaleaTeaItem(IS.of().food(SpectrumFoodComponents.AZALEA_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.AZALEA_TEA_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)), InkColors.PURPLE)));
+	public static final Item AZALEA_TEA = register(simple(item("azalea_tea", new DrinkItem(IS.of().food(SpectrumFoodComponents.AZALEA_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.AZALEA_TEA_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE), "item.spectrum.azalea_tea.tooltip"), InkColors.PURPLE)));
 	public static final Item BODACIOUS_BERRY_BAR = register(simple(item("bodacious_berry_bar", new Item(IS.of().food(SpectrumFoodComponents.BODACIOUS_BERRY_BAR)), InkColors.PINK)));
 	public static final Item DEMON_TEA = register(simple(item("demon_tea", new DrinkItem(IS.of().food(SpectrumFoodComponents.DEMON_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS)).craftRemainder(GLASS_BOTTLE)), InkColors.RED)));
 	
@@ -329,7 +329,7 @@ public class SpectrumItems {
 	public static final Item LUCKY_ROLL = register(simple(item("lucky_roll", new Item(IS.of().food(SpectrumFoodComponents.LUCKY_ROLL)), InkColors.PINK)));
 	public static final Item TRIPLE_MEAT_POT_PIE = register(simple(item("triple_meat_pot_pie", new Item(IS.of().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_PIE)), InkColors.PINK)));
 	public static final Item GLISTERING_JELLY_TEA = register(simple(item("glistering_jelly_tea", new DrinkItem(IS.of().food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.GLISTERING_JELLY_TEA_SCONE_BONUS))), InkColors.PINK)));
-	public static final Item FREIGEIST = register(simple(item("freigeist", new FreigeistItem(IS.of().food(SpectrumFoodComponents.FREIGEIST).craftRemainder(GLASS_BOTTLE)), InkColors.RED)));
+	public static final Item FREIGEIST = register(simple(item("freigeist", new DrinkItem(IS.of().food(SpectrumFoodComponents.FREIGEIST).craftRemainder(GLASS_BOTTLE), "item.spectrum.freigeist.tooltip"), InkColors.RED)));
 	public static final Item DIVINATION_HEART = register(simple(item("divination_heart", new Item(IS.of().food(SpectrumFoodComponents.DIVINATION_HEART)), InkColors.RED)));
 	
 	public static final Item SUGARY_STAR_CANDY = register(simple(item("sugary_star_candy", new StarCandyItem(IS.of(Rarity.COMMON).food(SpectrumFoodComponents.SUGARY_STAR_CANDY), StarCandyItem.Rarity.SUGARY), InkColors.PINK)));
@@ -360,8 +360,8 @@ public class SpectrumItems {
 	public static final Item ALOE_LEAF = register(simple(item("aloe_leaf", new ItemNameBlockItem(SpectrumBlocks.ALOE, IS.of().food(SpectrumFoodComponents.ALOE_LEAF)), InkColors.PINK)));
 	public static final Item SAWBLADE_HOLLY_BERRY = register(simple(item("sawblade_holly_berry", new ItemNameBlockItem(SpectrumBlocks.SAWBLADE_HOLLY_BUSH, IS.of().food(Foods.SWEET_BERRIES)), InkColors.PINK)));
 	public static final Item PRICKLY_BAYLEAF = register(simple(item("prickly_bayleaf", new Item(IS.of().food(SpectrumFoodComponents.PRICKLY_BAYLEAF)), InkColors.PINK)));
-	public static final Item TRIPLE_MEAT_POT_STEW = register(simple(item("triple_meat_pot_stew", new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW)), InkColors.PINK)));
-	public static final Item DRAGONBONE_BROTH = register(simple(item("dragonbone_broth", new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.DRAGONBONE_BROTH)), InkColors.GRAY)));
+	public static final Item TRIPLE_MEAT_POT_STEW = register(simple(item("triple_meat_pot_stew", new Item(IS.of(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW)), InkColors.PINK)));
+	public static final Item DRAGONBONE_BROTH = register(simple(item("dragonbone_broth", new Item(IS.of(8).food(SpectrumFoodComponents.DRAGONBONE_BROTH)), InkColors.GRAY)));
 	public static final Item DOOMBLOOM_SEED = register(simple(item("doombloom_seed", new ItemNameBlockItem(SpectrumBlocks.DOOMBLOOM, IS.of().fireResistant()), InkColors.BLACK)));
 	
 	public static final ResourceKey<Item> GLISTERING_MELON_SEEDS = simple(new ItemRegistrar<>("glistering_melon_seeds").withItem(() -> new ItemNameBlockItem(BuiltInRegistries.BLOCK.get(SpectrumBlocks.GLISTERING_MELON_STEM), IS.of()), InkColors.LIME)).itemKey();

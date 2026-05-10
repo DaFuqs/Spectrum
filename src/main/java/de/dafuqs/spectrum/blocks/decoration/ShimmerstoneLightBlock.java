@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class ShimmerstoneLightBlock extends DirectionalBlock {
 	
@@ -64,7 +64,7 @@ public class ShimmerstoneLightBlock extends DirectionalBlock {
 	}
 	
 	@Override
-	public BlockState getStateForPlacement(@NotNull BlockPlaceContext ctx) {
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		boolean inverted;
 		if (ctx.getClickedFace().getStepY() != 0) {
 			inverted = ctx.getHorizontalDirection().getStepX() != 0;

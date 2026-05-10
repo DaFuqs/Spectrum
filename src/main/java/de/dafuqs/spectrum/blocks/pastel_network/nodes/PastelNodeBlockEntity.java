@@ -35,7 +35,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.Optional;
@@ -48,8 +48,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	public static final int DEFAULT_FILTER_SLOT_ROWS = 1;
 	public static final int RANGE = 12;
 	
-	@NotNull
-	protected UUID nodeId = UUID.randomUUID();
+		protected UUID nodeId = UUID.randomUUID();
 	protected Optional<UUID> networkUUID = Optional.empty();
 	protected Optional<PastelUpgradeSignature> outerRing, innerRing, redstoneRing;
 	protected Optional<DyeColor> color = Optional.empty();
@@ -102,7 +101,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return connectedStorageCache.find(cachedDirection);
 	}
 	
-	public static void tick(@NotNull Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
+	public static void tick(Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
 		if (!node.isInitialized && !world.isClientSide()) { // kinda onLoad()?
 			node.getServerNetwork().ifPresent(network -> network.initializeNode(node));
 			node.isInitialized = true;
@@ -375,10 +374,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		innerRing.ifPresent(r -> nbt.putString("InnerRing", SpectrumPastelUpgrades.toString(r)));
 		redstoneRing.ifPresent(r -> nbt.putString("RedstoneRing", SpectrumPastelUpgrades.toString(r)));
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	
@@ -401,7 +399,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 	}
 	
-	public @NotNull UUID getNodeId() {
+	public UUID getNodeId() {
 		return nodeId;
 	}
 	
@@ -489,10 +487,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	public Component getDisplayName() {
 		return Component.translatable("block.spectrum.pastel_node");
 	}
-	
-	@Nullable
+
 	@Override
-	public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
+	public @Nullable AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
 		return new FilteringScreenHandler(syncId, inv, new FilterConfigurable.ExtendedDataWithPos(this.worldPosition, this));
 	}
 	

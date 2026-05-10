@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.recipe.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -38,9 +39,9 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 	public Optional<ResourceLocation> getRequiredAdvancementIdentifier() {
 		return this.requiredAdvancementIdentifier;
 	}
-	
+
 	@Override
-	public ResourceLocation getRecipeTypeUnlockIdentifier() {
+	public @Nullable ResourceLocation getRecipeTypeUnlockIdentifier() {
 		return null;
 	}
 	

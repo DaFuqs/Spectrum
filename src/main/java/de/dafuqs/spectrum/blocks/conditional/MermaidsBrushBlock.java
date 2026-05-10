@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -74,15 +74,14 @@ public class MermaidsBrushBlock extends BushBlock implements BonemealableBlock, 
 		}
 		return map;
 	}
-	
+
 	@Override
-	public Tuple<Item, Item> getItemCloak() {
+	public @Nullable Tuple<Item, Item> getItemCloak() {
 		return null;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
 		if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL) {
 			return super.getStateForPlacement(ctx).setValue(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);

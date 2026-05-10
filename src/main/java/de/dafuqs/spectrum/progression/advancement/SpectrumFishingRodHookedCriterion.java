@@ -14,6 +14,7 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -64,7 +65,7 @@ public class SpectrumFishingRodHookedCriterion extends SimpleCriterionTrigger<Sp
 				FluidPredicate.CODEC.optionalFieldOf("fluid").forGetter(Conditions::fluidPredicate)
 		).apply(instance, Conditions::new));
 		
-		public boolean matches(ItemStack rod, LootContext bobberContext, LootContext hookedEntityContext, LootContext fishedEntityContext, Collection<ItemStack> fishingLoots, ServerLevel world, BlockPos blockPos) {
+		public boolean matches(ItemStack rod, LootContext bobberContext, @Nullable LootContext hookedEntityContext, @Nullable LootContext fishedEntityContext, Collection<ItemStack> fishingLoots, ServerLevel world, BlockPos blockPos) {
 			if (this.rod.isPresent() && !this.rod.get().test(rod)) return false;
 			if (this.bobber.isPresent() && !this.bobber.get().matches(bobberContext)) return false;
 			if (this.fluidPredicate.isPresent() && !this.fluidPredicate.get().matches(world, blockPos)) return false;

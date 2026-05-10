@@ -14,7 +14,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
 
 public class SpectrumDispenserBehaviors {
 	
@@ -59,7 +58,7 @@ public class SpectrumDispenserBehaviors {
 		DispenseItemBehavior titrationBarrelSealingBehavior = new OptionalDispenseItemBehavior() {
 			@Override
 			@SuppressWarnings("resource")
-			protected @NotNull ItemStack execute(BlockSource pointer, @NotNull ItemStack stack) {
+			protected ItemStack execute(BlockSource pointer, ItemStack stack) {
 				this.setSuccess(false);
 				
 				Direction direction = pointer.state().getValue(DispenserBlock.FACING);

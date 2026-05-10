@@ -17,7 +17,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
 
 public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor color) implements CustomPacketPayload {
@@ -29,7 +28,7 @@ public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor c
 			PlayFusionCraftingFinishedParticlePayload::new
 	);
 	
-	public static void sendPlayFusionCraftingFinishedParticles(Level world, BlockPos pos, @NotNull ItemStack itemStack) {
+	public static void sendPlayFusionCraftingFinishedParticles(Level world, BlockPos pos, ItemStack itemStack) {
 		InkColor inkColor = ColorRegistry.ITEM_COLORS.getMapping(itemStack.getItem(), InkColors.LIGHT_GRAY);
 		
 		for (ServerPlayer player : PlayerLookup.tracking((ServerLevel) world, pos)) {

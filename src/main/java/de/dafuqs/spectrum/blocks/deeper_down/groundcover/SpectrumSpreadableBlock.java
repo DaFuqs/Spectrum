@@ -9,7 +9,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.lighting.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class SpectrumSpreadableBlock extends SnowyDirtBlock {
 
@@ -23,7 +23,7 @@ public class SpectrumSpreadableBlock extends SnowyDirtBlock {
 	}
 
 	@Override
-	public MapCodec<? extends SpectrumSpreadableBlock> codec() {
+	public @Nullable MapCodec<? extends SpectrumSpreadableBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

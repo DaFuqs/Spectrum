@@ -10,7 +10,7 @@ import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -29,8 +29,8 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 		displayedStacks = buildFermentationOutputVariations(recipe);
 	}
 	
-	private static List<EmiStack> buildFermentationOutputVariations(ITitrationBarrelRecipe recipe) {
-		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData() != null) {
+	private static @Nullable List<EmiStack> buildFermentationOutputVariations(ITitrationBarrelRecipe recipe) {
+		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && !titrationBarrelRecipe.getFermentationData().isEmpty()) {
 			return titrationBarrelRecipe.getOutputVariations(TitrationBarrelRecipe.FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS).stream().map(EmiStack::of).toList();
 		}
 		return null;

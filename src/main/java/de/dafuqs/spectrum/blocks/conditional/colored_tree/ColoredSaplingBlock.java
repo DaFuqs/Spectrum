@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.*;
 import net.minecraft.world.level.block.state.*;
 import org.apache.commons.lang3.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -60,8 +61,8 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredSaplingBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredSaplingBlock byColor(InkColor color) {
 		return SAPLINGS.get(color);
 	}
 	

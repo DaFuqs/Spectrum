@@ -9,15 +9,16 @@ import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 public class AzuriteBlock extends SpectrumFacingBlock implements AzureAuraEmitting {
 	
 	public AzuriteBlock(Properties properties) {
 		super(properties);
 	}
-	
+
 	@Override
-	public MapCodec<? extends AzuriteBlock> codec() {
+	public @Nullable MapCodec<? extends AzuriteBlock> codec() {
 		return null;
 	}
 	

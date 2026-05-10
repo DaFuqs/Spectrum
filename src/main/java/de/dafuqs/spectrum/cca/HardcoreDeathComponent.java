@@ -8,7 +8,6 @@ import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 import org.ladysnake.cca.api.v3.component.*;
 
 import java.util.*;
@@ -20,7 +19,7 @@ public class HardcoreDeathComponent implements Component {
 	private final static List<UUID> playersThatDiedInHardcore = new ArrayList<>();
 	
 	@Override
-	public void writeToNbt(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
+	public void writeToNbt(CompoundTag tag, HolderLookup.Provider wrapperLookup) {
 		ListTag uuidList = new ListTag();
 		for (UUID playerThatDiedInHardcore : playersThatDiedInHardcore) {
 			uuidList.add(NbtUtils.createUUID(playerThatDiedInHardcore));
@@ -29,7 +28,7 @@ public class HardcoreDeathComponent implements Component {
 	}
 	
 	@Override
-	public void readFromNbt(CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
+	public void readFromNbt(CompoundTag tag, HolderLookup.Provider wrapperLookup) {
 		playersThatDiedInHardcore.clear();
 		ListTag uuidList = tag.getList("HardcoreDeaths", Tag.TAG_INT_ARRAY);
 		for (Tag listEntry : uuidList) {

@@ -12,7 +12,6 @@ import net.minecraft.client.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -24,7 +23,7 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	protected final boolean growsWithoutCatalyst;
 	protected final int secondsPerStage;
 	
-	public CrystallarieumDisplay(@NotNull RecipeHolder<CrystallarieumRecipe> recipe) {
+	public CrystallarieumDisplay(RecipeHolder<CrystallarieumRecipe> recipe) {
 		super(recipe, inputs(recipe.value()), outputs(recipe.value()));
 		
 		this.growthStages = new ArrayList<>();

@@ -17,7 +17,6 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -89,7 +88,7 @@ public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe<RecipeInput
 		return "primordial_fire_burning";
 	}
 	
-	public static PrimordialFireBurningRecipe getRecipeFor(@NotNull Level world, ItemStack stack) {
+	public static PrimordialFireBurningRecipe getRecipeFor(Level world, ItemStack stack) {
 		return world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.PRIMORDIAL_FIRE_BURNING, new SingleRecipeInput(stack), world).map(RecipeHolder::value).orElse(null);
 	}
 	

@@ -25,7 +25,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.phys.*;
 import org.apache.commons.lang3.mutable.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -272,16 +272,14 @@ public class DragonTalonEntity extends BidentBaseEntity {
 		}
 		return false;
 	}
-	
-	@Nullable
+
 	@Override
-	public ItemEntity spawnAtLocation(ItemStack stack) {
+	public @Nullable ItemEntity spawnAtLocation(ItemStack stack) {
 		return null;
 	}
-	
-	@Nullable
+
 	@Override
-	public ItemEntity spawnAtLocation(ItemStack stack, float yOffset) {
+	public @Nullable ItemEntity spawnAtLocation(ItemStack stack, float yOffset) {
 		return null;
 	}
 }

@@ -6,7 +6,7 @@ import net.minecraft.core.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class SleepStatusEffect extends MobEffect {
 
@@ -70,7 +70,7 @@ public class SleepStatusEffect extends MobEffect {
     /**
      * @return -1 = false
      */
-    public static float getSleepScaling(LivingEntity entity) {
+    public static float getSleepScaling(@Nullable LivingEntity entity) {
 		if (entity == null) return -1;
         var potency = getGeneralSleepResistanceIfEntityHasSoporificEffect(entity);
         

@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -14,12 +13,12 @@ public class MidnightSolutionConvertingRecipe extends FluidConvertingRecipe {
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/create_midnight_aberration");
 	private static final Set<Item> outputItems = new HashSet<>();
 	
-	public MidnightSolutionConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
+	public MidnightSolutionConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Ingredient inputIngredient, ItemStack outputItemStack) {
 		super(group, secret, requiredAdvancementIdentifier, inputIngredient, outputItemStack);
 		outputItems.add(outputItemStack.getItem());
 	}
 	
-	public static boolean isExistingOutputItem(@NotNull ItemStack itemStack) {
+	public static boolean isExistingOutputItem(ItemStack itemStack) {
 		return outputItems.contains(itemStack.getItem());
 	}
 	

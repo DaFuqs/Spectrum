@@ -27,8 +27,8 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -88,7 +88,7 @@ public class PresentBlock extends BaseEntityBlock {
 	}
 	
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(OPENING, VARIANT);
 	}
 	
@@ -98,13 +98,13 @@ public class PresentBlock extends BaseEntityBlock {
 	}
 	
 	@Override
-	public boolean canSurvive(@NotNull BlockState state, LevelReader world, BlockPos pos) {
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
 		BlockState downState = world.getBlockState(pos.below());
 		return downState.isFaceSturdy(world, pos, Direction.UP);
 	}
 	
 	@Override
-	public void setPlacedBy(@NotNull Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		world.setBlockAndUpdate(pos, state.setValue(PresentBlock.VARIANT, PresentBlockItem.getWrapData(itemStack).variant()));
 		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
@@ -219,10 +219,9 @@ public class PresentBlock extends BaseEntityBlock {
 			world.addParticle(particleEffect, posX, posY, posZ, randX, randY, randZ);
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PresentBlockEntity(pos, state);
 	}
 	

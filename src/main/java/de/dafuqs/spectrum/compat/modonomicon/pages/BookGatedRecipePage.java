@@ -15,6 +15,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -27,7 +28,7 @@ public class BookGatedRecipePage<T extends GatedRecipe<?>> extends BookRecipePag
 		this.pageType = pageType;
 	}
 	
-	public static BookCondition getConditionWithRecipes(BookCondition condition, ResourceLocation recipeId1, ResourceLocation recipeId2) {
+	public static BookCondition getConditionWithRecipes(BookCondition condition, @Nullable ResourceLocation recipeId1, @Nullable ResourceLocation recipeId2) {
 		List<ResourceLocation> list = new ArrayList<>();
 		if (recipeId1 != null) {
 			list.add(recipeId1);

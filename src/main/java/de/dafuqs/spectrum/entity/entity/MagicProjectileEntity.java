@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public abstract class MagicProjectileEntity extends Projectile {
 	
@@ -126,8 +126,7 @@ public abstract class MagicProjectileEntity extends Projectile {
 		return SpectrumSoundEvents.INK_PROJECTILE_HIT;
 	}
 
-	@Nullable
-	protected EntityHitResult getEntityCollision(Vec3 currentPosition, Vec3 nextPosition) {
+	protected @Nullable EntityHitResult getEntityCollision(Vec3 currentPosition, Vec3 nextPosition) {
 		return ProjectileUtil.getEntityHitResult(this.level(), this, currentPosition, nextPosition, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0D), this::canHitEntity);
 	}
 	

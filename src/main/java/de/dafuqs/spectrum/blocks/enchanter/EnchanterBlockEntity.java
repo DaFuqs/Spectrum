@@ -38,7 +38,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -63,7 +63,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	public static final int REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT = 4;
 	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Gem
 	
-	protected UUID ownerUUID;
+	protected @Nullable UUID ownerUUID;
 	protected boolean canOwnerApplyConflictingEnchantments;
 	protected boolean canOwnerOverenchant;
 	
@@ -75,7 +75,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	protected boolean virtualInventoryRecipeMirrored;
 	
 	protected boolean inventoryChanged;
-	private UpgradeHolder upgrades;
+	private UpgradeHolder upgrades = new UpgradeHolder();
 	
 	private @Nullable RecipeHolder<?> currentRecipe;
 	private int craftingTime;
@@ -97,7 +97,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}
 	
 	@SuppressWarnings("unused")
-	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
+	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, EnchanterBlockEntity enchanterBlockEntity) {
 		if (enchanterBlockEntity.currentRecipe != null) {
 			ItemStack experienceStack = enchanterBlockEntity.getItem(1);
 			if (!experienceStack.isEmpty() && experienceStack.getItem() instanceof ExperienceStorageItem) {
@@ -125,10 +125,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}
 	
 	@SuppressWarnings("unused")
-	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
-		if (enchanterBlockEntity.upgrades == null) {
-			enchanterBlockEntity.calculateUpgrades();
-		}
+	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, EnchanterBlockEntity enchanterBlockEntity) {
+		if (enchanterBlockEntity.upgrades.isEmpty()) enchanterBlockEntity.calculateUpgrades();
 		
 		if (enchanterBlockEntity.inventoryChanged) {
 			calculateCurrentRecipe(world, enchanterBlockEntity);
@@ -240,7 +238,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	 * @param enchanterBlockEntity The Enchanter to check
 	 * @return True if the enchanters inventory matches an enchanting setup
 	 */
-	public static boolean isValidCenterEnchantingSetup(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
+	public static boolean isValidCenterEnchantingSetup(EnchanterBlockEntity enchanterBlockEntity) {
 		ItemStack centerStack = enchanterBlockEntity.virtualInventory.getItem(0);
 		boolean isEnchantableBookInCenter = SpectrumEnchantmentHelper.isEnchantableBook(centerStack);
 		
@@ -285,7 +283,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		return false;
 	}
 	
-	public static void playCraftingFinishedEffects(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
+	public static void playCraftingFinishedEffects(EnchanterBlockEntity enchanterBlockEntity) {
 		if (enchanterBlockEntity.level == null) {
 			return;
 		}
@@ -297,7 +295,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				new Vec3(0.1D, -0.1D, 0.1D));
 	}
 	
-	private static boolean checkRecipeRequirements(Level world, BlockPos blockPos, @NotNull EnchanterBlockEntity enchanter) {
+	private static boolean checkRecipeRequirements(Level world, BlockPos blockPos, EnchanterBlockEntity enchanter) {
 		Player lastInteractedPlayer = enchanter.getOwnerIfOnline();
 		
 		if (lastInteractedPlayer == null) {
@@ -333,11 +331,11 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		return true;
 	}
 	
-	private static int getLevel(@NotNull EnchanterBlockEntity enchanter, EnchantmentUpgradeRecipe upgrade) {
-		return enchanter.getItem(0).get(DataComponents.STORED_ENCHANTMENTS).getLevel(upgrade.getEnchantment());
+	private static int getLevel(EnchanterBlockEntity enchanter, EnchantmentUpgradeRecipe upgrade) {
+		return enchanter.getItem(0).getOrDefault(DataComponents.STORED_ENCHANTMENTS, ItemEnchantments.EMPTY).getLevel(upgrade.getEnchantment());
 	}
 	
-	public static void enchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
+	public static void enchantCenterItem(EnchanterBlockEntity enchanterBlockEntity) {
 		ItemStack centerStack = enchanterBlockEntity.getItem(0);
 		ItemStack centerStackCopy = centerStack.copy();
 		var highestEnchantments = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
@@ -349,7 +347,9 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		int spentExperience = enchanterBlockEntity.currentItemProcessingTime / EnchanterBlockEntity.REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT;
 		if (centerStack.getCount() > 1) {
 			centerStackCopy.setCount(1);
-			MultiblockCrafter.spawnOutputAsItemEntity(enchanterBlockEntity.getLevel(), enchanterBlockEntity.worldPosition, centerStackCopy);
+			Level level = enchanterBlockEntity.getLevel();
+			assert level != null;
+			MultiblockCrafter.spawnOutputAsItemEntity(level, enchanterBlockEntity.worldPosition, centerStackCopy);
 			centerStack.shrink(1);
 		} else {
 			enchanterBlockEntity.setItem(0, centerStackCopy);
@@ -365,12 +365,12 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		}
 	}
 	
-	public static ItemEnchantments getHighestEnchantmentsInItemBowls(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
+	public static ItemEnchantments getHighestEnchantmentsInItemBowls(EnchanterBlockEntity enchanterBlockEntity) {
 		return SpectrumEnchantmentHelper.collectHighestEnchantments(
 				enchanterBlockEntity.virtualInventory.items.subList(2, 10));
 	}
 	
-	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
+	public static int getRequiredExperienceToEnchantCenterItem(EnchanterBlockEntity enchanterBlockEntity) {
 		boolean valid = false;
 		ItemStack centerStack = enchanterBlockEntity.getItem(0);
 		if (!centerStack.isEmpty() && (centerStack.getItem().isEnchantable(centerStack) || SpectrumEnchantmentHelper.isEnchantableBook(centerStack))) {
@@ -460,7 +460,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		return Support.getIntFromDecimalWithChance(experience * modNormalized, random);
 	}
 	
-	public static void craftEnchanterRecipe(Level world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchanterRecipe enchanterRecipe) {
+	public static void craftEnchanterRecipe(Level world, EnchanterBlockEntity enchanterBlockEntity, EnchanterRecipe enchanterRecipe) {
 		enchanterBlockEntity.drainExperience(enchanterRecipe.getRequiredExperience());
 		
 		// if there is room: place the output on the table
@@ -509,7 +509,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		}
 	}
 	
-	public static int tickEnchantmentUpgradeRecipe(Level world, @NotNull EnchanterBlockEntity enchanterBlockEntity, int itemsToConsumeLeft) {
+	public static int tickEnchantmentUpgradeRecipe(Level world, EnchanterBlockEntity enchanterBlockEntity, int itemsToConsumeLeft) {
 		int itemCountToConsume = Math.min(itemsToConsumeLeft, Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED), world.getRandom()));
 		
 		int consumedAmount = 0;
@@ -541,10 +541,10 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		return consumedAmount;
 	}
 	
-	public void craftEnchantmentUpgradeRecipe(@NotNull EnchantmentUpgradeRecipe upgrade) {
+	public void craftEnchantmentUpgradeRecipe(EnchantmentUpgradeRecipe upgrade) {
 		ItemStack resultStack = getItem(0);
 		
-		var curLevel = resultStack.get(DataComponents.STORED_ENCHANTMENTS).getLevel(upgrade.getEnchantment());
+		var curLevel = resultStack.getOrDefault(DataComponents.STORED_ENCHANTMENTS, ItemEnchantments.EMPTY).getLevel(upgrade.getEnchantment());
 		var targetLevel = Math.min(curLevel + 1, upgrade.getLevelCap());
 		var xpCost = upgrade.getXPScaling().apply(curLevel);
 		drainExperience(xpCost);
@@ -579,7 +579,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		return ITEM_BOWL_OFFSETS.get(offset);
 	}
 	
-	private static boolean recipeMatches(EnchanterBlockEntity blockEntity, Level world) {
+	private static boolean recipeMatches(EnchanterBlockEntity blockEntity, @Nullable Level world) {
 		if (blockEntity.currentRecipe == null) {
 			return isValidCenterEnchantingSetup(blockEntity);
 		}
@@ -597,7 +597,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	 * @param world                The Enchanter World
 	 * @param enchanter The Enchanter Block Entity
 	 */
-	private static void calculateCurrentRecipe(@NotNull Level world, @NotNull EnchanterBlockEntity enchanter) {
+	private static void calculateCurrentRecipe(Level world, EnchanterBlockEntity enchanter) {
 		if (recipeMatches(enchanter, world)) {
 			return;
 		}
@@ -616,7 +616,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				enchanter.currentRecipe = upgrade;
 				enchanter.currentItemProcessingTime = 0;
 				
-				var level = enchanter.items.getFirst().get(DataComponents.STORED_ENCHANTMENTS).getLevel(upgrade.value().getEnchantment());
+				var level = enchanter.items.getFirst().getOrDefault(DataComponents.STORED_ENCHANTMENTS, ItemEnchantments.EMPTY).getLevel(upgrade.value().getEnchantment());
 				enchanter.craftingTimeTotal = upgrade.value().getItemScaling().apply(level);
 				
 				EnchanterInventory testInventory = new EnchanterInventory();
@@ -652,7 +652,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		}
 	}
 	
-	private static void grantPlayerEnchantingAdvancementCriterion(UUID playerUUID, ItemStack resultStack, int experience) {
+	private static void grantPlayerEnchantingAdvancementCriterion(@Nullable UUID playerUUID, ItemStack resultStack, int experience) {
 		int levels = ExperienceHelper.getLevelForExperience(experience);
 		ServerPlayer serverPlayerEntity = (ServerPlayer) PlayerOwned.getPlayerEntityIfOnline(playerUUID);
 		if (serverPlayerEntity != null) {
@@ -686,11 +686,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			stopCraftingMusic();
 		}
 		
-		if (nbt.contains("Upgrades", Tag.TAG_LIST)) {
-			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", Tag.TAG_COMPOUND));
-		} else {
-			this.upgrades = new UpgradeHolder();
-		}
+		this.upgrades = nbt.contains("Upgrades", Tag.TAG_LIST) ? UpgradeHolder.fromNbt(nbt.getList("Upgrades", Tag.TAG_COMPOUND)) : new UpgradeHolder();
 	}
 	
 	@Environment(EnvType.CLIENT)
@@ -713,9 +709,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		if (this.itemFacing != null) {
 			nbt.putString("item_facing", this.itemFacing.toString().toUpperCase(Locale.ROOT));
 		}
-		if (this.upgrades != null) {
-			nbt.put("Upgrades", this.upgrades.toNbt());
-		}
+		if (!this.upgrades.isEmpty()) nbt.put("Upgrades", this.upgrades.toNbt());
+		
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.id().toString());
@@ -813,7 +808,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	// "owned" is not to be taken literally here. The owner
 	// is always set to the last player interacted with to trigger advancements
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
@@ -828,12 +823,13 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	// UPGRADEABLE
 	@Override
 	public void resetUpgrades() {
-		this.upgrades = null;
+		this.upgrades = new UpgradeHolder();
 		this.setChanged();
 	}
 	
 	@Override
 	public void calculateUpgrades() {
+		assert level != null;
 		this.upgrades = Upgradeable.calculateUpgradeMods4(level, worldPosition, 3, 0, this.ownerUUID);
 		this.setChanged();
 	}

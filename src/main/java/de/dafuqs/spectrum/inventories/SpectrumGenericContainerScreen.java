@@ -7,7 +7,7 @@ import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.Contract;
 
 public class SpectrumGenericContainerScreen extends AbstractContainerScreen<GenericSpectrumContainerScreenHandler> {
 	
@@ -58,7 +58,7 @@ public class SpectrumGenericContainerScreen extends AbstractContainerScreen<Gene
 	}
 	
 	@Contract(pure = true)
-	private ResourceLocation getBackground(int rows, @NotNull ScreenBackgroundVariant tier) {
+	private ResourceLocation getBackground(int rows, ScreenBackgroundVariant tier) {
 		switch (tier) {
 			case EARLYGAME -> {
 				return TIER_1_TEXTURE_6x9;

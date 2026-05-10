@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
@@ -83,10 +83,9 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 			world.destroyBlock(pos, true);
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
 		if (fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8) {
 			return super.getStateForPlacement(ctx).setValue(LOGGED, FluidLogging.State.WATER);
@@ -188,7 +187,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 		}
 	}
 	
-	private Optional<BlockPos> searchConsumableBlock(Level world, @NotNull BlockPos origin, TagKey<Block> searchTag, RandomSource random) {
+	private Optional<BlockPos> searchConsumableBlock(Level world, BlockPos origin, TagKey<Block> searchTag, RandomSource random) {
 		Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
 		AtomicReference<BlockPos> lastFoundPos = new AtomicReference<>(origin);
 		BlockPos.breadthFirstTraversal(origin, MAX_CONSUMABLE_BLOCK_SEARCH_DISTANCE, 100,

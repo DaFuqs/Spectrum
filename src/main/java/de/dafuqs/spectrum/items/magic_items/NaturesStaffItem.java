@@ -29,7 +29,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -265,7 +264,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
 		return player.isCreative() || InkPowered.hasAvailableInk(player, INK_COST) || player.getInventory().contains(ITEM_COST);
 	}
 	
-	private void playDenySound(@NotNull Level world, @NotNull Player playerEntity) {
+	private void playDenySound(Level world, Player playerEntity) {
 		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundSource.PLAYERS, 1.0F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);
 	}
 	

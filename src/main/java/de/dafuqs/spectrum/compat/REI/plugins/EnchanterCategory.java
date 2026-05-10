@@ -8,7 +8,6 @@ import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 public abstract class EnchanterCategory<T extends EnchanterDisplay> extends GatedDisplayCategory<T> {
@@ -21,9 +20,9 @@ public abstract class EnchanterCategory<T extends EnchanterDisplay> extends Gate
 		return EntryStacks.of(SpectrumBlocks.ENCHANTER);
 	}
 	
-	public abstract int getCraftingTime(@NotNull T display);
+	public abstract int getCraftingTime(T display);
 	
-	public abstract Component getDescriptionText(@NotNull T display);
+	public abstract Component getDescriptionText(T display);
 	
 	@Override
 	public int getDisplayHeight() {

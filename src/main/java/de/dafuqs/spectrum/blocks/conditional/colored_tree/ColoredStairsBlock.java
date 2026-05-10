@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -34,8 +35,8 @@ public class ColoredStairsBlock extends StairBlock {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredStairsBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredStairsBlock byColor(InkColor color) {
 		return BLOCKS.get(color);
 	}
 	

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.render.animation;
 
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.lang.reflect.*;
 import java.util.*;

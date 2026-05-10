@@ -9,7 +9,6 @@ import net.minecraft.core.particles.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
 
 public class ColoredFluidRisingParticleEffect implements ParticleOptions {
@@ -57,7 +56,7 @@ public class ColoredFluidRisingParticleEffect implements ParticleOptions {
 		return this.color;
 	}
 	
-	public static @NotNull ParticleOptions of(int color) {
+	public static ParticleOptions of(int color) {
 		return new ColoredFluidRisingParticleEffect(color);
 	}
 	

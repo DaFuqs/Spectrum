@@ -18,7 +18,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -157,7 +157,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 	}
 	
 	@Override
-	public BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		if (player == null || !isCharged(stack))
 			return PASS;
 		

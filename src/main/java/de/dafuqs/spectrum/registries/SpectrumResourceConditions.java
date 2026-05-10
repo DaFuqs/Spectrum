@@ -8,7 +8,7 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -34,7 +34,7 @@ public class SpectrumResourceConditions {
 		}
 		
 		@Override
-		public boolean test(@Nullable HolderLookup.Provider wrapperLookup) {
+		public boolean test(HolderLookup.@Nullable Provider wrapperLookup) {
 			if (wrapperLookup == null || wrapperLookup.lookup(Registries.ENCHANTMENT).isEmpty())
 				return false;
 			HolderLookup.RegistryLookup<Enchantment> impl = wrapperLookup.lookup(Registries.ENCHANTMENT).get();
@@ -55,7 +55,7 @@ public class SpectrumResourceConditions {
 		}
 		
 		@Override
-		public boolean test(@Nullable HolderLookup.Provider wrapperLookup) {
+		public boolean test(HolderLookup.@Nullable Provider wrapperLookup) {
 			return SpectrumIntegrationPacks.isIntegrationPackActive(integrationPack);
 		}
 	}

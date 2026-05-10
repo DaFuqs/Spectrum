@@ -14,7 +14,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.lang.*;
@@ -66,14 +66,14 @@ public class ModularExplosionDefinition {
 	}
 	
 	// Calls the explosion logic
-	public static void explode(@NotNull ServerLevel world, BlockPos pos, @Nullable Player owner, ItemStack stack) {
+	public static void explode(ServerLevel world, BlockPos pos, @Nullable Player owner, ItemStack stack) {
 		if (stack.getItem() instanceof ModularExplosionProvider provider) {
 			ModularExplosionDefinition definition = getFromStack(stack);
 			ModularExplosion.explode(world, pos, owner, provider.getBaseExplosionBlastRadius(), provider.getBaseExplosionDamage(), definition.archetype, definition.modifiers);
 		}
 	}
 	
-	public static void explode(@NotNull ServerLevel world, BlockPos pos, Direction direction, @Nullable Player owner, ItemStack stack) {
+	public static void explode(ServerLevel world, BlockPos pos, Direction direction, @Nullable Player owner, ItemStack stack) {
 		if (stack.getItem() instanceof ModularExplosionProvider provider) {
 			ModularExplosionDefinition definition = getFromStack(stack);
 			BlockPos finalPos = pos.relative(direction, (int) provider.getBaseExplosionBlastRadius() - 2); // TODO: Add distance added via blast range modification
@@ -147,7 +147,7 @@ public class ModularExplosionDefinition {
 	}
 	
 	// Calls the explosion logic
-	public void explode(@NotNull ServerLevel world, BlockPos pos, @Nullable Player owner, double baseBlastRadius, float baseDamage) {
+	public void explode(ServerLevel world, BlockPos pos, @Nullable Player owner, double baseBlastRadius, float baseDamage) {
 		ModularExplosion.explode(world, pos, owner, baseBlastRadius, baseDamage, this.archetype, this.modifiers);
 	}
 	

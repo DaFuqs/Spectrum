@@ -7,7 +7,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -17,10 +17,9 @@ public abstract class EndermanEntityMixin {
 	
 	@Unique
 	private final BlockState carriedBlockState = SpectrumBlocks.RADIATING_ENDER.defaultBlockState();
-	
+
 	@Shadow
-	@Nullable
-	public abstract BlockState getCarriedBlock();
+	public abstract @Nullable BlockState getCarriedBlock();
 	
 	@Inject(at = @At("TAIL"), method = "<init>")
 	private void init(CallbackInfo info) {

@@ -11,7 +11,6 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
-import org.jetbrains.annotations.*;
 
 public record ColorTransmissionPayload(BlockPos pos, ColoredTransmission transmission) implements CustomPacketPayload {
 	
@@ -22,7 +21,7 @@ public record ColorTransmissionPayload(BlockPos pos, ColoredTransmission transmi
 			ColorTransmissionPayload::new
 	);
 	
-	public static void playColorTransmissionParticle(ServerLevel world, @NotNull ColoredTransmission transmission) {
+	public static void playColorTransmissionParticle(ServerLevel world, ColoredTransmission transmission) {
 		BlockPos pos = BlockPos.containing(transmission.getOrigin());
 		
 		var buf = new RegistryFriendlyByteBuf(PacketByteBufs.create(), world.registryAccess());

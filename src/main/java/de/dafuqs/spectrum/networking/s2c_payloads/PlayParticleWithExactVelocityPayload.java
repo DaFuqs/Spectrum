@@ -14,7 +14,6 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions particle, int amount, Vec3 velocity) implements CustomPacketPayload {
 	
@@ -45,7 +44,7 @@ public record PlayParticleWithExactVelocityPayload(Vec3 pos, ParticleOptions par
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithExactVelocity(ServerLevel world, @NotNull Vec3 position, @NotNull ParticleOptions particleEffect, int amount, @NotNull Vec3 velocity) {
+	public static void playParticleWithExactVelocity(ServerLevel world, Vec3 position, ParticleOptions particleEffect, int amount, Vec3 velocity) {
 		for (ServerPlayer player : PlayerLookup.tracking(world, BlockPos.containing(position))) {
 			ServerPlayNetworking.send(player, new PlayParticleWithExactVelocityPayload(position, particleEffect, amount, velocity));
 		}

@@ -4,7 +4,7 @@ import net.fabricmc.loader.api.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class GenericClaimModsCompat {
 	

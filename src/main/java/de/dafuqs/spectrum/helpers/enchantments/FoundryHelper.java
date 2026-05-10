@@ -3,14 +3,13 @@ package de.dafuqs.spectrum.helpers.enchantments;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
 public class FoundryHelper {
-	
-	@Nullable
-	public static ItemStack getSmeltedItemStack(ItemStack inputItemStack, Level world) {
+
+	public static @Nullable ItemStack getSmeltedItemStack(ItemStack inputItemStack, Level world) {
 		var drm = world.registryAccess();
 		var input = new SingleRecipeInput(inputItemStack);
 		return world.getRecipeManager().getRecipeFor(RecipeType.SMELTING, input, world)
@@ -22,8 +21,7 @@ public class FoundryHelper {
 				.orElse(null);
 	}
 	
-	@NotNull
-	public static List<ItemStack> applyFoundry(Level world, List<ItemStack> originalStacks) {
+		public static List<ItemStack> applyFoundry(Level world, List<ItemStack> originalStacks) {
 		List<ItemStack> returnItemStacks = new ArrayList<>();
 		
 		for (ItemStack is : originalStacks) {

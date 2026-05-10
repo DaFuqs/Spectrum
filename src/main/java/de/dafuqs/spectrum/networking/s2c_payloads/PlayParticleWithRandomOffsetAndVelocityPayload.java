@@ -15,7 +15,6 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3 pos, ParticleOptions effect, int amount, Vec3 randomOffset, Vec3 randomVelocity) implements CustomPacketPayload {
 	
@@ -36,7 +35,7 @@ public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3 pos, ParticleO
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithRandomOffsetAndVelocity(ServerLevel world, Vec3 position, @NotNull ParticleOptions particleEffect, int amount, Vec3 randomOffset, Vec3 randomVelocity) {
+	public static void playParticleWithRandomOffsetAndVelocity(ServerLevel world, Vec3 position, ParticleOptions particleEffect, int amount, Vec3 randomOffset, Vec3 randomVelocity) {
 		for (ServerPlayer player : PlayerLookup.tracking(world, BlockPos.containing(position))) {
 			ServerPlayNetworking.send(player, new PlayParticleWithRandomOffsetAndVelocityPayload(position, particleEffect, amount, randomOffset, randomVelocity));
 		}

@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -43,12 +43,12 @@ public class FirestarterIdolBlock extends IdolBlock {
 	}
 
 	@Override
-	public MapCodec<? extends FirestarterIdolBlock> codec() {
+	public @Nullable MapCodec<? extends FirestarterIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 
-	public static void addBlockSmeltingRecipes(@NotNull MinecraftServer server) {
+	public static void addBlockSmeltingRecipes(MinecraftServer server) {
 		RegistryAccess manager = server.registryAccess();
 		for (var recipe : server.getRecipeManager().getAllRecipesFor(RecipeType.SMELTING)) {
 			ItemStack outputStack = recipe.value().getResultItem(manager);
@@ -66,7 +66,7 @@ public class FirestarterIdolBlock extends IdolBlock {
 		}
 	}
 	
-	public static boolean causeFire(@NotNull ServerLevel world, BlockPos blockPos, Direction side) {
+	public static boolean causeFire(ServerLevel world, BlockPos blockPos, Direction side) {
 		BlockState blockState = world.getBlockState(blockPos);
 		if (CampfireBlock.canLight(blockState) || CandleBlock.canLight(blockState) || CandleCakeBlock.canLight(blockState)) {
 			// light lightable blocks

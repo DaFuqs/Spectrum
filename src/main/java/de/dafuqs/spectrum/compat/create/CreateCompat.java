@@ -18,7 +18,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.simple;
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
@@ -60,7 +60,7 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	// NOTE: firstFluid and secondFluid are assumed to be not null without checking,
 	// since the default Create event handlers for pipe collisions would throw a NullPointerException otherwise.
-	private BlockState handleBidirectionalCollision(Level world, @NotNull Fluid firstFluid, @NotNull Fluid secondFluid) {
+	private @Nullable BlockState handleBidirectionalCollision(Level world, Fluid firstFluid, Fluid secondFluid) {
 		final FluidState firstState = firstFluid.defaultFluidState();
 		final FluidState secondState = secondFluid.defaultFluidState();
 		
@@ -72,7 +72,7 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		return spectrumFluidCollision(world, secondState, firstState);
 	}
 	
-	private BlockState spectrumFluidCollision(Level world, FluidState state, FluidState otherState) {
+	private @Nullable BlockState spectrumFluidCollision(Level world, FluidState state, FluidState otherState) {
 		if (state.createLegacyBlock().getBlock() instanceof SpectrumFluidBlock spectrumFluid)
 			return spectrumFluid.handleFluidCollision(world, state, otherState, Direction.DOWN);
 		return null;

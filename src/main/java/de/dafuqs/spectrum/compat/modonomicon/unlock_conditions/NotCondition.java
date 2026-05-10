@@ -21,8 +21,6 @@ public class NotCondition extends BookCondition {
 	
 	public NotCondition(Component component, BookCondition child) {
 		super(component);
-		if (child == null)
-			throw new IllegalArgumentException("NotCondition must have exactly one child.");
 		this.child = child;
 	}
 	

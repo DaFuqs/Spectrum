@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.dimension.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class DecayAwayBlock extends Block {
 	
@@ -32,7 +32,7 @@ public class DecayAwayBlock extends Block {
 	}
 	
 	@Override
-	public void setPlacedBy(@NotNull Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if (!world.isClientSide()) {
 			world.scheduleTick(pos, state.getBlock(), 4);
 		}

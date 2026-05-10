@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class SpectrumRegistry<T> extends MappedRegistry<T> {
 	
@@ -34,9 +34,8 @@ public class SpectrumRegistry<T> extends MappedRegistry<T> {
 				? DataResult.success(reference)
 				: DataResult.error(() -> "Unregistered holder in " + this.key() + ": " + entry);
 	}
-	
-	@Nullable
-	public T get(@Nullable String id) {
+
+	public @Nullable T get(@Nullable String id) {
 		return id == null ? null : get(SpectrumCommon.ofSpectrumDefaulted(id));
 	}
 	

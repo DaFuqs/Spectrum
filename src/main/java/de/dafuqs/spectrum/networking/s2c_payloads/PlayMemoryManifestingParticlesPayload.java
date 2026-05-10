@@ -15,7 +15,6 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
 
 public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1, int eggColor2, int amount) implements CustomPacketPayload {
@@ -29,7 +28,7 @@ public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1,
 			PlayMemoryManifestingParticlesPayload::new
 	);
 	
-	public static void playMemoryManifestingParticles(ServerLevel serverWorld, @NotNull BlockPos pos, EntityType<?> entityType, int amount) {
+	public static void playMemoryManifestingParticles(ServerLevel serverWorld, BlockPos pos, EntityType<?> entityType, int amount) {
 		Tuple<Integer, Integer> eggColors = MemoryBlockEntity.getEggColorsForEntity(entityType);
 		for (ServerPlayer player : PlayerLookup.tracking(serverWorld, pos)) {
 			ServerPlayNetworking.send(player, new PlayMemoryManifestingParticlesPayload(pos, eggColors.getA(), eggColors.getB(), amount));

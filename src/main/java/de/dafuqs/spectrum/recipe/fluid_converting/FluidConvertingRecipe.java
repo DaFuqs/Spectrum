@@ -11,7 +11,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -20,14 +19,14 @@ public abstract class FluidConvertingRecipe extends GatedSpectrumRecipe<RecipeIn
 	protected final Ingredient input;
 	protected final ItemStack output;
 	
-	public FluidConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, @NotNull Ingredient input, ItemStack output) {
+	public FluidConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Ingredient input, ItemStack output) {
 		super(group, secret, requiredAdvancementIdentifier);
 		this.input = input;
 		this.output = output;
 	}
 	
 	@Override
-	public boolean matches(@NotNull RecipeInput inv, Level world) {
+	public boolean matches(RecipeInput inv, Level world) {
 		return this.input.test(inv.getItem(0));
 	}
 	

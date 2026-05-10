@@ -12,7 +12,6 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
-import org.jetbrains.annotations.*;
 
 public record PastelTransmissionPayload(int networkColor, int travelTime, PastelTransmission transmission) implements CustomPacketPayload {
 	
@@ -25,7 +24,7 @@ public record PastelTransmissionPayload(int networkColor, int travelTime, Pastel
 	);
 	
 	// TODO: we should probably also send the transmission to players that track the destination pos
-	public static void sendPastelTransmissionParticle(ServerPastelNetwork network, int travelTime, @NotNull PastelTransmission transmission) {
+	public static void sendPastelTransmissionParticle(ServerPastelNetwork network, int travelTime, PastelTransmission transmission) {
 		for (ServerPlayer player : PlayerLookup.tracking(network.getWorld(), transmission.getStartPos())) {
 			ServerPlayNetworking.send(player, new PastelTransmissionPayload(network.getColor(), travelTime, transmission));
 		}

@@ -6,7 +6,6 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
-import org.jetbrains.annotations.*;
 
 import java.util.function.Supplier;
 
@@ -142,7 +141,7 @@ public enum SpectrumToolMaterial implements Tier {
 	}
 	
 	@Override
-	public @NotNull TagKey<Block> getIncorrectBlocksForDrops() {
+	public TagKey<Block> getIncorrectBlocksForDrops() {
 		return this.inverseTag;
 	}
 	
@@ -152,7 +151,7 @@ public enum SpectrumToolMaterial implements Tier {
 	}
 	
 	@Override
-	public @NotNull Ingredient getRepairIngredient() {
+	public Ingredient getRepairIngredient() {
 		return this.repairIngredient.get();
 	}
 }

@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -72,8 +73,8 @@ public class TallDragonjagBlock extends DoublePlantBlock implements Dragonjag, B
 	public Dragonjag.Variant getVariant() {
 		return variant;
 	}
-	
-	public static TallDragonjagBlock getBlockForVariant(Variant variant) {
+
+	public static @Nullable TallDragonjagBlock getBlockForVariant(Variant variant) {
 		return VARIANTS.get(variant);
     }
 	

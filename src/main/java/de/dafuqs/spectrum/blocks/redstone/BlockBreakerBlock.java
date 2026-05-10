@@ -17,14 +17,14 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class BlockBreakerBlock extends RedstoneInteractionBlock implements EntityBlock {
 	
 	
 	public static final MapCodec<BlockBreakerBlock> CODEC = simpleCodec(BlockBreakerBlock::new);
 
-	private static ItemStack BREAK_STACK;
+	private static @Nullable ItemStack BREAK_STACK;
 	
 	public BlockBreakerBlock(Properties settings) {
 		super(settings);
@@ -34,10 +34,9 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 	public MapCodec<? extends BlockBreakerBlock> codec() {
 		return CODEC;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new BlockBreakerBlockEntity(pos, state);
 	}
 	
@@ -84,7 +83,7 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		if (!(blockEntity instanceof BlockBreakerBlockEntity blockBreakerBlockEntity)) {
 			return;
 		}
-		@Nullable Player owner = blockBreakerBlockEntity.getFakeOwner(world);
+		Player owner = blockBreakerBlockEntity.getFakeOwner(world);
 		if (!GenericClaimModsCompat.canBreak(world, breakingPos, owner)) {
 			return;
 		}

@@ -7,7 +7,6 @@ import io.netty.buffer.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -50,7 +49,7 @@ public enum ExplosionArchetype implements StringRepresentable {
 	}
 	
 	@Override
-	public @NotNull String getSerializedName() {
+	public String getSerializedName() {
 		return name().toLowerCase();
 	}
 	

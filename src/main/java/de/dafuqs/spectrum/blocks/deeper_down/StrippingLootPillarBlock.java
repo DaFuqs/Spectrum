@@ -8,6 +8,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
+import org.jspecify.annotations.Nullable;
 
 public class StrippingLootPillarBlock extends RotatedPillarBlock implements StrippableDrop {
     
@@ -20,8 +21,8 @@ public class StrippingLootPillarBlock extends RotatedPillarBlock implements Stri
         this.strippingLootTableKey = strippingLootTableKey;
     }
 
-    @Override
-	public MapCodec<? extends StrippingLootPillarBlock> codec() {
+	@Override
+	public @Nullable MapCodec<? extends StrippingLootPillarBlock> codec() {
         //TODO: Make the codec
         return null;
     }

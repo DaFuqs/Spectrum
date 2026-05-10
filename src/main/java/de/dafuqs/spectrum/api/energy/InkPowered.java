@@ -21,7 +21,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -66,7 +66,7 @@ public interface InkPowered {
 		}
 	}
 	
-	private static long tryDrainEnergy(@NotNull ItemStack stack, InkColor color, long amount, @Nullable Player player) {
+	private static long tryDrainEnergy(ItemStack stack, InkColor color, long amount, @Nullable Player player) {
 		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 			if (!inkStorageItem.getDrainability().canDrain(player != null)) {
 				return 0;
@@ -87,7 +87,7 @@ public interface InkPowered {
 		}
 	}
 	
-	private static long tryGetEnergy(@NotNull ItemStack stack, InkColor color) {
+	private static long tryGetEnergy(ItemStack stack, InkColor color) {
 		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
 			return inkStorage.getEnergy(color);
@@ -102,7 +102,7 @@ public interface InkPowered {
 	 * If not enough energy is available it will be drained as much as is available
 	 * but return will still be false
 	 **/
-	static boolean tryDrainEnergy(@NotNull Container inventory, InkColor color, long amount) {
+	static boolean tryDrainEnergy(Container inventory, InkColor color, long amount) {
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
 			ItemStack currentStack = inventory.getItem(i);
 			if (!currentStack.isEmpty()) { // fast fail
@@ -115,11 +115,11 @@ public interface InkPowered {
 		return false;
 	}
 	
-	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkCost inkCost) {
+	static boolean tryDrainEnergy(Player player, InkCost inkCost) {
 		return tryDrainEnergy(player, inkCost.color(), inkCost.cost());
 	}
 	
-	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkCost inkCost, float costModifier) {
+	static boolean tryDrainEnergy(Player player, InkCost inkCost, float costModifier) {
 		return tryDrainEnergy(player, inkCost.color(), Support.getIntFromDecimalWithChance(inkCost.cost() * costModifier, player.getRandom()));
 	}
 	
@@ -135,7 +135,7 @@ public interface InkPowered {
 	 * - Trinket Slots
 	 * - Inventory
 	 **/
-	static boolean tryDrainEnergy(@NotNull Player player, @NotNull InkColor color, long amount) {
+	static boolean tryDrainEnergy(Player player, InkColor color, long amount) {
 		if (player.isCreative()) {
 			return true;
 		}
@@ -174,7 +174,7 @@ public interface InkPowered {
 		return false;
 	}
 	
-	static long getAvailableInk(@NotNull Player player, InkColor color) {
+	static long getAvailableInk(Player player, InkColor color) {
 		if (player.isCreative()) {
 			return Long.MAX_VALUE;
 		}
@@ -249,7 +249,7 @@ public interface InkPowered {
 		return false;
 	}
 	
-	default boolean payForStaffUse(Player player, ItemStack stack, @NotNull InkCost inkCost, @Nullable Ingredient itemCost) {
+	default boolean payForStaffUse(Player player, ItemStack stack, InkCost inkCost, @Nullable Ingredient itemCost) {
 		boolean paid = player.isCreative(); // free for creative players
 		if (!paid) { // try pay with ink
 			paid = InkPowered.tryDrainEnergy(player, inkCost, getInkCostMod(player.level().registryAccess(), stack));

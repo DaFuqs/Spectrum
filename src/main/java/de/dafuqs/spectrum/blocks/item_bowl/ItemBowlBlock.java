@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -58,10 +58,9 @@ public class ItemBowlBlock extends InWorldInteractionBlock {
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new ItemBowlBlockEntity(pos, state);
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return world.isClientSide() ? createTickerHelper(type, SpectrumBlockEntities.ITEM_BOWL, ItemBowlBlockEntity::clientTick) : null;
 	}
 	
@@ -80,7 +79,7 @@ public class ItemBowlBlock extends InWorldInteractionBlock {
 	/**
 	 * When placed or removed the item bowl searches for a valid block entity and triggers it to update its current recipe
 	 */
-	private void updateConnectedMultiBlocks(@NotNull Level world, @NotNull BlockPos pos) {
+	private void updateConnectedMultiBlocks(Level world, BlockPos pos) {
 		for (Vec3i possibleUpgradeBlockOffset : possibleEnchanterOffsets) {
 			BlockPos currentPos = pos.offset(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);

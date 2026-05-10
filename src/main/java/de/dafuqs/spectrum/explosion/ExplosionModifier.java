@@ -11,7 +11,9 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.ApiStatus.OverrideOnly;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.logging.*;
@@ -24,7 +26,7 @@ public abstract class ExplosionModifier {
 	
 	public final ExplosionModifierType type;
 	public final int displayColor;
-	private String translationKey;
+	private @Nullable String translationKey;
 	
 	protected ExplosionModifier(ExplosionModifierType type, int displayColor) {
 		this.type = type;
@@ -36,11 +38,11 @@ public abstract class ExplosionModifier {
 	}
 	
 	@ApiStatus.OverrideOnly
-	public void applyToEntity(@NotNull Entity entity, double distance) {
+	public void applyToEntity(Entity entity, double distance) {
 	}
 	
 	@ApiStatus.OverrideOnly
-	public void applyToBlocks(@NotNull ServerLevel world, @NotNull Iterable<BlockPos> blocks) {
+	public void applyToBlocks(ServerLevel world, Iterable<BlockPos> blocks) {
 	}
 	
 	@ApiStatus.OverrideOnly
@@ -87,9 +89,8 @@ public abstract class ExplosionModifier {
 	}
 	
 	protected String loadTranslationKey() {
-		if (this.translationKey == null) {
+		if (this.translationKey == null)
 			this.translationKey = Util.makeDescriptionId("explosion_modifier", SpectrumRegistries.EXPLOSION_MODIFIER.getKey(this));
-		}
 		return this.translationKey;
 	}
 	

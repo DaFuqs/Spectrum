@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -20,7 +20,7 @@ public class SilverfishInsertingIdolBlock extends IdolBlock {
 	}
 
 	@Override
-	public MapCodec<? extends SilverfishInsertingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends SilverfishInsertingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

@@ -17,7 +17,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import org.apache.commons.lang3.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -31,8 +31,8 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 	
 	private final DataSlot levelCost;
 	private int repairItemCount;
-	private String newItemName;
-	private String newLoreString;
+	private @Nullable String newItemName;
+	private @Nullable String newLoreString;
 	
 	public BedrockAnvilScreenHandler(int syncId, Inventory inventory) {
 		this(syncId, inventory, ContainerLevelAccess.NULL);
@@ -307,14 +307,13 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 			return false;
 		}
 	}
-	
-	@Nullable
-	private static String sanitize(String name, int maxLength) {
+
+	private static @Nullable String sanitize(String name, int maxLength) {
 		String string = StringUtil.filterText(name);
 		return string.length() <= maxLength ? string : null;
 	}
 	
-	public boolean setNewItemLore(String newLoreString) {
+	public boolean setNewItemLore(@Nullable String newLoreString) {
 		String string = sanitize(newLoreString, MAX_LORE_LENGTH);
 		if (string != null && !string.equals(this.newLoreString)) {
 			this.newLoreString = string;

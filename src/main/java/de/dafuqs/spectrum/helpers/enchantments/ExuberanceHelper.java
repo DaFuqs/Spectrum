@@ -4,10 +4,11 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.entity.player.*;
+import org.jspecify.annotations.Nullable;
 
 public class ExuberanceHelper {
 	
-	public static float getExuberanceMod(Player breakingPlayer) {
+	public static float getExuberanceMod(@Nullable Player breakingPlayer) {
 		if (breakingPlayer != null) {
 			var drm = breakingPlayer.level().registryAccess();
 			int exuberanceLevel = SpectrumEnchantmentHelper.getEquipmentLevel(drm, SpectrumEnchantments.EXUBERANCE, breakingPlayer);

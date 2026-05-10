@@ -14,7 +14,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.block.*;
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.Contract;
 
 public class PedestalScreen extends AbstractContainerScreen<PedestalScreenHandler> {
 	
@@ -38,7 +38,7 @@ public class PedestalScreen extends AbstractContainerScreen<PedestalScreenHandle
 	}
 	
 	@Contract(pure = true)
-	public static ResourceLocation getBackgroundTextureForTier(@NotNull PedestalRecipeTier recipeTier) {
+	public static ResourceLocation getBackgroundTextureForTier(PedestalRecipeTier recipeTier) {
 		switch (recipeTier) {
 			case COMPLEX -> {
 				return BACKGROUND4;

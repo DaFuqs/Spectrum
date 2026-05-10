@@ -10,7 +10,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -22,7 +22,7 @@ public class PrimordialFireModifier extends DamageChangingModifier {
 	}
 	
 	@Override
-	public void applyToBlocks(@NotNull ServerLevel world, @NotNull Iterable<BlockPos> blocks) {
+	public void applyToBlocks(ServerLevel world, Iterable<BlockPos> blocks) {
 		for (BlockPos pos : blocks) {
 			if (world.getRandom().nextInt(3) == 0 && world.getBlockState(pos).isAir() && world.getBlockState(pos.below()).isCollisionShapeFullBlock(world, pos.below())) {
 				world.setBlockAndUpdate(pos, PrimordialFireBlock.getState(world, pos));
@@ -31,7 +31,7 @@ public class PrimordialFireModifier extends DamageChangingModifier {
 	}
 	
 	@Override
-	public void applyToEntity(@NotNull Entity entity, double distance) {
+	public void applyToEntity(Entity entity, double distance) {
 		if (entity instanceof LivingEntity livingEntity) {
 			OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 20);
 		}

@@ -11,7 +11,7 @@ import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -22,7 +22,7 @@ public class VillagerConvertingIdolBlock extends IdolBlock {
 	}
 
 	@Override
-	public MapCodec<? extends VillagerConvertingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends VillagerConvertingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

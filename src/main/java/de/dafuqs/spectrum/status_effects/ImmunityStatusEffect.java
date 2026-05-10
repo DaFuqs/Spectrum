@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -31,7 +30,7 @@ public class ImmunityStatusEffect extends MobEffect {
 		removeOtherStatusEffects(entity);
 	}
 	
-	public static void removeOtherStatusEffects(@NotNull LivingEntity entity) {
+	public static void removeOtherStatusEffects(LivingEntity entity) {
 		Set<Holder<MobEffect>> effectsToRemove = new HashSet<>();
 		for (MobEffectInstance instance : entity.getActiveEffects()) {
 			if (!instance.getEffect().is(SpectrumStatusEffectTags.BYPASSES_IMMUNITY)) {

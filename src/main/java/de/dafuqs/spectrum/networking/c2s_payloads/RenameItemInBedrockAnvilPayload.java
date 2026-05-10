@@ -7,7 +7,6 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
 
 public record RenameItemInBedrockAnvilPayload(String name) implements CustomPacketPayload {
 	
@@ -19,7 +18,7 @@ public record RenameItemInBedrockAnvilPayload(String name) implements CustomPack
 		return ID;
 	}
 	
-	public static ServerPlayNetworking.@NotNull PlayPayloadHandler<RenameItemInBedrockAnvilPayload> getPayloadHandler() {
+	public static ServerPlayNetworking.PlayPayloadHandler<RenameItemInBedrockAnvilPayload> getPayloadHandler() {
 		return (payload, context) -> {
 			if (context.player().containerMenu instanceof BedrockAnvilScreenHandler bedrockAnvilScreenHandler) {
 				String string = StringUtil.filterText(payload.name);

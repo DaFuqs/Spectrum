@@ -9,8 +9,8 @@ import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

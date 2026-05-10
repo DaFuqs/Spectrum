@@ -4,6 +4,7 @@ import com.mojang.serialization.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -17,7 +18,7 @@ public class BlockWithTooltip extends Block {
 	}
 
 	@Override
-	public MapCodec<? extends BlockWithTooltip> codec() {
+	public @Nullable MapCodec<? extends BlockWithTooltip> codec() {
 		//TODO: Make the codec
 		return null;
 	}

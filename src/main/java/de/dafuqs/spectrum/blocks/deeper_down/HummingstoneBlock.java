@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class HummingstoneBlock extends BaseEntityBlock {
 	
@@ -126,10 +126,9 @@ public class HummingstoneBlock extends BaseEntityBlock {
 			startHumming(world, hit.getBlockPos(), state, projectile.getOwner(), false);
 		}
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return world.isClientSide() ? null : createTickerHelper(type, SpectrumBlockEntities.HUMMINGSTONE, HummingstoneBlockEntity::serverTick);
 	}
 	
@@ -176,16 +175,14 @@ public class HummingstoneBlock extends BaseEntityBlock {
 			SpectrumAdvancementCriteria.HUMMINGSTONE_HYMN.trigger(serverPlayerEntity, (ServerLevel) world, pos);
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new HummingstoneBlockEntity(pos, state);
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> GameEventListener getListener(ServerLevel world, T blockEntity) {
+	public <T extends BlockEntity> @Nullable GameEventListener getListener(ServerLevel world, T blockEntity) {
 		if (blockEntity instanceof HummingstoneBlockEntity hummingstoneBlockEntity) {
 			return hummingstoneBlockEntity.listener;
 		}

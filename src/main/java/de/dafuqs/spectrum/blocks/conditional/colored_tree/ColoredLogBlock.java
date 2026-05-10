@@ -11,6 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -59,8 +60,8 @@ public class ColoredLogBlock extends RotatedPillarBlock implements RevelationAwa
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredLogBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredLogBlock byColor(InkColor color) {
 		return LOGS.get(color);
 	}
 	

@@ -8,6 +8,7 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -27,7 +28,7 @@ public class SpectrumLoadConditions {
 			return tagsPopulated(registryLookup, this.registry(), this.tags());
 		}
 		
-		public static boolean tagsPopulated(HolderLookup.Provider registryLookup, ResourceLocation registryId, List<ResourceLocation> tags) {
+		public static boolean tagsPopulated(HolderLookup.@Nullable Provider registryLookup, ResourceLocation registryId, List<ResourceLocation> tags) {
 			if (registryLookup == null) {
 				return false;
 			}

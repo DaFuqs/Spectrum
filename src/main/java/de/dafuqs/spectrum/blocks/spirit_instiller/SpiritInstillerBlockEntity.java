@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -47,15 +47,15 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	}};
 	
 	private boolean inventoryChanged;
-	private UUID ownerUUID;
-	private UpgradeHolder upgrades;
+	private @Nullable UUID ownerUUID;
+	private UpgradeHolder upgrades = new UpgradeHolder();
 	private Rotation multiblockRotation = Rotation.NONE;
-	private RecipeHolder<SpiritInstillerRecipe> currentRecipe;
+	private @Nullable RecipeHolder<SpiritInstillerRecipe> currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
 	private boolean validStructure;
 	
-	protected FlowAnimator animator;
+	protected @Nullable FlowAnimator animator;
 	protected FlowData<Float> _platformY = FlowData.NULL(), _haloY = FlowData.NULL(),
 			_platformSpin = FlowData.NULL(), _haloSpin = FlowData.NULL(),
 			_haloAlpha = FlowData.NULL(), _blossomAlpha = FlowData.NULL();
@@ -70,20 +70,18 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		return SpiritInstillerBlock.UPGRADE_BLOCK_OFFSETS;
 	}
 	
-	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, @NotNull SpiritInstillerBlockEntity instiller) {
+	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, SpiritInstillerBlockEntity instiller) {
 		if (instiller.animator == null) {
 			instiller.animator = FACTORY.create(FlowStates.INIT, instiller);
-		}
-		else {
-			instiller.updateAnimator();
-		}
+		} else instiller.updateAnimator();
 		
-		if (instiller.currentRecipe != null && world.getGameTime() % 43 == 0) {
+		
+		if (instiller.currentRecipe != null && world.getGameTime() % 43 == 0)
 			instiller.doChimeParticles(world);
-		}
 	}
 	
 	private void updateAnimator() {
+		assert animator != null;
 		animator.tick();
 		
 		if (!validStructure) {
@@ -103,9 +101,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	}
 	
 	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-		if (spiritInstillerBlockEntity.upgrades == null) {
-			spiritInstillerBlockEntity.calculateUpgrades();
-		}
+		if (spiritInstillerBlockEntity.upgrades.isEmpty()) spiritInstillerBlockEntity.calculateUpgrades();
 		
 		if (spiritInstillerBlockEntity.inventoryChanged) {
 			var previousRecipe = spiritInstillerBlockEntity.currentRecipe;
@@ -123,9 +119,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			spiritInstillerBlockEntity.inventoryChanged = false;
 		}
 		
-		if (spiritInstillerBlockEntity.currentRecipe == null) {
-			return;
-		}
+		if (spiritInstillerBlockEntity.currentRecipe == null) return;
 		
 		if (spiritInstillerBlockEntity.craftingTime % 60 == 0) {
 			if (!checkRecipeRequirements(world, blockPos, spiritInstillerBlockEntity)) {
@@ -159,13 +153,12 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 	}
 	
-	private static void calculateCurrentRecipe(@NotNull Level world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	private static void calculateCurrentRecipe(Level world, SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		// test the cached recipe => faster
-		if (spiritInstillerBlockEntity.currentRecipe != null && !spiritInstillerBlockEntity.isEmpty()) {
-			if (spiritInstillerBlockEntity.currentRecipe.value().matches(spiritInstillerBlockEntity.getRecipeInput(), world)) {
+		if (spiritInstillerBlockEntity.currentRecipe != null && !spiritInstillerBlockEntity.isEmpty()
+			&& spiritInstillerBlockEntity.currentRecipe.value().matches(spiritInstillerBlockEntity.getRecipeInput(), world))
 				return;
-			}
-		}
+		
 		
 		// cached recipe did not match => calculate new
 		spiritInstillerBlockEntity.craftingTime = 0;
@@ -198,7 +191,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		spiritInstillerBlockEntity.updateInClientWorld();
 	}
 	
-	public static BlockPos getItemBowlPos(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, boolean right) {
+	public static BlockPos getItemBowlPos(SpiritInstillerBlockEntity spiritInstillerBlockEntity, boolean right) {
 		BlockPos blockPos = spiritInstillerBlockEntity.worldPosition;
 		switch (spiritInstillerBlockEntity.multiblockRotation) {
 			case NONE, CLOCKWISE_180 -> {
@@ -218,7 +211,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 	}
 	
-	private static boolean checkRecipeRequirements(Level world, BlockPos blockPos, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	private static boolean checkRecipeRequirements(Level world, BlockPos blockPos, SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		Player lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(spiritInstillerBlockEntity.ownerUUID);
 		if (lastInteractedPlayer == null) {
 			return false;
@@ -248,7 +241,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	
 	public static void testAndUnlockRecipeAdvancements(ServerPlayer player, RecipeHolder<SpiritInstillerRecipe> spiritInstillerRecipe, boolean canActuallyCraft) {
 		// boss memory advancements
-		boolean isBossMenory = spiritInstillerRecipe.value().getGroup() != null && spiritInstillerRecipe.value().getGroup().equals("boss_memories");
+		boolean isBossMenory = spiritInstillerRecipe.value().getGroup().equals("boss_memories");
 		if (isBossMenory) {
 			if (canActuallyCraft) {
 				Support.grantAdvancementCriterion(player, "midgame/craft_blacklisted_memory_success", "succeed_crafting_boss_memory");
@@ -262,7 +255,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 	}
 	
-	public static void craftSpiritInstillerRecipe(Level world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull RecipeHolder<SpiritInstillerRecipe> spiritInstillerRecipe) {
+	public static void craftSpiritInstillerRecipe(Level world, SpiritInstillerBlockEntity spiritInstillerBlockEntity, RecipeHolder<SpiritInstillerRecipe> spiritInstillerRecipe) {
 		ItemStack resultStack = spiritInstillerRecipe.value().assemble(spiritInstillerBlockEntity.getRecipeInput(), world.registryAccess());
 		decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity);
 		if (!resultStack.isEmpty()) {
@@ -280,7 +273,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		spiritInstillerBlockEntity.inventoryChanged();
 	}
 	
-	public static void decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	public static void decrementItemsInInstillerAndBowls(SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		Level world = spiritInstillerBlockEntity.getLevel();
 		if (world == null) return;
 		var recipe = spiritInstillerBlockEntity.currentRecipe;
@@ -324,7 +317,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 	}
 	
-	public static void playCraftingFinishedEffects(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	public static void playCraftingFinishedEffects(SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		Level world = spiritInstillerBlockEntity.getLevel();
 		if (world == null) return;
 		world.playSound(null, spiritInstillerBlockEntity.worldPosition, SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING_FINISHED, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -335,11 +328,10 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	}
 	
 	public void setValidStructure(boolean validStructure) {
-		if (!level.isClientSide()) {
-			this.validStructure = validStructure;
-			setChanged();
-			updateInClientWorld();
-		}
+		if (level.isClientSide()) return;
+		this.validStructure = validStructure;
+		setChanged();
+		updateInClientWorld();
 	}
 	
 	@Override
@@ -377,27 +369,22 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		nbt.putString("MultiblockRotation", this.multiblockRotation.toString());
 		nbt.putBoolean("validStructure", this.validStructure);
-		if (this.upgrades != null) {
-			nbt.put("Upgrades", this.upgrades.toNbt());
-		}
-		if (platform != 0) {
-			nbt.putFloat("platformSpin", platform);
-		}
+		if (!this.upgrades.isEmpty()) nbt.put("Upgrades", this.upgrades.toNbt());
+		if (platform != 0) nbt.putFloat("platformSpin", platform);
+		
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
-		if (this.currentRecipe != null) {
-			nbt.putString("CurrentRecipe", this.currentRecipe.id().toString());
-		}
+		if (this.currentRecipe != null) nbt.putString("CurrentRecipe", this.currentRecipe.id().toString());
 	}
 	
 	
 	// Called when the chunk is first loaded to initialize this on the clients
 	
-	private void doChimeParticles(@NotNull Level world) {
+	private void doChimeParticles(Level world) {
 		doChimeInstillingParticles(world, worldPosition.offset(getItemBowlHorizontalPositionOffset(false).above(3)));
 		doChimeInstillingParticles(world, worldPosition.offset(getItemBowlHorizontalPositionOffset(true).above(3)));
 	}
 	
-	public void doChimeInstillingParticles(@NotNull Level world, BlockPos pos) {
+	public void doChimeInstillingParticles(Level world, BlockPos pos) {
 		BlockState blockState = world.getBlockState(pos);
 		if (blockState.getBlock() instanceof GemstoneChimeBlock gemstoneChimeBlock) {
 			RandomSource random = world.getRandom();
@@ -414,7 +401,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 	}
 	
-	private void doItemBowlOrbs(@NotNull Level world) {
+	private void doItemBowlOrbs(Level world) {
 		BlockPos itemBowlPos = worldPosition.offset(getItemBowlHorizontalPositionOffset(false).above());
 		BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
@@ -443,12 +430,13 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	// UPGRADEABLE
 	@Override
 	public void resetUpgrades() {
-		this.upgrades = null;
+		this.upgrades = new UpgradeHolder();
 		this.setChanged();
 	}
 	
 	@Override
 	public void calculateUpgrades() {
+		assert level != null;
 		this.upgrades = Upgradeable.calculateUpgradeMods2(level, worldPosition, multiblockRotation, 4, 1, this.ownerUUID);
 		this.setChanged();
 	}
@@ -462,7 +450,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	// "owned" is not to be taken literally here. The owner
 	// is always set to the last player interacted with to trigger advancements
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
@@ -478,7 +466,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	
 	public void setMultiblockRotation(Rotation blockRotation) {
 		this.multiblockRotation = blockRotation;
-		this.upgrades = null;
+		this.upgrades = new UpgradeHolder();
 		this.setChanged();
 	}
 	

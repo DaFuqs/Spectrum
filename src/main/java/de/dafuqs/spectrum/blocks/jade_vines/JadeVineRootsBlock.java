@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, NaturesStaffTriggered {
 	
@@ -84,18 +84,17 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 	}
 	
 	@Override
-	public boolean canSurvive(@NotNull BlockState state, LevelReader world, BlockPos pos) {
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
 		return canBePlantedOn(world.getBlockState(pos));
 	}
 	
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(DEAD);
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new JadeVineRootsBlockEntity(pos, state);
 	}
 	
@@ -159,7 +158,7 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 		}
 	}
 	
-	boolean setPlantToAge(@NotNull ServerLevel world, @NotNull BlockPos blockPos, int age) {
+	boolean setPlantToAge(ServerLevel world, BlockPos blockPos, int age) {
 		setToAge(world, blockPos, age);
 		
 		boolean anyGrown = false;
@@ -241,7 +240,7 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 		}
 	}
 	
-	boolean canGrow(@NotNull Level world, @NotNull BlockPos blockPos) {
+	boolean canGrow(Level world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(getLowestRootsPos(world, blockPos));
 		if (blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
 			return world.getBrightness(LightLayer.SKY, blockPos) > 8 && jadeVineRootsBlockEntity.isLaterNight(world);
@@ -249,7 +248,7 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 		return false;
 	}
 	
-	boolean tryGrowUpwards(@NotNull BlockState blockState, @NotNull Level world, @NotNull BlockPos blockPos) {
+	boolean tryGrowUpwards(BlockState blockState, Level world, BlockPos blockPos) {
 		blockPos = blockPos.above();
 		while (world.getBlockState(blockPos).getBlock() instanceof JadeVineRootsBlock) {
 			// search up until no jade vines roots are hit anymore
@@ -268,7 +267,7 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 		return false;
 	}
 	
-	boolean tryGrowDownwards(@NotNull Level world, @NotNull BlockPos blockPos) {
+	boolean tryGrowDownwards(Level world, BlockPos blockPos) {
 		blockPos = blockPos.below();
 		while (world.getBlockState(blockPos).getBlock() instanceof JadeVineRootsBlock) {
 			// search down until no jade vines roots are hit anymore
@@ -310,11 +309,11 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 		return false;
 	}
 	
-	void setDead(@NotNull ServerLevel world, @NotNull BlockPos blockPos) {
+	void setDead(ServerLevel world, BlockPos blockPos) {
 		setPlantToAge(world, blockPos, 0);
 	}
 	
-	void rememberGrownTime(@NotNull Level world, @NotNull BlockPos blockPos) {
+	void rememberGrownTime(Level world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(getLowestRootsPos(world, blockPos));
 		if (blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
 			jadeVineRootsBlockEntity.setLastGrownTime(world.getDayTime());
@@ -325,7 +324,7 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 	// the lowest root in a stack is considered the "main" one, also keeping track
 	// when the plant has grown last
 	// => search for the lowest upper state in this column
-	public BlockPos getLowestRootsPos(@NotNull Level world, @NotNull BlockPos blockPos) {
+	public BlockPos getLowestRootsPos(Level world, BlockPos blockPos) {
 		int i = 0;
 		do {
 			if (world.getBlockState(blockPos.below(i + 1)).getBlock() instanceof JadeVineRootsBlock) {
@@ -338,7 +337,7 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 	}
 	
 	@Override
-	public boolean setToAge(@NotNull Level world, BlockPos blockPos, int age) {
+	public boolean setToAge(Level world, BlockPos blockPos, int age) {
 		BlockState currentState = world.getBlockState(blockPos);
 		boolean dead = currentState.getValue(DEAD);
 		if (age == 0 && !dead) {

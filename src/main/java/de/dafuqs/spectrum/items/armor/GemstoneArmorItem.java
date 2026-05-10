@@ -10,7 +10,6 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -37,7 +36,7 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 		addTooltip(tooltip, type);
 	}
 	
-	private void process(@NotNull ArmorItem.Type type, DamageSource source, LivingEntity targetEntity) {
+	private void process(ArmorItem.Type type, DamageSource source, LivingEntity targetEntity) {
 		switch (type) {
 			case HELMET -> {
 				if (source.getEntity() instanceof LivingEntity) {
@@ -66,7 +65,7 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 		}
 	}
 	
-	public void addTooltip(List<Component> tooltip, @NotNull ArmorItem.Type equipmentSlot) {
+	public void addTooltip(List<Component> tooltip, ArmorItem.Type equipmentSlot) {
 		switch (equipmentSlot) {
 			case HELMET -> tooltip.add(Component.translatable("item.spectrum.fetchling_helmet.tooltip").withStyle(ChatFormatting.GRAY));
 			case CHESTPLATE -> tooltip.add(Component.translatable("item.spectrum.ferocious_chestplate.tooltip").withStyle(ChatFormatting.GRAY));

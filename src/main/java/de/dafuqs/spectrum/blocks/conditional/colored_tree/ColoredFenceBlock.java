@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 import de.dafuqs.spectrum.api.energy.color.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.world.level.block.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -26,8 +27,8 @@ public class ColoredFenceBlock extends FenceBlock {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredFenceBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredFenceBlock byColor(InkColor color) {
 		return BLOCKS.get(color);
 	}
 	

@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
-import org.jetbrains.annotations.*;
 
 public class FrenzyStatusEffect extends MobEffect {
 	
@@ -58,7 +57,7 @@ public class FrenzyStatusEffect extends MobEffect {
 		updateAttributes(livingEntity, amplifier, 1);
 	}
 	
-	public void updateAttributes(@NotNull LivingEntity entity, int amplifier, int increase) {
+	public void updateAttributes(LivingEntity entity, int amplifier, int increase) {
 		AttributeMap attributes = entity.getAttributes();
 		if (attributes != null) {
 			createModifiers(amplifier, (entry, modifier) -> {

@@ -15,7 +15,7 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -38,7 +38,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public MapCodec<? extends UpgradeBlock> codec() {
+	public @Nullable MapCodec<? extends UpgradeBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -77,7 +77,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 	 * When placed or removed the upgrade block searches for a valid Upgradeable block
 	 * and triggers it to update its upgrades
 	 */
-	private void updateConnectedUpgradeBlock(@NotNull ServerLevel world, @NotNull BlockPos pos) {
+	private void updateConnectedUpgradeBlock(ServerLevel world, BlockPos pos) {
 		for (Vec3i possibleUpgradeBlockOffset : Upgradeable.POSSIBLE_UPGRADE_POS_OFFSETS) {
 			BlockPos currentPos = pos.offset(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);
@@ -88,7 +88,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 		}
 	}
 	
-	private void playConnectedParticles(@NotNull ServerLevel world, @NotNull BlockPos pos, BlockPos currentPos) {
+	private void playConnectedParticles(ServerLevel world, BlockPos pos, BlockPos currentPos) {
 		int particleColor = getEffectColor();
 		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, SpectrumSoundEvents.CRAFTING_DING, SoundSource.BLOCKS, 1.0F, 1.0F);
 		PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(
@@ -121,10 +121,9 @@ public class UpgradeBlock extends BaseEntityBlock {
 	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new UpgradeBlockEntity(pos, state);
 	}
 	

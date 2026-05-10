@@ -18,7 +18,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -34,16 +33,16 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/ashen_circlet"));
 	}
 	
-	public static long getCooldownTicks(@NotNull ItemStack ashenCircletStack, @NotNull Level world) {
+	public static long getCooldownTicks(ItemStack ashenCircletStack, Level world) {
 		var last = ashenCircletStack.getOrDefault(SpectrumDataComponentTypes.LAST_COOLDOWN_START, 0L);
 		return Math.max(0, last + COOLDOWN_TICKS - world.getGameTime());
 	}
 	
-	private static void setCooldown(@NotNull ItemStack ashenCircletStack, @NotNull Level world) {
+	private static void setCooldown(ItemStack ashenCircletStack, Level world) {
 		ashenCircletStack.set(SpectrumDataComponentTypes.LAST_COOLDOWN_START, world.getGameTime());
 	}
 	
-	public static void grantFireResistance(@NotNull ItemStack ashenCircletStack, @NotNull LivingEntity livingEntity) {
+	public static void grantFireResistance(ItemStack ashenCircletStack, LivingEntity livingEntity) {
 		if (!livingEntity.hasEffect(MobEffects.FIRE_RESISTANCE)) {
 			livingEntity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, FIRE_RESISTANCE_EFFECT_DURATION, 0, true, true));
 			livingEntity.level().playSound(null, livingEntity.blockPosition(), SoundEvents.SPLASH_POTION_BREAK, SoundSource.PLAYERS, 1.0F, 1.0F);

@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -34,10 +34,9 @@ public class CrystalApothecaryBlock extends BaseEntityBlock {
 	public MapCodec<? extends CrystalApothecaryBlock> codec() {
 		return CODEC;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new CrystalApothecaryBlockEntity(pos, state);
 	}
 
@@ -96,16 +95,14 @@ public class CrystalApothecaryBlock extends BaseEntityBlock {
 	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return createTickerHelper(type, SpectrumBlockEntities.CRYSTAL_APOTHECARY, CrystalApothecaryBlockEntity::tick);
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> GameEventListener getListener(ServerLevel world, T blockEntity) {
+	public <T extends BlockEntity> @Nullable GameEventListener getListener(ServerLevel world, T blockEntity) {
 		return blockEntity instanceof CrystalApothecaryBlockEntity crystalApothecaryBlockEntity ? crystalApothecaryBlockEntity.getEventListener() : null;
 	}
 	

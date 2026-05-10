@@ -12,7 +12,6 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -65,15 +64,15 @@ public class FluidIngredient {
 		return String.format("FluidIngredient[tag=%s]", this.ingredient.right().get());
 	}
 	
-	public static FluidIngredient of(@NotNull Fluid fluid) {
+	public static FluidIngredient of(Fluid fluid) {
 		return new FluidIngredient(Either.left(fluid));
 	}
 	
-	public static FluidIngredient of(@NotNull TagKey<Fluid> tag) {
+	public static FluidIngredient of(TagKey<Fluid> tag) {
 		return new FluidIngredient(Either.right(tag.location()));
 	}
 	
-	public static FluidIngredient of(@NotNull ResourceLocation tag) {
+	public static FluidIngredient of(ResourceLocation tag) {
 		return new FluidIngredient(Either.right(tag));
 	}
 	
@@ -96,7 +95,7 @@ public class FluidIngredient {
 	
 	// Vanilla-friendly compatibility method.
 	// Represents this FluidIngredient as bucket stack(s).
-	public @NotNull Ingredient into() {
+	public Ingredient into() {
 		return this.ingredient.map(
 				fluid -> fluid == Fluids.EMPTY ? Ingredient.EMPTY : Ingredient.of(fluid.getBucket().getDefaultInstance()),
 				tag -> {
@@ -112,11 +111,11 @@ public class FluidIngredient {
 				});
 	}
 	
-	public boolean test(@NotNull Fluid fluid) {
+	public boolean test(Fluid fluid) {
 		return this.ingredient.map(fl -> fl == fluid, tag -> fluid.defaultFluidState().is(tag().get()));
 	}
 	
-	public boolean test(@NotNull FluidVariant variant) {
+	public boolean test(FluidVariant variant) {
 		return test(variant.getFluid());
 	}
 	

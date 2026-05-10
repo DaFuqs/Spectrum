@@ -6,7 +6,6 @@ import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -19,7 +18,7 @@ public abstract class GatedStackSpectrumRecipe<C extends RecipeInput> extends Ga
 	public abstract List<IngredientStack> getIngredientStacks();
 	
 	@Override
-	public @NotNull NonNullList<Ingredient> getIngredients() {
+	public NonNullList<Ingredient> getIngredients() {
 		List<IngredientStack> ingredientStacks = getIngredientStacks();
 		NonNullList<Ingredient> ingredients = NonNullList.createWithCapacity(ingredientStacks.size());
 		for (IngredientStack stack : ingredientStacks) {

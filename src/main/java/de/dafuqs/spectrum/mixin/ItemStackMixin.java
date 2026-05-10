@@ -13,7 +13,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -29,10 +29,9 @@ public abstract class ItemStackMixin {
 	
 	@Shadow
 	public abstract Item getItem();
-	
+
 	@Shadow
-	@Nullable
-	public abstract <T> T remove(DataComponentType<? extends T> type);
+	public abstract <T> @Nullable T remove(DataComponentType<? extends T> type);
 	
 	// Injecting into onStackClicked instead of onClicked because onStackClicked is called first
 	@Inject(at = @At("HEAD"), method = "overrideStackedOnOther", cancellable = true)

@@ -24,7 +24,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -46,12 +46,9 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	protected final boolean playCraftingFinishedEffects;
 	
 	protected final List<WorldConditionsPredicate> worldConditionsPredicates;
-	@NotNull
-	protected final FusionShrineRecipeWorldEffect startWorldEffect;
-	@NotNull
-	protected final List<FusionShrineRecipeWorldEffect> duringWorldEffects;
-	@NotNull
-	protected final FusionShrineRecipeWorldEffect finishWorldEffect;
+		protected final FusionShrineRecipeWorldEffect startWorldEffect;
+		protected final List<FusionShrineRecipeWorldEffect> duringWorldEffects;
+		protected final FusionShrineRecipeWorldEffect finishWorldEffect;
 	@Nullable
 	protected final Component description;
 	// copy all components from the first stack in the ingredients to the output stack
@@ -70,9 +67,9 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 			boolean playCraftingFinishedEffects,
 			boolean copyComponents,
 			List<WorldConditionsPredicate> worldConditionsPredicates,
-			@NotNull FusionShrineRecipeWorldEffect startWorldEffect,
-			@NotNull List<FusionShrineRecipeWorldEffect> duringWorldEffects,
-			@NotNull FusionShrineRecipeWorldEffect finishWorldEffect,
+			FusionShrineRecipeWorldEffect startWorldEffect,
+			List<FusionShrineRecipeWorldEffect> duringWorldEffects,
+			FusionShrineRecipeWorldEffect finishWorldEffect,
 			@Nullable Component description
 	) {
 		super(group, secret, requiredAdvancementIdentifier);
@@ -173,12 +170,12 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 	public boolean areYieldAndEfficiencyUpgradesDisabled() {
 		return copyComponents || noBenefitsFromYieldAndEfficiencyUpgrades;
 	}
-	
+
 	/**
 	 * @param tick The crafting tick if the fusion shrine recipe
 	 * @return The effect that should be played for the given recipe tick
 	 */
-	public FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick, int totalTicks) {
+	public @Nullable FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick, int totalTicks) {
 		if (tick == 1) {
 			return this.startWorldEffect;
 		}
@@ -305,7 +302,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<StorageRecipeIn
 		}
 	}
 	
-	protected void spawnCraftingResultAndXP(@NotNull Level world, @NotNull FusionShrineBlockEntity fusionShrineBlockEntity, @NotNull ItemStack stack, int recipeCount) {
+	protected void spawnCraftingResultAndXP(Level world, FusionShrineBlockEntity fusionShrineBlockEntity, ItemStack stack, int recipeCount) {
 		int resultAmountBeforeMod = recipeCount * stack.getCount();
 		double yieldModifier = areYieldAndEfficiencyUpgradesDisabled() ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.getRandom());

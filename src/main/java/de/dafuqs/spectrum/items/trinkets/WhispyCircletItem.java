@@ -15,7 +15,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -28,7 +27,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/whispy_circlet"));
 	}
 	
-	public static void removeSingleStatusEffect(@NotNull LivingEntity entity, MobEffectCategory category) {
+	public static void removeSingleStatusEffect(LivingEntity entity, MobEffectCategory category) {
 		Collection<MobEffectInstance> currentEffects = entity.getActiveEffects();
 		if (currentEffects.isEmpty()) {
 			return;
@@ -51,7 +50,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		entity.removeEffect(negativeEffects.get(randomIndex).getEffect());
 	}
 	
-	public static void removeNegativeStatusEffects(@NotNull LivingEntity entity) {
+	public static void removeNegativeStatusEffects(LivingEntity entity) {
 		Set<Holder<MobEffect>> effectsToRemove = new HashSet<>();
 		for (var instance : entity.getActiveEffects()) {
 			if (affects(instance.getEffect())) {
@@ -64,7 +63,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		}
 	}
 	
-	public static void shortenNegativeStatusEffects(@NotNull LivingEntity entity, int duration) {
+	public static void shortenNegativeStatusEffects(LivingEntity entity, int duration) {
 		Collection<MobEffectInstance> newEffects = new ArrayList<>();
 		Collection<Holder<MobEffect>> effectTypesToClear = new ArrayList<>();
 		
@@ -93,7 +92,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		return effect.value().getCategory() == MobEffectCategory.HARMFUL && !effect.is(SpectrumStatusEffectTags.BYPASSES_WHISPY_CIRCLET);
 	}
 	
-	public static void preventPhantomSpawns(@NotNull ServerPlayer serverPlayerEntity) {
+	public static void preventPhantomSpawns(ServerPlayer serverPlayerEntity) {
 		serverPlayerEntity.getStats().setValue(serverPlayerEntity, Stats.CUSTOM.get(Stats.TIME_SINCE_REST), 0);
 	}
 

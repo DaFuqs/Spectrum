@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.api.pastel.*;
 import net.minecraft.core.*;
 import net.minecraft.world.*;
 import net.minecraft.world.item.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -67,7 +68,7 @@ public class SpectrumPastelUpgrades {
         return Registry.register(SpectrumRegistries.PASTEL_UPGRADE, SpectrumCommon.locate(upgrade.name), upgrade);
     }
 
-    public static PastelUpgradeSignature of(Item item) {
+	public static @Nullable PastelUpgradeSignature of(Item item) {
         if (!UPGRADES.containsKey(item)) {
             throw new IllegalArgumentException("Attempted to fetch an upgrade that does not exist");
         }
@@ -78,7 +79,7 @@ public class SpectrumPastelUpgrades {
 		return SpectrumRegistries.PASTEL_UPGRADE.getKey(upgrade).toString();
     }
 
-    public static PastelUpgradeSignature of(ItemStack stack) {
+	public static @Nullable PastelUpgradeSignature of(ItemStack stack) {
         return of(stack.getItem());
     }
 }

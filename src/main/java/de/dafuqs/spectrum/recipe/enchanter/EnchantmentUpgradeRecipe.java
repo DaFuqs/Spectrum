@@ -18,6 +18,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -75,7 +76,7 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 	
 	
 	@Override
-	public boolean matches(RecipeInput inv, Level world) {
+	public boolean matches(RecipeInput inv, @Nullable Level world) {
 		if (inv.size() > 9) {
 			ItemStack centerStack = inv.getItem(0);
 			if (either.left().isEmpty())
@@ -174,7 +175,7 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 	// Janky Hack
 	public Item getBulkItem() {
 		var match = bulkItem.getItems();
-		if (match != null && match.length > 0)
+		if (match.length > 0)
 			return bulkItem.getItems()[0].getItem();
 		return Items.AIR;
 	}

@@ -11,7 +11,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
 
 public class BottomlessBundleBlockEntity extends BlockEntity {
 
@@ -105,7 +104,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 		return false;
 	}
 	
-	public void setBundle(@NotNull ItemStack itemStack, HolderLookup.Provider registryLookup) {
+	public void setBundle(ItemStack itemStack, HolderLookup.Provider registryLookup) {
 		if (setBundleUnsynced(itemStack, registryLookup)) syncStorageWithBundle();
 	}
 

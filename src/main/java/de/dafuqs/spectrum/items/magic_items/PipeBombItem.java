@@ -20,7 +20,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -92,8 +92,8 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 			target.hurt(SpectrumDamageTypes.incandescence(world, owner instanceof LivingEntity living ? living : null), 200F);
 		world.explode(null, SpectrumDamageTypes.incandescence(world), new ExplosionDamageCalculator(), pos.x(), pos.y(), pos.z(), 7.5F, true, Level.ExplosionInteraction.NONE);
 	}
-	
-	public Entity tryGetOwner(ItemStack stack, ServerLevel world) {
+
+	public @Nullable Entity tryGetOwner(ItemStack stack, ServerLevel world) {
 		var profile = stack.get(DataComponents.PROFILE);
 		if (profile == null || profile.id().isEmpty())
 			return null;

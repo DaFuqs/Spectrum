@@ -12,7 +12,6 @@ import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 import org.ladysnake.cca.api.v3.component.sync.*;
 import org.ladysnake.cca.api.v3.component.tick.*;
 
@@ -191,12 +190,12 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
         sleepInvincibility = invulnTicks;
     }
     
-    public void setLastSleepItem(@NotNull SleepAlteringItem item) {
+    public void setLastSleepItem(SleepAlteringItem item) {
         this.sleepConsumable = Optional.of(item);
     }
 
     @Override
-	public void readFromNbt(CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
+	public void readFromNbt(CompoundTag tag, HolderLookup.Provider wrapperLookup) {
         ticksBeforeSleep = tag.getInt("ticksBeforeSleep");
         sleepingWindow = tag.getInt("sleepingWindow");
         sleepInvincibility = tag.getInt("sleepInvincibility");
@@ -207,7 +206,7 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
     }
 
     @Override
-	public void writeToNbt(CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
+	public void writeToNbt(CompoundTag tag, HolderLookup.Provider wrapperLookup) {
         tag.putInt("ticksBeforeSleep", ticksBeforeSleep);
         tag.putInt("sleepingWindow", sleepingWindow);
         tag.putInt("sleepInvincibility", sleepInvincibility);
@@ -220,7 +219,7 @@ public class MiscPlayerDataComponent implements AutoSyncedComponent, CommonTicki
                 .ifPresent(id -> tag.putString("sleepConsumable", id.toString()));
     }
 	
-	public static MiscPlayerDataComponent get(@NotNull Player player) {
+	public static MiscPlayerDataComponent get(Player player) {
         return MISC_PLAYER_DATA_COMPONENT.get(player);
     }
 

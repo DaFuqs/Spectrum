@@ -31,7 +31,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -49,7 +49,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 	protected boolean inkDirty;
 	protected @Nullable InkConvertingRecipe cachedRecipe;
 	protected Optional<Holder<InkColor>> selectedColor = Optional.empty();
-	private UUID ownerUUID;
+	private @Nullable UUID ownerUUID;
 	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.COLOR_PICKER, blockPos, blockState);
@@ -126,7 +126,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 	}
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
@@ -250,10 +250,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 			InkStorage itemStorage = inkStorageItem.getEnergyStorage(stack);
 			
-			ServerPlayer owner = null;
-			if (getOwnerIfOnline() instanceof ServerPlayer serverPlayerEntity) {
-				owner = serverPlayerEntity;
-			}
+			ServerPlayer owner = getOwnerIfOnline() instanceof ServerPlayer serverPlayerEntity ? serverPlayerEntity : null;
 			
 			if (this.selectedColor.isEmpty()) {
 				for (InkColor color : InkColors.all()) {
@@ -271,11 +268,10 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 		return transferredAmount > 0;
 	}
 	
-	private long tryTransferInk(ServerPlayer owner, ItemStack stack, InkStorage itemStorage, InkColor color) {
+	private long tryTransferInk(@Nullable ServerPlayer owner, ItemStack stack, InkStorage itemStorage, InkColor color) {
 		long amount = InkStorage.transferInk(this.inkStorage, itemStorage, color);
-		if (amount > 0 && owner != null) {
+		if (amount > 0 && owner != null)
 			SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(owner, stack, itemStorage, color, amount);
-		}
 		return amount;
 	}
 	
@@ -296,10 +292,9 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 		this.saveAdditional(nbtCompound, registryLookup);
 		return nbtCompound;
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	

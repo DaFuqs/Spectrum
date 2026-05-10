@@ -8,6 +8,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
+import org.jspecify.annotations.Nullable;
 
 public class SpectrumBuddingBlock extends SpectrumGemstoneBlock {
 
@@ -27,7 +28,7 @@ public class SpectrumBuddingBlock extends SpectrumGemstoneBlock {
 	}
 
 	@Override
-	public MapCodec<? extends SpectrumBuddingBlock> codec() {
+	public @Nullable MapCodec<? extends SpectrumBuddingBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

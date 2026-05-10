@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -79,9 +80,9 @@ public class ParametricMiningDeviceBlock extends PlacedItemBlock {
 		super.createBlockStateDefinition(builder);
 		builder.add(FACING);
 	}
-	
+
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @Nullable VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPES.get(state.getValue(FACING));
 	}
 	

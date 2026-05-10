@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.datagen.v1.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class SpectrumDataGenerator implements DataGeneratorEntrypoint {
 	@Override

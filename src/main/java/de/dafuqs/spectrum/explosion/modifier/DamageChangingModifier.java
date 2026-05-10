@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.explosion.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

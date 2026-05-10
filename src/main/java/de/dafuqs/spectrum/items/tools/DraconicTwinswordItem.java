@@ -23,7 +23,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -57,8 +57,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 		super.releaseUsing(stack, world, user, remainingUseTicks);
 	}
 	
-	@NotNull
-	private static DraconicTwinswordEntity initiateTwinswordEntity(ItemStack stack, Level world, LivingEntity user, float strength) {
+		private static DraconicTwinswordEntity initiateTwinswordEntity(ItemStack stack, Level world, LivingEntity user, float strength) {
 		var twinsword = new DraconicTwinswordEntity(world);
 		twinsword.setOwner(user);
 		twinsword.setPickupItemStack(stack);
@@ -183,7 +182,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	}
 	
 	@Override
-	public BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		if (player == null || SlotReservingItem.isReservingSlot(stack) || !player.isUsingItem())
 			return ExtendedItemBarProvider.PASS;
 		

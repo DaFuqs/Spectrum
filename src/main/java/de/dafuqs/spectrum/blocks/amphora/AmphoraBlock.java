@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class AmphoraBlock extends BaseEntityBlock {
 	
@@ -55,10 +55,9 @@ public class AmphoraBlock extends BaseEntityBlock {
 		Containers.dropContentsOnDestroy(state, newState, world, pos);
 		super.onRemove(state, world, pos, newState, moved);
 	}
-	
+
 	@Override
-	@Nullable
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new AmphoraBlockEntity(pos, state);
 	}
 	

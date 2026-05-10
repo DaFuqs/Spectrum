@@ -28,7 +28,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.portal.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -67,11 +66,11 @@ public class EnderSpliceItem extends Item {
 		return world1.dimension().location().toString().equals(world2.dimension().location().toString());
 	}
 	
-	public static void setTeleportTargetPos(@NotNull ItemStack itemStack, Level world, Vec3 pos) {
+	public static void setTeleportTargetPos(ItemStack itemStack, Level world, Vec3 pos) {
 		itemStack.set(SpectrumDataComponentTypes.ENDER_SPLICE, new EnderSpliceComponent(pos, world.dimension()));
 	}
 	
-	public static void setTeleportTargetPlayer(@NotNull ItemStack itemStack, ServerPlayer player) {
+	public static void setTeleportTargetPlayer(ItemStack itemStack, ServerPlayer player) {
 		itemStack.set(SpectrumDataComponentTypes.ENDER_SPLICE, new EnderSpliceComponent(player.getName().getString(), player.getUUID()));
 	}
 	
@@ -232,18 +231,18 @@ public class EnderSpliceItem extends Item {
 		tooltip.add(Component.translatable("item.spectrum.ender_splice.tooltip.unbound"));
 	}
 	
-	public static Optional<Tuple<ResourceKey<Level>, Vec3>> getTeleportTargetPos(@NotNull ItemStack itemStack) {
+	public static Optional<Tuple<ResourceKey<Level>, Vec3>> getTeleportTargetPos(ItemStack itemStack) {
 		var component = itemStack.getOrDefault(SpectrumDataComponentTypes.ENDER_SPLICE, EnderSpliceComponent.DEFAULT);
 		if (component.pos().isPresent() && component.dimension().isPresent())
 			return Optional.of(new Tuple<>(component.dimension().get(), component.pos().get()));
 		return Optional.empty();
 	}
 	
-	public static Optional<UUID> getTeleportTargetPlayerUUID(@NotNull ItemStack itemStack) {
+	public static Optional<UUID> getTeleportTargetPlayerUUID(ItemStack itemStack) {
 		return itemStack.getOrDefault(SpectrumDataComponentTypes.ENDER_SPLICE, EnderSpliceComponent.DEFAULT).targetUUID();
 	}
 	
-	public static Optional<String> getTeleportTargetPlayerName(@NotNull ItemStack itemStack) {
+	public static Optional<String> getTeleportTargetPlayerName(ItemStack itemStack) {
 		return itemStack.getOrDefault(SpectrumDataComponentTypes.ENDER_SPLICE, EnderSpliceComponent.DEFAULT).targetName();
 	}
 	

@@ -8,7 +8,7 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -33,7 +33,7 @@ public class WrapPresentRecipe extends CustomRecipe {
 	}
 	
 	@Override
-	public boolean matches(@NotNull CraftingInput input, Level world) {
+	public boolean matches(CraftingInput input, Level world) {
 		boolean presentItemFound = false;
 		boolean wrappingItemFound = false;
 		
@@ -57,7 +57,7 @@ public class WrapPresentRecipe extends CustomRecipe {
 	}
 	
 	@Override
-	public ItemStack assemble(@NotNull CraftingInput input, HolderLookup.Provider registryLookup) {
+	public ItemStack assemble(CraftingInput input, HolderLookup.Provider registryLookup) {
 		ItemStack presentStack = ItemStack.EMPTY;
 		PresentBlock.WrappingPaper wrappingPaper = PresentBlock.WrappingPaper.RED;
 		Map<Integer, Integer> colors = new HashMap<>();
@@ -86,7 +86,7 @@ public class WrapPresentRecipe extends CustomRecipe {
 		return presentStack;
 	}
 	
-	public @Nullable PresentBlock.WrappingPaper getPresentVariantForStack(@NotNull ItemStack stack) {
+	public PresentBlock.@Nullable WrappingPaper getPresentVariantForStack(ItemStack stack) {
 		Item item = stack.getItem();
 		if (item == Items.RED_DYE) {
 			return PresentBlock.WrappingPaper.RED;

@@ -14,6 +14,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -44,7 +45,7 @@ public class EnchanterRecipe extends GatedSpectrumRecipe<RecipeInput> {
 	}
 	
 	@Override
-	public boolean matches(RecipeInput inv, Level world) {
+	public boolean matches(RecipeInput inv, @Nullable Level world) {
 		if (inv.size() >= 10) {
 			// the item on the enchanter
 			if (!inputs.getFirst().test(inv.getItem(0))) {

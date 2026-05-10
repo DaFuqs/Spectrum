@@ -5,7 +5,7 @@ import com.klikli_dev.modonomicon.client.render.page.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.network.chat.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class BookLinkPageRenderer extends BookTextPageRenderer {
 	
@@ -31,9 +31,8 @@ public class BookLinkPageRenderer extends BookTextPageRenderer {
                 .build());
     }
 
-    @Nullable
-    @Override
-    public Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
+	@Override
+	public @Nullable Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
         if (!(page instanceof BookLinkPage linkPage)) return null;
 		
 		if (pMouseX >= BUTTON_X && pMouseY >= BUTTON_Y && pMouseX < BUTTON_X + BUTTON_WIDTH && pMouseY < BUTTON_Y + BUTTON_HEIGHT) {

@@ -12,7 +12,7 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -46,7 +46,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
         this.vertexTime = vertexTime;
     }
 	
-	public void setNetwork(@NotNull ServerPastelNetwork network) {
+	public void setNetwork(ServerPastelNetwork network) {
         this.network = network;
     }
 	
@@ -88,7 +88,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
             return;
         }
 		
-		@NotNull BlockPos destinationPos = nodePositions.get(nodePositions.size() - 1);
+		BlockPos destinationPos = nodePositions.get(nodePositions.size() - 1);
 		@Nullable PastelNodeBlockEntity destinationNode = this.network.getLoadedNodeAt(destinationPos);
 		Level world = this.network.getWorld();
 		

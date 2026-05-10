@@ -11,7 +11,6 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
 import net.minecraft.network.chat.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -37,7 +36,7 @@ public class SpiritInstillingCategory extends GatedDisplayCategory<SpiritInstill
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull SpiritInstillingDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, SpiritInstillingDisplay display) {
 		List<EntryIngredient> inputs = display.getInputEntries();
 		
 		// input slots

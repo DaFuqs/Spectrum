@@ -36,7 +36,8 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.Contract;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -51,14 +52,14 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	private static final int[] ACCESSIBLE_SLOTS_ADVANCED = {9, 10, 11, 12};
 	private static final int[] ACCESSIBLE_SLOTS_COMPLEX = {9, 10, 11, 12, 13};
 	
-	protected UUID ownerUUID;
+	protected @Nullable UUID ownerUUID;
 	protected PedestalVariant pedestalVariant;
 	protected NonNullList<ItemStack> inventory;
 	protected boolean shouldCraft;
 	protected float storedXP;
-	protected PedestalRecipeTier cachedMaxPedestalTier;
+	protected PedestalRecipeTier cachedMaxPedestalTier = PedestalRecipeTier.BASIC;
 	protected long cachedMaxPedestalTierTick;
-	protected UpgradeHolder upgrades;
+	protected UpgradeHolder upgrades = new UpgradeHolder();
 	protected boolean inventoryChanged;
 	public @Nullable RecipeHolder<?> currentRecipe;
 	
@@ -91,7 +92,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	@SuppressWarnings("unused")
-	public static void clientTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
+	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
 		Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 		if (currentRecipe instanceof PedestalRecipe pedestalRecipe) {
 			Map<GemstoneColor, Integer> gemstonePowderInputs = pedestalRecipe.getPowderInputs();
@@ -112,7 +113,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 	}
 	
-	public static void spawnCraftingStartParticles(@NotNull Level world, BlockPos blockPos) {
+	public static void spawnCraftingStartParticles(Level world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
 			Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
@@ -144,10 +145,9 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 	}
 	
-	public static void serverTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
-		if (pedestalBlockEntity.upgrades == null) {
-			pedestalBlockEntity.calculateUpgrades();
-		}
+	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
+		if (pedestalBlockEntity.upgrades.isEmpty()) pedestalBlockEntity.calculateUpgrades();
+		
 		
 		// check recipe crafted last tick => performance
 		boolean shouldMarkDirty = false;
@@ -244,11 +244,11 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	@Contract(pure = true)
-	public static PedestalVariant getVariant(@NotNull PedestalBlockEntity pedestalBlockEntity) {
+	public static PedestalVariant getVariant(PedestalBlockEntity pedestalBlockEntity) {
 		return pedestalBlockEntity.pedestalVariant;
 	}
 	
-	public static void spawnOutputAsItemEntity(ServerLevel world, BlockPos blockPos, @NotNull PedestalBlockEntity pedestalBlockEntity, ItemStack outputItemStack) {
+	public static void spawnOutputAsItemEntity(ServerLevel world, BlockPos blockPos, PedestalBlockEntity pedestalBlockEntity, ItemStack outputItemStack) {
 		// spawn crafting output
 		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, pedestalBlockEntity.worldPosition, outputItemStack, outputItemStack.getCount(), new Vec3(0, 0.1, 0));
 		pedestalBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
@@ -281,7 +281,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 	}
 	
-	public static @Nullable RecipeHolder<?> calculateRecipe(Level world, @NotNull PedestalBlockEntity pedestalBlockEntity) {
+	public static @Nullable RecipeHolder<?> calculateRecipe(Level world, PedestalBlockEntity pedestalBlockEntity) {
 		var currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 		
 		if (!pedestalBlockEntity.inventoryChanged) {
@@ -304,7 +304,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		
 		// is a crafting tablet in the slot?
 		// only allow this recipe
-		@Nullable RecipeHolder<?> craftingTabletRecipe = pedestalBlockEntity.getStoredCraftingTabletRecipe();
+		RecipeHolder<?> craftingTabletRecipe = pedestalBlockEntity.getStoredCraftingTabletRecipe();
 		
 		// current recipe does not match last recipe
 		// => search valid recipe
@@ -521,7 +521,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	@Override
-	public void setItem(int slot, @NotNull ItemStack stack) {
+	public void setItem(int slot, ItemStack stack) {
 		this.inventory.set(slot, stack);
 		if (stack.getCount() > this.getMaxStackSize()) {
 			stack.setCount(this.getMaxStackSize());
@@ -546,10 +546,9 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			recipeMatcher.accountStack(itemStack);
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	
@@ -578,14 +577,8 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			this.propertyDelegate.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		}
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
-		if (nbt.contains("Upgrades", Tag.TAG_LIST)) {
-			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", Tag.TAG_COMPOUND));
-		} else {
-			this.upgrades = new UpgradeHolder();
-		}
-		if (nbt.contains("inventory_changed")) {
-			this.inventoryChanged = nbt.getBoolean("inventory_changed");
-		}
+		this.upgrades = nbt.contains("Upgrades", Tag.TAG_LIST) ? UpgradeHolder.fromNbt(nbt.getList("Upgrades", Tag.TAG_COMPOUND)) : new UpgradeHolder();
+		if (nbt.contains("inventory_changed")) this.inventoryChanged = nbt.getBoolean("inventory_changed");
 		
 		this.currentRecipe = null;
 		this.currentRecipe = MultiblockCrafter.getRecipeHolderFromNbt(level, nbt);
@@ -599,12 +592,8 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		nbt.putShort("CraftingTimeTotal", (short) this.propertyDelegate.craftingTimeTotal);
 		nbt.putBoolean("inventory_changed", this.inventoryChanged);
 		
-		if (this.upgrades != null) {
-			nbt.put("Upgrades", this.upgrades.toNbt());
-		}
-		if (this.currentRecipe != null) {
-			nbt.putString("CurrentRecipe", this.currentRecipe.id().toString());
-		}
+		if (!this.upgrades.isEmpty()) nbt.put("Upgrades", this.upgrades.toNbt());
+		if (this.currentRecipe != null) nbt.putString("CurrentRecipe", this.currentRecipe.id().toString());
 		
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		ContainerHelper.saveAllItems(nbt, this.inventory, registryLookup);
@@ -714,7 +703,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	@Override
-	public boolean canPlaceItemThroughFace(int slot, @NotNull ItemStack stack, @Nullable Direction dir) {
+	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction dir) {
 		if (stack.is(getGemstonePowderItemForSlot(slot))) {
 			return true;
 		}
@@ -779,7 +768,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
@@ -788,6 +777,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	public PedestalRecipeInput createRecipeInput() {
+		assert level != null;
 		return PedestalRecipeInput.create(level, this.inventory, getOwnerIfOnline(this.level));
 	}
 	
@@ -807,13 +797,11 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		
 		ItemStack cachedResult = ItemStack.EMPTY;
 		
-		if (currentRecipe instanceof PedestalRecipe pedestalRecipe) {
+		if (currentRecipe instanceof PedestalRecipe pedestalRecipe)
 			cachedResult = pedestalRecipe.assemble(createRecipeInput(), level.registryAccess());
-		}
 		
-		if (currentRecipe instanceof CraftingRecipe craftingRecipe) {
+		if (currentRecipe instanceof CraftingRecipe craftingRecipe)
 			cachedResult = craftingRecipe.assemble(createRecipeInput().getCraftingGridInput(), level.registryAccess());
-		}
 		
 		this.cachedRecipeTime = gameTime;
 		this.cachedRecipeOutput = cachedResult;
@@ -840,8 +828,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	
-	@NotNull
-	private PedestalRecipeTier getStructureTier() {
+		private PedestalRecipeTier getStructureTier() {
 		Multiblock multiblock;
 		
 		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_COMPLEX);
@@ -873,7 +860,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	
 	@Override
 	public void resetUpgrades() {
-		this.upgrades = null;
+		this.upgrades = new UpgradeHolder();
 		this.setChanged();
 	}
 	
@@ -882,6 +869,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	 */
 	@Override
 	public void calculateUpgrades() {
+		assert level != null;
 		this.upgrades = Upgradeable.calculateUpgradeMods4(level, worldPosition, 3, 2, this.ownerUUID);
 		this.setChanged();
 	}

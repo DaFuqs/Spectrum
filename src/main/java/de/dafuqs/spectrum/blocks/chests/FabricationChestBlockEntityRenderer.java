@@ -18,7 +18,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
@@ -42,7 +41,7 @@ public class FabricationChestBlockEntityRenderer implements BlockEntityRenderer<
 		this.rings = root.getChild("rings");
 	}
 	
-	public static @NotNull LayerDefinition getTexturedModelData() {
+	public static LayerDefinition getTexturedModelData() {
 		MeshDefinition modelData = new MeshDefinition();
 		PartDefinition modelPartData = modelData.getRoot();
 		PartDefinition root = modelPartData.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));

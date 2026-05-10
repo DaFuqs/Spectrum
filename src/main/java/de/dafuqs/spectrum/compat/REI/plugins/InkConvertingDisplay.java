@@ -8,7 +8,6 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -17,7 +16,7 @@ public class InkConvertingDisplay extends GatedSpectrumDisplay {
 	protected final InkColor color;
 	protected final long amount;
 	
-	public InkConvertingDisplay(@NotNull RecipeHolder<InkConvertingRecipe> recipe) {
+	public InkConvertingDisplay(RecipeHolder<InkConvertingRecipe> recipe) {
 		super(recipe, EntryIngredients.ofIngredients(recipe.value().getIngredients()), List.of());
 		this.color = recipe.value().getInkColor();
 		this.amount = recipe.value().getInkAmount();

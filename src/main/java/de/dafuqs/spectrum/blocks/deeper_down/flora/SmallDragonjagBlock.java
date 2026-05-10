@@ -9,6 +9,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -48,8 +49,8 @@ public class SmallDragonjagBlock extends BushBlock implements Dragonjag, Bonemea
 	public Variant getVariant() {
 		return variant;
 	}
-	
-	public static Block getBlockForVariant(Variant variant) {
+
+	public static @Nullable Block getBlockForVariant(Variant variant) {
 		return VARIANTS.get(variant);
     }
 

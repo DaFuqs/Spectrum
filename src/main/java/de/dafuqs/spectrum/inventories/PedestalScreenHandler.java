@@ -125,7 +125,7 @@ public class PedestalScreenHandler extends RecipeBookMenu<RecipeInput, Recipe<Re
 	
 	@Override
 	public boolean recipeMatches(RecipeHolder<Recipe<RecipeInput>> recipe) {
-		return blockEntity != null && recipe.value().matches(blockEntity.createRecipeInput(), world);
+		return recipe.value().matches(blockEntity.createRecipeInput(), world);
 	}
 	
 	@Override

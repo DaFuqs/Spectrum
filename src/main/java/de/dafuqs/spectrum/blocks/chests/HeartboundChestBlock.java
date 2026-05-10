@@ -11,7 +11,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class HeartboundChestBlock extends SpectrumChestBlock {
 	
@@ -27,14 +27,12 @@ public class HeartboundChestBlock extends SpectrumChestBlock {
 	}
 
 	@Override
-	@Nullable
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new HeartboundChestBlockEntity(pos, state);
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return world.isClientSide() ? createTickerHelper(type, SpectrumBlockEntities.HEARTBOUND_CHEST, HeartboundChestBlockEntity::clientTick) : null;
 	}
 	

@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.energy.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -16,7 +15,7 @@ public interface InkPoweredPotionFillable {
 	// used for calculating the items cost to apply a certain effect
 	// calculated once and then stored in the items nbt for quick lookup and nicer modifiability
 	// via commands or special loot (so ones found in dungeon chests can be cheaper!)
-	default long adjustFinalCostFor(@NotNull InkPoweredStatusEffectInstance instance) {
+	default long adjustFinalCostFor(InkPoweredStatusEffectInstance instance) {
 		return (long) Math.pow(instance.getInkCost().cost(), 1 + instance.getStatusEffectInstance().getAmplifier());
 	}
 	

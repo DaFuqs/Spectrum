@@ -25,7 +25,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -120,7 +119,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	}
 	
 	@Override
-	public @NotNull InteractionResult useOn(UseOnContext context) {
+	public InteractionResult useOn(UseOnContext context) {
 		Level world = context.getLevel();
 		if (world.isClientSide()) {
 			return InteractionResult.SUCCESS;

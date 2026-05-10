@@ -18,7 +18,6 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -39,26 +38,26 @@ public class UnlockedRecipeToast implements Toast {
 		this.soundPlayed = false;
 	}
 	
-	public static void showRecipeToast(@NotNull Minecraft client, ItemStack itemStack, Component title) {
+	public static void showRecipeToast(Minecraft client, ItemStack itemStack, Component title) {
 		Component text = getTextForItemStack(itemStack);
 		client.getToasts().addToast(new UnlockedRecipeToast(title, text, new ArrayList<>() {{
 			add(itemStack);
 		}}));
 	}
 	
-	public static void showRecipeGroupToast(@NotNull Minecraft client, String groupName, List<ItemStack> itemStacks, Component title) {
+	public static void showRecipeGroupToast(Minecraft client, String groupName, List<ItemStack> itemStacks, Component title) {
 		Component text = Component.translatable("recipeGroup.spectrum." + groupName);
 		client.getToasts().addToast(new UnlockedRecipeToast(title, text, itemStacks));
 	}
 	
-	public static void showLotsOfRecipesToast(@NotNull Minecraft client, List<ItemStack> itemStacks) {
+	public static void showLotsOfRecipesToast(Minecraft client, List<ItemStack> itemStacks) {
 		client.getToasts().addToast(new UnlockedRecipeToast(
 				Component.translatable("spectrum.toast.lots_of_recipes_unlocked.title"),
 				Component.translatable("spectrum.toast.lots_of_recipes_unlocked.description", itemStacks.size()),
 				itemStacks));
 	}
 	
-	public static Component getTextForItemStack(@NotNull ItemStack itemStack) {
+	public static Component getTextForItemStack(ItemStack itemStack) {
 		if (itemStack.is(Items.ENCHANTED_BOOK)) {
 			// special handling for enchanted books
 			// Instead of the text "enchanted book" the toast will
@@ -80,7 +79,7 @@ public class UnlockedRecipeToast implements Toast {
 	}
 	
 	@Override
-	public Toast.@NotNull Visibility render(GuiGraphics drawContext, @NotNull ToastComponent manager, long startTime) {
+	public Toast.Visibility render(GuiGraphics drawContext, ToastComponent manager, long startTime) {
 		drawContext.blit(TEXTURE, 0, 0, 0, 32, this.width(), this.height());
 		
 		Minecraft client = manager.getMinecraft();

@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.SpectrumFluidLoggable {
 	
@@ -101,7 +101,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	}
 	
 	@Override
-	public void setPlacedBy(@NotNull Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.setPlacedBy(world, pos, state, placer, itemStack);
 		
 		if (!world.isClientSide()) {
@@ -146,7 +146,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 		builder.add(ARMED, LOGGED);
 	}
 	
-	public void explode(@NotNull ServerLevel world, BlockPos pos) {
+	public void explode(ServerLevel world, BlockPos pos) {
 		if (!(world.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
 			return;
 		}

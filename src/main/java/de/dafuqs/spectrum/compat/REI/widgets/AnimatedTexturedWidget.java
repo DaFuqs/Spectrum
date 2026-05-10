@@ -24,7 +24,7 @@ public class AnimatedTexturedWidget extends BurningFire {
         this.animationCount = textureHeight / textureWidth;
         this.textureWidth = textureWidth;
         this.textureHeight = textureHeight;
-        this.bounds = new Rectangle(Objects.requireNonNull(bounds));
+        this.bounds = new Rectangle(bounds);
     }
     
     @Override

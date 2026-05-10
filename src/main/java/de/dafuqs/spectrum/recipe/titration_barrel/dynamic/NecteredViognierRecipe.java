@@ -15,7 +15,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -46,7 +45,7 @@ public class NecteredViognierRecipe extends SweetenableTitrationBarrelRecipe {
 	}
 	
 	@Override
-	protected @NotNull List<MobEffectInstance> getEffects(boolean nectar, double bloominess, double alcPercent) {
+	protected List<MobEffectInstance> getEffects(boolean nectar, double bloominess, double alcPercent) {
 		List<MobEffectInstance> effects = new ArrayList<>();
 		
 		int effectDuration = (int) (150 * Math.round(alcPercent / 10));

@@ -11,7 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.biome.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -41,7 +41,7 @@ public class DimensionRenderEffects {
 			lastFogTarget = 1F, nearTarget = 1F, near = 1F, lastNearTarget = 1F, farTarget = 1F, far = 1F, lastFarTarget = 1F,
 			redTarget, red, lastRedTarget, greenTarget, green, lastGreenTarget, blueTarget, blue, lastBlueTarget, blendTarget, blend, lastBlendTarget;
 	
-	private static Holder<Biome> currentBiome;
+	private static @Nullable Holder<Biome> currentBiome;
 	private static final Minecraft client = Minecraft.getInstance();
 	private static boolean shouldUpdate, forceBiomeUpdate;
 	
@@ -52,7 +52,7 @@ public class DimensionRenderEffects {
 		
 		lastDarkenTicks = darkenTicks;
 		float sleepPotency = -1;
-		@Nullable Holder<MobEffect> sleepEffect = null;
+		Holder<MobEffect> sleepEffect = null;
 		if (entity instanceof LivingEntity livingEntity) {
 			sleepPotency = SleepStatusEffect.getSleepScaling(livingEntity);
 			sleepEffect = SleepStatusEffect.getStrongestSleepEffect(livingEntity);
@@ -145,6 +145,8 @@ public class DimensionRenderEffects {
 		blue = lerp(delta, lastBlueTarget, blueTarget);
 		blend = lerp(delta, lastBlendTarget, blendTarget);
 		if (GRADING_QUEUE.ready()) {
+			assert GRADING_QUEUE.last != null;
+			assert GRADING_QUEUE.current != null;
 			ColorGrading.update(GRADING_QUEUE.last, GRADING_QUEUE.current, delta);
 		}
 		
@@ -267,7 +269,7 @@ public class DimensionRenderEffects {
 		
 		private static void update(float[] old, float[] current, float delta) {
 			for (int i = 0; i < 5; i++) {
-				GRADING_OUT[i] =lerp(delta, old[i], current[i]);
+				GRADING_OUT[i] = lerp(delta, old[i], current[i]);
 			}
 		}
 		
@@ -280,9 +282,9 @@ public class DimensionRenderEffects {
 	
 	//I will migrate shit to this someday trust me
 	private static class InterpolationQueue<T> {
-		private T current, last;
+		private @Nullable T current, last;
 		
-		public void accept(T newHead) {
+		public void accept(@Nullable T newHead) {
 			if (!ready()) {
 				initialize(newHead);
 				return;
@@ -291,12 +293,12 @@ public class DimensionRenderEffects {
 			current = newHead;
 		}
 		
-		public void set(T current, T last) {
+		public void set(@Nullable T current, T last) {
 			accept(current);
 			this.last = last;
 		}
 		
-		public void initialize(T value) {
+		public void initialize(@Nullable T value) {
 			last = value;
 			current = value;
 		}

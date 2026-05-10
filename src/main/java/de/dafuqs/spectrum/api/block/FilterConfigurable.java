@@ -21,7 +21,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import org.apache.commons.lang3.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -157,7 +157,7 @@ public interface FilterConfigurable {
 		return inventory;
 	}
 	
-	static Container getFilterInventoryFromExtendedData(int syncId, @NotNull Inventory playerInventory, ExtendedData data, @NotNull AbstractContainerMenu handler) {
+	static Container getFilterInventoryFromExtendedData(int syncId, Inventory playerInventory, ExtendedData data, AbstractContainerMenu handler) {
 		final var clicker = new ShadowSlotClicker.FromHandler(handler, playerInventory.player, syncId);
 		return getFilterInventoryFromDataClicker(data, clicker);
 	}
@@ -170,7 +170,7 @@ public interface FilterConfigurable {
 		return inventory;
 	}
 	
-	static Container getFilterInventoryFromItemsHandler(int syncId, @NotNull Inventory playerInventory, List<ItemVariant> items, @NotNull AbstractContainerMenu thisHandler) {
+	static Container getFilterInventoryFromItemsHandler(int syncId, Inventory playerInventory, List<ItemVariant> items, AbstractContainerMenu thisHandler) {
 		final var clicker = new ShadowSlotClicker.FromHandler(thisHandler, playerInventory.player, syncId);
 		return getFilterInventoryFromItemsClicker(items, clicker);
 	}
@@ -185,11 +185,11 @@ public interface FilterConfigurable {
 		void clickShadowSlot(int syncId, int id, ItemStack shadowStack);
 		
 		class FromHandler implements ShadowSlotClicker {
-			public final @NotNull AbstractContainerMenu handler;
-			public final @NotNull Player player;
+			public final AbstractContainerMenu handler;
+			public final Player player;
 			public final int syncId;
 			
-			public FromHandler(@NotNull AbstractContainerMenu screenHandler, @NotNull Player player, int syncId) {
+			public FromHandler(AbstractContainerMenu screenHandler, Player player, int syncId) {
 				this.handler = screenHandler;
 				this.player = player;
 				this.syncId = syncId;
@@ -215,14 +215,14 @@ public interface FilterConfigurable {
 	
 	// Contains the slot clicker.
 	class FilterInventory extends SimpleContainer {
-		private final @NotNull FilterConfigurable.ShadowSlotClicker clicker;
+		private final FilterConfigurable.ShadowSlotClicker clicker;
 		
-		public FilterInventory(@NotNull FilterConfigurable.ShadowSlotClicker slotClicker, int size) {
+		public FilterInventory(FilterConfigurable.ShadowSlotClicker slotClicker, int size) {
 			super(size);
 			this.clicker = slotClicker;
 		}
 		
-		public @NotNull FilterConfigurable.ShadowSlotClicker getClicker() {
+		public FilterConfigurable.ShadowSlotClicker getClicker() {
 			return clicker;
 		}
 	}

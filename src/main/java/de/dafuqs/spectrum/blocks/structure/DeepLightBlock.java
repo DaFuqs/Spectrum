@@ -6,7 +6,7 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class DeepLightBlock extends HorizontalDirectionalBlock implements EntityBlock {
 	
@@ -21,9 +21,8 @@ public class DeepLightBlock extends HorizontalDirectionalBlock implements Entity
         return CODEC;
     }
 
-	@Nullable
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection());
 	}
 
@@ -32,9 +31,8 @@ public class DeepLightBlock extends HorizontalDirectionalBlock implements Entity
 		builder.add(FACING);
 	}
 
-	@Nullable
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new DeepLightBlockEntity(pos, state);
 	}
 }

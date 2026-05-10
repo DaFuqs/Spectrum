@@ -28,7 +28,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import oshi.util.tuples.*;
 
 import java.util.*;
@@ -47,7 +47,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	// but not useless at the end
 	// this way the player does not need to craft 5 tiers
 	// of staffs that each do basically feel the same
-	public static int getRange(Player playerEntity) {
+	public static int getRange(@Nullable Player playerEntity) {
 		if (playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
 		} else {
@@ -75,11 +75,11 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 		return super.canInteractWith(state, world, pos, player) && state.getDestroySpeed(world, pos) < 20;
 	}
 	
-	public static boolean exchange(Level world, BlockPos pos, @NotNull Player player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack, Direction side) {
+	public static boolean exchange(Level world, BlockPos pos, Player player, Block targetBlock, ItemStack exchangeStaffItemStack, Direction side) {
 		return exchange(world, pos, player, targetBlock, exchangeStaffItemStack, false, side);
 	}
 	
-	public static boolean exchange(Level world, BlockPos pos, @NotNull Player player, @NotNull Block targetBlock, ItemStack exchangeStaffItemStack, boolean single, Direction side) {
+	public static boolean exchange(Level world, BlockPos pos, Player player, Block targetBlock, ItemStack exchangeStaffItemStack, boolean single, Direction side) {
 		Triplet<Block, Item, Integer> replaceData = countSuitableReplacementItems(player, targetBlock, single,
 				INK_COST_PER_BLOCK);
 		
@@ -148,11 +148,11 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 		return true;
 	}
 	
-	public void storeBlockAsTarget(@NotNull ItemStack exchangeStaffItemStack, Block block) {
+	public void storeBlockAsTarget(ItemStack exchangeStaffItemStack, Block block) {
 		exchangeStaffItemStack.set(SpectrumDataComponentTypes.STORED_BLOCK, BuiltInRegistries.BLOCK.getKey(block));
 	}
 	
-	public static Optional<Block> getStoredBlock(@NotNull ItemStack exchangeStaffItemStack) {
+	public static Optional<Block> getStoredBlock(ItemStack exchangeStaffItemStack) {
 		ResourceLocation blockId = exchangeStaffItemStack.get(SpectrumDataComponentTypes.STORED_BLOCK);
 		if (blockId != null) {
 			Block targetBlock = BuiltInRegistries.BLOCK.get(blockId);

@@ -7,7 +7,6 @@ import net.fabricmc.api.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.resources.*;
-import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 public class MarrowRenderer extends SkeletonRenderer<Marrow> {
@@ -20,7 +19,7 @@ public class MarrowRenderer extends SkeletonRenderer<Marrow> {
 		this.addLayer(new SkeletonClothingLayer<>(this, context.getModelSet(), SpectrumModelLayers.MARROW_OUTER_LAYER, MARROW_CLOTHES_LOCATION));
 	}
 	
-	public @NotNull ResourceLocation getTextureLocation(@NotNull Marrow entity) {
+	public ResourceLocation getTextureLocation(Marrow entity) {
 		return MARROW_SKELETON_LOCATION;
 	}
 }

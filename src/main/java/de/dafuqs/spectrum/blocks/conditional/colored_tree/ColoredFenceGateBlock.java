@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.world.level.block.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -27,8 +28,8 @@ public class ColoredFenceGateBlock extends FenceGateBlock {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredFenceGateBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredFenceGateBlock byColor(InkColor color) {
 		return BLOCKS.get(color);
 	}
 	

@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
 
 public class PersistentLightBlock extends LightBlock {
 	
@@ -39,7 +38,7 @@ public class PersistentLightBlock extends LightBlock {
 		return Shapes.empty();
 	}
 	
-	private boolean holdsRadianceStaff(@NotNull Entity entity) {
+	private boolean holdsRadianceStaff(Entity entity) {
 		if(entity instanceof LivingEntity livingEntity) {
 			// context.isHolding() only checks the main hand, so we use our own implementation
 			for (ItemStack stack : livingEntity.getHandSlots()) {

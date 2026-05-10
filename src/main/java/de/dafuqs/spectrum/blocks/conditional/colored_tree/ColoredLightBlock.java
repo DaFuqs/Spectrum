@@ -7,6 +7,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -30,8 +31,8 @@ public class ColoredLightBlock extends RedstoneLampBlock {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredLightBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredLightBlock byColor(InkColor color) {
 		return LIGHTS.get(color);
 	}
 	

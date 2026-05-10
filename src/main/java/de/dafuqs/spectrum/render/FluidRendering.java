@@ -5,8 +5,8 @@ import net.fabricmc.fabric.api.transfer.v1.client.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.world.level.block.entity.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 public class FluidRendering {
 	

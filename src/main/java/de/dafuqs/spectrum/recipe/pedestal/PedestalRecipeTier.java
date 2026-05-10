@@ -11,7 +11,8 @@ import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.Contract;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -60,7 +61,7 @@ public enum PedestalRecipeTier implements StringRepresentable {
 		return AdvancementHelper.hasAdvancement(playerEntity, unlockAdvancementId);
 	}
 	
-	public static Optional<PedestalRecipeTier> hasJustUnlockedANewRecipeTier(@NotNull ResourceLocation advancementIdentifier) {
+	public static Optional<PedestalRecipeTier> hasJustUnlockedANewRecipeTier(ResourceLocation advancementIdentifier) {
 		if (advancementIdentifier.equals(BASIC.unlockAdvancementId)) {
 			return Optional.of(PedestalRecipeTier.BASIC);
 		} else if (advancementIdentifier.equals(SIMPLE.unlockAdvancementId)) {

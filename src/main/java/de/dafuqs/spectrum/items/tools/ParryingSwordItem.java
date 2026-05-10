@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public abstract class ParryingSwordItem extends SwordItem implements ExtendedItemBarProvider {
 
@@ -106,7 +106,7 @@ public abstract class ParryingSwordItem extends SwordItem implements ExtendedIte
 	protected abstract int getBarColor();
 
 	@Override
-	public BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		if (player == null || !player.isUsingItem())
 			return ExtendedItemBarProvider.PASS;
 		

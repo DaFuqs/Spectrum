@@ -38,7 +38,7 @@ import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -57,10 +57,9 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow
 	public abstract ItemStack getMainHandItem();
-	
+
 	@Shadow
-	@Nullable
-	public abstract MobEffectInstance getEffect(Holder<MobEffect> effect);
+	public abstract @Nullable MobEffectInstance getEffect(Holder<MobEffect> effect);
 	
 	@Shadow
 	public abstract void readAdditionalSaveData(CompoundTag nbt);

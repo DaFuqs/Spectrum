@@ -8,6 +8,7 @@ import net.minecraft.core.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -47,9 +48,9 @@ public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler im
 		PaintbrushItem.setColor(paintBrushStack, inkColor.map(Holder::value).orElse(null));
 		removed(player);
 	}
-	
+
 	@Override
-	public BlockEntity getBlockEntity() {
+	public @Nullable BlockEntity getBlockEntity() {
 		return null;
 	}
 	

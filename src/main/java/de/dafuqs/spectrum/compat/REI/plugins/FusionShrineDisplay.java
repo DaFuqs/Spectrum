@@ -9,7 +9,6 @@ import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -19,7 +18,7 @@ public class FusionShrineDisplay extends GatedSpectrumDisplay {
 	protected final int craftingTime;
 	protected final Optional<Component> description;
 	
-	public FusionShrineDisplay(@NotNull RecipeHolder<FusionShrineRecipe> recipe) {
+	public FusionShrineDisplay(RecipeHolder<FusionShrineRecipe> recipe) {
 		super(recipe, buildIngredients(recipe.value()), recipe.value().getResultItem(BasicDisplay.registryAccess()));
 		this.experience = recipe.value().getExperience();
 		this.craftingTime = recipe.value().getCraftingTime();

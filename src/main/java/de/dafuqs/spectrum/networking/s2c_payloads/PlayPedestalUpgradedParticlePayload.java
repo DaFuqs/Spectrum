@@ -13,7 +13,6 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, PedestalRecipeTier newTier) implements CustomPacketPayload {
 	
@@ -24,7 +23,7 @@ public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, Pedestal
 			PlayPedestalUpgradedParticlePayload::new
 	);
 	
-	public static void spawnPedestalUpgradeParticles(Level world, BlockPos pedestalPos, @NotNull PedestalVariant newPedestalVariant) {
+	public static void spawnPedestalUpgradeParticles(Level world, BlockPos pedestalPos, PedestalVariant newPedestalVariant) {
 		for (ServerPlayer player : PlayerLookup.tracking((ServerLevel) world, pedestalPos)) {
 			ServerPlayNetworking.send(player, new PlayPedestalUpgradedParticlePayload(pedestalPos, newPedestalVariant.getRecipeTier()));
 		}

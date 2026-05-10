@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.deeper_down;
 import net.fabricmc.api.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
 public class DeeperDownDimensionEffects extends DimensionSpecialEffects {

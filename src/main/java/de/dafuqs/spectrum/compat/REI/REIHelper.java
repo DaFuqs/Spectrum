@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.REI;
 import de.dafuqs.spectrum.api.recipe.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -14,7 +13,7 @@ public class REIHelper {
 		return ingredientStacks.stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
 	}
 	
-	public static EntryIngredient ofIngredientStack(@NotNull IngredientStack ingredientStack) {
+	public static EntryIngredient ofIngredientStack(IngredientStack ingredientStack) {
 		return EntryIngredients.ofItemStacks(ingredientStack.getMatchingStacks());
 	}
 	

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.server.level.*;
-import org.jetbrains.annotations.*;
 
 public class GravityAdvancementsManager {
 	
@@ -18,7 +17,7 @@ public class GravityAdvancementsManager {
 	 * @param serverPlayerEntity The player with gravity items in inventory
 	 * @param additionalGravity  The additional gravity the entity got applied for a single stack. Will be added up for each tick in this function
 	 */
-	public static void processAppliedGravityForAdvancements(@NotNull ServerPlayer serverPlayerEntity, double additionalGravity) {
+	public static void processAppliedGravityForAdvancements(ServerPlayer serverPlayerEntity, double additionalGravity) {
 		ServerLevel serverWorld = (ServerLevel) serverPlayerEntity.level();
 		if (serverWorld != null) {
 			if (serverWorld.getGameTime() != lastGravityTick || lastServerPlayerEntity != serverPlayerEntity) {

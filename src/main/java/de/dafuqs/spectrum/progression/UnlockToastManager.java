@@ -14,7 +14,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -204,7 +203,7 @@ public class UnlockToastManager {
 	 *
 	 * @param pedestalRecipeTier The new pedestal recipe tier the player unlocked
 	 */
-	private static @NotNull List<PedestalRecipe> getRecipesForTierWithAllConditionsMet(PedestalRecipeTier pedestalRecipeTier, List<GatedRecipe<?>> pedestalRecipes) {
+	private static List<PedestalRecipe> getRecipesForTierWithAllConditionsMet(PedestalRecipeTier pedestalRecipeTier, List<GatedRecipe<?>> pedestalRecipes) {
 		Minecraft client = Minecraft.getInstance();
 		Player player = client.player;
 		

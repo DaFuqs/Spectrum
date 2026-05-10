@@ -17,7 +17,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -56,9 +56,8 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 		
 		registerInToastManager(getType(), this);
 	}
-	
-	@Nullable
-	public static RecipeHolder<CrystallarieumRecipe> getRecipeForState(Level world, BlockState state) {
+
+	public static @Nullable RecipeHolder<CrystallarieumRecipe> getRecipeForState(Level world, BlockState state) {
 		return STATE_CACHE.computeIfAbsent(state, s -> {
 			var recipes = world.getRecipeManager().getAllRecipesFor(SpectrumRecipeTypes.CRYSTALLARIEUM);
 			for (var recipe : recipes) {

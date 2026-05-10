@@ -23,7 +23,7 @@ import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -252,7 +252,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements FluidStac
 		}
 	}
 	
-	public @NotNull FluidVariant getFluidVariant() {
+	public FluidVariant getFluidVariant() {
 		if (this.fluidStorage.amount > 0) {
 			return this.fluidStorage.variant;
 		} else {

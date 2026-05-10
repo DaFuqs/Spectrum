@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -64,12 +64,12 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	}
 
 	@Override
-	public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 	
 	@Override
-	public boolean canSurvive(BlockState state, @NotNull LevelReader world, BlockPos pos) {
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
 		return WallTorchBlock.canSurvive(world, pos, state.getValue(FACING));
 	}
 	
@@ -86,10 +86,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		}
 		super.onRemove(state, world, pos, newState, moved);
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return ((w, p, s, b) -> PastelNodeBlockEntity.tick(w, p, s, (PastelNodeBlockEntity) b));
 	}
 	
@@ -199,9 +198,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 			}
 		}
 	}
-	
+
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @Nullable VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPES.get(state.getValue(FACING));
 	}
 	
@@ -212,10 +211,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		}
 		return null;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PastelNodeBlockEntity(pos, state);
 	}
 	

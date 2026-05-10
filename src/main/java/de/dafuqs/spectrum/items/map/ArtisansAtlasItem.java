@@ -24,7 +24,7 @@ import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.saveddata.maps.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

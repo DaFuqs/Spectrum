@@ -47,7 +47,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import oshi.util.tuples.*;
 
 import java.util.*;
@@ -215,7 +215,7 @@ public class SpectrumClientEventListeners {
 		return !shouldCancel;
 	}
 	
-	private static boolean renderPlacementStaffOutline(PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, @NotNull BlockHitResult hitResult) {
+	private static boolean renderPlacementStaffOutline(PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, BlockHitResult hitResult) {
 		Minecraft client = Minecraft.getInstance();
 		ClientLevel world = client.level;
 		Player player = client.player;

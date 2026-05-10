@@ -43,8 +43,8 @@ fabricApi {
 }
 
 dependencies {
-	// jetbrains annotations
-	implementation("org.jetbrains:annotations:26.0.2")
+	// jspecify annotations
+	api "org.jspecify:jspecify:1.0.0"
 
 	// graph api and its dependencies
 	implementation include("org.jgrapht:jgrapht-core:1.5.2")

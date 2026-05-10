@@ -8,7 +8,6 @@ import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -29,7 +28,7 @@ public interface InkStorage extends Clearable {
 	 * @param destination The ink storage receiving energy
 	 * @return the total amount of energy that could be transferred
 	 */
-	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination) {
+	static long transferInk(InkStorage source, InkStorage destination) {
 		long transferred = 0;
 		for (InkColor inkColor : source.getEnergy().keySet()) {
 			transferred += transferInk(source, destination, inkColor);
@@ -47,7 +46,7 @@ public interface InkStorage extends Clearable {
 	 * @param color       The ink type to transfer
 	 * @return the amount of energy that could be transferred
 	 */
-	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color) {
+	static long transferInk(InkStorage source, InkStorage destination, InkColor color) {
 		if (!destination.accepts(color)) {
 			return 0;
 		}
@@ -81,7 +80,7 @@ public interface InkStorage extends Clearable {
 	 * @return the amount of energy that could be transferred
 	 */
 	@Deprecated
-	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color, long amount) {
+	static long transferInk(InkStorage source, InkStorage destination, InkColor color, long amount) {
 		if (!destination.accepts(color)) {
 			return 0;
 		}
@@ -163,7 +162,7 @@ public interface InkStorage extends Clearable {
 	
 	long getRoom(InkColor color);
 	
-	static @NotNull Map<InkColor, Long> readEnergy(CompoundTag compound) {
+	static Map<InkColor, Long> readEnergy(CompoundTag compound) {
 		Map<InkColor, Long> energy = new HashMap<>();
 		if (compound != null) {
 			for (String key : compound.getAllKeys()) {
@@ -178,7 +177,7 @@ public interface InkStorage extends Clearable {
 		return energy;
 	}
 	
-	static @NotNull CompoundTag writeEnergy(Map<InkColor, Long> storedEnergy) {
+	static CompoundTag writeEnergy(Map<InkColor, Long> storedEnergy) {
 		CompoundTag energy = new CompoundTag();
 		for (Map.Entry<InkColor, Long> color : storedEnergy.entrySet()) {
 			energy.putLong(color.getKey().getID().toString(), color.getValue());

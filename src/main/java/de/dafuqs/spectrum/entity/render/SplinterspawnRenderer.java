@@ -5,7 +5,6 @@ import net.fabricmc.api.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.monster.*;
-import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 public class SplinterspawnRenderer extends SilverfishRenderer {
@@ -17,7 +16,7 @@ public class SplinterspawnRenderer extends SilverfishRenderer {
 	}
 	
 	@Override
-	public @NotNull ResourceLocation getTextureLocation(@NotNull Silverfish entity) {
+	public ResourceLocation getTextureLocation(Silverfish entity) {
 		return SPLINTERSPAWN_LOCATION;
 	}
 }

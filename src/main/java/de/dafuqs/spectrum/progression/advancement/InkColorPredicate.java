@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.progression.advancement;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -19,7 +19,7 @@ public record InkColorPredicate(Optional<InkColor> color) {
 		ANY = new InkColorPredicate(Optional.empty());
 	}
 	
-	public boolean test(InkColor color) {
+	public boolean test(@Nullable InkColor color) {
 		if (this == ANY || color == null) {
 			return true;
 		}

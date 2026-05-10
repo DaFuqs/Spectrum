@@ -19,7 +19,6 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 import org.ladysnake.cca.api.v3.component.*;
 import org.ladysnake.cca.api.v3.component.sync.*;
 import org.ladysnake.cca.api.v3.component.tick.*;
@@ -54,14 +53,14 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 	}
 
 	@Override
-	public void writeToNbt(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider wrapperLookup) {
+	public void writeToNbt(CompoundTag tag, HolderLookup.Provider wrapperLookup) {
 		if (this.primordialFireTicks > 0) {
 			tag.putLong("ticks", this.primordialFireTicks);
 		}
 	}
 	
 	@Override
-	public void readFromNbt(CompoundTag tag, @NotNull HolderLookup.Provider wrapperLookup) {
+	public void readFromNbt(CompoundTag tag, HolderLookup.Provider wrapperLookup) {
 		if (tag.contains("ticks", Tag.TAG_LONG)) {
 			this.primordialFireTicks = tag.getLong("ticks");
 		} else {

@@ -10,6 +10,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -54,8 +55,8 @@ public class ColoredWoodBlock extends RotatedPillarBlock implements RevelationAw
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredWoodBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredWoodBlock byColor(InkColor color) {
 		return WOOD.get(color);
 	}
 	

@@ -13,7 +13,6 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.level.dimension.*;
-import org.jetbrains.annotations.*;
 
 public record StartSkyLerpingPayload(long startTime, long endTime) implements CustomPacketPayload {
 	
@@ -24,7 +23,7 @@ public record StartSkyLerpingPayload(long startTime, long endTime) implements Cu
 			StartSkyLerpingPayload::new
 	);
 	
-	public static void startSkyLerping(@NotNull ServerLevel serverWorld, int additionalTime) {
+	public static void startSkyLerping(ServerLevel serverWorld, int additionalTime) {
 		long timeOfDay = serverWorld.getDayTime();
 		for (ServerPlayer player : serverWorld.players()) {
 			ServerPlayNetworking.send(player, new StartSkyLerpingPayload(timeOfDay, timeOfDay + additionalTime));

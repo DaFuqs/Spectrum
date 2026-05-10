@@ -21,7 +21,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -41,7 +41,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		craftingTabletItemStack.remove(SpectrumDataComponentTypes.STORED_RECIPE);
 	}
 	
-	public static @Nullable RecipeHolder<?> getStoredRecipe(Level world, ItemStack itemStack) {
+	public static @Nullable RecipeHolder<?> getStoredRecipe(@Nullable Level world, ItemStack itemStack) {
 		if (world != null) {
 			var id = itemStack.get(SpectrumDataComponentTypes.STORED_RECIPE);
 			if (id != null)

@@ -11,6 +11,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -23,7 +24,7 @@ public class AttackRingItem extends SpectrumTrinketItem {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/jeopardant"));
 	}
 	
-	public static double getAttackModifierForEntity(LivingEntity entity) {
+	public static double getAttackModifierForEntity(@Nullable LivingEntity entity) {
 		if (entity == null) {
 			return 0;
 		} else {

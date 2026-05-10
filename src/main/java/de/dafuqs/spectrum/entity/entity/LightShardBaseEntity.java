@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;
@@ -37,7 +37,7 @@ public abstract class LightShardBaseEntity extends Projectile {
 	protected @Nullable UUID targetUUID;
 	protected @Nullable LivingEntity target;
 	protected Vec3 initialVelocity = Vec3.ZERO;
-	protected Predicate<LivingEntity> targetPredicate;
+	protected Predicate<LivingEntity> targetPredicate = _e -> false;
 	
 	public LightShardBaseEntity(EntityType<? extends Projectile> entityType, Level world) {
 		super(entityType, world);
@@ -116,7 +116,7 @@ public abstract class LightShardBaseEntity extends Projectile {
 					.normalize().scale(DEFAULT_ACCELERATION));
 	}
 	
-	protected void setTargetPredicate(@NotNull Predicate<LivingEntity> targetPredicate) {
+	protected void setTargetPredicate(Predicate<LivingEntity> targetPredicate) {
 		this.targetPredicate = targetPredicate;
 	}
 	
@@ -147,22 +147,13 @@ public abstract class LightShardBaseEntity extends Projectile {
 
 	protected boolean isValidTarget(LivingEntity entity) {
 		Entity owner = getOwner();
-		if (entity == owner) {
-			return false;
-		}
-		if (owner != null && entity.isAlliedTo(owner)) {
-			return false;
-		}
-		if (!this.targetPredicate.test(entity)) {
-			return false;
-		}
+		if (entity == owner) return false;
+		if (owner != null && entity.isAlliedTo(owner)) return false;
+		
+		if (!this.targetPredicate.test(entity)) return false;
 		if (entity instanceof OwnableEntity pet) {
 			Entity petOwner = pet.getOwner();
-			if (petOwner instanceof LivingEntity livingEntity) {
-				if (this.targetPredicate.test(livingEntity)) {
-					return false;
-				}
-			}
+			if (petOwner instanceof LivingEntity livingEntity && this.targetPredicate.test(livingEntity)) return false;
 		}
 		return !entity.isRemoved() && entity.isAlive() && !entity.isInvisible() && !entity.isInvulnerable();
 	}
@@ -271,7 +262,7 @@ public abstract class LightShardBaseEntity extends Projectile {
 		return Math.round(getMaxAge() / 4F);
 	}
 	
-	public void setTarget(@NotNull LivingEntity target) {
+	public void setTarget(LivingEntity target) {
 		this.targetUUID = target.getUUID();
 		this.target     = target;
 	}

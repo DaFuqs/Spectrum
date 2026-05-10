@@ -9,7 +9,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public abstract class SpectrumFluidBlock extends LiquidBlock {
 	
@@ -68,7 +68,7 @@ public abstract class SpectrumFluidBlock extends LiquidBlock {
 	 * @return BlockState to be placed at the collision position. [null means no collision]
 	 * @implNote Triggers the extinguish sound if result is not null.
 	 */
-	public abstract @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState, Direction direction);
+	public abstract @Nullable BlockState handleFluidCollision(Level world, FluidState state, FluidState otherState, Direction direction);
 	
 	public void fireExtinguishEvent(LevelAccessor world, BlockPos pos) {
 		world.levelEvent(LevelEvent.LAVA_FIZZ, pos, 0);

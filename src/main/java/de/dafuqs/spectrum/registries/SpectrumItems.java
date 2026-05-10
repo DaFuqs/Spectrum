@@ -45,7 +45,7 @@ import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;
@@ -632,9 +632,8 @@ public class SpectrumItems {
 			});
 			return this;
 		}
-		
-		@Nullable
-		public T item() {
+
+		public @Nullable T item() {
 			return item;
 		}
 		

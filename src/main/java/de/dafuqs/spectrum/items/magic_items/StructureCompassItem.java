@@ -10,7 +10,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.levelgen.structure.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -24,13 +24,13 @@ public class StructureCompassItem extends CompassItem {
 	}
 	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, Entity entity, int slot, boolean selected) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		if (!world.isClientSide() && world.getGameTime() % 200 == 0) {
 			locateStructure(stack, world, entity);
 		}
 	}
 	
-	protected void locateStructure(@NotNull ItemStack stack, @NotNull Level world, Entity entity) {
+	protected void locateStructure(ItemStack stack, Level world, Entity entity) {
 		Pair<BlockPos, Holder<Structure>> foundStructure = locateStructure((ServerLevel) world, entity.blockPosition());
 		if (foundStructure != null) {
 			saveStructurePos(stack, world.dimension(), foundStructure.getFirst());
@@ -39,7 +39,7 @@ public class StructureCompassItem extends CompassItem {
 		}
 	}
 	
-	public @Nullable Pair<BlockPos, Holder<Structure>> locateStructure(@NotNull ServerLevel world, @NotNull BlockPos pos) {
+	public @Nullable Pair<BlockPos, Holder<Structure>> locateStructure(ServerLevel world, BlockPos pos) {
 		Optional<HolderSet.Named<Structure>> registryEntryList = SpectrumStructureTags.entriesOf(world, locatedStructures);
 		return registryEntryList.map(registryEntries ->
 						world.getChunkSource().getGenerator().findNearestMapStructure(world, registryEntries, pos, 100, false))
@@ -50,11 +50,11 @@ public class StructureCompassItem extends CompassItem {
 		return stack.getOrDefault(SpectrumDataComponentTypes.TARGETED_STRUCTURE, null);
 	}
 	
-	protected void saveStructurePos(ItemStack stack, @NotNull ResourceKey<Level> worldKey, @NotNull BlockPos pos) {
+	protected void saveStructurePos(ItemStack stack, ResourceKey<Level> worldKey, BlockPos pos) {
 		stack.set(SpectrumDataComponentTypes.TARGETED_STRUCTURE, new GlobalPos(worldKey, pos));
 	}
 	
-	protected void removeStructurePos(@NotNull ItemStack stack) {
+	protected void removeStructurePos(ItemStack stack) {
 		stack.remove(SpectrumDataComponentTypes.TARGETED_STRUCTURE);
 	}
 	

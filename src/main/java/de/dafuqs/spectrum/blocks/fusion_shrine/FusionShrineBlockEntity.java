@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -38,9 +38,9 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	
 	protected static final int INVENTORY_SIZE = 7;
 	
-	private UUID ownerUUID;
-	private UpgradeHolder upgrades;
-	private RecipeHolder<FusionShrineRecipe> currentRecipe;
+	private @Nullable UUID ownerUUID;
+	private UpgradeHolder upgrades = new UpgradeHolder();
+	private @Nullable RecipeHolder<FusionShrineRecipe> currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
 	
@@ -71,7 +71,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	}
 	
 	@SuppressWarnings("unused")
-	public static void clientTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
+	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		if (!fusionShrineBlockEntity.isEmpty()) {
 			int randomSlot = world.getRandom().nextInt(fusionShrineBlockEntity.getContainerSize());
 			ItemStack randomStack = fusionShrineBlockEntity.getItem(randomSlot);
@@ -94,20 +94,20 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	public void spawnCraftingParticles() {
 		BlockPos blockPos = getBlockPos();
 		var recipe = this.currentRecipe;
-		if (recipe != null && level != null) {
-			Fluid fluid = this.getFluidVariant().getFluid();
-			Optional<InkColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getMapping(fluid);
-			if (optionalFluidColor.isPresent()) {
-				ParticleOptions particleEffect = ColoredFluidRisingParticleEffect.of(optionalFluidColor.get().getColorInt());
-				
-				float randomX = 0.1F + level.getRandom().nextFloat() * 0.8F;
-				float randomZ = 0.1F + level.getRandom().nextFloat() * 0.8F;
-				level.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 1, blockPos.getZ() + randomZ, 0.0D, 0.1D, 0.0D);
-			}
-		}
+		if (recipe == null || level == null) return;
+		
+		Fluid fluid = this.getFluidVariant().getFluid();
+		Optional<InkColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getMapping(fluid);
+		if (optionalFluidColor.isEmpty()) return;
+		
+		ParticleOptions particleEffect = ColoredFluidRisingParticleEffect.of(optionalFluidColor.get().getColorInt());
+		
+		float randomX = 0.1F + level.getRandom().nextFloat() * 0.8F;
+		float randomZ = 0.1F + level.getRandom().nextFloat() * 0.8F;
+		level.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 1, blockPos.getZ() + randomZ, 0.0D, 0.1D, 0.0D);
 	}
 	
-	public void scatterContents(@NotNull Level world) {
+	public void scatterContents(Level world) {
 		PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerLevel) world, Vec3.atCenterOf(this.getBlockPos()), ColoredCraftingParticleEffect.RED, 1, new Vec3(0, -0.5, 0));
 		world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		world.playSound(null, this.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.5F + world.getRandom().nextFloat() * 0.2F);
@@ -116,10 +116,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	}
 	
 	@SuppressWarnings("unused")
-	public static void serverTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
-		if (fusionShrineBlockEntity.upgrades == null) {
-			fusionShrineBlockEntity.calculateUpgrades();
-		}
+	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
+		if (fusionShrineBlockEntity.upgrades.isEmpty()) fusionShrineBlockEntity.calculateUpgrades();
 		
 		if (fusionShrineBlockEntity.inventoryChanged) {
 			var previousRecipe = fusionShrineBlockEntity.currentRecipe;
@@ -185,9 +183,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		
 		fusionShrineBlockEntity.setChanged();
 	}
-	
-	@Nullable
-	private static RecipeHolder<FusionShrineRecipe> calculateRecipe(@NotNull Level world, FusionShrineBlockEntity fusionShrineBlockEntity) {
+
+	private static @Nullable RecipeHolder<FusionShrineRecipe> calculateRecipe(Level world, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		if (fusionShrineBlockEntity.currentRecipe != null) {
 			if (fusionShrineBlockEntity.currentRecipe.value().matches(fusionShrineBlockEntity.getRecipeInput(), world)) {
 				return fusionShrineBlockEntity.currentRecipe;
@@ -239,11 +236,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		this.currentRecipe = null;
 		this.currentRecipe = MultiblockCrafter.getRecipeHolderFromNbt(level, nbt, FusionShrineRecipe.class);
 		
-		if (nbt.contains("Upgrades", Tag.TAG_LIST)) {
-			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", Tag.TAG_COMPOUND));
-		} else {
-			this.upgrades = new UpgradeHolder();
-		}
+		this.upgrades = nbt.contains("Upgrades", Tag.TAG_LIST) ? UpgradeHolder.fromNbt(nbt.getList("Upgrades", Tag.TAG_COMPOUND)) : new UpgradeHolder();
 	}
 	
 	@Override
@@ -253,13 +246,10 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		nbt.putLong("FluidAmount", this.fluidStorage.amount);
 		nbt.putShort("CraftingTime", (short) this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
-		if (this.upgrades != null) {
-			nbt.put("Upgrades", this.upgrades.toNbt());
-		}
+		if (!this.upgrades.isEmpty()) nbt.put("Upgrades", this.upgrades.toNbt());
+		
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
-		if (this.currentRecipe != null) {
-			nbt.putString("CurrentRecipe", this.currentRecipe.id().toString());
-		}
+		if (this.currentRecipe != null) nbt.putString("CurrentRecipe", this.currentRecipe.id().toString());
 	}
 	
 	public void playSound(SoundEvent soundEvent, float volume) {
@@ -276,7 +266,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
 	}
 	
-	public @NotNull FluidVariant getFluidVariant() {
+	public FluidVariant getFluidVariant() {
 		if (this.fluidStorage.amount > 0) {
 			return this.fluidStorage.variant;
 		} else {
@@ -284,7 +274,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
 	}
 	
-	public @NotNull SingleVariantStorage<FluidVariant> getFluidStorage() {
+	public SingleVariantStorage<FluidVariant> getFluidStorage() {
 		return this.fluidStorage;
 	}
 	
@@ -302,7 +292,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	// "owned" is not to be taken literally here. The owner
 	// is always set to the last player interacted with to trigger advancements
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
@@ -315,12 +305,13 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	// UPGRADEABLE
 	@Override
 	public void resetUpgrades() {
-		this.upgrades = null;
+		this.upgrades = new UpgradeHolder();
 		this.setChanged();
 	}
 	
 	@Override
 	public void calculateUpgrades() {
+		assert level != null;
 		this.upgrades = Upgradeable.calculateUpgradeMods4(level, worldPosition, 2, 0, this.ownerUUID);
 		this.setChanged();
 	}

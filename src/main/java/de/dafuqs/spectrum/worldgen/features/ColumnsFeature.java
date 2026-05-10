@@ -9,7 +9,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.levelgen.feature.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -88,8 +88,7 @@ public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
         }
     }
 
-    @Nullable
-	private static BlockPos moveDownToGround(LevelAccessor world, int seaLevel, BlockPos.MutableBlockPos mutablePos, int distance) {
+	private static @Nullable BlockPos moveDownToGround(LevelAccessor world, int seaLevel, BlockPos.MutableBlockPos mutablePos, int distance) {
 		while (mutablePos.getY() > world.getMinBuildHeight() + 1 && distance > 0) {
             --distance;
             if (canPlaceAt(world, seaLevel, mutablePos)) {
@@ -112,8 +111,7 @@ public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
         }
     }
 
-    @Nullable
-	private static BlockPos moveUpToAir(LevelAccessor world, BlockPos.MutableBlockPos mutablePos, int distance) {
+	private static @Nullable BlockPos moveUpToAir(LevelAccessor world, BlockPos.MutableBlockPos mutablePos, int distance) {
 		while (mutablePos.getY() < world.getMaxBuildHeight() && distance > 0) {
             --distance;
             BlockState blockState = world.getBlockState(mutablePos);

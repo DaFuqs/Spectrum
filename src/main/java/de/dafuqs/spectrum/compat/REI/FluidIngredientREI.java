@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.recipe.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -14,8 +13,7 @@ public class FluidIngredientREI {
     // ALWAYS pass FluidIngredient.EMPTY INSTEAD OF null
     // DO NOT pass(OR EVEN USE AT ALL) hacked-in weird Ingredients.
     // Only use ones provided by FluidIngredient.of() or FluidIngredient.EMPTY.
-    public static EntryIngredient into(@NotNull FluidIngredient ingredient) {
-        Objects.requireNonNull(ingredient);
+    public static EntryIngredient into(FluidIngredient ingredient) {
         // Return empty stack if ingredient is empty.
         // Semi-redundant: the sole caller of this *checks if input is empty*.
         if (ingredient == FluidIngredient.EMPTY)

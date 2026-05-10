@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.stream.*;
@@ -28,8 +28,8 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	private final VoxelShape ABOVE_SHAPE = Block.box(0.0D, 16.0D, 0.0D, 16.0D, 32.0D, 16.0D);
 	private final VoxelShape INPUT_AREA_SHAPE = Shapes.or(INSIDE_SHAPE, ABOVE_SHAPE);
 	
-	private UUID ownerUUID;
-	private String ownerName;
+	private @Nullable UUID ownerUUID;
+	private @Nullable String ownerName;
 	
 	private int transferCooldown;
 	
@@ -91,19 +91,16 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	}
 	
 	private static void insertIntoEnderChest(EnderHopperBlockEntity enderHopperBlockEntity, ItemEntity itemEntity) {
-		UUID ownerUUID = enderHopperBlockEntity.getOwnerUUID();
-		if (ownerUUID != null) {
-			Player playerEntity = enderHopperBlockEntity.getOwnerIfOnline();
-			if (playerEntity != null) {
-				ItemStack sourceItemStack = itemEntity.getItem();
-				if (!sourceItemStack.isEmpty()) {
-					ItemStack remainderStack = addToEnderInventory(sourceItemStack, playerEntity, false);
-					
-					if (remainderStack.isEmpty()) {
-						itemEntity.discard();
-					} else {
-						itemEntity.setItem(remainderStack);
-					}
+		Player playerEntity = enderHopperBlockEntity.getOwnerIfOnline();
+		if (playerEntity != null) {
+			ItemStack sourceItemStack = itemEntity.getItem();
+			if (!sourceItemStack.isEmpty()) {
+				ItemStack remainderStack = addToEnderInventory(sourceItemStack, playerEntity, false);
+				
+				if (remainderStack.isEmpty()) {
+					itemEntity.discard();
+				} else {
+					itemEntity.setItem(remainderStack);
 				}
 			}
 		}
@@ -153,18 +150,13 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		}
 		return additionStack;
 	}
-	
-	@Nullable
-	private static Container getInputInventory(Level world, EnderHopperBlockEntity enderHopperBlockEntity) {
+
+	private static @Nullable Container getInputInventory(Level world, EnderHopperBlockEntity enderHopperBlockEntity) {
 		return InventoryHelper.getInventoryAt(world, enderHopperBlockEntity.getHopperX(), enderHopperBlockEntity.getHopperY() + 1.0D, enderHopperBlockEntity.getHopperZ());
 	}
 	
 	protected Component getContainerName() {
-		if (hasOwner()) {
-			return Component.translatable("block.spectrum.ender_hopper.owner", this.ownerName);
-		} else {
-			return Component.translatable("block.spectrum.ender_hopper");
-		}
+		return hasOwner() ? Component.translatable("block.spectrum.ender_hopper.owner", this.ownerName) : Component.translatable("block.spectrum.ender_hopper");
 	}
 	
 	public double getHopperX() {
@@ -183,12 +175,6 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 		return INPUT_AREA_SHAPE;
 	}
 	
-	public ItemStack getStack(int slot) {
-		Player playerEntity = level.getPlayerByUUID(this.ownerUUID);
-		PlayerEnderChestContainer enderInventory = playerEntity.getEnderChestInventory();
-		return enderInventory.getItem(slot);
-	}
-	
 	private void setCooldown(int cooldown) {
 		this.transferCooldown = cooldown;
 	}
@@ -198,12 +184,12 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	}
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
 	@Override
-	public String getOwnerName() {
+	public @Nullable String getOwnerName() {
 		return this.ownerName;
 	}
 	
@@ -218,28 +204,15 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(tag, registryLookup);
 		
-		if (tag.contains("OwnerUUID")) {
-			this.ownerUUID = tag.getUUID("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
-		if (tag.contains("OwnerName")) {
-			this.ownerName = tag.getString("OwnerName");
-		} else {
-			this.ownerName = null;
-		}
+		this.ownerUUID = tag.contains("OwnerUUID") ? tag.getUUID("OwnerUUID") : null;
+		this.ownerName = tag.contains("OwnerName") ? tag.getString("OwnerName") : null;
 	}
 	
 	@Override
 	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(tag, registryLookup);
 		
-		if (this.ownerUUID != null) {
-			tag.putUUID("OwnerUUID", this.ownerUUID);
-		}
-		if (this.ownerName != null) {
-			tag.putString("OwnerName", this.ownerName);
-		}
+		if (this.ownerUUID != null) tag.putUUID("OwnerUUID", this.ownerUUID);
+		if (this.ownerName != null) tag.putString("OwnerName", this.ownerName);
 	}
-	
 }

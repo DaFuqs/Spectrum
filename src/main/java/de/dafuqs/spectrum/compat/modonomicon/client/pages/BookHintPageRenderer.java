@@ -15,14 +15,23 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
 public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> implements PageWithTextRenderer {
     
-    private Style OBFUSCATED_STYLE;
-    private HintRevelationSoundInstance soundInstance;
+    private Style OBFUSCATED_STYLE = Style.EMPTY
+			.withColor(TextColor.fromRgb(0x000000))
+			.withBold(false)
+			.withItalic(false)
+			.withUnderlined(false)
+			.withStrikethrough(false)
+			.withObfuscated(true)
+			.withClickEvent(null)
+			.withHoverEvent(null)
+			.withInsertion(null);
+    private @Nullable HintRevelationSoundInstance soundInstance;
 	
 	public static class PaymentButtonWidget extends Button {
 
@@ -59,31 +68,16 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
     public void onBeginDisplayPage(BookEntryScreen parentScreen, int left, int top) {
         super.onBeginDisplayPage(parentScreen, left, top);
         
-        OBFUSCATED_STYLE = Style.EMPTY
-                .withColor(TextColor.fromRgb(0x000000))
-                .withBold(false)
-                .withItalic(false)
-				.withUnderlined(false)
-                .withStrikethrough(false)
-                .withObfuscated(true)
-                .withClickEvent(null)
-                .withHoverEvent(null)
-                .withInsertion(null)
-                .withFont(page.getBook().getFont());
-
+        OBFUSCATED_STYLE = OBFUSCATED_STYLE.withFont(page.getBook().getFont());
         obfuscatedText = null;
 		
-		boolean isDone = AdvancementHelper.hasAdvancement(Minecraft.getInstance().player, page.getCompletionAdvancement());
-        if (!isDone) {
+        if (!AdvancementHelper.hasAdvancement(Minecraft.getInstance().player, page.getCompletionAdvancement())) {
             revealProgress = -1;
-			
 			addButton(new PaymentButtonWidget(
 					2, BookEntryScreen.PAGE_HEIGHT - Button.DEFAULT_HEIGHT - 2,
 					BookEntryScreen.PAGE_WIDTH - 12, Button.DEFAULT_HEIGHT,
 					Component.empty(), this::paymentButtonClicked, this));
-        } else {
-            revealProgress = 0;
-        }
+        } else revealProgress = 0;
     }
 
     private BookTextHolder splitObfuscateText(BookTextHolder text) {
@@ -91,7 +85,8 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 			List<MutableComponent> newText = new ArrayList<>(1);
             newText.add(splitObfuscateText(text.getComponent().copy()));
             return new RenderedBookTextHolder(text, newText);
-        } else if (text instanceof RenderedBookTextHolder renderedText) {
+        }
+		if (text instanceof RenderedBookTextHolder renderedText) {
 			List<MutableComponent> newRenderedText = new ArrayList<>(renderedText.getRenderedText().size());
 			for (MutableComponent mutableText : renderedText.getRenderedText()) {
                 newRenderedText.add(splitObfuscateText(mutableText));
@@ -115,35 +110,25 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 	
 	private MutableComponent floodStyle(Component text, Style style) {
 		MutableComponent out = MutableComponent.create(text.getContents()).setStyle(style);
-		for (Component sibling : text.getSiblings()) {
-            out.append(floodStyle(sibling, style));
-        }
+		for (Component sibling : text.getSiblings()) out.append(floodStyle(sibling, style));
         return out;
     }
 
     private BookTextHolder obfuscateText(BookTextHolder text, @Nullable BookTextHolder splitText, int start) {
 		if (mc.level == null) return BookTextHolder.EMPTY;
 
-        if (revealProgress == 0) {
-            return text;
-        } else if (revealProgress == -1) {
+        if (revealProgress == 0) return text;
+		if (revealProgress == -1) {
             if (splitText != null) return splitText;
-            if (text.hasComponent()) {
-                return new BookTextHolder(floodStyle(text.getComponent(), OBFUSCATED_STYLE));
-            } else if (text instanceof RenderedBookTextHolder renderedText) {
-				
-				List<MutableComponent> mutableTexts = renderedText.getRenderedText().stream()
-                        .map(mutableText -> floodStyle(mutableText, OBFUSCATED_STYLE))
-                        .toList();
-                return new RenderedBookTextHolder(renderedText, mutableTexts);
-            }
+            if (text.hasComponent()) return new BookTextHolder(floodStyle(text.getComponent(), OBFUSCATED_STYLE));
+            if (text instanceof RenderedBookTextHolder renderedText)
+				return new RenderedBookTextHolder(renderedText, renderedText.getRenderedText().stream()
+						.map(mutableText -> floodStyle(mutableText, OBFUSCATED_STYLE))
+						.toList());
         }
 
-        if (revealProgress == 1 || revealProgress + 1 == start) {
-            splitText = splitObfuscateText(text);
-        }
-
-        if (revealProgress < start) return splitText;
+        if (revealProgress == 1 || revealProgress + 1 == start) splitText = splitObfuscateText(text);
+        if (revealProgress < start) return Objects.requireNonNull(splitText); // require non-null or the using code immediately NPE's
 
         if (splitText instanceof RenderedBookTextHolder renderedText) {
             int c = 0;
@@ -167,44 +152,30 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
             }
         }
 
-        return splitText;
+        return Objects.requireNonNull(splitText); // require non-null or the using code immediately NPE's
     }
 
     private boolean isDoneRevealing(BookTextHolder obfText) {
-        if (obfText instanceof RenderedBookTextHolder renderedText) {
-            var mutableTexts = renderedText.getRenderedText();
-            var lastText = mutableTexts.getLast();
-            var siblings = lastText.getSiblings();
-            var lastSibling = siblings.getLast();
-            return lastSibling.getSiblings().isEmpty();
-        }
-        return true;
-    }
+		return !(obfText instanceof RenderedBookTextHolder renderedText) || renderedText.getRenderedText().getLast().getSiblings().getLast().getSiblings().isEmpty();
+	}
 	
 	protected void paymentButtonClicked(Button button) {
 		if (mc.player == null || mc.level == null) return;
-        if (revealProgress > -1) {
-            // has already been paid
-            return;
-        }
+        if (revealProgress > -1) return; // has already been paid
+		if (!mc.player.isCreative() && !InventoryHelper.hasIngredientStacksInInventory(List.of(page.getCost()), mc.player.getInventory())) return;
 		
-		if (mc.player.isCreative() || InventoryHelper.hasIngredientStacksInInventory(List.of(page.getCost()), mc.player.getInventory())) {
-            soundInstance = new HintRevelationSoundInstance(mc.player);
-			Minecraft.getInstance().getSoundManager().play(soundInstance);
-            
-            ClientPlayNetworking.send(new GuidebookHintBoughtPayload(page.getCompletionAdvancement(), page.getCost()));
-            revealProgress = 1;
-			lastRevealTime = mc.level.getGameTime();
-			mc.player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
-        }
-    }
+		soundInstance = new HintRevelationSoundInstance(mc.player);
+		Minecraft.getInstance().getSoundManager().play(soundInstance);
+		
+		ClientPlayNetworking.send(new GuidebookHintBoughtPayload(page.getCompletionAdvancement(), page.getCost()));
+		revealProgress = 1;
+		lastRevealTime = mc.level.getGameTime();
+		mc.player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
+	}
 
     @Override
     public int getTextY() {
-        if (page.hasTitle()) {
-            return page.showTitleSeparator() ? 17 : 7;
-        }
-        return -4;
+        return page.hasTitle() ? page.showTitleSeparator() ? 17 : 7 : -4;
     }
 
     @Override
@@ -213,24 +184,21 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
         
         renderTitle(drawContext, this.page.getTitle(), page.showTitleSeparator(), BookEntryScreen.PAGE_WIDTH / 2, 0);
 
-        int textStart = 1;
-
-        obfuscatedText = obfuscateText(page.getText(), obfuscatedText, textStart);
+        obfuscatedText = obfuscateText(page.getText(), obfuscatedText, 1);
         renderBookTextHolder(drawContext, obfuscatedText, 0, getTextY(), BookEntryScreen.PAGE_WIDTH);
 
         var style = this.getClickedComponentStyleAt(mouseX, mouseY);
         if (style != null)
             this.parentScreen.renderComponentHoverEffect(drawContext, style, mouseX, mouseY);
 
-        if (revealProgress == -1) {
+        if (revealProgress == -1)
 			ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, BookEntryScreen.PAGE_WIDTH / 2 + 29, BookEntryScreen.PAGE_HEIGHT - Button.DEFAULT_HEIGHT - 1, mouseX, mouseY, page.getCost());
-        }
 
         if (revealProgress > 0) {
             long currentTime = System.currentTimeMillis() / 20;
             
             if (isDoneRevealing(obfuscatedText)) {
-                soundInstance.setDone();
+                if (soundInstance != null) soundInstance.setDone(); // not sure if it could ever be null but just to be safe
                 revealProgress = 0;
                 obfuscatedText = null;
             } else if (currentTime != lastRevealTime) {
@@ -240,21 +208,16 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
         }
     }
 
-    @Nullable
-    @Override
-    public Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
+	@Override
+	public @Nullable Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
         if (pMouseX > 0 && pMouseY > 0) {
             if (this.page.hasTitle()) {
                 var titleStyle = this.getClickedComponentStyleAtForTitle(this.page.getTitle(), BookEntryScreen.PAGE_WIDTH / 2, 0, pMouseX, pMouseY);
-                if (titleStyle != null) {
-                    return titleStyle;
-                }
+                if (titleStyle != null) return titleStyle;
             }
 
             var textStyle = this.getClickedComponentStyleAtForTextHolder(obfuscatedText, 0, this.getTextY(), BookEntryScreen.PAGE_WIDTH, pMouseX, pMouseY);
-            if (textStyle != null) {
-                return textStyle;
-            }
+            if (textStyle != null) return textStyle;
         }
         return super.getClickedComponentStyleAt(pMouseX, pMouseY);
     }

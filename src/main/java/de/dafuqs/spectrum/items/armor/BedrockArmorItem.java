@@ -12,13 +12,13 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public class BedrockArmorItem extends ArmorItem implements Preenchanted {
     @Environment(EnvType.CLIENT)
-	private BedrockArmorModel model;
+	private @Nullable BedrockArmorModel model;
 	
 	public BedrockArmorItem(Holder<ArmorMaterial> material, ArmorItem.Type type, Properties settings) {
         super(material, type, settings);
@@ -43,9 +43,8 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 
     @Environment(EnvType.CLIENT)
 	public BedrockArmorModel getArmorModel() {
-        if (model == null) {
-			model = provideArmorModelForSlot(getEquipmentSlot());
-        }
+        if (model == null) model = provideArmorModelForSlot(getEquipmentSlot());
+        
         return model;
     }
 	
@@ -55,7 +54,6 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 		return RenderType.entitySolid(SpectrumModelLayers.BEDROCK_ARMOR_ID);
     }
 
-    @NotNull
     @SuppressWarnings("unused")
 	public ResourceLocation getArmorTexture(ItemStack stack, EquipmentSlot slot) {
 		return SpectrumCommon.locate("textures/armor/bedrock_armor.png");

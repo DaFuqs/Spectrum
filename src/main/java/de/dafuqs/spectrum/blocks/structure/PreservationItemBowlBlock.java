@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class PreservationItemBowlBlock extends Block implements EntityBlock {
 	
@@ -57,9 +57,8 @@ public class PreservationItemBowlBlock extends Block implements EntityBlock {
 		return player.hasEffect(SpectrumStatusEffects.FATAL_SLUMBER);
 	}
 
-	@Nullable
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PlayerTrackerBlockEntity(pos, state);
 	}
 }

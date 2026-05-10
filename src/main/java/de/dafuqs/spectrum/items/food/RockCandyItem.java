@@ -8,7 +8,7 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -68,7 +68,7 @@ public class RockCandyItem extends Item {
 			ItemStack otherStack = otherEntity.getItem();
 			if (otherStack.getCount() < REQUIRED_ITEM_COUNT_PER_STAGE) continue;
 			
-			@Nullable RockCandyVariant itemVariant = RockCandyVariant.getFor(otherStack);
+			RockCandyVariant itemVariant = RockCandyVariant.getFor(otherStack);
 			if (itemVariant == null) continue;
 			
 			Item newItem = (stack.getItem() instanceof RockCandyItem ? ROCK_CANDY_VARIANTS : SUGAR_STICK_VARIANTS).get(itemVariant);
@@ -89,7 +89,7 @@ public class RockCandyItem extends Item {
 	}
 	
 	// *technically* we should prob. check if the entities share the same fluid pool, but eh
-	private static @NotNull List<ItemEntity> searchSecondaryIngredients(ItemEntity itemEntity, Level level, AABB box) {
+	private static List<ItemEntity> searchSecondaryIngredients(ItemEntity itemEntity, Level level, AABB box) {
 		return level.getEntitiesOfClass(ItemEntity.class, box.inflate(ITEM_SEARCH_RANGE),
 				entity -> !entity.hasPickUpDelay() && entity.isAlive() && entity != itemEntity && entity.isEyeInFluid(SpectrumFluidTags.LIQUID_CRYSTAL) && RockCandyVariant.getFor(entity.getItem()) != null);
 	}
@@ -126,7 +126,7 @@ public class RockCandyItem extends Item {
 		}
 		
 		@Override
-		public @NotNull String getSerializedName() {
+		public String getSerializedName() {
 			return this.toString().toLowerCase(Locale.ROOT);
 		}
 		

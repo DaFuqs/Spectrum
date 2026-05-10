@@ -8,7 +8,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -22,7 +22,7 @@ public abstract class EntitySummoningIdolBlock extends IdolBlock {
 	}
 
 	@Override
-	public MapCodec<? extends EntitySummoningIdolBlock> codec() {
+	public @Nullable MapCodec<? extends EntitySummoningIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

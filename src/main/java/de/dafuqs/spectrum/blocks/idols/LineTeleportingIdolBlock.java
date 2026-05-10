@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -23,12 +23,12 @@ public class LineTeleportingIdolBlock extends IdolBlock {
 	}
 
 	@Override
-	public MapCodec<? extends LineTeleportingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends LineTeleportingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 	
-	public static Direction getLookDirection(@NotNull Entity entity, boolean mirrorVertical, boolean mirrorHorizontal) {
+	public static Direction getLookDirection(Entity entity, boolean mirrorVertical, boolean mirrorHorizontal) {
 		double pitch = entity.getXRot();
 		if (pitch < -60) {
 			return mirrorVertical ? Direction.UP : Direction.DOWN;

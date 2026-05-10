@@ -10,7 +10,6 @@ import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -26,7 +25,7 @@ public abstract class PotionWorkshopCategory<T extends PotionWorkshopRecipeDispl
 	
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull T display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, T display) {
 		// bubbles
 		widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x + 17, startPoint.y + 21, 176, 0, 11, 27));
 		widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 1 + 18)).animationDurationTicks(display.craftingTime));

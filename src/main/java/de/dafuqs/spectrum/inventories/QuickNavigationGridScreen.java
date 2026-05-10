@@ -15,8 +15,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -104,7 +104,7 @@ public class QuickNavigationGridScreen<T extends AbstractContainerMenu> extends 
 		protected final Component text;
 		protected final @Nullable GridEntryCallback onClickCallback;
 		
-		protected GridEntry(Component text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
+		protected GridEntry(Component text, GridEntry.@Nullable GridEntryCallback onClickCallback) {
 			this.text = text;
 			this.onClickCallback = onClickCallback;
 		}
@@ -156,7 +156,7 @@ public class QuickNavigationGridScreen<T extends AbstractContainerMenu> extends 
 	}
 	
 	public static class EmptyGridEntry extends GridEntry {
-		protected EmptyGridEntry(@Nullable GridEntry.GridEntryCallback onClickCallback) {
+		protected EmptyGridEntry(GridEntry.@Nullable GridEntryCallback onClickCallback) {
 			super(Component.empty(), onClickCallback);
 		}
 		

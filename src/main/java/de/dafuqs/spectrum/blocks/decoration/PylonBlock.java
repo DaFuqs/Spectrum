@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -42,9 +42,8 @@ public class PylonBlock extends Block implements SimpleWaterloggedBlock {
         return CODEC;
     }
 
-    @Nullable
-    @Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	@Override
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		var world = ctx.getLevel();
 		var pos = ctx.getClickedPos();
 		var state = defaultBlockState();

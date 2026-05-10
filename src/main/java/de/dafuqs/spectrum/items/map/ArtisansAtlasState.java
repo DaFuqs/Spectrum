@@ -15,7 +15,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.saveddata.maps.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -24,7 +24,7 @@ public class ArtisansAtlasState extends MapItemSavedData {
 	private final MapStateAccessor accessor;
 	private Set<BlockPos> targets;
 	private BlockPos displayedCenter;
-	private ResourceLocation targetId;
+	private @Nullable ResourceLocation targetId;
 	@Nullable
 	private Vec3i displayDelta;
 	@Nullable
@@ -264,9 +264,8 @@ public class ArtisansAtlasState extends MapItemSavedData {
 	public @Nullable ResourceLocation getTargetId() {
 		return this.targetId;
 	}
-	
-	@Nullable
-	public Vec3i getDisplayDelta() {
+
+	public @Nullable Vec3i getDisplayDelta() {
 		return this.displayDelta;
 	}
 	

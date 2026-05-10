@@ -14,7 +14,7 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -106,7 +106,7 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	}
 	
 	@Override
-	public BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		var inkTank = getEnergyStorage(stack);
 		var progress = (int) Math.round(Mth.clampedLerp(0, 14, Math.log(inkTank.getEnergy(inkColor) / 100.0f) / Math.log(8) / 5.0F));
 		

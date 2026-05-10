@@ -10,7 +10,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class SpectrumFarmlandBlock extends FarmBlock {
 	
@@ -67,7 +67,7 @@ public class SpectrumFarmlandBlock extends FarmBlock {
 		world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(entity, blockState));
 	}
 	
-	public static boolean shouldMaintainFarmland(@NotNull BlockGetter world, @NotNull BlockPos pos) {
+	public static boolean shouldMaintainFarmland(BlockGetter world, BlockPos pos) {
 		Block block = world.getBlockState(pos.above()).getBlock();
 		return block instanceof CropBlock || block instanceof StemBlock || block instanceof AttachedStemBlock;
 	}

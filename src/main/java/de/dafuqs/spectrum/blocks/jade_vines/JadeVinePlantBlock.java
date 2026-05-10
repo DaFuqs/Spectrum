@@ -22,7 +22,8 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.Contract;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -55,7 +56,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 		return lootTable.getRandomItems(builder.create(LootContextParamSets.BLOCK));
 	}
 	
-	static void setHarvested(@NotNull BlockState blockState, @NotNull ServerLevel world, @NotNull BlockPos blockPos) {
+	static void setHarvested(BlockState blockState, ServerLevel world, BlockPos blockPos) {
 		BlockPos rootsPos = blockState.getValue(PART).getLowestRootsPos(blockPos);
 		if (world.getBlockState(rootsPos).getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
 			jadeVineRootsBlock.setPlantToAge(world, rootsPos, 1);
@@ -157,7 +158,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 	}
 
 	@Override
-	public boolean canSurvive(@NotNull BlockState state, LevelReader world, BlockPos pos) {
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
 		BlockState upState = world.getBlockState(pos.above());
 		Block upBlock = upState.getBlock();
 		JadeVinesPlantPart part = state.getValue(PART);
@@ -171,7 +172,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(PART, AGE);
 	}
 
@@ -226,13 +227,13 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 		TIP;
 		
 		@Contract(pure = true)
-		public @NotNull String toString() {
+		public String toString() {
 			return this.getSerializedName();
 		}
 		
 		@Override
 		@Contract(pure = true)
-		public @NotNull String getSerializedName() {
+		public String getSerializedName() {
 			return this == BASE ? "base" : this == MIDDLE ? "middle" : "tip";
 		}
 

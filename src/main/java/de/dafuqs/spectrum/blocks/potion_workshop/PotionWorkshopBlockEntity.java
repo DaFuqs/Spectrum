@@ -30,7 +30,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.stream.*;
@@ -147,7 +147,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		}
 	}
 	
-	public static boolean hasRoomInOutputInventoryFor(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity, int count) {
+	public static boolean hasRoomInOutputInventoryFor(PotionWorkshopBlockEntity potionWorkshopBlockEntity, int count) {
 		for (int slotID : potionWorkshopBlockEntity.getSlotsForFace(Direction.DOWN)) {
 			if (potionWorkshopBlockEntity.getItem(slotID).isEmpty()) {
 				count--;
@@ -159,7 +159,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		return false;
 	}
 	
-	public static @Nullable RecipeHolder<? extends PotionWorkshopRecipe> calculateRecipe(Level world, @NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+	public static @Nullable RecipeHolder<? extends PotionWorkshopRecipe> calculateRecipe(Level world, PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 		if (!potionWorkshopBlockEntity.inventoryChanged) {
 			return potionWorkshopBlockEntity.currentRecipe;
 		}
@@ -358,13 +358,13 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		return builder.build();
 	}
 	
-	public static void decrementBaseIngredientSlot(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity, int amount) {
+	public static void decrementBaseIngredientSlot(PotionWorkshopBlockEntity potionWorkshopBlockEntity, int amount) {
 		if (amount > 0) {
 			decrementUsingRemainder(potionWorkshopBlockEntity, potionWorkshopBlockEntity.getItem(BASE_INPUT_SLOT_ID), amount);
 		}
 	}
 	
-	public static void decrementIngredientSlots(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+	public static void decrementIngredientSlots(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 		potionWorkshopBlockEntity.getItem(MERMAIDS_GEM_INPUT_SLOT_ID).shrink(1);
 		if (potionWorkshopBlockEntity.level == null) return;
 		
@@ -387,7 +387,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		}
 	}
 	
-	public static void decrementReagentSlots(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+	public static void decrementReagentSlots(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 		for (int i : REAGENT_SLOTS) {
 			ItemStack currentStack = potionWorkshopBlockEntity.getItem(i);
 			if (!currentStack.isEmpty()) {
@@ -396,7 +396,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		}
 	}
 	
-	private static void decrementUsingRemainder(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity, ItemStack currentStack, int amount) {
+	private static void decrementUsingRemainder(PotionWorkshopBlockEntity potionWorkshopBlockEntity, ItemStack currentStack, int amount) {
 		ItemStack currentRemainder = currentStack.getRecipeRemainder();
 		currentStack.shrink(amount);
 		if (!currentRemainder.isEmpty()) {
@@ -404,7 +404,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		}
 	}
 	
-	private static void addToInventoryOrSpawn(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity, ItemStack currentRemainder) {
+	private static void addToInventoryOrSpawn(PotionWorkshopBlockEntity potionWorkshopBlockEntity, ItemStack currentRemainder) {
 		currentRemainder = InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, currentRemainder, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 		if (!currentRemainder.isEmpty()) {
 			Containers.dropItemStack(potionWorkshopBlockEntity.level, potionWorkshopBlockEntity.worldPosition.getX(), potionWorkshopBlockEntity.worldPosition.getY(), potionWorkshopBlockEntity.worldPosition.getZ(), currentRemainder);
@@ -508,7 +508,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	}
 	
 	@Override
-	public void setItem(int slot, @NotNull ItemStack stack) {
+	public void setItem(int slot, ItemStack stack) {
 		ItemStack itemStack = this.inventory.get(slot);
 		if (!ItemStack.isSameItemSameComponents(stack, itemStack))
 			this.inventoryChanged = true;
@@ -534,7 +534,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	}
 	
 	@Override
-	public boolean canPlaceItemThroughFace(int slot, @NotNull ItemStack stack, @Nullable Direction dir) {
+	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction dir) {
 		return canPlaceItem(slot, stack);
 	}
 	
@@ -558,10 +558,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	public Component getDisplayName() {
 		return Component.translatable("block.spectrum.potion_workshop");
 	}
-	
-	@Nullable
+
 	@Override
-	public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
+	public @Nullable AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
 		return new PotionWorkshopScreenHandler(syncId, inv, this, this.propertyDelegate);
 	}
 }

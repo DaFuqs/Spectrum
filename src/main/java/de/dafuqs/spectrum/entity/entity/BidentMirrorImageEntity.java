@@ -12,7 +12,7 @@ import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class BidentMirrorImageEntity extends BidentBaseEntity {
 	public BidentMirrorImageEntity(Level world) {

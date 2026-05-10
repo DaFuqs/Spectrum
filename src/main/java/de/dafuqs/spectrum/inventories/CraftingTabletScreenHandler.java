@@ -15,7 +15,6 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -107,7 +106,7 @@ public class CraftingTabletScreenHandler extends RecipeBookMenu<RecipeInput, Rec
 		
 	}
 	
-	protected void updateResult(AbstractContainerMenu handler, @NotNull Level world, Player player, CraftingTabletInventory inventory) {
+	protected void updateResult(AbstractContainerMenu handler, Level world, Player player, CraftingTabletInventory inventory) {
 		if (!world.isClientSide()) {
 			ServerPlayer serverPlayerEntity = (ServerPlayer) player;
 			

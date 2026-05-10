@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class BlockPlacerBlock extends RedstoneInteractionBlock implements EntityBlock {
 	
@@ -72,7 +72,7 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 	
 	// We can't reuse the vanilla BlockPlacementDispenserBehavior, since we are using a different orientation for our block:
 	// BlockPlacerBlock.ORIENTATION instead of DispenserBlock.FACING
-	protected void tryPlace(@NotNull ItemStack stack, BlockSource pointer, @Nullable Player owner) {
+	protected void tryPlace(ItemStack stack, BlockSource pointer, @Nullable Player owner) {
 		Level world = pointer.level();
         if (stack.getItem() instanceof BlockItem blockItem) {
 			Direction facing = pointer.state().getValue(BlockPlacerBlock.ORIENTATION).front();
@@ -153,16 +153,15 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 			this.facing = facing;
 			this.cause = cause;
 		}
-		
+
 		// Not global, as to avoid any exploits where Ender Droppers et al. can be placed without player consent.
-		@Nullable
 		@Override
-		public Player getPlayer() {
+		public @Nullable Player getPlayer() {
 			return this.getItemInHand().is(SpectrumItemTags.PLAYER_ATTRIBUTED_PLACEMENT) ? this.cause : null;
 		}
 		
 		@Override
-		public @NotNull Direction getHorizontalDirection() {
+		public Direction getHorizontalDirection() {
 			return facing.getOpposite();
 		}
 		

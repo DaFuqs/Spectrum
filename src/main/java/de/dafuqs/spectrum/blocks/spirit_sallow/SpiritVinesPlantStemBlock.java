@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
@@ -15,8 +16,13 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import org.jspecify.annotations.Nullable;
 
 public class SpiritVinesPlantStemBlock extends GrowingPlantHeadBlock implements SpiritVine {
+	public static final MapCodec<SpiritVinesPlantStemBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+			propertiesCodec(),
+			SpectrumRegistries.GEMSTONE_COLOR.byNameCodec().fieldOf("color").forGetter(b -> b.gemstoneColor)
+	).apply(instance, SpiritVinesPlantStemBlock::new));
 	
 	private final GemstoneColor gemstoneColor;
 	
@@ -28,8 +34,7 @@ public class SpiritVinesPlantStemBlock extends GrowingPlantHeadBlock implements 
 
 	@Override
 	public MapCodec<? extends SpiritVinesPlantStemBlock> codec() {
-		//TODO: Make the codec
-		return null;
+		return CODEC;
 	}
 	
 	@Override
@@ -44,26 +49,14 @@ public class SpiritVinesPlantStemBlock extends GrowingPlantHeadBlock implements 
 	
 	@Override
 	protected Block getBodyBlock() {
-		switch (gemstoneColor) {
-			case BuiltinGemstoneColor.CYAN -> {
-				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT;
-			}
-			case BuiltinGemstoneColor.MAGENTA -> {
-				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT;
-			}
-			case BuiltinGemstoneColor.YELLOW -> {
-				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT;
-			}
-			case BuiltinGemstoneColor.BLACK -> {
-				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT;
-			}
-			case BuiltinGemstoneColor.WHITE -> {
-				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT;
-			}
-			default -> {
-				return null;
-			}
-		}
+		return switch (gemstoneColor) {
+			case BuiltinGemstoneColor.MAGENTA -> SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT;
+			case BuiltinGemstoneColor.YELLOW  -> SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT;
+			case BuiltinGemstoneColor.BLACK   -> SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT;
+			case BuiltinGemstoneColor.WHITE   -> SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT;
+			case BuiltinGemstoneColor.CYAN    -> SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT;
+			default -> throw new IllegalStateException("Unknown color: " + gemstoneColor);
+		};
 	}
 	
 	@Override

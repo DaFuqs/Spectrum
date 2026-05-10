@@ -14,7 +14,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -87,7 +86,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public boolean matches(@NotNull RecipeInput inv, Level world) {
+	public boolean matches(RecipeInput inv, Level world) {
 		if (enoughExperienceSupplied(inv)) {
 			return super.matches(inv, world);
 		}

@@ -12,7 +12,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -37,10 +37,9 @@ public class BedrockAnvilBlock extends AnvilBlock {
 	protected void falling(FallingBlockEntity entity) {
 		entity.setHurtsEntities(3.0F, 64);
 	}
-	
+
 	@Override
-	@Nullable
-	public MenuProvider getMenuProvider(BlockState state, Level world, BlockPos pos) {
+	public @Nullable MenuProvider getMenuProvider(BlockState state, Level world, BlockPos pos) {
 		return new SimpleMenuProvider((syncId, inventory, player) -> new BedrockAnvilScreenHandler(syncId, inventory, ContainerLevelAccess.create(world, pos)), TITLE);
 	}
 

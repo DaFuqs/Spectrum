@@ -13,7 +13,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
@@ -81,7 +80,7 @@ public class SpectrumEnchantmentHelper {
 	 * @param stack The stack to check
 	 * @return true if it is a book that can be turned into an enchanted book by enchanting
 	 */
-	public static boolean isEnchantableBook(@NotNull ItemStack stack) {
+	public static boolean isEnchantableBook(ItemStack stack) {
 		return stack.is(SpectrumItemTags.ENCHANTABLE_BOOKS) || stack.getItem() instanceof BookItem;
 	}
 	
@@ -104,7 +103,7 @@ public class SpectrumEnchantmentHelper {
 	}
 	
 	@SafeVarargs
-	public static Tuple<ItemStack, Integer> removeEnchantments(HolderLookup.Provider registryLookup, @NotNull ItemStack itemStack, ResourceKey<Enchantment>... enchantmentKeys) {
+	public static Tuple<ItemStack, Integer> removeEnchantments(HolderLookup.Provider registryLookup, ItemStack itemStack, ResourceKey<Enchantment>... enchantmentKeys) {
 		if (!EnchantmentHelper.hasAnyEnchantments(itemStack)) {
 			return new Tuple<>(itemStack, 0);
 		}
@@ -121,7 +120,7 @@ public class SpectrumEnchantmentHelper {
 	}
 	
 	@SafeVarargs
-	public static Tuple<ItemStack, Integer> removeEnchantments(@NotNull ItemStack itemStack, Holder<Enchantment>... enchantments) {
+	public static Tuple<ItemStack, Integer> removeEnchantments(ItemStack itemStack, Holder<Enchantment>... enchantments) {
 		return removeEnchantments(itemStack, Arrays.stream(enchantments).toList());
 	}
 	
@@ -132,7 +131,7 @@ public class SpectrumEnchantmentHelper {
 	 * @param enchantments the enchantments to remove
 	 * @return The resulting stack & the count of enchants that were removed
 	 */
-	public static <T extends Holder<Enchantment>> Tuple<ItemStack, Integer> removeEnchantments(@NotNull ItemStack itemStack, List<T> enchantments) {
+	public static <T extends Holder<Enchantment>> Tuple<ItemStack, Integer> removeEnchantments(ItemStack itemStack, List<T> enchantments) {
 		var removals = new AtomicInteger(0);
 		var builder = new ItemEnchantments.Mutable(EnchantmentHelper.getEnchantmentsForCrafting(itemStack));
 		enchantments.forEach(enchantment -> {

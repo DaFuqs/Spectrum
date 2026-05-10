@@ -20,7 +20,7 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -58,7 +58,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	;
 	
-	public static @Nullable PotionWorkshopBrewingRecipe getInverseRecipe(@NotNull Holder<MobEffect> statusEffect, MobEffectCategory sourceCategory, BiMap<Holder<MobEffect>, Holder<MobEffect>> map) {
+	public static @Nullable PotionWorkshopBrewingRecipe getInverseRecipe(Holder<MobEffect> statusEffect, MobEffectCategory sourceCategory, BiMap<Holder<MobEffect>, Holder<MobEffect>> map) {
 		if (statusEffect.value().getCategory() == sourceCategory) {
 			Holder<MobEffect> beneficialEffect = map.getOrDefault(statusEffect, null);
 			if (beneficialEffect == null) {
@@ -380,7 +380,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		return false;
 	}
 	
-	private List<InkPoweredStatusEffectInstance> applyPotentDecreasingEffect(@NotNull List<InkPoweredStatusEffectInstance> statusEffectInstances, RandomSource random) {
+	private List<InkPoweredStatusEffectInstance> applyPotentDecreasingEffect(List<InkPoweredStatusEffectInstance> statusEffectInstances, RandomSource random) {
 		List<InkPoweredStatusEffectInstance> splitInstances = new ArrayList<>();
 		
 		for (InkPoweredStatusEffectInstance poweredInstance : statusEffectInstances) {

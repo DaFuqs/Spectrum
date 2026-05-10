@@ -4,8 +4,8 @@ import de.dafuqs.spectrum.particle.effect.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
 public class ColoredExplosionParticle extends HugeExplosionParticle {

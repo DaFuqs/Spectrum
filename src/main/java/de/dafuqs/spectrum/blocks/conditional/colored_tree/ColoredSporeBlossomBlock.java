@@ -8,6 +8,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -36,8 +37,8 @@ public class ColoredSporeBlossomBlock extends SporeBlossomBlock {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredSporeBlossomBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredSporeBlossomBlock byColor(InkColor color) {
 		return BLOSSOMS.get(color);
 	}
 	

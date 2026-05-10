@@ -3,40 +3,31 @@ package de.dafuqs.spectrum.api.block;
 import net.minecraft.nbt.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.scores.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public interface PlayerOwnedWithName extends PlayerOwned {
 	
-	static UUID readOwnerUUID(CompoundTag nbt) {
-		if (nbt.contains("OwnerUUID")) {
-			return nbt.getUUID("OwnerUUID");
-		}
-		return null;
+	static @Nullable UUID readOwnerUUID(CompoundTag nbt) {
+		return nbt.contains("OwnerUUID") ? nbt.getUUID("OwnerUUID") : null;
 	}
 	
-	static void writeOwnerName(CompoundTag nbt, String ownerName) {
-		if (ownerName != null) {
-			nbt.putString("OwnerName", ownerName);
-		}
+	static void writeOwnerName(CompoundTag nbt, @Nullable String ownerName) {
+		if (ownerName != null) nbt.putString("OwnerName", ownerName);
 	}
 	
 	static String readOwnerName(CompoundTag nbt) {
-		if (nbt.contains("OwnerName")) {
-			return nbt.getString("OwnerName");
-		}
-		return "???";
+		return nbt.contains("OwnerName") ? nbt.getString("OwnerName") : "???";
 	}
 	
-	String getOwnerName();
+	@Nullable String getOwnerName();
 	
 	default boolean isOwnerOrSameTeamAsOwner(Player player) {
-		if(getOwnerUUID().equals(player.getUUID())) {
-			return true;
-		}
+		if (Objects.equals(getOwnerUUID(), player.getUUID())) return true;
 		
 		PlayerTeam team = player.getTeam();
-		return  team != null && team.getPlayers().contains(getOwnerName());
+		return team != null && team.getPlayers().contains(getOwnerName());
 	}
 	
 }

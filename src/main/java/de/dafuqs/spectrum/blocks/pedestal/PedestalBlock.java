@@ -31,8 +31,8 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -56,9 +56,9 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 		
 		Upgradeable.registerUpgradePosOffsets(UPGRADE_BLOCK_OFFSETS);
 	}
-	
+
 	@Override
-	public MapCodec<? extends PedestalBlock> codec() {
+	public @Nullable MapCodec<? extends PedestalBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -67,7 +67,7 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	 * Sets pedestal to a new tier
 	 * while keeping the inventory and all other data
 	 */
-	public static void upgradeToVariant(@NotNull Level world, BlockPos blockPos, PedestalVariant newPedestalVariant) {
+	public static void upgradeToVariant(Level world, BlockPos blockPos, PedestalVariant newPedestalVariant) {
 		world.setBlockAndUpdate(blockPos, newPedestalVariant.getPedestalBlock().getStateForPlacement(new DirectionalPlaceContext(world, blockPos, Direction.DOWN, null, Direction.UP)));
 	}
 	
@@ -87,7 +87,7 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	 * @param newPedestalRecipeTier The tier the pedestal has been upgraded to
 	 */
 	@Environment(EnvType.CLIENT)
-	public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, @NotNull PedestalRecipeTier newPedestalRecipeTier) {
+	public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, PedestalRecipeTier newPedestalRecipeTier) {
 		Minecraft client = Minecraft.getInstance();
 		Level world = client.level;
 		if (world == null) return;
@@ -216,10 +216,9 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 			super.onRemove(state, world, pos, newState, moved);
 		}
 	}
-	
+
 	@Override
-	@Nullable
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PedestalBlockEntity(pos, state);
 	}
 	
@@ -234,7 +233,7 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	}
 	
 	@Override
-	public int getAnalogOutputSignal(BlockState state, @NotNull Level world, BlockPos pos) {
+	public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
 		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
 	}
 	
@@ -242,15 +241,14 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return createTickerHelper(type, SpectrumBlockEntities.PEDESTAL, world.isClientSide() ? PedestalBlockEntity::clientTick : PedestalBlockEntity::serverTick);
 	}
 	
 	@Override
-	public void neighborChanged(BlockState state, @NotNull Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		if (!world.isClientSide()) {
 			if (this.checkGettingPowered(world, pos)) {
 				this.power(world, pos);
@@ -262,7 +260,7 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void animateTick(@NotNull BlockState state, Level world, BlockPos pos, RandomSource random) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		if (state.getValue(BlockStateProperties.POWERED)) {
 			Vector3f color = new Vector3f(0.5F, 0.5F, 0.5F);
 			float xOffset = random.nextFloat();
@@ -279,7 +277,7 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	}
 	
 	@Override
-	public BlockState getStateForPlacement(@NotNull BlockPlaceContext ctx) {
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		BlockState placementState = this.defaultBlockState();
 		
 		if (ctx.getLevel().getBestNeighborSignal(ctx.getClickedPos()) > 0) {

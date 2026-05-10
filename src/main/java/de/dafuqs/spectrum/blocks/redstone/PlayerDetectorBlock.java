@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -87,7 +87,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements EntityBlock {
 		return 20;
 	}
 	
-	private UUID getOwnerUUID(Level world, BlockPos blockPos) {
+	private @Nullable UUID getOwnerUUID(Level world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity instanceof PlayerDetectorBlockEntity) {
 			return ((PlayerDetectorBlockEntity) blockEntity).getOwnerUUID();
@@ -95,17 +95,16 @@ public class PlayerDetectorBlock extends DetectorBlock implements EntityBlock {
 		return null;
 	}
 	
-	private String getOwnerName(Level world, BlockPos blockPos) {
+	private @Nullable String getOwnerName(Level world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity instanceof PlayerDetectorBlockEntity) {
 			return ((PlayerDetectorBlockEntity) blockEntity).getOwnerName();
 		}
 		return null;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PlayerDetectorBlockEntity(pos, state);
 	}
 }

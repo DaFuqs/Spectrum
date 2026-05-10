@@ -11,7 +11,6 @@ import net.minecraft.client.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -21,7 +20,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 	protected final int minFermentationTimeHours;
 	protected final Optional<FermentationData> fermentationData;
 	
-	public TitrationBarrelDisplay(@NotNull RecipeHolder<ITitrationBarrelRecipe> recipe) {
+	public TitrationBarrelDisplay(RecipeHolder<ITitrationBarrelRecipe> recipe) {
 		super(recipe, buildInputs(recipe.value()), List.of(buildOutputs(recipe.value())));
 		if (recipe.value().getTappingItem() == Items.AIR) {
 			this.tappingIngredient = EntryIngredient.empty();

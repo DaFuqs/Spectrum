@@ -18,7 +18,7 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.stream.*;
@@ -155,7 +155,7 @@ public class PresentBlockItem extends BlockItem {
 	}
 	
 	@Override
-	public void onCraftedBy(@NotNull ItemStack stack, @NotNull Level world, @NotNull Player player) {
+	public void onCraftedBy(ItemStack stack, Level world, Player player) {
 		super.onCraftedBy(stack, world, player);
 		setOwner(stack, player);
 	}
@@ -169,7 +169,7 @@ public class PresentBlockItem extends BlockItem {
 		return stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).itemCopyStream();
 	}
 	
-	public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+	public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
 		return !stack.has(DataComponents.HIDE_TOOLTIP) && !stack.has(DataComponents.HIDE_ADDITIONAL_TOOLTIP) && !isWrapped(stack) ? Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(BundleTooltip::new) : Optional.empty();
 	}
 	

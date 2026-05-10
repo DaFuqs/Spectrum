@@ -18,7 +18,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -131,7 +130,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 		return itemStack.has(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP);
 	}
 	
-	public boolean removePlayerExperience(@NotNull Player playerEntity, int experience) {
+	public boolean removePlayerExperience(Player playerEntity, int experience) {
 		if (playerEntity.isCreative()) {
 			return true;
 		} else if (getActualPlayerExperience(playerEntity) < experience) {

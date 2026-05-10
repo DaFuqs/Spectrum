@@ -31,8 +31,9 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.gameevent.vibrations.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.Contract;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 import java.lang.Math;
 import java.util.*;
@@ -266,9 +267,8 @@ public class PreservationTurretEntity extends AbstractGolem implements Enemy, Vi
 			
 		}
 	}
-	
-	@Nullable
-	protected Direction findAttachSide(BlockPos pos) {
+
+	protected @Nullable Direction findAttachSide(BlockPos pos) {
 		for (Direction direction : Direction.values()) {
 			if (this.canStay(pos, direction)) {
 				return direction;

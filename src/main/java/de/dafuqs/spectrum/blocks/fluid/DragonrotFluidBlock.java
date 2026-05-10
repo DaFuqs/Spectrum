@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	
@@ -49,7 +49,7 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	@Override
-	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState, Direction direction) {
+	public @Nullable BlockState handleFluidCollision(Level world, FluidState state, FluidState otherState, Direction direction) {
 		if (otherState.is(FluidTags.WATER)) {
 			return SpectrumBlocks.SLUSH.defaultBlockState();
 		} else if (otherState.is(FluidTags.LAVA)) {

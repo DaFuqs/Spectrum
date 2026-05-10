@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -120,7 +120,7 @@ public abstract class SpectrumFluid extends FlowingFluid {
 	
 	public abstract RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType();
 	
-	public @Nullable <R extends FluidConvertingRecipe> R getConversionRecipeFor(RecipeType<R> recipeType, @NotNull Level world, ItemStack itemStack) {
+	public @Nullable <R extends FluidConvertingRecipe> R getConversionRecipeFor(RecipeType<R> recipeType, Level world, ItemStack itemStack) {
 		RecipeHolder<R> entry = world.getRecipeManager().getRecipeFor(recipeType, new SingleRecipeInput(itemStack), world).orElse(null);
 		return entry == null ? null : entry.value();
 	}

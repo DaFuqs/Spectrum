@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.render.animation;
 
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -81,11 +80,11 @@ public final class FlowData<N extends Number> {
 		return signature.handler;
 	}
 	
-	public void addStateListener(@NotNull FlowState state, KeyFrame<N> target) {
+	public void addStateListener(FlowState state, KeyFrame<N> target) {
 		stateListeners.put(state, target);
 	}
 	
-	public void notifyStateChange(@NotNull FlowState state, boolean clearOnMiss) {
+	public void notifyStateChange(FlowState state, boolean clearOnMiss) {
 		if (clearOnMiss) {
 			setNextKeyFrame(stateListeners.getOrDefault(state, signature.defaultKeyFrame));
 			return;

@@ -26,7 +26,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;
@@ -142,10 +142,9 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 		builder.define(COLOR_AND_SHEARED, (byte) 0);
 		builder.define(HATLESS, false);
 	}
-	
-	@Nullable
+
 	@Override
-	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
+	public @Nullable AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
 		EggLayingWoolyPigEntity other = (EggLayingWoolyPigEntity) entity;
 		EggLayingWoolyPigEntity child = SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.create(world);
 		if (child != null) {

@@ -33,7 +33,7 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.*;
 
 import java.util.*;
@@ -384,9 +384,8 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 			this.waitCountdown = Math.max(1, this.waitCountdown);
 		}
 	}
-	
-	@Nullable
-	private Tuple<SimpleParticleType, SimpleParticleType> getFluidParticles(BlockState blockState) {
+
+	private @Nullable Tuple<SimpleParticleType, SimpleParticleType> getFluidParticles(BlockState blockState) {
 		Tuple<SimpleParticleType, SimpleParticleType> particles = null;
 		if (this.level().getBlockState(blockPosition()).getBlock() instanceof SpectrumFluidBlock spectrumFluidBlock) {
 			particles = spectrumFluidBlock.getFishingParticles();
@@ -527,15 +526,13 @@ public abstract class SpectrumFishingBobberEntity extends Projectile {
 			((PlayerEntityAccessor) playerEntity).setSpectrumBobber(fishingBobber);
 		}
 	}
-	
-	@Nullable
-	public Player getPlayerOwner() {
+
+	public @Nullable Player getPlayerOwner() {
 		Entity entity = this.getOwner();
 		return entity instanceof Player ? (Player) entity : null;
 	}
-	
-	@Nullable
-	public Entity getHookedEntity() {
+
+	public @Nullable Entity getHookedEntity() {
 		return this.hookedEntity;
 	}
 	

@@ -15,7 +15,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
@@ -39,7 +38,7 @@ public class BlackHoleChestBlockEntityRenderer implements BlockEntityRenderer<Bl
 		this.orb = root.getChild("orb");
 	}
 	
-	public static @NotNull LayerDefinition getTexturedModelData() {
+	public static LayerDefinition getTexturedModelData() {
 		MeshDefinition modelData = new MeshDefinition();
 		PartDefinition modelPartData = modelData.getRoot();
 		PartDefinition shell = modelPartData.addOrReplaceChild("shell", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -9.0F, -7.0F, 14.0F, 9.0F, 14.0F, new CubeDeformation(0.0F))

@@ -25,14 +25,14 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
 public class ModularExplosion {
 	
 	// Call to boom
-	public static void explode(@NotNull ServerLevel world, BlockPos pos, @Nullable Player owner, double baseBlastRadius, float baseDamage, ExplosionArchetype archetype, List<ExplosionModifier> modifiers) {
+	public static void explode(ServerLevel world, BlockPos pos, @Nullable Player owner, double baseBlastRadius, float baseDamage, ExplosionArchetype archetype, List<ExplosionModifier> modifiers) {
 		DamageSource damageSource = world.damageSources().explosion(null);
 		
 		float damageMod = 1F;
@@ -122,7 +122,7 @@ public class ModularExplosion {
 		}
 	}
 	
-	private static List<BlockPos> processExplosion(@NotNull ServerLevel world, @Nullable Player owner, BlockPos center, ExplosionShape shape, double blastRadius, ItemStack miningStack) {
+	private static List<BlockPos> processExplosion(ServerLevel world, @Nullable Player owner, BlockPos center, ExplosionShape shape, double blastRadius, ItemStack miningStack) {
 		Explosion explosion = new Explosion(world, owner, center.getX(), center.getY(), center.getZ(), (float) blastRadius, false, Explosion.BlockInteraction.DESTROY);
 		
 		ObjectArrayList<Pair<ItemStack, BlockPos>> drops = new ObjectArrayList<>();
@@ -149,7 +149,7 @@ public class ModularExplosion {
 		return affectedBlocks;
 	}
 	
-	private static boolean processBlock(@NotNull ServerLevel world, @Nullable Entity owner, RandomSource random, BlockPos center, BlockPos pos, ObjectArrayList<Pair<ItemStack, BlockPos>> drops, ItemStack miningStack, Explosion explosion) {
+	private static boolean processBlock(ServerLevel world, @Nullable Entity owner, RandomSource random, BlockPos center, BlockPos pos, ObjectArrayList<Pair<ItemStack, BlockPos>> drops, ItemStack miningStack, Explosion explosion) {
 		var state = world.getBlockState(pos);
 		var block = state.getBlock();
 		var blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;

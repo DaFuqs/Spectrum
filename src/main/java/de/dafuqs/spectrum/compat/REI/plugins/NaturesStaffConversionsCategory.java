@@ -9,7 +9,6 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
 import net.minecraft.network.chat.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -32,7 +31,7 @@ public class NaturesStaffConversionsCategory extends GatedDisplayCategory<Nature
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull NaturesStaffConversionsDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, NaturesStaffConversionsDisplay display) {
 		widgets.add(Widgets.createArrow(new Point(startPoint.x + 27, startPoint.y + 4)));
 		widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 5)));
 		widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 5)).entries(display.getInputEntries().get(0)).markInput());

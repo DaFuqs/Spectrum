@@ -13,14 +13,14 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
 public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity implements WorldlyContainer, PlayerOwnedWithName {
 	
-	private UUID ownerUUID;
-	private String ownerName;
+	private @Nullable UUID ownerUUID;
+	private @Nullable String ownerName;
 	private long lastNonOwnerOpenedTick;
 	
 	public HeartboundChestBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -123,12 +123,12 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
 	@Override
-	public String getOwnerName() {
+	public @Nullable String getOwnerName() {
 		return this.ownerName;
 	}
 	

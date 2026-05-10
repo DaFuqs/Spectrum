@@ -16,7 +16,8 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.pattern.*;
 import net.minecraft.world.level.block.state.predicate.*;
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.Contract;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -95,8 +96,8 @@ public class SpectrumSkullBlock extends SkullBlock {
 		}
 		return Optional.empty();
 	}
-	
-	public static SpectrumSkullType getSkullType(Block block) {
+
+	public static @Nullable SpectrumSkullType getSkullType(Block block) {
 		if (block instanceof SpectrumWallSkullBlock) {
 			return SpectrumWallSkullBlock.MOB_WALL_HEADS.inverse().get(block);
 		} else {
@@ -123,7 +124,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 	}
 	
 	@Contract(pure = true)
-	public static @NotNull Collection<Block> getMobHeads() {
+	public static Collection<Block> getMobHeads() {
 		return MOB_HEADS.values();
 	}
 	
@@ -143,10 +144,9 @@ public class SpectrumSkullBlock extends SkullBlock {
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new SpectrumSkullBlockEntity(pos, state);
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return null;
 	}
 	

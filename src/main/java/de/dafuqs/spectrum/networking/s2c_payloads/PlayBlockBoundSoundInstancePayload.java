@@ -13,7 +13,6 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.level.block.*;
-import org.jetbrains.annotations.*;
 
 // MaxDurationTicks of <1 means "stop playing"
 public record PlayBlockBoundSoundInstancePayload(SoundEvent soundEvent, BlockPos pos, Holder<Block> block, int maxDurationTicks) implements CustomPacketPayload {
@@ -27,13 +26,13 @@ public record PlayBlockBoundSoundInstancePayload(SoundEvent soundEvent, BlockPos
 			PlayBlockBoundSoundInstancePayload::new
 	);
 	
-	public static void sendPlayBlockBoundSoundInstance(SoundEvent soundEvent, @NotNull ServerLevel world, BlockPos pos, int maxDurationTicks) {
+	public static void sendPlayBlockBoundSoundInstance(SoundEvent soundEvent, ServerLevel world, BlockPos pos, int maxDurationTicks) {
 		for (ServerPlayer player : PlayerLookup.tracking(world, pos)) {
 			ServerPlayNetworking.send(player, new PlayBlockBoundSoundInstancePayload(soundEvent, pos, world.getBlockState(pos).getBlock().builtInRegistryHolder(), maxDurationTicks));
 		}
 	}
 	
-	public static void sendCancelBlockBoundSoundInstance(@NotNull ServerLevel world, BlockPos pos) {
+	public static void sendCancelBlockBoundSoundInstance(ServerLevel world, BlockPos pos) {
 		for (ServerPlayer player : PlayerLookup.tracking(world, pos)) {
 			ServerPlayNetworking.send(player, new PlayBlockBoundSoundInstancePayload(SoundEvents.EMPTY, pos, world.getBlockState(pos).getBlock().builtInRegistryHolder(), -1));
 		}

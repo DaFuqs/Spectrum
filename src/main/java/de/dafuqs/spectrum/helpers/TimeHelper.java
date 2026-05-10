@@ -2,13 +2,12 @@ package de.dafuqs.spectrum.helpers;
 
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 public class TimeHelper {
 	
 	public static final long EPOCH_DAY_MILLIS = 86400000;
 	
-	public static TimeOfDay getTimeOfDay(@NotNull Level world) {
+	public static TimeOfDay getTimeOfDay(Level world) {
 		return getTimeOfDay(world.getDayTime());
 	}
 	

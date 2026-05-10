@@ -93,7 +93,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;
@@ -2292,14 +2292,12 @@ public class SpectrumBlocks {
 			});
 			return this;
 		}
-		
-		@Nullable
-		public T block() {
+
+		public @Nullable T block() {
 			return block;
 		}
-		
-		@Nullable
-		public Item item() {
+
+		public @Nullable Item item() {
 			return item;
 		}
 		

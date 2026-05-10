@@ -24,7 +24,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -111,9 +111,7 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 		
 		if (entityData instanceof SwarmingSpiderData swarmingSpiderData) {
 			var statusEffect = swarmingSpiderData.effect;
-			if (statusEffect != null) {
-				this.addEffect(swarmingSpiderData.getEffectInstance());
-			}
+			if (statusEffect != null) this.addEffect(swarmingSpiderData.getEffectInstance());
 		}
 		
 		return entityData;
@@ -167,6 +165,7 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 	@Override
 	public void moveTowardLeader() {
 		if (this.hasLeader()) {
+			assert this.leader != null;
 			this.getNavigation().moveTo(this.leader, 1.0);
 		}
 	}
@@ -240,7 +239,6 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 			}
 			case 3 -> {
 				statusEffect = MobEffects.CONFUSION;
-				amplifier = 0;
 			}
 			case 4, 5, 6 -> {
 				statusEffect = SpectrumStatusEffects.STIFFNESS;
@@ -338,8 +336,8 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 	}
 	
 	public static class SwarmingSpiderData extends SpiderEffectsGroupData {
-		public Holder<MobEffect> effect;
-		public int amplifier = 0;
+		public Holder<MobEffect> effect = SpectrumStatusEffects.MAGIC_ANNULATION;
+		public int amplifier = 5;
 		
 		public SwarmingSpiderData() {
 		}
@@ -359,11 +357,11 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 					this.effect = MobEffects.REGENERATION;
 					this.amplifier = random.nextInt(2);
 				}
-				case 3 -> this.effect = MobEffects.INVISIBILITY;
-				default -> {
-					this.effect = SpectrumStatusEffects.MAGIC_ANNULATION;
-					this.amplifier = 5;
+				case 3 -> {
+					this.effect = MobEffects.INVISIBILITY;
+					this.amplifier = random.nextInt(2);
 				}
+				default -> {}
 			}
 		}
 		

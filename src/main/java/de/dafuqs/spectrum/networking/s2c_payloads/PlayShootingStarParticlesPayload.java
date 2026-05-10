@@ -13,7 +13,6 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 public record PlayShootingStarParticlesPayload(Vec3 shootingStarPos, ShootingStar.Variant variant) implements CustomPacketPayload {
 	
@@ -24,7 +23,7 @@ public record PlayShootingStarParticlesPayload(Vec3 shootingStarPos, ShootingSta
 			PlayShootingStarParticlesPayload::new
 	);
 	
-	public static void sendPlayShootingStarParticles(@NotNull ShootingStarEntity shootingStarEntity) {
+	public static void sendPlayShootingStarParticles(ShootingStarEntity shootingStarEntity) {
 		for (ServerPlayer player : PlayerLookup.tracking((ServerLevel) shootingStarEntity.level(), shootingStarEntity.blockPosition())) {
 			ServerPlayNetworking.send(player, new PlayShootingStarParticlesPayload(shootingStarEntity.position(), shootingStarEntity.getShootingStarType()));
 		}

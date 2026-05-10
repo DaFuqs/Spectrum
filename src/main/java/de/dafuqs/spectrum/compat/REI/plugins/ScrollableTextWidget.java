@@ -40,7 +40,7 @@ public class ScrollableTextWidget extends WidgetWithBounds {
 	};
 	
 	public ScrollableTextWidget(Rectangle bounds, List<FormattedCharSequence> texts) {
-		this.bounds = Objects.requireNonNull(bounds);
+		this.bounds = bounds;
 		this.texts = texts;
 	}
 	

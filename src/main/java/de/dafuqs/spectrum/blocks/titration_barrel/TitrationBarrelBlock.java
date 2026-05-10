@@ -25,7 +25,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -56,10 +56,9 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 	public MapCodec<? extends TitrationBarrelBlock> codec() {
 		return CODEC;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new TitrationBarrelBlockEntity(pos, state);
 	}
 	
@@ -310,7 +309,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 		super.onRemove(state, world, pos, newState, moved);
 	}
 	
-	public static void scatterContents(@NotNull Level world, BlockPos pos) {
+	public static void scatterContents(Level world, BlockPos pos) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof TitrationBarrelBlockEntity titrationBarrelBlockEntity) {
 			Containers.dropContents(world, pos, titrationBarrelBlockEntity);

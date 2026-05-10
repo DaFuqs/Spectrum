@@ -11,7 +11,6 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 public class SpectrumLootConditions {
 	
@@ -25,7 +24,7 @@ public class SpectrumLootConditions {
 		).apply(instance, SleepersNearbyLootCondition::new));
 		
 		@Override
-		public @NotNull LootItemConditionType getType() {
+		public LootItemConditionType getType() {
 			return SLEEPERS_NEARBY;
 		}
 		

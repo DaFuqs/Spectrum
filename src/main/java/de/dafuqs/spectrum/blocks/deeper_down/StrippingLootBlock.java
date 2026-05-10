@@ -8,6 +8,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
+import org.jspecify.annotations.Nullable;
 
 public class StrippingLootBlock extends Block implements StrippableDrop {
     
@@ -20,8 +21,8 @@ public class StrippingLootBlock extends Block implements StrippableDrop {
         this.strippingLootTableKey = strippingLootTableKey;
     }
 
-    @Override
-	public MapCodec<? extends StrippingLootBlock> codec() {
+	@Override
+	public @Nullable MapCodec<? extends StrippingLootBlock> codec() {
         //TODO: Make the codec
         return null;
     }

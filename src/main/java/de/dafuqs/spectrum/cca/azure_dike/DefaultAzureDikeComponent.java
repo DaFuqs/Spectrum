@@ -5,7 +5,6 @@ import net.minecraft.nbt.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
-import org.jetbrains.annotations.*;
 import org.ladysnake.cca.api.v3.component.sync.*;
 
 public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSyncedComponent {
@@ -87,7 +86,7 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	}
 	
 	@Override
-	public void readFromNbt(CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
+	public void readFromNbt(CompoundTag tag, HolderLookup.Provider wrapperLookup) {
 		this.currentProtection = tag.getInt("protection");
 		this.currentRechargeDelay = tag.getInt("current_recharge_delay");
 		
@@ -97,7 +96,7 @@ public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSynced
 	}
 	
 	@Override
-	public void writeToNbt(CompoundTag tag, HolderLookup.@NotNull Provider wrapperLookup) {
+	public void writeToNbt(CompoundTag tag, HolderLookup.Provider wrapperLookup) {
 		tag.putFloat("protection", this.currentProtection);
 		tag.putInt("current_recharge_delay", this.currentRechargeDelay);
 		

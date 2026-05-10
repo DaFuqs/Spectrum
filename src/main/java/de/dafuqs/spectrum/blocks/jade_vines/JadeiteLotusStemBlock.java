@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class JadeiteLotusStemBlock extends BushBlock {
 	
@@ -55,10 +55,9 @@ public class JadeiteLotusStemBlock extends BushBlock {
 		
 		return super.useItemOn(handStack, state, world, pos, player, hand, hit);
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		var world = ctx.getLevel();
 		var pos = ctx.getClickedPos();
 		var floor = world.getBlockState(pos.above());

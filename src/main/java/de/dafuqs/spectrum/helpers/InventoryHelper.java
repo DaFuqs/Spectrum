@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -33,7 +33,7 @@ public class InventoryHelper {
 		return count;
 	}
 	
-	public static boolean removeFromInventoryWithRemainders(@NotNull Player playerEntity, @NotNull ItemStack stackToRemove) {
+	public static boolean removeFromInventoryWithRemainders(Player playerEntity, ItemStack stackToRemove) {
 		if (playerEntity.isCreative()) {
 			return true;
 		}
@@ -522,9 +522,8 @@ public class InventoryHelper {
 		return currentItemStack.isEmpty() || additionalItemStack.isEmpty() || (ItemStack.isSameItemSameComponents(currentItemStack, additionalItemStack)
 				&& (currentItemStack.getCount() + additionalItemStack.getCount() <= currentItemStack.getMaxStackSize()));
 	}
-	
-	@Nullable
-	public static Container getInventoryAt(Level world, double x, double y, double z) {
+
+	public static @Nullable Container getInventoryAt(Level world, double x, double y, double z) {
 		Container inventory = null;
 		BlockPos blockPos = BlockPos.containing(x, y, z);
 		BlockState blockState = world.getBlockState(blockPos);

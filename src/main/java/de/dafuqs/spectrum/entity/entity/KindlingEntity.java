@@ -39,7 +39,7 @@ import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -192,10 +192,9 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 	public boolean isFood(ItemStack stack) {
 		return FOOD.test(stack);
 	}
-	
-	@Nullable
+
 	@Override
-	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
+	public @Nullable AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
 		KindlingEntity baby = SpectrumEntityTypes.KINDLING.create(world);
 		if (baby != null) {
 			baby.setKindlingVariant(this.getRandom().nextBoolean() ? this.getKindlingVariant() : ((KindlingEntity) entity).getKindlingVariant());

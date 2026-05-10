@@ -12,7 +12,6 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
-import org.jetbrains.annotations.*;
 
 public record TypedTransmissionPayload(TypedTransmission transmission) implements CustomPacketPayload {
 	
@@ -22,7 +21,7 @@ public record TypedTransmissionPayload(TypedTransmission transmission) implement
 			TypedTransmissionPayload::new
 	);
 	
-	public static void playTransmissionParticle(ServerLevel world, @NotNull TypedTransmission transmission) {
+	public static void playTransmissionParticle(ServerLevel world, TypedTransmission transmission) {
 		for (ServerPlayer player : PlayerLookup.tracking(world, BlockPos.containing(transmission.getOrigin()))) {
 			ServerPlayNetworking.send(player, new TypedTransmissionPayload(transmission));
 		}

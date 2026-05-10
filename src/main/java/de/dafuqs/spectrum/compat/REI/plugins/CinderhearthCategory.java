@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.spectrum.compat.REI.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.math.*;
 import me.shedaniel.rei.api.client.gui.*;
@@ -8,9 +9,7 @@ import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 import java.util.*;
 
@@ -39,11 +38,11 @@ public class CinderhearthCategory extends GatedDisplayCategory<CinderhearthDispl
 		widgets.add(Widgets.createArrow(new Point(startPoint.x - 6 + 18, startPoint.y + 2 + 5)).animationDurationTicks(display.craftingTime));
 		
 		// output arrow and slots
-		List<Tuple<ItemStack, Float>> outputs = display.outputsWithChance;
+		List<StackWithChance> outputs = display.outputsWithChance;
 		for (int i = 0; i < outputs.size(); i++) {
-			Tuple<ItemStack, Float> currentOutput = outputs.get(i);
-			ItemStack outputStack = currentOutput.getA();
-			float chance = currentOutput.getB();
+			StackWithChance currentOutput = outputs.get(i);
+			ItemStack outputStack = currentOutput.stack();
+			float chance = currentOutput.chance();
 			
 			Point point = new Point(startPoint.x - 6 + 49 + i * 28, startPoint.y + 1 + 5);
 			widgets.add(Widgets.createResultSlotBackground(point));

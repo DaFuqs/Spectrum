@@ -37,6 +37,7 @@ import net.minecraft.util.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.tooltip.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.block.*;
@@ -99,7 +100,6 @@ public class SpectrumClientEventListeners {
 	private static void registerClientTooltipComponentFactoriesEvent(RegisterClientTooltipComponentFactoriesEvent event) {
 		event.register(CraftingTabletTooltipData.class, CraftingTabletTooltipComponent::new);
 		event.register(BottomlessBundleTooltipData.class, BottomlessBundleTooltipComponent::new);
-		event.register(PresentTooltipData.class, PresentTooltipComponent::new);
 	}
 	
 	@SubscribeEvent

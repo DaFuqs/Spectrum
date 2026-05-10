@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.food.beverages;
+package de.dafuqs.spectrum.items.food;
 
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.components.*;
@@ -20,6 +20,7 @@ public class JadeWineItem extends BeverageItem {
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
+		
 		if (FermentedItem.isPreviewStack(stack)) {
 			String translationKey = getDescriptionId();
 			tooltip.add(Component.translatable(translationKey + ".tooltip.preview").withStyle(ChatFormatting.GRAY));

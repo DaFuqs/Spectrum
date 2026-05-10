@@ -5,7 +5,6 @@ import net.neoforged.neoforge.common.*;
 import org.apache.commons.lang3.tuple.*;
 
 import java.util.*;
-import java.util.function.*;
 
 // TODO: split into server/client config
 public class SpectrumConfig {
@@ -93,15 +92,15 @@ public class SpectrumConfig {
 	public final ModConfigSpec.ConfigValue<Double> BedrockArmorToughness;
 	public final ModConfigSpec.ConfigValue<Double> BedrockArmorKnockbackResistance;
 	
-	public final ModConfigSpec.ConfigValue<Integer> LowHealthDurability;
-	public final ModConfigSpec.ConfigValue<Double> LowHealthMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Double> LowHealthAttackDamage;
-	public final ModConfigSpec.ConfigValue<Integer> LowHealthEnchantability;
+	public final ModConfigSpec.ConfigValue<Integer> GemstoneDurability;
+	public final ModConfigSpec.ConfigValue<Double> GemstoneMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> GemstoneAttackDamage;
+	public final ModConfigSpec.ConfigValue<Integer> GemstoneEnchantability;
 	
-	public final ModConfigSpec.ConfigValue<Integer> VoidingDurability;
-	public final ModConfigSpec.ConfigValue<Double> VoidingMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Double> VoidingAttackDamage;
-	public final ModConfigSpec.ConfigValue<Integer> VoidingEnchantability;
+	public final ModConfigSpec.ConfigValue<Integer> OblivionDurability;
+	public final ModConfigSpec.ConfigValue<Double> OblivionMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> OblivionAttackDamage;
+	public final ModConfigSpec.ConfigValue<Integer> OblivionEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Double> BedrockMiningSpeed;
 	public final ModConfigSpec.ConfigValue<Double> BedrockAttackDamage;
@@ -122,25 +121,25 @@ public class SpectrumConfig {
 	public final ModConfigSpec.ConfigValue<Double> GlassCrestAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> GlassCrestEnchantability;
 	
-	public final ModConfigSpec.ConfigValue<Integer> VerdigrisDurability;
-	public final ModConfigSpec.ConfigValue<Double> VerdigrisMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Double> VerdigrisAttackDamage;
-	public final ModConfigSpec.ConfigValue<Integer> VerdigrisEnchantability;
+	public final ModConfigSpec.ConfigValue<Integer> KnottedSwordDurability;
+	public final ModConfigSpec.ConfigValue<Double> KnottedSwordMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> KnottedSwordAttackDamage;
+	public final ModConfigSpec.ConfigValue<Integer> KnottedSwordEnchantability;
 	
-	public final ModConfigSpec.ConfigValue<Integer> NectarDurability;
-	public final ModConfigSpec.ConfigValue<Double> NectarMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Double> NectarAttackDamage;
-	public final ModConfigSpec.ConfigValue<Integer> NectarEnchantability;
+	public final ModConfigSpec.ConfigValue<Integer> NectarLanceDurability;
+	public final ModConfigSpec.ConfigValue<Double> NectarLanceMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> NectarLanceAttackDamage;
+	public final ModConfigSpec.ConfigValue<Integer> NectarLanceEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Integer> DreamflayerDurability;
 	public final ModConfigSpec.ConfigValue<Double> DreamflayerMiningSpeed;
 	public final ModConfigSpec.ConfigValue<Double> DreamflayerAttackDamage;
 	public final ModConfigSpec.ConfigValue<Integer> DreamflayerEnchantability;
 	
-	public final ModConfigSpec.ConfigValue<Integer> NightfallDurability;
-	public final ModConfigSpec.ConfigValue<Double> NightfallMiningSpeed;
-	public final ModConfigSpec.ConfigValue<Double> NightfallAttackDamage;
-	public final ModConfigSpec.ConfigValue<Integer> NightfallEnchantability;
+	public final ModConfigSpec.ConfigValue<Integer> NightfallsBladeDurability;
+	public final ModConfigSpec.ConfigValue<Double> NightfallsBladeMiningSpeed;
+	public final ModConfigSpec.ConfigValue<Double> NightfallsBladeAttackDamage;
+	public final ModConfigSpec.ConfigValue<Integer> NightfallsBladeEnchantability;
 	
 	public final ModConfigSpec.ConfigValue<Integer> MaxLevelForEffectsInLesserPotionPendant;
 	public final ModConfigSpec.ConfigValue<Integer> MaxLevelForEffectsInGreaterPotionPendant;
@@ -457,38 +456,38 @@ public class SpectrumConfig {
 				.translation("config.spectrum.bedrock_armor_knockback_resistance")
 				.define("bedrock_armor_knockback_resistance", 0.3D);
 		
-		LowHealthDurability = builder
-				.translation("config.spectrum.low_health_durability")
+		GemstoneDurability = builder
+				.translation("config.spectrum.gemstone_durability")
 				.comment("Tool Material Stats")
-				.define("low_health_durability", 16);
+				.define("gemstone_durability", 16);
 		
-		LowHealthMiningSpeed = builder
-				.translation("config.spectrum.low_health_mining_speed")
-				.define("low_health_mining_speed", 4.0D);
+		GemstoneMiningSpeed = builder
+				.translation("config.spectrum.gemstone_mining_speed")
+				.define("gemstone_mining_speed", 4.0D);
 		
-		LowHealthAttackDamage = builder
-				.translation("config.spectrum.low_health_attack_damage")
-				.define("low_health_attack_damage", 2.0D);
+		GemstoneAttackDamage = builder
+				.translation("config.spectrum.gemstone_attack_damage")
+				.define("gemstone_attack_damage", 2.0D);
 		
-		LowHealthEnchantability = builder
-				.translation("config.spectrum.low_health_enchantability")
-				.define("low_health_enchantability", 10);
+		GemstoneEnchantability = builder
+				.translation("config.spectrum.gemstone_enchantability")
+				.define("gemstone_enchantability", 10);
 		
-		VoidingDurability = builder
-				.translation("config.spectrum.voiding_durability")
-				.define("voiding_durability", 1143);
+		OblivionDurability = builder
+				.translation("config.spectrum.oblivion_durability")
+				.define("oblivion_durability", 1143);
 		
-		VoidingMiningSpeed = builder
-				.translation("config.spectrum.voiding_mining_speed")
-				.define("voiding_mining_speed", 20.0D);
+		OblivionMiningSpeed = builder
+				.translation("config.spectrum.oblivion_mining_speed")
+				.define("oblivion_mining_speed", 20.0D);
 		
-		VoidingAttackDamage = builder
-				.translation("config.spectrum.voiding_attack_damage")
-				.define("voiding_attack_damage", 1.0D);
+		OblivionAttackDamage = builder
+				.translation("config.spectrum.oblivion_attack_damage")
+				.define("oblivion_attack_damage", 1.0D);
 		
-		VoidingEnchantability = builder
-				.translation("config.spectrum.voiding_enchantability")
-				.define("voiding_enchantability", 5);
+		OblivionEnchantability = builder
+				.translation("config.spectrum.oblivion_enchantability")
+				.define("oblivion_enchantability", 5);
 		
 		BedrockMiningSpeed = builder
 				.translation("config.spectrum.bedrock_mining_speed")
@@ -550,37 +549,37 @@ public class SpectrumConfig {
 				.translation("config.spectrum.glass_crest_enchantability")
 				.define("glass_crest_enchantability", 5);
 
-		VerdigrisDurability = builder
-				.translation("config.spectrum.verdigris_durability")
-				.define("verdigris_durability", 1536);
+		KnottedSwordDurability = builder
+				.translation("config.spectrum.knotted_sword_durability")
+				.define("knotted_sword_durability", 1536);
 		
-		VerdigrisMiningSpeed = builder
-				.translation("config.spectrum.verdigris_mining_speed")
-				.define("verdigris_mining_speed", 7.0D);
+		KnottedSwordMiningSpeed = builder
+				.translation("config.spectrum.knotted_sword_mining_speed")
+				.define("knotted_sword_mining_speed", 7.0D);
 		
-		VerdigrisAttackDamage = builder
-				.translation("config.spectrum.verdigris_attack_damage")
-				.define("verdigris_attack_damage", 2.5D);
+		KnottedSwordAttackDamage = builder
+				.translation("config.spectrum.knotted_sword_attack_damage")
+				.define("knotted_sword_attack_damage", 2.5D);
 		
-		VerdigrisEnchantability = builder
-				.translation("config.spectrum.verdigris_enchantability")
-				.define("verdigris_enchantability", 14);
+		KnottedSwordEnchantability = builder
+				.translation("config.spectrum.knotted_sword_enchantability")
+				.define("knotted_sword_enchantability", 14);
 		
-		NectarDurability = builder
-				.translation("config.spectrum.nectar_durability")
-				.define("nectar_durability", 6144);
+		NectarLanceDurability = builder
+				.translation("config.spectrum.nectar_lance_durability")
+				.define("nectar_lance_durability", 6144);
 		
-		NectarMiningSpeed = builder
-				.translation("config.spectrum.nectar_mining_speed")
-				.define("nectar_mining_speed", 9.5D);
+		NectarLanceMiningSpeed = builder
+				.translation("config.spectrum.nectar_lance_mining_speed")
+				.define("nectar_lance_mining_speed", 9.5D);
 		
-		NectarAttackDamage = builder
-				.translation("config.spectrum.nectar_attack_damage")
-				.define("nectar_attack_damage", 9.0D);
+		NectarLanceAttackDamage = builder
+				.translation("config.spectrum.nectar_lance_attack_damage")
+				.define("nectar_lance_attack_damage", 9.0D);
 		
-		NectarEnchantability = builder
-				.translation("config.spectrum.nectar_enchantability")
-				.define("nectar_enchantability", 30);
+		NectarLanceEnchantability = builder
+				.translation("config.spectrum.nectar_lance_enchantability")
+				.define("nectar_lance_enchantability", 30);
 		
 		DreamflayerDurability = builder
 				.translation("config.spectrum.dreamflayer_durability")
@@ -598,21 +597,21 @@ public class SpectrumConfig {
 				.translation("config.spectrum.dreamflayer_enchantability")
 				.define("dreamflayer_enchantability", 20);
 		
-		NightfallDurability = builder
-				.translation("config.spectrum.nightfall_durability")
-				.define("nightfall_durability", 650);
+		NightfallsBladeDurability = builder
+				.translation("config.spectrum.nightfalls_blade_durability")
+				.define("nightfalls_blade_durability", 650);
 		
-		NightfallMiningSpeed = builder
-				.translation("config.spectrum.nightfall_mining_speed")
-				.define("nightfall_mining_speed", 2.0D);
+		NightfallsBladeMiningSpeed = builder
+				.translation("config.spectrum.nightfalls_blade_mining_speed")
+				.define("nightfalls_blade_mining_speed", 2.0D);
 		
-		NightfallAttackDamage = builder
-				.translation("config.spectrum.nightfall_attack_damage")
-				.define("nightfall_attack_damage", 1.0D);
+		NightfallsBladeAttackDamage = builder
+				.translation("config.spectrum.nightfalls_blade_attack_damage")
+				.define("nightfalls_blade_attack_damage", 1.0D);
 		
-		NightfallEnchantability = builder
-				.translation("config.spectrum.nightfall_enchantability")
-				.define("nightfall_enchantability", 0);
+		NightfallsBladeEnchantability = builder
+				.translation("config.spectrum.nightfalls_blade_enchantability")
+				.define("nightfalls_blade_enchantability", 0);
 		
 		MaxLevelForEffectsInLesserPotionPendant = builder
 				.translation("config.spectrum.max_level_for_effects_in_lesser_potion_pendant")

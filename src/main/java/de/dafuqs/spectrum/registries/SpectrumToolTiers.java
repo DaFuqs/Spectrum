@@ -6,36 +6,35 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
-import javax.annotation.*;
 
 import java.util.function.Supplier;
 
 public enum SpectrumToolTiers implements Tier {
 	
-	LOW_HEALTH(
+	GEMSTONE(
 			BlockTags.INCORRECT_FOR_IRON_TOOL,
-			SpectrumConfig.CONFIG.LowHealthDurability.get(),
-			SpectrumConfig.CONFIG.LowHealthMiningSpeed.get().floatValue(),
-			SpectrumConfig.CONFIG.LowHealthAttackDamage.get().floatValue(),
-			SpectrumConfig.CONFIG.LowHealthEnchantability.get(),
+			SpectrumConfig.CONFIG.GemstoneDurability.get(),
+			SpectrumConfig.CONFIG.GemstoneMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.GemstoneAttackDamage.get().floatValue(),
+			SpectrumConfig.CONFIG.GemstoneEnchantability.get(),
 			Ingredient::of
 	),
 	
-	LOW_HEALTH_MINING_LEVEL_4(
+	GEMSTONE_MINING_LEVEL_4(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
-			SpectrumConfig.CONFIG.LowHealthDurability.get(),
-			SpectrumConfig.CONFIG.LowHealthMiningSpeed.get().floatValue(),
-			SpectrumConfig.CONFIG.LowHealthAttackDamage.get().floatValue(),
-			SpectrumConfig.CONFIG.LowHealthEnchantability.get(),
+			SpectrumConfig.CONFIG.GemstoneDurability.get(),
+			SpectrumConfig.CONFIG.GemstoneMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.GemstoneAttackDamage.get().floatValue(),
+			SpectrumConfig.CONFIG.GemstoneEnchantability.get(),
 			Ingredient::of
 	),
 	
-	VOIDING(
+	OBLIVION(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
-			SpectrumConfig.CONFIG.VoidingDurability.get(),
-			SpectrumConfig.CONFIG.VoidingMiningSpeed.get().floatValue(),
-			SpectrumConfig.CONFIG.VoidingAttackDamage.get().floatValue(),
-			SpectrumConfig.CONFIG.VoidingEnchantability.get(),
+			SpectrumConfig.CONFIG.OblivionDurability.get(),
+			SpectrumConfig.CONFIG.OblivionMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.OblivionAttackDamage.get().floatValue(),
+			SpectrumConfig.CONFIG.OblivionEnchantability.get(),
 			Ingredient::of
 	),
 	
@@ -75,21 +74,21 @@ public enum SpectrumToolTiers implements Tier {
 			() -> Ingredient.of(SpectrumItems.PURE_MALACHITE)
 	),
 	
-	VERDIGRIS(
+	KNOTTED_SWORD(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
-			SpectrumConfig.CONFIG.VerdigrisDurability.get(),
-			SpectrumConfig.CONFIG.VerdigrisMiningSpeed.get().floatValue(),
-			SpectrumConfig.CONFIG.VerdigrisAttackDamage.get().floatValue(),
-			SpectrumConfig.CONFIG.VerdigrisEnchantability.get(),
+			SpectrumConfig.CONFIG.KnottedSwordDurability.get(),
+			SpectrumConfig.CONFIG.KnottedSwordMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.KnottedSwordAttackDamage.get().floatValue(),
+			SpectrumConfig.CONFIG.KnottedSwordEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.NIGHTDEW_SPROUT)
 	),
 	
-	NECTAR(
+	NECTAR_LANCE(
 			BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
-			SpectrumConfig.CONFIG.NectarDurability.get(),
-			SpectrumConfig.CONFIG.NectarMiningSpeed.get().floatValue(),
-			SpectrumConfig.CONFIG.NectarAttackDamage.get().floatValue(),
-			SpectrumConfig.CONFIG.NectarEnchantability.get(),
+			SpectrumConfig.CONFIG.NectarLanceDurability.get(),
+			SpectrumConfig.CONFIG.NectarLanceMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.NectarLanceAttackDamage.get().floatValue(),
+			SpectrumConfig.CONFIG.NectarLanceEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.AETHER_VESTIGES)
 	),
 	
@@ -102,11 +101,11 @@ public enum SpectrumToolTiers implements Tier {
 			() -> Ingredient.of(SpectrumItems.BISMUTH_CRYSTAL)
 	),
 	
-	NIGHTFALL(BlockTags.INCORRECT_FOR_IRON_TOOL,
-			SpectrumConfig.CONFIG.NightfallDurability.get(),
-			SpectrumConfig.CONFIG.NightfallMiningSpeed.get().floatValue(),
-			SpectrumConfig.CONFIG.NightfallAttackDamage.get().floatValue(),
-			SpectrumConfig.CONFIG.NightfallEnchantability.get(),
+	NIGHTFALLS_BLADE(BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
+			SpectrumConfig.CONFIG.NightfallsBladeDurability.get(),
+			SpectrumConfig.CONFIG.NightfallsBladeMiningSpeed.get().floatValue(),
+			SpectrumConfig.CONFIG.NightfallsBladeAttackDamage.get().floatValue(),
+			SpectrumConfig.CONFIG.NightfallsBladeEnchantability.get(),
 			() -> Ingredient.of(SpectrumItems.MIDNIGHT_CHIP)
 	);
 	

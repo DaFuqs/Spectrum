@@ -99,21 +99,21 @@ public class SpectrumItems {
 	
 	// Preenchanted tools
 	public static final DeferredItem<PreenchantedMultiToolItem> MULTITOOL = register("multitool", () -> new PreenchantedMultiToolItem(Tiers.IRON, 2, -2.4F, IS.of(Rarity.UNCOMMON).durability(Tiers.IRON.getUses())));
-	public static final DeferredItem<GlintlessPickaxe> TENDER_PICKAXE = register("tender_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.LOW_HEALTH, 1, -2.8F))) {
+	public static final DeferredItem<GlintlessPickaxe> TENDER_PICKAXE = register("tender_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.GEMSTONE, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.GEMSTONE.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.GEMSTONE, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.SILK_TOUCH, 1);
 		}
 	});
-	public static final DeferredItem<GlintlessPickaxe> LUCKY_PICKAXE = register("lucky_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.LOW_HEALTH, 1, -2.8F))) {
+	public static final DeferredItem<GlintlessPickaxe> LUCKY_PICKAXE = register("lucky_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.GEMSTONE, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.GEMSTONE.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.GEMSTONE, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.FORTUNE, 3);
 		}
 	});
-	public static final DeferredItem<RazorFalchionItem> RAZOR_FALCHION = register("razor_falchion", () -> new RazorFalchionItem(SpectrumToolTiers.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(SwordItem.createAttributes(SpectrumToolTiers.LOW_HEALTH, 4, -2.2F))));
-	public static final DeferredItem<OblivionPickaxeItem> OBLIVION_PICKAXE = register("oblivion_pickaxe", () -> new OblivionPickaxeItem(SpectrumToolTiers.VOIDING, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.VOIDING.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.VOIDING, 1, -2.8F))));
-	public static final DeferredItem<GlintlessPickaxe> RESONANT_PICKAXE = register("resonant_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.LOW_HEALTH_MINING_LEVEL_4, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.LOW_HEALTH_MINING_LEVEL_4, 1, -2.8F))) {
+	public static final DeferredItem<RazorFalchionItem> RAZOR_FALCHION = register("razor_falchion", () -> new RazorFalchionItem(SpectrumToolTiers.GEMSTONE, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.GEMSTONE.getUses()).attributes(SwordItem.createAttributes(SpectrumToolTiers.GEMSTONE, 4, -2.2F))));
+	public static final DeferredItem<OblivionPickaxeItem> OBLIVION_PICKAXE = register("oblivion_pickaxe", () -> new OblivionPickaxeItem(SpectrumToolTiers.OBLIVION, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.OBLIVION.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.OBLIVION, 1, -2.8F))));
+	public static final DeferredItem<GlintlessPickaxe> RESONANT_PICKAXE = register("resonant_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.GEMSTONE_MINING_LEVEL_4, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.GEMSTONE.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.GEMSTONE_MINING_LEVEL_4, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(SpectrumEnchantmentKeys.RESONANCE, 1);
@@ -172,11 +172,11 @@ public class SpectrumItems {
 	// Special tools
 	// TODO: set attribute modifiers similarly to how vanilla swords do it
 	public static final DeferredItem<DreamflayerItem> DREAMFLAYER = register("dreamflayer", () -> new DreamflayerItem(SpectrumToolTiers.DREAMFLAYER, 3, -1.8F, IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<NightfallsBladeItem> NIGHTFALLS_BLADE = register("nightfalls_blade", () -> new NightfallsBladeItem(Tiers.DIAMOND, 3, -2.4F, IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<NightfallsBladeItem> NIGHTFALLS_BLADE = register("nightfalls_blade", () -> new NightfallsBladeItem(SpectrumToolTiers.NIGHTFALLS_BLADE, 3, -2.4F, IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<DraconicTwinswordItem> DRACONIC_TWINSWORD = register("draconic_twinsword", () -> new DraconicTwinswordItem(SpectrumToolTiers.DRACONIC, 6, -3.0F, IS.of(1, Rarity.RARE)));
 	public static final DeferredItem<DragonTalonItem> DRAGON_TALON = register("dragon_talon", () -> new DragonTalonItem(SpectrumToolTiers.DRACONIC, -3.0, -1.0, IS.of(1, Rarity.RARE).durability(SpectrumToolTiers.DRACONIC.getUses())));
-	public static final DeferredItem<LightGreatswordItem> KNOTTED_SWORD = register("knotted_sword", () -> new LightGreatswordItem(SpectrumToolTiers.VERDIGRIS, 3, -2.4F, 0.25F, 0.5F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.VERDIGRIS.getUses())));
-	public static final DeferredItem<NectarLanceItem> NECTAR_LANCE = register("nectar_lance", () -> new NectarLanceItem(SpectrumToolTiers.NECTAR, 0, -2.4F, 0.5F, 1.5F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).durability(SpectrumToolTiers.NECTAR.getUses())));
+	public static final DeferredItem<LightGreatswordItem> KNOTTED_SWORD = register("knotted_sword", () -> new LightGreatswordItem(SpectrumToolTiers.KNOTTED_SWORD, 3, -2.4F, 0.25F, 0.5F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.KNOTTED_SWORD.getUses())));
+	public static final DeferredItem<NectarLanceItem> NECTAR_LANCE = register("nectar_lance", () -> new NectarLanceItem(SpectrumToolTiers.NECTAR_LANCE, 0, -2.4F, 0.5F, 1.5F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).durability(SpectrumToolTiers.NECTAR_LANCE.getUses())));
 	
 	// Bedrock Armor
 	public static final DeferredItem<BedrockArmorItem> BEDROCK_HELMET = register("bedrock_helmet", () -> new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.HELMET, IS.of(Rarity.UNCOMMON).fireResistant().durability(70 * 13).component(DataComponents.UNBREAKABLE, new Unbreakable(false))) {

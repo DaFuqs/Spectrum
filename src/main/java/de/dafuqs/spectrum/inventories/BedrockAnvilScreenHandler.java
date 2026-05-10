@@ -1,12 +1,9 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.kwpugh.gobber2.mixin.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
@@ -19,7 +16,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import org.apache.commons.lang3.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

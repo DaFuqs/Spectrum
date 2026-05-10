@@ -194,7 +194,7 @@ public class PresentBlock extends BaseEntityBlock {
 	
 	public static void spawnParticlesClient(Level world, BlockPos pos, Map<InkColor, Integer> colors) {
 		if (colors.isEmpty()) {
-			int randomColor = DyeColor.byId(world.random.nextInt(DyeColor.values().length)).getTextureDiffuseColor();
+			int randomColor = DyeColor.byId(world.getRandom().nextInt(DyeColor.values().length)).getTextureDiffuseColor();
 			spawnParticlesClient(world, pos, randomColor, 15);
 		} else {
 			for (Map.Entry<InkColor, Integer> color : colors.entrySet()) {
@@ -207,7 +207,7 @@ public class PresentBlock extends BaseEntityBlock {
 		double posX = pos.getX() + 0.5;
 		double posY = pos.getY() + 0.25;
 		double posZ = pos.getZ() + 0.5;
-		RandomSource random = world.random;
+		RandomSource random = world.getRandom();
 		Vector3f colorVec = SpectrumColorHelper.colorIntToVec(color);
 		for (int i = 0; i < amount; i++) {
 			double randX = 0.35 - random.nextFloat() * 0.7;

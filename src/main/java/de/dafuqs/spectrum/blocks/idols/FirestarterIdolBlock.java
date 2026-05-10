@@ -79,7 +79,7 @@ public class FirestarterIdolBlock extends IdolBlock {
 			return true;
 		} else if (BURNING_MAP.containsKey(blockState.getBlock())) {
 			Tuple<BlockState, Float> dest = BURNING_MAP.get(blockState.getBlock());
-			if (dest.getB() >= 1.0F || world.random.nextFloat() < dest.getB()) {
+			if (dest.getB() >= 1.0F || world.getRandom().nextFloat() < dest.getB()) {
 				// convert netherrack to magma blocks
 				world.setBlock(blockPos, dest.getA(), 11);
 				world.gameEvent(null, GameEvent.BLOCK_PLACE, blockPos);

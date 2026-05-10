@@ -117,7 +117,7 @@ public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlo
 			BlockState newState = state.setValue(AGE, state.getValue(AGE) - 1);
 			world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
 			world.gameEvent(GameEvent.SHEAR, pos, GameEvent.Context.of(player, newState));
-			world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+			world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 			
 			return ItemInteractionResult.sidedSuccess(world.isClientSide);
 		} else if (age == MAX_AGE) {
@@ -126,7 +126,7 @@ public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlo
 					popResource(world, pos, stack);
 				}
 			}
-			world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+			world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 			
 			BlockState newState = state.setValue(AGE, 4);
 			world.setBlock(pos, newState, Block.UPDATE_CLIENTS);

@@ -52,8 +52,8 @@ public class MonstrosityEntityRenderer extends EntityRenderer<MonstrosityEntity>
 		Font font = this.getFont();
 		
 		int maxYOffset = (int) bbHeight * 20;
-		
-		RandomSource random = entity.level().random;
+
+        RandomSource random = entity.level().getRandom();
 		int amount = (int) bbHeight * 8;
 		FormattedCharSequence sequence;
 		for (int i = 0; i < amount; i++) {

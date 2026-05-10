@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.particle.client;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
+import net.minecraft.util.*;
 
 
 public class HardcoreParticle extends SimpleAnimatedParticle {
@@ -14,12 +15,13 @@ public class HardcoreParticle extends SimpleAnimatedParticle {
 		this.yd = velocityY;
 		this.zd = velocityZ;
 		this.quadSize *= 0.75F;
-		this.lifetime = 60 + this.random.nextInt(12);
+		RandomSource random = world.getRandom();
+		this.lifetime = 60 + random.nextInt(12);
 		this.setSpriteFromAge(spriteProvider);
-		if (this.random.nextInt(4) == 0) {
+		if (random.nextInt(4) == 0) {
 			this.setColor(0.0F, 0.0F, 0.0F);
 		} else {
-			this.setColor(0.2F + this.random.nextFloat() * 0.5F, this.random.nextFloat() * 0.2F, this.random.nextFloat() * 0.2F);
+			this.setColor(0.2F + random.nextFloat() * 0.5F, random.nextFloat() * 0.2F, random.nextFloat() * 0.2F);
 		}
 		
 	}

@@ -52,7 +52,7 @@ public class PipeBombChargingSoundInstance extends AbstractSoundInstance impleme
 	private void showParticles() {
 		Level world = player.getCommandSenderWorld();
 		Vec3 pos = player.position();
-		RandomSource random = world.random;
+        RandomSource random = world.getRandom();
 		
 		for (int i = 0; i < 2; i++) {
 			player.getCommandSenderWorld().addParticle(

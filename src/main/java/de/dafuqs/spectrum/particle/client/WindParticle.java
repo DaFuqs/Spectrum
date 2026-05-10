@@ -10,13 +10,13 @@ import net.minecraft.world.phys.*;
 
 public class WindParticle extends TextureSheetParticle {
 	
-	protected WindParticle(ClientLevel clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-		super(clientWorld, x, y - 0.125D, z, velocityX, velocityY, velocityZ);
+	protected WindParticle(ClientLevel level, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+		super(level, x, y - 0.125D, z, velocityX, velocityY, velocityZ);
 		
 		this.hasPhysics = true;
 		
 		this.setSize(0.01F, 0.01F);
-		this.quadSize *= this.random.nextFloat() * 0.4F + 0.7F;
+		this.quadSize *= level.getRandom().nextFloat() * 0.4F + 0.7F;
 		this.lifetime = 120;
 	}
 	

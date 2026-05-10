@@ -270,7 +270,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 				ExperienceStorageItem.addStoredExperience(world.registryAccess(), this.inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT), experienceOrbEntity.getValue()); // overflow experience is void, to not lag the world on large farms
 				
 				sendPlayExperienceOrbEntityAbsorbedParticle((ServerLevel) world, experienceOrbEntity);
-				world.playSound(null, experienceOrbEntity.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
+				world.playSound(null, experienceOrbEntity.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 				experienceOrbEntity.remove(Entity.RemovalReason.DISCARDED);
 			}
 		} else if (entry instanceof ItemEntityEventQueue.Entry itemEntry) {
@@ -281,12 +281,12 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 				
 				if (remainingStack.isEmpty()) {
 					sendPlayItemEntityAbsorbedParticle((ServerLevel) world, itemEntity);
-					world.playSound(null, itemEntity.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
+					world.playSound(null, itemEntity.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 					itemEntity.setItem(ItemStack.EMPTY);
 					itemEntity.discard();
 				} else if (remainingStack.getCount() != previousAmount) {
 					sendPlayItemEntityAbsorbedParticle((ServerLevel) world, itemEntity);
-					world.playSound(null, itemEntity.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
+					world.playSound(null, itemEntity.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 					itemEntity.setItem(remainingStack);
 				}
 			}

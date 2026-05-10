@@ -106,7 +106,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				int experience = ExperienceStorageItem.getStoredExperience(experienceStack);
 				int amount = ExperienceHelper.getExperienceOrbSizeForExperience(experience);
 				
-				if (world.random.nextInt(10) < amount) {
+				if (world.getRandom().nextInt(10) < amount) {
 					float randomX = 0.2F + world.getRandom().nextFloat() * 0.6F;
 					float randomZ = 0.2F + world.getRandom().nextFloat() * 0.6F;
 					float randomY = -0.1F + world.getRandom().nextFloat() * 0.4F;
@@ -120,7 +120,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			world.addParticle(ColoredCraftingParticleEffect.LIME, blockPos.getX() + randomX, blockPos.getY() + 2.5 + randomY, blockPos.getZ() + randomZ, 0.0D, -0.1D, 0.0D);
 			
 			if (world.getGameTime() % 12 == 0) {
-				world.playSound(null, enchanterBlockEntity.worldPosition, SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, (float) (0.8D * SpectrumConfig.CONFIG.BlockSoundVolume.get()), 0.8F + world.random.nextFloat() * 0.4F);
+				world.playSound(null, enchanterBlockEntity.worldPosition, SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.BLOCKS, (float) (0.8D * SpectrumConfig.CONFIG.BlockSoundVolume.get()), 0.8F + world.getRandom().nextFloat() * 0.4F);
 				enchanterBlockEntity.doItemBowlOrbs(world);
 			}
 		}
@@ -201,7 +201,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				}
 				enchanterBlockEntity.setChanged();
 			} else if (enchanterBlockEntity.currentItemProcessingTime > -1) {
-				int speedTicks = Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED), world.random);
+				int speedTicks = Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED), world.getRandom());
 				enchanterBlockEntity.craftingTime += speedTicks;
 				if (world.getGameTime() % REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT == 0) {
 					// in-code recipe for item + books => enchanted item
@@ -326,8 +326,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		
 		if (!playerCanCraft || !structureComplete) {
 			if (!structureComplete) {
-				world.playSound(null, enchanter.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
-				world.playSound(null, enchanter.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.5F + world.random.nextFloat() * 0.2F);
+				world.playSound(null, enchanter.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+				world.playSound(null, enchanter.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.5F + world.getRandom().nextFloat() * 0.2F);
 				EnchanterBlock.scatterContents(world, blockPos);
 			}
 			return false;
@@ -475,7 +475,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		for (int i = 0; i < 8; i++) {
 			int resultAmountAfterEfficiencyMod = 1;
 			if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && efficiencyModifier != 1.0) {
-				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, world.random);
+				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, world.getRandom());
 			}
 			
 			if (resultAmountAfterEfficiencyMod > 0) {
@@ -490,11 +490,11 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		}
 		
 		if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD) != 1.0) {
-			int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD), world.random);
+			int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD), world.getRandom());
 			resultStack.setCount(resultCountMod);
 		}
 		
-		boolean decrementCenterStack = enchanterRecipe.copyComponents() || Support.getIntFromDecimalWithChance(efficiencyModifier, world.random) == 1;
+		boolean decrementCenterStack = enchanterRecipe.copyComponents() || Support.getIntFromDecimalWithChance(efficiencyModifier, world.getRandom()) == 1;
 		if(decrementCenterStack) {
 			existingCenterStack.shrink(1);
 		}
@@ -515,15 +515,15 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}
 	
 	public static int tickEnchantmentUpgradeRecipe(Level world, EnchanterBlockEntity enchanterBlockEntity, int itemsToConsumeLeft) {
-		int itemCountToConsume = Math.min(itemsToConsumeLeft, Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED), world.random));
+		int itemCountToConsume = Math.min(itemsToConsumeLeft, Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED), world.getRandom()));
 		
 		int consumedAmount = 0;
 		int bowlsChecked = 0;
-		int randomBowlPosition = world.random.nextInt(8);
+		int randomBowlPosition = world.getRandom().nextInt(8);
 		
 		int itemCountToConsumeAfterMod = itemCountToConsume;
 		if (enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY) != 1.0) {
-			itemCountToConsumeAfterMod = Support.getIntFromDecimalWithChance(itemCountToConsume / enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY), world.random);
+			itemCountToConsumeAfterMod = Support.getIntFromDecimalWithChance(itemCountToConsume / enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY), world.getRandom());
 		}
 		
 		// cycle at least once for fancy particles
@@ -750,7 +750,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		if (level != null && experienceProviderStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
 			int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
 			if (currentStoredExperience > 0) {
-				int amountAfterExperienceMod = getExperienceWithMod(amount, this.upgrades.getEffectiveValue(UpgradeType.EXPERIENCE), level.random);
+				int amountAfterExperienceMod = getExperienceWithMod(amount, this.upgrades.getEffectiveValue(UpgradeType.EXPERIENCE), level.getRandom());
 				int drainedExperience = Math.min(currentStoredExperience, amountAfterExperienceMod);
 				
 				if (experienceStorageItem instanceof KnowledgeGemItem knowledgeGemItem) {
@@ -804,7 +804,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	
 	public void playSound(SoundEvent soundEvent, float volume) {
 		if (level == null) return;
-		level.playSound(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), soundEvent, SoundSource.BLOCKS, volume, 0.9F + level.random.nextFloat() * 0.15F);
+		level.playSound(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), soundEvent, SoundSource.BLOCKS, volume, 0.9F + level.getRandom().nextFloat() * 0.15F);
 	}
 	
 	// PLAYER OWNED

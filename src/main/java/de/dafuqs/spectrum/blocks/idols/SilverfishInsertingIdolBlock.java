@@ -33,7 +33,7 @@ public class SilverfishInsertingIdolBlock extends IdolBlock {
 	
 	@Override
 	public boolean trigger(ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		int startDirection = world.random.nextInt(4);
+		int startDirection = world.getRandom().nextInt(4);
 		for (int i = 0; i < 4; i++) {
 			Direction currentDirection = Direction.from2DDataValue(startDirection + i);
 			BlockPos offsetPos = blockPos.relative(currentDirection);

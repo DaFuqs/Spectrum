@@ -107,7 +107,7 @@ public class GlassArrowEntity extends AbstractArrow {
 			livingEntityToResetHurtTime.hurtTime = invincibilityFrameStore;
 		}
 		
-		this.playSound(SoundEvents.GLASS_BREAK, 0.75F, 0.9F + world.random.nextFloat() * 0.2F);
+		this.playSound(SoundEvents.GLASS_BREAK, 0.75F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		this.remove(RemovalReason.DISCARDED);
 	}
 	

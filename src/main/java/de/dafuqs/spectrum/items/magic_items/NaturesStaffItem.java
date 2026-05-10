@@ -196,7 +196,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
 						// without whitelist we would be able to tick budding blocks, ...
 						
 						if (world instanceof ServerLevel) {
-							sourceState.randomTick((ServerLevel) world, blockPos, world.random);
+							sourceState.randomTick((ServerLevel) world, blockPos, world.getRandom());
 						}
 						success = true;
 					} else if (BoneMealItem.growCrop(Items.BONE_MEAL.getDefaultInstance(), world, blockPos)) {

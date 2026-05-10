@@ -79,7 +79,7 @@ public abstract class SpectrumChestBlockEntity extends RandomizableContainerBloc
 	}
 	
 	private static void playSound(Level world, BlockPos pos, SoundEvent soundEvent) {
-		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, soundEvent, SoundSource.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
+		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, soundEvent, SoundSource.BLOCKS, 0.5F, world.getRandom().nextFloat() * 0.1F + 0.9F);
 	}
 	
 	@SuppressWarnings("unused")

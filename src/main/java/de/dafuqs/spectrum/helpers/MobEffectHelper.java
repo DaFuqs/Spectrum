@@ -42,7 +42,7 @@ public class MobEffectHelper {
         }
         
         Level world = entity.level();
-        int randomIndex = world.random.nextInt(toRemove.size());
+        int randomIndex = world.getRandom().nextInt(toRemove.size());
         entity.removeEffect(toRemove.get(randomIndex).getEffect());
     }
 

@@ -90,8 +90,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	
 	public void scatterContents(Level world) {
 		PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerLevel) world, Vec3.atCenterOf(this.getBlockPos()), ColoredCraftingParticleEffect.RED, 1, new Vec3(0, -0.5, 0));
-		world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
-		world.playSound(null, this.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.5F + world.random.nextFloat() * 0.2F);
+		world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+		world.playSound(null, this.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.5F + world.getRandom().nextFloat() * 0.2F);
 		FusionShrineBlock.scatterContents(world, this.getBlockPos());
 		this.inventoryChanged();
 	}
@@ -242,7 +242,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	
 	public void playSound(SoundEvent soundEvent, float volume) {
 		if (level != null) {
-			RandomSource random = level.random;
+			RandomSource random = level.getRandom();
 			level.playSound(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), soundEvent, SoundSource.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
 		}
 	}

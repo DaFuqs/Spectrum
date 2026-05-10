@@ -155,7 +155,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				}
 			}
 			
-			this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+			this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.getRandom().nextFloat() * 0.2F + 0.9F));
 			this.discard();
 		} else {
 			this.setDeltaMovement(this.getDeltaMovement().scale(-0.1D));
@@ -175,7 +175,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		this.setDeltaMovement(vec3d);
 		Vec3 vec3d2 = vec3d.normalize().scale(0.05);
 		this.setPosRaw(this.getX() - vec3d2.x, this.getY() - vec3d2.y, this.getZ() - vec3d2.z);
-		this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+		this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.getRandom().nextFloat() * 0.2F + 0.9F));
 		
 		InkColor inkColor = this.getInkColor();
 		for (BlockPos blockPos : BlockPos.withinManhattan(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {

@@ -76,7 +76,7 @@ public class BloodOrchidBlock extends FlowerBlock implements BonemealableBlock, 
 			} else {
 				world.setBlockAndUpdate(pos, state.setValue(AGE, age - 1));
 				player.getInventory().placeItemBackInInventory(SpectrumItems.BLOOD_ORCHID_PETAL.get().getDefaultInstance());
-				world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
+				world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 				if (player instanceof ServerPlayer serverPlayerEntity) {
 					SpectrumAdvancementCriteria.BLOOD_ORCHID_PLUCKING.trigger(serverPlayerEntity);
 				}

@@ -200,7 +200,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
 		KindlingEntity baby = SpectrumEntityTypes.KINDLING.get().create(world);
 		if (baby != null) {
-			baby.setKindlingVariant(this.random.nextBoolean() ? this.getKindlingVariant() : ((KindlingEntity) entity).getKindlingVariant());
+			baby.setKindlingVariant(this.getRandom().nextBoolean() ? this.getKindlingVariant() : ((KindlingEntity) entity).getKindlingVariant());
 		}
 		return baby;
 	}
@@ -585,7 +585,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 		kindlingCoughEntity.shoot(d, e + g, f, 1.5F, 10.0F);
 		
 		if (!this.isSilent()) {
-			this.playSound(SpectrumSoundEvents.ENTITY_KINDLING_SHOOT, 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+			this.playSound(SpectrumSoundEvents.ENTITY_KINDLING_SHOOT, 1.0F, 1.0F + (this.getRandom().nextFloat() - this.getRandom().nextFloat()) * 0.2F);
 		}
 		
 		this.level().addFreshEntity(kindlingCoughEntity);
@@ -665,7 +665,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 	
 	public
 	@Override void startPersistentAngerTimer() {
-		this.setRemainingPersistentAngerTime(ANGER_TIME_RANGE.sample(this.random));
+		this.setRemainingPersistentAngerTime(ANGER_TIME_RANGE.sample(this.getRandom()));
 	}
 	
 	@Override

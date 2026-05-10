@@ -40,7 +40,7 @@ public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1,
 	@SuppressWarnings("resource")
 	public static void execute(PlayMemoryManifestingParticlesPayload payload, IPayloadContext context) {
 		ClientLevel level = (ClientLevel) context.player().level();
-		RandomSource random = level.random;
+        RandomSource random = level.getRandom();
 		
 		Vector3f colorVec1 = SpectrumColorHelper.colorIntToVec(payload.eggColor1);
 		Vector3f colorVec2 = SpectrumColorHelper.colorIntToVec(payload.eggColor2);

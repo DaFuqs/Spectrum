@@ -50,7 +50,7 @@ public class PreservationRoundelBlock extends ItemRoundelBlock {
 					ItemStack leftoverStack = InventoryHelper.addToInventoryUpToSingleStackWithMaxTotalCount(handStack, itemRoundelBlockEntity, PreservationRoundelBlockEntity.INVENTORY_SIZE);
 					player.setItemInHand(hand, leftoverStack);
 					if (countBefore != leftoverStack.getCount()) {
-						world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+						world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.6F);
 						itemRoundelBlockEntity.inventoryChanged();
 					}
 				}

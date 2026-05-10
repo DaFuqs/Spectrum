@@ -114,12 +114,12 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 			if (JadeVine.isExposedToSunlight(world, pos) || age < 0) {
 				exposedToSunlight(world, pos);
 			} else if (canGrow(world, pos)) {
-				if (world.random.nextBoolean() && tryGrowUpwards(state, world, pos)) {
+				if (world.getRandom().nextBoolean() && tryGrowUpwards(state, world, pos)) {
 					rememberGrownTime(world, pos);
-					world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+					world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 0.5F, 0.9F + 0.2F * world.getRandom().nextFloat() * 0.2F);
 				} else if (tryGrowDownwards(world, pos)) {
 					rememberGrownTime(world, pos);
-					world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+					world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 0.5F, 0.9F + 0.2F * world.getRandom().nextFloat() * 0.2F);
 				} else {
 					int targetAge = age;
 					if (age == BlockStateProperties.MAX_AGE_7 - 1) {
@@ -138,7 +138,7 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 					if (targetAge != age) {
 						boolean couldGrow = setPlantToAge(world, pos, targetAge);
 						if (couldGrow) {
-							world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+							world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 0.5F, 0.9F + 0.2F * world.getRandom().nextFloat() * 0.2F);
 						}
 					}
 					rememberGrownTime(world, pos);
@@ -152,7 +152,7 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 		if (blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
 			if (jadeVineRootsBlockEntity.wasExposedToSunlight()) {
 				setDead(world, pos);
-				world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+				world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 0.5F, 0.9F + 0.2F * world.getRandom().nextFloat() * 0.2F);
 			} else {
 				jadeVineRootsBlockEntity.setExposedToSunlight(true);
 			}

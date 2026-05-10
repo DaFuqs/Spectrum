@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.particle.client;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
+import net.minecraft.util.*;
 
 
 public class LargePrimordialSmokeParticle extends TextureSheetParticle {
@@ -11,15 +12,16 @@ public class LargePrimordialSmokeParticle extends TextureSheetParticle {
 		super(world, x, y, z);
 		this.scale(3.0F);
 		this.setSize(0.25F, 0.25F);
+		RandomSource random = world.getRandom();
 		if (signal) {
-			this.lifetime = this.random.nextInt(50) + 280;
+			this.lifetime = random.nextInt(50) + 280;
 		} else {
-			this.lifetime = this.random.nextInt(50) + 80;
+			this.lifetime = random.nextInt(50) + 80;
 		}
 		
 		this.gravity = 3.0E-6F;
 		this.xd = velocityX;
-		this.yd = velocityY + (double) (this.random.nextFloat() / 500.0F);
+		this.yd = velocityY + (double) (random.nextFloat() / 500.0F);
 		this.zd = velocityZ;
 	}
 	

@@ -351,7 +351,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 			for (int slot : REAGENT_SLOTS) {
 				ItemStack slotStack = potionWorkshopBlockEntity.getItem(slot);
 				if (!slotStack.isEmpty()) {
-					PotionWorkshopReactingRecipe.combine(builder, slotStack, world.random);
+					PotionWorkshopReactingRecipe.combine(builder, slotStack, world.getRandom());
 				}
 			}
 		}
@@ -441,7 +441,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	
 	private void playSound(SoundEvent soundEvent) {
 		if (level == null) return;
-		RandomSource random = level.random;
+		RandomSource random = level.getRandom();
 		level.playSound(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), soundEvent, SoundSource.BLOCKS, 0.9F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
 	}
 	

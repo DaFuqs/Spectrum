@@ -98,7 +98,7 @@ public class EntityFishingDataLoader extends SimpleJsonResourceReloadListener {
 	
 	public static Optional<EntityFishingEntity> tryCatchEntity(ServerLevel world, BlockPos pos, int bigCatchLevel) {
 		Fluid fluid = world.getFluidState(pos).getType();
-		RandomSource randomSource = world.random;
+		RandomSource randomSource = world.getRandom();
 		
 		// we test entries with a dimension set first
 		// to make sure those are selected over the more generic "just the fluid" ones

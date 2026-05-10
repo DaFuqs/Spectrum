@@ -76,8 +76,8 @@ public record ParticleSpawnerConfiguration(
 	
 	public void spawnParticles(Level world, BlockPos pos) {
 		float particlesToSpawn = particlesPerSecond / 20F;
-		while (particlesToSpawn >= 1 || world.random.nextFloat() < particlesToSpawn) {
-			spawnParticle(world, pos, world.random);
+		while (particlesToSpawn >= 1 || world.getRandom().nextFloat() < particlesToSpawn) {
+			spawnParticle(world, pos, world.getRandom());
 			particlesToSpawn--;
 		}
 	}

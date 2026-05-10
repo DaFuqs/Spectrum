@@ -123,7 +123,7 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements SimpleW
 	@Override
 	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		super.neighborChanged(state, world, pos, block, fromPos, notify);
-		if (!state.getValue(WATERLOGGED) && world.random.nextInt(10) == 0) {
+		if (!state.getValue(WATERLOGGED) && world.getRandom().nextInt(10) == 0) {
 			explode(world, pos);
 		}
 	}

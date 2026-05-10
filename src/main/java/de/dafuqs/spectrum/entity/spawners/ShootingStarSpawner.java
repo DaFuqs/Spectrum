@@ -70,7 +70,7 @@ public class ShootingStarSpawner implements CustomSpawner {
 		RandomSource rs = serverWorld.getRandom();
 		Vec3 spawnPos = playerEntity.position().add(rs.nextIntBetweenInclusive(-48, 48), 200, rs.nextIntBetweenInclusive(-48, 48));
 		
-		ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, spawnPos.x(), spawnPos.y(), spawnPos.z(), ShootingStar.Variant.getWeightedRandomType(rs), false, 3 + serverWorld.random.nextInt(5), false);
+		ShootingStarEntity shootingStarEntity = new ShootingStarEntity(serverWorld, spawnPos.x(), spawnPos.y(), spawnPos.z(), ShootingStar.Variant.getWeightedRandomType(rs), false, 3 + serverWorld.getRandom().nextInt(5), false);
 		shootingStarEntity.setDeltaMovement(5 - rs.nextFloat() * 10, 0, 5 - rs.nextFloat() * 10);
 		serverWorld.addFreshEntity(shootingStarEntity);
 	}

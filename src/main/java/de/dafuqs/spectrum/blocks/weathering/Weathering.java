@@ -86,7 +86,7 @@ public interface Weathering extends ChangeOverTimeBlock<Weathering.WeatheringLev
 		if (world.isRaining() && world.getBiome(pos).value().getPrecipitationAt(pos) != Biome.Precipitation.NONE) {
 			chance += 0.5F;
 		}
-		return world.random.nextFloat() < chance;
+		return world.getRandom().nextFloat() < chance;
 	}
 	
 	enum WeatheringLevel {

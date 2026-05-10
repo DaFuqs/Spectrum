@@ -48,7 +48,7 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 			BlockState newState = state.setValue(LIFE_STAGE, LifeStage.MATURE);
 			world.setBlock(pos, newState, 3);
 
-			world.playSound(null, pos, SpectrumSoundEvents.VINE_SHEAR, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.6F, 1.0F));
+			world.playSound(null, pos, SpectrumSoundEvents.VINE_SHEAR, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.getRandom(), 0.6F, 1.0F));
 			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newState));
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		} else if (handStack.is(SpectrumItems.MOONSTRUCK_NECTAR)) {
@@ -61,7 +61,7 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 			BlockState newState = state.setValue(LIFE_STAGE, LifeStage.GROWING);
 			world.setBlock(pos, newState, 3);
 			
-			world.playSound(null, pos, SpectrumSoundEvents.VINE_INFUSE, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.6F, 1.0F));
+			world.playSound(null, pos, SpectrumSoundEvents.VINE_INFUSE, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.getRandom(), 0.6F, 1.0F));
 			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newState));
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		}

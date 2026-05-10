@@ -142,7 +142,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 								ItemStack leftoverStack = InventoryHelper.addToInventoryUpToSingleStackWithMaxTotalCount(handStack, barrelEntity, TitrationBarrelBlockEntity.MAX_ITEM_COUNT);
 								player.setItemInHand(hand, leftoverStack);
 								if (countBefore != leftoverStack.getCount()) {
-									world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+									world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.6F);
 									if (barrelState == BarrelState.EMPTY) {
 										world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, BarrelState.FILLED));
 									} else {

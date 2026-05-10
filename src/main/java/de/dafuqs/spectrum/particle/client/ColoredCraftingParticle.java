@@ -55,7 +55,7 @@ public class ColoredCraftingParticle extends TextureSheetParticle {
 		public @Nullable Particle createParticle(ColoredCraftingParticleEffect parameters, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 			Vector3f color = parameters.getColor();
 			ColoredCraftingParticle coloredCraftingParticle = new ColoredCraftingParticle(world, x, y, z, velocityX, velocityY, velocityZ, color.x, color.y, color.z);
-			coloredCraftingParticle.setLifetime((int) (8.0D / (world.random.nextDouble() * 0.8D + 0.2D)));
+			coloredCraftingParticle.setLifetime((int) (8.0D / (world.getRandom().nextDouble() * 0.8D + 0.2D)));
 			coloredCraftingParticle.pickSprite(this.spriteProvider);
 			return coloredCraftingParticle;
 		}

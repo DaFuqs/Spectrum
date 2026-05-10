@@ -292,7 +292,7 @@ public class FloatBlockEntity extends Entity {
 				
 				ItemStack collisionStack = SpectrumBlocks.HOVER_BLOCK.asItem().getDefaultInstance();
 				ItemEntity itemEntity = new ItemEntity(world, this.getX(), this.getY(), this.getZ(), collisionStack);
-				itemEntity.push(0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2);
+				itemEntity.push(0.1 - world.getRandom().nextFloat() * 0.2, 0.1 - world.getRandom().nextFloat() * 0.2, 0.1 - world.getRandom().nextFloat() * 0.2);
 				world.addFreshEntity(itemEntity);
 				
 				this.discard();

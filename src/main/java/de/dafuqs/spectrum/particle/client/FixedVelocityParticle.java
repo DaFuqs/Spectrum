@@ -54,7 +54,7 @@ public class FixedVelocityParticle extends TextureSheetParticle {
 		@Override
 		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 			FixedVelocityParticle craftingParticle = new FixedVelocityParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
-			craftingParticle.setLifetime((int) (8.0D / (clientWorld.random.nextDouble() * 0.8D + 0.2D)));
+			craftingParticle.setLifetime((int) (8.0D / (clientWorld.getRandom().nextDouble() * 0.8D + 0.2D)));
 			craftingParticle.pickSprite(this.spriteProvider);
 			return craftingParticle;
 		}
@@ -71,7 +71,7 @@ public class FixedVelocityParticle extends TextureSheetParticle {
 		@Override
 		public Particle createParticle(ColoredFluidRisingParticleEffect particleEffect, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 			FixedVelocityParticle particle = new FixedVelocityParticle(world, x, y, z, velocityX, velocityY, velocityZ);
-			particle.setLifetime((int) (8.0D / (world.random.nextDouble() * 0.8D + 0.2D)));
+			particle.setLifetime((int) (8.0D / (world.getRandom().nextDouble() * 0.8D + 0.2D)));
 			particle.pickSprite(this.spriteProvider);
 			
 			Vector3f color = particleEffect.getColor();
@@ -92,7 +92,7 @@ public class FixedVelocityParticle extends TextureSheetParticle {
 		@Override
 		public Particle createParticle(ColoredSparkleRisingParticleEffect particleEffect, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 			FixedVelocityParticle particle = new FixedVelocityParticle(world, x, y, z, velocityX, velocityY, velocityZ);
-			particle.setLifetime((int) (8.0D / (world.random.nextDouble() * 0.8D + 0.2D)));
+			particle.setLifetime((int) (8.0D / (world.getRandom().nextDouble() * 0.8D + 0.2D)));
 			particle.pickSprite(this.spriteProvider);
 			
 			Vector3f color = particleEffect.getColor();

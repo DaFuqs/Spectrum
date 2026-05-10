@@ -78,7 +78,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			ParticleOptions particleEffect = ColoredSparkleRisingParticleEffect.of(crystallarieum.currentRecipe.value().getInkColor().getColorInt());
 			
 			int amount = 1 + crystallarieum.currentRecipe.value().getInkPerSecond();
-			if (Support.getIntFromDecimalWithChance(amount / 80.0, world.random) > 0) {
+			if (Support.getIntFromDecimalWithChance(amount / 80.0, world.getRandom()) > 0) {
 				double randomX = world.getRandom().nextDouble() * 0.8;
 				double randomZ = world.getRandom().nextDouble() * 0.8;
 				world.addAlwaysVisibleParticle(particleEffect, blockPos.getX() + 0.1 + randomX, blockPos.getY() + 1, blockPos.getZ() + 0.1 + randomZ, 0.0D, 0.03D, 0.0D);
@@ -132,7 +132,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		
 		// advance growing
 		float consumedInkFloat = (recipe.value().getInkPerSecond() * crystallarieum.currentCatalyst.growthAccelerationMod() * crystallarieum.currentCatalyst.inkConsumptionMod());
-		int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, world.random);
+		int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, world.getRandom());
 		if (crystallarieum.inkStorage.drainEnergy(recipe.value().getInkColor(), consumedInt) < consumedInt) {
 			crystallarieum.canWork = false;
 			crystallarieum.setInkDirty();
@@ -144,7 +144,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		crystallarieum.currentGrowthStageTicks += (int) (SECOND * crystallarieum.currentCatalyst.growthAccelerationMod());
 		
 		// check if a catalyst should get used up
-		if (world.random.nextFloat() < crystallarieum.currentCatalyst.consumeChancePerSecond()) {
+		if (world.getRandom().nextFloat() < crystallarieum.currentCatalyst.consumeChancePerSecond()) {
 			ItemStack catalystStack = crystallarieum.getItem(CATALYST_SLOT_ID);
 			catalystStack.shrink(1);
 			crystallarieum.updateInClientWorld();
@@ -295,7 +295,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		}
 		
 		if (changed) {
-			level.playSound(null, worldPosition, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 0.8F + level.random.nextFloat() * 0.6F);
+			level.playSound(null, worldPosition, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 0.8F + level.getRandom().nextFloat() * 0.6F);
 			if (player != null) {
 				this.ownerUUID = player;
 			}

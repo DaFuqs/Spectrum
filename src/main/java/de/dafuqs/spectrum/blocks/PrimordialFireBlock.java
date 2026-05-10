@@ -171,7 +171,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 	
 	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, net.minecraft.util.RandomSource random) {
-		world.scheduleTick(pos, this, getFireTickDelay(world.random));
+		world.scheduleTick(pos, this, getFireTickDelay(world.getRandom()));
 		
 		if (world.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
 			if (!state.canSurvive(world, pos)) {
@@ -283,7 +283,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 	@Override
 	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onPlace(state, world, pos, oldState, notify);
-		world.scheduleTick(pos, this, getFireTickDelay(world.random));
+		world.scheduleTick(pos, this, getFireTickDelay(world.getRandom()));
 	}
 	
 	private static int getFireTickDelay(RandomSource random) {

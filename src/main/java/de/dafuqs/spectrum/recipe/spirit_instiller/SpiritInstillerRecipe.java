@@ -109,7 +109,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 		
 		// Yield upgrade
 		if (!areYieldAndEfficiencyUpgradesDisabled() && upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD) != 1.0) {
-			int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD), world.random);
+			int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD), world.getRandom());
 			resultStack.setCount(resultCountMod);
 		}
 		
@@ -135,7 +135,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 		if (getExperience() > 0) {
 			double experienceModifier = upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.EXPERIENCE);
 			float recipeExperienceBeforeMod = getExperience();
-			awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
+			awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.getRandom());
 			MultiblockCrafter.spawnExperience(world, pos.above(), awardedExperience);
 		}
 		

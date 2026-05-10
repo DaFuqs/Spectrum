@@ -100,7 +100,7 @@ public class EnderDropperBlock extends DispenserBlock {
 		}
 		
 		BlockSource blockPointer = new BlockSource(world, pos, state, enderDropperBlockEntity);
-		int i = enderDropperBlockEntity.getRandomSlot(world.random);
+		int i = enderDropperBlockEntity.getRandomSlot(world.getRandom());
 		if (i < 0) {
 			world.levelEvent(LevelEvent.SOUND_DISPENSER_FAIL, pos, 0); // no items in inv
 		} else {

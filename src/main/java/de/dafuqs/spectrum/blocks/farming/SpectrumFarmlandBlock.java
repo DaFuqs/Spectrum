@@ -50,7 +50,7 @@ public class SpectrumFarmlandBlock extends FarmBlock {
 	
 	@Override
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if (!world.isClientSide && world.random.nextFloat() < fallDistance - 1F
+		if (!world.isClientSide && world.getRandom().nextFloat() < fallDistance - 1F
 				&& entity instanceof LivingEntity
 				&& (entity instanceof Player || world.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))
 				&& entity.getBbWidth() * entity.getBbWidth() * entity.getBbHeight() > 0.512F) {

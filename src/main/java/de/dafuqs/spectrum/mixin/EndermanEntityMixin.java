@@ -25,7 +25,7 @@ public abstract class EndermanEntityMixin {
 		EnderMan endermanEntity = ((EnderMan) (Object) this);
 		Level world = endermanEntity.getCommandSenderWorld();
 		if (world instanceof ServerLevel) {
-			RandomSource random = world.random;
+			RandomSource random = world.getRandom();
 			
 			float chance;
 			if (world.dimension().equals(Level.END)) {

@@ -145,7 +145,7 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 		super.readAdditionalSaveData(nbt);
 		
 		InkColor color = SpectrumRegistries.INK_COLOR.get(ResourceLocation.tryParse(nbt.getString("color")));
-		this.setColor(color == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLOR, InkColorTags.ELEMENTAL_COLORS, this.random, InkColors.CYAN) : color);
+		this.setColor(color == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLOR, InkColorTags.ELEMENTAL_COLORS, this.getRandom(), InkColors.CYAN) : color);
 		
 		Optional.ofNullable(ResourceLocation.tryParse(nbt.getString("frills")))
 				.map((resourceLocation) -> ResourceKey.create(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, resourceLocation))
@@ -175,7 +175,7 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 		ItemStack itemStack = player.getItemInHand(hand);
 		if (this.isFood(itemStack)) {
 			int i = this.getAge();
-			if (!world.isClientSide && i == 0 && this.canFallInLove() && this.random.nextInt(5) == 0) {
+			if (!world.isClientSide && i == 0 && this.canFallInLove() && this.getRandom().nextInt(5) == 0) {
 				// yes, this also overrides the existing owner
 				// there is no god besides the new god
 				this.usePlayerItem(player, hand, itemStack);
@@ -269,17 +269,17 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 		InkColor color1 = firstParent.getColor();
 		InkColor color2 = secondParent.getColor();
 		
-		return InkColorMixes.getRandomMixedColor(color1, color2, world.random);
+		return InkColorMixes.getRandomMixedColor(color1, color2, world.getRandom());
 	}
 	
 	private Holder<LizardFrillVariant> getChildFrills(LizardEntity firstParent, LizardEntity secondParent) {
 		Level world = this.level();
-		return world.random.nextBoolean() ? firstParent.getFrills() : secondParent.getFrills();
+		return world.getRandom().nextBoolean() ? firstParent.getFrills() : secondParent.getFrills();
 	}
 	
 	private Holder<LizardHornVariant> getChildHorns(LizardEntity firstParent, LizardEntity secondParent) {
 		Level world = this.level();
-		return world.random.nextBoolean() ? firstParent.getHorns() : secondParent.getHorns();
+		return world.getRandom().nextBoolean() ? firstParent.getHorns() : secondParent.getHorns();
 	}
 	
 	// PackEntity

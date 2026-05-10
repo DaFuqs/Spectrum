@@ -253,7 +253,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 						if (currentStack == firstStack && this.copyComponents) { // if `copyComponents` is set, it usually is a transformation. Don't apply efficiency there
 							reducedAmountAfterMod = ingredientStack.getCount();
 						} else {
-							reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.random);
+							reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.getRandom());
 						}
 						currentStack.shrink(reducedAmountAfterMod);
 						break;
@@ -276,7 +276,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 				if (ingredientStack.test(currentStack)) {
 					int reducedAmount = recipesCrafted * ingredientStack.getCount();
 					int reducedAmountAfterMod = i == 0 && copyComponents ? reducedAmount
-							: efficiencyModifier == 1 ? reducedAmount : Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
+							: efficiencyModifier == 1 ? reducedAmount : Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.getRandom());
 					
 					ItemStack currentRemainder = currentStack.getCraftingRemainingItem();
 					currentStack.shrink(reducedAmountAfterMod);
@@ -296,9 +296,9 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 	protected void spawnCraftingResultAndXP(Level world, FusionShrineBlockEntity fusionShrineBlockEntity, ItemStack stack, int recipeCount) {
 		int resultAmountBeforeMod = recipeCount * stack.getCount();
 		double yieldModifier = areYieldAndEfficiencyUpgradesDisabled() ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.YIELD);
-		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
+		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.getRandom());
 		
-		int intExperience = Support.getIntFromDecimalWithChance(recipeCount * experience, world.random);
+		int intExperience = Support.getIntFromDecimalWithChance(recipeCount * experience, world.getRandom());
 		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, fusionShrineBlockEntity.getBlockPos().above(2), stack, resultAmountAfterMod, MultiblockCrafter.RECIPE_STACK_VELOCITY);
 		
 		if (experience > 0) {

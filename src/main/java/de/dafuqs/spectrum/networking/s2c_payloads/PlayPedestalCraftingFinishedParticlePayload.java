@@ -30,7 +30,7 @@ public record PlayPedestalCraftingFinishedParticlePayload(BlockPos pedestalPos, 
 	@SuppressWarnings("resource")
 	public static void execute(PlayPedestalCraftingFinishedParticlePayload payload, IPayloadContext context) {
 		Level level = context.player().level();
-		RandomSource random = level.random;
+        RandomSource random = level.getRandom();
 		
 		for (int i = 0; i < 10; i++) {
 			level.addParticle(

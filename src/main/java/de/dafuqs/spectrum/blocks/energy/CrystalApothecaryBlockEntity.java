@@ -103,7 +103,7 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 			CrystalApothecarySimulationsDataLoader.SimulatedBlockGrowthEntry drop = CrystalApothecarySimulationsDataLoader.COMPENSATIONS.get(match.getKey());
 			
 			int compensatedItemCount = (int) (drop.compensatedStack().getCount() * match.getValue() * gameRuleTickModifier * ticksToCompensate) / drop.ticksForCompensationLootPerValidNeighbor();
-			compensatedItemCount *= (int) (0.8 + world.random.nextFloat() * 0.4);
+			compensatedItemCount *= (int) (0.8 + world.getRandom().nextFloat() * 0.4);
 			if (compensatedItemCount > 0) {
 				ItemStack compensatedStack = drop.compensatedStack().copy();
 				compensatedStack.setCount(compensatedItemCount);
@@ -125,7 +125,7 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 			}
 			ItemStack currentStack = blockEntity.getItem(slot);
 			if (currentStack.isEmpty()) {
-				int selector = world.random.nextInt(totalNeedsAwarding);
+				int selector = world.getRandom().nextInt(totalNeedsAwarding);
 				int acc = 0;
 				for (ItemStack awardStack : needsAwarding) {
 					acc += awardStack.getCount();

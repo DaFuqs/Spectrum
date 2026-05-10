@@ -72,7 +72,7 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	public void onUseTick(Level world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		super.onUseTick(world, user, stack, remainingUseTicks);
 		if (world.isClientSide) {
-			RandomSource random = world.random;
+            RandomSource random = world.getRandom();
 			for (int i = 0; i < (GROUND_SLAM_CHARGE_TICKS - remainingUseTicks) / 8; i++) {
 				world.addParticle(ParticleTypes.INSTANT_EFFECT,
 						user.getRandomX(1.0), user.getY(), user.getRandomZ(1.0),

@@ -133,7 +133,7 @@ public class EnderSpliceItem extends Item {
 		if (unbreakingLevel == 0) {
 			itemStack.shrink(1);
 		} else {
-			itemStack.shrink(Support.getIntFromDecimalWithChance(1.0 / (1 + unbreakingLevel), world.random));
+			itemStack.shrink(Support.getIntFromDecimalWithChance(1.0 / (1 + unbreakingLevel), world.getRandom()));
 		}
 	}
 	

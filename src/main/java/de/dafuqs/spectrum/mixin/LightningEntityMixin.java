@@ -42,14 +42,14 @@ public abstract class LightningEntityMixin {
 			aboveGroundBlockPos = blockPos2.relative(Direction.from2DDataValue(world.getRandom().nextInt(6))).above();
 		} else {
 			// there is chance involved
-			if (world.random.nextFloat() < SpectrumConfig.CONFIG.StormStoneSpawnChance.get()) {
+			if (world.getRandom().nextFloat() < SpectrumConfig.CONFIG.StormStoneSpawnChance.get()) {
 				return;
 			}
 			aboveGroundBlockPos = affectedBlockPos.above();
 		}
 		
 		if (world.isEmptyBlock(aboveGroundBlockPos)) {
-			Direction randomDirection = Direction.from2DDataValue(world.random.nextInt(4));
+			Direction randomDirection = Direction.from2DDataValue(world.getRandom().nextInt(4));
 			BlockState placementBlockState = SpectrumBlocks.STUCK_STORM_STONE.get().defaultBlockState().setValue(StuckStormStoneBlock.FACING, randomDirection);
 			if (placementBlockState.canSurvive(world, aboveGroundBlockPos)) {
 				world.setBlockAndUpdate(aboveGroundBlockPos, placementBlockState);

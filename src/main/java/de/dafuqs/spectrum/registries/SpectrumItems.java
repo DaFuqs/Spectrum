@@ -23,6 +23,7 @@ import de.dafuqs.spectrum.items.misc.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.effect.*;
+import net.minecraft.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -285,15 +286,15 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> BLOODBOIL_SYRUP = register("bloodboil_syrup", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.BLOODBOIL_SYRUP).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> MILKY_RESIN = register("milky_resin", () -> new Item(IS.of(Rarity.UNCOMMON)));
 	
-	// Food & drinks*/
+	// Food & drinks
 	public static final DeferredItem<Item> SCONE = register("scone", () -> new Item(IS.of().food(SpectrumFoodComponents.SCONE)));
-	public static final DeferredItem<Item> MOONSTRUCK_NECTAR = register("moonstruck_nectar", () -> new DrinkItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).craftRemainder(GLASS_BOTTLE), Component.translatable("item.spectrum.moonstruck_nectar.tooltip").append(Component.literal("\n")).append(Component.translatable("item.spectrum.moonstruck_nectar.tooltip2"))));
+	public static final DeferredItem<Item> MOONSTRUCK_NECTAR = register("moonstruck_nectar", () -> new DrinkItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).craftRemainder(GLASS_BOTTLE), Component.translatable("item.spectrum.moonstruck_nectar.tooltip").append("\n").append(Component.translatable("item.spectrum.moonstruck_nectar.tooltip2"))));
 	public static final DeferredItem<Item> JADE_JELLY = register("jade_jelly", () -> new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.JADE_JELLY), "item.spectrum.jade_jelly.tooltip"));
 	public static final DeferredItem<Item> GLASS_PEACH = register("glass_peach", () -> new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.GLASS_PEACH), "item.spectrum.glass_peach.tooltip"));
 	public static final DeferredItem<Item> FISSURE_PLUM = register("fissure_plum", () -> new AliasedTooltipItem(SpectrumBlocks.ABYSSAL_VINES.get(), IS.of().food(SpectrumFoodComponents.FISSURE_PLUM), "item.spectrum.fissure_plum.tooltip"));
 	public static final DeferredItem<Item> NIGHTDEW_SPROUT = register("nightdew_sprout", () -> new AliasedTooltipItem(SpectrumBlocks.NIGHTDEW.get(), IS.of().food(SpectrumFoodComponents.NIGHTDEW_SPROUT), "item.spectrum.nightdew_sprout.tooltip"));
 	public static final DeferredItem<Item> NECTARDEW_BURGEON = register("nectardew_burgeon", () -> new NectardewBurgeonItem(IS.of().food(SpectrumFoodComponents.NECTARDEW_BURGEON), "item.spectrum.nectardew_burgeon.tooltip", SpectrumAdvancements.COLLECT_NECTARDEW, SpectrumItems.NIGHTDEW_SPROUT.get()));
-	public static final DeferredItem<Item> RESTORATION_TEA = register("restoration_tea", () -> new RestorationTeaItem(IS.of().food(SpectrumFoodComponents.RESTORATION_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.RESTORATION_TEA_SCONE_BONUS))));
+	public static final DeferredItem<Item> RESTORATION_TEA = register("restoration_tea", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.RESTORATION_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.RESTORATION_TEA_SCONE_BONUS)), Component.translatable("item.spectrum.restoration_tea.tooltip").append("\n").append(Component.translatable("item.spectrum.restoration_tea.tooltip2"))));
 	public static final DeferredItem<Item> KIMCHI = register("kimchi", () -> new Item(IS.of().food(SpectrumFoodComponents.KIMCHI)));
 	public static final DeferredItem<Item> CLOTTED_CREAM = register("clotted_cream", () -> new ClottedCreamItem(IS.of().food(SpectrumFoodComponents.CLOTTED_CREAM), new String[]{"item.spectrum.clotted_cream.tooltip", "item.spectrum.clotted_cream.tooltip2"}));
 	public static final DeferredItem<Item> FRESH_CHOCOLATE = register("fresh_chocolate", () -> new Item(IS.of().food(SpectrumFoodComponents.FRESH_CHOCOLATE)));

@@ -248,7 +248,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> ANCIENT_CHISELED_POLISHED_BLACKSLAG = register(simple(blockWithItem("ancient_chiseled_polished_blackslag", () -> new Block(blackslag(SoundType.DEEPSLATE_BRICKS)), InkColors.BLACK)));
 	
 	public static final DeferredBlock<Block> SHALE_CLAY = register(singleton(blockWithItem("shale_clay", () -> new ShaleClayBlock(Weathering.WeatheringLevel.UNAFFECTED, blackslag(SoundType.MUD_BRICKS)), InkColors.BROWN), TexturedModel.COLUMN));
-	public static final DeferredBlock<Block> TILLED_SHALE_CLAY = register(singleton(blockWithItem("tilled_shale_clay", () -> new TilledShaleClayBlock(BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY.get()), SHALE_CLAY.get().defaultBlockState()), InkColors.BROWN), SpectrumTexturedModelProviders.farmland(b -> SHALE_CLAY.get(), "_side", b -> b, "")));
+	public static final DeferredBlock<Block> TILLED_SHALE_CLAY = register(singleton(blockWithItem("tilled_shale_clay", () -> new ImmutableFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY.get()), SHALE_CLAY.get().defaultBlockState()), InkColors.BROWN), SpectrumTexturedModelProviders.farmland(b -> SHALE_CLAY.get(), "_side", b -> b, "")));
 	
 	public static final DeferredBlock<Block> POLISHED_SHALE_CLAY = register(blockWithItem("polished_shale_clay", () -> new ShaleClayBlock(Weathering.WeatheringLevel.UNAFFECTED, BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY.get())), InkColors.BROWN));
 	public static final DeferredBlock<Block> POLISHED_SHALE_CLAY_STAIRS = register(blockWithItem("polished_shale_clay_stairs", () -> new WeatheringStairsBlock(Weathering.WeatheringLevel.UNAFFECTED, POLISHED_SHALE_CLAY.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY.get())), InkColors.BROWN));

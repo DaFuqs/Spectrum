@@ -22,13 +22,13 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
-public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
+public class PreservationChestBlockEntity extends SpectrumChestBlockEntity {
 	
 	private final List<UUID> playersThatOpenedAlready = new ArrayList<>();
-	private ResourceLocation requiredAdvancementIdentifierToOpen;
-	private Vec3i controllerOffset;
+	private @Nullable ResourceLocation requiredAdvancementIdentifierToOpen;
+	private @Nullable Vec3i controllerOffset;
 	
-	public TreasureChestBlockEntity(BlockPos pos, BlockState state) {
+	public PreservationChestBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.PRESERVATION_CHEST.get(), pos, state);
 	}
 	

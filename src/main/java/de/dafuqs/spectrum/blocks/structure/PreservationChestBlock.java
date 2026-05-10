@@ -14,26 +14,26 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import org.jspecify.annotations.Nullable;
 
-public class TreasureChestBlock extends SpectrumChestBlock {
+public class PreservationChestBlock extends SpectrumChestBlock {
 	
-	public static final MapCodec<TreasureChestBlock> CODEC = simpleCodec(TreasureChestBlock::new);
+	public static final MapCodec<PreservationChestBlock> CODEC = simpleCodec(PreservationChestBlock::new);
 	
-	public TreasureChestBlock(Properties settings) {
+	public PreservationChestBlock(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public MapCodec<? extends TreasureChestBlock> codec() {
+	public MapCodec<? extends PreservationChestBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
 	public void openScreen(Level world, BlockPos pos, Player player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof TreasureChestBlockEntity treasureChestBlockEntity) {
+		if (blockEntity instanceof PreservationChestBlockEntity preservationChestBlockEntity) {
 			if (!isChestBlocked(world, pos)) {
-				if (treasureChestBlockEntity.canOpen(player)) {
-					player.openMenu(treasureChestBlockEntity);
+				if (preservationChestBlockEntity.canOpen(player)) {
+					player.openMenu(preservationChestBlockEntity);
 				} else {
 					world.playSound(null, pos, SoundEvents.CHEST_LOCKED, SoundSource.PLAYERS, 1.0F, 1.0F);
 				}
@@ -43,12 +43,12 @@ public class TreasureChestBlock extends SpectrumChestBlock {
 	
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new TreasureChestBlockEntity(pos, state);
+		return new PreservationChestBlockEntity(pos, state);
 	}
 
 	@Override
 	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide() ? createTickerHelper(type, SpectrumBlockEntities.PRESERVATION_CHEST.get(), TreasureChestBlockEntity::clientTick) : null;
+		return world.isClientSide() ? createTickerHelper(type, SpectrumBlockEntities.PRESERVATION_CHEST.get(), PreservationChestBlockEntity::clientTick) : null;
 	}
 	
 	@Override

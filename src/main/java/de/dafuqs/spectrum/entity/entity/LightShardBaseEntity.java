@@ -102,7 +102,7 @@ public abstract class LightShardBaseEntity extends Projectile {
 		
 		if (this.targetEntity.isEmpty() || !isValidTarget(targetEntity.get())) {
 			Level world = this.level();
-			if (world.isClientSide)
+			if (world.isClientSide())
 				return;
 			
 			if (random.nextFloat() > 0.25)

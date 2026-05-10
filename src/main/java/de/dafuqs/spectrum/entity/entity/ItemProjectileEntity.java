@@ -27,7 +27,7 @@ public class ItemProjectileEntity extends ThrowableItemProjectile {
 	protected void onHit(HitResult hitResult) {
 		ItemStack stack = getItem();
 		
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			ItemProjectileBehavior behavior = ItemProjectileBehavior.get(stack);
 			HitResult.Type type = hitResult.getType();
 			if (type == HitResult.Type.ENTITY) {

@@ -39,7 +39,7 @@ public class BidentMirrorImageEntity extends BidentBaseEntity {
 		world.playSound(null, entityHitResult.getEntity().blockPosition(), SpectrumSoundEvents.MEDIUM_CRYSTAL_RING, SoundSource.PLAYERS, 1.334F, 0.9F + random.nextFloat() * 0.334F);
 		world.playSound(null, entityHitResult.getEntity().blockPosition(), SpectrumSoundEvents.SHATTER_HEAVY, SoundSource.PLAYERS, 0.75F, 1.0F + random.nextFloat() * 0.2F);
 		MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 1);
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			processHit(entityHitResult.getEntity(), 1F);
 		}
 		this.discard();
@@ -51,7 +51,7 @@ public class BidentMirrorImageEntity extends BidentBaseEntity {
 		Level world = this.level();
 		world.playSound(null, blockHitResult.getBlockPos(), SpectrumSoundEvents.SHATTER_HEAVY, SoundSource.PLAYERS, 0.75F, 1.0F);
 		MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 1);
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			processHit(null, 0.667F);
 		}
 		this.discard();

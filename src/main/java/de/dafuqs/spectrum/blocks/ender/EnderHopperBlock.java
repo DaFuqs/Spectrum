@@ -74,7 +74,7 @@ public class EnderHopperBlock extends BaseEntityBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.ENDER_HOPPER.get(), EnderHopperBlockEntity::serverTick);
+		return world.isClientSide() ? null : createTickerHelper(type, SpectrumBlockEntities.ENDER_HOPPER.get(), EnderHopperBlockEntity::serverTick);
 	}
 	
 	@Override
@@ -120,29 +120,29 @@ public class EnderHopperBlock extends BaseEntityBlock {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
-			return InteractionResult.SUCCESS;
-		} else {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof EnderHopperBlockEntity enderHopperBlockEntity) {
-				
-				if (!enderHopperBlockEntity.hasOwner()) {
-					enderHopperBlockEntity.setOwner(player);
-				}
-				
-				if (enderHopperBlockEntity.isOwner(player)) {
-					PlayerEnderChestContainer enderChestInventory = player.getEnderChestInventory();
-					
-					player.openMenu(new SimpleMenuProvider((i, playerInventory, playerEntity) -> GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, ScreenBackgroundVariant.EARLYGAME), enderHopperBlockEntity.getContainerName()));
-					player.awardStat(Stats.OPEN_ENDERCHEST);
-					PiglinAi.angerNearbyPiglins(player, true);
-				} else {
-					player.displayClientMessage(Component.translatable("block.spectrum.ender_hopper_with_owner", enderHopperBlockEntity.getOwnerName()), true);
-				}
-				
-			}
-			return InteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        } else {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof EnderHopperBlockEntity enderHopperBlockEntity) {
+
+                if (!enderHopperBlockEntity.hasOwner()) {
+                    enderHopperBlockEntity.setOwner(player);
+                }
+
+                if (enderHopperBlockEntity.isOwner(player)) {
+                    PlayerEnderChestContainer enderChestInventory = player.getEnderChestInventory();
+
+                    player.openMenu(new SimpleMenuProvider((i, playerInventory, playerEntity) -> GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, ScreenBackgroundVariant.EARLYGAME), enderHopperBlockEntity.getContainerName()));
+                    player.awardStat(Stats.OPEN_ENDERCHEST);
+                    PiglinAi.angerNearbyPiglins(player, true);
+                } else {
+                    player.displayClientMessage(Component.translatable("block.spectrum.ender_hopper_with_owner", enderHopperBlockEntity.getOwnerName()), true);
+                }
+
+            }
+            return InteractionResult.CONSUME;
+        }
 	}
 	
 }

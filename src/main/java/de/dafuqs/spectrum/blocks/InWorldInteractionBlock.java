@@ -44,7 +44,7 @@ public abstract class InWorldInteractionBlock extends BaseEntityBlock {
 	
 	@Override
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if (!world.isClientSide && entity instanceof ItemEntity itemEntity) {
+		if (!world.isClientSide() && entity instanceof ItemEntity itemEntity) {
 			ItemStack remainingStack = inputStack(world, pos, itemEntity.getItem());
 			if (remainingStack.isEmpty()) {
 				itemEntity.remove(Entity.RemovalReason.DISCARDED);

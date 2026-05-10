@@ -97,7 +97,7 @@ public class SpectrumEventListeners {
 		Player player = event.getEntity();
 		Direction direction = event.getFace();
 		
-		if (!world.isClientSide && !player.isSpectator()) {
+		if (!world.isClientSide() && !player.isSpectator()) {
 			
 			ItemStack mainHandStack = player.getMainHandItem();
 			if (mainHandStack.getItem() instanceof ExchangeStaffItem exchangeStaffItem) {
@@ -414,13 +414,13 @@ public class SpectrumEventListeners {
 				Vec3 velocity = entity.getDeltaMovement();
 				entity.setDeltaMovement(velocity.x(), 0.5, velocity.z());
 				Level world = entity.level();
-				if (world.isClientSide) { // it is split here so the particles spawn immediately, without network lag
-					ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
-					ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
-				} else if (entity instanceof ServerPlayer serverPlayerEntity) {
-					PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) entity.level(), entity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
-					PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) entity.level(), entity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
-				}
+                if (world.isClientSide()) { // it is split here so the particles spawn immediately, without network lag
+                    ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
+                    ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
+                } else if (entity instanceof ServerPlayer serverPlayerEntity) {
+                    PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) entity.level(), entity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
+                    PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) entity.level(), entity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
+                }
 				entity.level().playSound(null, entity.blockPosition(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundSource.PLAYERS, 1.0F, 1.0F);
 				event.setCanceled(true);
 			}
@@ -729,7 +729,7 @@ public class SpectrumEventListeners {
 		}
 		
 		Level world = projectile.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			Entity entity = entityHitResult.getEntity();
 			if (entity instanceof LivingEntity livingEntity) {
 				boolean protect = false;

@@ -61,7 +61,7 @@ public class AzureDikeAttachmentType {
 	
 	public static void recalculate(LivingEntity livingEntity) {
 		Level level = livingEntity.level();
-		if (!level.isClientSide) {
+		if (!level.isClientSide()) {
 			AzureDikeAttachmentType attachment = livingEntity.getData(ATTACHMENT_TYPE);
 			
 			Optional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(livingEntity);

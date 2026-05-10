@@ -53,7 +53,7 @@ public class CrystalApothecaryBlockEntity extends RandomizableContainerBlockEnti
 	
 	@SuppressWarnings("unused")
 	public static void tick(Level world, BlockPos pos, BlockState state, CrystalApothecaryBlockEntity blockEntity) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			blockEntity.blockPosEventTransferListener.tick(world);
 			if (world.getGameTime() % 1000 == 0) {
 				blockEntity.listenerPaused = false; // try to reset from time to time, to search for new clusters, even if full

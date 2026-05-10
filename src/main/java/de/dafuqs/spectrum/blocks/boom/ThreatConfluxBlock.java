@@ -151,7 +151,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	}
 	
 	protected void explode(ServerLevel level, BlockPos pos) {
-		if (level.isClientSide || !(level.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
+		if (level.isClientSide() || !(level.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
 			return;
 		}
 		ItemStack stack = blockEntity.getStack();

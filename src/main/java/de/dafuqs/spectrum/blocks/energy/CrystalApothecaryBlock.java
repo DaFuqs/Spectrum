@@ -60,15 +60,15 @@ public class CrystalApothecaryBlock extends BaseEntityBlock {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
-			return InteractionResult.SUCCESS;
-		} else {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof CrystalApothecaryBlockEntity crystalApothecaryBlockEntity) {
-				player.openMenu(crystalApothecaryBlockEntity);
-			}
-			return InteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        } else {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof CrystalApothecaryBlockEntity crystalApothecaryBlockEntity) {
+                player.openMenu(crystalApothecaryBlockEntity);
+            }
+            return InteractionResult.CONSUME;
+        }
 	}
 	
 	@Override

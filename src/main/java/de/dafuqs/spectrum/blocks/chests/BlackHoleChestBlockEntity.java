@@ -88,7 +88,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			chest.interpTicks++;
 		}
 		
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			chest.lidAnimator.tickLid();
 		} else {
 			chest.itemAndExperienceEventQueue.tick(world);

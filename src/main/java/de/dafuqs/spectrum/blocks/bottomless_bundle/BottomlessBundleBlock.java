@@ -67,7 +67,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (player.isShiftKeyDown()) {
 				BlockEntity be = world.getBlockEntity(pos);
 				if (be instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
@@ -167,7 +167,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	
 	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 				bottomlessBundleBlockEntity.setBundle(itemStack.copy(), world.registryAccess());

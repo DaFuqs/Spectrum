@@ -84,7 +84,7 @@ public abstract class DecayBlock extends DropExperienceBlock {
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.setPlacedBy(world, pos, state, placer, itemStack);
 		
-		if (!world.isClientSide && SpectrumConfig.CONFIG.LogPlacingOfDecay.get() && placer != null) {
+		if (!world.isClientSide() && SpectrumConfig.CONFIG.LogPlacingOfDecay.get() && placer != null) {
 			SpectrumCommon.logInfo(state.getBlock().getName().getString() + " was placed in " + world.dimension().location() + " at " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " by " + placer.getName());
 		}
 	}

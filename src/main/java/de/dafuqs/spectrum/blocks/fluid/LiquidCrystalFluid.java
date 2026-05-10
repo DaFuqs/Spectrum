@@ -93,7 +93,7 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		
 		// just check every x ticks for performance and slow healing
 		if (world.getGameTime() % 200 == 0) {
-			if(!world.isClientSide && entity instanceof LivingEntity livingEntity) {
+			if(!world.isClientSide() && entity instanceof LivingEntity livingEntity) {
 				MobEffectInstance regenerationInstance = livingEntity.getEffect(MobEffects.REGENERATION);
 				if (regenerationInstance == null) {
 					MobEffectInstance newRegenerationInstance = new MobEffectInstance(MobEffects.REGENERATION, 80);

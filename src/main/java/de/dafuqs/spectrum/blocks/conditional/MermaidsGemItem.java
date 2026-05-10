@@ -56,7 +56,7 @@ public class MermaidsGemItem extends ItemNameBlockItem implements RevelationAwar
 				level.setBlockAndUpdate(pos, Blocks.WATER_CAULDRON.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, LayeredCauldronBlock.MAX_FILL_LEVEL));
 				context.getItemInHand().shrink(1);
 			}
-			return InteractionResult.sidedSuccess(level.isClientSide);
+			return InteractionResult.sidedSuccess(level.isClientSide());
 		}
 		
 		return super.useOn(context);

@@ -51,7 +51,7 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 			return InteractionResult.FAIL;
 		}
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (turnEntityToMemory(user, entity)) {
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world, entity.position(), ColoredSparkleRisingParticleEffect.LIGHT_GRAY, 10, Vec3.ZERO, new Vec3(0.2, 0.2, 0.2));
 				PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerLevel) world, entity.position(), ColoredExplosionParticleEffect.LIGHT_GRAY, 1, Vec3.ZERO);
@@ -61,7 +61,7 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 			}
 		}
 		
-		return InteractionResult.sidedSuccess(world.isClientSide);
+		return InteractionResult.sidedSuccess(world.isClientSide());
 	}
 	
 	private boolean turnEntityToMemory(Player user, LivingEntity entity) {

@@ -102,7 +102,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 					return InteractionResult.FAIL;
 				}
 				
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					placeBlocksAndDecrementInventory(player, world, blockToPlace, itemToConsume, side, targetPositions);
 				}
 				

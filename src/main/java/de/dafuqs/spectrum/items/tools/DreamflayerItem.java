@@ -60,16 +60,16 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 			boolean isActivated = ActivatableItem.isActivated(stack);
 			if (isActivated) {
 				setActivated(stack, false);
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundSource.PLAYERS, 1.0F, 1F);
 				}
 			} else {
 				if (InkPowered.tryDrainEnergy(user, USED_COLOR, INK_COST_FOR_ACTIVATION)) {
 					setActivated(stack, true);
-					if (!world.isClientSide) {
+					if (!world.isClientSide()) {
 						world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1F);
 					}
-				} else if (!world.isClientSide) {
+				} else if (!world.isClientSide()) {
 					world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundSource.PLAYERS, 1.0F, 1F);
 				}
 			}
@@ -83,20 +83,20 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 	@Override
 	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
-		
-		if (world.isClientSide) {
-			if (ActivatableItem.isActivated(stack)) {
-				Vec3 pos = entity.position();
-				world.addParticle(ColoredCraftingParticleEffect.RED, entity.getRandomX(1.0), pos.y() + 1.05D, entity.getRandomZ(1.0), 0.0D, 0.1D, 0.0D);
-			}
-		} else {
-			if (world.getGameTime() % 20 == 0 && ActivatableItem.isActivated(stack)) {
-				if (entity instanceof ServerPlayer player && !InkPowered.tryDrainEnergy(player, USED_COLOR, INK_COST_PER_SECOND)) {
-					setActivated(stack, false);
-					world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundSource.PLAYERS, 0.8F, 1F);
-				}
-			}
-		}
+
+        if (world.isClientSide()) {
+            if (ActivatableItem.isActivated(stack)) {
+                Vec3 pos = entity.position();
+                world.addParticle(ColoredCraftingParticleEffect.RED, entity.getRandomX(1.0), pos.y() + 1.05D, entity.getRandomZ(1.0), 0.0D, 0.1D, 0.0D);
+            }
+        } else {
+            if (world.getGameTime() % 20 == 0 && ActivatableItem.isActivated(stack)) {
+                if (entity instanceof ServerPlayer player && !InkPowered.tryDrainEnergy(player, USED_COLOR, INK_COST_PER_SECOND)) {
+                    setActivated(stack, false);
+                    world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundSource.PLAYERS, 0.8F, 1F);
+                }
+            }
+        }
 	}
 	
 	@Override

@@ -304,7 +304,7 @@ public class ArtisansAtlasItem extends MapItem {
 	
 	@Override
 	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			MapItemSavedData state = getSavedData(stack, world);
 			if (state instanceof ArtisansAtlasState atlasState) {
 				atlasState.updateDimension(world.dimension());

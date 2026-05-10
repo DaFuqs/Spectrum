@@ -97,7 +97,7 @@ public class BlockDetectorBlock extends RedstoneInteractionBlock {
 	@Override
 	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.is(newState.getBlock())) {
-			if (!world.isClientSide && state.getValue(TRIGGERED) && world.getBlockTicks().hasScheduledTick(pos, this)) {
+			if (!world.isClientSide() && state.getValue(TRIGGERED) && world.getBlockTicks().hasScheduledTick(pos, this)) {
 				this.updateNeighbors(world, pos, state.setValue(TRIGGERED, false));
 			}
 		}

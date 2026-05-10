@@ -59,7 +59,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 	
 	@Override
 	public void inventoryChanged() {
-		if(this.level == null || this.level.isClientSide) return;
+		if(this.level == null || this.level.isClientSide()) return;
 		
 		BlockState state = getBlockState();
 		BarrelState barrelState = state.getValue(BARREL_STATE);

@@ -66,9 +66,9 @@ public class BottomlessBundleItem extends BlockItem {
 						storage.variant(),
 						storage.count())
 				);
-				if (level.isClientSide) {
-					playZipSound(user, 0.8F);
-				}
+                if (level.isClientSide()) {
+                    playZipSound(user, 0.8F);
+                }
 			} else {
 				handStack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(
 						storage.capacity(),
@@ -77,9 +77,9 @@ public class BottomlessBundleItem extends BlockItem {
 						storage.variant(),
 						storage.count())
 				);
-				if (level.isClientSide) {
-					playZipSound(user, 1.0F);
-				}
+                if (level.isClientSide()) {
+                    playZipSound(user, 1.0F);
+                }
 			}
 			
 			return InteractionResultHolder.sidedSuccess(handStack, level.isClientSide());

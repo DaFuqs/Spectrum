@@ -35,10 +35,10 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 		if (isPrimed(user.getItemInHand(hand))) {
 			return super.use(world, user, hand);
 		}
-		
-		if (world.isClientSide) {
-			startSoundInstance(user);
-		}
+
+        if (world.isClientSide()) {
+            startSoundInstance(user);
+        }
 		return ItemUtils.startUsingInstantly(world, user, hand);
 	}
 	

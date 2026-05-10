@@ -60,7 +60,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 	
 	@SuppressWarnings("unused")
 	public static void tick(Level world, BlockPos pos, BlockState state, ColorPickerBlockEntity blockEntity) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			blockEntity.inkDirty = false;
 			if (!blockEntity.paused) {
 				boolean convertedPigment = false;

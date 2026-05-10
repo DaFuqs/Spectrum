@@ -39,20 +39,20 @@ public abstract class AbstractParticleSpawnerBlock extends BaseEntityBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? createTickerHelper(type, SpectrumBlockEntities.PARTICLE_SPAWNER.get(), ParticleSpawnerBlockEntity::clientTick) : null;
+		return world.isClientSide() ? createTickerHelper(type, SpectrumBlockEntities.PARTICLE_SPAWNER.get(), ParticleSpawnerBlockEntity::clientTick) : null;
 	}
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
-			return InteractionResult.SUCCESS;
-		} else {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
-				player.openMenu(particleSpawnerBlockEntity);
-			}
-			return InteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        } else {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
+                player.openMenu(particleSpawnerBlockEntity);
+            }
+            return InteractionResult.CONSUME;
+        }
 	}
 	
 	public abstract boolean shouldSpawnParticles(Level world, BlockPos pos);

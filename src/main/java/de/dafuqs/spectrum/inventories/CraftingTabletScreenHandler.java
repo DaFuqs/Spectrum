@@ -108,7 +108,7 @@ public class CraftingTabletScreenHandler extends RecipeBookMenu<RecipeInput, Rec
 	}
 	
 	protected void updateResult(AbstractContainerMenu handler, Level world, Player player, CraftingTabletInventory inventory) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			ServerPlayer serverPlayerEntity = (ServerPlayer) player;
 			
 			PedestalRecipeInput pedestalRecipeInput = PedestalRecipeInput.createWithFullGemstonePowder(world, inventory.getItems(), player);

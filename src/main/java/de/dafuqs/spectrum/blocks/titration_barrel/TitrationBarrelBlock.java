@@ -79,7 +79,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			return ItemInteractionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -127,12 +127,12 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 								
 								if (FluidUtil.interactWithFluidHandler(player, hand, barrelEntity.tank)) {
 									if (!barrelEntity.tank.isEmpty()) {
-										if (state.getValue(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.tank.isEmpty()) {
-											world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
+										if (state.getValue(BARREL_STATE) == BarrelState.FILLED && barrelEntity.tank.isEmpty()) {
+											world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, BarrelState.EMPTY));
 										}
 									} else {
-										if (state.getValue(BARREL_STATE) == TitrationBarrelBlock.BarrelState.EMPTY) {
-											world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, TitrationBarrelBlock.BarrelState.FILLED));
+										if (state.getValue(BARREL_STATE) == BarrelState.EMPTY) {
+											world.setBlockAndUpdate(pos, state.setValue(BARREL_STATE, BarrelState.FILLED));
 										}
 									}
 									return ItemInteractionResult.CONSUME;

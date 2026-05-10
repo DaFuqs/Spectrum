@@ -23,7 +23,7 @@ public class OblivionPickaxeItem extends GlintlessPickaxe {
 		
 		// Break the tool if it is used without the voiding enchantment
 		// Otherwise this would be a VERY cheap early game diamond tier tool
-		if (!world.isClientSide && !EnchantmentHelper.hasTag(stack, SpectrumEnchantmentTags.NO_BLOCK_DROPS)) {
+		if (!world.isClientSide() && !EnchantmentHelper.hasTag(stack, SpectrumEnchantmentTags.NO_BLOCK_DROPS)) {
 			stack.hurtAndBreak(5000, miner, EquipmentSlot.MAINHAND);
 		}
 		

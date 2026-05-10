@@ -117,7 +117,7 @@ public class PresentBlock extends BaseEntityBlock {
 		if (!player.getAbilities().mayBuild) {
 			return InteractionResult.PASS;
 		} else {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return InteractionResult.SUCCESS;
 			} else {
 				BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -153,7 +153,7 @@ public class PresentBlock extends BaseEntityBlock {
 	
 	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-		if (state.getValue(OPENING) && !world.isClientSide) {
+		if (state.getValue(OPENING) && !world.isClientSide()) {
 			if (world.getBlockEntity(pos) instanceof PresentBlockEntity presentBlockEntity) {
 				int openingTick = presentBlockEntity.openingTick();
 				Vec3 posVec = new Vec3(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);

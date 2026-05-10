@@ -168,7 +168,7 @@ public class DoomBloomBlock extends FlowerBlock implements BonemealableBlock {
 		if (state.getValue(AGE) == AGE_MAX) {
 			world.removeBlock(pos, false);
 			world.explode(null, SpectrumDamageTypes.incandescence(world), new ExplosionDamageCalculator(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3.0F, true, Level.ExplosionInteraction.BLOCK);
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				popResource(world, pos, new ItemStack(SpectrumItems.DOOMBLOOM_SEED.get(), world.getRandom().nextIntBetweenInclusive(3, 7)));
 			}
 		}
@@ -178,7 +178,7 @@ public class DoomBloomBlock extends FlowerBlock implements BonemealableBlock {
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		int age = state.getValue(AGE);
 		if (age == AGE_MAX) {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return InteractionResult.SUCCESS;
 			} else {
 				world.setBlockAndUpdate(pos, state.setValue(AGE, 0));

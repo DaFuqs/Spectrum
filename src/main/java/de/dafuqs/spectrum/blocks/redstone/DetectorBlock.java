@@ -29,14 +29,14 @@ public abstract class DetectorBlock extends Block {
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		if (player.mayBuild()) {
-			if (world.isClientSide) {
-				return InteractionResult.SUCCESS;
-			} else {
-				BlockState blockState = state.cycle(INVERTED);
-				world.setBlock(pos, blockState, 4);
-				updateState(blockState, world, pos);
-				return InteractionResult.CONSUME;
-			}
+            if (world.isClientSide()) {
+                return InteractionResult.SUCCESS;
+            } else {
+                BlockState blockState = state.cycle(INVERTED);
+                world.setBlock(pos, blockState, 4);
+                updateState(blockState, world, pos);
+                return InteractionResult.CONSUME;
+            }
 		} else {
 			return super.useWithoutItem(state, world, pos, player, hit);
 		}

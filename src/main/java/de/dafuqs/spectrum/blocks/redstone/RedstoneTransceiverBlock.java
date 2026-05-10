@@ -54,14 +54,14 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (world.isClientSide) {
-			return ItemInteractionResult.SUCCESS;
-		} else {
-			if (!tryColorUsingStackInHand(handStack, world, pos, player, hand)) {
-				toggleSendingMode(world, pos, state);
-			}
-			return ItemInteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            return ItemInteractionResult.SUCCESS;
+        } else {
+            if (!tryColorUsingStackInHand(handStack, world, pos, player, hand)) {
+                toggleSendingMode(world, pos, state);
+            }
+            return ItemInteractionResult.CONSUME;
+        }
 	}
 	
 	public void toggleSendingMode(Level world, BlockPos blockPos, BlockState state) {
@@ -122,7 +122,7 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		super.setPlacedBy(world, pos, state, placer, itemStack);
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			checkTickOnNeighbor(world, pos, state);
 		}
 	}
@@ -130,7 +130,7 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.REDSTONE_TRANSCEIVER.get(), RedstoneTransceiverBlockEntity::serverTick);
+		return world.isClientSide() ? null : Support.checkType(type, SpectrumBlockEntities.REDSTONE_TRANSCEIVER.get(), RedstoneTransceiverBlockEntity::serverTick);
 	}
 	
 	@Override

@@ -41,54 +41,54 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	public static void tick(Level world, BlockPos pos, BlockState state, FabricationChestBlockEntity chest) {
 		chest.age++;
 		// TODO: that should run in `clientTick() instead` (same for other chests)
-		if (world.isClientSide) {
-			
-			chest.lastYaw = chest.yaw;
-			chest.yaw += chest.yawMod;
-			
-			if (chest.isOpen) {
-				if (chest.canFunction()) {
-					chest.changeState(State.OPEN_CRAFTING);
-					chest.interpLength = 5;
-				} else {
-					chest.changeState(State.OPEN);
-					chest.interpLength = 7;
-				}
-			} else {
-				if (chest.isFull) {
-					chest.changeState(State.FULL);
-					chest.interpLength = 9;
-				} else if (chest.canFunction()) {
-					chest.changeState(State.CLOSED_CRAFTING);
-					chest.interpLength = 7;
-				} else {
-					chest.changeState(State.CLOSED);
-					chest.interpLength = 13;
-				}
-			}
-			
-			if (chest.interpTicks < chest.interpLength) {
-				chest.interpTicks++;
-			}
-			
-			chest.lidAnimator.tickLid();
-		} else {
-			if (tickCooldown(chest)) {
-				for (int i = 0; i < 4; i++) {
-					ItemStack outputItemStack = chest.inventory.get(RESULT_SLOTS[i]);
-					ItemStack craftingTabletItemStack = chest.inventory.get(RECIPE_SLOTS[i]);
-					if (!craftingTabletItemStack.isEmpty() && (outputItemStack.isEmpty() || outputItemStack.getCount() < outputItemStack.getMaxStackSize())) {
-						boolean couldCraft = chest.tryCraft(chest, i);
-						if (couldCraft) {
-							chest.setCooldown(chest, 20);
-							chest.setChanged();
-							chest.updateFullState(false);
-							return;
-						}
-					}
-				}
-			}
-		}
+        if (world.isClientSide()) {
+
+            chest.lastYaw = chest.yaw;
+            chest.yaw += chest.yawMod;
+
+            if (chest.isOpen) {
+                if (chest.canFunction()) {
+                    chest.changeState(State.OPEN_CRAFTING);
+                    chest.interpLength = 5;
+                } else {
+                    chest.changeState(State.OPEN);
+                    chest.interpLength = 7;
+                }
+            } else {
+                if (chest.isFull) {
+                    chest.changeState(State.FULL);
+                    chest.interpLength = 9;
+                } else if (chest.canFunction()) {
+                    chest.changeState(State.CLOSED_CRAFTING);
+                    chest.interpLength = 7;
+                } else {
+                    chest.changeState(State.CLOSED);
+                    chest.interpLength = 13;
+                }
+            }
+
+            if (chest.interpTicks < chest.interpLength) {
+                chest.interpTicks++;
+            }
+
+            chest.lidAnimator.tickLid();
+        } else {
+            if (tickCooldown(chest)) {
+                for (int i = 0; i < 4; i++) {
+                    ItemStack outputItemStack = chest.inventory.get(RESULT_SLOTS[i]);
+                    ItemStack craftingTabletItemStack = chest.inventory.get(RECIPE_SLOTS[i]);
+                    if (!craftingTabletItemStack.isEmpty() && (outputItemStack.isEmpty() || outputItemStack.getCount() < outputItemStack.getMaxStackSize())) {
+                        boolean couldCraft = chest.tryCraft(chest, i);
+                        if (couldCraft) {
+                            chest.setCooldown(chest, 20);
+                            chest.setChanged();
+                            chest.updateFullState(false);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
 	}
 	
 	public void changeState(State state) {

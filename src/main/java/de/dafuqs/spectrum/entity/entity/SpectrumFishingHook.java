@@ -120,7 +120,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 		Player owner = this.getPlayerOwner();
 		if (owner == null) {
 			this.discard();
-		} else if (this.level().isClientSide || !this.shouldStopFishing(owner)) {
+		} else if (this.level().isClientSide() || !this.shouldStopFishing(owner)) {
 			if (this.onGround()) {
 				this.life++;
 				if (this.life >= 1200) {
@@ -189,7 +189,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 							this.setDeltaMovement(this.getDeltaMovement().add(0.0, -0.1 * (double) this.syncronizedRandom.nextFloat() * (double) this.syncronizedRandom.nextFloat(), 0.0));
 						}
 						
-						if (!this.level().isClientSide) {
+						if (!this.level().isClientSide()) {
 							this.catchingFish(blockPos);
 						}
 					} else {

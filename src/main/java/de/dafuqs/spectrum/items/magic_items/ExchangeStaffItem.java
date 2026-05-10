@@ -96,7 +96,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 		}
 		
 		int blocksReplaced = 0;
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			List<ItemStack> stacks = new ArrayList<>();
 			BlockState stateToPlace;
 			for (BlockPos targetPosition : targetPositions) {
@@ -202,7 +202,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 				world.playSound(null, player.blockPosition(), SpectrumSoundEvents.EXCHANGING_STAFF_SELECT,
 						SoundSource.PLAYERS, 1.0F, 1.0F);
 			}
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		} else {
 			// exchanging
 			Optional<Block> storedBlock = getStoredBlock(staffStack);
@@ -211,7 +211,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 					&& storedBlock.get().asItem() != Items.AIR
 					&& exchange(world, pos, player, storedBlock.get(), staffStack, context.getClickedFace())) {
 				
-				return InteractionResult.sidedSuccess(world.isClientSide);
+				return InteractionResult.sidedSuccess(world.isClientSide());
 			}
 		}
 		

@@ -686,7 +686,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		
 		this.currentRecipe = null;
 		this.currentRecipe = MultiblockCrafter.getRecipeHolderFromNbt(level, nbt);
-		if (this.currentRecipe == null && this.level != null && this.level.isClientSide) {
+		if (this.currentRecipe == null && this.level != null && this.level.isClientSide()) {
 			stopCraftingMusic();
 		}
 		

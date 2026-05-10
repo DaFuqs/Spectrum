@@ -27,7 +27,7 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
 		Level world = context.getLevel();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			BlockEntity blockEntity = world.getBlockEntity(context.getClickedPos());
 			if (blockEntity instanceof InkStorageBlockEntity<?> inkStorageBlockEntity) {
 				inkStorageBlockEntity.getEnergyStorage().fillCompletely();

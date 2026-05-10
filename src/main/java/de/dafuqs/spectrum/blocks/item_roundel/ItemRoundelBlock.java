@@ -45,20 +45,20 @@ public class ItemRoundelBlock extends InWorldInteractionBlock implements Paintbr
 		if (actionResult.consumesAction()) {
 			return actionResult;
 		}
-		
-		if (world.isClientSide) {
-			return ItemInteractionResult.SUCCESS;
-		} else {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof ItemRoundelBlockEntity itemRoundelBlockEntity) {
-				if (player.isShiftKeyDown() || handStack.isEmpty()) {
-					retrieveLastStack(world, pos, player, hand, handStack, itemRoundelBlockEntity);
-				} else {
-					inputHandStack(world, player, hand, handStack, itemRoundelBlockEntity);
-				}
-			}
-			return ItemInteractionResult.CONSUME;
-		}
+
+        if (world.isClientSide()) {
+            return ItemInteractionResult.SUCCESS;
+        } else {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof ItemRoundelBlockEntity itemRoundelBlockEntity) {
+                if (player.isShiftKeyDown() || handStack.isEmpty()) {
+                    retrieveLastStack(world, pos, player, hand, handStack, itemRoundelBlockEntity);
+                } else {
+                    inputHandStack(world, player, hand, handStack, itemRoundelBlockEntity);
+                }
+            }
+            return ItemInteractionResult.CONSUME;
+        }
 	}
 	
 	@Override
@@ -66,7 +66,7 @@ public class ItemRoundelBlock extends InWorldInteractionBlock implements Paintbr
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof ItemRoundelBlockEntity itemRoundelBlockEntity) {
 			itemRoundelBlockEntity.reverse();
-			return ItemInteractionResult.sidedSuccess(world.isClientSide);
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		}
 		return ItemInteractionResult.FAIL;
 	}

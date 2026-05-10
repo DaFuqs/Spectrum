@@ -56,7 +56,7 @@ public class WhispyCircletItem extends SpectrumCurioItem {
 		LivingEntity entity = slotContext.entity();
 		
 		Level world = entity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			long time = entity.level().getGameTime();
 			if (time % TRIGGER_EVERY_X_TICKS == 0) {
 				MobEffectHelper.shortenEffects(entity, EFFECT_CLEAR_PREDICATE);

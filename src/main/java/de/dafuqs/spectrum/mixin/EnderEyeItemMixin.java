@@ -37,17 +37,17 @@ public abstract class EnderEyeItemMixin {
 		}
 		
 		if (eyeAdded) {
-			if (world.isClientSide) {
-				callbackInfoReturnable.setReturnValue(InteractionResult.SUCCESS);
-			} else {
-				context.getItemInHand().shrink(1);
-				world.levelEvent(LevelEvent.END_PORTAL_FRAME_FILL, blockPos, 0);
-				
-				// Search for a valid end portal position. Found => create portal!
-				EndPortalShaper.checkAndFillEndPortal(world, blockPos);
-				
-				callbackInfoReturnable.setReturnValue(InteractionResult.CONSUME);
-			}
+            if (world.isClientSide()) {
+                callbackInfoReturnable.setReturnValue(InteractionResult.SUCCESS);
+            } else {
+                context.getItemInHand().shrink(1);
+                world.levelEvent(LevelEvent.END_PORTAL_FRAME_FILL, blockPos, 0);
+
+                // Search for a valid end portal position. Found => create portal!
+                EndPortalShaper.checkAndFillEndPortal(world, blockPos);
+
+                callbackInfoReturnable.setReturnValue(InteractionResult.CONSUME);
+            }
 		}
 	}
 	

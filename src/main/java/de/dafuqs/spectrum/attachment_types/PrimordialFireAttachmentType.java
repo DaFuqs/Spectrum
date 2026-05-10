@@ -104,7 +104,7 @@ public class PrimordialFireAttachmentType {
 	public static void tick(LivingEntity entity) {
 		Level level = entity.level();
 		long primordialFireTicks = entity.getData(ATTACHMENT_TYPE);
-		if(level.isClientSide) {
+		if (level.isClientSide()) {
 			clientTick(entity, primordialFireTicks);
 		} else {
 			serverTick(entity, primordialFireTicks);

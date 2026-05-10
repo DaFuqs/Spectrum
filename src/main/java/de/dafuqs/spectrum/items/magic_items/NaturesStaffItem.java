@@ -67,7 +67,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
 		if (canUse(user)) {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				startSoundInstance(user);
 			}
 			ItemUtils.startUsingInstantly(world, user, hand);
@@ -104,7 +104,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
 			user.releaseUsingItem();
 		}
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			HitResult hitResult = Support.playerBlockInteractionRaycast(world, user, player);
 			if (hitResult.getType() == HitResult.Type.BLOCK) {
 				useOn(new UseOnContext(world, player, player.getUsedItemHand(), player.getItemInHand(player.getUsedItemHand()), (BlockHitResult) hitResult));
@@ -121,7 +121,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
 			return InteractionResult.FAIL;
 		}
 		
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			if (canUse(user)) {
 				return InteractionResult.PASS;
 			} else {

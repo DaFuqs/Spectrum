@@ -46,7 +46,7 @@ public class FloatBlock extends FallingBlock {
 	
 	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (gravityMod == 0) {
 				launch(world, pos);
 				return;

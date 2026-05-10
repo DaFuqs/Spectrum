@@ -141,7 +141,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		
 		if (player.isShiftKeyDown() && stack.isEmpty()) {
 			if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_UPGRADING)) {
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					var removed = blockEntity.tryRemoveUpgrade();
 					if (!removed.isEmpty()) {
 						if (!player.getAbilities().instabuild) {
@@ -173,7 +173,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		} else if (tryColorUsingStackInHand(stack, world, pos, player, hand)) {
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		} else if (this.pastelNodeType.usesFilters()) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				player.openMenu(blockEntity);
 			}
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
@@ -199,8 +199,8 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	
 	private static void sendDebugMessage(Level world, BlockPos pos, Player player, PastelNodeBlockEntity blockEntity) {
 		if (blockEntity != null) {
-			Optional<? extends PastelNetwork<?>> network = blockEntity.networkUUID.isPresent() ? Pastel.getInstance(world.isClientSide).getNetwork(blockEntity.networkUUID.get()) : Optional.empty();
-			String prefix = world.isClientSide ? "C (" : "S (";
+			Optional<? extends PastelNetwork<?>> network = blockEntity.networkUUID.isPresent() ? Pastel.getInstance(world.isClientSide()).getNetwork(blockEntity.networkUUID.get()) : Optional.empty();
+			String prefix = world.isClientSide() ? "C (" : "S (";
 			Optional<DyeColor> color = blockEntity.getColor();
 			String colorString = color.isEmpty() ? "<uncolored>" : color.get().toString();
 			if (network.isEmpty()) {

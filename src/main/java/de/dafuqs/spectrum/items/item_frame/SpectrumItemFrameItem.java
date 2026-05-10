@@ -39,14 +39,14 @@ public abstract class SpectrumItemFrameItem extends ItemFrameItem {
 			}
 			
 			if (invisibleItemFrameEntity.survives()) {
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					invisibleItemFrameEntity.playPlacementSound();
 					world.gameEvent(playerEntity, GameEvent.ENTITY_PLACE, blockPos);
 					world.addFreshEntity(invisibleItemFrameEntity);
 				}
 				
 				itemStack.shrink(1);
-				return InteractionResult.sidedSuccess(world.isClientSide);
+				return InteractionResult.sidedSuccess(world.isClientSide());
 			} else {
 				return InteractionResult.CONSUME;
 			}

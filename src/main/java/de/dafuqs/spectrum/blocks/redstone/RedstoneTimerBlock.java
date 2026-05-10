@@ -50,12 +50,12 @@ public class RedstoneTimerBlock extends DiodeBlock {
 		if (!player.getAbilities().mayBuild) {
 			return InteractionResult.PASS;
 		} else {
-			if (world.isClientSide) {
-				return InteractionResult.SUCCESS;
-			} else {
-				stepTiming((ServerLevel) world, pos, (ServerPlayer) player);
-				return InteractionResult.CONSUME;
-			}
+            if (world.isClientSide()) {
+                return InteractionResult.SUCCESS;
+            } else {
+                stepTiming((ServerLevel) world, pos, (ServerPlayer) player);
+                return InteractionResult.CONSUME;
+            }
 		}
 	}
 	

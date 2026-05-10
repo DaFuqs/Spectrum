@@ -40,7 +40,7 @@ public class CircletOfArroganceItem extends SpectrumCurioItem {
 		super.curioTick(slotContext, stack);
 		
 		Level level = slotContext.entity().level();
-		if (!level.isClientSide && level.getGameTime() % TRIGGER_EVERY_X_TICKS == 0) {
+		if (!level.isClientSide() && level.getGameTime() % TRIGGER_EVERY_X_TICKS == 0) {
 			giveEffect(slotContext.entity());
 		}
 	}

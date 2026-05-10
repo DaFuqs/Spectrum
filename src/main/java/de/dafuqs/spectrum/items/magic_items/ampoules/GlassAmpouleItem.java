@@ -31,12 +31,12 @@ public abstract class GlassAmpouleItem extends Item {
 	public InteractionResult interactLivingEntity(ItemStack stack, Player user, LivingEntity entity, InteractionHand hand) {
 		Level world = user.level();
 		if (trigger(user.level(), stack, user, entity, user.getEyePosition())) {
-			if (!user.level().isClientSide) {
+			if (!user.level().isClientSide()) {
 				if (!(user.isCreative())) {
 					stack.shrink(1);
 				}
 			}
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		}
 		
 		return world.isClientSide() ? InteractionResult.FAIL : InteractionResult.PASS;

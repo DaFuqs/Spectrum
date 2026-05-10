@@ -81,10 +81,10 @@ public class HummingstoneBlock extends BaseEntityBlock {
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		if (!state.getValue(HUMMING)) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				startHumming(world, pos, state, player, false);
 			}
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		}
 		return super.useWithoutItem(state, world, pos, player, hit);
 	}
@@ -97,7 +97,7 @@ public class HummingstoneBlock extends BaseEntityBlock {
 	@Override
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.randomTick(state, world, pos, random);
-		if (!world.isClientSide && state.getValue(HUMMING)) {
+		if (!world.isClientSide() && state.getValue(HUMMING)) {
 			stopHumming(world, pos, state);
 		}
 	}
@@ -105,7 +105,7 @@ public class HummingstoneBlock extends BaseEntityBlock {
 	@Override
 	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
 		super.entityInside(state, world, pos, entity);
-		if (!world.isClientSide && !state.getValue(HUMMING)) {
+		if (!world.isClientSide() && !state.getValue(HUMMING)) {
 			startHumming(world, pos, state, entity, false);
 		}
 	}
@@ -113,14 +113,14 @@ public class HummingstoneBlock extends BaseEntityBlock {
 	@Override
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		super.fallOn(world, state, pos, entity, fallDistance);
-		if (!world.isClientSide && !state.getValue(HUMMING)) {
+		if (!world.isClientSide() && !state.getValue(HUMMING)) {
 			startHumming(world, pos, state, entity, false);
 		}
 	}
 	
 	@Override
 	public void onProjectileHit(Level world, BlockState state, BlockHitResult hit, Projectile projectile) {
-		if (!world.isClientSide && !state.getValue(HUMMING)) {
+		if (!world.isClientSide() && !state.getValue(HUMMING)) {
 			startHumming(world, hit.getBlockPos(), state, projectile.getOwner(), false);
 		}
 	}
@@ -128,7 +128,7 @@ public class HummingstoneBlock extends BaseEntityBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.HUMMINGSTONE.get(), HummingstoneBlockEntity::serverTick);
+		return world.isClientSide() ? null : createTickerHelper(type, SpectrumBlockEntities.HUMMINGSTONE.get(), HummingstoneBlockEntity::serverTick);
 	}
 	
 	@Override

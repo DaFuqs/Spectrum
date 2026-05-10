@@ -30,7 +30,7 @@ public class GlowVisionGogglesItem extends SpectrumCurioItem implements InkPower
 		super.curioTick(slotContext, stack);
 		
 		Level level = slotContext.entity().level();
-		if (!level.isClientSide && level.getGameTime() % 20 == 0) {
+		if (!level.isClientSide() && level.getGameTime() % 20 == 0) {
 			if (slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
 				giveEffect(level, stack, serverPlayerEntity);
 			}
@@ -42,7 +42,7 @@ public class GlowVisionGogglesItem extends SpectrumCurioItem implements InkPower
 		super.onEquip(slotContext, prevStack, stack);
 		
 		Level level = slotContext.entity().level();
-		if (!level.isClientSide && slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
+		if (!level.isClientSide() && slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
 			giveEffect(level, stack, serverPlayerEntity);
 		}
 	}

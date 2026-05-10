@@ -42,7 +42,7 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
 		ItemStack itemStack = user.getItemInHand(hand);
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (!tryAdvanceTime((ServerLevel) world, (ServerPlayer) user)) {
 				world.playSound(null, user.blockPosition(), SpectrumSoundEvents.USE_FAIL, SoundSource.PLAYERS, 1.0F, 1.0F);
 			}

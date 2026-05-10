@@ -34,7 +34,7 @@ public class MidnightAberrationItem extends CloakedItem {
 	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
-		if (!world.isClientSide && world.getGameTime() % 20 == 0 && entity instanceof ServerPlayer player && !player.isCreative()) {
+		if (!world.isClientSide() && world.getGameTime() % 20 == 0 && entity instanceof ServerPlayer player && !player.isCreative()) {
 			if (stack.has(SpectrumDataComponentTypes.STABLE)) {
 				return;
 			}

@@ -24,7 +24,7 @@ public class StatusEffectDrinkItem extends DrinkItem {
 			CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayer) playerEntity, stack);
 		}
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			PotionContents potionContentsComponent = stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
 			potionContentsComponent.forEachEffect((effect) -> {
 				if ((effect.getEffect().value()).isInstantenous()) {

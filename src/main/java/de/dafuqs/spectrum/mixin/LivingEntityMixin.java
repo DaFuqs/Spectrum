@@ -385,7 +385,7 @@ public abstract class LivingEntityMixin {
 	private void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;
 		Level world = thisEntity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (thisEntity instanceof Mob thisMobEntity) {
 				for (ItemStack armorItemStack : thisMobEntity.getArmorSlots()) {
 					if (armorItemStack.getItem() instanceof ArmorWithHitEffect armorWithHitEffect) {

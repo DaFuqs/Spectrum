@@ -36,18 +36,18 @@ public class AmphoraBlock extends BaseEntityBlock {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
-			return InteractionResult.SUCCESS;
-		} else {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof AmphoraBlockEntity amphoraBlockEntity) {
-				player.openMenu(amphoraBlockEntity);
-				player.awardStat(Stats.OPEN_BARREL);
-				PiglinAi.angerNearbyPiglins(player, true);
-			}
-			
-			return InteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        } else {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof AmphoraBlockEntity amphoraBlockEntity) {
+                player.openMenu(amphoraBlockEntity);
+                player.awardStat(Stats.OPEN_BARREL);
+                PiglinAi.angerNearbyPiglins(player, true);
+            }
+
+            return InteractionResult.CONSUME;
+        }
 	}
 	
 	@Override

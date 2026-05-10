@@ -57,7 +57,7 @@ public class TakeOffBeltItem extends SpectrumCurioItem {
 		
 		LivingEntity entity = slotContext.entity();
 		Level world = entity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (entity.isShiftKeyDown() && entity.onGround()) {
 				if (sneakingTimes.containsKey(entity)) {
 					long sneakTicks = world.getGameTime() - sneakingTimes.get(entity);

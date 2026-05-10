@@ -84,7 +84,7 @@ public class EnderSpliceItem extends Item {
 	
 	@Override
 	public ItemStack finishUsingItem(ItemStack itemStack, Level world, LivingEntity user) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			if (getTeleportTargetPos(itemStack).isEmpty() && getTeleportTargetPlayerUUID(itemStack).isEmpty()) {
 				interactWithEntityClient();
 			}
@@ -183,7 +183,7 @@ public class EnderSpliceItem extends Item {
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			startSoundInstance(user);
 		}
 		return ItemUtils.startUsingInstantly(world, user, hand);

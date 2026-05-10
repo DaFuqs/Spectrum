@@ -30,34 +30,34 @@ public class GerminatedJadeVineBulbItem extends CloakedItem {
 		BlockPos pos = context.getClickedPos();
 		
 		if (JadeVineRootsBlock.canBePlantedOn(world.getBlockState(pos)) && world.getBlockState(pos.below()).isAir()) {
-			if (context.getLevel().isClientSide) {
-				for (int i = 0; i < 16; i++) {
-					JadeVine.spawnParticlesClient(world, pos);
-					JadeVine.spawnParticlesClient(world, pos.below());
-				}
-				
-				return InteractionResult.SUCCESS;
-			} else {
-				ServerPlayer player = (ServerPlayer) context.getPlayer();
-				
-				world.setBlockAndUpdate(pos, SpectrumBlocks.JADE_VINE_ROOTS.get().defaultBlockState());
-				BlockState bulbState = SpectrumBlocks.JADE_VINE_BULB.get().defaultBlockState();
-				world.setBlockAndUpdate(pos.below(), bulbState);
-				world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.PLAYERS, 1.0F, 1.0F);
-				
-				SoundType blockSoundGroup = bulbState.getSoundType();
-				world.playSound(player, pos.below(), bulbState.getSoundType().getPlaceSound(), SoundSource.BLOCKS, (blockSoundGroup.getVolume() + 1.0F) / 2.0F, blockSoundGroup.getPitch() * 0.8F);
-				world.gameEvent(player, GameEvent.BLOCK_PLACE, pos);
-				world.gameEvent(player, GameEvent.BLOCK_PLACE, pos.below());
-				
-				CriteriaTriggers.PLACED_BLOCK.trigger(player, pos, context.getItemInHand());
-				CriteriaTriggers.PLACED_BLOCK.trigger(player, pos.below(), context.getItemInHand());
-				
-				if (player == null || !player.isCreative()) {
-					context.getItemInHand().shrink(1);
-				}
-				return InteractionResult.CONSUME;
-			}
+            if (context.getLevel().isClientSide()) {
+                for (int i = 0; i < 16; i++) {
+                    JadeVine.spawnParticlesClient(world, pos);
+                    JadeVine.spawnParticlesClient(world, pos.below());
+                }
+
+                return InteractionResult.SUCCESS;
+            } else {
+                ServerPlayer player = (ServerPlayer) context.getPlayer();
+
+                world.setBlockAndUpdate(pos, SpectrumBlocks.JADE_VINE_ROOTS.get().defaultBlockState());
+                BlockState bulbState = SpectrumBlocks.JADE_VINE_BULB.get().defaultBlockState();
+                world.setBlockAndUpdate(pos.below(), bulbState);
+                world.playSound(null, pos, SoundEvents.CROP_PLANTED, SoundSource.PLAYERS, 1.0F, 1.0F);
+
+                SoundType blockSoundGroup = bulbState.getSoundType();
+                world.playSound(player, pos.below(), bulbState.getSoundType().getPlaceSound(), SoundSource.BLOCKS, (blockSoundGroup.getVolume() + 1.0F) / 2.0F, blockSoundGroup.getPitch() * 0.8F);
+                world.gameEvent(player, GameEvent.BLOCK_PLACE, pos);
+                world.gameEvent(player, GameEvent.BLOCK_PLACE, pos.below());
+
+                CriteriaTriggers.PLACED_BLOCK.trigger(player, pos, context.getItemInHand());
+                CriteriaTriggers.PLACED_BLOCK.trigger(player, pos.below(), context.getItemInHand());
+
+                if (player == null || !player.isCreative()) {
+                    context.getItemInHand().shrink(1);
+                }
+                return InteractionResult.CONSUME;
+            }
 		}
 		return super.useOn(context);
 	}

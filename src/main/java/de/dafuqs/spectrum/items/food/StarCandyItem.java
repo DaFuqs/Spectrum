@@ -43,18 +43,18 @@ public class StarCandyItem extends Item {
 		
 		switch(this.rarity) {
 			case GLEAMING ->  {
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					MobEffectHelper.clearRandomEffect(user, instance -> instance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL);
 				}
 			}
 			case ENCHANTED ->  {
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					MobEffectHelper.clearEffects(user, instance -> instance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL);
 				}
 			}
 			case MAGNIFICENT -> {
 				user.heal(user.getMaxHealth());
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					MobEffectHelper.clearEffects(user, instance -> instance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL);
 				}
 				if (user instanceof Player player) {

@@ -206,7 +206,7 @@ public class TallCropBlock extends CropBlock {
 	
 	@Override
 	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			breakTheOtherHalf(world, pos, state, player);
 		}
 		

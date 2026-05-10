@@ -44,7 +44,7 @@ public class RadiancePinItem extends SpectrumCurioItem {
 		
 		LivingEntity entity = slotContext.entity();
 		Level world = entity.level();
-		if (!world.isClientSide && world.getGameTime() % CHECK_EVERY_X_TICKS == 0) {
+		if (!world.isClientSide() && world.getGameTime() % CHECK_EVERY_X_TICKS == 0) {
 			if (entity instanceof Player playerEntity && playerEntity.isSpectator()) {
 				return;
 			}

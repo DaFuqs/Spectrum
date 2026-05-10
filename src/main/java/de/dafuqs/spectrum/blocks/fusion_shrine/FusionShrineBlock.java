@@ -65,11 +65,11 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(Level world) {
-		if (world.isClientSide) {
-			if (world.isClientSide()) {
-				ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.FUSION_SHRINE));
-			}
-		}
+        if (world.isClientSide()) {
+            if (world.isClientSide()) {
+                ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.FUSION_SHRINE));
+            }
+        }
 	}
 	
 	/*
@@ -101,11 +101,11 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
 		} else {
-			if (world.isClientSide) {
-				ModonomiconHelper.renderMultiblock(multiblock, SpectrumMultiblocks.FUSION_SHRINE_TEXT, blockPos.below(2), Rotation.NONE);
-			} else if (world.getBlockEntity(blockPos) instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-				fusionShrineBlockEntity.scatterContents(world);
-			}
+            if (world.isClientSide()) {
+                ModonomiconHelper.renderMultiblock(multiblock, SpectrumMultiblocks.FUSION_SHRINE_TEXT, blockPos.below(2), Rotation.NONE);
+            } else if (world.getBlockEntity(blockPos) instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+                fusionShrineBlockEntity.scatterContents(world);
+            }
 		}
 		
 		return valid;
@@ -157,7 +157,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			// Specially handle fluid items
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (entity instanceof ItemEntity itemEntity && blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
@@ -183,33 +183,33 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (world.isClientSide) {
-			verifyStructure(world, pos, null);
-			return ItemInteractionResult.SUCCESS;
-		} else {
-			verifySkyAccess((ServerLevel) world, pos);
-			
-			// if the structure is valid the player can put / retrieve items and fluids into the shrine
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity && verifyStructure(world, pos, (ServerPlayer) player)) {
-				fusionShrineBlockEntity.setOwner(player);
-				
-				if (FluidUtil.interactWithFluidHandler(player, hand, fusionShrineBlockEntity.getTank())) {
-					fusionShrineBlockEntity.inventoryChanged();
-					return ItemInteractionResult.CONSUME;
-				}
-				if ((player.isShiftKeyDown() || handStack.isEmpty()) && retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
-					fusionShrineBlockEntity.inventoryChanged();
-					return ItemInteractionResult.CONSUME;
-				}
-				if (!handStack.isEmpty() && inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
-					fusionShrineBlockEntity.inventoryChanged();
-					return ItemInteractionResult.CONSUME;
-				}
-			}
-			
-			return ItemInteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            verifyStructure(world, pos, null);
+            return ItemInteractionResult.SUCCESS;
+        } else {
+            verifySkyAccess((ServerLevel) world, pos);
+
+            // if the structure is valid the player can put / retrieve items and fluids into the shrine
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity && verifyStructure(world, pos, (ServerPlayer) player)) {
+                fusionShrineBlockEntity.setOwner(player);
+
+                if (FluidUtil.interactWithFluidHandler(player, hand, fusionShrineBlockEntity.getTank())) {
+                    fusionShrineBlockEntity.inventoryChanged();
+                    return ItemInteractionResult.CONSUME;
+                }
+                if ((player.isShiftKeyDown() || handStack.isEmpty()) && retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
+                    fusionShrineBlockEntity.inventoryChanged();
+                    return ItemInteractionResult.CONSUME;
+                }
+                if (!handStack.isEmpty() && inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
+                    fusionShrineBlockEntity.inventoryChanged();
+                    return ItemInteractionResult.CONSUME;
+                }
+            }
+
+            return ItemInteractionResult.CONSUME;
+        }
 	}
 	
 	@Override
@@ -220,7 +220,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.FUSION_SHRINE.get(), world.isClientSide ? FusionShrineBlockEntity::clientTick : FusionShrineBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.FUSION_SHRINE.get(), world.isClientSide() ? FusionShrineBlockEntity::clientTick : FusionShrineBlockEntity::serverTick);
 	}
 	
 	static {

@@ -25,7 +25,7 @@ public class StructureCompassItem extends CompassItem {
 	
 	@Override
 	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
-		if (!world.isClientSide && world.getGameTime() % 200 == 0) {
+		if (!world.isClientSide() && world.getGameTime() % 200 == 0) {
 			locateStructure(stack, world, entity);
 		}
 	}

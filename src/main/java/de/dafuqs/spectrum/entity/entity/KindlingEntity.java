@@ -472,7 +472,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 				
 				this.shear(SoundSource.PLAYERS);
 				this.gameEvent(GameEvent.SHEAR, player);
-				if (!this.level().isClientSide) {
+				if (!this.level().isClientSide()) {
 					handStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
 				}
 			}
@@ -489,7 +489,7 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 				
 				if (!this.isTamed()) {
 					this.makeMad();
-					return InteractionResult.sidedSuccess(this.level().isClientSide);
+					return InteractionResult.sidedSuccess(this.level().isClientSide());
 				}
 			}
 			
@@ -527,18 +527,18 @@ public class KindlingEntity extends AbstractHorse implements RangedAttackMob, Ne
 		
 		if (this.isBaby()) {
 			this.level().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0), this.getRandomY() + 0.5, this.getRandomZ(1.0), 0.0, 0.0, 0.0);
-			if (!this.level().isClientSide) {
+			if (!this.level().isClientSide()) {
 				this.ageUp(20);
 			}
 			canEat = true;
-		} else if (!this.level().isClientSide && !this.isInLove()) {
+		} else if (!this.level().isClientSide() && !this.isInLove()) {
 			this.setInLove(player);
 			canEat = true;
 		}
 		
 		if ((canEat || !this.isTamed()) && this.getTemper() < this.getMaxTemper()) {
 			canEat = true;
-			if (!this.level().isClientSide) {
+			if (!this.level().isClientSide()) {
 				this.modifyTemper(3);
 			}
 		}

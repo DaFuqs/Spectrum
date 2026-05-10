@@ -57,7 +57,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 	@Override
 	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onPlace(state, world, pos, oldState, notify);
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			updateConnectedUpgradeBlock((ServerLevel) world, pos);
 		}
 	}
@@ -65,7 +65,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 	@Override
 	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
 		super.onRemove(state, world, pos, newState, moved);
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			updateConnectedUpgradeBlock((ServerLevel) world, pos);
 		}
 	}

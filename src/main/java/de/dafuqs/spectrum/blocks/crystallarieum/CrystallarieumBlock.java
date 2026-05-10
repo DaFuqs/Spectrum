@@ -45,7 +45,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.CRYSTALLARIEUM.get(), world.isClientSide ? CrystallarieumBlockEntity::clientTick : CrystallarieumBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.CRYSTALLARIEUM.get(), world.isClientSide() ? CrystallarieumBlockEntity::clientTick : CrystallarieumBlockEntity::serverTick);
 	}
 	
 	@Override
@@ -61,7 +61,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 	
 	@Override
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if (!world.isClientSide && entity instanceof ItemEntity itemEntity) {
+		if (!world.isClientSide() && entity instanceof ItemEntity itemEntity) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
 				ItemStack stack = itemEntity.getItem();
@@ -74,7 +74,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			// if the structure is valid the player can put / retrieve blocks into the shrine
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {

@@ -41,9 +41,9 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
 		ItemStack itemStack = user.getItemInHand(hand);
 		if (user.isShiftKeyDown() && isCharged(itemStack) && !isOvercharged(itemStack) && InkPowered.tryDrainEnergy(user, OVERCHARGE_COST)) {
-			if (world.isClientSide) {
-				startSoundInstance(user);
-			}
+            if (world.isClientSide()) {
+                startSoundInstance(user);
+            }
 			return ItemUtils.startUsingInstantly(world, user, hand);
 		}
 		return super.use(world, user, hand);
@@ -73,7 +73,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 	@Override
 	public void releaseUsing(ItemStack stack, Level world, LivingEntity user, int remainingUseTicks) {
 		if (isCharged(stack)) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				if (remainingUseTicks > 0) {
 					float overcharge = 1 - (float) remainingUseTicks / OVERCHARGE_DURATION_MAX_TICKS;
 					overcharge(stack, overcharge);

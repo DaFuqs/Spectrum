@@ -97,7 +97,7 @@ public class EnderGlassBlock extends Block {
 	
 	@Override
 	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			BlockState fromPosBlockState = world.getBlockState(fromPos);
 			if (block instanceof EnderGlassBlock) {
 				TransparencyState neighborState = fromPosBlockState.getValue(TRANSPARENCY_STATE);

@@ -33,7 +33,7 @@ public class DecayAwayBlock extends Block {
 	
 	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			world.scheduleTick(pos, state.getBlock(), 4);
 		}
 	}

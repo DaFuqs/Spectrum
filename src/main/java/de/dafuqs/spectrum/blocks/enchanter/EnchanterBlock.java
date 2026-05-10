@@ -49,9 +49,9 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(Level world) {
-		if (world.isClientSide) {
-			ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.ENCHANTER));
-		}
+        if (world.isClientSide()) {
+            ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.ENCHANTER));
+        }
 	}
 	
 	public static boolean verifyStructure(Level world, BlockPos blockPos, @Nullable ServerPlayer serverPlayerEntity) {
@@ -62,9 +62,9 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 			if (serverPlayerEntity != null) {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
-		} else if (world.isClientSide) {
-			ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.ENCHANTER), SpectrumMultiblocks.ENCHANTER_TEXT, blockPos.below(4), Rotation.NONE);
-		}
+		} else if (world.isClientSide()) {
+            ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.ENCHANTER), SpectrumMultiblocks.ENCHANTER_TEXT, blockPos.below(4), Rotation.NONE);
+        }
 		
 		return valid;
 	}
@@ -78,7 +78,7 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.ENCHANTER.get(), world.isClientSide ? EnchanterBlockEntity::clientTick : EnchanterBlockEntity::serverTick);
+		return createTickerHelper(type, SpectrumBlockEntities.ENCHANTER.get(), world.isClientSide() ? EnchanterBlockEntity::clientTick : EnchanterBlockEntity::serverTick);
 	}
 	
 	@Override
@@ -90,39 +90,39 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (world.isClientSide) {
-			verifyStructure(world, pos, null);
-			return ItemInteractionResult.SUCCESS;
-		} else {
-			if (verifyStructure(world, pos, (ServerPlayer) player)) {
-				
-				// if the structure is valid the player can put / retrieve blocks into the shrine
-				BlockEntity blockEntity = world.getBlockEntity(pos);
-				if (blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
-					
-					if (player.isShiftKeyDown() || handStack.isEmpty()) {
-						// sneaking or empty hand: remove items
-						for (int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {
-							if (retrieveStack(world, pos, player, hand, handStack, enchanterBlockEntity, i)) {
-								enchanterBlockEntity.setItemFacingDirection(player.getDirection());
-								enchanterBlockEntity.setOwner(player);
-								break;
-							}
-						}
-						return ItemInteractionResult.CONSUME;
-					} else {
-						// hand is full and inventory is empty: add
-						// hand is full and inventory already contains item: exchange them
-						int inputInventorySlotIndex = handStack.getItem() instanceof ExperienceStorageItem ? enchanterBlockEntity.getItem(1).isEmpty() ? 1 : 0 : 0;
-						if (exchangeStack(world, pos, player, hand, handStack, enchanterBlockEntity, inputInventorySlotIndex)) {
-							enchanterBlockEntity.setItemFacingDirection(player.getDirection());
-							enchanterBlockEntity.setOwner(player);
-						}
-					}
-				}
-			}
-			return ItemInteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            verifyStructure(world, pos, null);
+            return ItemInteractionResult.SUCCESS;
+        } else {
+            if (verifyStructure(world, pos, (ServerPlayer) player)) {
+
+                // if the structure is valid the player can put / retrieve blocks into the shrine
+                BlockEntity blockEntity = world.getBlockEntity(pos);
+                if (blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
+
+                    if (player.isShiftKeyDown() || handStack.isEmpty()) {
+                        // sneaking or empty hand: remove items
+                        for (int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {
+                            if (retrieveStack(world, pos, player, hand, handStack, enchanterBlockEntity, i)) {
+                                enchanterBlockEntity.setItemFacingDirection(player.getDirection());
+                                enchanterBlockEntity.setOwner(player);
+                                break;
+                            }
+                        }
+                        return ItemInteractionResult.CONSUME;
+                    } else {
+                        // hand is full and inventory is empty: add
+                        // hand is full and inventory already contains item: exchange them
+                        int inputInventorySlotIndex = handStack.getItem() instanceof ExperienceStorageItem ? enchanterBlockEntity.getItem(1).isEmpty() ? 1 : 0 : 0;
+                        if (exchangeStack(world, pos, player, hand, handStack, enchanterBlockEntity, inputInventorySlotIndex)) {
+                            enchanterBlockEntity.setItemFacingDirection(player.getDirection());
+                            enchanterBlockEntity.setOwner(player);
+                        }
+                    }
+                }
+            }
+            return ItemInteractionResult.CONSUME;
+        }
 	}
 	
 }

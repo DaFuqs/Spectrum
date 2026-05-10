@@ -40,7 +40,7 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem implements SlotBackgr
 			ItemStack stack = user.getItemInHand(hand);
 			if (canShoot(stack) && InkPowered.tryDrainEnergy(user, PROJECTILE_COST)) {
 				user.getCooldowns().addCooldown(this, COOLDOWN_DURATION_TICKS);
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					user.playNotifySound(SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundSource.PLAYERS, 0.5F, 0.75F + user.getRandom().nextFloat());
 					MiningProjectileEntity.shoot(world, user, user.getItemInHand(hand));
 				}

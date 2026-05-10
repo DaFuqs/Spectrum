@@ -60,7 +60,7 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 	@Override
 	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onPlace(state, world, pos, oldState, notify);
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			world.scheduleTick(pos, state.getBlock(), 4);
 		}
 	}
@@ -164,7 +164,7 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.tick(state, world, pos, random);
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (world.getBlockEntity(pos) instanceof BlockFlooderBlockEntity blockFlooderBlockEntity) {
 				BlockState targetState = blockFlooderBlockEntity.getTargetBlockState();
 				if (targetState == null || targetState.isAir()) {

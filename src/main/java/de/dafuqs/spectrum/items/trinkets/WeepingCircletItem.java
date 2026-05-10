@@ -53,7 +53,7 @@ public class WeepingCircletItem extends SpectrumCurioItem {
 	
 	private void doEffects(LivingEntity entity, boolean always) {
 		Level world = entity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			long time = entity.level().getGameTime();
 			if (entity.getEyeInFluidType().canSwim(entity)) {
 				if (always || time % TRIGGER_EVERY_X_TICKS == 0) {

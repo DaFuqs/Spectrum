@@ -31,7 +31,7 @@ public class CookbookItem extends Item {
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			user.awardStat(Stats.ITEM_USED.get(this));
 			
 			return InteractionResultHolder.success(user.getItemInHand(hand));

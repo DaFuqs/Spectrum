@@ -31,7 +31,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements EntityBlock {
 	
 	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-		if (!world.isClientSide && placer instanceof Player) {
+		if (!world.isClientSide() && placer instanceof Player) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof PlayerDetectorBlockEntity) {
 				((PlayerDetectorBlockEntity) blockEntity).setOwner((Player) placer);
@@ -41,20 +41,20 @@ public class PlayerDetectorBlock extends DetectorBlock implements EntityBlock {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
-			return InteractionResult.SUCCESS;
-		} else {
-			if (player.isShiftKeyDown()) {
-				
-				String ownerName = getOwnerName(world, pos);
-				if (ownerName != null && !ownerName.isBlank()) {
-					player.displayClientMessage(Component.translatable("block.spectrum.player_detector.owner", ownerName), true);
-				}
-				return InteractionResult.CONSUME;
-			} else {
-				return super.useWithoutItem(state, world, pos, player, hit);
-			}
-		}
+        if (world.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        } else {
+            if (player.isShiftKeyDown()) {
+
+                String ownerName = getOwnerName(world, pos);
+                if (ownerName != null && !ownerName.isBlank()) {
+                    player.displayClientMessage(Component.translatable("block.spectrum.player_detector.owner", ownerName), true);
+                }
+                return InteractionResult.CONSUME;
+            } else {
+                return super.useWithoutItem(state, world, pos, player, hit);
+            }
+        }
 	}
 	
 	@Override

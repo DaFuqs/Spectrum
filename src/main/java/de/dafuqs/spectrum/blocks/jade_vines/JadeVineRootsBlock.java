@@ -108,7 +108,7 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.randomTick(state, world, pos, random);
 		
-		if (!world.isClientSide && isRandomlyTicking(state)) {
+		if (!world.isClientSide() && isRandomlyTicking(state)) {
 			// die in sunlight, or then the bulb / plant was destroyed
 			int age = getAge(world, pos, state);
 			if (JadeVine.isExposedToSunlight(world, pos) || age < 0) {

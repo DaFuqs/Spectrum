@@ -23,7 +23,7 @@ public interface SpiritVine {
 			float f = Mth.randomBetween(world.getRandom(), 0.8F, 1.2F);
 			world.playSound(null, blockPos, SoundEvents.CAVE_VINES_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, f);
 			world.setBlock(blockPos, blockState.setValue(CRYSTALS, false), 2);
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		} else {
 			return InteractionResult.PASS;
 		}

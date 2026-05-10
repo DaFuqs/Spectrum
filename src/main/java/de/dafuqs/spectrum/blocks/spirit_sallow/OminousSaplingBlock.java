@@ -71,7 +71,7 @@ public class OminousSaplingBlock extends BushBlock implements EntityBlock {
 	}
 
 	@Override
-	public @Nullable <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return null;
 	}
 	

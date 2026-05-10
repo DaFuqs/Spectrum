@@ -95,7 +95,7 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 							// player is able to put items in
 							// or seal it with a piece of colored wood
 							if (handStack.isEmpty()) {
-								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity.items);
+								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity);
 								FluidStack fluid = barrelEntity.tank.getFluid();
 								if (fluid.isEmpty()) {
 									if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {

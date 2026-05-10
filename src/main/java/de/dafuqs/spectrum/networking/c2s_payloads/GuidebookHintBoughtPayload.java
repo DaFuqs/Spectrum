@@ -13,7 +13,6 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.items.*;
 import net.neoforged.neoforge.items.wrapper.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 import java.util.*;
 
@@ -34,7 +33,7 @@ public record GuidebookHintBoughtPayload(ResourceLocation completionAdvancement,
 	public static IPayloadHandler<GuidebookHintBoughtPayload> getPayloadHandler() {
 		return (payload, context) -> {
 			ServerPlayer player = (ServerPlayer) context.player();
-			for (ItemStack remainder : InventoryHelper.removeIngredientStacksFromInventoryWithRemainders(List.of(payload.payment()), player.getInventory())) {
+			for (ItemStack remainder : InventoryHelper.decrementIngredientStacksInInventoryAndReturnRemainders(List.of(payload.payment()), player.getInventory())) {
 				ItemHandlerHelper.insertItemStacked(new PlayerInvWrapper(player.getInventory()), remainder, false);
 			}
 			

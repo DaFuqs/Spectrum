@@ -287,7 +287,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		
 		// trigger advancements for all brewed potions
 		ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline(world);
-		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, tippedArrows, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
+		InventoryHelper.addToInventory(potionWorkshopBlockEntity, tippedArrows, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, tippedArrows, tippedArrows.getCount(), potionWorkshopBlockEntity, potionMod.flags());
 		}
@@ -316,7 +316,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 			} else {
 				brewingRecipe.value().fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, level.getRandom());
 				potionWorkshopBlockEntity.inventory.set(BASE_INPUT_SLOT_ID, ItemStack.EMPTY);
-				InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potionFillableStack, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
+				InventoryHelper.addToInventory(potionWorkshopBlockEntity, potionFillableStack, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 				
 				// trigger advancements
 				ServerPlayer serverPlayerEntity = (ServerPlayer) potionWorkshopBlockEntity.getOwnerIfOnline(level);
@@ -405,8 +405,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	}
 	
 	private static void addToInventoryOrSpawn(PotionWorkshopBlockEntity potionWorkshopBlockEntity, ItemStack currentRemainder) {
-		currentRemainder = InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, currentRemainder, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
-		if (!currentRemainder.isEmpty()) {
+		boolean couldBeAdded = InventoryHelper.addToInventory(potionWorkshopBlockEntity, currentRemainder, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
+		if (!couldBeAdded) {
 			Containers.dropItemStack(potionWorkshopBlockEntity.level, potionWorkshopBlockEntity.worldPosition.getX(), potionWorkshopBlockEntity.worldPosition.getY(), potionWorkshopBlockEntity.worldPosition.getZ(), currentRemainder);
 		}
 	}

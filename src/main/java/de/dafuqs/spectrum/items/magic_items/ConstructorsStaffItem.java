@@ -140,7 +140,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		}
 		
 		if (!player.isCreative()) {
-			InventoryHelper.removeFromInventoryWithRemainders(player, new ItemStack(itemToConsume, placedBlocks));
+			InventoryHelper.decrementInPlayerInventory(player, new ItemStack(itemToConsume, placedBlocks));
 			InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * ConstructorsStaffItem.INK_COST_PER_BLOCK);
 		}
 	}

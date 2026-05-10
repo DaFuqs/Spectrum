@@ -179,7 +179,7 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 					
 					world.setBlock(pos, targetState, 3);
 					if (!owner.isCreative()) {
-						List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(new ItemStack(targetState.getBlock().asItem()), owner.getInventory());
+						List<ItemStack> remainders = InventoryHelper.decrementInInventoryAndReturnRemainders(new ItemStack(targetState.getBlock().asItem()), owner.getInventory());
 						for (ItemStack remainder : remainders) {
 							owner.getInventory().placeItemBackInInventory(remainder);
 						}

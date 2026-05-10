@@ -10,7 +10,6 @@ import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
@@ -21,13 +20,12 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.neoforge.items.*;
+import net.neoforged.neoforge.items.wrapper.*;
 import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
 public class CompactingChestBlockEntity extends SpectrumChestBlockEntity implements MenuProvider {
-	
 	
 	private static final FlowAnimator.Factory<CompactingChestBlockEntity> FACTORY;
 	
@@ -105,7 +103,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		
 		// try last recipe
 		if (lastCraftingRecipe != null) {
-			if (InventoryHelper.isItemCountInInventory(inventory, lastCraftedStack, requiredItemCount)) {
+			if (InventoryHelper.isItemCountInInventory(this, lastCraftedStack, requiredItemCount)) {
 				optionalCraftingRecipe = Optional.ofNullable(lastCraftingRecipe);
 			} else {
 				lastCraftingRecipe = null;
@@ -149,7 +147,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 			triedHashes.add(hash);
 			
 			int requiredItemCount = this.mode.getSize();
-			Tuple<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(itemStack, inventory, requiredItemCount);
+			Tuple<Integer, List<ItemStack>> stackPair = InventoryHelper.getStackCountInInventory(itemStack, new InvWrapper(this), requiredItemCount);
 			if (stackPair.getA() >= requiredItemCount) {
 				Map<AutoCraftingMode.ItemStackHash, Optional<RecipeHolder<CraftingRecipe>>> currentCache = AutoCraftingMode.getCache(mode);
 				ItemStack itemVariant = itemStack.copyWithCount(1);
@@ -188,7 +186,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 			return false;
 		
 		ItemStack inputStack = itemVariant.copyWithCount(this.mode.getSize());
-		List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(inputStack, this);
+		List<ItemStack> remainders = InventoryHelper.decrementInInventoryAndReturnRemainders(inputStack, this);
 		
 		boolean spaceInInventory;
 		

@@ -163,7 +163,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 		Component message = null;
 		
 		int daysSealed = getSealMinecraftDays();
-		int inventoryCount = InventoryHelper.countItemsInInventory(this.getItems());
+		int inventoryCount = InventoryHelper.countItemsInInventory(this);
 		
 		Optional<RecipeHolder<ITitrationBarrelRecipe>> optionalRecipe = getRecipeForInventory(world);
 		if (optionalRecipe.isEmpty()) {
@@ -248,7 +248,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 	}
 	
 	public boolean canBeSealed(@Nullable Player player) {
-		int itemCount = InventoryHelper.countItemsInInventory(getItems());
+		int itemCount = InventoryHelper.countItemsInInventory(this);
 		if (itemCount == 0 && tank.isEmpty()) {
 			return true; // tap empty barrel advancement
 		}

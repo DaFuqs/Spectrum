@@ -94,7 +94,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
         }
 		
 		if (InventoryHelper.hasInInventory(ingredients, playerInventory)) {
-			List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(ingredients, playerInventory);
+			List<ItemStack> remainders = InventoryHelper.decrementInInventoryAndReturnRemainders(ingredients, playerInventory);
 			
 			ItemStack craftingResult = recipe.getResultItem(serverPlayerEntity.level().registryAccess()).copy();
 			serverPlayerEntity.getInventory().placeItemBackInInventory(craftingResult);

@@ -16,10 +16,4 @@ public class ExtractOnlySlot extends Slot {
 		return false;
 	}
 	
-	@Override
-	public boolean mayPickup(Player playerEntity) {
-		return true;
-	}
-	
-	
 }

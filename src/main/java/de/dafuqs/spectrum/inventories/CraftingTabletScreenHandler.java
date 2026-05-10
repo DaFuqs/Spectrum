@@ -59,33 +59,33 @@ public class CraftingTabletScreenHandler extends RecipeBookMenu<RecipeInput, Rec
 		if (highestUnlockedRecipeTier.isPresent()) {
 			switch (highestUnlockedRecipeTier.get()) {
 				case COMPLEX -> {
-					this.addSlot(new ReadOnlySlot(craftingInventory, 9, 44, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 10, 44 + 18, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 11, 44 + 2 * 18, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 12, 44 + 3 * 18, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 13, 44 + 4 * 18, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 9, 44, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 10, 44 + 18, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 11, 44 + 2 * 18, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 12, 44 + 3 * 18, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 13, 44 + 4 * 18, 77));
 				}
 				case ADVANCED -> {
-					this.addSlot(new ReadOnlySlot(craftingInventory, 9, 44 + 9, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 10, 44 + 18 + 9, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 11, 44 + 2 * 18 + 9, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 12, 44 + 3 * 18 + 9, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 13, -2000, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 9, 44 + 9, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 10, 44 + 18 + 9, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 11, 44 + 2 * 18 + 9, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 12, 44 + 3 * 18 + 9, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 13, -2000, 77));
 				}
 				default -> {
-					this.addSlot(new ReadOnlySlot(craftingInventory, 9, 44 + 18, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 10, 44 + 18 + 18, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 11, 44 + 2 * 18 + 18, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 12, -2000, 77));
-					this.addSlot(new ReadOnlySlot(craftingInventory, 13, -2000, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 9, 44 + 18, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 10, 44 + 18 + 18, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 11, 44 + 2 * 18 + 18, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 12, -2000, 77));
+					this.addSlot(new NonInteractiveResultSlot(craftingInventory, 13, -2000, 77));
 				}
 			}
 		} else {
-			this.addSlot(new ReadOnlySlot(craftingInventory, 9, 44 + 18, 77));
-			this.addSlot(new ReadOnlySlot(craftingInventory, 10, 44 + 18 + 18, 77));
-			this.addSlot(new ReadOnlySlot(craftingInventory, 11, 44 + 2 * 18 + 18, 77));
-			this.addSlot(new ReadOnlySlot(craftingInventory, 12, -2000, 77));
-			this.addSlot(new ReadOnlySlot(craftingInventory, 13, -2000, 77));
+			this.addSlot(new NonInteractiveResultSlot(craftingInventory, 9, 44 + 18, 77));
+			this.addSlot(new NonInteractiveResultSlot(craftingInventory, 10, 44 + 18 + 18, 77));
+			this.addSlot(new NonInteractiveResultSlot(craftingInventory, 11, 44 + 2 * 18 + 18, 77));
+			this.addSlot(new NonInteractiveResultSlot(craftingInventory, 12, -2000, 77));
+			this.addSlot(new NonInteractiveResultSlot(craftingInventory, 13, -2000, 77));
 		}
 		
 		// preview slot

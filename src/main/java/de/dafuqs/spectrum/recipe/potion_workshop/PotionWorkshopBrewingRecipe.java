@@ -20,7 +20,7 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.crafting.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

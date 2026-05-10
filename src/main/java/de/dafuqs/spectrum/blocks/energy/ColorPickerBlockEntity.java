@@ -31,7 +31,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -296,10 +296,9 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 		this.saveAdditional(nbtCompound, registryLookup);
 		return nbtCompound;
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	

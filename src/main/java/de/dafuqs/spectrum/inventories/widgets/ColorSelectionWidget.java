@@ -12,7 +12,7 @@ import net.minecraft.client.gui.screens.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;

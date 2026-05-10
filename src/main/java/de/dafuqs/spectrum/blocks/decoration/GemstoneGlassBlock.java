@@ -8,7 +8,7 @@ import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class GemstoneGlassBlock extends TransparentBlock {
 	

@@ -16,7 +16,7 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -47,10 +47,9 @@ public class MemoryBlock extends BaseEntityBlock implements SimpleWaterloggedBlo
 	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new MemoryBlockEntity(pos, state);
 	}
 	

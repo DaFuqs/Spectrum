@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class ParticleSpawnerBlockEntity extends BlockEntity implements MenuProvider {
 	
@@ -63,10 +63,9 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements MenuProvi
 		this.saveAdditional(nbtCompound, registryLookup);
 		return nbtCompound;
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	
@@ -92,10 +91,9 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements MenuProvi
 			this.initialized = true;
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
+	public @Nullable AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
 		return new ParticleSpawnerScreenHandler(syncId, inv, this);
 	}
 	

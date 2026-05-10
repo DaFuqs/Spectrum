@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

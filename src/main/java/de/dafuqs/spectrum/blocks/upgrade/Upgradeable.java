@@ -8,7 +8,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

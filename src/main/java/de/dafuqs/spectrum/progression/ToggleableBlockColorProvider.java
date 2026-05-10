@@ -4,7 +4,7 @@ import net.minecraft.client.color.block.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class ToggleableBlockColorProvider implements BlockColor {
 	

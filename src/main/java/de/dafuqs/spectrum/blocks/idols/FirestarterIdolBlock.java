@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -41,9 +41,9 @@ public class FirestarterIdolBlock extends IdolBlock {
 	public FirestarterIdolBlock(Properties settings, ParticleOptions particleEffect) {
 		super(settings, particleEffect);
 	}
-	
+
 	@Override
-	public MapCodec<? extends FirestarterIdolBlock> codec() {
+	public @Nullable MapCodec<? extends FirestarterIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

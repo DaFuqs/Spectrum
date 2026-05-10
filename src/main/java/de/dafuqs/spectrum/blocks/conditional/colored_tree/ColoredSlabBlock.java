@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.flammable.*;
 import it.unimi.dsi.fastutil.objects.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -32,8 +33,8 @@ public class ColoredSlabBlock extends FlammableSlabBlock {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredSlabBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredSlabBlock byColor(InkColor color) {
 		return BLOCKS.get(color);
 	}
 	

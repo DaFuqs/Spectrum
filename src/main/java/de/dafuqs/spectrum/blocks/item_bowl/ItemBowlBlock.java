@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -56,10 +56,9 @@ public class ItemBowlBlock extends InWorldInteractionBlock {
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new ItemBowlBlockEntity(pos, state);
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return world.isClientSide() ? createTickerHelper(type, SpectrumBlockEntities.ITEM_BOWL.get(), ItemBowlBlockEntity::clientTick) : null;
 	}
 	

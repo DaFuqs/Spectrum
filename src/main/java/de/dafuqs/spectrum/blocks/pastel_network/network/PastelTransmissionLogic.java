@@ -8,12 +8,12 @@ import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.items.*;
-import javax.annotation.*;
 import org.jgrapht.*;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.*;
 import org.jgrapht.alg.shortestpath.*;
 import org.jgrapht.graph.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;

@@ -13,7 +13,7 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;

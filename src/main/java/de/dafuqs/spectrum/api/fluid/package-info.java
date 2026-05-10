@@ -1,8 +1,7 @@
-@ParametersAreNonnullByDefault
+@NullMarked
 @MethodsReturnNonnullByDefault
 @FieldsAreNonnullByDefault
 package de.dafuqs.spectrum.api.fluid;
 
 import net.minecraft.*;
-
-import javax.annotation.*;
+import org.jspecify.annotations.NullMarked;

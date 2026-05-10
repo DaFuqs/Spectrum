@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.api.damage_type.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 
 import java.util.*;

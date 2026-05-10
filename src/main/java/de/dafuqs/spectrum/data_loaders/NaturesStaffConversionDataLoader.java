@@ -10,7 +10,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.profiling.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

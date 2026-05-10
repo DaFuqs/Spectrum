@@ -21,7 +21,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.neoforged.api.distmarker.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

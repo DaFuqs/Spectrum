@@ -11,6 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -55,8 +56,8 @@ public class ColoredStrippedWoodBlockSpectrum extends FlammableRotatedPillarBloc
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredStrippedWoodBlockSpectrum byColor(InkColor color) {
+
+	public static @Nullable ColoredStrippedWoodBlockSpectrum byColor(InkColor color) {
 		return WOOD.get(color);
 	}
 	

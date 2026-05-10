@@ -15,15 +15,14 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import javax.annotation.*;
+import org.jspecify.annotations.NullMarked;
 import top.theillusivec4.curios.api.*;
 
-import javax.annotation.*;
 import java.util.*;
 import java.util.function.*;
 
 @MethodsReturnNonnullByDefault
-@ParametersAreNonnullByDefault
+@NullMarked
 public class WhispyCircletItem extends SpectrumCurioItem {
 	
 	public static final ResourceLocation ATTRIBUTE_ID = SpectrumCommon.locate("whispy_circlet_mental_presence");

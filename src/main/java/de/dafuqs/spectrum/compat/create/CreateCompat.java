@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
 import static de.dafuqs.spectrum.registries.SpectrumItems.*;

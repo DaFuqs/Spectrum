@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, NaturesStaffTriggered {
 	
@@ -92,10 +92,9 @@ public class JadeVineRootsBlock extends BaseEntityBlock implements JadeVine, Nat
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(DEAD);
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new JadeVineRootsBlockEntity(pos, state);
 	}
 	

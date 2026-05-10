@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 @OnlyIn(value = Dist.CLIENT, _interface = LidBlockEntity.class)
 public abstract class SpectrumChestBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity, ImplementedInventory {

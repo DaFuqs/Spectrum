@@ -9,7 +9,7 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -25,9 +25,9 @@ public class StatusEffectIdolBlock extends IdolBlock {
 		this.amplifier = amplifier;
 		this.duration = duration;
 	}
-	
+
 	@Override
-	public MapCodec<? extends StatusEffectIdolBlock> codec() {
+	public @Nullable MapCodec<? extends StatusEffectIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

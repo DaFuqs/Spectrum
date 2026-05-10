@@ -5,6 +5,8 @@ import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jspecify.annotations.Nullable;
+
 import javax.annotation.*;
 
 public class FlammableRotatedPillarBlock extends RotatedPillarBlock {
@@ -12,9 +14,9 @@ public class FlammableRotatedPillarBlock extends RotatedPillarBlock {
 	public FlammableRotatedPillarBlock(Properties settings) {
 		super(settings.ignitedByLava());
 	}
-	
+
 	@Override
-	public MapCodec<? extends FlammableRotatedPillarBlock> codec() {
+	public @Nullable MapCodec<? extends FlammableRotatedPillarBlock> codec() {
 		return null;
 	}
 	

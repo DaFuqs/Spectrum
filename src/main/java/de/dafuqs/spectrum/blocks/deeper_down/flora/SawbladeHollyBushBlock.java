@@ -20,7 +20,7 @@ import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.common.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlock {
 	

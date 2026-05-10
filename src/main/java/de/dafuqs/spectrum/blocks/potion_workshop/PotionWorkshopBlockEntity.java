@@ -30,7 +30,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.stream.*;
@@ -558,10 +558,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 	public Component getDisplayName() {
 		return Component.translatable("block.spectrum.potion_workshop");
 	}
-	
-	@Nullable
+
 	@Override
-	public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
+	public @Nullable AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
 		return new PotionWorkshopScreenHandler(syncId, inv, this, this.propertyDelegate);
 	}
 }

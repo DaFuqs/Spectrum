@@ -29,8 +29,8 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -54,9 +54,9 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 		
 		Upgradeable.registerUpgradePosOffsets(UPGRADE_BLOCK_OFFSETS);
 	}
-	
+
 	@Override
-	public MapCodec<? extends PedestalBlock> codec() {
+	public @Nullable MapCodec<? extends PedestalBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -136,10 +136,9 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 			super.onRemove(state, world, pos, newState, moved);
 		}
 	}
-	
+
 	@Override
-	@Nullable
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PedestalBlockEntity(pos, state);
 	}
 	
@@ -162,10 +161,9 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return createTickerHelper(type, SpectrumBlockEntities.PEDESTAL.get(), world.isClientSide() ? PedestalBlockEntity::clientTick : PedestalBlockEntity::serverTick);
 	}
 	

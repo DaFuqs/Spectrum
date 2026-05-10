@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class EnderDropperBlock extends DispenserBlock {
 	

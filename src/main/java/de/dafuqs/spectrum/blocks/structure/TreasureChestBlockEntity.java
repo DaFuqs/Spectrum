@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

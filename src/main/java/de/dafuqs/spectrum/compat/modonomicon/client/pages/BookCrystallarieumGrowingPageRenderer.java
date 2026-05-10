@@ -18,8 +18,8 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.*;
 import java.util.*;
 
 public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRenderer<CrystallarieumRecipe, BookGatedRecipePage<CrystallarieumRecipe>> {

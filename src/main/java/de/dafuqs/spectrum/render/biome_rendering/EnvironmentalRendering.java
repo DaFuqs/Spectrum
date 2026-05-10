@@ -12,8 +12,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.client.event.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.*;
 import java.lang.Math;
 import java.util.function.Supplier;
 

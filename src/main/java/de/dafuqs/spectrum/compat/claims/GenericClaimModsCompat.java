@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.compat.claims;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class GenericClaimModsCompat {
 	

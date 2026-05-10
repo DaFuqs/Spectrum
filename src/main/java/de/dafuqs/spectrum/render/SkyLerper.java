@@ -2,8 +2,7 @@ package de.dafuqs.spectrum.render;
 
 import net.minecraft.util.*;
 import net.minecraft.world.level.dimension.*;
-
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class SkyLerper {
 	

@@ -13,7 +13,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -25,9 +25,9 @@ public class InsomniaIdolBlock extends IdolBlock {
 		super(settings, particleEffect);
 		this.additionalTicksSinceLastRest = additionalTicksSinceLastRest;
 	}
-	
+
 	@Override
-	public MapCodec<? extends InsomniaIdolBlock> codec() {
+	public @Nullable MapCodec<? extends InsomniaIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

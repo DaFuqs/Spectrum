@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class BlockBreakerBlock extends RedstoneInteractionBlock implements EntityBlock {
 	
@@ -35,10 +35,9 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 	public MapCodec<? extends BlockBreakerBlock> codec() {
 		return CODEC;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new BlockBreakerBlockEntity(pos, state);
 	}
 	

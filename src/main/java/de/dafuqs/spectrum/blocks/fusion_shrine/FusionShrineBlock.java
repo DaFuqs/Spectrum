@@ -32,7 +32,7 @@ import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -115,10 +115,9 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(LIGHT_LEVEL);
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new FusionShrineBlockEntity(pos, state);
 	}
 	
@@ -216,10 +215,9 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return createTickerHelper(type, SpectrumBlockEntities.FUSION_SHRINE.get(), world.isClientSide() ? FusionShrineBlockEntity::clientTick : FusionShrineBlockEntity::serverTick);
 	}
 	

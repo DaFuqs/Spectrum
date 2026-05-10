@@ -18,7 +18,8 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
+
 import java.util.*;
 
 public class UpgradeBlock extends BaseEntityBlock {
@@ -39,7 +40,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public MapCodec<? extends UpgradeBlock> codec() {
+	public @Nullable MapCodec<? extends UpgradeBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -119,10 +120,9 @@ public class UpgradeBlock extends BaseEntityBlock {
 	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new UpgradeBlockEntity(pos, state);
 	}
 	

@@ -7,8 +7,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.resources.sounds.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
-
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 
 public class DivinitySoundInstance extends AbstractSoundInstance implements TickableSoundInstance {

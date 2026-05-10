@@ -15,7 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -69,10 +69,9 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new BlockFlooderBlockEntity(pos, state);
 	}
 	

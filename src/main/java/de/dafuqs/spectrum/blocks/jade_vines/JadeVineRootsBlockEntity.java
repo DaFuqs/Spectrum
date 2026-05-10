@@ -12,7 +12,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class JadeVineRootsBlockEntity extends BlockEntity {
 	
@@ -99,10 +99,9 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 		}
 		return nbtCompound;
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	

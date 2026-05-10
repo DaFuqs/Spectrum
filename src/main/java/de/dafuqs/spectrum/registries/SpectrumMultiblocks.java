@@ -5,8 +5,7 @@ import com.klikli_dev.modonomicon.api.multiblock.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class SpectrumMultiblocks {
 	

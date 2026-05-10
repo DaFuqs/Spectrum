@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -65,10 +65,9 @@ public class TitrationBarrelBlock extends HorizontalDirectionalBlock implements 
 	public MapCodec<? extends TitrationBarrelBlock> codec() {
 		return CODEC;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new TitrationBarrelBlockEntity(pos, state);
 	}
 	

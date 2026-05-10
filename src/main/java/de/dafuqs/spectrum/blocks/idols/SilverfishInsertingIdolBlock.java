@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -18,9 +18,9 @@ public class SilverfishInsertingIdolBlock extends IdolBlock {
 	public SilverfishInsertingIdolBlock(Properties settings, ParticleOptions particleEffect) {
 		super(settings, particleEffect);
 	}
-	
+
 	@Override
-	public MapCodec<? extends SilverfishInsertingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends SilverfishInsertingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

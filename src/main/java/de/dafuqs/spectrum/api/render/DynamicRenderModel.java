@@ -11,8 +11,8 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.*;
 import java.util.*;
 import java.util.function.*;
 
@@ -89,7 +89,7 @@ public class DynamicRenderModel extends ForwardingBakedModel implements UnbakedM
 	}
 	
 	// only used pre-bake; set to null after bake
-	private @javax.annotation.Nullable UnbakedModel baseUnbaked;
+	private @Nullable UnbakedModel baseUnbaked;
 	
 	// pre-bake constructor
 	public DynamicRenderModel(UnbakedModel base) {

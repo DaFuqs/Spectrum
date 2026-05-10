@@ -18,7 +18,7 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.common.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public abstract class TriStateVineBlock extends BushBlock implements BonemealableBlock {
 	
@@ -68,10 +68,9 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 		
 		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		Level world = ctx.getLevel();
 		BlockPos pos = ctx.getClickedPos();
 		

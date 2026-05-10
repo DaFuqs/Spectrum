@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.bottomless_bundle;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public final class BottomlessItemCapability extends BottomlessItemHandler {
 	
@@ -14,7 +14,7 @@ public final class BottomlessItemCapability extends BottomlessItemHandler {
 		return new BottomlessItemCapability(bottomlessBundle, handler.capacity(), handler.deletesOverflow(), handler.locked(), handler.variant(), handler.count());
 	}
 	
-	public static BottomlessItemCapability get(ItemStack bottomlessBundle, @Nullable HolderLookup.Provider registryLookup) {
+	public static BottomlessItemCapability get(ItemStack bottomlessBundle, HolderLookup.@Nullable Provider registryLookup) {
 		BottomlessItemHandler handler = BottomlessComponent.get(bottomlessBundle, registryLookup, true).handler();
 		return new BottomlessItemCapability(bottomlessBundle, handler.capacity(), handler.deletesOverflow(), handler.locked(), handler.variant(), handler.count());
 	}

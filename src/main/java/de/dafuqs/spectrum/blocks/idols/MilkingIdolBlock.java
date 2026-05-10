@@ -16,7 +16,7 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -31,9 +31,9 @@ public class MilkingIdolBlock extends IdolBlock {
 		super(settings, particleEffect);
 		this.milkingRange = milkingRange;
 	}
-	
+
 	@Override
-	public MapCodec<? extends MilkingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends MilkingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

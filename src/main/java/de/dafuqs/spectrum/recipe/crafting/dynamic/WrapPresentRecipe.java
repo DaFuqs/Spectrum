@@ -9,7 +9,7 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -87,7 +87,7 @@ public class WrapPresentRecipe extends CustomRecipe {
 		return presentStack;
 	}
 	
-	public @Nullable PresentBlock.WrappingPaper getPresentVariantForStack(ItemStack stack) {
+	public PresentBlock.@Nullable WrappingPaper getPresentVariantForStack(ItemStack stack) {
 		Item item = stack.getItem();
 		if (item == Items.RED_DYE) {
 			return PresentBlock.WrappingPaper.RED;

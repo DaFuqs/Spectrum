@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public abstract class InWorldInteractionBlockEntity extends BlockEntity implements RandomizableContainer, ImplementedInventory {
 	
@@ -68,10 +68,9 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 		}
 		RandomizableContainer.super.unpackLootTable(player);
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	

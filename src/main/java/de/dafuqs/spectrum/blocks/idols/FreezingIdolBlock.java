@@ -11,7 +11,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -37,9 +37,9 @@ public class FreezingIdolBlock extends IdolBlock {
 	public FreezingIdolBlock(Properties settings, ParticleOptions particleEffect) {
 		super(settings, particleEffect);
 	}
-	
+
 	@Override
-	public MapCodec<? extends FreezingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends FreezingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

@@ -16,7 +16,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -79,9 +79,8 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	public boolean canPlayerCraft(Player playerEntity) {
 		return true;
 	}
-	
-	@Nullable
-	private GameProfile getSkullOwner(ItemStack instillerStack) {
+
+	private @Nullable GameProfile getSkullOwner(ItemStack instillerStack) {
 		var profile = instillerStack.get(DataComponents.PROFILE);
 		return profile == null ? null : profile.gameProfile();
 	}

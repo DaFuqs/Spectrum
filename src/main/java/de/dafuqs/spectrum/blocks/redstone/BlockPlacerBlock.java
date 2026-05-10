@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class BlockPlacerBlock extends RedstoneInteractionBlock implements EntityBlock {
 	
@@ -155,11 +155,10 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 			this.facing = facing;
 			this.cause = cause;
 		}
-		
+
 		// Not global, as to avoid any exploits where Ender Droppers et al. can be placed without player consent.
-		@Nullable
 		@Override
-		public Player getPlayer() {
+		public @Nullable Player getPlayer() {
 			return this.getItemInHand().is(SpectrumItemTags.PLAYER_ATTRIBUTED_PLACEMENT) ? this.cause : null;
 		}
 		

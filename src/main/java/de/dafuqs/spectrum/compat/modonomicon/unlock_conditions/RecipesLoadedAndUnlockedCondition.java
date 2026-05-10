@@ -13,8 +13,8 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.crafting.*;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.*;
 import java.util.*;
 
 public class RecipesLoadedAndUnlockedCondition extends BookCondition {

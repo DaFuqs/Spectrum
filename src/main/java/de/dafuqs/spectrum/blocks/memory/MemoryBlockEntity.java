@@ -25,9 +25,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import org.jetbrains.annotations.*;
-
-import javax.annotation.*;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -191,10 +189,9 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			return tint2;
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	

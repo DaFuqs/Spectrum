@@ -14,6 +14,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import org.jspecify.annotations.Nullable;
 
 public class SpiritVinesPlantBlock extends GrowingPlantBodyBlock implements SpiritVine {
 	
@@ -24,9 +25,9 @@ public class SpiritVinesPlantBlock extends GrowingPlantBodyBlock implements Spir
 		this.registerDefaultState((this.stateDefinition.any()).setValue(CRYSTALS, false));
 		this.gemstoneColor = gemstoneColor;
 	}
-	
+
 	@Override
-	public MapCodec<? extends SpiritVinesPlantBlock> codec() {
+	public @Nullable MapCodec<? extends SpiritVinesPlantBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

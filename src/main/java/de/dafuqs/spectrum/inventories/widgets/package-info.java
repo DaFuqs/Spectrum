@@ -1,8 +1,7 @@
-@ParametersAreNonnullByDefault
+@NullMarked
 @MethodsReturnNonnullByDefault
 @FieldsAreNonnullByDefault
 package de.dafuqs.spectrum.inventories.widgets;
 
 import net.minecraft.*;
-
-import javax.annotation.*;
+import org.jspecify.annotations.NullMarked;

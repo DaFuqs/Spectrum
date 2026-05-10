@@ -16,8 +16,8 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.network.handling.*;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.*;
 import java.util.*;
 
 public class MiscPlayerDataAttachmentType {

@@ -13,7 +13,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -26,9 +26,9 @@ public class FeedingIdolBlock extends IdolBlock {
 		super(settings, particleEffect);
 		this.range = range;
 	}
-	
+
 	@Override
-	public MapCodec<? extends FeedingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends FeedingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

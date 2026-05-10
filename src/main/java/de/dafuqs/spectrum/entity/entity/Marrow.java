@@ -10,7 +10,7 @@ import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class Marrow extends AbstractSkeleton {
 	

@@ -35,7 +35,7 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.*;
 
 import java.util.*;
@@ -315,9 +315,8 @@ public abstract class SpectrumFishingHook extends FishingHook {
 			this.timeUntilLured = Math.max(1, this.timeUntilLured);
 		}
 	}
-	
-	@Nullable
-	private Tuple<SimpleParticleType, SimpleParticleType> getFluidParticles(BlockState blockState) {
+
+	private @Nullable Tuple<SimpleParticleType, SimpleParticleType> getFluidParticles(BlockState blockState) {
 		Tuple<SimpleParticleType, SimpleParticleType> particles = null;
 		if (this.level().getBlockState(blockPosition()).getBlock() instanceof SpectrumFluidBlock spectrumFluidBlock) {
 			particles = spectrumFluidBlock.getFishingParticles();

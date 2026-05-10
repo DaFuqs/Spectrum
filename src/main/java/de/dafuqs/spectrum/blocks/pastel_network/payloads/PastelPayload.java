@@ -15,7 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public interface PastelPayload {
 	

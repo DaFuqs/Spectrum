@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

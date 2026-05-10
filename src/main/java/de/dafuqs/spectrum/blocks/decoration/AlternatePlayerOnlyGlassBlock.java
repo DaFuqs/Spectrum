@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jspecify.annotations.Nullable;
 
 public class AlternatePlayerOnlyGlassBlock extends TransparentBlock {
 	
@@ -22,9 +23,9 @@ public class AlternatePlayerOnlyGlassBlock extends TransparentBlock {
 		this.alternateBlock = block;
 		this.tinted = tinted;
 	}
-	
+
 	@Override
-	public MapCodec<? extends AlternatePlayerOnlyGlassBlock> codec() {
+	public @Nullable MapCodec<? extends AlternatePlayerOnlyGlassBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

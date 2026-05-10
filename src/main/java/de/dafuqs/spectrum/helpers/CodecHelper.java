@@ -10,8 +10,8 @@ import net.minecraft.nbt.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import org.apache.commons.lang3.math.*;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.*;
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;

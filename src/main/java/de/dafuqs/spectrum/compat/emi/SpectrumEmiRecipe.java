@@ -9,7 +9,7 @@ import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

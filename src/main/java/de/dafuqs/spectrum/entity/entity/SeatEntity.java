@@ -11,7 +11,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -131,9 +131,8 @@ public class SeatEntity extends Entity {
 		
 		super.move(movementType, movement);
 	}
-	
-	@Nullable
-	private Vec3 locateSafeDismountingPos(Vec3 offset, LivingEntity passenger) {
+
+	private @Nullable Vec3 locateSafeDismountingPos(Vec3 offset, LivingEntity passenger) {
 		double x = this.getX() + offset.x;
 		double y = this.getBoundingBox().minY + 0.5;
 		double z = this.getZ() + offset.z;

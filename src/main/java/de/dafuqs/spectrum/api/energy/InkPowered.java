@@ -20,7 +20,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
 import net.neoforged.api.distmarker.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;

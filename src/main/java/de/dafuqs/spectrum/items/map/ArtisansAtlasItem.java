@@ -24,7 +24,7 @@ import net.minecraft.world.level.saveddata.maps.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.common.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

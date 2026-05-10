@@ -34,7 +34,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.Optional;
@@ -371,10 +371,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		innerRing.ifPresent(r -> nbt.putString("InnerRing", SpectrumPastelUpgradeSignatures.toString(r)));
 		redstoneRing.ifPresent(r -> nbt.putString("RedstoneRing", SpectrumPastelUpgradeSignatures.toString(r)));
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	
@@ -485,10 +484,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	public Component getDisplayName() {
 		return Component.translatable("block.spectrum.pastel_node");
 	}
-	
-	@Nullable
+
 	@Override
-	public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
+	public @Nullable AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
 		return new FilteringScreenHandler(syncId, inv, new FilterConfigurable.ExtendedDataWithPos(this.worldPosition, this));
 	}
 	

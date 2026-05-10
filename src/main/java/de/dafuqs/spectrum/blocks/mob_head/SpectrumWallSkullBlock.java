@@ -9,9 +9,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
-
-import javax.annotation.*;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -35,8 +33,8 @@ public class SpectrumWallSkullBlock extends WallSkullBlock {
 	public MapCodec<? extends SpectrumWallSkullBlock> codec() {
 		return CODEC;
 	}
-	
-	public static Block getMobWallHead(SpectrumSkullType skullType) {
+
+	public static @Nullable Block getMobWallHead(SpectrumSkullType skullType) {
 		return SpectrumWallSkullBlock.MOB_WALL_HEADS.get(skullType);
 	}
 	
@@ -49,10 +47,9 @@ public class SpectrumWallSkullBlock extends WallSkullBlock {
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new SpectrumSkullBlockEntity(pos, state);
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return null;
 	}
 	

@@ -17,9 +17,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
-
-import javax.annotation.*;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.math.*;
 import java.text.*;
@@ -48,10 +46,9 @@ public class Support {
 		DF1.setRoundingMode(RoundingMode.DOWN);
 		DF2.setRoundingMode(RoundingMode.DOWN);
 	}
-	
-	@Nullable
+
 	@SuppressWarnings("unchecked")
-	public static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
+	public static <E extends BlockEntity, A extends BlockEntity> @Nullable BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
 		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
 	}
 	

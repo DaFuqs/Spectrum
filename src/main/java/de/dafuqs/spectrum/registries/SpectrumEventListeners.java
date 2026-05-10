@@ -66,7 +66,7 @@ import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
 

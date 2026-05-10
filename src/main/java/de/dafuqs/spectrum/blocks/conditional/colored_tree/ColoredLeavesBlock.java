@@ -12,6 +12,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -84,8 +85,8 @@ public class ColoredLeavesBlock extends FlammableLeavesBlock implements Revelati
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredLeavesBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredLeavesBlock byColor(InkColor color) {
 		return LEAVES.get(color);
 	}
 	

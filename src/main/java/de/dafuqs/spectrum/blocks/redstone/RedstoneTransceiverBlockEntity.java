@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class RedstoneTransceiverBlockEntity extends BlockEntity implements WirelessRedstoneSignalEventQueue.Callback<WirelessRedstoneSignalEventQueue.Entry> {
 	
@@ -44,7 +44,7 @@ public class RedstoneTransceiverBlockEntity extends BlockEntity implements Wirel
 		}
 	}
 	
-	public static DyeColor getChannel(Level world, BlockPos pos) {
+	public static DyeColor getChannel(@Nullable Level world, BlockPos pos) {
 		if (world == null) {
 			return DyeColor.RED;
 		}

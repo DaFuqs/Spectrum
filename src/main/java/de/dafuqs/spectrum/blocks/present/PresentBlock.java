@@ -27,8 +27,8 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -220,10 +220,9 @@ public class PresentBlock extends BaseEntityBlock {
 			world.addParticle(particleEffect, posX, posY, posZ, randX, randY, randZ);
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PresentBlockEntity(pos, state);
 	}
 	

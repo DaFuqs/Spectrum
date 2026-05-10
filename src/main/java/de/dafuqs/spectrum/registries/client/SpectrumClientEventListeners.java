@@ -49,7 +49,7 @@ import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.event.entity.player.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 import oshi.util.tuples.*;
 
 import java.util.*;

@@ -5,8 +5,8 @@ import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.*;
 import java.util.*;
 
 public interface PlayerOwned {
@@ -22,14 +22,12 @@ public interface PlayerOwned {
 	default boolean isOwner(Player playerEntity) {
 		return playerEntity.getUUID().equals(getOwnerUUID());
 	}
-	
-	@Nullable
-	default Player getOwnerIfOnline(@Nullable Level level) {
+
+	default @Nullable Player getOwnerIfOnline(@Nullable Level level) {
 		return getPlayerIfOnline(level, this.getOwnerUUID());
 	}
-	
-	@Nullable
-	static Player getPlayerIfOnline(@Nullable Level level, @Nullable UUID ownerUUID) {
+
+	static @Nullable Player getPlayerIfOnline(@Nullable Level level, @Nullable UUID ownerUUID) {
 		if (ownerUUID == null || level == null) {
 			return null;
 		}

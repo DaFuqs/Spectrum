@@ -17,6 +17,8 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.ticks.*;
+import org.jspecify.annotations.Nullable;
+
 import javax.annotation.*;
 
 public class RedstoneTimerBlock extends DiodeBlock {
@@ -102,7 +104,7 @@ public class RedstoneTimerBlock extends DiodeBlock {
 		}
 	}
 	
-	public void stepTiming(ServerLevel world, BlockPos pos, ServerPlayer serverPlayerEntity) {
+	public void stepTiming(ServerLevel world, BlockPos pos, @Nullable ServerPlayer serverPlayerEntity) {
 		if (serverPlayerEntity != null) {
 			BlockState blockState = world.getBlockState(pos);
 			if (serverPlayerEntity.isShiftKeyDown()) {

@@ -29,7 +29,7 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -166,9 +166,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		
 		fusionShrineBlockEntity.setChanged();
 	}
-	
-	@Nullable
-	private static RecipeHolder<FusionShrineRecipe> calculateRecipe(Level world, FusionShrineBlockEntity fusionShrineBlockEntity) {
+
+	private static @Nullable RecipeHolder<FusionShrineRecipe> calculateRecipe(Level world, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		if (fusionShrineBlockEntity.currentRecipe != null) {
 			if (fusionShrineBlockEntity.currentRecipe.value().matches(fusionShrineBlockEntity.getRecipeInput(), world)) {
 				return fusionShrineBlockEntity.currentRecipe;

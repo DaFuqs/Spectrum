@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -99,9 +100,9 @@ public class BloodOrchidBlock extends FlowerBlock implements BonemealableBlock, 
 		}
 		return map;
 	}
-	
+
 	@Override
-	public Tuple<Item, Item> getItemCloak() {
+	public @Nullable Tuple<Item, Item> getItemCloak() {
 		return null; // does not exist in item form
 	}
 	

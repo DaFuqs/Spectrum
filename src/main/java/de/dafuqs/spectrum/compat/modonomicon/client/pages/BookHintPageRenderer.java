@@ -15,7 +15,7 @@ import net.minecraft.client.gui.components.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
 import net.neoforged.neoforge.network.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -239,10 +239,9 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 			}
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
+	public @Nullable Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
 		if (pMouseX > 0 && pMouseY > 0) {
 			if (this.page.hasTitle()) {
 				var titleStyle = this.getClickedComponentStyleAtForTitle(this.page.getTitle(), BookEntryScreen.PAGE_WIDTH / 2, 0, pMouseX, pMouseY);

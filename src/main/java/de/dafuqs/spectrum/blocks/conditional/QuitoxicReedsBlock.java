@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
@@ -83,10 +83,9 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 			world.destroyBlock(pos, true);
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
 		if (fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8) {
 			return super.getStateForPlacement(ctx).setValue(LOGGED, FluidLogging.State.WATER);

@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class ManxiBlock extends HorizontalDirectionalBlock implements EntityBlock {
 	
@@ -27,10 +27,9 @@ public class ManxiBlock extends HorizontalDirectionalBlock implements EntityBloc
 	public MapCodec<? extends ManxiBlock> codec() {
 		return CODEC;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
 	}
 	
@@ -70,10 +69,9 @@ public class ManxiBlock extends HorizontalDirectionalBlock implements EntityBloc
 			player.hurt(world.damageSources().indirectMagic(player, player), 6);
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PlayerTrackerBlockEntity(pos, state);
 	}
 }

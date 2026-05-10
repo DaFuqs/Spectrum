@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.api.interaction;
 
 import net.minecraft.world.item.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

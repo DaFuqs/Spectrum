@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.function.*;
 
@@ -88,8 +89,8 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
 	public ItemStack quickMoveStack(Player player, int index) {
 		return ItemStack.EMPTY;
 	}
-	
-	public Container getInventory() {
+
+	public @Nullable Container getInventory() {
 		return null;
 	}
 	

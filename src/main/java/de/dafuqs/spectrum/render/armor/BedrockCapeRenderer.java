@@ -18,7 +18,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.client.event.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class BedrockCapeRenderer {
 	

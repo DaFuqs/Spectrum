@@ -9,7 +9,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class ListItemTagsCommand {
 	

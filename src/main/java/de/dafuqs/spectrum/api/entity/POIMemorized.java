@@ -6,7 +6,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.entity.ai.village.poi.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

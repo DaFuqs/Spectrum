@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class PreservationControllerBlock extends BaseEntityBlock {
 	
@@ -52,16 +52,14 @@ public class PreservationControllerBlock extends BaseEntityBlock {
 		}
 		return this.defaultBlockState().setValue(FACING, direction);
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PreservationControllerBlockEntity(pos, state);
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return world.isClientSide() ? null : createTickerHelper(type, SpectrumBlockEntities.PRESERVATION_CONTROLLER.get(), PreservationControllerBlockEntity::serverTick);
 	}
 	

@@ -15,8 +15,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -104,7 +104,7 @@ public class QuickNavigationGridScreen<T extends AbstractContainerMenu> extends 
 		protected final Component text;
 		protected final @Nullable GridEntryCallback onClickCallback;
 		
-		protected GridEntry(Component text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
+		protected GridEntry(Component text, GridEntry.@Nullable GridEntryCallback onClickCallback) {
 			this.text = text;
 			this.onClickCallback = onClickCallback;
 		}
@@ -156,7 +156,7 @@ public class QuickNavigationGridScreen<T extends AbstractContainerMenu> extends 
 	}
 	
 	public static class EmptyGridEntry extends GridEntry {
-		protected EmptyGridEntry(@Nullable GridEntry.GridEntryCallback onClickCallback) {
+		protected EmptyGridEntry(GridEntry.@Nullable GridEntryCallback onClickCallback) {
 			super(Component.empty(), onClickCallback);
 		}
 		
@@ -181,7 +181,7 @@ public class QuickNavigationGridScreen<T extends AbstractContainerMenu> extends 
 	public static class ColoredGridEntry extends GridEntry {
 		protected final Vector3f color;
 		
-		private ColoredGridEntry(Vector3f color, Component text, @Nullable GridEntry.GridEntryCallback callback) {
+		private ColoredGridEntry(Vector3f color, Component text, GridEntry.@Nullable GridEntryCallback callback) {
 			super(text, callback);
 			this.color = color;
 		}
@@ -205,7 +205,7 @@ public class QuickNavigationGridScreen<T extends AbstractContainerMenu> extends 
 		protected final int textureStartX;
 		protected final int textureStartY;
 		
-		private TexturedGridEntry(int textureStartX, int textureStartY, Component text, @Nullable GridEntry.GridEntryCallback callback) {
+		private TexturedGridEntry(int textureStartX, int textureStartY, Component text, GridEntry.@Nullable GridEntryCallback callback) {
 			super(text, callback);
 			this.textureStartX = textureStartX;
 			this.textureStartY = textureStartY;
@@ -230,7 +230,7 @@ public class QuickNavigationGridScreen<T extends AbstractContainerMenu> extends 
 		protected final Component innerText;
 		protected final int innerHalfTextWidth;
 		
-		private TextGridEntry(Component innerText, Component text, @Nullable GridEntry.GridEntryCallback callback) {
+		private TextGridEntry(Component innerText, Component text, GridEntry.@Nullable GridEntryCallback callback) {
 			super(text, callback);
 			Minecraft client = Minecraft.getInstance();
 			this.innerText = innerText;
@@ -254,7 +254,7 @@ public class QuickNavigationGridScreen<T extends AbstractContainerMenu> extends 
 		
 		protected final ItemStack stack;
 		
-		private ItemGridEntry(Item item, Component text, @Nullable GridEntry.GridEntryCallback callback) {
+		private ItemGridEntry(Item item, Component text, GridEntry.@Nullable GridEntryCallback callback) {
 			super(text, callback);
 			this.stack = item.getDefaultInstance();
 		}

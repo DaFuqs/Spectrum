@@ -91,7 +91,7 @@ import net.neoforged.bus.api.*;
 import net.neoforged.fml.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.registries.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;
@@ -2167,14 +2167,12 @@ public class SpectrumBlocks {
 			});*/
 			return this;
 		}
-		
-		@Nullable
-		public DeferredBlock<T> holder() {
+
+		public @Nullable DeferredBlock<T> holder() {
 			return holder;
 		}
-		
-		@Nullable
-		public Item item() {
+
+		public @Nullable Item item() {
 			return item;
 		}
 		

@@ -9,6 +9,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -91,9 +92,9 @@ public class BlockVariantHelper {
 		put(Blocks.WEATHERED_CUT_COPPER, Blocks.EXPOSED_CUT_COPPER);
 		put(Blocks.OXIDIZED_CUT_COPPER, Blocks.WEATHERED_CUT_COPPER);
 	}};
-	
+
 	//TODO: unused
-	public static Block getCursedRepairedBlockVariant(Level world, BlockPos blockPos) {
+	public static @Nullable Block getCursedRepairedBlockVariant(Level world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity != null) {
 			return Blocks.AIR;

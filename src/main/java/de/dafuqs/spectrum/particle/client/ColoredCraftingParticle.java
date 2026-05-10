@@ -4,8 +4,8 @@ import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.util.*;
-import javax.annotation.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 
 public class ColoredCraftingParticle extends TextureSheetParticle {

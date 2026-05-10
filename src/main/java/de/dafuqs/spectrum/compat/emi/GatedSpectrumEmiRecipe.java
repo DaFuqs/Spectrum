@@ -6,7 +6,7 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.crafting.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

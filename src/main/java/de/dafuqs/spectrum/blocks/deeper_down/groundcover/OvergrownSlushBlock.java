@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.lighting.*;
 import net.neoforged.neoforge.common.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class OvergrownSlushBlock extends BlackslagVegetationBlock {
 	

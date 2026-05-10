@@ -10,7 +10,7 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

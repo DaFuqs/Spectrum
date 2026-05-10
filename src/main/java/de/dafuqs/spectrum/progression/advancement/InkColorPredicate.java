@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.progression.advancement;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

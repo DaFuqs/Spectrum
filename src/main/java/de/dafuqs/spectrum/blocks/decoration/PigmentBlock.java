@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.world.level.block.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -32,8 +33,8 @@ public class PigmentBlock extends Block {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static PigmentBlock byColor(InkColor color) {
+
+	public static @Nullable PigmentBlock byColor(InkColor color) {
 		return BLOCKS.get(color);
 	}
 	

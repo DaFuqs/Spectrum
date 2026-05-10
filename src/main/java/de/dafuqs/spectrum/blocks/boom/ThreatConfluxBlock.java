@@ -19,12 +19,10 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.*;
-
-@ParametersAreNonnullByDefault
+@NullMarked
 public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.SpectrumFluidLoggable {
 	
 	public static final MapCodec<ThreatConfluxBlock> CODEC = simpleCodec(ThreatConfluxBlock::new);

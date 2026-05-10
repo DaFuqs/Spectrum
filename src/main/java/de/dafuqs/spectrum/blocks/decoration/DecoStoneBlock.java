@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class DecoStoneBlock extends Block {
 	
@@ -58,10 +58,9 @@ public class DecoStoneBlock extends Block {
 			return doubleBlockHalf == DoubleBlockHalf.LOWER && direction == Direction.DOWN && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, world, pos, neighborPos);
 		}
 	}
-	
+
 	@Override
-	@Nullable
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		BlockPos blockPos = ctx.getClickedPos();
 		Level world = ctx.getLevel();
 		return blockPos.getY() < world.getMaxBuildHeight() - 1 && world.getBlockState(blockPos.above()).canBeReplaced(ctx) ? super.getStateForPlacement(ctx) : null;

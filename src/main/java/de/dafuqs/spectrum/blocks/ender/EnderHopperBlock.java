@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import static net.minecraft.world.level.block.HopperBlock.*;
 
@@ -70,10 +70,9 @@ public class EnderHopperBlock extends BaseEntityBlock {
 	public VoxelShape getInteractionShape(BlockState state, BlockGetter world, BlockPos pos) {
 		return DOWN_RAYCAST_SHAPE;
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return world.isClientSide() ? null : createTickerHelper(type, SpectrumBlockEntities.ENDER_HOPPER.get(), EnderHopperBlockEntity::serverTick);
 	}
 	

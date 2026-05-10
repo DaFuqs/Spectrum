@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class PotionWorkshopBlock extends HorizontalDirectionalBlock implements EntityBlock {
 	
@@ -50,10 +50,9 @@ public class PotionWorkshopBlock extends HorizontalDirectionalBlock implements E
 	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return world.isClientSide() ? null : Support.checkType(type, SpectrumBlockEntities.POTION_WORKSHOP.get(), PotionWorkshopBlockEntity::tick);
 	}
 	
@@ -71,10 +70,9 @@ public class PotionWorkshopBlock extends HorizontalDirectionalBlock implements E
 	public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
 		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		return defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
 	}
 	

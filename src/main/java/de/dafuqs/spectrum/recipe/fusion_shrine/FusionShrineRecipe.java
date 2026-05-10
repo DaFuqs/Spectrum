@@ -23,7 +23,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import net.neoforged.neoforge.fluids.crafting.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

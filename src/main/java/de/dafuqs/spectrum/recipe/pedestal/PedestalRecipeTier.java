@@ -13,9 +13,7 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
-
-import javax.annotation.*;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

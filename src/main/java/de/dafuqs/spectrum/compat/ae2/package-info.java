@@ -1,8 +1,7 @@
-@ParametersAreNonnullByDefault
+@NullMarked
 @MethodsReturnNonnullByDefault
 @FieldsAreNonnullByDefault
 package de.dafuqs.spectrum.compat.ae2;
 
 import net.minecraft.*;
-
-import javax.annotation.*;
+import org.jspecify.annotations.NullMarked;

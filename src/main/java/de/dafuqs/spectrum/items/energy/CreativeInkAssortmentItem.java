@@ -14,7 +14,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

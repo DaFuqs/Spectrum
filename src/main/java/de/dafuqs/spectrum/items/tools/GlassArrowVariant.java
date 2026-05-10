@@ -4,8 +4,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.world.item.*;
-
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class GlassArrowVariant {
 	

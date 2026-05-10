@@ -37,9 +37,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
-
-import javax.annotation.*;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -549,10 +547,9 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			recipeMatcher.accountStack(itemStack);
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	

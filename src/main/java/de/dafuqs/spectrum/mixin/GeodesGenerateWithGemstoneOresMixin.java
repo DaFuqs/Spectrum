@@ -9,11 +9,10 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
-
-import javax.annotation.*;
 
 @Mixin(GeodeFeature.class)
 public abstract class GeodesGenerateWithGemstoneOresMixin {

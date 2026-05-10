@@ -7,8 +7,8 @@ import net.minecraft.world.entity.animal.horse.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.neoforged.neoforge.common.util.*;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.*;
 import java.util.*;
 
 public class EntityHelper {

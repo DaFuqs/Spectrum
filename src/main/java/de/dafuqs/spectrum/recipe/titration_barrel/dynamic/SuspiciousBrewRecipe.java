@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import net.neoforged.neoforge.fluids.crafting.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

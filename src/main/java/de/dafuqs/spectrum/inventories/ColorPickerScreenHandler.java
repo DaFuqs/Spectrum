@@ -14,8 +14,8 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.*;
 import java.util.*;
 
 public class ColorPickerScreenHandler extends AbstractContainerMenu implements InkColorSelectedPacketReceiver {

@@ -10,7 +10,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -27,16 +27,15 @@ public class GrotesqueBlock extends HorizontalDirectionalBlock {
 		var max = width + min;
 		shape = Block.box(min, 0, min, max, height, max);
 	}
-	
+
 	@Override
-	public MapCodec<? extends GrotesqueBlock> codec() {
+	public @Nullable MapCodec<? extends GrotesqueBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
 	}
 	

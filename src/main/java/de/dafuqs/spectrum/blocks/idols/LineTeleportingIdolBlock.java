@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -21,9 +21,9 @@ public class LineTeleportingIdolBlock extends IdolBlock {
 		super(settings, particleEffect);
 		this.range = range;
 	}
-	
+
 	@Override
-	public MapCodec<? extends LineTeleportingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends LineTeleportingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

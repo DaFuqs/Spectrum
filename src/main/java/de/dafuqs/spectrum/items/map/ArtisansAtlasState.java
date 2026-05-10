@@ -15,7 +15,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.saveddata.maps.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -262,9 +262,8 @@ public class ArtisansAtlasState extends MapItemSavedData {
 	public @Nullable ResourceLocation getTargetId() {
 		return this.targetId;
 	}
-	
-	@Nullable
-	public Vec3i getDisplayDelta() {
+
+	public @Nullable Vec3i getDisplayDelta() {
 		return this.displayDelta;
 	}
 	

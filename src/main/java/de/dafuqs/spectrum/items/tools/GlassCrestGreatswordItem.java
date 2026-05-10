@@ -25,7 +25,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

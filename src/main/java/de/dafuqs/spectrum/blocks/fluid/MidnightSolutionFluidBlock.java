@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	

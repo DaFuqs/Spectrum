@@ -13,7 +13,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -31,9 +31,9 @@ public abstract class ProjectileIdolBlock extends IdolBlock {
 		this.speed = speed;
 		this.divergence = divergence;
 	}
-	
+
 	@Override
-	public MapCodec<? extends ProjectileIdolBlock> codec() {
+	public @Nullable MapCodec<? extends ProjectileIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

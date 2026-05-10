@@ -5,8 +5,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public final class PastelUpgradeSignature {
 

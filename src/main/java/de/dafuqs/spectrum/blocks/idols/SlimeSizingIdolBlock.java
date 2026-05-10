@@ -13,7 +13,7 @@ import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -27,9 +27,9 @@ public class SlimeSizingIdolBlock extends IdolBlock {
 		this.range = range;
 		this.maxSize = maxSize;
 	}
-	
+
 	@Override
-	public MapCodec<? extends SlimeSizingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends SlimeSizingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

@@ -23,9 +23,7 @@ import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import org.jetbrains.annotations.*;
-
-import javax.annotation.*;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

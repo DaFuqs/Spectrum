@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.mixin.accessors;
 
 
 import net.minecraft.world.entity.animal.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.*;
 

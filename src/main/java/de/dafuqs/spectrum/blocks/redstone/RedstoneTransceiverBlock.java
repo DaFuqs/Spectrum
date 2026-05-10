@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -40,10 +40,9 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 	public MapCodec<? extends RedstoneTransceiverBlock> codec() {
 		return CODEC;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new RedstoneTransceiverBlockEntity(pos, state);
 	}
 	
@@ -83,10 +82,9 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, POWERED, SENDER, CHANNEL);
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> GameEventListener getListener(ServerLevel world, T blockEntity) {
+	public <T extends BlockEntity> @Nullable GameEventListener getListener(ServerLevel world, T blockEntity) {
 		return blockEntity instanceof RedstoneTransceiverBlockEntity ? ((RedstoneTransceiverBlockEntity) blockEntity).getEventListener() : null;
 	}
 	
@@ -126,10 +124,9 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 			checkTickOnNeighbor(world, pos, state);
 		}
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return world.isClientSide() ? null : Support.checkType(type, SpectrumBlockEntities.REDSTONE_TRANSCEIVER.get(), RedstoneTransceiverBlockEntity::serverTick);
 	}
 	

@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.helpers.enchantments;
 import de.dafuqs.additionalentityattributes.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 public class CloversFavorHelper {
 	

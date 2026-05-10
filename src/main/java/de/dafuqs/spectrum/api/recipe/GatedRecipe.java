@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.fml.loading.*;
-import javax.annotation.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

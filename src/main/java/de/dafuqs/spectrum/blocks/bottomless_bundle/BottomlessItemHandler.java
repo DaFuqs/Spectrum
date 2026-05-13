@@ -54,7 +54,7 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 	}
 	
 	// returns the amount that could get inserted
-	private long insert(ItemStack insertedVariant, long maxAmount) {
+	private long insert(ItemStack insertedVariant, long maxAmount, boolean simulate) {
 		if (!isItemValid(0, insertedVariant)) return 0L;
 		long capacity = getCapacity();
 		long space = capacity - this.count;
@@ -64,7 +64,9 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 			// Lock template to one copy of the item
 			this.variant = insertedVariant.copyWithCount(1);
 		}
-		this.count += toInsert;
+		if(!simulate) {
+			this.count += toInsert;
+		}
 		return deletesOverflow ? maxAmount : toInsert;
 	}
 	
@@ -90,13 +92,15 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 		if (!isItemValid(slot, stack))
 			return stack;
 		
-		long insertedAmount = insert(stack, stack.getCount());
+		long insertedAmount = insert(stack, stack.getCount(), simulate);
+		if(insertedAmount == 0) {
+			return stack;
+		}
 		if (insertedAmount == stack.getCount()) {
 			return ItemStack.EMPTY;
 		}
 		
-		stack.shrink((int) insertedAmount);
-		return stack;
+		return stack.copyWithCount(stack.getCount() - (int) insertedAmount);
 	}
 	
 	@Override
@@ -110,7 +114,9 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 			return ItemStack.EMPTY;
 		}
 		
-		this.count -= amountToExtract;
+		if(!simulate) {
+			this.count -= amountToExtract;
+		}
 		ItemStack result = this.variant.copyWithCount(amountToExtract);
 		if(this.count <= 0L) {
 			this.variant = ItemStack.EMPTY;

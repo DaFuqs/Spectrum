@@ -120,6 +120,8 @@ public class FloatBlockEntity extends Entity {
 			Block block = this.blockState.getBlock();
 			if (this.level().getBlockState(blockPos).is(block)) {
 				this.level().removeBlock(blockPos, false);
+			} else {
+				this.discard();
 			}
 		}
 		

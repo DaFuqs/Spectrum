@@ -49,14 +49,13 @@ public class FloatBlockEntity extends Entity {
 	protected boolean canSetBlock = true;
 	protected boolean collides;
 	
-	public FloatBlockEntity(EntityType<? extends FloatBlockEntity> entityType, Level world) {
-		super(entityType, world);
-		this.moveTime = 0;
+	public FloatBlockEntity(Level world, BlockPos pos, BlockState blockState) {
+		this(SpectrumEntityTypes.FLOAT_BLOCK.get(), world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, blockState);
 	}
 	
 	public FloatBlockEntity(EntityType<? extends FloatBlockEntity> entityType, Level world, double x, double y, double z, BlockState blockState) {
 		this(entityType, world);
-		this.blockState = blockState;
+		this.setBlockState(blockState);
 		this.blocksBuilding = true;
 		this.setPos(x, y, z);
 		this.setDeltaMovement(Vec3.ZERO);
@@ -70,9 +69,14 @@ public class FloatBlockEntity extends Entity {
 			setGravity(floatBlock.getGravityMod());
 		}
 	}
+	public FloatBlockEntity(EntityType<? extends FloatBlockEntity> entityType, Level world) {
+		super(entityType, world);
+		this.moveTime = 0;
+	}
 	
-	public FloatBlockEntity(Level world, BlockPos pos, BlockState blockState) {
-		this(SpectrumEntityTypes.FLOAT_BLOCK.get(), world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, blockState);
+	public void setBlockState(BlockState blockState) {
+		this.blockState = blockState;
+		makeBoundingBox();
 	}
 	
 	/**
@@ -86,7 +90,9 @@ public class FloatBlockEntity extends Entity {
 	@Override
 	protected AABB makeBoundingBox() {
 		BlockPos origin = this.entityData.get(ORIGIN);
-		VoxelShape shape = this.blockState.getCollisionShape(level(), origin);
+		// Sable Compat: this method may run before the constructor is finished, hence the null check
+		BlockState state = this.blockState == null ? Blocks.STONE.defaultBlockState() : this.blockState;
+		VoxelShape shape = state.getCollisionShape(level(), origin);
 		if (shape.isEmpty()) {
 			this.collides = false;
 			shape = this.blockState.getShape(level(), origin);
@@ -99,7 +105,6 @@ public class FloatBlockEntity extends Entity {
 		AABB box = shape.bounds();
 		return box.move(position().subtract(new Vec3(0.5, 0, 0.5)));
 	}
-	
 	
 	@Override
 	public void tick() {

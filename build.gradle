@@ -124,6 +124,7 @@ dependencies {
 		exclude(group: "mezz.jei")
 	} // https://github.com/klikli-dev/modonomicon
 	implementation("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
+	compileOnly("maven.modrinth:jade:${project.jade_version}")
 
 	implementation "org.jspecify:jspecify:1.0.0"
 

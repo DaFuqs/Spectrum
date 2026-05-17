@@ -30,7 +30,6 @@ import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.blocks.geology.*;
-import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.item_roundel.*;
@@ -1201,26 +1200,16 @@ public class SpectrumBlocks {
 		return paltaeria(registrar, TexturedModel.CUBE);
 	}
 	
-	public static final Block STRATINE_ORE  = register(simple(blockWithItem("stratine_ore", new CloakedOreBlock(UniformInt.of(3, 5), netherrackOre(), SpectrumAdvancements.REVEAL_STRATINE, Blocks.NETHERRACK.defaultBlockState()), block -> new FloatBlockItem(block, IS.of().fireResistant(), -0.01F), InkColors.RED)));
-	public static final Block PALTAERIA_ORE = register(simpal(blockWithItem("paltaeria_ore", new CloakedOreBlock(UniformInt.of(2, 4), endstoneOre(), SpectrumAdvancements.REVEAL_PALTAERIA, Blocks.END_STONE.defaultBlockState()), block -> new FloatBlockItem(block, IS.of(), 0.01F), InkColors.CYAN)));
+	public static final Block STRATINE_ORE  = register(simple(blockWithItem("stratine_ore", new CloakedOreBlock(UniformInt.of(3, 5), netherrackOre(), SpectrumAdvancements.REVEAL_STRATINE, Blocks.NETHERRACK.defaultBlockState()), IS.of().fireResistant().component(SpectrumDataComponentTypes.GRAVITABLE, -0.01F), InkColors.RED)));
+	public static final Block PALTAERIA_ORE = register(simpal(blockWithItem("paltaeria_ore", new CloakedOreBlock(UniformInt.of(2, 4), endstoneOre(), SpectrumAdvancements.REVEAL_PALTAERIA, Blocks.END_STONE.defaultBlockState()), IS.of().component(SpectrumDataComponentTypes.GRAVITABLE, 0.01F), InkColors.CYAN)));
 	
 	private static BlockBehaviour.Properties gravityBlock(MapColor mapColor) {
 		return settings(mapColor, SoundType.METAL, 4.0F, 6.0F).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops();
 	}
 	
-	public static final FloatBlock PALTAERIA_FLOATBLOCK = register(paltaeria(blockWithItem("paltaeria_floatblock", new FloatBlock(gravityBlock(MapColor.COLOR_LIGHT_BLUE), 0.2F), block -> new FloatBlockItem(block, IS.of().fireResistant(), 0.02F), InkColors.RED), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
-	public static final FloatBlock STRATINE_FLOATBLOCK  = register(singleton(blockWithItem("stratine_floatblock", new FloatBlock(gravityBlock(MapColor.NETHER), -0.2F), block -> new FloatBlockItem(block, IS.of(), -0.02F), InkColors.CYAN), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
-	public static final FloatBlock HOVER_BLOCK = register(singleton(blockWithItem("hover_block", new FloatBlock(gravityBlock(MapColor.DIAMOND), 0.0F), block -> new FloatBlockItem(block, IS.of(), 0F) {
-		@Override
-		public double applyGravity(ItemStack stack, Level world, Entity entity) {
-			return 0;
-		}
-		
-		@Override
-		public void applyGravity(ItemStack stack, Level world, ItemEntity itemEntity) {
-			itemEntity.setNoGravity(true);
-		}
-	}, InkColors.GREEN), TexturedModel.COLUMN));
+	public static final FloatBlock PALTAERIA_FLOATBLOCK = register(paltaeria(blockWithItem("paltaeria_floatblock", new FloatBlock(gravityBlock(MapColor.COLOR_LIGHT_BLUE), 0.2F), IS.of().fireResistant().component(SpectrumDataComponentTypes.GRAVITABLE, 0.02F), InkColors.RED), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
+	public static final FloatBlock STRATINE_FLOATBLOCK  = register(singleton(blockWithItem("stratine_floatblock", new FloatBlock(gravityBlock(MapColor.NETHER), -0.2F), IS.of().component(SpectrumDataComponentTypes.GRAVITABLE, -0.02F), InkColors.CYAN), SpectrumTexturedModels.cubeBottomTop(b -> b, "", b -> b, "_top", b -> b, "_bottom")));
+	public static final FloatBlock HOVER_BLOCK = register(singleton(blockWithItem("hover_block", new FloatBlock(gravityBlock(MapColor.DIAMOND), 0.0F), IS.of().component(SpectrumDataComponentTypes.GRAVITABLE, 0F), InkColors.GREEN), TexturedModel.COLUMN));
 	
 	public static final Block BLACKSLAG_COAL_ORE = register(singleton(blockWithItem("blackslag_coal_ore", new DropExperienceBlock(UniformInt.of(0, 2), blackslagOre()), InkColors.BLACK), TexturedModel.COLUMN_ALT));
 	public static final Block BLACKSLAG_COPPER_ORE = register(singleton(blockWithItem("blackslag_copper_ore", new DropExperienceBlock(ConstantInt.of(0), blackslagOre()), InkColors.BLACK), TexturedModel.COLUMN_ALT));

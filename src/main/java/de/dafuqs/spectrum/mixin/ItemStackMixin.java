@@ -1,18 +1,22 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
+import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.api.gui.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.level.*;
 import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -41,6 +45,12 @@ public abstract class ItemStackMixin {
 				cir.setReturnValue(true);
 			}
 		}
+	}
+	
+	@WrapOperation(method = "inventoryTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Item;inventoryTick(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;IZ)V"))
+	public void spectrum$applyGravitable(Item item, ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected, Operation<Void> original) {
+		EntityHelper.applyGravity(entity, stack.getOrDefault(SpectrumDataComponentTypes.GRAVITABLE, 0.0f) * stack.getCount(), level);
+		original.call(item, stack, level, entity, slotId, isSelected);
 	}
 	
 	@ModifyReturnValue(method = "isDamageableItem", at = @At(value = "RETURN"))
@@ -89,6 +99,7 @@ public abstract class ItemStackMixin {
 		
 	}
 	
+	@Unique
 	public void spectrum$addConcealedEffectsTooltip(ItemStack stack, Item.TooltipContext context, Consumer<Component> tooltipAdder, Player player) {
 		var oilEffect = stack.get(SpectrumDataComponentTypes.CONCEALED_EFFECT);
 		var profile = stack.get(DataComponents.PROFILE);

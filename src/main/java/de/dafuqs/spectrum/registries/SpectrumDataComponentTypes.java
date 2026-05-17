@@ -59,6 +59,7 @@ public class SpectrumDataComponentTypes {
 	public static final DataComponentType<WrappedPresentComponent> WRAPPED_PRESENT = register("wrapped_present", builder -> builder.persistent(WrappedPresentComponent.CODEC).networkSynchronized(WrappedPresentComponent.PACKET_CODEC).cacheEncoding());
 	public static final DataComponentType<WithMilkComponent> WITH_MILK = register("with_milk", builder -> builder.persistent(WithMilkComponent.CODEC).networkSynchronized(WithMilkComponent.PACKET_CODEC));
 	public static final DataComponentType<WorkstaffComponent> WORKSTAFF = register("workstaff", builder -> builder.persistent(WorkstaffComponent.CODEC).networkSynchronized(WorkstaffComponent.PACKET_CODEC));
+	public static final DataComponentType<Float> GRAVITABLE = register("gravitable", builder -> builder.persistent(Codec.FLOAT).networkSynchronized(ByteBufCodecs.FLOAT));
 	
 	public static <T> DataComponentType<T> register(String id, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
 		return REGISTRAR.defer(builderOperator.apply(DataComponentType.builder()).build(),

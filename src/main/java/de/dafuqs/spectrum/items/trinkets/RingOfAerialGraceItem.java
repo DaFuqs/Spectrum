@@ -10,7 +10,7 @@ import net.minecraft.world.item.*;
 
 import java.util.*;
 
-public class RingOfAerialGraceItem extends GravityRingItem implements GravitableItem {
+public class RingOfAerialGraceItem extends GravityRingItem {
 	
 	public RingOfAerialGraceItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/ring_of_aerial_grace"), InkColors.WHITE);

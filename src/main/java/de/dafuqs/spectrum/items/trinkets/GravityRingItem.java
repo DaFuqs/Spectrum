@@ -4,14 +4,19 @@ import com.google.common.collect.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.progression.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 
-public abstract class GravityRingItem extends InkDrainTrinketItem implements GravitableItem {
+public abstract class GravityRingItem extends InkDrainTrinketItem {
 	
 	public GravityRingItem(Properties settings, ResourceLocation unlockIdentifier, InkColor inkColor) {
 		super(settings, unlockIdentifier, inkColor);
@@ -38,18 +43,13 @@ public abstract class GravityRingItem extends InkDrainTrinketItem implements Gra
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
-		applyGravity(stack, entity.level(), entity);
+		EntityHelper.applyGravity(entity, getGravityMod(stack) * stack.getCount(), entity.level());
 	}
 	
 	public double getBonus(long storedInk) {
-		if (storedInk < 100) {
-			return 0;
-		} else {
-			return 1 + (int) (Math.log(storedInk / 100.0f) / Math.log(8));
-		}
+		return storedInk >= 100 ? 1 + (int) (Math.log(storedInk / 100.0f) / Math.log(8)) : 0;
 	}
 	
-	@Override
 	public float getGravityMod(ItemStack stack) {
 		FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());

@@ -38,34 +38,33 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 
     @Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        var reference = BlockReference.of(state, pos);
 		var creative = player.getAbilities().instabuild;
 		
 		if (handStack.is(ConventionalItemTags.SHEAR_TOOLS)) {
-            if (reference.getProperty(LIFE_STAGE) != LifeStage.GROWING)
+            if (state.getValue(LIFE_STAGE) != LifeStage.GROWING)
 				return ItemInteractionResult.FAIL;
 
             if (!creative)
 				handStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
 
-            reference.setProperty(LIFE_STAGE, LifeStage.MATURE);
-            reference.update(world);
+			state = state.setValue(LIFE_STAGE, LifeStage.MATURE);
+			world.setBlockAndUpdate(pos, state);
 			
 			world.playSound(null, pos, SpectrumSoundEvents.VINE_SHEAR, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.getRandom(), 0.6F, 1.0F));
-			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, reference.getState()));
+			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, state));
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
         } else if (handStack.is(SpectrumItems.MOONSTRUCK_NECTAR)) {
-            if (reference.getProperty(LIFE_STAGE) != LifeStage.MATURE)
+            if (state.getValue(LIFE_STAGE) != LifeStage.MATURE)
 				return ItemInteractionResult.FAIL;
 
             if (!creative)
 				handStack.shrink(1);
-
-            reference.setProperty(LIFE_STAGE, LifeStage.GROWING);
-            reference.update(world);
+			
+			state = state.setValue(LIFE_STAGE, LifeStage.GROWING);
+			world.setBlockAndUpdate(pos, state);
 			
 			world.playSound(null, pos, SpectrumSoundEvents.VINE_INFUSE, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.getRandom(), 0.6F, 1.0F));
-			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, reference.getState()));
+			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, state));
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
         }
 		
@@ -78,15 +77,14 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 		var pos = ctx.getClickedPos();
 		
 		var state = defaultBlockState();
-		var roof = BlockReference.of(world, pos.above());
+		var roof = world.getBlockState(pos.above());
 		
 		if (!canSurvive(world.getBlockState(pos), world, pos) || !world.isEmptyBlock(pos))
             return null;
 
-        if (roof.isOf(this)) {
-			state = state.setValue(LIFE_STAGE, roof.getProperty(LIFE_STAGE));
-            roof.setProperty(LIFE_STAGE, LifeStage.STALK);
-            roof.update(world);
+        if (roof.is(this)) {
+			state = state.setValue(LIFE_STAGE, roof.getValue(LIFE_STAGE));
+			world.setBlockAndUpdate(pos.above(), roof.setValue(LIFE_STAGE, LifeStage.STALK));
         }
 
         return state;
@@ -105,30 +103,24 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 
     @Override
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        if (random.nextFloat() >= growthTickChance)
-            return;
+        if (random.nextFloat() >= growthTickChance) return;
 
-        var reference = BlockReference.of(state, pos);
-        var stage = reference.getProperty(LIFE_STAGE);
-
-        if (hasGrowthActions() && random.nextBoolean() || stage != LifeStage.GROWING) {
+        if (hasGrowthActions() && random.nextBoolean() || state.getValue(LIFE_STAGE) != LifeStage.GROWING) {
 			performBonemeal(world, random, pos, state);
-        }
-        else {
+        } else {
 			if (!isBonemealSuccess(world, random, pos, state) || random.nextFloat() >= spreadChance)
                 return;
-
-            reference.setProperty(LIFE_STAGE, LifeStage.STALK);
-            reference.update(world);
+			
+			world.setBlockAndUpdate(pos, state.setValue(LIFE_STAGE, LifeStage.STALK));
 			
 			var sprigState = defaultBlockState();
-            var height = getCurrentHeight(world, reference.pos);
+            var height = getCurrentHeight(world, pos);
 
             if (height >= minHeight && random.nextFloat() >= overgrowth) {
 				sprigState = sprigState.setValue(LIFE_STAGE, LifeStage.MATURE);
             }
 			
-			world.setBlockAndUpdate(reference.pos.below(), sprigState);
+			world.setBlockAndUpdate(pos.below(), sprigState);
         }
     }
 	
@@ -147,11 +139,11 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 	@Override
 	protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
 		if (!state.is(newState.getBlock())) {
-			var roof = BlockReference.of(level, pos.above());
+			var roof = level.getBlockState(pos.above());
 			
-			if (roof.isOf(this)) {
-				roof.setProperty(LIFE_STAGE, getLowestLifeStage(level, pos.below(), state.getValue(LIFE_STAGE)));
-				roof.update(level);
+			if (roof.is(this)) {
+				roof = roof.setValue(LIFE_STAGE, getLowestLifeStage(level, pos.below(), state.getValue(LIFE_STAGE)));
+				level.setBlockAndUpdate(pos.above(), roof);
 			}
 			
 			scheduleBreakCheck(level, pos);

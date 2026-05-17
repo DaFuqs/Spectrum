@@ -23,24 +23,19 @@ public class RemainderlessItemFluidStorage implements ExtractionOnlyStorage<Flui
         this.containedFluid = containedFluid;
         this.containedAmount = containedAmount;
     }
-
-    @Override
-    public long extract(FluidVariant resource, long maxAmount, TransactionContext transaction) {
-        // If the context's item is not fullItem anymore, can't extract!
-        if (!context.getItemVariant().isOf(fullItem)) return 0;
-
-        // Make sure that the fluid and the amount match.
-        if (resource.equals(containedFluid) && maxAmount >= containedAmount) {
-            // If that's ok, just convert one of the full item into the empty item, copying the nbt.
-
-
-            if (context.extract(context.getItemVariant(), 1, transaction) == 1) {
-                // Conversion ok!
-                return containedAmount;
-            }
-        }
-        return 0;
-    }
+	
+	@Override
+	public long extract(FluidVariant resource, long maxAmount, TransactionContext transaction) {
+		// If the context's item is not fullItem anymore, can't extract!
+		if (!resource.equals(containedFluid) || !context.getItemVariant().isOf(fullItem)) return 0;
+		StoragePreconditions.notNegative(maxAmount);
+		
+		long extractedAmount = Math.min(maxAmount, getAmount());
+		extractedAmount -= (extractedAmount % containedAmount);
+		if (extractedAmount == 0) return 0;
+		
+		return containedAmount * context.extract(context.getItemVariant(), extractedAmount / containedAmount, transaction);
+	};
 
     @Override
     public boolean isResourceBlank() {
@@ -59,7 +54,7 @@ public class RemainderlessItemFluidStorage implements ExtractionOnlyStorage<Flui
     @Override
     public long getAmount() {
         if (context.getItemVariant().isOf(fullItem)) {
-            return containedAmount;
+            return containedAmount * context.getAmount();
         } else {
             return 0;
         }

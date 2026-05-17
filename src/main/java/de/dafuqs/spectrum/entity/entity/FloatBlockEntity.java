@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.blocks.gravity.*;
+import de.dafuqs.spectrum.blocks.FloatBlock;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.registries.*;

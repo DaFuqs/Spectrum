@@ -1,12 +1,13 @@
 package de.dafuqs.spectrum.api.entity;
 
 import de.dafuqs.spectrum.entity.entity.*;
+import org.jspecify.annotations.*;
 
 public interface PlayerEntityAccessor {
 	
-	void setSpectrumBobber(SpectrumFishingBobberEntity bobber);
+	void setSpectrumBobber(@Nullable SpectrumFishingBobberEntity bobber);
 	
-	SpectrumFishingBobberEntity getSpectrumBobber();
+	@Nullable SpectrumFishingBobberEntity getSpectrumBobber();
 
 	void setSleepTimer(int ticks);
 }

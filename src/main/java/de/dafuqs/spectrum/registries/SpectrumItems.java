@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
-import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.data.*;
@@ -251,10 +250,10 @@ public class SpectrumItems {
 		return registrar.withItemModel((ctx, item) -> ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(item), SpectrumModelHelper.paltaeriaModifier(ctx.output, 0.5f)));
 	}
 	
-	public static final CloakedFloatItem PALTAERIA_FRAGMENTS = register(paltie(item("paltaeria_fragments", new CloakedFloatItem(IS.of(), 0.00125F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
-	public static final CloakedFloatItem PALTAERIA_GEM = register(paltie(item("paltaeria_gem", new CloakedFloatItem(IS.of(16), 0.01F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
-	public static final CloakedFloatItem STRATINE_FRAGMENTS = register(simple(item("stratine_fragments", new CloakedFloatItem(IS.of().fireResistant(), -0.00125F, ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), RED_DYE), InkColors.RED)));
-	public static final CloakedFloatItem STRATINE_GEM = register(simple(item("stratine_gem", new CloakedFloatItem(IS.of(16).fireResistant(), -0.01F, ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), RED_DYE), InkColors.RED)));
+	public static final CloakedItem PALTAERIA_FRAGMENTS = register(paltie(item("paltaeria_fragments", new CloakedItem(IS.of().component(SpectrumDataComponentTypes.GRAVITABLE, 0.00125F), ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
+	public static final CloakedItem PALTAERIA_GEM = register(paltie(item("paltaeria_gem", new CloakedItem(IS.of(16).component(SpectrumDataComponentTypes.GRAVITABLE, 0.01F), ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), CYAN_DYE), InkColors.LIGHT_BLUE)));
+	public static final CloakedItem STRATINE_FRAGMENTS = register(simple(item("stratine_fragments", new CloakedItem(IS.of().fireResistant().component(SpectrumDataComponentTypes.GRAVITABLE, -0.00125F), ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), RED_DYE), InkColors.RED)));
+	public static final CloakedItem STRATINE_GEM = register(simple(item("stratine_gem", new CloakedItem(IS.of(16).fireResistant().component(SpectrumDataComponentTypes.GRAVITABLE, -0.01F), ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), RED_DYE), InkColors.RED)));
 	public static final Item PYRITE_CHUNK = register(simple(item("pyrite_chunk", new Item(IS.of()), InkColors.PURPLE)));
 	public static final Item DRAGONBONE_CHUNK = register(simple(item("dragonbone_chunk", new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.BREAK_CRACKED_DRAGONBONE, GRAY_DYE), InkColors.GRAY)));
 	public static final Item BONE_ASH = register(simple(item("bone_ash", new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumAdvancements.BREAK_CRACKED_DRAGONBONE, GRAY_DYE), InkColors.GRAY)));
@@ -647,7 +646,7 @@ public class SpectrumItems {
 		ITEM_REGISTRAR.flush();
 		
 		FluidStorage.combinedItemApiProvider(SpectrumItems.MERMAIDS_GEM).register(context ->
-				new RemainderlessItemFluidStorage(context, FluidVariant.of(Fluids.WATER), FluidConstants.BUCKET));
+				new RemainderlessItemFluidStorage(context, FluidVariant.of(Fluids.WATER), MermaidsGemItem.ITEM_INTERACTION_WATER_FILL_DROPLETS));
 	}
 	
 	public static class IS {

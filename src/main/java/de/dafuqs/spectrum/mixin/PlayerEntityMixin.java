@@ -36,6 +36,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import org.jspecify.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -62,7 +63,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	protected abstract boolean canPlayerFitWithinBlocksAndEntitiesWhen(Pose pose);
 	
 	@Unique
-	public SpectrumFishingBobberEntity fishingBobber;
+	public @Nullable SpectrumFishingBobberEntity fishingBobber;
 	
 	
 	@ModifyExpressionValue(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;distanceToSqr(Lnet/minecraft/world/entity/Entity;)D", shift = At.Shift.AFTER))
@@ -306,7 +307,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	}
 	
 	@Override
-	public void setSpectrumBobber(SpectrumFishingBobberEntity bobber) {
+	public void setSpectrumBobber(@Nullable SpectrumFishingBobberEntity bobber) {
 		this.fishingBobber = bobber;
 	}
 	
@@ -316,7 +317,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	}
 	
 	@Override
-	public SpectrumFishingBobberEntity getSpectrumBobber() {
+	public @Nullable SpectrumFishingBobberEntity getSpectrumBobber() {
 		return this.fishingBobber;
 	}
 	

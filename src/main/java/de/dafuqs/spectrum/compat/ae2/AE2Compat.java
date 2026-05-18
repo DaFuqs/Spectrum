@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.SpectrumItems.*;
 import de.dafuqs.spectrum.registries.client.*;
+import net.minecraft.client.renderer.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -36,7 +37,12 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	@Override
 	public void registerClient() {
-	
+		ItemBlockRenderTypes.setRenderLayer(SMALL_CERTUS_QUARTZ_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_CERTUS_QUARTZ_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(CERTUS_QUARTZ_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_FLUIX_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_FLUIX_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(FLUIX_CLUSTER.get(), RenderType.cutout());
 	}
 	
 }

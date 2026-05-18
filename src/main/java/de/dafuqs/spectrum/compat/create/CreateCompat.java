@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
+import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.data.models.model.*;
 import net.minecraft.world.item.*;
@@ -69,7 +70,9 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	@Override
 	public void registerClient() {
-	
+		ItemBlockRenderTypes.setRenderLayer(SMALL_ZINC_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_ZINC_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ZINC_CLUSTER.get(), RenderType.cutout());
 	}
 	
 }

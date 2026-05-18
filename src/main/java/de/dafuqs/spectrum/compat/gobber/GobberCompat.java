@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.SpectrumItems.*;
 import de.dafuqs.spectrum.registries.client.*;
+import net.minecraft.client.renderer.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -42,6 +43,16 @@ public class GobberCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	@Override
 	public void registerClient() {
-	
+		ItemBlockRenderTypes.setRenderLayer(SMALL_GLOBETTE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_GLOBETTE_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GLOBETTE_CLUSTER.get(), RenderType.cutout());
+		
+		ItemBlockRenderTypes.setRenderLayer(SMALL_GLOBETTE_NETHER_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_GLOBETTE_NETHER_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GLOBETTE_NETHER_CLUSTER.get(), RenderType.cutout());
+		
+		ItemBlockRenderTypes.setRenderLayer(SMALL_GLOBETTE_END_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_GLOBETTE_END_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GLOBETTE_END_CLUSTER.get(), RenderType.cutout());
 	}
 }

@@ -2,6 +2,10 @@
   "values": [
     "#spectrum:bidents",
 
-    "spectrum:ender_splice"
+    "spectrum:ender_splice",
+    "spectrum:bedrock_bow",
+    "spectrum:bedrock_crossbow",
+    "spectrum:malachite_crossbow",
+    "spectrum:glass_crest_crossbow"
   ]
 }

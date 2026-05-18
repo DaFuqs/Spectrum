@@ -140,7 +140,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	private static void enchantAndRemoveOthers(Player player, ItemStack stack, Component message, ResourceKey<Enchantment> enchantment) {
 		var registryLookup = player.level().registryAccess();
 		
-		int existingLevel = SpectrumEnchantmentHelper.getLevel(registryLookup, enchantment, stack);
+		int existingLevel = SpectrumEnchantmentHelper.getTagLevel(registryLookup, enchantment, stack);
 		if (existingLevel > 0) {
 			player.displayClientMessage(Component.translatable("item.spectrum.workstaff.message.already_has_the_enchantment"), true);
 			return;

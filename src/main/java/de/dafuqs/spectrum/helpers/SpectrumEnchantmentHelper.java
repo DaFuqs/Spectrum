@@ -168,10 +168,13 @@ public class SpectrumEnchantmentHelper {
 	public static int getLevel(HolderLookup.Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
 		HolderLookup.RegistryLookup<Enchantment> lookup = provider.lookup(Registries.ENCHANTMENT).get();
 		Optional<Holder.Reference<Enchantment>> ench = lookup.get(enchantment);
-		if(ench.isEmpty()) {
-			return 0;
-		}
-		return stack.getEnchantmentLevel(ench.get());
+		return ench.isEmpty() ? 0 : stack.getEnchantmentLevel(ench.get());
+	}
+	
+	public static int getTagLevel(HolderLookup.Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+		HolderLookup.RegistryLookup<Enchantment> lookup = provider.lookup(Registries.ENCHANTMENT).get();
+		Optional<Holder.Reference<Enchantment>> ench = lookup.get(enchantment);
+		return ench.isEmpty() ? 0 : stack.getTagEnchantments().getLevel(ench.get());
 	}
 	
 	public static boolean hasEnchantment(HolderLookup.Provider registryLookup, ResourceKey<Enchantment> enchantment, ItemStack stack) {

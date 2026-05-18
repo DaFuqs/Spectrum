@@ -12,6 +12,7 @@ import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
@@ -348,11 +349,15 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 	private float getDamage(ItemStack stack) {
 		//TODO can we use a built in function for this?
 		var damage = new MutableDouble(0);
-		var key = Attributes.ATTACK_DAMAGE.unwrapKey().orElse(null);
+		Optional<ResourceKey<Attribute>> key = Attributes.ATTACK_DAMAGE.unwrapKey();
+		if(key.isEmpty()) {
+			return 0;
+		}
+		
 		var base = Attributes.ATTACK_DAMAGE.value().getDefaultValue();
 		var modifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
 		modifiers.forEach(EquipmentSlot.MAINHAND, (attribute, modifier) -> {
-			if (attribute.is(key)) {
+			if (attribute.is(key.get())) {
 				var value = modifier.amount();
 				damage.addAndGet(switch (modifier.operation()) {
 					case ADD_VALUE -> value;

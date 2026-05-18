@@ -16,6 +16,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
@@ -29,11 +30,16 @@ import java.util.*;
 public class DraconicTwinswordItem extends SwordItem implements SplittableItem, SlotReservingItem, Preenchanted, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 	
 	public static final float MAX_CHARGE_TIME = 60;
-	private final ItemAttributeModifiers modifiers;
 	
-	public DraconicTwinswordItem(Tier toolMaterial, int attackDamage, float attackSpeed, Properties settings) {
+	public DraconicTwinswordItem(Tier toolMaterial, Properties settings) {
 		super(toolMaterial, settings);
-		this.modifiers = createAttributes(toolMaterial, attackDamage, attackSpeed);
+	}
+	
+	public static ItemAttributeModifiers createAttributes() {
+		return ItemAttributeModifiers.builder()
+				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 6, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+				.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -3.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+				.build();
 	}
 	
 	@Override
@@ -106,7 +112,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 				stack.remove(DataComponents.ATTRIBUTE_MODIFIERS);
 			} else {
 				// TODO: this is fired EVERY tick
-				stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
+				stack.set(DataComponents.ATTRIBUTE_MODIFIERS, getDefaultAttributeModifiers(stack));
 			}
 		}
 	}

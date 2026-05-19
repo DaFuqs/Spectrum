@@ -15,6 +15,8 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.registries.*;
 import org.jspecify.annotations.Nullable;
@@ -31,7 +33,7 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	public static DeferredBlock<Block> PURE_ZINC_BLOCK = SpectrumBlocks.register(simple(blockWithItem("pure_zinc_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)), InkColors.BROWN)));
 	
 	@Override
-	public void register() {
+	public void register(IEventBus modBus) {
 		NeoForge.EVENT_BUS.addListener(CreateCompat::onPipeSpillCollision);
 		NeoForge.EVENT_BUS.addListener(CreateCompat::onPipeFlowCollision);
 	}
@@ -69,7 +71,7 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	}
 	
 	@Override
-	public void registerClient() {
+	public void registerClient(FMLClientSetupEvent event) {
 		ItemBlockRenderTypes.setRenderLayer(SMALL_ZINC_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(LARGE_ZINC_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(ZINC_CLUSTER.get(), RenderType.cutout());

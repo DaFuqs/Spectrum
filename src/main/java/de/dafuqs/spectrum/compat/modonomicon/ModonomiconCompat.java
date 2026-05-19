@@ -25,6 +25,8 @@ import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.crafting.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.fml.event.lifecycle.*;
 
 public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
@@ -62,7 +64,7 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 	public static final ResourceLocation RECIPE_LOADED_AND_UNLOCKED = SpectrumCommon.locate("recipe_loaded_and_unlocked");
 	
 	@Override
-	public void register() {
+	public void register(IEventBus modBus) {
 		registerPageTypes();
 		registerPages();
 		registerUnlockConditions();
@@ -113,7 +115,7 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public void registerClient() {
+	public void registerClient(FMLClientSetupEvent event) {
 		PageRendererRegistry.registerPageRenderer(ANVIL_CRUSHING_PAGE, p -> new BookAnvilCrushingPageRenderer((BookGatedRecipePage<AnvilCrushingRecipe>) p));
 		PageRendererRegistry.registerPageRenderer(PEDESTAL_CRAFTING_PAGE, p -> new BookPedestalCraftingPageRenderer((BookGatedRecipePage<PedestalRecipe>) p));
 		PageRendererRegistry.registerPageRenderer(FUSION_SHRINE_CRAFTING_PAGE, p -> new BookFusionShrineCraftingPageRenderer((BookGatedRecipePage<FusionShrineRecipe>) p));

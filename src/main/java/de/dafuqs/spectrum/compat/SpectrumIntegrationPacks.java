@@ -22,9 +22,9 @@ public class SpectrumIntegrationPacks {
 	protected static final Map<String, ModIntegrationPack> INTEGRATION_PACKS = new HashMap<>();
 	
 	public abstract static class ModIntegrationPack {
-		public abstract void register();
+		public abstract void register(IEventBus modBus);
 		
-		public abstract void registerClient();
+		public abstract void registerClient(FMLClientSetupEvent event);
 	}
 	
 	protected static void registerIntegrationPack(String modId, Supplier<ModIntegrationPack> container) {
@@ -66,13 +66,13 @@ public class SpectrumIntegrationPacks {
 		//registerIntegrationPack(STARRY_SKIES_ID, () -> new StarrySkiesCompat());
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
-			container.register();
+			container.register(modBus);
 		}
 	}
 	
 	public static void registerClient(FMLClientSetupEvent event) {
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
-			container.registerClient();
+			container.registerClient(event);
 		}
 	}
 	

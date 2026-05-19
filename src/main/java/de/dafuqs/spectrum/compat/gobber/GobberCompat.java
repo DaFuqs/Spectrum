@@ -11,6 +11,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.registries.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.blockWithItem;
@@ -37,12 +39,12 @@ public class GobberCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	public static DeferredItem<Item> PURE_GLOBETTE_END = SpectrumItems.register("pure_globette_end", () -> new Item(IS.of()));
 	
 	@Override
-	public void register() {
+	public void register(IEventBus modBus) {
 	
 	}
 	
 	@Override
-	public void registerClient() {
+	public void registerClient(FMLClientSetupEvent event) {
 		ItemBlockRenderTypes.setRenderLayer(SMALL_GLOBETTE_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(LARGE_GLOBETTE_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(GLOBETTE_CLUSTER.get(), RenderType.cutout());

@@ -12,16 +12,19 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.fluids.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	public abstract static class SpectrumEffectFluid extends EffectFluid {
 		
-		public SpectrumEffectFluid(String id, Fluid fluid) {
-			super(id, fluid, 1000);
+		public SpectrumEffectFluid(String name, Fluid fluid) {
+			super("spectrum:" + name, fluid, 1000);
 		}
 		
 		public boolean canExecuteEffect(FluidStack stack, Level world, Entity entity) {
@@ -31,12 +34,12 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 	}
 	
 	@Override
-	public void register() {
-		
-		// TODO: fix loading issues
-		// Trying to access unbound value: ResourceKey[minecraft:fluid / spectrum:sludge]
-		/*
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:sludge", SpectrumFluids.SLUDGE.get().getSource()) {
+	public void register(IEventBus modBus) {
+		modBus.addListener((Consumer<FMLCommonSetupEvent>) event -> event.enqueueWork(this::registerFluidEffects));
+	}
+	
+	private void registerFluidEffects() {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("sludge", SpectrumFluids.SLUDGE.get().getSource()) {
 			@Override
 			public void affectDrinker(FluidStack fluidStack, Level world, Entity entity) {
 				if (entity instanceof LivingEntity livingEntity) {
@@ -47,7 +50,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 			}
 		});
 		
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL.get().getSource()) {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL.get().getSource()) {
 			@Override
 			public void affectDrinker(FluidStack fluidStack, Level world, Entity entity) {
 				if (entity instanceof Player player) {
@@ -56,7 +59,7 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 			}
 		});
 		
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:midnight_solution", SpectrumFluids.MIDNIGHT_SOLUTION.get().getSource()) {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("midnight_solution", SpectrumFluids.MIDNIGHT_SOLUTION.get().getSource()) {
 			@Override
 			public void affectDrinker(FluidStack fluidStack, Level world, Entity entity) {
 				if (entity instanceof Player player) {
@@ -79,21 +82,20 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 			}
 		});
 		
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("spectrum:dragonrot", SpectrumFluids.DRAGONROT.get().getSource()) {
+		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("dragonrot", SpectrumFluids.DRAGONROT.get().getSource()) {
 			@Override
 			public void affectDrinker(FluidStack fluidStack, Level world, Entity entity) {
 				if (entity instanceof LivingEntity livingEntity) {
-					livingEntity.addEffect(new MobEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 600, 3));
+					livingEntity.addEffect(new MobEffectInstance(SpectrumMobEffects.LIFE_DRAIN, 600, 3));
 					livingEntity.hurt(SpectrumDamageTypes.dragonrot(world), 1000); // 💀
 				}
 			}
-		});*/
-		
+		});
 	}
 	
 	
 	@Override
-	public void registerClient() {
+	public void registerClient(FMLClientSetupEvent event) {
 	
 	}
 	

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.blocks.end_portal.*;
+import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.*;
@@ -13,7 +14,9 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@Mixin(EnderEyeItem.class)
+// run before the Immersive Portals mixin at https://github.com/iPortalTeam/ImmersivePortalsModForNeo/blob/aede93a4865fe4aab5dd2781fb38ab3e5cecd63b/src/main/java/qouteall/imm_ptl/peripheral/mixin/common/end_portal/MixinEnderEyeItem_CVB.java#L26
+// since that cancels unconditionally
+@Mixin(value = EnderEyeItem.class, priority = 999)
 public abstract class EnderEyeItemMixin {
 	
 	@Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
@@ -28,7 +31,7 @@ public abstract class EnderEyeItemMixin {
 			world.setBlock(blockPos, targetBlockState, 2);
 			world.updateNeighbourForOutputSignal(blockPos, SpectrumBlocks.CRACKED_END_PORTAL_FRAME.get());
 			eyeAdded = true;
-		} else if (blockState.is(Blocks.END_PORTAL_FRAME) && !blockState.getValue(EndPortalFrameBlock.HAS_EYE)) {
+		} else if (!SpectrumIntegrationPacks.isModLoaded(SpectrumIntegrationPacks.IMMERSIVE_PORTALS_ID) && blockState.is(Blocks.END_PORTAL_FRAME) && !blockState.getValue(EndPortalFrameBlock.HAS_EYE)) {
 			BlockState targetBlockState = blockState.setValue(EndPortalFrameBlock.HAS_EYE, true);
 			Block.pushEntitiesUp(blockState, targetBlockState, world, blockPos);
 			world.setBlock(blockPos, targetBlockState, 2);

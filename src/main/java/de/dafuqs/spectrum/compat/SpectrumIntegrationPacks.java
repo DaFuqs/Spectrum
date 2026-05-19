@@ -42,6 +42,7 @@ public class SpectrumIntegrationPacks {
 	public static final String CREATE_ID = "create";
 	public static final String MALUM_ID = "malum";
 	public static final String EXCLUSIONS_LIB_ID = "exclusions_lib";
+	public static final String IMMERSIVE_PORTALS_ID = "immersive_portals_core";
 	//public static final String STARRY_SKIES_ID = "starry_skies";
 	
 	// Client Only

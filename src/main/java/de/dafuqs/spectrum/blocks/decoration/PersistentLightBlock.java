@@ -42,7 +42,7 @@ public class PersistentLightBlock extends LightBlock {
 	
 	private boolean holdsRadianceStaff(Entity entity) {
 		if (entity instanceof LivingEntity livingEntity) {
-			// context.isHolding() only checks the main hand, so we use our own implementation
+			// context.isHoldingItem() only checks the main hand, so we use our own implementation
 			for (ItemStack stack : livingEntity.getHandSlots()) {
 				if (stack.getItem() instanceof RadianceStaffItem) {
 					return true;

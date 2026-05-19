@@ -65,11 +65,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(Level world) {
-        if (world.isClientSide()) {
-            if (world.isClientSide()) {
-                ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.FUSION_SHRINE));
-            }
-        }
+		ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.FUSION_SHRINE));
 	}
 	
 	/*

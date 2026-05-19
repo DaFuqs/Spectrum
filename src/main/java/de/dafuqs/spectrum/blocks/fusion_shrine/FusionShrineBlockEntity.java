@@ -28,6 +28,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
+import net.neoforged.neoforge.fluids.capability.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import org.jspecify.annotations.Nullable;
 
@@ -37,15 +38,20 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	
 	protected static final int INVENTORY_SIZE = 7;
 	
-	private UUID ownerUUID;
-	private UpgradeHolder upgrades;
-	private RecipeHolder<FusionShrineRecipe> currentRecipe;
+	private @Nullable UUID ownerUUID;
+	private @Nullable UpgradeHolder upgrades;
+	private @Nullable RecipeHolder<FusionShrineRecipe> currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
 	
 	private boolean inventoryChanged = true;
 	
-	public final FluidTank tank = new SpectrumFluidTank(1000, this);
+	public final FluidTank tank = new SpectrumFluidTank(1000, this) {
+		@Override
+		protected void onContentsChanged() {
+			super.onContentsChanged();
+		}
+	};
 	
 	public FusionShrineBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.FUSION_SHRINE.get(), pos, state, INVENTORY_SIZE);
@@ -185,9 +191,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
 		
 		scatterContents(world, blockPos.above(), fusionShrineBlockEntity); // drop remaining items
-		
-		fusionShrineBlockEntity.tank.setFluid(FluidStack.EMPTY);
-		world.setBlock(blockPos, world.getBlockState(blockPos).setValue(FusionShrineBlock.LIGHT_LEVEL, 0), 3);
+		fusionShrineBlockEntity.tank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
 	}
 	
 	@Override
@@ -257,13 +261,6 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		return this.tank;
 	}
 	
-	// TODO: unused
-	private void setLightForFluid(BlockPos blockPos, Fluid fluid) {
-		if (level == null) return;
-		int fluidLight = fluid.getFluidType().getLightLevel();
-		level.setBlock(blockPos, level.getBlockState(blockPos).setValue(FusionShrineBlock.LIGHT_LEVEL, fluidLight), Block.UPDATE_ALL);
-	}
-	
 	public FluidRecipeInput<FluidTank> getRecipeInput() {
 		return new FluidRecipeInput<>(items, tank);
 	}
@@ -272,7 +269,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	// "owned" is not to be taken literally here. The owner
 	// is always set to the last player interacted with to trigger advancements
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
@@ -309,6 +306,14 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	@Override
 	public void onFluidContentsChanged() {
 		this.inventoryChanged();
+		setLightForFluid(getBlockPos(), tank.getFluid().getFluid());
+	}
+	
+	// TODO: unused
+	private void setLightForFluid(BlockPos blockPos, Fluid fluid) {
+		if (level == null) return;
+		int fluidLight = fluid.getFluidType().getLightLevel();
+		level.setBlock(blockPos, level.getBlockState(blockPos).setValue(FusionShrineBlock.LIGHT_LEVEL, fluidLight), Block.UPDATE_ALL);
 	}
 	
 }

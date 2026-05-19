@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
-import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import top.theillusivec4.curios.api.*;
@@ -33,22 +32,6 @@ public abstract class GravityRingItem extends InkDrainCurioItem {
 	protected abstract ResourceLocation getAttributeID();
 	
 	protected abstract boolean negativeGravity();
-	
-	@Override
-	public void curioTick(SlotContext slotContext, ItemStack stack) {
-		super.curioTick(slotContext, stack);
-		
-		float gravityMod = getGravityMod(stack);
-		if(gravityMod != 0) {
-			LivingEntity entity = slotContext.entity();
-			entity.push(0, gravityMod, 0);
-		
-			// if falling very slowly => reset fall distance / damage
-			if (entity.getDeltaMovement().y > -0.4) {
-				entity.fallDistance = 0;
-			}
-		}
-	}
 	
 	public float getGravityMod(ItemStack stack) {
 		FixedSingleInkStorage inkStorage = getEnergyStorage(stack);

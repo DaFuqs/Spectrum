@@ -66,9 +66,12 @@ import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
+import net.neoforged.neoforge.items.*;
+import net.neoforged.neoforge.items.wrapper.*;
 import org.jspecify.annotations.Nullable;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
+import top.theillusivec4.curios.api.type.inventory.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
@@ -838,7 +841,11 @@ public class SpectrumEventListeners {
 		Level level = entity.level();
 		
 		if(entity instanceof Player player && !player.getAbilities().flying) {
-			float appliedGravity = applyGravityBasedOnInventory(player, player.getInventory());
+			float appliedGravity = applyGravityBasedOnInventory(player, new InvWrapper(player.getInventory()));
+			Optional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(player);
+			if(curiosInventory.isPresent()) {
+				appliedGravity += applyGravityBasedOnInventory(player, curiosInventory.get().getEquippedCurios());
+			}
 			
 			// taking flight
 			if(level.getGameTime() % 20 == 0 && player instanceof ServerPlayer serverPlayer) {
@@ -848,6 +855,11 @@ public class SpectrumEventListeners {
 				} else if (appliedGravity < -0.025) {
 					Support.grantAdvancementCriterion(serverPlayer, "midgame/carry_too_many_heavy_gravity_blocks", "gravity");
 				}
+			}
+			
+			// if falling very slowly => reset fall distance / damage
+			if (entity.getDeltaMovement().y > -0.4) {
+				entity.fallDistance = 0;
 			}
 		}
 		
@@ -873,7 +885,7 @@ public class SpectrumEventListeners {
 		}
 		
 		if(entity instanceof AbstractChestedHorse horse && horse.hasChest()) {
-			float appliedGravity = applyGravityBasedOnInventory(horse, horse.getInventory());
+			float appliedGravity = applyGravityBasedOnInventory(horse, new InvWrapper(horse.getInventory()));
 				
 			// when the animal is sent flying trigger a hidden advancement
 			if (appliedGravity > 0.081 && level.getGameTime() % 20 == 0) {
@@ -888,6 +900,11 @@ public class SpectrumEventListeners {
 					horse.hurt(horse.damageSources().fellOutOfWorld(), 10);
 				}
 			}
+			
+			// if falling very slowly => reset fall distance / damage
+			if (entity.getDeltaMovement().y > -0.4) {
+				entity.fallDistance = 0;
+			}
 		}
 	}
 	
@@ -897,15 +914,18 @@ public class SpectrumEventListeners {
 	 *
 	 * @return The additional Y Velocity that was applied
 	 */
-	public static float applyGravityBasedOnInventory(LivingEntity entity, Container inventory) {
+	public static float applyGravityBasedOnInventory(LivingEntity entity, IItemHandler itemHandler) {
 		if (!entity.isPushable() || entity.isNoGravity() || entity.isSpectator()) {
 			return 0;
 		}
 		
 		float appliedGravityThisTick = 0F;
-		for(int i = 0; i < inventory.getContainerSize(); i++) {
-			ItemStack stack = inventory.getItem(i);
+		for(int i = 0; i < itemHandler.getSlots(); i++) {
+			ItemStack stack = itemHandler.getStackInSlot(i);
 			appliedGravityThisTick += stack.getOrDefault(SpectrumDataComponentTypes.GRAVITABLE, 0F) * stack.getCount();
+			if(stack.getItem() instanceof GravityRingItem gravityRingItem) {
+				appliedGravityThisTick += gravityRingItem.getGravityMod(stack);
+			}
 		}
 		
 		if(appliedGravityThisTick != 0) {

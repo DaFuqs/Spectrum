@@ -2984,7 +2984,7 @@
   "book.spectrum.guidebook.ink.page3.text": "\\\nWhen two objects that store Ink are connected – like when putting in an [Ink Flask](entry://ink/ink_flask) into a [Color Picker](entry://ink/color_picker) – the Ink between the two will slowly equalize.\\\nThe larger the difference, the faster the Flask is filled.",
   "book.spectrum.guidebook.ink_assortment.page0.text": "This collection of small vials allows me to store all kinds of [Ink](entry://ink/ink), albeit only small amounts of each.",
   "book.spectrum.guidebook.ink_flask.page0.text": "The Ink Flask holds a considerable amount of [Ink](entry://ink/ink) of a single color.",
-  "book.spectrum.guidebook.ink_flask.page1.text": "I can fill it in the [Color Picker](entry://ink/color_picker).",
+  "book.spectrum.guidebook.ink_flask.page1.text": "I can fill it in the [Color Picker](entry://ink/color_picker) and if I need to empty it I can use a [#](449900)Crafting Grid[#]().",
 
   "book.spectrum.guidebook.about.name": "About the mod",
   "book.spectrum.guidebook.about.description": "Spectrum on the Interwebs",

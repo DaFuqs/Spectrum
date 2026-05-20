@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:item/crossbow_oversized",
+  "parent": "spectrum:templates_item/crossbow_oversized",
   "textures": {
     "layer0": "spectrum:item/glass_crest_crossbow_amethyst"
   }

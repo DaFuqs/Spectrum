@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:item/handheld_oversized_xl",
+  "parent": "spectrum:templates_item/handheld_oversized_xl",
   "textures": {
     "layer0": "spectrum:item/nectar_lance_oversized"
   }

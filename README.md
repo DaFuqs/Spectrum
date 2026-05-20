@@ -31,7 +31,7 @@ This also means that it may not be the best fit for everyone. Everyone plays Min
 
 ## Revelations
 
-Just because something looks like stone doesn't mean it is...
+Just because something looks like stone doesn't mean it is…
 
 ![Obscured Items](/images/readme/obscured_items.png)
 
@@ -94,4 +94,4 @@ For the mods with more extensive content integrations, there exist dedicated ent
 - EMI: Integration for all of Spectrum's recipe types
 - Go Fish: Full compat for Go Fish enchants & loot tables; enchantment recipes
 - [RoughlyEnoughItems](https://github.com/shedaniel/RoughlyEnoughItems): Integration for all of Spectrum's recipe types
-- ...and many more
+- …and many more

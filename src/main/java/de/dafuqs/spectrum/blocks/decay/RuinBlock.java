@@ -84,7 +84,7 @@ public class RuinBlock extends DecayBlock {
 	
 	@Override
 	protected void spawnAfterBreak(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack, boolean dropExperience) {
-		@Nullable BlockState portalBlock = shouldCreatePortalFacingUp(level, pos, state);
+		BlockState portalBlock = shouldCreatePortalFacingUp(level, pos, state);
 		if (portalBlock != null) {
 			level.setBlockAndUpdate(pos, portalBlock);
 		}

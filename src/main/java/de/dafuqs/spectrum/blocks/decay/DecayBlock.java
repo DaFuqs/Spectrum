@@ -119,7 +119,7 @@ public abstract class DecayBlock extends DropExperienceBlock {
 			Block updatedBlock = updatedState.getBlock();
 			
 			if (!(updatedBlock instanceof DecayBlock) && !(updatedBlock instanceof DecayAwayBlock)) {
-				@Nullable BlockState spreadState = this.getSpreadState(state, updatedState, world, fromPos);
+				BlockState spreadState = this.getSpreadState(state, updatedState, world, fromPos);
 				if (spreadState != null) {
 					world.scheduleTick(pos, this, 40 + world.getRandom().nextInt(200), TickPriority.EXTREMELY_LOW);
 				}
@@ -163,7 +163,7 @@ public abstract class DecayBlock extends DropExperienceBlock {
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		
 		if (canSpreadTo(world, targetPos, targetBlockState)) {
-			@Nullable BlockState spreadState = this.getSpreadState(state, targetBlockState, world, targetPos);
+			BlockState spreadState = this.getSpreadState(state, targetBlockState, world, targetPos);
 			if (spreadState != null) {
 				if (world.setBlockAndUpdate(targetPos, spreadState)) {
 					world.playSound(null, targetPos, spreadState.getSoundType().getPlaceSound(), SoundSource.BLOCKS, 0.5F, 1.0F);

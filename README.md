@@ -2,34 +2,30 @@
 
 ## Overview
 
-Spectrum is a progression and exploration-based magic mod where you combine colors to create magical tools and machines,
-with the ultimate goal of discovering what lies beneath the once-impenetrable Bedrock floor.
+Spectrum is a colour-themed magic mod all about discovery and exploration. You will combine the sixteen colours and magical resources you discover on your journey to create magical tools and machines.
+The ultimate goal is to discover what lies beneath the once impenetrable bedrock floor.
 
-In the process, you will gain a new perspective and knowledge of things that have always been around you. Things you
-have always noticed as being out of place, but have never been able to put your finger on because you have lacked the
-knowledge and tools to observe them. Now is the time!
+In the process, you will gain a new perspective on things that have always been around you. You will notice things that have always seemed out of place,
+but you have never been able to identify them because you lacked the knowledge and tools to observe them. Now is the time!
 
-Spectrum is progression-based and tries not to give everything away at first glance.
-Your journey through its advancement trees will be cluttered by realizations, puzzles and lots of "aaaaaah"s.
-Each step of your journey will be hinted at through advancements and the in-game guidebook you receive as soon as you
-find your first geode.
+Spectrum is progression-based and doesn't give everything away at first glance.
+As you progress through its advancement trees, you will have many realizations and solve lots of puzzles.
+Each step of your journey will be hinted at through advancements and the in-game guidebook that you will receive as soon as you find your first geode.
 
-There is no hand-holding, so everything will require a fair bit of experimentation or exploration.
-This also means that it may not be the best fit for everyone. Everyone plays Minecraft differently and that is perfectly
-fine!
+There is no hand-holding, so you will need to experiment and explore quite a lot.
+This also means that it may not be the best fit for everyone. Everyone plays Minecraft differently, and that's perfectly fine!
 
-**_Spectrum is not meant to be rushed or grinded through. It is best played alongside your playthrough._**
+**_Spectrum is not meant to be rushed through or 'grinded'. It is best enjoyed alongside your playthrough._**
 
 ## Everything you ever wanted in a Magic Mod
-
-- handcrafted progression & revelation system
-- lots of new magical equipment, items, blocks, decorations
-- lots of new enchantments & potion effects
-- New fluids with full collision & unique effects
-- build your own, customizable crafting structures
-- lots of handcrafted new sounds and particles
-- new unique ores, plants and geodes
-- custom structures with intriguing puzzles
+- A handcrafted progression and revelation system.
+- lots of new magical equipment, items, blocks and decorations
+- Lots of new enchantments and potion effects
+- New fluids with full collision and unique effects
+- Build your own customizable crafting structures.
+- Lots of new handcrafted sounds and particles
+- New unique ores, plants, and geodes
+- Customizable structures with intriguing puzzles
 
 ![Item Showcase](/images/readme/showcase.png)
 
@@ -44,29 +40,25 @@ There is a lot to uncover and lots of discoveries to be made.
 ![Revelations](/images/readme/revelation.png)
 
 ## Is this mod for me?
-**You might enjoy Spectrum if you like the following:** Outer Wilds; Myst; Thaumcraft; Chromaticraft; figuring out how
-and why things work
+**You might fancy Spectrum if you enjoy:** Outer Wilds; Myst; Thaumcraft; Chromaticraft; figuring out how
+and why things work with only limited guidance.
 
-**You will probably hate Spectrum if you like the following:** Generic tech mod #7 with linear progression that tells
-you exactly what to do at every step; following video tutorials 1:1
+**You may hate Spectrum if you enjoy:** Generic tech mod #7 with linear progression that tells
+you exactly what to do at every step; following video tutorials
 
 # Progressing through the mod
+When you first start out, you may notice that most items only appear with a locked recipe in your chosen recipe viewer.
+In Spectrum, recipes and their matching guidebook entries are unlocked step by step, providing something new to experiment with at each stage.
 
-You may notice that most items only show up with a locked recipe in your recipe viewer.
-In Spectrum, recipes and their matching guidebook entries are unlocked step by step, giving you something new to toy
-with, with each new discovery you made.
-
-Everything will be hinted at via advancements and the guidebook gifted to you when you stumble upon your first geode:
-your own, personal notebook.
-Everything you stumble upon, every recipe you unlock, every discovery you make you will note there.
+Everything will be hinted at via advancements and the guidebook that is gifted to you when you stumble upon your first geode: your own personal notebook.
+You will note down everything you stumble upon, every recipe you unlock and every discovery you make there.
 
 ![Guidebook](/images/readme/guidebook.png)
 
 ## New ways to craft
-
-Spectrum features lots of new ways to express yourself.
-Its multiblock structures are designed in a way to feel satisfying, fun to play with and to give you the opportunity to
-express your creativity by giving you lots of freedom on how to construct and personalize them.
+Spectrum offers many new ways to express yourself.
+Its multiblock structures are designed to be satisfying and fun to play with, 
+giving you lots of freedom to construct and personalize them in your own creative way.
 
 ![Pedestal Crafting](/images/readme/pedestal_crafting.webp)
 
@@ -78,16 +70,13 @@ Feel free to swing by if you like!
 https://discord.com/invite/EXU9XFXT8a
 
 ## Lots of room to tinker for modpack makers
-
-Pretty much everything is configurable, from recipes to the whole progression path.
+Almost everything is configurable, from recipes to the entire progression path.
 Spectrum also comes with lots of new advancement criteria.
 
-The full and extensive documentation for modpack makers is available
-in [Spectrum's Wiki](https://github.com/DaFuqs/Spectrum/wiki).
-Players will find everything they need in the extensive ingame guidebook.
+Full and extensive documentation is available for modpack makers in Spectrum's Wiki (https://github.com/DaFuqs/Spectrum/wiki).
+As a player, you will find everything you need in the extensive in-game guidebook.
 
 ## Want to contribute?
-
 Every single input and be it just feedback or a bug report is greatly appreciated!
 
 ## Mod Integration

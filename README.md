@@ -91,30 +91,18 @@ Players will find everything they need in the extensive ingame guidebook.
 Every single input and be it just feedback or a bug report is greatly appreciated!
 
 ## Mod Integration
+Spectrum ships with custom content for many mods: Custom recipes, sensible tags and even custom blocks and items.  
+For the mods with more extensive content integrations, there exist dedicated entries in the guidebook.  
+[Check it out for a list of supported mods!](/src/main/resources/data/spectrum/modonomicon/books/guidebook/entries/mod_integration)  
+
+### Examples
 - AE2: Lots of additional Recipes; Crystal Apothecary compat
 - Alloy Forgery: New forges, recipes & fuel
-- Biome Makeover: Special handling for items that have been 'cursed'; potion recipes
 - Botania: New custom items, Black Hole Talisman support, additional recipes & Potion Workshop reagents
-- Chalk: Making Chalk unbreakable
-- Common Protection API: Claims compat for all mods that support this CPA
-- Conjuring: additional recipes & Potion Workshop reagents
-- Create: Additional recipes
-- [Enchantment Descriptions](https://github.com/Darkhax-Minecraft/Enchantment-Descriptions): Descriptions for all of
-  Spectrum's enchantments
-- EMI: Integration for all of Spectrum's recipe types
-- Extra Alchemy: Potion recipes
-- Geode Plus: Crystal Apothecary compat
-- Go Fish: Full compat for Go Fish enchants & loot tables; enchantment recipes
-- Gobber: Additional recipes
-- Hexcasting: Alternate recipes and usages for edified leaves & charged amethyst
-- Little Ants: Ants will collect rare resources if they get hold of Spectrum's leaves
-- More Geodes: Crystal Apothecary compat
-- Mythis Upgrades: Crystal Apothecary compat
-- Oh the Biomes You'll Go: Crystal Apothecary compat
 - [Paginated Advancements & Custom Frames](https://github.com/DaFuqs/PaginatedAdvancements): Custom advancement frames
+- [Starry Skies](https://github.com/DaFuqs/StarrySkies): Many additional spheres, making a full skyblock Spectrum playthrough possible
+- Chalk: Making Chalk unbreakable
+- EMI: Integration for all of Spectrum's recipe types
+- Go Fish: Full compat for Go Fish enchants & loot tables; enchantment recipes
 - [RoughlyEnoughItems](https://github.com/shedaniel/RoughlyEnoughItems): Integration for all of Spectrum's recipe types
-- [Starry Skies](https://github.com/DaFuqs/StarrySkies): Additional spheres
-- Tech Reborn: Additional Grinder & Industrial Grinder recipes
-- Traveler's Backpacks: All of Spectrum's fluids are drinkable
-- Vein mining: Enchanter recipe
-- Victus: Potion recipes
+- ...and many more

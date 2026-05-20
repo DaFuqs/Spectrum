@@ -54,8 +54,8 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 		
 		// crafting grid slots
 		List<Slot> slots = Lists.newArrayList();
-		for (int x = 0; x < 3; x++) {
-			for (int y = 0; y < 3; y++) {
+		for (int y = 0; y < 3; y++) {
+			for (int x = 0; x < 3; x++) {
 				slots.add(Widgets.createSlot(new Point(startPoint.x + 1 + x * 18, startPoint.y + 2 + y * 18)).disableBackground().markInput().disableBackground().entries(input.get(y * 3 + x)));
 			}
 		}

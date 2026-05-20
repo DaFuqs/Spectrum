@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:modify_drops",
+  "block": {
+    "blocks": "#c:ores/zinc"
+  },
+  "modify_drops": [
+    {
+      "input": {
+        "item": "create:raw_zinc"
+      },
+      "output": "spectrum:pure_zinc"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "spectrum:integration_pack_active",
+      "integration_pack": "create"
+    }
+  ]
+}

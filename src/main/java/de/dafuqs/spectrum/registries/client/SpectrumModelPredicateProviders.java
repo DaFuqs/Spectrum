@@ -193,11 +193,16 @@ public class SpectrumModelPredicateProviders {
 				SlotReservingItem.isReservingSlot(stack) ? 1.0F : 0.0F);
 	}
 	
-	public static final int MAGICAL_OVERSIZED_SEED = 817210941;
+	public static ItemDisplayContext DISPLAY_CONTEXT = ItemDisplayContext.FIXED;
 	
 	private static void registerOversizedItemPredicate(Item item) {
 		ItemProperties.register(item, ResourceLocation.parse("oversized"), (stack, world, entity, seed) ->
-				seed == MAGICAL_OVERSIZED_SEED ? 1.0F : 0.0F);
+				DISPLAY_CONTEXT == ItemDisplayContext.FIRST_PERSON_LEFT_HAND
+						|| DISPLAY_CONTEXT == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND
+						|| DISPLAY_CONTEXT == ItemDisplayContext.THIRD_PERSON_LEFT_HAND
+						|| DISPLAY_CONTEXT == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND
+						? 1.0F : 0.0F
+		);
 	}
 	
 	private static void registerBlockingPredicate(Item item) {

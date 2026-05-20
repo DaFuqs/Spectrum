@@ -15,6 +15,13 @@
         "oversized": 1.0
       },
       "model": "spectrum:item/nectar_lance_oversized"
+    },
+    {
+      "predicate": {
+        "blocking": 1.0,
+        "oversized": 1.0
+      },
+      "model": "spectrum:item/nectar_lance_blocking_oversized"
     }
   ]
 }

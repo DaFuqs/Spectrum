@@ -46,6 +46,7 @@ public class DynamicParticle extends TextureSheetParticle {
 		this.gravity = effect.gravity();
 		this.hasPhysics = effect.collisions();
 		this.glowInTheDark = effect.glowing();
+		this.friction = 1.0F;
 	}
 	
 	public static class Factory<P extends DynamicParticleEffect> implements ParticleProvider<P> {

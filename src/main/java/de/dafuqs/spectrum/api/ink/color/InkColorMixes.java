@@ -1,10 +1,10 @@
-package de.dafuqs.spectrum.api.energy.color;
+package de.dafuqs.spectrum.api.ink.color;
 
 import net.minecraft.util.*;
 
 import java.util.*;
 
-import static de.dafuqs.spectrum.api.energy.color.InkColors.*;
+import static de.dafuqs.spectrum.api.ink.color.InkColors.*;
 
 public class InkColorMixes {
 	

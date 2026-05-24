@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
@@ -66,7 +66,7 @@ public abstract class InkTransferScreenHandler extends AbstractContainerMenu imp
 		}
 		
 		if (this.serverPlayer != null) {
-			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), this.blockEntity.getEnergyStorage(), serverPlayer);
+			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), this.blockEntity.getInkStorage(), serverPlayer);
 		}
 	}
 	
@@ -123,7 +123,7 @@ public abstract class InkTransferScreenHandler extends AbstractContainerMenu imp
 		super.broadcastChanges();
 		
 		if (this.serverPlayer != null && this.blockEntity.getInkDirty()) {
-			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), blockEntity.getEnergyStorage(), serverPlayer);
+			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), blockEntity.getInkStorage(), serverPlayer);
 		}
 	}
 	

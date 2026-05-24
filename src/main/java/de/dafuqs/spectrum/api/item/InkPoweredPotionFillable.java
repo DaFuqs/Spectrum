@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.api.item;
 
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;

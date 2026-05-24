@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.storage.*;
-import de.dafuqs.spectrum.api.entity.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.components.*;

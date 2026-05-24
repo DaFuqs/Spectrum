@@ -1,15 +1,11 @@
-package de.dafuqs.spectrum.api.energy.storage;
+package de.dafuqs.spectrum.api.ink.storage;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import net.minecraft.network.chat.*;
 
-import javax.annotation.*;
 import java.util.*;
 
-public class CreativeInkStorage implements InkStorage {
+public class CreativeInkStorage extends InkStorage {
 	
 	private static final Map<InkColor, Long> STORAGE = new HashMap<>() {{
 		for (InkColor inkColor : InkColors.all()) {
@@ -84,8 +80,8 @@ public class CreativeInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public MutableComponent getTooltip() {
-		return Component.translatable("item.spectrum.creative_ink_assortment.tooltip");
+	public List<Component> getTooltip() {
+		return List.of(Component.translatable("item.spectrum.creative_ink_assortment.tooltip"));
 	}
 	
 	@Override

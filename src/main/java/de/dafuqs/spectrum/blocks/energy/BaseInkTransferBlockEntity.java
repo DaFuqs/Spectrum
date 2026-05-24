@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.blocks.energy;
 
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.capability.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.protocol.*;
 import net.minecraft.network.protocol.game.*;
-import net.minecraft.server.level.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -39,8 +39,12 @@ public abstract class BaseInkTransferBlockEntity<T extends InkStorage> extends R
 	}
 	
 	@Override
-	public T getEnergyStorage() {
+	public T getInkStorage() {
 		return inkStorage;
+	}
+	
+	public InkCapability getCapability() {
+		return getLevel().getCapability(InkCapabilities.BLOCK, getBlockPos(), null);
 	}
 	
 	@Override
@@ -90,6 +94,7 @@ public abstract class BaseInkTransferBlockEntity<T extends InkStorage> extends R
 	
 	@Override
 	public void setInkDirty() {
+		this.setChanged();
 		this.inkDirty = true;
 	}
 	
@@ -138,36 +143,13 @@ public abstract class BaseInkTransferBlockEntity<T extends InkStorage> extends R
 		long transferredAmount = 0;
 		
 		ItemStack stack = inventory.get(OUTPUT_SLOT_ID);
-		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
-			InkStorage itemStorage = inkStorageItem.getEnergyStorage(stack);
-			
-			ServerPlayer owner = null;
-			if (getOwnerIfOnline(this.getLevel()) instanceof ServerPlayer serverPlayerEntity) {
-				owner = serverPlayerEntity;
-			}
-			
-			if (this.selectedColor.isEmpty()) {
-				for (InkColor color : InkColors.all()) {
-					transferredAmount += tryTransferInk(owner, stack, itemStorage, color);
-				}
-			} else {
-				transferredAmount = tryTransferInk(owner, stack, itemStorage, this.selectedColor.get().value());
-			}
-			
-			if (transferredAmount > 0) {
-				inkStorageItem.setEnergyStorage(stack, itemStorage);
-			}
+		InkCapability itemStorage = stack.getCapability(InkCapabilities.ITEM, null);
+		if (itemStorage != null) {
+			InkCapability blockEntityStorage = this.level.getCapability(InkCapabilities.BLOCK, this.worldPosition, null);
+			transferredAmount = InkTransferHelper.transferInkOneWay(blockEntityStorage, itemStorage, this.selectedColor.map(Holder::value).orElse(null), getOwnerIfOnline(this.getLevel()), stack);
 		}
 		
 		return transferredAmount > 0;
-	}
-	
-	private long tryTransferInk(ServerPlayer owner, ItemStack stack, InkStorage itemStorage, InkColor color) {
-		long amount = InkStorage.transferInk(getEnergyStorage(), itemStorage, color);
-		if (amount > 0 && owner != null) {
-			SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(owner, stack, itemStorage, color, amount);
-		}
-		return amount;
 	}
 	
 	public void setSelectedColor(Optional<Holder<InkColor>> inkColor) {

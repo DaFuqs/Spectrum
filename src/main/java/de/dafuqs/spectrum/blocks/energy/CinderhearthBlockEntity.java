@@ -1,9 +1,8 @@
-package de.dafuqs.spectrum.blocks.cinderhearth;
+package de.dafuqs.spectrum.blocks.energy;
 
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
@@ -188,8 +187,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		
 		ContainerHelper.loadAllItems(nbt, this.inventory, registryLookup);
 		
-		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("InkStorage")).ifPresent(storage ->
-				this.inkStorage = new IndividualCappedInkStorage(storage.maxPerColor(), storage.storedEnergy()));
+		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("InkStorage")).ifPresent(storage -> this.inkStorage = new IndividualCappedInkStorage(storage.maxPerColor(), storage.storedEnergy()));
 		this.propertyDelegate.craftingTime = nbt.getShort("CraftingTime");
 		this.propertyDelegate.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.usesEfficiency = nbt.getBoolean("UsesEfficiency");
@@ -248,7 +246,6 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 				}
 			}
 			if (didSomething) {
-				cinderhearthBlockEntity.setChanged();
 				cinderhearthBlockEntity.setInkDirty();
 			} else {
 				cinderhearthBlockEntity.canTransferInk = false;
@@ -567,7 +564,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	}
 	
 	@Override
-	public IndividualCappedInkStorage getEnergyStorage() {
+	public IndividualCappedInkStorage getInkStorage() {
 		return this.inkStorage;
 	}
 	

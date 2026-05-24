@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.tools;
 
 import com.mojang.blaze3d.vertex.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.registries.*;

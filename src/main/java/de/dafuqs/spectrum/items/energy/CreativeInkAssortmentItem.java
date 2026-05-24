@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.items.energy;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -30,9 +29,8 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 		if (!world.isClientSide) {
 			BlockEntity blockEntity = world.getBlockEntity(context.getClickedPos());
 			if (blockEntity instanceof InkStorageBlockEntity<?> inkStorageBlockEntity) {
-				inkStorageBlockEntity.getEnergyStorage().fillCompletely();
+				inkStorageBlockEntity.getInkStorage().fillCompletely();
 				inkStorageBlockEntity.setInkDirty();
-				blockEntity.setChanged();
 			}
 		}
 		return super.useOn(context);
@@ -62,7 +60,7 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		CreativeOnlyItem.appendTooltip(tooltip);
-		tooltip.add(getEnergyStorage(stack).getTooltip());
+		tooltip.addAll(getEnergyStorage(stack).getTooltip());
 	}
 	
 	@Override

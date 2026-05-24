@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.api.energy.color;
+package de.dafuqs.spectrum.api.ink.color;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;

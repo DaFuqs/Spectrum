@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.networking.s2c_payloads;
 
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;

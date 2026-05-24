@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.inventories.widgets.ink;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
-import net.minecraft.network.chat.*;
+import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.*;
 
 import javax.annotation.Nullable;
@@ -22,8 +22,8 @@ public class InkPieWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void renderWidget(@NotNull GuiGraphics guiGraphics, int i, int i1, float v) {
-		long totalInk = blockEntity.getEnergyStorage().getCurrentTotal();
+	protected void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+		long totalInk = blockEntity.getInkStorage().getCurrentTotal();
 		
 		if (totalInk > 0) {
 			int centerX = getX() + width / 2;
@@ -32,7 +32,7 @@ public class InkPieWidget extends AbstractWidget {
 			
 			double startRad = -0.5 * Math.PI;
 			for (InkColor color : InkColors.all()) {
-				long currentInk = blockEntity.getEnergyStorage().getEnergy(color);
+				long currentInk = blockEntity.getInkStorage().getEnergy(color);
 				if (currentInk > 0) {
 					double thisPart = ((double) currentInk / (double) totalInk);
 					while (thisPart > 0) {
@@ -69,8 +69,8 @@ public class InkPieWidget extends AbstractWidget {
 	}
 	
 	@Nullable
-	public net.minecraft.client.gui.components.Tooltip getTooltip() {
-		return Tooltip.create(blockEntity.getEnergyStorage().getTooltip());
+	public Tooltip getTooltip() {
+		return blockEntity.getInkStorage().getWidgetTooltip();
 	}
 	
 	@Override

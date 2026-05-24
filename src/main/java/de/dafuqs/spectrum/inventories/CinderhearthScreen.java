@@ -1,11 +1,9 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.blocks.cinderhearth.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.widgets.ink.*;
-import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.network.chat.*;
@@ -26,7 +24,7 @@ public class CinderhearthScreen extends AbstractContainerScreen<CinderhearthScre
 	@Override
 	protected void init() {
 		super.init();
-		this.inkListWidget = new InkListWidget(getGuiLeft() + 140, getGuiTop() + 34, 40, this.menu.getBlockEntity(), CinderhearthBlockEntity.USED_INK_COLORS);
+		this.inkListWidget = new InkListWidget(getGuiLeft() + 140, getGuiTop() + 34, 40, this.menu.getBlockEntity());
 		addRenderableWidget(inkListWidget);
 	}
 	
@@ -49,7 +47,7 @@ public class CinderhearthScreen extends AbstractContainerScreen<CinderhearthScre
 		int craftingTime = this.menu.getCraftingTime();
 		int craftingTimeTotal = this.menu.getCraftingTimeTotal();
 		
-		if (this.menu.getBlockEntity().getEnergyStorage().getEnergy(InkColors.ORANGE) > 0) {
+		if (this.menu.getBlockEntity().getInkStorage().getEnergy(InkColors.ORANGE) > 0) {
 			guiGraphics.blit(BACKGROUND, this.leftPos + 14, this.topPos + 62, 176, 14, 15, 2);
 		}
 		

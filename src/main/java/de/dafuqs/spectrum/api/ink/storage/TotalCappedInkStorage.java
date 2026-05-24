@@ -1,16 +1,14 @@
-package de.dafuqs.spectrum.api.energy.storage;
+package de.dafuqs.spectrum.api.ink.storage;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.network.chat.*;
 
-import javax.annotation.*;
 import java.util.*;
 
-public class TotalCappedInkStorage implements InkStorage {
+public class TotalCappedInkStorage extends InkStorage {
 	
 	protected final long maxEnergyTotal;
 	protected Map<InkColor, Long> storedEnergy = new Object2LongArrayMap<>();
@@ -121,24 +119,24 @@ public class TotalCappedInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public MutableComponent getTooltip() {
+	public List<Component> getTooltip() {
+		List<Component> tooltip = new ArrayList<>();
 		long maxEnergyPerColor = getMaxPerColor();
-		MutableComponent c = Component.translatable("item.spectrum.ink_storage.stores_ink_per_type", Support.getShortenedNumberString(maxEnergyPerColor));
-		appendInkStoreBulletTooltips(c);
-		return c;
+		tooltip.add(Component.translatable("item.spectrum.ink_storage.stores_ink_per_type", Support.getShortenedNumberString(maxEnergyPerColor)));
+		appendInkStoreBulletTooltips(tooltip);
+		return tooltip;
 	}
 	
-	protected void appendInkStoreBulletTooltips(MutableComponent c) {
+	protected void appendInkStoreBulletTooltips(List<Component> tooltip) {
 		if(isEmpty()) {
-			c.append(Component.translatable("spectrum.tooltip.ink_powered.empty"));
+			tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.empty"));
 			return;
 		}
 		
 		for (InkColor color : SpectrumRegistries.INK_COLOR) { // we are iterating them this way to preserve the ordering
 			long amount = this.storedEnergy.getOrDefault(color, -1L);
 			if (amount > 0) {
-				c.append(Component.literal("\n"));
-				c.append(InkStorage.getInkStoreBulletTooltip(color, amount));
+				tooltip.add(InkStorage.getInkStoreBulletTooltip(color, amount));
 			}
 		}
 	}

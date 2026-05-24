@@ -1,11 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.inventories.widgets.ink.*;
-import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -14,7 +10,7 @@ import org.jetbrains.annotations.*;
 
 public class TintingStationScreen extends InkTransferScreen {
 	
-	protected static final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
+	protected static final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/tinting_station.png");
 	
 	protected InkListWidget inkListWidget;
 	
@@ -26,7 +22,8 @@ public class TintingStationScreen extends InkTransferScreen {
 	protected void init() {
 		super.init();
 		
-		this.inkListWidget = new InkListWidget(getGuiLeft() + 140, getGuiTop() + 34, 40, (InkStorageBlockEntity<IndividualCappedInkStorage>) this.menu.getBlockEntity(), InkColors.all());
+		this.inkListWidget = new InkListWidgetWithBorderAndTitle(getGuiLeft() + 140, getGuiTop() + 40, 40, this.menu.getBlockEntity());
+		inkListWidget.setPosition(getGuiLeft() - this.inkListWidget.getWidth(), getGuiTop() + 40);
 		addRenderableWidget(inkListWidget);
 	}
 	

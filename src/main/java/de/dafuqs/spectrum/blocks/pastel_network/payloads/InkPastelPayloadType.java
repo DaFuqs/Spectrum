@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.blocks.pastel_network.payloads;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.capability.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.core.*;
@@ -17,17 +19,13 @@ public class InkPastelPayloadType extends PastelPayloadType {
 		super(SpectrumCommon.locate("ink"), SpectrumPastelPayloads.INK.get());
 	}
 	
-	public static @Nullable InkStorageBlockEntity<?> getConnectedInkStorage(PastelNodeBlockEntity pastelNodeBlockEntity) {
+	public static @Nullable InkCapability getConnectedInkStorage(PastelNodeBlockEntity pastelNodeBlockEntity) {
 		BlockState state = pastelNodeBlockEntity.getBlockState();
 		if (!(state.getBlock() instanceof PastelNodeBlock)) {
 			return null;
 		}
 		Direction direction = state.getValue(PastelNodeBlock.FACING);
-		BlockEntity be = pastelNodeBlockEntity.getLevel().getBlockEntity(pastelNodeBlockEntity.getBlockPos().relative(direction.getOpposite()));
-		if(be instanceof InkStorageBlockEntity<?> inkStorageBlockEntity) {
-			return inkStorageBlockEntity;
-		}
-		return null;
+		return pastelNodeBlockEntity.getLevel().getCapability(InkCapabilities.BLOCK, pastelNodeBlockEntity.getBlockPos().relative(direction.getOpposite()), null);
 	}
 	
 	@Override
@@ -35,21 +33,16 @@ public class InkPastelPayloadType extends PastelPayloadType {
 		Set<PastelNodeBlockEntity> nodes = logic.getLoadedNodes(PastelNodeType.SENDER);
 		if (nodes.isEmpty()) return;
 		
-		List<InkStorageBlockEntity<?>> blockEntities = new ArrayList<>(nodes.size());
-		List<InkStorage> inkStorages = new ArrayList<>(nodes.size());
+		List<InkCapability> targets = new ArrayList<>(nodes.size());
 		for (PastelNodeBlockEntity node : nodes) {
-			InkStorageBlockEntity<?> storage = getConnectedInkStorage(node);
-			if (storage != null) {
-				blockEntities.add(storage);
-				inkStorages.add(storage.getEnergyStorage());
+			InkCapability inkCapability = getConnectedInkStorage(node);
+			if (inkCapability != null) {
+				targets.add(inkCapability);
 			}
 		}
-		if (blockEntities.isEmpty()) return;
 		
-		InkStorage.equalizeInk(inkStorages);
-		for(InkStorageBlockEntity<?> s : blockEntities) {
-			s.setInkDirty();
-		}
+		if (targets.isEmpty()) return;
+		InkTransferHelper.equalizeInk(targets);
 	}
 	
 }

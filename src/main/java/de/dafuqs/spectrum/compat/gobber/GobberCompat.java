@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.gobber;
 
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.blocks.crystallarieum.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.SpectrumItems.*;

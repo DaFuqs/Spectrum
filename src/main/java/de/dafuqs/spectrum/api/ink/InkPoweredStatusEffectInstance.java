@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.api.energy;
+package de.dafuqs.spectrum.api.ink;
 
 import com.google.common.collect.*;
 import com.mojang.serialization.*;

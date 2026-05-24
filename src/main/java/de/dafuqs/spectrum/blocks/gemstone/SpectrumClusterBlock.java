@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.crystallarieum;
+package de.dafuqs.spectrum.blocks.gemstone;
 
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;

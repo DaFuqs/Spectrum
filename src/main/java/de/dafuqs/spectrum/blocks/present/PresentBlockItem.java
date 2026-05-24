@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import com.mojang.authlib.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;

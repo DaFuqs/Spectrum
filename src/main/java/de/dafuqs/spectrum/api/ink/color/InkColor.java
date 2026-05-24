@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.api.energy.color;
+package de.dafuqs.spectrum.api.ink.color;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.helpers.*;

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
 import de.dafuqs.spectrum.blocks.block_flooder.*;

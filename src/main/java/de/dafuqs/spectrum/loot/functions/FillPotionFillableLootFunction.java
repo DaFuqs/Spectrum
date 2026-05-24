@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.loot.functions;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.loot.*;

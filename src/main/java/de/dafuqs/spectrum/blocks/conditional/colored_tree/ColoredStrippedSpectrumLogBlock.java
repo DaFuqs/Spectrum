@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.flammable.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

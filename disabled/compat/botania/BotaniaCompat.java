@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.compat.botania;
 
 import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.compat.*;

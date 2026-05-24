@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
@@ -32,7 +32,7 @@ public class ColorSelectionWidget extends AbstractWidget {
 	final int selectedIndexY;
 	
 	public ColorSelectionWidget(int x, int y, int selectedIndexX, int selectedIndexY, BaseInkTransferBlockEntity<?> blockEntity) {
-		this(x, y, selectedIndexX, selectedIndexY, blockEntity, blockEntity.getEnergyStorage().acceptedColors());
+		this(x, y, selectedIndexX, selectedIndexY, blockEntity, blockEntity.getInkStorage().acceptedColors());
 	}
 	
 	public ColorSelectionWidget(int x, int y, int selectedIndexX, int selectedIndexY, BaseInkTransferBlockEntity<?> blockEntity, Iterable<InkColor> availableColors) {

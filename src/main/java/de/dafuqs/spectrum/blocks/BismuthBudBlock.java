@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.blocks.crystallarieum.*;
+import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.core.*;

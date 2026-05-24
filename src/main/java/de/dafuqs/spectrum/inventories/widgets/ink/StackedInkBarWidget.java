@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.inventories.widgets.ink;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
@@ -23,7 +23,7 @@ public class StackedInkBarWidget extends AbstractWidget {
 	
 	@Override
 	protected void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-		InkStorage inkStorage = this.blockEntity.getEnergyStorage();
+		InkStorage inkStorage = this.blockEntity.getInkStorage();
 		long currentTotal = inkStorage.getCurrentTotal();
 		
 		if (currentTotal > 0) {
@@ -50,7 +50,7 @@ public class StackedInkBarWidget extends AbstractWidget {
 	
 	@Nullable
 	public Tooltip getTooltip() {
-		InkStorage inkStorage = this.blockEntity.getEnergyStorage();
+		InkStorage inkStorage = this.blockEntity.getInkStorage();
 		String readableCurrentTotalString = Support.getShortenedNumberString(inkStorage.getCurrentTotal());
 		String percent = Support.getSensiblePercentString(inkStorage.getCurrentTotal(), (inkStorage.getMaxTotal()));
 		return Tooltip.create(Component.translatable("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent));

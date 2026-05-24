@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;

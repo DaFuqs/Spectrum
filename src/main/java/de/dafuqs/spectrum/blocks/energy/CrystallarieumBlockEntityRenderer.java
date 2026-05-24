@@ -1,9 +1,9 @@
-package de.dafuqs.spectrum.blocks.crystallarieum;
+package de.dafuqs.spectrum.blocks.energy;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.render.*;
 import net.minecraft.client.*;
 import net.minecraft.client.model.geom.*;

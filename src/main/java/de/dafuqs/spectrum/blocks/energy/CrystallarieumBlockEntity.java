@@ -1,8 +1,7 @@
-package de.dafuqs.spectrum.blocks.crystallarieum;
+package de.dafuqs.spectrum.blocks.energy;
 
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.api.fluid.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.components.*;
@@ -341,7 +340,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	}
 	
 	@Override
-	public IndividualCappedInkStorage getEnergyStorage() {
+	public IndividualCappedInkStorage getInkStorage() {
 		return this.inkStorage;
 	}
 	

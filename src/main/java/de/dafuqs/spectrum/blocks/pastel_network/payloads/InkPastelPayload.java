@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.payloads;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.particle.client.*;
@@ -14,8 +14,6 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.neoforged.neoforge.fluids.*;
-import net.neoforged.neoforge.fluids.capability.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -45,7 +43,7 @@ public record InkPastelPayload(List<InkAmount> inkAmount) implements PastelPaylo
 	
 	@Override
 	public void arriveAtDestination(Level level, BlockPos destination, @Nullable PastelNodeBlockEntity destinationNode) {
-		if (destinationNode != null) {
+		/*if (destinationNode != null) {
 			@Nullable InkStorageBlockEntity<?> destinationHandler = InkPastelPayloadType.getConnectedInkStorage(destinationNode);
 			if (destinationHandler != null) {
 				InkStorage destinationStorage = destinationHandler.getEnergyStorage();
@@ -54,7 +52,7 @@ public record InkPastelPayload(List<InkAmount> inkAmount) implements PastelPaylo
 					destinationHandler.setInkDirty();
 				}
 			}
-		}
+		}*/
 	}
 	
 }

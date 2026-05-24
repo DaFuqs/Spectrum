@@ -1,17 +1,13 @@
-package de.dafuqs.spectrum.api.energy.storage;
+package de.dafuqs.spectrum.api.ink.storage;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import net.minecraft.network.chat.*;
 
-import javax.annotation.*;
 import java.util.*;
 
 import static de.dafuqs.spectrum.helpers.Support.*;
 
-public class SingleInkStorage implements InkStorage {
+public class SingleInkStorage extends InkStorage {
 	
 	protected final long maxEnergy;
 	protected InkColor storedColor;
@@ -124,15 +120,15 @@ public class SingleInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public MutableComponent getTooltip() {
-		MutableComponent c = Component.translatable("item.spectrum.ink_storage.stores_up_to_ink_per_type", getShortenedNumberString(this.maxEnergy));
-		c.append(Component.literal("\n"));
+	public List<Component> getTooltip() {
+		List<Component> tooltip = new ArrayList<>();
+		tooltip.add(Component.translatable("item.spectrum.ink_storage.stores_up_to_ink_per_type", getShortenedNumberString(this.maxEnergy)));
 		if (this.storedEnergy > 0) {
-			c.append(InkStorage.getInkStoreBulletTooltip(this.storedColor, this.storedEnergy));
+			tooltip.add(InkStorage.getInkStoreBulletTooltip(this.storedColor, this.storedEnergy));
 		} else {
-			c.append(Component.translatable("spectrum.tooltip.ink_powered.empty"));
+			tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.empty"));
 		}
-		return c;
+		return tooltip;
 	}
 	
 	@Override

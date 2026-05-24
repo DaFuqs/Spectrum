@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -55,12 +55,12 @@ public class VariantHelper {
 			for (int i = 0; i < parts.length; i++) {
 				int finalI = i;
 				InkColor matched = SpectrumRegistries.INK_COLOR.stream()
-								.filter(c -> c.toString().equals(parts[finalI]))
+								.filter(c -> c.getID().getPath().equals(parts[finalI]))
 								.findFirst()
 								.orElse(null);
 				
 				if (matched != null) {
-					parts[i] = color.toString();
+					parts[i] = color.getID().getPath();
 					String newPath = String.join("_", parts);
 					ResourceLocation newId = ResourceLocation.fromNamespaceAndPath(id.getNamespace(), newPath);
 					T newObj = lookup.apply(newId);
@@ -74,7 +74,7 @@ public class VariantHelper {
 				return newObj;
 			}
 			
-			// Option 3: prefix the color + "stained" ("glass" => "red_stained_glass")
+			// Option 3: prefix the color + "_stained_" ("glass" => "red_stained_glass")
 			newObj = lookup.apply(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), color.getID().getPath() + "_stained_" + id.getPath()));
 			return (newObj != defaultToIgnore && !newObj.equals(original)) ? newObj : null;
 		});

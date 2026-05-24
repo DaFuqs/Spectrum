@@ -1,17 +1,15 @@
 package de.dafuqs.spectrum.registries.client;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.color.item.*;
 import net.minecraft.util.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.event.*;
 

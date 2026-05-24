@@ -1,14 +1,13 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.crystallarieum.*;
+import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.neoforge.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
-import dev.emi.emi.platform.neoforge.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.crafting.*;

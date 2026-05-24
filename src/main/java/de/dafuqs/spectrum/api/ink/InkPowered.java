@@ -1,8 +1,9 @@
-package de.dafuqs.spectrum.api.energy;
+package de.dafuqs.spectrum.api.ink;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;

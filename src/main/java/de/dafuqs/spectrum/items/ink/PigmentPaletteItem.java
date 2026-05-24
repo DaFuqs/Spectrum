@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.energy;
+package de.dafuqs.spectrum.items.ink;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.ink.color.*;
@@ -19,13 +19,13 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ArtistsPaletteItem extends SpectrumCurioItem implements InkStorageItem<TotalCappedElementalMixingInkStorage>, LoomPatternProvider, ExtendedItemBarProvider {
+public class PigmentPaletteItem extends SpectrumCurioItem implements InkStorageItem<IndividualCappedInkStorage>, LoomPatternProvider, ExtendedItemBarProvider {
 	
-	private final long maxEnergyTotal;
+	private final long maxEnergyPerColor;
 	
-	public ArtistsPaletteItem(Properties settings, long maxEnergyTotal) {
-		super(settings, SpectrumCommon.locate("unlocks/trinkets/artists_palette"));
-		this.maxEnergyTotal = maxEnergyTotal;
+	public PigmentPaletteItem(Properties settings, long maxEnergyPerColor) {
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/pigment_palette"));
+		this.maxEnergyPerColor = maxEnergyPerColor;
 	}
 	
 	@Override
@@ -34,16 +34,16 @@ public class ArtistsPaletteItem extends SpectrumCurioItem implements InkStorageI
 	}
 	
 	@Override
-	public TotalCappedElementalMixingInkStorage getEnergyStorage(ItemStack itemStack) {
+	public IndividualCappedInkStorage getEnergyStorage(ItemStack itemStack) {
 		var storage = itemStack.get(SpectrumDataComponentTypes.INK_STORAGE);
 		if (storage != null)
-			return new TotalCappedElementalMixingInkStorage(storage.maxEnergyTotal(), storage.storedEnergy());
-		return new TotalCappedElementalMixingInkStorage(this.maxEnergyTotal, Map.of());
+			return new IndividualCappedInkStorage(storage.maxPerColor(), storage.storedEnergy());
+		return new IndividualCappedInkStorage(this.maxEnergyPerColor);
 	}
 	
 	// Omitting this would crash outside the dev env o.O
 	@Override
-	public ItemStack getDefaultInstance() {
+	public @NotNull ItemStack getDefaultInstance() {
 		return super.getDefaultInstance();
 	}
 	
@@ -75,7 +75,7 @@ public class ArtistsPaletteItem extends SpectrumCurioItem implements InkStorageI
 		
 		var time = player.level().getGameTime() % 864000;
 		
-		for (InkColor inkColor : InkColors.elementals()) {
+		for (InkColor inkColor : SpectrumRegistries.INK_COLOR) {
 			if (storage.getEnergy(inkColor) > 0)
 				colors.add(inkColor);
 		}
@@ -86,17 +86,13 @@ public class ArtistsPaletteItem extends SpectrumCurioItem implements InkStorageI
 			return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, color.getColorInt() | 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
 		}
 		
-		if (colors.isEmpty()) return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
-		
 		var delta = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false);
 		var curColor = colors.get((int) (time % (30L * colors.size()) / 30));
 		var nextColor = colors.get((int) ((time % (30L * colors.size()) / 30 + 1) % colors.size()));
-		
 		
 		var blendFactor = (((float) time + delta) % 30) / 30F;
 		var blendedColor = SpectrumColorHelper.interpolate(curColor.getTextColorVec(), nextColor.getTextColorVec(), blendFactor);
 		
 		return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, blendedColor, 2, DEFAULT_BACKGROUND_COLOR);
 	}
-	
 }

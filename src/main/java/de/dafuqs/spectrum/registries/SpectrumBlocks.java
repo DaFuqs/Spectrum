@@ -21,7 +21,7 @@ import de.dafuqs.spectrum.blocks.deeper_down.groundcover.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.blocks.end_portal.*;
 import de.dafuqs.spectrum.blocks.ender.*;
-import de.dafuqs.spectrum.blocks.energy.*;
+import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.blocks.farming.*;
 import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.blocks.fluid.*;

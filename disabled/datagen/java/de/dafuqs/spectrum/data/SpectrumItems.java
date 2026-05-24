@@ -17,7 +17,7 @@ import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.bundles.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
-import de.dafuqs.spectrum.items.energy.*;
+import de.dafuqs.spectrum.items.ink.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
 import de.dafuqs.spectrum.items.item_frame.*;

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.energy;
+package de.dafuqs.spectrum.blocks.ink;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.helpers.*;

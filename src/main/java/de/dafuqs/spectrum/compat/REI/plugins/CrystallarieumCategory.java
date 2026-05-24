@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.energy.*;
+import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;

@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.components.*;
-import de.dafuqs.spectrum.items.energy.*;
+import de.dafuqs.spectrum.items.ink.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.util.*;

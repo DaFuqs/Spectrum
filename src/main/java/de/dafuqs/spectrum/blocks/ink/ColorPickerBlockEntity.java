@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.energy;
+package de.dafuqs.spectrum.blocks.ink;
 
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;

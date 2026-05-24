@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.energy;
+package de.dafuqs.spectrum.blocks.ink;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;

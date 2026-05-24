@@ -10,7 +10,7 @@ import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.deeper_down.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.blocks.ender.*;
-import de.dafuqs.spectrum.blocks.energy.*;
+import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.item_roundel.*;

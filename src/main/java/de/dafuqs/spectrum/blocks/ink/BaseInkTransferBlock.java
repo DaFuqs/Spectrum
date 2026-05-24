@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.energy;
+package de.dafuqs.spectrum.blocks.ink;
 
 import net.minecraft.core.*;
 import net.minecraft.util.*;

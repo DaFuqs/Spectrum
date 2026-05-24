@@ -132,7 +132,7 @@ public class InventoryHelper {
 	
 	public static ItemStack setOrCombineStack(Container inventory, int slot, ItemStack addingStack) {
 		ItemStack existingStack = inventory.getItem(slot);
-		int max = Math.min(addingStack.getMaxStackSize(), inventory.getMaxStackSize());
+		int max = Math.min(addingStack.getMaxStackSize(), inventory.getMaxStackSize(existingStack));
 		if (existingStack.isEmpty()) {
 			if (addingStack.getCount() > max) {
 				ItemStack newStack = addingStack.copy();
@@ -180,7 +180,7 @@ public class InventoryHelper {
 				inventory.setItem(i, stackToAdd);
 				return true;
 			} else if (stackToAdd.isStackable()) {
-				combineStacks(currentStack, stackToAdd, inventory.getMaxStackSize());
+				combineStacks(currentStack, stackToAdd, inventory.getMaxStackSize(currentStack));
 				if (stackToAdd.isEmpty()) {
 					return true;
 				}
@@ -211,7 +211,7 @@ public class InventoryHelper {
 			for (int j = 0; j < stacksToAdd.size(); j++) {
 				ItemStack stackToAdd = stacksToAdd.get(j);
 				if (stackToAdd.isStackable()) {
-					combineStacks(inventoryStack, stackToAdd, inventory.getMaxStackSize());
+					combineStacks(inventoryStack, stackToAdd, inventory.getMaxStackSize(stackToAdd));
 					if (stackToAdd.isEmpty()) {
 						stacksToAdd.remove(j);
 						if (stacksToAdd.isEmpty()) {

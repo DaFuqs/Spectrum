@@ -267,6 +267,9 @@ public class DragonTalonEntity extends BidentBaseEntity {
 			SlotReservingItem.free(rootStack);
 			return true;
 		} else if (player == getOwner()) {
+			// assume the player threw away / merged their talons back into a twinsword
+			// remove its merge cooldown penalty since we are nice
+			player.getCooldowns().removeCooldown(SpectrumItems.DRACONIC_TWINSWORD.get());
 			discard();
 		}
 		return false;

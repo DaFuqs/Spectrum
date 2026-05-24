@@ -101,7 +101,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 			return;
 		}
 		
-		@Nullable UUID reserver = SlotReservingItem.getReserver(stack);
+		UUID reserver = SlotReservingItem.getReserver(stack);
 		if (world instanceof ServerLevel serverWorld && reserver != null) {
 			if (serverWorld.getEntity(reserver) instanceof DragonTalonEntity dragonTalonEntity) {
 				dragonTalonEntity.recall();

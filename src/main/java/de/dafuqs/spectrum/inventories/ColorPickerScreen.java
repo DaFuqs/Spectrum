@@ -9,14 +9,14 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
 
-public class ColorPickerScreen extends InkTransferScreen {
+public class ColorPickerScreen extends InkTransferScreen<ColorPickerScreenHandler> {
 	
 	protected static final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
 	
 	protected StackedInkBarWidget stackedInkBarWidget;
 	protected InkPieWidget inkPieWidget;
 	
-	public ColorPickerScreen(InkTransferScreenHandler handler, Inventory playerInventory, Component title) {
+	public ColorPickerScreen(ColorPickerScreenHandler handler, Inventory playerInventory, Component title) {
 		super(handler, playerInventory, title, BACKGROUND);
 		this.imageHeight = 166;
 	}

@@ -13,7 +13,7 @@ public class Spectrum3x3ContainerScreenHandler extends AbstractContainerMenu {
 	private final Container inventory;
 	
 	public Spectrum3x3ContainerScreenHandler(int syncId, Inventory playerInventory, ScreenBackgroundVariant screenBackgroundVariant) {
-		this(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, new SimpleContainer(9), screenBackgroundVariant);
+		this(SpectrumMenuTypes.GENERIC_TIER1_3X3, syncId, playerInventory, new SimpleContainer(9), screenBackgroundVariant);
 	}
 	
 	public Spectrum3x3ContainerScreenHandler(MenuType<Spectrum3x3ContainerScreenHandler> screenHandlerType, int syncId, Inventory playerInventory, Container inventory, ScreenBackgroundVariant screenBackgroundVariant) {
@@ -49,7 +49,7 @@ public class Spectrum3x3ContainerScreenHandler extends AbstractContainerMenu {
 	
 	@Contract("_, _, _ -> new")
 	public static @NotNull AbstractContainerMenu createTier1(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.EARLYGAME);
+		return new Spectrum3x3ContainerScreenHandler(SpectrumMenuTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.EARLYGAME);
 	}
 	
 	@Contract("_, _ -> new")
@@ -59,7 +59,7 @@ public class Spectrum3x3ContainerScreenHandler extends AbstractContainerMenu {
 	
 	@Contract("_, _, _ -> new")
 	public static @NotNull AbstractContainerMenu createTier2(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.MIDGAME);
+		return new Spectrum3x3ContainerScreenHandler(SpectrumMenuTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.MIDGAME);
 	}
 	
 	@Contract("_, _ -> new")
@@ -69,7 +69,7 @@ public class Spectrum3x3ContainerScreenHandler extends AbstractContainerMenu {
 	
 	@Contract("_, _, _ -> new")
 	public static @NotNull AbstractContainerMenu createTier3(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.LATEGAME);
+		return new Spectrum3x3ContainerScreenHandler(SpectrumMenuTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.LATEGAME);
 	}
 	
 	@Override

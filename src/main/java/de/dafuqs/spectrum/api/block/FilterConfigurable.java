@@ -240,7 +240,7 @@ public interface FilterConfigurable {
 	
 	record ExtendedData(List<ItemStack> filterItems, int rows, int slotsPerRow, int drawnSlots) {
 		
-		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedData> PACKET_CODEC = StreamCodec.composite(
+		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedData> STREAM_CODEC = StreamCodec.composite(
 				ItemStack.OPTIONAL_STREAM_CODEC.apply(ByteBufCodecs.list()), ExtendedData::filterItems,
 				ByteBufCodecs.VAR_INT, ExtendedData::rows,
 				ByteBufCodecs.VAR_INT, ExtendedData::slotsPerRow,
@@ -256,9 +256,9 @@ public interface FilterConfigurable {
 			this(pos, new ExtendedData(configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots()));
 		}
 		
-		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedDataWithPos> PACKET_CODEC = StreamCodec.composite(
+		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedDataWithPos> STREAM_CODEC = StreamCodec.composite(
 				BlockPos.STREAM_CODEC, c -> c.pos,
-				ExtendedData.PACKET_CODEC, c -> c.data,
+				ExtendedData.STREAM_CODEC, c -> c.data,
 				ExtendedDataWithPos::new
 		);
 		

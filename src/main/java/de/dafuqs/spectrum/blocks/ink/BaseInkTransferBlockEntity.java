@@ -55,8 +55,8 @@ public abstract class BaseInkTransferBlockEntity<T extends InkStorage> extends R
 			ContainerHelper.loadAllItems(nbt, this.inventory, registryLookup);
 		}
 		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
-		if (nbt.contains("SelectedColor", Tag.TAG_STRING)) {
-			this.selectedColor = Optional.of(SpectrumRegistries.INK_COLOR.wrapAsHolder(InkColor.ofIdString(nbt.getString("SelectedColor")).get()));
+		if (nbt.contains("selected_color", Tag.TAG_STRING)) {
+			this.selectedColor = Optional.of(SpectrumRegistries.INK_COLOR.wrapAsHolder(InkColor.ofIdString(nbt.getString("selected_color")).get()));
 		} else {
 			this.selectedColor = Optional.empty();
 		}
@@ -69,7 +69,7 @@ public abstract class BaseInkTransferBlockEntity<T extends InkStorage> extends R
 			ContainerHelper.saveAllItems(nbt, this.inventory, registryLookup);
 		}
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
-		this.selectedColor.ifPresent(color -> nbt.putString("SelectedColor", color.getRegisteredName()));
+		this.selectedColor.ifPresent(color -> nbt.putString("selected_color", color.getRegisteredName()));
 	}
 	
 	@Override

@@ -8,13 +8,13 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
 
-public class TintingStationScreen extends InkTransferScreen {
+public class TintingStationScreen extends InkTransferScreen<TintingStationScreenHandler> {
 	
 	protected static final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/tinting_station.png");
 	
 	protected InkListWidget inkListWidget;
 	
-	public TintingStationScreen(InkTransferScreenHandler handler, Inventory playerInventory, Component title) {
+	public TintingStationScreen(TintingStationScreenHandler handler, Inventory playerInventory, Component title) {
 		super(handler, playerInventory, title, BACKGROUND);
 	}
 	

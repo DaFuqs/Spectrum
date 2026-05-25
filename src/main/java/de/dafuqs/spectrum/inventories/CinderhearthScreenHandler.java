@@ -30,7 +30,7 @@ public class CinderhearthScreenHandler extends AbstractContainerMenu {
 	
 	// serverside
 	public CinderhearthScreenHandler(int syncId, Inventory playerInventory, CinderhearthBlockEntity blockEntity, ContainerData propertyDelegate) {
-		super(SpectrumScreenHandlerTypes.CINDERHEARTH, syncId);
+		super(SpectrumMenuTypes.CINDERHEARTH, syncId);
 		
 		this.player = playerInventory.player instanceof ServerPlayer serverPlayerEntity ? serverPlayerEntity : null;
 		this.world = playerInventory.player.level();

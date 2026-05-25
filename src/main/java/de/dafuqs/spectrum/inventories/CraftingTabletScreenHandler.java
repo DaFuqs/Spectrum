@@ -36,7 +36,7 @@ public class CraftingTabletScreenHandler extends RecipeBookMenu<RecipeInput, Rec
 	}
 	
 	public CraftingTabletScreenHandler(int syncId, Inventory playerInventory, ContainerLevelAccess context, ItemStack craftingTabletItemStack) {
-		super(SpectrumScreenHandlerTypes.CRAFTING_TABLET, syncId);
+		super(SpectrumMenuTypes.CRAFTING_TABLET, syncId);
 		this.craftingInventory = new CraftingTabletInventory(this);
 		this.craftingResultInventory = new ResultContainer();
 		this.context = context;

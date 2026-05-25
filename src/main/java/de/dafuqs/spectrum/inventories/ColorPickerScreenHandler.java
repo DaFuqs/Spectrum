@@ -9,16 +9,16 @@ import net.minecraft.world.entity.player.*;
 
 import java.util.*;
 
-public class ColorPickerScreenHandler extends InkTransferScreenHandler {
+public class ColorPickerScreenHandler extends InkStorageWithColorSelectionScreenHandler {
 	
 	// clientside
 	public ColorPickerScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
-		super(SpectrumScreenHandlerTypes.COLOR_PICKER, syncId, playerInventory, ScreenOpeningData.PACKET_CODEC.decode(buf));
+		super(SpectrumMenuTypes.COLOR_PICKER, syncId, playerInventory, ScreenOpeningData.STREAM_CODEC.decode(buf));
 	}
 	
 	// serverside
 	public ColorPickerScreenHandler(int syncId, Inventory playerInventory, BaseInkTransferBlockEntity<?> blockEntity, Optional<Holder<InkColor>> selectedColor) {
-		super(SpectrumScreenHandlerTypes.COLOR_PICKER, syncId, playerInventory, blockEntity, selectedColor);
+		super(SpectrumMenuTypes.COLOR_PICKER, syncId, playerInventory, blockEntity, selectedColor);
 	}
 	
 	@Override

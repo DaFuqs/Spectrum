@@ -63,11 +63,17 @@ public class SpectrumBlockEntities {
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<SpectrumSkullBlockEntity>> SKULL = register("skull", SpectrumSkullBlockEntity::new); // supported blocks are added in addBlockEntityTypeBlocks()
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BottomlessBundleBlockEntity>> BOTTOMLESS_BUNDLE = register("bottomless_bundle", BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PotionWorkshopBlockEntity>> POTION_WORKSHOP = register("potion_workshop", PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CrystalApothecaryBlockEntity>> CRYSTAL_APOTHECARY = register("crystal_apothecary", CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY);
+	
+	// Ink Generators
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ColorPickerBlockEntity>> COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<TwillBlockEntity>> TWILL = register("twill", TwillBlockEntity::new, SpectrumBlocks.TWILL);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<VantaclastBlockEntity>> VANTACLAST = register("vantaclast", VantaclastBlockEntity::new, SpectrumBlocks.VANTACLAST);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<DawnbrushBlockEntity>> DAWNBRUSH = register("dawnbrush", DawnbrushBlockEntity::new, SpectrumBlocks.DAWNBRUSH);
+	
+	// Ink Sinks
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CrystallarieumBlockEntity>> CRYSTALLARIEUM = register("crystallarieum", CrystallarieumBlockEntity::new, SpectrumBlocks.CRYSTALLARIEUM);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CinderhearthBlockEntity>> CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
-	
-	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CrystalApothecaryBlockEntity>> CRYSTAL_APOTHECARY = register("crystal_apothecary", CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY);
-	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ColorPickerBlockEntity>> COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<TintingStationBlockEntity>> TINTING_STATION = register("tinting_station", TintingStationBlockEntity::new, SpectrumBlocks.TINTING_STATION);
 	
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CompactingChestBlockEntity>> COMPACTING_CHEST = register("compacting_chest", CompactingChestBlockEntity::new, SpectrumBlocks.COMPACTING_CHEST);

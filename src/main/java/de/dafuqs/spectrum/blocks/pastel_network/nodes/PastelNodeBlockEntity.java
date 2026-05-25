@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
 import com.google.common.base.*;
-import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.pastel_network.*;
@@ -34,8 +33,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import net.neoforged.neoforge.capabilities.*;
-import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -505,7 +502,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	
 	@Override
 	public void writeClientSideData(@NotNull AbstractContainerMenu menu, @NotNull RegistryFriendlyByteBuf buffer) {
-		FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.encode(buffer, new FilterConfigurable.ExtendedDataWithPos(this.getBlockPos(), this));
+		FilterConfigurable.ExtendedDataWithPos.STREAM_CODEC.encode(buffer, new FilterConfigurable.ExtendedDataWithPos(this.getBlockPos(), this));
 	}
 	
 	public boolean equals(Object obj) {

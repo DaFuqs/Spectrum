@@ -65,7 +65,7 @@ public abstract class BaseInkTransferBlock extends HorizontalDirectionalBlock im
 	
 	@Override
 	public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
-		if (world.getBlockEntity(pos) instanceof ColorPickerBlockEntity blockEntity) {
+		if (world.getBlockEntity(pos) instanceof InkGeneratorBlockEntity blockEntity) {
 			int i = 0;
 			float f = 0.0f;
 			for (int j = 0; j < blockEntity.inventory.size(); ++j) {

@@ -31,33 +31,31 @@ import java.util.*;
 public class ColorPickerBlockEntity extends BaseInkTransferBlockEntity<TotalCappedInkStorage> implements MenuProvider {
 	
 	public static final long TICKS_PER_CONVERSION = 5;
-	public static final long STORAGE_AMOUNT = (long) Math.pow(2, 16);
+	public static final long INK_CAPACITY = (long) Math.pow(256, 2);
 	protected @Nullable InkConvertingRecipe cachedRecipe;
 	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.COLOR_PICKER.get(), blockPos, blockState, new TotalCappedInkStorage(STORAGE_AMOUNT, Map.of()));
+		super(SpectrumBlockEntities.COLOR_PICKER.get(), blockPos, blockState, new TotalCappedInkStorage(INK_CAPACITY, Map.of()));
 	}
 	
 	@SuppressWarnings("unused")
 	public static void serverTick(Level world, BlockPos pos, BlockState state, ColorPickerBlockEntity blockEntity) {
-		if (!world.isClientSide) {
-			blockEntity.inkDirty = false;
-			if (!blockEntity.paused) {
-				boolean convertedPigment = false;
-				boolean shouldPause = true;
-				if (world.getGameTime() % TICKS_PER_CONVERSION == 0) {
-					convertedPigment = blockEntity.tryConvertPigmentToEnergy((ServerLevel) world);
-				} else {
-					shouldPause = false;
-				}
-				boolean filledContainer = blockEntity.tryFillInkContainer();
-				
-				if (convertedPigment || filledContainer) {
-					blockEntity.updateInClientWorld();
-					blockEntity.setInkDirty();
-				} else if (shouldPause) {
-					blockEntity.paused = true;
-				}
+		blockEntity.inkDirty = false;
+		if (!blockEntity.paused) {
+			boolean convertedPigment = false;
+			boolean shouldPause = true;
+			if (world.getGameTime() % TICKS_PER_CONVERSION == 0) {
+				convertedPigment = blockEntity.tryConvertPigmentToEnergy((ServerLevel) world);
+			} else {
+				shouldPause = false;
+			}
+			boolean filledContainer = blockEntity.tryFillInkContainer();
+			
+			if (convertedPigment || filledContainer) {
+				blockEntity.updateInClientWorld();
+				blockEntity.setInkDirty();
+			} else if (shouldPause) {
+				blockEntity.paused = true;
 			}
 		}
 	}
@@ -65,13 +63,13 @@ public class ColorPickerBlockEntity extends BaseInkTransferBlockEntity<TotalCapp
 	@Override
 	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(nbt, registryLookup);
-		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("InkStorage")).ifPresent(storage -> this.inkStorage = new TotalCappedInkStorage(storage.maxEnergyTotal(), storage.storedEnergy()));
+		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("ink_storage")).ifPresent(storage -> this.inkStorage = new TotalCappedInkStorage(storage.maxEnergyTotal(), storage.storedEnergy()));
 	}
 	
 	@Override
 	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(nbt, registryLookup);
-		CodecHelper.writeNbt(nbt, "InkStorage", InkStorageComponent.CODEC, new InkStorageComponent(this.inkStorage));
+		CodecHelper.writeNbt(nbt, "ink_storage", InkStorageComponent.CODEC, new InkStorageComponent(this.inkStorage));
 	}
 	
 	@Override
@@ -81,12 +79,12 @@ public class ColorPickerBlockEntity extends BaseInkTransferBlockEntity<TotalCapp
 	
 	@Override
 	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
-		return new ColorPickerScreenHandler(syncId, playerInventory, playerInventory.player.level().getBlockEntity(new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).pos(), SpectrumBlockEntities.COLOR_PICKER.get()).orElseThrow(), new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).inkColor());
+		return new ColorPickerScreenHandler(syncId, playerInventory, playerInventory.player.level().getBlockEntity(getBlockPos(), SpectrumBlockEntities.COLOR_PICKER.get()).orElseThrow(), this.selectedColor);
 	}
 	
 	@Override
 	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		ColorPickerScreenHandler.ScreenOpeningData.PACKET_CODEC.encode(buffer, new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
+		ColorPickerScreenHandler.ScreenOpeningData.STREAM_CODEC.encode(buffer, new ColorPickerScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
 	protected boolean tryConvertPigmentToEnergy(ServerLevel world) {

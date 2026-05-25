@@ -22,7 +22,7 @@ public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler im
 	}
 	
 	public PaintbrushScreenHandler(int syncId, Inventory playerInventory, ItemStack paintBrushStack) {
-		super(SpectrumScreenHandlerTypes.PAINTBRUSH, syncId);
+		super(SpectrumMenuTypes.PAINTBRUSH, syncId);
 		this.player = playerInventory.player;
 		this.paintBrushStack = paintBrushStack;
 		this.hasAccessToWhites = AdvancementHelper.hasAdvancement(playerInventory.player, InkColors.WHITE.getRequiredAdvancement());

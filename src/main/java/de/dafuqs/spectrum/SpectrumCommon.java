@@ -148,7 +148,7 @@ public class SpectrumCommon {
 		
 		// GUI
 		logInfo("Registering Screen Handler Types...");
-		SpectrumScreenHandlerTypes.register(modBus);
+		SpectrumMenuTypes.register(modBus);
 		
 		logInfo("Registering Enchantment Drops...");
 		SpectrumGlobalLootModifierSerializers.register(modBus);

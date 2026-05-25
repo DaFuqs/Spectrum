@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
@@ -39,7 +38,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 	}
 	
 	public BedrockAnvilScreenHandler(int syncId, Inventory inventory, ContainerLevelAccess context) {
-		super(SpectrumScreenHandlerTypes.BEDROCK_ANVIL, syncId, inventory, context);
+		super(SpectrumMenuTypes.BEDROCK_ANVIL, syncId, inventory, context);
 		this.levelCost = DataSlot.standalone();
 		this.addDataSlot(this.levelCost);
 	}

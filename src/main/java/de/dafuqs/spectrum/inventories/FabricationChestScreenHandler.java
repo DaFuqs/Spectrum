@@ -15,7 +15,7 @@ public class FabricationChestScreenHandler extends AbstractContainerMenu {
 	private final Container inventory;
 	
 	public FabricationChestScreenHandler(int syncId, Inventory playerInventory) {
-		this(SpectrumScreenHandlerTypes.FABRICATION_CHEST, syncId, playerInventory);
+		this(SpectrumMenuTypes.FABRICATION_CHEST, syncId, playerInventory);
 	}
 	
 	protected FabricationChestScreenHandler(MenuType<?> type, int i, Inventory playerInventory) {
@@ -23,7 +23,7 @@ public class FabricationChestScreenHandler extends AbstractContainerMenu {
 	}
 	
 	public FabricationChestScreenHandler(int syncId, Inventory playerInventory, Container inventory) {
-		this(SpectrumScreenHandlerTypes.FABRICATION_CHEST, syncId, playerInventory, inventory);
+		this(SpectrumMenuTypes.FABRICATION_CHEST, syncId, playerInventory, inventory);
 	}
 	
 	protected FabricationChestScreenHandler(MenuType<?> type, int syncId, Inventory playerInventory, Container inventory) {

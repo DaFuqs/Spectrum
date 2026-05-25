@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.ink.*;
+import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
-import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
@@ -15,17 +12,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 
 import javax.annotation.*;
-import java.util.*;
 
-public abstract class InkTransferScreenHandler extends AbstractContainerMenu implements InkColorSelectedPacketReceiver {
-	
-	public record ScreenOpeningData(BlockPos pos, Optional<Holder<InkColor>> inkColor) {
-		public static final StreamCodec<RegistryFriendlyByteBuf, ScreenOpeningData> PACKET_CODEC = StreamCodec.composite(
-				BlockPos.STREAM_CODEC, ScreenOpeningData::pos,
-				ByteBufCodecs.optional(ByteBufCodecs.holderRegistry(SpectrumRegistryKeys.INK_COLOR)), ScreenOpeningData::inkColor,
-				ScreenOpeningData::new
-		);
-	}
+public class InkStorageScreenHandler extends AbstractContainerMenu {
 	
 	public static final int PLAYER_INVENTORY_START_X = 8;
 	public static final int PLAYER_INVENTORY_START_Y = 84;
@@ -33,22 +21,30 @@ public abstract class InkTransferScreenHandler extends AbstractContainerMenu imp
 	protected final Level world;
 	public final ServerPlayer serverPlayer;
 	protected BaseInkTransferBlockEntity<?> blockEntity;
+	protected int inventorySize;
 	
 	// clientside
-	protected InkTransferScreenHandler(@Nullable MenuType<?> menuType, int syncId, Inventory playerInventory, ScreenOpeningData screenOpeningData) {
-		this(menuType, syncId, playerInventory, (BaseInkTransferBlockEntity<?>) playerInventory.player.level().getBlockEntity(screenOpeningData.pos()), screenOpeningData.inkColor());
+	public InkStorageScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
+		this(SpectrumMenuTypes.INK_STORAGE, syncId, playerInventory, BlockPos.STREAM_CODEC.decode(buf), 1);
 	}
 	
 	// serverside
-	protected InkTransferScreenHandler(@Nullable MenuType<?> menuType, int syncId, Inventory playerInventory, BaseInkTransferBlockEntity<?> blockEntity, Optional<Holder<InkColor>> selectedColor) {
+	public InkStorageScreenHandler(int syncId, Inventory playerInventory, BlockPos pos) {
+		this(SpectrumMenuTypes.INK_STORAGE, syncId, playerInventory, pos, 1);
+	}
+	
+	protected InkStorageScreenHandler(@Nullable MenuType<?> menuType, int syncId, Inventory playerInventory, BlockPos pos, int inventorySize) {
+		this(menuType, syncId, playerInventory, (BaseInkTransferBlockEntity<?>) playerInventory.player.level().getBlockEntity(pos), inventorySize);
+	}
+	
+	protected InkStorageScreenHandler(@Nullable MenuType<?> menuType, int syncId, Inventory playerInventory, BaseInkTransferBlockEntity<?> blockEntity, int inventorySize) {
 		super(menuType, syncId);
 		
+		this.blockEntity = blockEntity;
 		this.serverPlayer = playerInventory.player instanceof ServerPlayer serverPlayerEntity ? serverPlayerEntity : null;
 		this.world = playerInventory.player.level();
-		this.blockEntity = blockEntity;
-		this.blockEntity.setSelectedColor(selectedColor);
 		
-		checkContainerSize(blockEntity, ColorPickerBlockEntity.INVENTORY_SIZE);
+		checkContainerSize(blockEntity, inventorySize);
 		blockEntity.startOpen(playerInventory.player);
 		
 		addBlockEntitySlots();
@@ -70,9 +66,10 @@ public abstract class InkTransferScreenHandler extends AbstractContainerMenu imp
 		}
 	}
 	
-	public abstract void addBlockEntitySlots();
+	public void addBlockEntitySlots() {
+		this.addSlot(new InkStorageSlot(blockEntity, 0, 133, 33));
+	}
 	
-	@Override
 	public BaseInkTransferBlockEntity<?> getBlockEntity() {
 		return this.blockEntity;
 	}
@@ -95,11 +92,11 @@ public abstract class InkTransferScreenHandler extends AbstractContainerMenu imp
 		if (slot.hasItem()) {
 			ItemStack itemStack2 = slot.getItem();
 			itemStack = itemStack2.copy();
-			if (index < ColorPickerBlockEntity.INVENTORY_SIZE) {
-				if (!this.moveItemStackTo(itemStack2, ColorPickerBlockEntity.INVENTORY_SIZE, this.slots.size(), true)) {
+			if (index < inventorySize) {
+				if (!this.moveItemStackTo(itemStack2, inventorySize, this.slots.size(), true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.moveItemStackTo(itemStack2, 0, ColorPickerBlockEntity.INVENTORY_SIZE, false)) {
+			} else if (!this.moveItemStackTo(itemStack2, 0, inventorySize, false)) {
 				return ItemStack.EMPTY;
 			}
 			
@@ -111,11 +108,6 @@ public abstract class InkTransferScreenHandler extends AbstractContainerMenu imp
 		}
 		
 		return itemStack;
-	}
-	
-	@Override
-	public void onInkColorSelectedPacket(Optional<Holder<InkColor>> inkColor) {
-		this.blockEntity.setSelectedColor(inkColor);
 	}
 	
 	@Override

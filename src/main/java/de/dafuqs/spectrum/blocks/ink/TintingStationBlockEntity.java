@@ -210,12 +210,12 @@ public class TintingStationBlockEntity extends BaseInkTransferBlockEntity<Indivi
 	
 	@Override
 	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
-		return new TintingStationScreenHandler(syncId, playerInventory, this, new InkTransferScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).inkColor());
+		return new TintingStationScreenHandler(syncId, playerInventory, this, new InkStorageWithColorSelectionScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor).inkColor());
 	}
 	
 	@Override
 	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		InkTransferScreenHandler.ScreenOpeningData.PACKET_CODEC.encode(buffer, new InkTransferScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
+		InkStorageWithColorSelectionScreenHandler.ScreenOpeningData.STREAM_CODEC.encode(buffer, new InkStorageWithColorSelectionScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
 	@Override

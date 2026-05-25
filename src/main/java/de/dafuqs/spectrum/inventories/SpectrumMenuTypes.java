@@ -20,34 +20,34 @@ public class SpectrumMenuTypes {
 	
 	private static final DeferredRegister<MenuType<?>> REGISTRAR = DeferredRegister.create(Registries.MENU, SpectrumCommon.MOD_ID);
 	
-	public static MenuType<PaintbrushScreenHandler> PAINTBRUSH = registerSimple(SpectrumMenuTypeIDs.PAINTBRUSH, PaintbrushScreenHandler::new);
-	public static MenuType<WorkstaffScreenHandler> WORKSTAFF = registerSimple(SpectrumMenuTypeIDs.WORKSTAFF, WorkstaffScreenHandler::new);
-	public static MenuType<PedestalScreenHandler> PEDESTAL = registerExtended(SpectrumMenuTypeIDs.PEDESTAL, PedestalScreenHandler::new, PedestalScreenHandler.ScreenOpeningData.PACKET_CODEC);
-	public static MenuType<CraftingTabletScreenHandler> CRAFTING_TABLET = registerSimple(SpectrumMenuTypeIDs.CRAFTING_TABLET, CraftingTabletScreenHandler::new);
-	public static MenuType<FabricationChestScreenHandler> FABRICATION_CHEST = registerSimple(SpectrumMenuTypeIDs.FABRICATION_CHEST, FabricationChestScreenHandler::new);
-	public static MenuType<BedrockAnvilScreenHandler> BEDROCK_ANVIL = registerSimple(SpectrumMenuTypeIDs.BEDROCK_ANVIL, BedrockAnvilScreenHandler::new);
-	public static MenuType<ParticleSpawnerScreenHandler> PARTICLE_SPAWNER = registerExtended(SpectrumMenuTypeIDs.PARTICLE_SPAWNER, ParticleSpawnerScreenHandler::new, BlockPos.STREAM_CODEC);
-	public static MenuType<CompactingChestScreenHandler> COMPACTING_CHEST = registerExtended(SpectrumMenuTypeIDs.COMPACTING_CHEST, CompactingChestScreenHandler::new, BlockPos.STREAM_CODEC);
-	public static MenuType<BlackHoleChestScreenHandler> BLACK_HOLE_CHEST = registerExtended(SpectrumMenuTypeIDs.BLACK_HOLE_CHEST, BlackHoleChestScreenHandler::new, FilterConfigurable.ExtendedDataWithPos.STREAM_CODEC);
-	public static MenuType<PotionWorkshopScreenHandler> POTION_WORKSHOP = registerSimple(SpectrumMenuTypeIDs.POTION_WORKSHOP, PotionWorkshopScreenHandler::new);
-	public static MenuType<ColorPickerScreenHandler> COLOR_PICKER = registerExtended(SpectrumMenuTypeIDs.COLOR_PICKER, ColorPickerScreenHandler::new, ColorPickerScreenHandler.ScreenOpeningData.STREAM_CODEC);
-	public static MenuType<InkStorageScreenHandler> INK_STORAGE = registerExtended(SpectrumMenuTypeIDs.INK_STORAGE, InkStorageScreenHandler::new, BlockPos.STREAM_CODEC);
-	public static MenuType<TintingStationScreenHandler> TINTING_STATION = registerExtended(SpectrumMenuTypeIDs.TINTING_STATION, TintingStationScreenHandler::new, ColorPickerScreenHandler.ScreenOpeningData.STREAM_CODEC);
-	public static MenuType<CinderhearthScreenHandler> CINDERHEARTH = registerExtended(SpectrumMenuTypeIDs.CINDERHEARTH, CinderhearthScreenHandler::new, BlockPos.STREAM_CODEC);
-	public static MenuType<FilteringScreenHandler> FILTERING = registerExtended(SpectrumMenuTypeIDs.FILTERING, FilteringScreenHandler::new, FilterConfigurable.ExtendedData.STREAM_CODEC);
-	public static MenuType<BagOfHoldingScreenHandler> BAG_OF_HOLDING = registerSimple(SpectrumMenuTypeIDs.BAG_OF_HOLDING, BagOfHoldingScreenHandler::new);
+	public static MenuType<PaintbrushScreenHandler> PAINTBRUSH = registerSimple(SpectrumCommon.locate("paintbrush"), PaintbrushScreenHandler::new);
+	public static MenuType<WorkstaffScreenHandler> WORKSTAFF = registerSimple(SpectrumCommon.locate("workstaff"), WorkstaffScreenHandler::new);
+	public static MenuType<PedestalScreenHandler> PEDESTAL = registerExtended(SpectrumCommon.locate("pedestal"), PedestalScreenHandler::new, PedestalScreenHandler.ScreenOpeningData.PACKET_CODEC);
+	public static MenuType<CraftingTabletScreenHandler> CRAFTING_TABLET = registerSimple(SpectrumCommon.locate("crafting_tablet"), CraftingTabletScreenHandler::new);
+	public static MenuType<FabricationChestScreenHandler> FABRICATION_CHEST = registerSimple(SpectrumCommon.locate("fabrication_chest"), FabricationChestScreenHandler::new);
+	public static MenuType<BedrockAnvilScreenHandler> BEDROCK_ANVIL = registerSimple(SpectrumCommon.locate("bedrock_anvil"), BedrockAnvilScreenHandler::new);
+	public static MenuType<ParticleSpawnerScreenHandler> PARTICLE_SPAWNER = registerExtended(SpectrumCommon.locate("particle_spawner"), ParticleSpawnerScreenHandler::new, BlockPos.STREAM_CODEC);
+	public static MenuType<CompactingChestScreenHandler> COMPACTING_CHEST = registerExtended(SpectrumCommon.locate("compacting_chest"), CompactingChestScreenHandler::new, BlockPos.STREAM_CODEC);
+	public static MenuType<BlackHoleChestScreenHandler> BLACK_HOLE_CHEST = registerExtended(SpectrumCommon.locate("black_hole_chest"), BlackHoleChestScreenHandler::new, FilterConfigurable.ExtendedDataWithPos.STREAM_CODEC);
+	public static MenuType<PotionWorkshopScreenHandler> POTION_WORKSHOP = registerSimple(SpectrumCommon.locate("potion_workshop"), PotionWorkshopScreenHandler::new);
+	public static MenuType<ColorPickerScreenHandler> COLOR_PICKER = registerExtended(SpectrumCommon.locate("color_picker"), ColorPickerScreenHandler::new, ColorPickerScreenHandler.ScreenOpeningData.STREAM_CODEC);
+	public static MenuType<InkStorageScreenHandler> INK_STORAGE = registerExtended(SpectrumCommon.locate("ink_storage"), InkStorageScreenHandler::new, BlockPos.STREAM_CODEC);
+	public static MenuType<TintingStationScreenHandler> TINTING_STATION = registerExtended(SpectrumCommon.locate("tinting_station"), TintingStationScreenHandler::new, ColorPickerScreenHandler.ScreenOpeningData.STREAM_CODEC);
+	public static MenuType<CinderhearthScreenHandler> CINDERHEARTH = registerExtended(SpectrumCommon.locate("cinderhearth"), CinderhearthScreenHandler::new, BlockPos.STREAM_CODEC);
+	public static MenuType<FilteringScreenHandler> FILTERING = registerExtended(SpectrumCommon.locate("filtering"), FilteringScreenHandler::new, FilterConfigurable.ExtendedData.STREAM_CODEC);
+	public static MenuType<BagOfHoldingScreenHandler> BAG_OF_HOLDING = registerSimple(SpectrumCommon.locate("bag_of_holding"), BagOfHoldingScreenHandler::new);
 	
-	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER1_9X3 = registerSimple(SpectrumMenuTypeIDs.GENERIC_TIER1_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier1);
-	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER2_9X3 = registerSimple(SpectrumMenuTypeIDs.GENERIC_TIER2_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier2);
-	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER3_9X3 = registerSimple(SpectrumMenuTypeIDs.GENERIC_TIER3_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier3);
+	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER1_9X3 = registerSimple(SpectrumCommon.locate("generic_tier1_9x3"), GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier1);
+	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER2_9X3 = registerSimple(SpectrumCommon.locate("generic_tier2_9x3"), GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier2);
+	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER3_9X3 = registerSimple(SpectrumCommon.locate("generic_tier3_9x3"), GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier3);
 	
-	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER1_9X6 = registerSimple(SpectrumMenuTypeIDs.GENERIC_TIER1_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier1);
-	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER2_9X6 = registerSimple(SpectrumMenuTypeIDs.GENERIC_TIER2_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier2);
-	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER3_9X6 = registerSimple(SpectrumMenuTypeIDs.GENERIC_TIER3_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier3);
+	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER1_9X6 = registerSimple(SpectrumCommon.locate("generic_tier1_9x6"), GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier1);
+	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER2_9X6 = registerSimple(SpectrumCommon.locate("generic_tier2_9x6"), GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier2);
+	public static MenuType<GenericSpectrumContainerScreenHandler> GENERIC_TIER3_9X6 = registerSimple(SpectrumCommon.locate("generic_tier3_9x6"), GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier3);
 	
-	public static MenuType<Spectrum3x3ContainerScreenHandler> GENERIC_TIER1_3X3 = registerSimple(SpectrumMenuTypeIDs.GENERIC_TIER1_3X3, Spectrum3x3ContainerScreenHandler::createTier1);
-	public static MenuType<Spectrum3x3ContainerScreenHandler> GENERIC_TIER2_3X3 = registerSimple(SpectrumMenuTypeIDs.GENERIC_TIER2_3X3, Spectrum3x3ContainerScreenHandler::createTier2);
-	public static MenuType<Spectrum3x3ContainerScreenHandler> GENERIC_TIER3_3X3 = registerSimple(SpectrumMenuTypeIDs.GENERIC_TIER3_3X3, Spectrum3x3ContainerScreenHandler::createTier3);
+	public static MenuType<Spectrum3x3ContainerScreenHandler> GENERIC_TIER1_3X3 = registerSimple(SpectrumCommon.locate("generic_tier1_3x3"), Spectrum3x3ContainerScreenHandler::createTier1);
+	public static MenuType<Spectrum3x3ContainerScreenHandler> GENERIC_TIER2_3X3 = registerSimple(SpectrumCommon.locate("generic_tier2_3x3"), Spectrum3x3ContainerScreenHandler::createTier2);
+	public static MenuType<Spectrum3x3ContainerScreenHandler> GENERIC_TIER3_3X3 = registerSimple(SpectrumCommon.locate("generic_tier3_3x3"), Spectrum3x3ContainerScreenHandler::createTier3);
 	
 	public static <T extends AbstractContainerMenu> MenuType<T> registerSimple(ResourceLocation id, MenuType.MenuSupplier<T> factory) {
 		MenuType<T> type = new MenuType<>(factory, FeatureFlags.VANILLA_SET);

@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.inventories.widgets.*;
 import de.dafuqs.spectrum.inventories.widgets.ink.*;
-import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
 
-public class ColorPickerScreen extends InkTransferScreen<ColorPickerScreenHandler> {
+public class ColorPickerScreen extends InkStorageScreen<ColorPickerScreenHandler> {
 	
 	protected static final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
 	

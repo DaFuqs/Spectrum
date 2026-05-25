@@ -20,7 +20,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public abstract class BaseInkTransferBlockEntity<T extends InkStorage> extends RandomizableContainerBlockEntity implements PlayerOwned, InkStorageBlockEntity<T>, MenuProvider {
+public abstract class InkBlockEntity<T extends InkStorage> extends RandomizableContainerBlockEntity implements PlayerOwned, InkStorageBlockEntity<T>, MenuProvider {
 	
 	public static final int INVENTORY_SIZE = 2; // input & output slots
 	public static final int INPUT_SLOT_ID = 0;
@@ -33,7 +33,7 @@ public abstract class BaseInkTransferBlockEntity<T extends InkStorage> extends R
 	protected Optional<Holder<InkColor>> selectedColor = Optional.empty();
 	private UUID ownerUUID;
 	
-	public BaseInkTransferBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState, T inkStorage) {
+	public InkBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState, T inkStorage) {
 		super(blockEntityType, blockPos, blockState);
 		this.inkStorage = inkStorage;
 	}

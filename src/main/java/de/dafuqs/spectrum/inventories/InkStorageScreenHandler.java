@@ -1,10 +1,14 @@
 package de.dafuqs.spectrum.inventories;
 
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
+import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
@@ -12,35 +16,45 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 
 import javax.annotation.*;
+import java.util.*;
 
-public class InkStorageScreenHandler extends AbstractContainerMenu {
+public class InkStorageScreenHandler extends AbstractContainerMenu implements InkColorSelectedPacketReceiver {
+	
+	public record ScreenOpeningData(BlockPos pos, Optional<Holder<InkColor>> inkColor) {
+		public static final StreamCodec<RegistryFriendlyByteBuf, ScreenOpeningData> STREAM_CODEC = StreamCodec.composite(
+				BlockPos.STREAM_CODEC, ScreenOpeningData::pos,
+				ByteBufCodecs.optional(ByteBufCodecs.holderRegistry(SpectrumRegistryKeys.INK_COLOR)), ScreenOpeningData::inkColor,
+				ScreenOpeningData::new
+		);
+	}
 	
 	public static final int PLAYER_INVENTORY_START_X = 8;
 	public static final int PLAYER_INVENTORY_START_Y = 84;
 	
 	protected final Level world;
 	public final ServerPlayer serverPlayer;
-	protected BaseInkTransferBlockEntity<?> blockEntity;
+	protected InkBlockEntity<?> blockEntity;
 	protected int inventorySize;
 	
 	// clientside
 	public InkStorageScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
-		this(SpectrumMenuTypes.INK_STORAGE, syncId, playerInventory, BlockPos.STREAM_CODEC.decode(buf), 1);
+		this(SpectrumMenuTypes.INK_STORAGE, syncId, playerInventory, ScreenOpeningData.STREAM_CODEC.decode(buf), 1);
+	}
+	
+	protected InkStorageScreenHandler(@Nullable MenuType<?> menuType, int syncId, Inventory playerInventory, ScreenOpeningData screenOpeningData, int inventorySize) {
+		this(menuType, syncId, playerInventory, (InkBlockEntity<?>) playerInventory.player.level().getBlockEntity(screenOpeningData.pos()), screenOpeningData.inkColor, inventorySize);
 	}
 	
 	// serverside
-	public InkStorageScreenHandler(int syncId, Inventory playerInventory, BlockPos pos) {
-		this(SpectrumMenuTypes.INK_STORAGE, syncId, playerInventory, pos, 1);
+	public InkStorageScreenHandler(int syncId, Inventory playerInventory, InkBlockEntity<?> blockEntity, Optional<Holder<InkColor>> selectedColor) {
+		this(SpectrumMenuTypes.INK_STORAGE, syncId, playerInventory, blockEntity, selectedColor, 1);
 	}
 	
-	protected InkStorageScreenHandler(@Nullable MenuType<?> menuType, int syncId, Inventory playerInventory, BlockPos pos, int inventorySize) {
-		this(menuType, syncId, playerInventory, (BaseInkTransferBlockEntity<?>) playerInventory.player.level().getBlockEntity(pos), inventorySize);
-	}
-	
-	protected InkStorageScreenHandler(@Nullable MenuType<?> menuType, int syncId, Inventory playerInventory, BaseInkTransferBlockEntity<?> blockEntity, int inventorySize) {
+	protected InkStorageScreenHandler(@Nullable MenuType<?> menuType, int syncId, Inventory playerInventory, InkBlockEntity<?> blockEntity, Optional<Holder<InkColor>> selectedColor, int inventorySize) {
 		super(menuType, syncId);
 		
 		this.blockEntity = blockEntity;
+		this.blockEntity.setSelectedColor(selectedColor);
 		this.serverPlayer = playerInventory.player instanceof ServerPlayer serverPlayerEntity ? serverPlayerEntity : null;
 		this.world = playerInventory.player.level();
 		
@@ -70,7 +84,7 @@ public class InkStorageScreenHandler extends AbstractContainerMenu {
 		this.addSlot(new InkStorageSlot(blockEntity, 0, 133, 33));
 	}
 	
-	public BaseInkTransferBlockEntity<?> getBlockEntity() {
+	public InkBlockEntity<?> getBlockEntity() {
 		return this.blockEntity;
 	}
 	
@@ -117,6 +131,11 @@ public class InkStorageScreenHandler extends AbstractContainerMenu {
 		if (this.serverPlayer != null && this.blockEntity.getInkDirty()) {
 			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), blockEntity.getInkStorage(), serverPlayer);
 		}
+	}
+	
+	@Override
+	public void onInkColorSelectedPacket(Optional<Holder<InkColor>> inkColor) {
+		this.blockEntity.setSelectedColor(inkColor);
 	}
 	
 }

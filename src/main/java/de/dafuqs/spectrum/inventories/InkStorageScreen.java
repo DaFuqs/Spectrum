@@ -18,10 +18,11 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 import java.util.function.*;
 
-public class InkStorageScreen<T extends InkStorageScreenHandler> extends AbstractContainerScreen<T> {
+public class InkStorageScreen<T extends InkStorageScreenHandler> extends AbstractContainerScreen<T> implements Consumer<Optional<Holder<InkColor>>> {
 	
 	protected static final ResourceLocation DEFAULT_BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
 	
+	protected ColorSelectionWidget colorSelectionWidget;
 	protected final ResourceLocation background;
 	
 	public InkStorageScreen(T handler, Inventory playerInventory, Component title) {
@@ -32,6 +33,14 @@ public class InkStorageScreen<T extends InkStorageScreenHandler> extends Abstrac
 		super(handler, playerInventory, title);
 		this.background = background;
 		this.imageHeight = 166;
+	}
+	
+	@Override
+	protected void init() {
+		super.init();
+		this.colorSelectionWidget = new ColorSelectionWidget(getGuiLeft() + 113, getGuiTop() + 55, getGuiLeft() + 139, getGuiTop() + 25, this.menu.getBlockEntity());
+		this.colorSelectionWidget.setChangedListener(this);
+		addRenderableWidget(this.colorSelectionWidget);
 	}
 	
 	@Override
@@ -52,6 +61,22 @@ public class InkStorageScreen<T extends InkStorageScreenHandler> extends Abstrac
 		super.render(guiGraphics, mouseX, mouseY, delta);
 		guiGraphics.blit(background, getGuiLeft() + 52, getGuiTop() + 18, 176, 0, 46, 46); // gauge blanket
 		renderTooltip(guiGraphics, mouseX, mouseY);
+	}
+	
+	@Override
+	protected void renderTooltip(@NotNull GuiGraphics guiGraphics, int x, int y) {
+		super.renderTooltip(guiGraphics, x, y);
+		
+		if (this.colorSelectionWidget.isMouseOver(x, y)) {
+			this.colorSelectionWidget.drawMouseoverTooltip(guiGraphics, x, y);
+		}
+	}
+	
+	@Override
+	public void accept(Optional<Holder<InkColor>> inkColor) {
+		InkBlockEntity<?> inkBlockEntity = this.menu.getBlockEntity();
+		inkBlockEntity.setSelectedColor(inkColor);
+		PacketDistributor.sendToServer(new InkColorSelectedC2SPayload(inkColor));
 	}
 	
 }

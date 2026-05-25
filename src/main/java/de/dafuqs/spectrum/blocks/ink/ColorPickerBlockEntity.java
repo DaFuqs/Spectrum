@@ -28,7 +28,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ColorPickerBlockEntity extends BaseInkTransferBlockEntity<TotalCappedInkStorage> implements MenuProvider {
+public class ColorPickerBlockEntity extends InkBlockEntity<TotalCappedInkStorage> implements MenuProvider {
 	
 	public static final long TICKS_PER_CONVERSION = 5;
 	public static final long INK_CAPACITY = (long) Math.pow(256, 2);

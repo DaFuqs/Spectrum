@@ -21,7 +21,7 @@ import static de.dafuqs.spectrum.helpers.RenderHelper.*;
 
 public class ColorSelectionWidget extends AbstractWidget {
 	
-	protected final BaseInkTransferBlockEntity<?> blockEntity;
+	protected final InkBlockEntity<?> blockEntity;
 	
 	@Nullable
 	private Consumer<Optional<Holder<InkColor>>> changedListener;
@@ -31,11 +31,11 @@ public class ColorSelectionWidget extends AbstractWidget {
 	final int selectedIndexX;
 	final int selectedIndexY;
 	
-	public ColorSelectionWidget(int x, int y, int selectedIndexX, int selectedIndexY, BaseInkTransferBlockEntity<?> blockEntity) {
+	public ColorSelectionWidget(int x, int y, int selectedIndexX, int selectedIndexY, InkBlockEntity<?> blockEntity) {
 		this(x, y, selectedIndexX, selectedIndexY, blockEntity, blockEntity.getInkStorage().acceptedColors());
 	}
 	
-	public ColorSelectionWidget(int x, int y, int selectedIndexX, int selectedIndexY, BaseInkTransferBlockEntity<?> blockEntity, Iterable<InkColor> availableColors) {
+	public ColorSelectionWidget(int x, int y, int selectedIndexX, int selectedIndexY, InkBlockEntity<?> blockEntity, Iterable<InkColor> availableColors) {
 		super(x, y, 56, 14, Component.literal(""));
 		this.blockEntity = blockEntity;
 		this.selectedIndexX = selectedIndexX;

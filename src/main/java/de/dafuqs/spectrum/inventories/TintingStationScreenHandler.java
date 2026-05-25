@@ -10,16 +10,16 @@ import net.minecraft.world.inventory.*;
 
 import java.util.*;
 
-public class TintingStationScreenHandler extends InkStorageWithColorSelectionScreenHandler {
+public class TintingStationScreenHandler extends InkStorageScreenHandler {
 	
 	// clientside
 	public TintingStationScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
-		super(SpectrumMenuTypes.TINTING_STATION, syncId, playerInventory, ScreenOpeningData.STREAM_CODEC.decode(buf));
+		super(SpectrumMenuTypes.TINTING_STATION, syncId, playerInventory, ScreenOpeningData.STREAM_CODEC.decode(buf), 2);
 	}
 	
 	// serverside
-	public TintingStationScreenHandler(int syncId, Inventory playerInventory, BaseInkTransferBlockEntity<?> blockEntity, Optional<Holder<InkColor>> selectedColor) {
-		super(SpectrumMenuTypes.TINTING_STATION, syncId, playerInventory, blockEntity, selectedColor);
+	public TintingStationScreenHandler(int syncId, Inventory playerInventory, TintingStationBlockEntity blockEntity, Optional<Holder<InkColor>> selectedColor) {
+		super(SpectrumMenuTypes.TINTING_STATION, syncId, playerInventory, blockEntity, selectedColor, 2);
 	}
 	
 	@Override

@@ -64,19 +64,19 @@ public class InkStorageScreen<T extends InkStorageScreenHandler> extends Abstrac
 	}
 	
 	@Override
+	public void accept(Optional<Holder<InkColor>> inkColor) {
+		InkBlockEntity<?> inkBlockEntity = this.menu.getBlockEntity();
+		inkBlockEntity.setSelectedColor(inkColor);
+		PacketDistributor.sendToServer(new InkColorSelectedC2SPayload(inkColor));
+	}
+	
+	@Override
 	protected void renderTooltip(@NotNull GuiGraphics guiGraphics, int x, int y) {
 		super.renderTooltip(guiGraphics, x, y);
 		
 		if (this.colorSelectionWidget.isMouseOver(x, y)) {
 			this.colorSelectionWidget.drawMouseoverTooltip(guiGraphics, x, y);
 		}
-	}
-	
-	@Override
-	public void accept(Optional<Holder<InkColor>> inkColor) {
-		InkBlockEntity<?> inkBlockEntity = this.menu.getBlockEntity();
-		inkBlockEntity.setSelectedColor(inkColor);
-		PacketDistributor.sendToServer(new InkColorSelectedC2SPayload(inkColor));
 	}
 	
 }

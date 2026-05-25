@@ -226,11 +226,16 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.ITEM_ROUNDEL);
 					entries.accept(SpectrumBlocks.POTION_WORKSHOP);
 					entries.accept(SpectrumBlocks.SPIRIT_INSTILLER);
-					entries.accept(SpectrumBlocks.CRYSTALLARIEUM);
-					entries.accept(SpectrumBlocks.CINDERHEARTH);
 					entries.accept(SpectrumBlocks.CRYSTAL_APOTHECARY);
+					
 					entries.accept(SpectrumBlocks.COLOR_PICKER);
+					entries.accept(SpectrumBlocks.DAWNBRUSH);
+					entries.accept(SpectrumBlocks.TWILL);
+					entries.accept(SpectrumBlocks.VANTACLAST);
+					
 					entries.accept(SpectrumBlocks.TINTING_STATION);
+					entries.accept(SpectrumBlocks.CINDERHEARTH);
+					entries.accept(SpectrumBlocks.CRYSTALLARIEUM);
 					
 					entries.accept(SpectrumBlocks.UPGRADE_SPEED);
 					entries.accept(SpectrumBlocks.UPGRADE_SPEED2);

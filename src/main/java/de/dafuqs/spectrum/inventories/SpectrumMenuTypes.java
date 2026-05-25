@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
+import net.minecraft.client.gui.screens.*;
 import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -81,7 +82,8 @@ public class SpectrumMenuTypes {
 		event.register(SpectrumMenuTypes.BAG_OF_HOLDING, ContainerScreen::new);
 		
 		// Ink
-		event.register(SpectrumMenuTypes.INK_STORAGE, InkStorageScreen::new);
+		MenuScreens.ScreenConstructor<InkStorageScreenHandler, InkStorageScreen<InkStorageScreenHandler>> inkStorageScreenConstructor = InkStorageScreen::new; // tricking generics with this simple trick
+		event.register(SpectrumMenuTypes.INK_STORAGE, inkStorageScreenConstructor);
 		event.register(SpectrumMenuTypes.COLOR_PICKER, ColorPickerScreen::new);
 		event.register(SpectrumMenuTypes.TINTING_STATION, TintingStationScreen::new);
 		event.register(SpectrumMenuTypes.CINDERHEARTH, CinderhearthScreen::new);

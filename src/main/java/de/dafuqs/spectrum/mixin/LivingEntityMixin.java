@@ -29,6 +29,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
 import org.jspecify.annotations.Nullable;
@@ -139,8 +140,17 @@ public abstract class LivingEntityMixin {
 	private boolean spectrum$modifyFluidWalking(boolean original) {
 		var entity = (LivingEntity) (Object) this;
 		
-		if (SpectrumCurioItem.hasEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get()))
-			return !entity.isUnderWater();
+		if (SpectrumCurioItem.hasEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get())) {
+			double fluidHeight = entity.getFluidTypeHeight(entity.getMaxHeightFluidType());
+			double feetPos = entity.getBoundingBox().deflate(0.001).minY;
+			// striders use the collision of the lava source block which has a height of 8.0/16.0,
+			// however, getFluidTypeHeight uses FluidState#getHeight, which gives source blocks a height of 8.0/9.0
+			double fractionalHeight = (fluidHeight + feetPos) % 1;
+			if (fractionalHeight < 0) fractionalHeight++;
+			double collisionHeight = fractionalHeight * FluidState.AMOUNT_MAX / 16.0 + Math.floor(fluidHeight + feetPos);
+			
+			return feetPos > collisionHeight - 1.0E-5F;
+		}
 		
 		return original;
 	}

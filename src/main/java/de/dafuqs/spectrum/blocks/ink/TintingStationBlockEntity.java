@@ -30,7 +30,7 @@ import net.minecraft.world.phys.*;
 
 import java.util.*;
 
-public class TintingStationBlockEntity extends InkBlockEntity<IndividualCappedInkStorage> implements MenuProvider {
+public class TintingStationBlockEntity extends BaseInkBlockEntity<IndividualCappedInkStorage> implements MenuProvider {
 	
 	public static final int INPUT_SLOT_ID = 0;
 	public static final int OUTPUT_SLOT_ID = 1;
@@ -215,7 +215,7 @@ public class TintingStationBlockEntity extends InkBlockEntity<IndividualCappedIn
 	
 	@Override
 	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		InkStorageScreenHandler.ScreenOpeningData.STREAM_CODEC.encode(buffer, new InkStorageScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
+		BaseInkScreenHandler.ScreenOpeningData.STREAM_CODEC.encode(buffer, new BaseInkScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
 	@Override

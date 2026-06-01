@@ -28,7 +28,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ColorPickerBlockEntity extends InkBlockEntity<TotalCappedInkStorage> implements MenuProvider {
+public class ColorPickerBlockEntity extends BaseInkBlockEntity<TotalCappedInkStorage> implements MenuProvider {
 	
 	public static final long TICKS_PER_CONVERSION = 5;
 	public static final long INK_CAPACITY = (long) Math.pow(256, 2);
@@ -79,7 +79,7 @@ public class ColorPickerBlockEntity extends InkBlockEntity<TotalCappedInkStorage
 	
 	@Override
 	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
-		return new ColorPickerScreenHandler(syncId, playerInventory, playerInventory.player.level().getBlockEntity(getBlockPos(), SpectrumBlockEntities.COLOR_PICKER.get()).orElseThrow(), this.selectedColor);
+		return new ColorPickerScreenHandler(syncId, playerInventory, this, this.selectedColor);
 	}
 	
 	@Override

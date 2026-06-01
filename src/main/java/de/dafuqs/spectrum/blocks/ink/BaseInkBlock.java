@@ -8,16 +8,17 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 
-public abstract class BaseInkTransferBlock extends HorizontalDirectionalBlock implements EntityBlock {
+public abstract class BaseInkBlock extends HorizontalDirectionalBlock implements EntityBlock {
 	
 	protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 13.0D, 15.0D);
 	
-	public BaseInkTransferBlock(Properties settings) {
+	public BaseInkBlock(Properties settings) {
 		super(settings);
 	}
 	
@@ -56,7 +57,13 @@ public abstract class BaseInkTransferBlock extends HorizontalDirectionalBlock im
 		}
 	}
 	
-	protected abstract void openScreen(Level world, BlockPos pos, Player player);
+	protected void openScreen(Level world, BlockPos pos, Player player) {
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof BaseInkBlockEntity<?> inkBlockEntity) {
+			inkBlockEntity.setOwner(player);
+			player.openMenu(inkBlockEntity);
+		}
+	}
 	
 	@Override
 	public boolean hasAnalogOutputSignal(BlockState state) {

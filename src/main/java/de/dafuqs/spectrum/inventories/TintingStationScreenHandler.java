@@ -10,7 +10,7 @@ import net.minecraft.world.inventory.*;
 
 import java.util.*;
 
-public class TintingStationScreenHandler extends InkStorageScreenHandler {
+public class TintingStationScreenHandler extends BaseInkScreenHandler {
 	
 	// clientside
 	public TintingStationScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {

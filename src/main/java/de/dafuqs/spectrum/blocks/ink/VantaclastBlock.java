@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class VantaclastBlock extends InkGeneratorBlock {
@@ -38,6 +39,12 @@ public class VantaclastBlock extends InkGeneratorBlock {
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new VantaclastBlockEntity(pos, state);
+	}
+	
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+		return createInkGeneratorTicker(level, blockEntityType, SpectrumBlockEntities.VANTACLAST.get());
 	}
 	
 }

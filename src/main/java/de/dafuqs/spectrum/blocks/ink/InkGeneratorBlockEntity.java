@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
-public abstract class InkGeneratorBlockEntity extends InkBlockEntity<TotalCappedInkStorage> implements MenuProvider {
+public abstract class InkGeneratorBlockEntity extends BaseInkBlockEntity<TotalCappedInkStorage> implements MenuProvider {
 	
 	public static final long RUN_LOGIC_EVERY_X_TICKS = 20;
 	
@@ -57,12 +57,12 @@ public abstract class InkGeneratorBlockEntity extends InkBlockEntity<TotalCapped
 	
 	@Override
 	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
-		return new InkStorageScreenHandler(syncId, playerInventory, this, this.selectedColor);
+		return new BaseInkScreenHandler(syncId, playerInventory, this, this.selectedColor);
 	}
 	
 	@Override
 	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		InkStorageScreenHandler.ScreenOpeningData.STREAM_CODEC.encode(buffer, new InkStorageScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
+		BaseInkScreenHandler.ScreenOpeningData.STREAM_CODEC.encode(buffer, new BaseInkScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
 	protected static boolean shouldTickLogic(Level world) {

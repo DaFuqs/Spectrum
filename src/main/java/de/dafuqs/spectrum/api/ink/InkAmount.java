@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.api.ink.color.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 
-public record InkAmount(InkColor color, long amount) {
+	public record InkAmount(InkColor color, long amount) {
 	
 	public static final Codec<InkAmount> CODEC = RecordCodecBuilder.create(i -> i.group(
 			InkColor.CODEC.fieldOf("color").forGetter(InkAmount::color),

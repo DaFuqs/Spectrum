@@ -1,81 +1,44 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.ink.color.*;
-import de.dafuqs.spectrum.blocks.ink.*;
-import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.inventories.widgets.*;
-import de.dafuqs.spectrum.networking.c2s_payloads.*;
+import de.dafuqs.spectrum.inventories.widgets.ink.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screens.inventory.*;
-import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
-import net.neoforged.neoforge.network.*;
 import org.jetbrains.annotations.*;
 
-import java.util.*;
-import java.util.function.*;
-
-public class InkStorageScreen<T extends InkStorageScreenHandler> extends AbstractContainerScreen<T> implements Consumer<Optional<Holder<InkColor>>> {
+public class InkStorageScreen extends BaseInkScreen<InkStorageScreenHandler> {
 	
-	protected static final ResourceLocation DEFAULT_BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
+	protected static final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
 	
-	protected ColorSelectionWidget colorSelectionWidget;
-	protected final ResourceLocation background;
+	protected StackedInkBarWidget stackedInkBarWidget;
+	protected InkPieWidget inkPieWidget;
 	
-	public InkStorageScreen(T handler, Inventory playerInventory, Component title) {
-		this(handler, playerInventory, title, DEFAULT_BACKGROUND);
-	}
-	
-	public InkStorageScreen(T handler, Inventory playerInventory, Component title, ResourceLocation background) {
-		super(handler, playerInventory, title);
-		this.background = background;
+	public InkStorageScreen(InkStorageScreenHandler handler, Inventory playerInventory, Component title) {
+		super(handler, playerInventory, title, BACKGROUND);
 		this.imageHeight = 166;
 	}
 	
 	@Override
 	protected void init() {
 		super.init();
-		this.colorSelectionWidget = new ColorSelectionWidget(getGuiLeft() + 113, getGuiTop() + 55, getGuiLeft() + 139, getGuiTop() + 25, this.menu.getBlockEntity());
-		this.colorSelectionWidget.setChangedListener(this);
-		addRenderableWidget(this.colorSelectionWidget);
-	}
-	
-	@Override
-	protected void renderLabels(GuiGraphics drawContext, int mouseX, int mouseY) {
-		int titleX = (imageWidth - font.width(title)) / 2;
-		int titleY = 6;
-		drawContext.drawString(this.font, this.title.getVisualOrderText(), titleX, titleY, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
-		drawContext.drawString(this.font, this.playerInventoryTitle, InkStorageScreenHandler.PLAYER_INVENTORY_START_X, InkStorageScreenHandler.PLAYER_INVENTORY_START_Y - 10, RenderHelper.SPECTRUM_CONTAINER_TEXT_COLOR, false);
-	}
-	
-	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
-		guiGraphics.blit(background, getGuiLeft(), getGuiTop(), 0, 0, imageWidth, imageHeight);
-	}
-	
-	@Override
-	public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-		super.render(guiGraphics, mouseX, mouseY, delta);
-		guiGraphics.blit(background, getGuiLeft() + 52, getGuiTop() + 18, 176, 0, 46, 46); // gauge blanket
-		renderTooltip(guiGraphics, mouseX, mouseY);
-	}
-	
-	@Override
-	public void accept(Optional<Holder<InkColor>> inkColor) {
-		InkBlockEntity<?> inkBlockEntity = this.menu.getBlockEntity();
-		inkBlockEntity.setSelectedColor(inkColor);
-		PacketDistributor.sendToServer(new InkColorSelectedC2SPayload(inkColor));
+		
+		this.inkPieWidget = new InkPieWidget(getGuiLeft() + 54, getGuiTop() + 21, 42, 42, this.menu.getBlockEntity());
+		addRenderableWidget(this.inkPieWidget);
+		this.stackedInkBarWidget = new StackedInkBarWidget(getGuiLeft() + 100, getGuiTop() + 21, 4, 40, this.menu.getBlockEntity());
+		addRenderableWidget(stackedInkBarWidget);
 	}
 	
 	@Override
 	protected void renderTooltip(@NotNull GuiGraphics guiGraphics, int x, int y) {
 		super.renderTooltip(guiGraphics, x, y);
 		
-		if (this.colorSelectionWidget.isMouseOver(x, y)) {
-			this.colorSelectionWidget.drawMouseoverTooltip(guiGraphics, x, y);
+		if (this.inkPieWidget.isHoveredOrFocused()) {
+			guiGraphics.renderTooltip(this.font, this.inkPieWidget.getTooltip().toCharSequence(this.minecraft), x, y);
+		}
+		if (this.stackedInkBarWidget.isHoveredOrFocused()) {
+			guiGraphics.renderTooltip(this.font, this.stackedInkBarWidget.getTooltip().toCharSequence(this.minecraft), x, y);
 		}
 	}
 	

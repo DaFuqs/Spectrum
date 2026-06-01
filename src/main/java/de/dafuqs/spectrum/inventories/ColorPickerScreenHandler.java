@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.*;
 
 import java.util.*;
 
-public class ColorPickerScreenHandler extends InkStorageScreenHandler {
+public class ColorPickerScreenHandler extends BaseInkScreenHandler {
 	
 	// clientside
 	public ColorPickerScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
@@ -17,7 +17,7 @@ public class ColorPickerScreenHandler extends InkStorageScreenHandler {
 	}
 	
 	// serverside
-	public ColorPickerScreenHandler(int syncId, Inventory playerInventory, ColorPickerBlockEntity blockEntity, Optional<Holder<InkColor>> selectedColor) {
+	public ColorPickerScreenHandler(int syncId, Inventory playerInventory, BaseInkBlockEntity<?> blockEntity, Optional<Holder<InkColor>> selectedColor) {
 		super(SpectrumMenuTypes.COLOR_PICKER, syncId, playerInventory, blockEntity, selectedColor, 2);
 	}
 	

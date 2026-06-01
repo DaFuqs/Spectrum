@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
@@ -15,7 +14,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class TintingStationBlock extends BaseInkTransferBlock {
+public class TintingStationBlock extends BaseInkBlock {
 	
 	public static final MapCodec<TintingStationBlock> CODEC = simpleCodec(TintingStationBlock::new);
 	
@@ -43,15 +42,6 @@ public class TintingStationBlock extends BaseInkTransferBlock {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.TINTING_STATION.get(), TintingStationBlockEntity::serverTick);
-	}
-	
-	@Override
-	protected void openScreen(Level world, BlockPos pos, Player player) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof TintingStationBlockEntity tintingStationBlockEntity) {
-			tintingStationBlockEntity.setOwner(player);
-			player.openMenu(tintingStationBlockEntity);
-		}
 	}
 	
 }

@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
@@ -15,7 +14,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ColorPickerBlock extends BaseInkTransferBlock {
+public class ColorPickerBlock extends BaseInkBlock {
 	
 	public static final MapCodec<ColorPickerBlock> CODEC = simpleCodec(ColorPickerBlock::new);
 	
@@ -43,15 +42,6 @@ public class ColorPickerBlock extends BaseInkTransferBlock {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.COLOR_PICKER.get(), ColorPickerBlockEntity::serverTick);
-	}
-	
-	@Override
-	protected void openScreen(Level world, BlockPos pos, Player player) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof ColorPickerBlockEntity colorPickerBlockEntity) {
-			colorPickerBlockEntity.setOwner(player);
-			player.openMenu(colorPickerBlockEntity);
-		}
 	}
 	
 }

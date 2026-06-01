@@ -18,8 +18,8 @@ import net.minecraft.world.phys.*;
 
 public class TwillBlockEntity extends InkGeneratorBlockEntity {
 	
-	public static final int MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL = 8;
-	public static final int MAX_BLOCK_CHECK_DISTANCE_UP = 4;
+	public static final int MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL = 16;
+	public static final int MAX_BLOCK_CHECK_DISTANCE_UP = 6;
 	public static final long GENERATED_INK_PER_VALID_BLOCK = 1;
 	
 	public TwillBlockEntity(BlockPos blockPos, BlockState blockState) {

@@ -59,11 +59,12 @@ public class DawnbrushBlockEntity extends InkGeneratorBlockEntity {
 		if (thundering) weatherWeight *= 0.25f;
 		
 		// sunrise
+		weights.put(InkColors.MAGENTA,    (sunrise * 2) * weatherWeight);
 		weights.put(InkColors.ORANGE,     (midnight * 0.25f + sunrise * 3) * weatherWeight);
-		weights.put(InkColors.LIME,       (sunrise * 4f) * weatherWeight);
-		weights.put(InkColors.GREEN,      (sunrise * 2f + noon * 0.25f) * weatherWeight);
+		weights.put(InkColors.LIME,       (sunrise * 4f + noon * 0.5f) * weatherWeight);
 		
 		// noon
+		weights.put(InkColors.GREEN,      (sunrise * 0.5f + noon * 2.0f) * weatherWeight);
 		weights.put(InkColors.LIGHT_BLUE, (noon * 2.5f + rain) * weatherWeight);
 		weights.put(InkColors.CYAN,       (noon * 2.5f - rain) * weatherWeight);
 		
@@ -75,7 +76,6 @@ public class DawnbrushBlockEntity extends InkGeneratorBlockEntity {
 		// night
 		weights.put(InkColors.PURPLE,     (sunset * 2 + midnight * 0.5f) * weatherWeight);
 		weights.put(InkColors.BLUE,       (midnight * 2f) * weatherWeight);
-		weights.put(InkColors.MAGENTA,    (midnight * 0.5f + sunrise * 2) * weatherWeight);
 		
 		// build output
 		List<InkAmount> result = new ArrayList<>();

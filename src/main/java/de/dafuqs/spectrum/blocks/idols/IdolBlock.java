@@ -59,6 +59,14 @@ public abstract class IdolBlock extends Block {
 	}
 	
 	@Override
+	protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+		super.onPlace(state, level, pos, oldState, movedByPiston);
+		if (!state.is(oldState.getBlock()) && !level.isClientSide() && state.getValue(COOLDOWN) && !level.getBlockTicks().hasScheduledTick(pos, this)) {
+			triggerCooldown(level, pos);
+		}
+	}
+	
+	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.tick(state, world, pos, random);
 		world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(COOLDOWN, false));

@@ -66,6 +66,9 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 			} else {
 				ItemStack stack = blockEntity.getItem(slot);
 				tryPlace(stack, pointer, blockEntity.getOwnerIfOnline(world));
+				// must set changed because getting stack and decrementing it doesn't inherently proc this
+				// thus comparators don't update automatically unless we do this
+				blockEntity.setChanged();
 			}
 		}
 	}
@@ -75,23 +78,33 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 	protected void tryPlace(ItemStack stack, BlockSource pointer, @Nullable Player owner) {
 		Level world = pointer.level();
 		if (stack.getItem() instanceof BlockItem blockItem) {
-			Direction facing = pointer.state().getValue(BlockPlacerBlock.ORIENTATION).front();
-			BlockPos placementPos = pointer.pos().relative(facing);
-			Direction placementDirection = world.isEmptyBlock(placementPos.below()) ? facing : Direction.UP;
+			FrontAndTop frontAndTop = pointer.state().getValue(BlockPlacerBlock.ORIENTATION);
+			Direction frontFacing = frontAndTop.front();
+			BlockPos placementPos = pointer.pos().relative(frontFacing);
+
+			// This must be horizontal because it being vertical may break assumptions made by blocks in their placement logic
+			Direction horizontalPlacementDirection;
+			if (frontAndTop.front().getAxis() == Direction.Axis.Y) {
+				horizontalPlacementDirection = frontAndTop.top().getOpposite();
+			} else {
+				horizontalPlacementDirection = frontAndTop.front().getOpposite();
+			}
+			// Represents the face of the selected block the player would have clicked to place this block here
+			Direction simulatedClickedFace = world.isEmptyBlock(placementPos.below()) ? frontFacing : Direction.UP;
 			
 			if (!GenericClaimModsCompat.canPlaceBlock(world, placementPos, owner)) {
 				return;
 			}
 			
 			try {
-				if (blockItem.place(new BlockPlacerPlacementContext(world, placementPos, facing, stack, placementDirection, owner)).consumesAction()) {
+				if (blockItem.place(new BlockPlacerPlacementContext(world, placementPos, frontFacing, horizontalPlacementDirection, stack, simulatedClickedFace, owner)).consumesAction()) {
 					if (owner != null && owner.getAbilities().instabuild) {
 						stack.shrink(1);
 					}
 				}
 				;
 				world.levelEvent(LevelEvent.SOUND_DISPENSER_DISPENSE, pointer.pos(), 0);
-				world.levelEvent(LevelEvent.PARTICLES_SHOOT_SMOKE, pointer.pos(), pointer.state().getValue(BlockPlacerBlock.ORIENTATION).front().get3DDataValue());
+				world.levelEvent(LevelEvent.PARTICLES_SHOOT_SMOKE, pointer.pos(), frontFacing.get3DDataValue());
 				world.gameEvent(null, GameEvent.BLOCK_PLACE, placementPos);
 			} catch (Exception e) {
 				SpectrumCommon.logError("Block Placer encountered an error placing a block at " + placementPos + " when placing " + BuiltInRegistries.ITEM.getKey(blockItem));
@@ -148,11 +161,13 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 		
 		// Shadows the variable facing in the superclass.
 		private final Direction facing;
-		private final Player cause;
+		private final Direction horizontalPlacementDirection;
+		private final @Nullable Player cause;
 		
-		public BlockPlacerPlacementContext(Level world, BlockPos pos, Direction facing, ItemStack stack, Direction side, Player cause) {
-			super(world, pos, facing, stack, side);
+		public BlockPlacerPlacementContext(Level world, BlockPos pos, Direction facing, Direction horizontalPlacementDirection, ItemStack stack, Direction simulatedClickedFace, @Nullable Player cause) {
+			super(world, pos, horizontalPlacementDirection, stack, simulatedClickedFace);
 			this.facing = facing;
+			this.horizontalPlacementDirection = horizontalPlacementDirection;
 			this.cause = cause;
 		}
 
@@ -164,7 +179,12 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 		
 		@Override
 		public Direction getHorizontalDirection() {
-			return facing.getOpposite();
+			return this.horizontalPlacementDirection;
+		}
+		
+		@Override
+		public Direction getNearestLookingVerticalDirection() {
+			return this.facing.getAxis() == Direction.Axis.Y ? this.facing : Direction.UP;
 		}
 		
 		// SlabBlocks cause a non-funny StackOverflowError

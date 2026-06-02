@@ -137,10 +137,22 @@ public abstract class LivingEntityMixin {
 	}
 	
 	@ModifyReturnValue(method = "canStandOnFluid", at = @At("RETURN"))
-	private boolean spectrum$modifyFluidWalking(boolean original, FluidState fluidState) {
+	private boolean spectrum$modifyFluidWalking(boolean original) {
 		var entity = (LivingEntity) (Object) this;
 		
-		return original || (fluidState.is(Fluids.WATER) && SpectrumCurioItem.hasEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get()));
+		if (SpectrumCurioItem.hasEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get())) {
+			double fluidHeight = entity.getFluidTypeHeight(entity.getMaxHeightFluidType());
+			double feetPos = entity.getBoundingBox().deflate(0.001).minY;
+			// striders use the collision of the lava source block which has a height of 8.0/16.0,
+			// however, getFluidTypeHeight uses FluidState#getHeight, which gives source blocks a height of 8.0/9.0
+			double fractionalHeight = (fluidHeight + feetPos) % 1;
+			if (fractionalHeight < 0) fractionalHeight++;
+			double collisionHeight = fractionalHeight * FluidState.AMOUNT_MAX / 16.0 + Math.floor(fluidHeight + feetPos);
+			
+			return feetPos > collisionHeight - 1.0E-5F;
+		}
+		
+		return original;
 	}
 	
 	@WrapOperation(method = "handleEntityEvent", at = @At(value = "INVOKE", target = "net/minecraft/world/entity/LivingEntity.playSound (Lnet/minecraft/sounds/SoundEvent;FF)V", ordinal = 2))

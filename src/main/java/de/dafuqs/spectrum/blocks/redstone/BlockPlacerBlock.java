@@ -66,6 +66,9 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 			} else {
 				ItemStack stack = blockEntity.getItem(slot);
 				tryPlace(stack, pointer, blockEntity.getOwnerIfOnline(world));
+				// must set changed because getting stack and decrementing it doesn't inherently proc this
+				// thus comparators don't update automatically unless we do this
+				blockEntity.setChanged();
 			}
 		}
 	}

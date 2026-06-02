@@ -29,6 +29,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
 import org.jspecify.annotations.Nullable;
@@ -136,13 +137,10 @@ public abstract class LivingEntityMixin {
 	}
 	
 	@ModifyReturnValue(method = "canStandOnFluid", at = @At("RETURN"))
-	private boolean spectrum$modifyFluidWalking(boolean original) {
+	private boolean spectrum$modifyFluidWalking(boolean original, FluidState fluidState) {
 		var entity = (LivingEntity) (Object) this;
 		
-		if (SpectrumCurioItem.hasEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get()))
-			return !entity.isUnderWater();
-		
-		return original;
+		return original || (fluidState.is(Fluids.WATER) && SpectrumCurioItem.hasEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get()));
 	}
 	
 	@WrapOperation(method = "handleEntityEvent", at = @At(value = "INVOKE", target = "net/minecraft/world/entity/LivingEntity.playSound (Lnet/minecraft/sounds/SoundEvent;FF)V", ordinal = 2))

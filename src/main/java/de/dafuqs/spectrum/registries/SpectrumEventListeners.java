@@ -808,10 +808,10 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	private static void onSleepFinished(SleepFinishedTimeEvent event) {
-		LevelAccessor l = event.getLevel();
-		var time = TimeHelper.getTimeOfDay(l.dayTime());
-		if (time.isDay()) {
-			event.setTimeAddition(-11000L);
+		long time = event.getLevel().dayTime();
+		TimeHelper.TimeOfDay timeOfDay = TimeHelper.getTimeOfDay(time);
+		if (timeOfDay.isDay()) {
+			event.setTimeAddition((time - time % 24000) + 13000L);
 		}
 	}
 	

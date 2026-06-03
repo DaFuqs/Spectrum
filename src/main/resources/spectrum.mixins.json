@@ -25,6 +25,7 @@
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
     "EntityApplyFluidsMixin",
+    "EntityApplyFluidsMixinNoSinytra",
     "EntityMixin",
     "EntityStatusEffectsS2CPacketMixin",
     "EntityTypeMixin",

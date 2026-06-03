@@ -101,14 +101,14 @@ public class WrapPresentRecipe extends CustomRecipe {
 			return PresentBlock.WrappingPaper.PURPLE;
 		} else if (item == Items.CAKE) {
 			return PresentBlock.WrappingPaper.CAKE;
-		} else if (stack.is(ItemTags.FLOWERS)) {
-			return PresentBlock.WrappingPaper.STRIPED;
+		} else if (item == Items.SPORE_BLOSSOM) {
+			return PresentBlock.WrappingPaper.PRIDE;
 		} else if (item == Items.FIREWORK_STAR) {
 			return PresentBlock.WrappingPaper.STARRY;
 		} else if (item == Items.SNOWBALL) {
 			return PresentBlock.WrappingPaper.WINTER;
-		} else if (item == Items.SPORE_BLOSSOM) {
-			return PresentBlock.WrappingPaper.PRIDE;
+		} else if (stack.is(ItemTags.FLOWERS)) {
+			return PresentBlock.WrappingPaper.STRIPED;
 		}
 		return null;
 	}

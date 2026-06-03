@@ -66,7 +66,7 @@ public class WrapPresentRecipe extends CustomRecipe {
 		for (int j = 0; j < input.size(); ++j) {
 			ItemStack stack = input.getItem(j);
 			if (stack.getItem() instanceof PresentBlockItem) {
-				presentStack = stack.copy();
+				presentStack = stack.copyWithCount(1);
 			} else if (stack.getItem() instanceof PigmentItem pigmentItem) {
 				InkColor color = pigmentItem.getInkColor();
 				if (colors.containsKey(color)) {

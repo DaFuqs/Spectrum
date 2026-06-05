@@ -46,35 +46,6 @@
     },
     {
       "rolls": {
-        "min": 2,
-        "max": 5
-      },
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:amethyst_shard"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:citrine_shard"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:topaz_shard"
-        }
-      ],
-      "functions": [
-        {
-          "function": "minecraft:set_count",
-          "count": {
-            "min": 3,
-            "max": 7
-          }
-        }
-      ]
-    },
-    {
-      "rolls": {
         "min": 0,
         "max": 3
       },
@@ -103,7 +74,7 @@
           "function": "minecraft:set_count",
           "count": {
             "min": 3,
-            "max": 15
+            "max": 12
           }
         }
       ]

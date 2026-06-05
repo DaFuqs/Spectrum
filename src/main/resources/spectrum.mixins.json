@@ -35,7 +35,6 @@
     "GeodesGenerateWithGemstoneOresMixin",
     "GlassBottleItemMixin",
     "InfestedBlockMixin",
-    "InventoryMenuMixin",
     "ItemEntityMixin",
     "ItemStackMixin",
     "KilledByPlayerLootConditionMixin",

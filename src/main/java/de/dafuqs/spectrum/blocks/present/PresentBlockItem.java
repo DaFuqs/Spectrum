@@ -180,6 +180,10 @@ public class PresentBlockItem extends BlockItem {
 	
 	@Override
 	public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+		if(isWrapped(stack)) {
+			return Optional.empty();
+		}
+		
 		return !stack.has(DataComponents.HIDE_TOOLTIP) && !stack.has(DataComponents.HIDE_ADDITIONAL_TOOLTIP)
 				? Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(BundleTooltip::new)
 				: Optional.empty();

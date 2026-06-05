@@ -151,6 +151,11 @@ public class PresentBlockItem extends BlockItem {
 		return InteractionResultHolder.pass(itemStack);
 	}
 	
+	@Override
+	public int getMaxStackSize(ItemStack stack) {
+		return stack.has(SpectrumDataComponentTypes.WRAPPED_PRESENT) || !isEmpty(stack) ? 1 : super.getMaxStackSize(stack);
+	}
+	
 	// CraftingInventory does not recalculate the recipe after inputting / retrieving stacks from the present.
 	// The recipes output will still hold the original present data from when it was put into the crafting grid
 	// If the player then puts / receives items from the present they are able to duplicate items

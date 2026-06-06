@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "group": "compacting",
   "time": 20,
   "tier": "basic",
@@ -11,17 +11,12 @@
     "spectrum:black": 0
   },
   "experience": 0.0,
-  "pattern": [
-    "GGG",
-    "GGG",
-    "GGG"
+  "ingredients": [
+    "spectrum:pure_malachite_block"
   ],
-  "key": {
-    "G": "spectrum:pure_malachite"
-  },
   "result": {
-    "id": "spectrum:malachite_block",
-    "count": 1
+    "id": "spectrum:pure_malachite",
+    "count": 9
   },
   "required_advancement": "spectrum:lategame/grow_malachite_in_crystallarieum",
   "disable_yield_upgrades": true

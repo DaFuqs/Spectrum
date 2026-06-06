@@ -12,7 +12,7 @@
   },
   "experience": 0.0,
   "ingredients": [
-    "spectrum:azurite_block"
+    "spectrum:pure_azurite_block"
   ],
   "result": {
     "id": "spectrum:pure_azurite",

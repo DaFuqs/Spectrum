@@ -17,12 +17,12 @@
     "AAA"
   ],
   "key": {
-    "A": "spectrum:pure_azurite"
+    "A": "spectrum:pure_bloodstone"
   },
   "result": {
-    "id": "spectrum:azurite_block",
+    "id": "spectrum:pure_bloodstone_block",
     "count": 1
   },
-  "required_advancement": "spectrum:midgame/collect_azurite",
+  "required_advancement": "spectrum:grow_bloodstone_in_crystallarieum",
   "disable_yield_upgrades": true
 }

@@ -5,8 +5,8 @@
 
     "spectrum:shimmerstone_block",
     "spectrum:bismuth_block",
-    "spectrum:malachite_block",
-    "spectrum:azurite_block",
-    "spectrum:bloodstone_block"
+    "spectrum:pure_malachite_block",
+    "spectrum:pure_azurite_block",
+    "spectrum:pure_bloodstone_block"
   ]
 }

@@ -12,17 +12,17 @@
   },
   "experience": 0.0,
   "pattern": [
-    "AAA",
-    "AAA",
-    "AAA"
+    "GGG",
+    "GGG",
+    "GGG"
   ],
   "key": {
-    "A": "spectrum:pure_bloodstone"
+    "G": "spectrum:pure_malachite"
   },
   "result": {
-    "id": "spectrum:bloodstone_block",
+    "id": "spectrum:pure_malachite_block",
     "count": 1
   },
-  "required_advancement": "spectrum:grow_bloodstone_in_crystallarieum",
+  "required_advancement": "spectrum:lategame/grow_malachite_in_crystallarieum",
   "disable_yield_upgrades": true
 }

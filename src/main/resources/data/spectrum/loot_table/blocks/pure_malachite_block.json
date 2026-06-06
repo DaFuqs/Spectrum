@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:malachite_block"
+          "name": "spectrum:pure_malachite_block"
         }
       ],
       "conditions": [

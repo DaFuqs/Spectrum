@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:bloodstone_block"
+          "name": "spectrum:pure_bloodstone_block"
         }
       ],
       "conditions": [

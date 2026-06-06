@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "ingredient": [
     {
-      "item": "spectrum:malachite_block"
+      "item": "spectrum:pure_malachite_block"
     }
   ],
   "result": {

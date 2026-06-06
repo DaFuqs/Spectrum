@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal_shapeless",
+  "type": "spectrum:pedestal",
   "group": "compacting",
   "time": 20,
   "tier": "basic",
@@ -11,13 +11,18 @@
     "spectrum:black": 0
   },
   "experience": 0.0,
-  "ingredients": [
-    "spectrum:bloodstone_block"
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
   ],
-  "result": {
-    "id": "spectrum:pure_bloodstone",
-    "count": 9
+  "key": {
+    "A": "spectrum:pure_azurite"
   },
-  "required_advancement": "spectrum:grow_bloodstone_in_crystallarieum",
+  "result": {
+    "id": "spectrum:pure_azurite_block",
+    "count": 1
+  },
+  "required_advancement": "spectrum:midgame/collect_azurite",
   "disable_yield_upgrades": true
 }

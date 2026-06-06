@@ -41,6 +41,7 @@ public class SpectrumConfig {
 	public final ModConfigSpec.ConfigValue<Double> ShootingStarSpawnChance;
 	public final ModConfigSpec.ConfigValue<Integer> VanillaRecipeCraftingTimeTicks;
 	public final ModConfigSpec.ConfigValue<Double> RepairAnythingRecipeRepairPercentage;
+	public final ModConfigSpec.ConfigValue<Boolean> ChargedCreepersDropSpectrumMobHeads;
 	
 	public final ModConfigSpec.ConfigValue<Double> FadingSpreadChanceOnRandomTick;
 	public final ModConfigSpec.ConfigValue<Double> FailingDecayTickRate;
@@ -261,6 +262,11 @@ public class SpectrumConfig {
 				.translation("config.spectrum.repair_anything_recipe_repair_percentage")
 				.comment("How much an item gets repaired when crafting it with Moonstruck Nectar")
 				.define("repair_anything_recipe_repair_percentage", 0.33D);
+		
+		ChargedCreepersDropSpectrumMobHeads = builder
+				.translation("config.spectrum.charged_creepers_drop_spectrum_mob_heads")
+				.comment("Charged Creepers will drop Spectrum exclusive mob head when killing creatures")
+				.define("charged_creepers_drop_spectrum_mob_heads", false);
 		
 		FadingSpreadChanceOnRandomTick = builder
 				.translation("config.spectrum.fading_spread_chance_on_random_tick")

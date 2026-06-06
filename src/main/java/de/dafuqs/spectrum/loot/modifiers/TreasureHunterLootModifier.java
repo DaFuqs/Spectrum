@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -14,16 +15,15 @@ import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
-import javax.annotation.*;
 
 import java.util.*;
 
@@ -63,14 +63,16 @@ public class TreasureHunterLootModifier extends LootModifier {
 			return original;
 		}
 		
-		ItemStack damageSourceWeapon = damageSource.getWeaponItem();
-		int treasureHunterLevel;
-		if(damageSource.is(SpectrumDamageTypeTags.ALWAYS_DROPS_MOB_HEAD)) {
+		int treasureHunterLevel = 0;
+		if (damageSource.is(SpectrumDamageTypeTags.ALWAYS_DROPS_MOB_HEAD)) {
 			treasureHunterLevel = Integer.MAX_VALUE;
-		} else if(damageSourceWeapon != null) {
-			treasureHunterLevel = SpectrumEnchantmentHelper.getLevel(killed.registryAccess(), SpectrumEnchantmentKeys.TREASURE_HUNTER, damageSourceWeapon);
+		} else if(SpectrumConfig.CONFIG.ChargedCreepersDropSpectrumMobHeads.get() && damageSource.getEntity() instanceof Creeper creeper && creeper.isPowered()) {
+			treasureHunterLevel = Integer.MAX_VALUE;
 		} else {
-			return original;
+			ItemStack damageSourceWeapon = damageSource.getWeaponItem();
+			if (damageSourceWeapon != null) {
+				treasureHunterLevel = SpectrumEnchantmentHelper.getLevel(killed.registryAccess(), SpectrumEnchantmentKeys.TREASURE_HUNTER, damageSourceWeapon);
+			}
 		}
 		
 		if(treasureHunterLevel <= 0) {

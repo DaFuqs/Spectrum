@@ -25,17 +25,9 @@ public class FireproofItemEntity extends ItemEntity {
 		this.setItem(stack);
 	}
 	
-	private FireproofItemEntity(ItemEntity entity) {
-		super(SpectrumEntityTypes.FIREPROOF_ITEM, entity.level());
-	}
-	
 	@Override
 	public boolean isInvulnerableTo(DamageSource damageSource) {
 		return damageSource.is(DamageTypeTags.IS_FIRE) || super.isInvulnerableTo(damageSource);
-	}
-	
-	public ItemEntity copy() {
-		return new FireproofItemEntity(this);
 	}
 	
 	public static void scatter(Level world, double x, double y, double z, ItemStack stack) {

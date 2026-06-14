@@ -17,14 +17,5 @@ public class FixedSingleInkStorage extends SingleInkStorage {
 	public boolean accepts(InkColor color) {
 		return this.storedColor == color;
 	}
-	
-	@Override
-	public long getRoom(InkColor color) {
-		if (this.storedColor == color) {
-			return this.maxEnergy - this.storedEnergy;
-		} else {
-			return 0;
-		}
-	}
-	
+
 }

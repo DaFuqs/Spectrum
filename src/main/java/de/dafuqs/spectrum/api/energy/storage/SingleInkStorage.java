@@ -41,20 +41,18 @@ public class SingleInkStorage implements InkStorage {
 	
 	@Override
 	public long addEnergy(InkColor color, long amount) {
-		if (color == storedColor) {
-			long resultingAmount = this.storedEnergy + amount;
-			this.storedEnergy = resultingAmount;
-			if (resultingAmount > this.maxEnergy) {
-				long overflow = this.storedEnergy - this.maxEnergy;
-				this.storedEnergy = this.maxEnergy;
-				return overflow;
-			}
-			return 0;
-		} else if (this.storedEnergy == 0) {
+		if (color != storedColor && this.storedEnergy != 0)
+			return amount;
+		if (this.storedEnergy == 0)
 			this.storedColor = color;
-			this.storedEnergy = amount;
+		long resultingAmount = this.storedEnergy + amount;
+		this.storedEnergy = resultingAmount;
+		if (resultingAmount > this.maxEnergy) {
+			long overflow = this.storedEnergy - this.maxEnergy;
+			this.storedEnergy = this.maxEnergy;
+			return overflow;
 		}
-		return amount;
+		return 0;
 	}
 	
 	@Override

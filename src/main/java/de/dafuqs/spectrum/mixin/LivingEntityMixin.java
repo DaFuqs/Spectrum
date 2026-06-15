@@ -213,7 +213,7 @@ public abstract class LivingEntityMixin {
 	private void spectrum$applyConcealedEffects(Level world, ItemStack stack, FoodProperties foodComponent, CallbackInfoReturnable<ItemStack> cir) {
 		var oilEffect = stack.get(SpectrumDataComponentTypes.CONCEALED_EFFECT);
 		if (!world.isClientSide() && oilEffect != null)
-			((LivingEntity) (Object) this).addEffect(oilEffect);
+			((LivingEntity) (Object) this).addEffect(new MobEffectInstance(oilEffect));
 	}
 	
 	@ModifyReturnValue(method = "canBeAffected", at = @At("RETURN"))

@@ -104,7 +104,7 @@ public class EnderDropperBlock extends DispenserBlock {
 		if (i < 0) {
 			world.levelEvent(LevelEvent.SOUND_DISPENSER_FAIL, pos, 0); // no items in inv
 		} else {
-			ItemStack itemStack = enderDropperBlockEntity.getItem(i);
+			ItemStack itemStack = enderDropperBlockEntity.getItem(i); // empty if owner not online
 			if (!itemStack.isEmpty()) {
 				Direction direction = world.getBlockState(pos).getValue(FACING);
 				if (world.getBlockState(pos.relative(direction)).isAir()) {
@@ -116,7 +116,11 @@ public class EnderDropperBlock extends DispenserBlock {
 						ItemStack moved = ItemHandlerHelper.insertItemStacked(target, itemStack.copyWithCount(1), false);
 						// return without triggering fail event if successfully moved
 						if (moved.isEmpty()) {
-							enderDropperBlockEntity.getOwnerIfOnline(world).getEnderChestInventory().setChanged();
+							itemStack.shrink(1);
+							Player owner = enderDropperBlockEntity.getOwnerIfOnline(world);
+							if(owner != null) {
+								owner.getEnderChestInventory().setChanged();
+							}
 							return;
 						}
 					}

@@ -104,7 +104,7 @@ public class HeartboundChestBlock extends SpectrumChestBlock {
 			if (heartboundChestBlockEntity.canBreak(player.getUUID())) {
 				float hardness = 20.0F;
 				int i = player.hasCorrectToolForDrops(state) ? 30 : 100;
-				return player.getDestroySpeed(state) / hardness / (float) i;
+				return player.getDigSpeed(state, pos) / hardness / (float) i;
 			}
 		}
 		return -1;

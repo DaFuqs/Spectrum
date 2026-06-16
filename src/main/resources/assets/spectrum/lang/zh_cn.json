@@ -3191,6 +3191,7 @@
   "config.spectrum.dimension_brightness_mod": "维度亮度",
   "config.spectrum.pastel_network_particles": "绘彩网络传输时生成粒子效果",
   "config.spectrum.repair_anything_recipe_repair_percentage": "使用望舒琼浆修复物品时的修复比例",
+  "config.spectrum.charged_creepers_drop_spectrum_mob_heads": "闪电苦力怕击杀生物时，会掉落模组专属生物头颅",
   "config.spectrum.gemstone_durability": "宝石晶工具耐久度",
   "config.spectrum.gemstone_mining_speed": "宝石晶工具挖掘速度",
   "config.spectrum.gemstone_attack_damage": "宝石晶工具攻击伤害",
@@ -3607,7 +3608,7 @@
   "book.spectrum.guidebook.another_roll.page0.text": "影响使用[#](449900)时运[#]()挖掘矿石，[#](449900)抢夺[#]()击杀怪物或其他基于运气的附魔时的掉落。\\\n每一级的重骰都会提升获得最大掉落数量的概率。",
 
   "book.spectrum.guidebook.anvil_crushing.page0.text": "*\"不破不立\\\n有破才有立\"  ——某人*",
-  "book.spectrum.guidebook.anvil_crushing.page1.text": "目前为止，我主要使用铁砧修理和升级工具。像铁砧这么重的东西一定有别的用途吧！所以为啥不用它大力出奇迹直接把东西碾成粉末?比如敌人的头骨和物品啥的，是不是感觉贼棒。\\\n\\\n我可以用铁砧粉碎来把[宝石碎片](entry://general/shards粉碎成[粉末](entry://general/gemstone_powder)。\\\n\\\n*小贴士: 铁砧下落越远，力道越大，效果越好！*",
+  "book.spectrum.guidebook.anvil_crushing.page1.text": "目前为止，我主要使用铁砧修理和升级工具。像铁砧这么重的东西一定有别的用途吧！所以为啥不用它大力出奇迹直接把东西碾成粉末?比如敌人的头骨和物品啥的，是不是感觉贼棒。\\\n\\\n我可以用铁砧粉碎来把[宝石碎片](entry://general/shards)粉碎成[粉末](entry://general/gemstone_powder)。\\\n\\\n*小贴士: 铁砧下落越远，力道越大，效果越好！*",
   "book.spectrum.guidebook.anvil_crushing.page2.text": "当[铁砧](item://minecraft:anvil)掉在一些物品上会把物品压碎，或是直接变成别的东西。\n\n从21格高度掉落，[铁砧](item://minecraft:anvil)的冲击力应该就能达到最大。",
   "book.spectrum.guidebook.anvil_crushing.page3.text": "可以把[#](bb00bb)花[#]()粉碎成[#](bb00bb)染料[#]()， 把[#](bb00bb)马凯[#]()粉碎成[#](bb00bb)矿锭[#]()， 还能提高从[#](bb00bb)烈焰棒[#]()中获得[#](bb00bb)烈焰粉[#]()的产量。",
 

@@ -18,7 +18,7 @@ import net.minecraft.world.item.component.*;
 import java.util.*;
 import java.util.function.*;
 
-public class ConcealingOilsItem extends DrinkItem implements InkPoweredPotionFillable {
+public class ConcealingOilsItem extends Item implements InkPoweredPotionFillable {
 	
 	public static final int POISONED_COLOUR = 0x3d1125;
 	

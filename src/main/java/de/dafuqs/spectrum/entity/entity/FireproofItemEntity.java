@@ -26,7 +26,7 @@ public class FireproofItemEntity extends ItemEntity {
 	}
 	
 	private FireproofItemEntity(ItemEntity entity) {
-		super(SpectrumEntityTypes.FIREPROOF_ITEM.get(), entity.level());
+		this(entity.level(), entity.getX(), entity.getY(), entity.getZ(), entity.getItem());
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public class FireproofItemEntity extends ItemEntity {
 	}
 	
 	public static void scatter(Level world, double x, double y, double z, ItemStack stack) {
-		double d = EntityType.ITEM.getWidth();
+		double d = SpectrumEntityTypes.FIREPROOF_ITEM.get().getWidth();
 		double e = 1.0 - d;
 		double f = d / 2.0;
 		double g = Math.floor(x) + world.getRandom().nextDouble() * e + f;

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.present;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -17,6 +18,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
@@ -106,9 +108,8 @@ public class PresentBlock extends BaseEntityBlock {
 	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		world.setBlockAndUpdate(pos, state.setValue(PresentBlock.VARIANT, PresentBlockItem.getWrapData(itemStack).variant()));
 		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
-			presentBlockEntity.setPresent(itemStack);
+			presentBlockEntity.setPresent(itemStack.copyWithCount(1));
 		}
 	}
 	
@@ -220,7 +221,16 @@ public class PresentBlock extends BaseEntityBlock {
 			world.addParticle(particleEffect, posX, posY, posZ, randX, randY, randZ);
 		}
 	}
-
+	
+	@Override
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
+		WrappedPresentComponent presentComponent = PresentBlockItem.getWrapData(context.getItemInHand());
+		if (presentComponent != null) {
+			return this.defaultBlockState().setValue(VARIANT, presentComponent.variant());
+		}
+		return super.getStateForPlacement(context);
+	}
+	
 	@Override
 	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PresentBlockEntity(pos, state);

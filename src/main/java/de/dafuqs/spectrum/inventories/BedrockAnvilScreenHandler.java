@@ -98,6 +98,9 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 		
 		this.levelCost.set(0);
 		this.access.execute((world, pos) -> world.levelEvent(LevelEvent.SOUND_ANVIL_USED, pos, 0));
+		
+		this.newItemName = null;
+		this.newLoreString = null;
 	}
 	
 	public void createResult() {

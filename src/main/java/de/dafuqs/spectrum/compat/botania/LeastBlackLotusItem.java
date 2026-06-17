@@ -15,9 +15,11 @@ import vazkii.botania.xplat.*;
 
 import java.util.*;
 
-public class BlackestLotusItem extends Item implements ManaDissolvable {
+public class LeastBlackLotusItem extends Item implements ManaDissolvable {
 	
-	public BlackestLotusItem(Properties settings) {
+	private static final int MANA = 1;
+	
+	public LeastBlackLotusItem(Properties settings) {
 		super(settings);
 	}
 	
@@ -29,24 +31,19 @@ public class BlackestLotusItem extends Item implements ManaDissolvable {
 		
 		BlockPos pos = manaPool.getManaReceiverPos();
 		if (!itemEntity.level().isClientSide()) {
-			manaPool.receiveMana(1000000);
+			manaPool.receiveMana(MANA);
 			EntityHelper.shrinkItem(itemEntity);
-			XplatAbstractions.INSTANCE.sendToTracking(itemEntity, new BotaniaEffectPacket(EffectType.BLACK_LOTUS_DISSOLVE, pos.getX(), pos.getY() + 0.5, pos.getZ()));
+			XplatAbstractions.INSTANCE.sendToTracking(itemEntity, new BlackLotusDissolveEffectPacket(pos));
 		}
 		
-		itemEntity.playSound(BotaniaSounds.blackLotus, 1F, 0.25F);
-	}
-	
-	@Override
-	public boolean isFoil(ItemStack stack) {
-		return true;
+		itemEntity.playSound(BotaniaSounds.blackLotus, 1F, 0.5F);
 	}
 
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		
-		tooltip.add(Component.translatable("item.spectrum.blackest_lotus.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("item.spectrum.least_black_lotus.tooltip").withStyle(ChatFormatting.GRAY));
 	}
 	
 }

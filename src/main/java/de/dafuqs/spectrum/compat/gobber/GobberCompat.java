@@ -1,18 +1,23 @@
 package de.dafuqs.spectrum.compat.gobber;
 
+import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.SpectrumItems.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.renderer.*;
+import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.event.lifecycle.*;
+import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.registries.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.blockWithItem;
@@ -40,7 +45,31 @@ public class GobberCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	@Override
 	public void register(IEventBus modBus) {
+		NeoForge.EVENT_BUS.addListener(GobberCompat::addItemsToSubTabs);
+	}
 	
+	@SubscribeEvent
+	public static void addItemsToSubTabs(CreativeSubTabEvent event) {
+		ResourceLocation subGroupId = event.subGroup().getIdentifier();
+		
+		if (subGroupId.equals(ItemGroupIDs.SUBTAB_PURE_RESOURCES)) {
+			event.getItemDisplayBuilder().accept(SMALL_GLOBETTE_BUD);
+			event.getItemDisplayBuilder().accept(LARGE_GLOBETTE_BUD);
+			event.getItemDisplayBuilder().accept(GLOBETTE_CLUSTER);
+			event.getItemDisplayBuilder().accept(SMALL_GLOBETTE_NETHER_BUD);
+			event.getItemDisplayBuilder().accept(LARGE_GLOBETTE_NETHER_BUD);
+			event.getItemDisplayBuilder().accept(GLOBETTE_NETHER_CLUSTER);
+			event.getItemDisplayBuilder().accept(SMALL_GLOBETTE_END_BUD);
+			event.getItemDisplayBuilder().accept(LARGE_GLOBETTE_END_BUD);
+			event.getItemDisplayBuilder().accept(GLOBETTE_END_CLUSTER);
+			
+			event.getItemDisplayBuilder().accept(PURE_GLOBETTE_BLOCK);
+			event.getItemDisplayBuilder().accept(PURE_GLOBETTE_NETHER_BLOCK);
+			event.getItemDisplayBuilder().accept(PURE_GLOBETTE_END_BLOCK);
+			event.getItemDisplayBuilder().accept(PURE_GLOBETTE);
+			event.getItemDisplayBuilder().accept(PURE_GLOBETTE_NETHER);
+			event.getItemDisplayBuilder().accept(PURE_GLOBETTE_END);
+		}
 	}
 	
 	@Override

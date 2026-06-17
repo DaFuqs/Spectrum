@@ -1,15 +1,19 @@
 package de.dafuqs.spectrum.compat.create;
 
 import com.simibubi.create.api.event.*;
+import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.compat.botania.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.data.models.model.*;
+import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
@@ -34,8 +38,23 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	@Override
 	public void register(IEventBus modBus) {
+		NeoForge.EVENT_BUS.addListener(CreateCompat::addItemsToSubTabs);
+		
 		NeoForge.EVENT_BUS.addListener(CreateCompat::onPipeSpillCollision);
 		NeoForge.EVENT_BUS.addListener(CreateCompat::onPipeFlowCollision);
+	}
+	
+	@SubscribeEvent
+	public static void addItemsToSubTabs(CreativeSubTabEvent event) {
+		ResourceLocation subGroupId = event.subGroup().getIdentifier();
+		
+		if (subGroupId.equals(ItemGroupIDs.SUBTAB_PURE_RESOURCES)) {
+			event.getItemDisplayBuilder().accept(PURE_ZINC);
+			event.getItemDisplayBuilder().accept(SMALL_ZINC_BUD);
+			event.getItemDisplayBuilder().accept(LARGE_ZINC_BUD);
+			event.getItemDisplayBuilder().accept(ZINC_CLUSTER);
+			event.getItemDisplayBuilder().accept(PURE_ZINC_BLOCK);
+		}
 	}
 	
 	private static void onPipeFlowCollision(PipeCollisionEvent.Flow event) {

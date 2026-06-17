@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "spectrum:block/topaz_pillar_bottom",
-    "side": "spectrum:block/topaz_pillar",
-    "top": "spectrum:block/topaz_pillar_top"
-  }
-}

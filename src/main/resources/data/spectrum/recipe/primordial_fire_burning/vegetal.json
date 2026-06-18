@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:primordial_fire_burning",
+  "ingredient": [
+    {
+      "item": "spectrum:vegetal_block"
+    }
+  ],
+  "result": {
+    "id": "minecraft:slime_block"
+  },
+  "required_advancement": "spectrum:collect_vegetal"
+}

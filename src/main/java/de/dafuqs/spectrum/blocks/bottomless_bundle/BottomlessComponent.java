@@ -43,7 +43,7 @@ public record BottomlessComponent(BottomlessItemHandler handler) {
 	 * @return the component
 	 */
 	public static BottomlessComponent get(ItemStack bottomlessBundle, HolderLookup.@Nullable Provider registryLookup, boolean recalculateEnchantmentDependentValuesAndSet) {
-		@Nullable BottomlessComponent existing = bottomlessBundle.get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
+		BottomlessComponent existing = bottomlessBundle.get(SpectrumDataComponentTypes.BOTTOMLESS_STACK);
 		
 		ItemStack storedStack = ItemStack.EMPTY;
 		long storedCount = 0;

@@ -121,9 +121,13 @@ public class BottomlessBundleItem extends BlockItem {
 		}
 		
 		if (locked) {
-			tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.locked", variant.getItem().getDescription().getString()).withStyle(ChatFormatting.GRAY));
+			if(variant.isEmpty()) {
+				tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.locked_to_nothing", variant.getItem().getDescription().getString()).withStyle(ChatFormatting.GRAY));
+			} else {
+				tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.locked", variant.getItem().getDescription().getString()).withStyle(ChatFormatting.GRAY));
+			}
 		}
-		if(locked || (!variant.isEmpty() && storedAmount > 0)) {
+		if((locked && !variant.isEmpty()) || (!variant.isEmpty() && storedAmount > 0)) {
 			tooltip.add(Component.translatable("item.spectrum.bottomless_bundle.tooltip.enter_inventory", variant.getItem().getDescription().getString()).withStyle(ChatFormatting.GRAY));
 		}
 		
@@ -206,12 +210,14 @@ public class BottomlessBundleItem extends BlockItem {
 		BottomlessComponent component = BottomlessComponent.get(stack, world.registryAccess(), true);
 		BottomlessItemHandler handler = component.handler();
 		
-		ItemStack bundledVariant = handler.variant();
-		ItemStack bundledStack = bundledVariant.copyWithCount((int) Math.min(Integer.MAX_VALUE, handler.count()));
-		bundledStack.inventoryTick(world, entity, slot, selected);
-		if (!ItemStack.isSameItemSameComponents(bundledVariant, bundledStack) || bundledStack.getCount() != handler.count()) {
-			handler.setStack(bundledStack);
-			stack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(handler));
+		if(!handler.isEmpty()) {
+			ItemStack bundledVariant = handler.variant();
+			ItemStack bundledStack = bundledVariant.copyWithCount((int) Math.min(Integer.MAX_VALUE, handler.count()));
+			bundledStack.inventoryTick(world, entity, slot, selected);
+			if (!ItemStack.isSameItemSameComponents(bundledVariant, bundledStack) || bundledStack.getCount() != handler.count()) {
+				handler.setStack(bundledStack);
+				stack.set(SpectrumDataComponentTypes.BOTTOMLESS_STACK, new BottomlessComponent(handler));
+			}
 		}
 	}
 	

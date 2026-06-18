@@ -43,11 +43,8 @@ public abstract class PlayerInventoryMixin {
 				continue;
 			}
 			
-			@Nullable IItemHandler itemHandler = inventoryStack.getCapability(Capabilities.ItemHandler.ITEM);
+			IItemHandler itemHandler = inventoryStack.getCapability(Capabilities.ItemHandler.ITEM);
 			if(itemHandler != null) {
-				if(!ItemStack.isSameItemSameComponents(stackToAdd, itemHandler.getStackInSlot(0))) {
-					continue;
-				}
 				if(!itemHandler.isItemValid(0, stackToAdd)) {
 					continue;
 				}

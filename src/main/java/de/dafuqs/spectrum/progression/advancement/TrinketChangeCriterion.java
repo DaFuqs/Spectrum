@@ -30,9 +30,11 @@ public class TrinketChangeCriterion extends SimpleCriterionTrigger<TrinketChange
 				for (int i = 0; i < equippedCurios.getSlots(); i++) {
 					ItemStack stack = equippedCurios.getStackInSlot(i);
 					
-					equippedStacks.add(stack);
-					if (stack.is(SpectrumItemTags.TRINKETS)) {
-						spectrumStacks++;
+					if(!stack.isEmpty()) {
+						equippedStacks.add(stack);
+						if (stack.is(SpectrumItemTags.TRINKETS)) {
+							spectrumStacks++;
+						}
 					}
 				}
 				return conditions.matches(equippedStacks, equippedStacks.size(), spectrumStacks);
@@ -64,7 +66,7 @@ public class TrinketChangeCriterion extends SimpleCriterionTrigger<TrinketChange
 			if(!this.totalCountRange.matches(totalCount)) {
 				return false;
 			}
-			if(this.spectrumCountRange.matches(spectrumCount)) {
+			if(!this.spectrumCountRange.matches(spectrumCount)) {
 				return false;
 			}
 			

@@ -62,14 +62,14 @@ public class PrimordialLighterItem extends FlintAndSteelItem implements Creative
 		
 		if (PrimordialFireBlock.canBePlacedAt(world, blockOnSide, context.getHorizontalDirection())) {
 			world.playSound(player, blockOnSide, SpectrumSoundEvents.ITEM_PRIMORDIAL_LIGHTER_USE, SoundSource.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
-			BlockState primordialFireState = SpectrumBlocks.PRIMORDIAL_FIRE.get().getStateForPosition(world, blockOnSide);
+			BlockState primordialFireState = SpectrumBlocks.PRIMORDIAL_FIRE.get().getStateForPosition(world, blockOnSide, context.getClickedFace().getOpposite());
 			world.setBlock(blockOnSide, primordialFireState, 11);
 			world.gameEvent(player, GameEvent.BLOCK_PLACE, pos);
 			
 			ItemStack stack = context.getItemInHand();
-			if (player instanceof ServerPlayer serverPlayerEntity) {
-				CriteriaTriggers.PLACED_BLOCK.trigger(serverPlayerEntity, blockOnSide, stack);
-				stack.hurtAndBreak(1, serverPlayerEntity, LivingEntity.getSlotForHand(context.getHand()));
+			if (player instanceof ServerPlayer serverPlayer) {
+				CriteriaTriggers.PLACED_BLOCK.trigger(serverPlayer, blockOnSide, stack);
+				stack.hurtAndBreak(1, serverPlayer, LivingEntity.getSlotForHand(context.getHand()));
 			}
 			
 			return InteractionResult.sidedSuccess(world.isClientSide());

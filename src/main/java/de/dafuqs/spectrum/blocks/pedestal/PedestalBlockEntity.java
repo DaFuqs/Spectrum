@@ -758,6 +758,11 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 	}
 	
+	@Override
+	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction dir) {
+		return true;
+	}
+	
 	private boolean hasCraftingTablet() {
 		return inventory.get(CRAFTING_TABLET_SLOT_ID).getCount() > 0;
 	}
@@ -771,11 +776,6 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		int line = slot / 3;
 		int posInLine = slot % 3;
 		return line * recipeWidth + posInLine;
-	}
-	
-	@Override
-	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction dir) {
-		return slot == OUTPUT_SLOT_ID;
 	}
 	
 	@Override

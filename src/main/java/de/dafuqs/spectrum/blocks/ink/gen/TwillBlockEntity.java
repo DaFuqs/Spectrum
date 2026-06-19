@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.ink.gen;
 
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
+import de.dafuqs.spectrum.blocks.decay.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -12,6 +13,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 
@@ -19,7 +21,7 @@ public class TwillBlockEntity extends InkGeneratorBlockEntity {
 	
 	public static final int MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL = 16;
 	public static final int MAX_BLOCK_CHECK_DISTANCE_UP = 6;
-	public static final long GENERATED_INK_PER_VALID_BLOCK = 1;
+	public static final long GENERATED_INK_PER_VALID_BLOCK = (long) Math.pow(2, 2);
 	
 	public TwillBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.TWILL.get(), blockPos, blockState, 1);
@@ -51,7 +53,6 @@ public class TwillBlockEntity extends InkGeneratorBlockEntity {
 					new Vec3(0.22, 0.0, 0.22),
 					new Vec3(0.0, 0.1, 0.0)
 			);
-			
 			return true;
 		}
 		return false;

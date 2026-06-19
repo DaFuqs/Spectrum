@@ -40,20 +40,21 @@ public class SingleInkStorage extends InkStorage {
 	
 	@Override
 	public long addEnergy(InkColor color, long amount) {
-		if (color == storedColor) {
-			long resultingAmount = this.storedEnergy + amount;
-			this.storedEnergy = resultingAmount;
-			if (resultingAmount > this.maxEnergy) {
-				long overflow = this.storedEnergy - this.maxEnergy;
-				this.storedEnergy = this.maxEnergy;
-				return overflow;
-			}
-			return 0;
-		} else if (this.storedEnergy == 0) {
-			this.storedColor = color;
-			this.storedEnergy = amount;
+		if (!this.accepts(color)) {
+			return amount;
 		}
-		return amount;
+		
+		if (this.storedEnergy == 0) {
+			this.storedColor = color;
+		}
+		long resultingAmount = this.storedEnergy + amount;
+		this.storedEnergy = resultingAmount;
+		if (resultingAmount > this.maxEnergy) {
+			long overflow = this.storedEnergy - this.maxEnergy;
+			this.storedEnergy = this.maxEnergy;
+			return overflow;
+		}
+		return 0;
 	}
 	
 	@Override
@@ -133,7 +134,7 @@ public class SingleInkStorage extends InkStorage {
 	
 	@Override
 	public long getRoom(InkColor color) {
-		if (this.storedEnergy == 0 || this.storedColor == color) {
+		if (this.accepts(color)) {
 			return this.maxEnergy - this.storedEnergy;
 		} else {
 			return 0;

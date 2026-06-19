@@ -76,7 +76,12 @@ public abstract class InkStorage implements Clearable {
 		return colors;
 	}
 	
-	// returns the amount of energy that could not be added
+	/**
+	 * Adds energy to the storage
+	 * @param color the color to add to
+	 * @param amount the amount to add
+	 * @return the amount of energy that could not be added
+	 */
 	public abstract long addEnergy(InkColor color, long amount);
 	
 	// Drains energy from the storage. Returns the amount of energy that could be drained

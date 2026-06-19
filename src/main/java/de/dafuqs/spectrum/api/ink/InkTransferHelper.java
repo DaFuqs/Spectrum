@@ -110,7 +110,8 @@ public class InkTransferHelper {
 			for (InkStorage s : accepting) {
 				long room = s.getRoom(color);
 				if (room > 0) {
-					long added = room - s.addEnergy(color, room);
+					long toAdd = Math.min(pooled, room);
+					long added = -s.addEnergy(color, toAdd);
 					pooled -= added;
 				}
 				if (pooled <= 0) break;

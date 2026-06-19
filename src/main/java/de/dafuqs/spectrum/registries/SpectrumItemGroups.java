@@ -257,6 +257,10 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.FLUID_SENDER_NODE);
 					entries.accept(SpectrumBlocks.FLUID_STORAGE_NODE);
 					entries.accept(SpectrumBlocks.FLUID_GATHER_NODE);
+					entries.accept(SpectrumBlocks.OMNI_PROVIDER_NODE);
+					entries.accept(SpectrumBlocks.OMNI_SENDER_NODE);
+					entries.accept(SpectrumBlocks.OMNI_STORAGE_NODE);
+					entries.accept(SpectrumBlocks.OMNI_GATHER_NODE);
 					
 					entries.accept(SpectrumBlocks.LIGHT_LEVEL_DETECTOR);
 					entries.accept(SpectrumBlocks.WEATHER_DETECTOR);

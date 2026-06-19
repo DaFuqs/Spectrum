@@ -30,6 +30,7 @@ public class TwillBlock extends InkGeneratorBlock {
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		tooltip.add(Component.translatable("block.spectrum.twill.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("block.spectrum.twill.tooltip2").withStyle(ChatFormatting.GRAY));
 	}
 	
 	@Override

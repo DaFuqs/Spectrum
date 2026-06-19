@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
+import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.alg.interfaces.*;
@@ -13,6 +14,7 @@ import org.jgrapht.alg.shortestpath.*;
 import org.jgrapht.graph.*;
 
 import java.util.*;
+import java.util.function.*;
 
 @SuppressWarnings("UnstableApiUsage")
 public class PastelTransmissionLogic {
@@ -79,6 +81,22 @@ public class PastelTransmissionLogic {
 	
 	public Set<PastelNodeBlockEntity> getLoadedNodes(PastelNodeType type) {
 		return this.network.getLoadedNodes(type, PastelNetwork.NodePriority.GENERIC);
+	}
+	
+	public Set<PastelNodeBlockEntity> getLoadedNodes(DeferredHolder<PastelPayloadType, ?> payloadType) {
+		Set<PastelNodeBlockEntity> nodes = new HashSet<>();
+		for(PastelNodeType type : PastelNodeType.values()) {
+			var loaded = this.getLoadedNodes(type);
+			for(PastelNodeBlockEntity entity : loaded) {
+				for(Supplier<? extends PastelPayloadType> typeSupplier : entity.getSupportedPayloads()) {
+					if(typeSupplier.get().equals(payloadType.get())) {
+						nodes.add(entity);
+						break;
+					}
+				}
+			}
+		}
+		return nodes;
 	}
 	
 	public void addTransmission(PastelNodeBlockEntity sourceNode, PastelNodeBlockEntity destinationNode, PastelTransmissionLogic.TransferMode transferMode, PastelTransmission transmission) {

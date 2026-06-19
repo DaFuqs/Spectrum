@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
 
+// produces roughly ~10k Ink / ingame day
 public class DawnbrushBlockEntity extends InkGeneratorBlockEntity {
 	
 	public DawnbrushBlockEntity(BlockPos blockPos, BlockState blockState) {

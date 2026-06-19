@@ -100,7 +100,8 @@ public class SpectrumBlockEntities {
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PastelNodeBlockEntity>> PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new,
 			SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.INK_NODE,
 			SpectrumBlocks.ITEM_PROVIDER_NODE, SpectrumBlocks.ITEM_STORAGE_NODE, SpectrumBlocks.ITEM_SENDER_NODE, SpectrumBlocks.ITEM_GATHER_NODE,
-			SpectrumBlocks.FLUID_PROVIDER_NODE, SpectrumBlocks.FLUID_STORAGE_NODE, SpectrumBlocks.FLUID_SENDER_NODE, SpectrumBlocks.FLUID_GATHER_NODE);
+			SpectrumBlocks.FLUID_PROVIDER_NODE, SpectrumBlocks.FLUID_STORAGE_NODE, SpectrumBlocks.FLUID_SENDER_NODE, SpectrumBlocks.FLUID_GATHER_NODE,
+			SpectrumBlocks.OMNI_PROVIDER_NODE, SpectrumBlocks.OMNI_STORAGE_NODE, SpectrumBlocks.OMNI_SENDER_NODE, SpectrumBlocks.OMNI_GATHER_NODE);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<HummingstoneBlockEntity>> HUMMINGSTONE = register("hummingstone", HummingstoneBlockEntity::new, SpectrumBlocks.HUMMINGSTONE);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PlacedItemBlockEntity>> PLACED_ITEM = register("placed_item", PlacedItemBlockEntity::new, SpectrumBlocks.INCANDESCENT_AMALGAM, SpectrumBlocks.THREAT_CONFLUX, SpectrumBlocks.PARAMETRIC_MINING_DEVICE,
 			SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR);

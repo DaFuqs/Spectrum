@@ -54,11 +54,13 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	
 	protected final PastelNodeType pastelNodeType;
 	protected final Set<Supplier<? extends PastelPayloadType>> supportedPayloads;
+	protected final List<Component> tooltips;
 	
-	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType, Set<Supplier<? extends PastelPayloadType>> supportedPayloads) {
+	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType, Set<Supplier<? extends PastelPayloadType>> supportedPayloads, List<Component> tooltips) {
 		super(settings.lightLevel(s -> s.getValue(LIT) ? 13 : 0));
 		this.pastelNodeType = pastelNodeType;
 		this.supportedPayloads = supportedPayloads;
+		this.tooltips = tooltips;
 		registerDefaultState(defaultBlockState().setValue(LIT, false).setValue(REDSTONE_EMITTING, false));
 	}
 	
@@ -120,7 +122,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
-		tooltip.addAll(this.pastelNodeType.getTooltips());
+		tooltip.addAll(this.tooltips);
 		tooltip.add(Component.translatable("block.spectrum.pastel_network_nodes.tooltip.range", PastelNodeBlockEntity.RANGE).withStyle(ChatFormatting.GRAY));
 	}
 	

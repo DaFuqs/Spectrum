@@ -64,6 +64,10 @@ public class SpectrumCapabilities {
 		event.registerItem(Capabilities.FluidHandler.ITEM, (stack, v) -> new FluidHandlerItemStackSimple.Consumable(SpectrumDataComponentTypes.FLUID_CONTENT, stack, 1000), SpectrumItems.MERMAIDS_GEM.get());
 		
 		// Ink Blocks
+		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.TWILL.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
+		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.VANTACLAST.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
+		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.DAWNBRUSH.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
+		
 		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.COLOR_PICKER.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
 		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.TINTING_STATION.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
 		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.CINDERHEARTH.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));

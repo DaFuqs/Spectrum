@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.ink;
+package de.dafuqs.spectrum.blocks.ink.gen;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.data_loaders.*;

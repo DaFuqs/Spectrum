@@ -1,7 +1,8 @@
-package de.dafuqs.spectrum.blocks.ink;
+package de.dafuqs.spectrum.blocks.ink.gen;
 
 import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
+import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;

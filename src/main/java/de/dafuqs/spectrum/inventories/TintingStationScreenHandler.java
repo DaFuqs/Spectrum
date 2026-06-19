@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.api.ink.color.*;
-import de.dafuqs.spectrum.blocks.ink.*;
+import de.dafuqs.spectrum.blocks.ink.sink.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;

@@ -1,50 +1,46 @@
-package de.dafuqs.spectrum.blocks.ink;
+package de.dafuqs.spectrum.blocks.ink.gen;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.api.ink.storage.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
 
 import javax.annotation.Nullable;
 import java.util.*;
 
-public class VantaclastBlock extends InkGeneratorBlock {
+public class DawnbrushBlock extends InkGeneratorBlock {
 	
-	public static final MapCodec<VantaclastBlock> CODEC = simpleCodec(VantaclastBlock::new);
+	public static final MapCodec<DawnbrushBlock> CODEC = BlockBehaviour.simpleCodec(DawnbrushBlock::new);
 	
-	public VantaclastBlock(Properties settings) {
+	public DawnbrushBlock(BlockBehaviour.Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public MapCodec<? extends VantaclastBlock> codec() {
+	public MapCodec<? extends DawnbrushBlock> codec() {
 		return CODEC;
 	}
 	
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
-		tooltip.add(Component.translatable("block.spectrum.vantaclast.tooltip").withStyle(ChatFormatting.GRAY));
+		tooltip.add(Component.translatable("block.spectrum.dawnbrush.tooltip").withStyle(ChatFormatting.GRAY));
 	}
 	
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new VantaclastBlockEntity(pos, state);
+		return new DawnbrushBlockEntity(pos, state);
 	}
 	
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-		return createInkGeneratorTicker(level, blockEntityType, SpectrumBlockEntities.VANTACLAST.get());
+		return createInkGeneratorTicker(level, blockEntityType, SpectrumBlockEntities.DAWNBRUSH.get());
 	}
-	
+
 }

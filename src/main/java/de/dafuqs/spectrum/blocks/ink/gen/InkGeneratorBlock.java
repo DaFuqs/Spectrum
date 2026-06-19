@@ -1,5 +1,6 @@
-package de.dafuqs.spectrum.blocks.ink;
+package de.dafuqs.spectrum.blocks.ink.gen;
 
+import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;

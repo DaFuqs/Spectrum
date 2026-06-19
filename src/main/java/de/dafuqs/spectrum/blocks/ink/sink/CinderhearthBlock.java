@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.ink;
+package de.dafuqs.spectrum.blocks.ink.sink;
 
 import com.klikli_dev.modonomicon.api.multiblock.*;
 import com.mojang.serialization.*;

@@ -1,6 +1,7 @@
-package de.dafuqs.spectrum.blocks.ink;
+package de.dafuqs.spectrum.blocks.ink.sink;
 
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;

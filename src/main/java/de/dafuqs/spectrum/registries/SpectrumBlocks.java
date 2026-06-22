@@ -100,6 +100,7 @@ import java.util.function.*;
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 import static de.dafuqs.spectrum.data.SpectrumModelHelper.*;
 import static de.dafuqs.spectrum.registries.SpectrumItems.*;
+import static me.shedaniel.rei.api.common.entry.comparison.EntryComparator.component;
 import static net.minecraft.world.level.block.Blocks.*;
 
 @SuppressWarnings({"unused"})
@@ -1910,7 +1911,14 @@ public class SpectrumBlocks {
 		for (SpectrumSkullType type : SpectrumSkullType.values()) {
 			BlockRegistrar<SpectrumSkullBlock> head = block(type.getSerializedName() + "_head", () -> new SpectrumSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(SKELETON_SKULL).instrument(NoteBlockInstrument.CUSTOM_HEAD))).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, SpectrumModelTemplates.SKULL_ITEM)).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModelTemplates.MOB_HEAD));
 			DeferredBlock<SpectrumWallSkullBlock> wallHead = register(block(type.getSerializedName() + "_wall_head", () -> new SpectrumWallSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(SKELETON_SKULL).dropsLike(head.holder.get()))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModelTemplates.MOB_HEAD)));
-			register(head.withItem(block -> new SpectrumSkullBlockItem(block, wallHead.get(), IS.of(), type)));
+			
+			register(head.withItem(block -> {
+				Item.Properties itemProperies = IS.of();
+				if (type == SpectrumSkullType.WITHER) {
+					itemProperies = itemProperies.component(SpectrumDataComponentTypes.DAMAGE_IMMUNE, List.of(DamageTypeTags.IS_EXPLOSION));
+				}
+				return new SpectrumSkullBlockItem(block, wallHead.get(), itemProperies, type);
+			}));
 		}
 		
 		REGISTRAR.register(eventBus);

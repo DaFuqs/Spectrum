@@ -8,10 +8,8 @@ import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import net.neoforged.bus.api.*;
-import net.neoforged.fml.*;
-import net.neoforged.fml.common.*;
-import net.neoforged.fml.event.lifecycle.*;
+import net.neoforged.bus.api.*;´
+import net.neoforged.fml.common.*;´
 import net.neoforged.neoforge.event.*;
 import org.jetbrains.annotations.*;
 import org.jspecify.annotations.Nullable;

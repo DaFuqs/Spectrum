@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
+import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
@@ -11,6 +12,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.neoforge.common.util.*;
+
 import javax.annotation.*;
 
 import java.util.*;
@@ -47,4 +50,11 @@ public class BedrockFishingRodItem extends SpectrumFishingRodItem implements Pre
 		tooltip.add(Component.translatable("item.spectrum.bedrock_fishing_rod.tooltip").withStyle(ChatFormatting.GRAY));
 	}
 	
+	@Override
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+		TriState triState = SpectrumToolTiers.supportsBedrockTierEnchantment(enchantment);
+		if (triState.isFalse())
+			return false;
+		return super.supportsEnchantment(stack, enchantment);
+	}
 }

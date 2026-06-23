@@ -22,6 +22,7 @@ import de.dafuqs.spectrum.items.misc.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.effect.*;
+import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -37,6 +38,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.common.*;
+import net.neoforged.neoforge.common.util.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.registries.*;
 
@@ -133,6 +135,14 @@ public class SpectrumItems {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.SILK_TOUCH, 1);
+		}
+		
+		@Override
+		public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+			TriState triState = SpectrumToolTiers.supportsBedrockTierEnchantment(enchantment);
+			if (triState.isFalse())
+				return false;
+			return super.supportsEnchantment(stack, enchantment);
 		}
 	});
 	public static final DeferredItem<BedrockAxeItem> BEDROCK_AXE = register("bedrock_axe", () -> new BedrockAxeItem(SpectrumToolTiers.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(AxeItem.createAttributes(SpectrumToolTiers.BEDROCK, 5, -3.0F)).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));

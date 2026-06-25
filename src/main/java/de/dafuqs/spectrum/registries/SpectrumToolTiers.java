@@ -2,13 +2,10 @@ package de.dafuqs.spectrum.registries;
 
 import com.google.common.base.*;
 import de.dafuqs.spectrum.config.*;
-import net.minecraft.core.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.*;
-import net.neoforged.neoforge.common.util.*;
 
 import java.util.function.Supplier;
 

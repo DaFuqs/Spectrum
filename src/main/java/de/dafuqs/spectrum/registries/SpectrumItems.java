@@ -22,7 +22,6 @@ import de.dafuqs.spectrum.items.misc.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.effect.*;
-import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -38,7 +37,6 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.common.*;
-import net.neoforged.neoforge.common.util.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.registries.*;
 

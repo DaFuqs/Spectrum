@@ -136,14 +136,6 @@ public class SpectrumItems {
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.SILK_TOUCH, 1);
 		}
-		
-		@Override
-		public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-			TriState triState = SpectrumToolTiers.supportsBedrockTierEnchantment(enchantment);
-			if (triState.isFalse())
-				return false;
-			return super.supportsEnchantment(stack, enchantment);
-		}
 	});
 	public static final DeferredItem<BedrockAxeItem> BEDROCK_AXE = register("bedrock_axe", () -> new BedrockAxeItem(SpectrumToolTiers.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(AxeItem.createAttributes(SpectrumToolTiers.BEDROCK, 5, -3.0F)).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));
 	public static final DeferredItem<BedrockShovelItem> BEDROCK_SHOVEL = register("bedrock_shovel", () -> new BedrockShovelItem(SpectrumToolTiers.BEDROCK, IS.of(Rarity.UNCOMMON).attributes(ShovelItem.createAttributes(SpectrumToolTiers.BEDROCK, 1, -3.0F)).fireResistant().durability(SpectrumToolTiers.BEDROCK.getUses()).component(DataComponents.UNBREAKABLE, new Unbreakable(false))));

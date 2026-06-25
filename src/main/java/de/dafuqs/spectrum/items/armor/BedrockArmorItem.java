@@ -45,13 +45,4 @@ public abstract class BedrockArmorItem extends ArmorItem implements Preenchanted
 	public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
 		return true;
 	}
-	
-	@Override
-	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-		TriState triState = SpectrumToolTiers.supportsBedrockTierEnchantment(enchantment);
-		if (triState.isFalse())
-			return false;
-		return super.supportsEnchantment(stack, enchantment);
-	}
-	
 }

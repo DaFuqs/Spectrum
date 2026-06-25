@@ -25,13 +25,4 @@ public class BedrockHoeItem extends HoeItem implements Preenchanted {
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
-	
-	@Override
-	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-		TriState triState = SpectrumToolTiers.supportsBedrockTierEnchantment(enchantment);
-		if (triState.isFalse())
-			return false;
-		return super.supportsEnchantment(stack, enchantment);
-	}
-	
 }

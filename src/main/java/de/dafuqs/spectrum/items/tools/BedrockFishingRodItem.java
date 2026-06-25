@@ -49,12 +49,4 @@ public class BedrockFishingRodItem extends SpectrumFishingRodItem implements Pre
 		super.appendHoverText(stack, context, tooltip, type);
 		tooltip.add(Component.translatable("item.spectrum.bedrock_fishing_rod.tooltip").withStyle(ChatFormatting.GRAY));
 	}
-	
-	@Override
-	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-		TriState triState = SpectrumToolTiers.supportsBedrockTierEnchantment(enchantment);
-		if (triState.isFalse())
-			return false;
-		return super.supportsEnchantment(stack, enchantment);
-	}
 }

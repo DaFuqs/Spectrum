@@ -157,11 +157,4 @@ public enum SpectrumToolTiers implements Tier {
 	public Ingredient getRepairIngredient() {
 		return this.repairIngredient.get();
 	}
-	
-	public static TriState supportsBedrockTierEnchantment(Holder<Enchantment> holder) {
-		if (holder.getKey().equals(Enchantments.UNBREAKING)) {
-			return TriState.FALSE;
-		}
-		return TriState.DEFAULT;
-	}
 }

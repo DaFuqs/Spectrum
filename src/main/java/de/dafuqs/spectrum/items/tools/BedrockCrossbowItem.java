@@ -44,13 +44,4 @@ public class BedrockCrossbowItem extends CrossbowItem implements Preenchanted, A
 	public float getDivergenceMod(ItemStack stack, LivingEntity shooter) {
 		return 0.8F;
 	}
-	
-	@Override
-	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-		TriState triState = SpectrumToolTiers.supportsBedrockTierEnchantment(enchantment);
-		if (triState.isFalse())
-			return false;
-		return super.supportsEnchantment(stack, enchantment);
-	}
-	
 }

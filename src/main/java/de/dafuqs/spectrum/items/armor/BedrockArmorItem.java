@@ -2,16 +2,11 @@ package de.dafuqs.spectrum.items.armor;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.*;
-import net.neoforged.neoforge.common.util.*;
-
-import javax.annotation.*;
 
 public abstract class BedrockArmorItem extends ArmorItem implements Preenchanted {
 

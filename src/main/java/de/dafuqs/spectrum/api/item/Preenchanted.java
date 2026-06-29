@@ -14,7 +14,6 @@ import java.util.*;
 public interface Preenchanted {
 	
 	Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments();
-	
 	static ItemEnchantments buildDefaultEnchantments(HolderLookup.Provider lookup, Preenchanted item) {
 		ItemEnchantments.Mutable builder = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
 		for (Map.Entry<ResourceKey<Enchantment>, Integer> entry : item.getDefaultEnchantments().entrySet()) {
@@ -49,5 +48,4 @@ public interface Preenchanted {
 		
 		return defaultEnchants.isEmpty();
 	}
-	
 }

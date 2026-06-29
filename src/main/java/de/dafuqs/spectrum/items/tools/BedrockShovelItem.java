@@ -22,5 +22,4 @@ public class BedrockShovelItem extends ShovelItem implements Preenchanted {
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
-	
 }

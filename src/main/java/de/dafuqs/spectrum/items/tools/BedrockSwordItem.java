@@ -22,5 +22,4 @@ public class BedrockSwordItem extends SwordItem implements Preenchanted {
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
-	
 }

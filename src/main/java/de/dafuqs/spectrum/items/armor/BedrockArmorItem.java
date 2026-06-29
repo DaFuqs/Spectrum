@@ -7,7 +7,6 @@ import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 public abstract class BedrockArmorItem extends ArmorItem implements Preenchanted {
 
@@ -41,5 +40,4 @@ public abstract class BedrockArmorItem extends ArmorItem implements Preenchanted
 	public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
 		return true;
 	}
-	
 }

@@ -13,7 +13,6 @@
     "base": 15,
     "per_level_above_first": 0
   },
-  "primary_items": "#minecraft:enchantable/mining_loot",
   "slots": [
     "mainhand"
   ],

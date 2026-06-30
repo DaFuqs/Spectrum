@@ -152,28 +152,34 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if (!world.isClientSide()) {
-			// Specially handle fluid items
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (entity instanceof ItemEntity itemEntity && blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-				ItemStack itemStack = itemEntity.getItem();
-				Optional<IFluidHandlerItem> fluidHandler = FluidUtil.getFluidHandler(itemStack);
-				
-				// We're not considering stacked fluid storages for the time being
-				if (fluidHandler.isPresent()) {
-					FluidUtil.tryFluidTransfer(fusionShrineBlockEntity.tank, fluidHandler.get(), 1000, true);
-				} else {
-					itemEntity.setItem(InventoryHelper.smartAddToInventory(itemStack, fusionShrineBlockEntity, null));
-					fusionShrineBlockEntity.inventoryChanged();
-					return;
-				}
+		if (!world.isClientSide() && entity instanceof ItemEntity itemEntity) {
+			// do not pick up items that were results of crafting
+			if (entity.position().x % 0.5 == 0 && entity.position().z % 0.5 == 0) {
+				super.fallOn(world, state, pos, entity, fallDistance);
+				return;
 			}
 			
-			// do not pick up items that were results of crafting
-			if (entity.position().x % 0.5 != 0 && entity.position().z % 0.5 != 0) {
-				super.fallOn(world, state, pos, entity, fallDistance);
+			// Specially handle fluid items
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+				ItemStack stack = itemEntity.getItem();
+				Optional<IFluidHandlerItem> fluidHandler = FluidUtil.getFluidHandler(stack);
+				
+				if (fluidHandler.isPresent()) {
+					FluidStack transferredStack = FluidUtil.tryFluidTransfer(fusionShrineBlockEntity.tank, fluidHandler.get(), 1000, true);
+					if(!transferredStack.isEmpty()) {
+						var containerItem = fluidHandler.get().getContainer();
+						itemEntity.setItem(containerItem);
+						return;
+					}
+				}
+				itemEntity.setItem(InventoryHelper.smartAddToInventory(stack, fusionShrineBlockEntity, null));
+				fusionShrineBlockEntity.inventoryChanged();
+				return;
 			}
 		}
+		
+		super.fallOn(world, state, pos, entity, fallDistance);
 	}
 	
 	@Override

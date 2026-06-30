@@ -5,6 +5,8 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.fusion_shrine.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -18,6 +20,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
+import net.neoforged.neoforge.fluids.capability.*;
 import org.jspecify.annotations.Nullable;
 
 import java.util.*;
@@ -63,11 +66,24 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
 				ItemStack stack = itemEntity.getItem();
+				
+				Optional<IFluidHandlerItem> fluidHandler = FluidUtil.getFluidHandler(stack);
+				
+				if (fluidHandler.isPresent()) {
+					FluidStack transferredStack = FluidUtil.tryFluidTransfer(crystallarieumBlockEntity.tank, fluidHandler.get(), 1000, true);
+					if(!transferredStack.isEmpty()) {
+						var containerItem = fluidHandler.get().getContainer();
+						itemEntity.setItem(containerItem);
+						return;
+					}
+				}
+				
 				crystallarieumBlockEntity.acceptStack(stack, false, itemEntity.getOwner() != null ? itemEntity.getOwner().getUUID() : null);
+				return;
 			}
-		} else {
-			super.fallOn(world, state, pos, entity, fallDistance);
 		}
+		
+		super.fallOn(world, state, pos, entity, fallDistance);
 	}
 	
 	@Override

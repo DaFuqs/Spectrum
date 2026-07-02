@@ -256,7 +256,7 @@ public class SpectrumItems {
 	
 	public static final DeferredItem<Item> QUITOXIC_POWDER = register("quitoxic_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.REVEAL_QUITOXIC_REEDS, PURPLE_DYE));
 	public static final DeferredItem<Item> STORM_STONE = register("storm_stone", () -> new StormStoneItem(IS.of(), SpectrumAdvancements.REVEAL_STORM_STONES, YELLOW_DYE));
-	public static final DeferredItem<Item> MERMAIDS_GEM = register("mermaids_gem", () -> new MermaidsGemItem(SpectrumBlocks.MERMAIDS_BRUSH.get(), IS.of().component(SpectrumDataComponentTypes.FLUID_CONTENT, SimpleFluidContent.copyOf(new FluidStack(Fluids.WATER, 1000)))));
+	public static final DeferredItem<Item> MERMAIDS_GEM = register("mermaids_gem", () -> new MermaidsGemItem(SpectrumBlocks.MERMAIDS_BRUSH.get(), IS.of().component(SpectrumDataComponentTypes.FLUID_CONTENT, SimpleFluidContent.copyOf(new FluidStack(Fluids.WATER, FluidType.BUCKET_VOLUME)))));
 	public static final DeferredItem<CloakedItem> STAR_FRAGMENT = register("star_fragment", () -> new CloakedItem(IS.of(16), SpectrumAdvancements.UNLOCK_SHOOTING_STARS, PURPLE_DYE));
 	public static final DeferredItem<Item> STARDUST = register("stardust", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.UNLOCK_SHOOTING_STARS, PURPLE_DYE, SpectrumBannerPatternKeys.SHIMMER));
 	public static final DeferredItem<Item> ASH_FLAKES = register("ash_flakes", () -> new AshItem(IS.of()));

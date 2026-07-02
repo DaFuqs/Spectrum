@@ -24,7 +24,7 @@ import java.util.*;
 public class MermaidsGemItem extends ItemNameBlockItem implements RevelationAware {
 	
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
-	public static final int ITEM_INTERACTION_WATER_FILL_MILLIBUCKETS = 1000;
+	public static final int ITEM_INTERACTION_WATER_FILL_MILLIBUCKETS = FluidType.BUCKET_VOLUME;
 	
 	public MermaidsGemItem(Block block, Properties settings) {
 		super(block, settings);

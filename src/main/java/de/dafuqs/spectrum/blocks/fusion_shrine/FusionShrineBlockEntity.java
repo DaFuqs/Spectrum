@@ -46,7 +46,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	
 	private boolean inventoryChanged = true;
 	
-	public final FluidTank tank = new SpectrumFluidTank(1000, this) {
+	public final FluidTank tank = new SpectrumFluidTank(FluidType.BUCKET_VOLUME, this) {
 		@Override
 		protected void onContentsChanged() {
 			super.onContentsChanged();
@@ -191,7 +191,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
 		
 		scatterContents(world, blockPos.above(), fusionShrineBlockEntity); // drop remaining items
-		fusionShrineBlockEntity.tank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+		fusionShrineBlockEntity.tank.drain(FluidType.BUCKET_VOLUME, IFluidHandler.FluidAction.EXECUTE);
 	}
 	
 	@Override

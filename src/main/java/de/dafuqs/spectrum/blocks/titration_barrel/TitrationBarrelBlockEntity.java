@@ -34,7 +34,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 	protected static final int INVENTORY_SIZE = 5;
 	public static final int MAX_ITEM_COUNT = 64;
 	protected NonNullList<ItemStack> items;
-	protected FluidTank tank = new SpectrumFluidTank(1000, this);
+	protected FluidTank tank = new SpectrumFluidTank(FluidType.BUCKET_VOLUME, this);
 	
 	@Override
 	public NonNullList<ItemStack> getItems() {

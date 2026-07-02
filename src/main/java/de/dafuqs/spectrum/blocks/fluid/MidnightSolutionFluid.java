@@ -62,6 +62,11 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	}
 	
 	@Override
+	protected boolean canConvertToSource(Level level) {
+		return level.getGameRules().getBoolean(SpectrumGameRules.RULE_MIDNIGHT_SOLUTION_SOURCE_CONVERSION);
+	}
+	
+	@Override
 	public void animateTick(Level world, BlockPos pos, FluidState state, RandomSource random) {
 		BlockPos topPos = pos.above();
 		BlockState topState = world.getBlockState(topPos);

@@ -55,6 +55,11 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	}
 	
 	@Override
+	protected boolean canConvertToSource(Level level) {
+		return level.getGameRules().getBoolean(SpectrumGameRules.RULE_LIQUID_CRYSTAL_SOURCE_CONVERSION);
+	}
+	
+	@Override
 	public void animateTick(Level world, BlockPos pos, FluidState state, RandomSource random) {
 		BlockPos topPos = pos.above();
 		BlockState topState = world.getBlockState(topPos);

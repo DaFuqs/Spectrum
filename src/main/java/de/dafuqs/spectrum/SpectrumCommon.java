@@ -100,6 +100,7 @@ public class SpectrumCommon {
 		SpectrumEntityAttributes.register(modBus);
 		
 		// Register ALL the stuff
+		SpectrumGameRules.register();
 		logInfo("Registering Status Effects...");
 		SpectrumMobEffects.register(modBus);
 		logInfo("Registering Advancement Criteria...");

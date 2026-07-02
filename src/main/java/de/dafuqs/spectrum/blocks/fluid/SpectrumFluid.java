@@ -28,11 +28,6 @@ public abstract class SpectrumFluid extends FlowingFluid {
 		return fluid == getSource() || fluid == getFlowing();
 	}
 	
-	@Override
-	protected boolean canConvertToSource(Level world) {
-		return false;
-	}
-	
 	/**
 	 * Perform actions when fluid flows into a replaceable block.
 	 * => Drop the block

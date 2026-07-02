@@ -174,7 +174,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 		world.scheduleTick(pos, this, getFireTickDelay(world.getRandom()));
 		
 		if (world.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
-			if (!state.canSurvive(world, pos)) {
+			if (world.getGameRules().getBoolean(SpectrumGameRules.RULE_EXTINGUISHPRIMORDIALFIRE) || !state.canSurvive(world, pos)) {
 				world.removeBlock(pos, false);
 			}
 			

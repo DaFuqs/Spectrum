@@ -60,6 +60,7 @@ import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
+import net.minecraft.core.cauldron.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
@@ -1854,10 +1855,15 @@ public class SpectrumBlocks {
 		return settings(mapColor, SoundType.EMPTY, 100.0F).replaceable().noCollission().pushReaction(PushReaction.DESTROY).noLootTable().liquid();
 	}
 	
-	public static final DeferredBlock<Block> LIQUID_CRYSTAL = register(singleton(block("liquid_crystal", () -> new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL.get(), BLAZING_CRYSTAL.get().defaultBlockState(), fluid(MapColor.CRIMSON_STEM).lightLevel((state) -> LiquidCrystalFluidBlock.LUMINANCE).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
+	public static final DeferredBlock<Block> LIQUID_CRYSTAL = register(singleton(block("liquid_crystal", () -> new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL.get(), BLAZING_CRYSTAL.get().defaultBlockState(), fluid(MapColor.CRIMSON_STEM).lightLevel((state) -> SpectrumFluids.LIQUID_CRYSTAL_LIGHT_LEVEL).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
 	public static final DeferredBlock<Block> SLUDGE = register(singleton(block("sludge", () -> new SludgeFluidBlock(SpectrumFluids.SLUDGE.get(), MUD.defaultBlockState(), fluid(MapColor.TERRACOTTA_BROWN).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
 	public static final DeferredBlock<Block> MIDNIGHT_SOLUTION = register(singleton(block("midnight_solution", () -> new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION.get(), BLACK_MATERIA.get().defaultBlockState(), fluid(MapColor.WARPED_STEM).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
-	public static final DeferredBlock<Block> DRAGONROT = register(singleton(block("dragonrot", () -> new DragonrotFluidBlock(SpectrumFluids.DRAGONROT.get(), BLACKSTONE.defaultBlockState(), fluid(MapColor.ICE).lightLevel((state) -> 15).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
+	public static final DeferredBlock<Block> DRAGONROT = register(singleton(block("dragonrot", () -> new DragonrotFluidBlock(SpectrumFluids.DRAGONROT.get(), BLACKSTONE.defaultBlockState(), fluid(MapColor.ICE).lightLevel((state) -> SpectrumFluids.DRAGONROT_LIGHT_LEVEL).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
+	
+	public static final DeferredBlock<Block> LIQUID_CRYSTAL_CAULDRON = register(simple(block("liquid_crystal_cauldron", () -> new SpectrumCauldronBlock(SpectrumFluids.LIQUID_CRYSTAL_TYPE, CauldronInteraction.newInteractionMap("spectrum:liquid_crystal"), BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)))));
+	public static final DeferredBlock<Block> SLUDGE_CAULDRON = register(simple(block("sludge_cauldron", () -> new SpectrumCauldronBlock(SpectrumFluids.LIQUID_CRYSTAL_TYPE, CauldronInteraction.newInteractionMap("spectrum:sludge"), BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)))));
+	public static final DeferredBlock<Block> MIDNIGHT_SOLUTION_CAULDRON = register(simple(block("midnight_solution_cauldron", () -> new SpectrumCauldronBlock(SpectrumFluids.LIQUID_CRYSTAL_TYPE, CauldronInteraction.newInteractionMap("spectrum:midnight_solution"), BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)))));
+	public static final DeferredBlock<Block> DRAGONROT_CAULDRON = register(simple(block("dragonrot_cauldron", () -> new SpectrumCauldronBlock(SpectrumFluids.LIQUID_CRYSTAL_TYPE, CauldronInteraction.newInteractionMap("spectrum:dragonrot"), BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)))));
 	
 	public static final DeferredBlock<Block> TOPAZ_BRICKS = register(simple(blockWithItem("topaz_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_TOPAZ.get())), InkColors.CYAN)));
 	public static final DeferredBlock<Block> AMETHYST_BRICKS = register(simple(blockWithItem("amethyst_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_AMETHYST.get())), InkColors.MAGENTA)));

@@ -2172,6 +2172,11 @@
   "block.spectrum.bloodstone_bricks": "Bloodstone Bricks",
   "block.spectrum.mixed_refined_crystal_bricks": "Mixed Refined Crystal Bricks",
 
+  "block.spectrum.dragonrot_cauldron": "Dragonrot Cauldron",
+  "block.spectrum.liquid_crystal_cauldron": "Liquid Crystal Cauldron",
+  "block.spectrum.midnight_solution_cauldron": "Midnight Solution Cauldron",
+  "block.spectrum.sludge_cauldron": "Sludge Cauldron",
+
   "book.spectrum.guidebook.abyssal_vines.page0.text": "Serpentine stalks and glowing fruit make for an awfully familiar sight. Though dimmer and leafier, it is easy to see that these hanging vines are related to glow berries.\\\nGiven their paleness and crystalline aura, I guess that centuries of darkness and feeding on [Liquid Crystal](entry://general/liquid_crystal) transformed them into something that feels at home in the cool twilight of the abyss.",
   "book.spectrum.guidebook.abyssal_vines.page1.text": "*Touch fuzzy get dizzy*",
   "book.spectrum.guidebook.abyssal_vines.page1.title": "Fuzzy Leaves",

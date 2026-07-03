@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import com.simibubi.create.content.fluids.*;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
@@ -66,6 +67,7 @@ import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
+import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.items.*;
 import net.neoforged.neoforge.items.wrapper.*;
 import org.jspecify.annotations.Nullable;
@@ -91,6 +93,14 @@ public class SpectrumEventListeners {
 		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/sender_node_crystal")));
 		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/storage_node_crystal")));
 		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/gather_node_crystal")));
+	}
+	
+	@SubscribeEvent
+	public static void registerCauldronFluids(RegisterCauldronFluidContentEvent event) {
+		event.register(SpectrumBlocks.LIQUID_CRYSTAL_CAULDRON.get(), SpectrumFluids.LIQUID_CRYSTAL.get(), FluidType.BUCKET_VOLUME, null);
+		event.register(SpectrumBlocks.SLUDGE_CAULDRON.get(), SpectrumFluids.SLUDGE.get(), FluidType.BUCKET_VOLUME, null);
+		event.register(SpectrumBlocks.DRAGONROT_CAULDRON.get(), SpectrumFluids.DRAGONROT.get(), FluidType.BUCKET_VOLUME, null);
+		event.register(SpectrumBlocks.MIDNIGHT_SOLUTION_CAULDRON.get(), SpectrumFluids.MIDNIGHT_SOLUTION.get(), FluidType.BUCKET_VOLUME, null);
 	}
 	
 	@SubscribeEvent

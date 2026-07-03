@@ -309,7 +309,6 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		setLightForFluid(getBlockPos(), tank.getFluid().getFluid());
 	}
 	
-	// TODO: unused
 	private void setLightForFluid(BlockPos blockPos, Fluid fluid) {
 		if (level == null) return;
 		int fluidLight = fluid.getFluidType().getLightLevel();

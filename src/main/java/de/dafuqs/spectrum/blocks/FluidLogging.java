@@ -23,7 +23,7 @@ public class FluidLogging {
 	public enum State implements StringRepresentable {
 		NOT_LOGGED("none", 0),
 		WATER("water", 0),
-		LIQUID_CRYSTAL("liquid_crystal", LiquidCrystalFluidBlock.LUMINANCE);
+		LIQUID_CRYSTAL("liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL_LIGHT_LEVEL);
 		
 		private final String name;
 		private final int luminance;

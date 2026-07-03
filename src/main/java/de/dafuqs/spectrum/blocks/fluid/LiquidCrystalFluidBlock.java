@@ -15,8 +15,6 @@ import org.jspecify.annotations.Nullable;
 
 public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	
-	public static final int LUMINANCE = 11;
-	
 	public LiquidCrystalFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Properties settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
 	}

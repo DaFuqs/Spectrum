@@ -54,4 +54,5 @@ public class SpectrumBlockSetTypes {
 	
 	public static final BlockSetType NOXWOOD = BlockSetType.register(new BlockSetType(SpectrumCommon.MOD_ID + "_noxwood"));
 	public static final BlockSetType COLORED_WOOD = BlockSetType.register(new BlockSetType(SpectrumCommon.MOD_ID + "_colored_wood"));
+	public static final BlockSetType WEEPING_GALA = BlockSetType.register(new BlockSetType(SpectrumCommon.MOD_ID + "_weeping_gala"));
 }

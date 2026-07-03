@@ -1107,6 +1107,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.WEEPING_GALA_LANTERN);
 					entries.accept(SpectrumBlocks.WEEPING_GALA_LAMP);
 					entries.accept(SpectrumBlocks.WEEPING_GALA_LIGHT);
+					entries.accept(SpectrumBlocks.WEEPING_GALA_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.WEEPING_GALA_HANGING_SIGN.getFirst());
 					
 					entries.accept(SpectrumBlocks.SMALL_RED_DRAGONJAG);
 					entries.accept(SpectrumBlocks.SMALL_YELLOW_DRAGONJAG);

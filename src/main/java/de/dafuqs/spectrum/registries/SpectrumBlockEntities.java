@@ -140,7 +140,14 @@ public class SpectrumBlockEntities {
 				SpectrumBlocks.PURPLE_SIGN.getFirst().get(), SpectrumBlocks.PURPLE_SIGN.getSecond().get(),
 				SpectrumBlocks.RED_SIGN.getFirst().get(), SpectrumBlocks.RED_SIGN.getSecond().get(),
 				SpectrumBlocks.WHITE_SIGN.getFirst().get(), SpectrumBlocks.WHITE_SIGN.getSecond().get(),
-				SpectrumBlocks.YELLOW_SIGN.getFirst().get(), SpectrumBlocks.YELLOW_SIGN.getSecond().get()
+				SpectrumBlocks.YELLOW_SIGN.getFirst().get(), SpectrumBlocks.YELLOW_SIGN.getSecond().get(),
+				
+				SpectrumBlocks.EBONY_NOXWOOD_SIGN.getFirst().get(), SpectrumBlocks.EBONY_NOXWOOD_SIGN.getSecond().get(),
+				SpectrumBlocks.IVORY_NOXWOOD_SIGN.getFirst().get(), SpectrumBlocks.IVORY_NOXWOOD_SIGN.getSecond().get(),
+				SpectrumBlocks.SLATE_NOXWOOD_SIGN.getFirst().get(), SpectrumBlocks.SLATE_NOXWOOD_SIGN.getSecond().get(),
+				SpectrumBlocks.CHESTNUT_NOXWOOD_SIGN.getFirst().get(), SpectrumBlocks.CHESTNUT_NOXWOOD_SIGN.getSecond().get(),
+				
+				SpectrumBlocks.WEEPING_GALA_SIGN.getFirst().get(), SpectrumBlocks.WEEPING_GALA_SIGN.getSecond().get()
 		);
 		
 		event.modify(BlockEntityType.HANGING_SIGN,
@@ -159,7 +166,14 @@ public class SpectrumBlockEntities {
 				SpectrumBlocks.PURPLE_HANGING_SIGN.getFirst().get(), SpectrumBlocks.PURPLE_HANGING_SIGN.getSecond().get(),
 				SpectrumBlocks.RED_HANGING_SIGN.getFirst().get(), SpectrumBlocks.RED_HANGING_SIGN.getSecond().get(),
 				SpectrumBlocks.WHITE_HANGING_SIGN.getFirst().get(), SpectrumBlocks.WHITE_HANGING_SIGN.getSecond().get(),
-				SpectrumBlocks.YELLOW_HANGING_SIGN.getFirst().get(), SpectrumBlocks.YELLOW_HANGING_SIGN.getSecond().get()
+				SpectrumBlocks.YELLOW_HANGING_SIGN.getFirst().get(), SpectrumBlocks.YELLOW_HANGING_SIGN.getSecond().get(),
+				
+				SpectrumBlocks.EBONY_NOXWOOD_HANGING_SIGN.getFirst().get(), SpectrumBlocks.EBONY_NOXWOOD_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.IVORY_NOXWOOD_HANGING_SIGN.getFirst().get(), SpectrumBlocks.IVORY_NOXWOOD_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.SLATE_NOXWOOD_HANGING_SIGN.getFirst().get(), SpectrumBlocks.SLATE_NOXWOOD_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.CHESTNUT_NOXWOOD_HANGING_SIGN.getFirst().get(), SpectrumBlocks.CHESTNUT_NOXWOOD_HANGING_SIGN.getSecond().get(),
+				
+				SpectrumBlocks.WEEPING_GALA_HANGING_SIGN.getFirst().get(), SpectrumBlocks.WEEPING_GALA_HANGING_SIGN.getSecond().get()
 		);
 	}
 	

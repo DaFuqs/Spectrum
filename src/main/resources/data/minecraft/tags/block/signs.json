@@ -4,6 +4,9 @@
     "#spectrum:colored_wall_signs",
 
     "#spectrum:noxwood_standing_signs",
-    "#spectrum:noxwood_wall_signs"
+    "#spectrum:noxwood_wall_signs",
+
+    "spectrum:weeping_gala_sign",
+    "spectrum:weeping_gala_wall_sign"
   ]
 }

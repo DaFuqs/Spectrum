@@ -24,4 +24,6 @@ public class SpectrumWoodTypes {
 	public static final WoodType EBONY_NOXWOOD = WoodType.register(new WoodType("spectrum_ebony_noxwood", SpectrumBlockSetTypes.NOXWOOD));
 	public static final WoodType IVORY_NOXWOOD = WoodType.register(new WoodType("spectrum_ivory_noxwood", SpectrumBlockSetTypes.NOXWOOD));
 	public static final WoodType CHESTNUT_NOXWOOD = WoodType.register(new WoodType("spectrum_chestnut_noxwood", SpectrumBlockSetTypes.NOXWOOD));
+	
+	public static final WoodType WEEPING_GALA = WoodType.register(new WoodType("spectrum_weeping_gala", SpectrumBlockSetTypes.WEEPING_GALA));
 }

@@ -21,7 +21,6 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
-import net.minecraft.server.commands.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -212,7 +211,7 @@ public class SpectrumCommon {
 
 		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
 		modBus.addListener((Consumer<FMLCommonSetupEvent>) event -> event.enqueueWork(() -> {
-			SpectrumFluids.registerCauldronInteractions();
+			SpectrumCauldronInteractions.register();
 			SpectrumDispenserBehaviors.register();
 			SpectrumPresentUnpackBehaviors.register();
 			SpectrumItemGroups.registerSubTabs();

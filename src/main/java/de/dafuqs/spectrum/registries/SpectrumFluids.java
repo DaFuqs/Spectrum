@@ -3,19 +3,15 @@ package de.dafuqs.spectrum.registries;
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
-import net.minecraft.core.cauldron.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.material.*;
@@ -25,10 +21,8 @@ import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.registries.*;
-import javax.annotation.*;
 import org.joml.*;
 
-import java.util.*;
 import java.util.function.*;
 
 public class SpectrumFluids {
@@ -230,39 +224,6 @@ public class SpectrumFluids {
 		BufferUploader.drawWithShader(bufferBuilder.buildOrThrow());
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.disableBlend();
-	}
-	
-	public static final CauldronInteraction FILL_LIQUID_CRYSTAL = (p_315877_, p_315878_, p_315879_, p_315880_, p_315881_, p_315882_) -> CauldronInteraction.emptyBucket(
-			p_315878_, p_315879_, p_315880_, p_315881_, p_315882_,
-			SpectrumBlocks.LIQUID_CRYSTAL_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3),
-			SoundEvents.BUCKET_EMPTY
-	);
-	
-	public static final CauldronInteraction FILL_SLUDGE = (p_315877_, p_315878_, p_315879_, p_315880_, p_315881_, p_315882_) -> CauldronInteraction.emptyBucket(
-			p_315878_, p_315879_, p_315880_, p_315881_, p_315882_,
-			SpectrumBlocks.SLUDGE_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3),
-			SoundEvents.BUCKET_EMPTY
-	);
-	
-	public static final CauldronInteraction FILL_MIDNIGHT_SOLUTION = (p_315877_, p_315878_, p_315879_, p_315880_, p_315881_, p_315882_) -> CauldronInteraction.emptyBucket(
-			p_315878_, p_315879_, p_315880_, p_315881_, p_315882_,
-			SpectrumBlocks.MIDNIGHT_SOLUTION_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3),
-			SoundEvents.BUCKET_EMPTY
-	);
-	
-	public static final CauldronInteraction FILL_DRAGONROT = (p_315877_, p_315878_, p_315879_, p_315880_, p_315881_, p_315882_) -> CauldronInteraction.emptyBucket(
-			p_315878_, p_315879_, p_315880_, p_315881_, p_315882_,
-			SpectrumBlocks.DRAGONROT_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3),
-			SoundEvents.BUCKET_EMPTY
-	);
-	
-	public static void registerCauldronInteractions() {
-		CauldronInteraction.INTERACTIONS.put("spectrum:fluid_filling", new CauldronInteraction.InteractionMap("spectrum:fill", Map.of(
-				SpectrumItems.LIQUID_CRYSTAL_BUCKET.get(), FILL_LIQUID_CRYSTAL,
-				SpectrumItems.SLUDGE_BUCKET.get(), FILL_SLUDGE,
-				SpectrumItems.MIDNIGHT_SOLUTION_BUCKET.get(), FILL_MIDNIGHT_SOLUTION,
-				SpectrumItems.DRAGONROT_BUCKET.get(), FILL_DRAGONROT))
-		);
 	}
 	
 }

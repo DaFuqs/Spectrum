@@ -7,7 +7,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -59,7 +59,7 @@ public class MultiToolItem extends DiggerItem {
 	}
 	
 	@Override
-	public boolean canPerformAction(@NotNull ItemStack stack, @NotNull ItemAbility itemAbility) {
+	public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
 		return canTill(stack) && ItemAbilities.DEFAULT_AXE_ACTIONS.contains(itemAbility)
 				|| ItemAbilities.DEFAULT_SHOVEL_ACTIONS.contains(itemAbility)
 				|| ItemAbilities.DEFAULT_HOE_ACTIONS.contains(itemAbility);

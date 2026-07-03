@@ -29,9 +29,10 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -46,10 +47,9 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow
 	public abstract ItemStack getMainHandItem();
-	
+
 	@Shadow
-	@Nullable
-	public abstract MobEffectInstance getEffect(Holder<MobEffect> effect);
+	public abstract @Nullable MobEffectInstance getEffect(Holder<MobEffect> effect);
 	
 	@Shadow
 	public abstract void readAdditionalSaveData(CompoundTag nbt);
@@ -140,8 +140,17 @@ public abstract class LivingEntityMixin {
 	private boolean spectrum$modifyFluidWalking(boolean original) {
 		var entity = (LivingEntity) (Object) this;
 		
-		if (SpectrumCurioItem.hasEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get()))
-			return !entity.isUnderWater();
+		if (SpectrumCurioItem.hasEquipped(entity, SpectrumItems.RING_OF_AERIAL_GRACE.get())) {
+			double fluidHeight = entity.getFluidTypeHeight(entity.getMaxHeightFluidType());
+			double feetPos = entity.getBoundingBox().deflate(0.001).minY;
+			// striders use the collision of the lava source block which has a height of 8.0/16.0,
+			// however, getFluidTypeHeight uses FluidState#getHeight, which gives source blocks a height of 8.0/9.0
+			double fractionalHeight = (fluidHeight + feetPos) % 1;
+			if (fractionalHeight < 0) fractionalHeight++;
+			double collisionHeight = fractionalHeight * FluidState.AMOUNT_MAX / 16.0 + Math.floor(fluidHeight + feetPos);
+			
+			return feetPos > collisionHeight - 1.0E-5F;
+		}
 		
 		return original;
 	}
@@ -154,10 +163,10 @@ public abstract class LivingEntityMixin {
 		}
 		
 		if (instance.getTicksUsingItem() <= parryingSword.getPerfectParryWindow(instance, instance.getUseItem())) {
-			original.call(instance, SpectrumSoundEvents.PERFECT_PARRY, 1.75F, 0.9F + instance.level().random.nextFloat() * 0.3F);
-			original.call(instance, SpectrumSoundEvents.SWORD_BLOCK, 0.667F, 0.5F + instance.level().random.nextFloat() * 0.3F);
+			original.call(instance, SpectrumSoundEvents.PERFECT_PARRY, 1.75F, 0.9F + instance.level().getRandom().nextFloat() * 0.3F);
+			original.call(instance, SpectrumSoundEvents.SWORD_BLOCK, 0.667F, 0.5F + instance.level().getRandom().nextFloat() * 0.3F);
 		} else {
-			original.call(instance, SpectrumSoundEvents.SWORD_BLOCK, 1.0F, 0.8F + instance.level().random.nextFloat() * 0.4F);
+			original.call(instance, SpectrumSoundEvents.SWORD_BLOCK, 1.0F, 0.8F + instance.level().getRandom().nextFloat() * 0.4F);
 		}
 	}
 	
@@ -166,7 +175,7 @@ public abstract class LivingEntityMixin {
 	private void spectrum$applyConcealedEffects(Level world, ItemStack stack, FoodProperties foodComponent, CallbackInfoReturnable<ItemStack> cir) {
 		var oilEffect = stack.get(SpectrumDataComponentTypes.CONCEALED_EFFECT);
 		if (!world.isClientSide() && oilEffect != null)
-			((LivingEntity) (Object) this).addEffect(oilEffect);
+			((LivingEntity) (Object) this).addEffect(new MobEffectInstance(oilEffect));
 	}
 	
 	@ModifyReturnValue(method = "canDisableShield", at = @At("RETURN"))
@@ -385,7 +394,7 @@ public abstract class LivingEntityMixin {
 	private void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;
 		Level world = thisEntity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (thisEntity instanceof Mob thisMobEntity) {
 				for (ItemStack armorItemStack : thisMobEntity.getArmorSlots()) {
 					if (armorItemStack.getItem() instanceof ArmorWithHitEffect armorWithHitEffect) {

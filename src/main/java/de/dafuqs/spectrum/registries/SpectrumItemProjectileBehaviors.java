@@ -3,17 +3,24 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.attachment_types.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
+import de.dafuqs.spectrum.sound.*;
+import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
@@ -22,11 +29,15 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
+import vazkii.botania.common.helper.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class SpectrumItemProjectileBehaviors {
 	
@@ -243,6 +254,37 @@ public class SpectrumItemProjectileBehaviors {
 			}
 			
 		}, () -> ItemPredicate.Builder.item().of(SpectrumItems.AZURITE_GLASS_AMPOULE.get(), SpectrumItems.MALACHITE_GLASS_AMPOULE.get(), SpectrumItems.BLOODSTONE_GLASS_AMPOULE.get()).build());
+		
+		ItemProjectileBehavior.register(new ItemProjectileBehavior() {
+			@Override
+			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
+				if(hitResult.getEntity() instanceof LivingEntity livingEntity) {
+					int durationTicks = (int) (10 * Support.logBase(1.05, 1 + stack.getCount()));
+					PrimordialFireAttachmentType.addPrimordialFireTicks(livingEntity, durationTicks);
+					
+					return ItemStack.EMPTY;
+				}
+				return stack;
+			}
+			
+			@Override
+			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
+				Level world = projectile.level();
+				BlockPos hitPos = hitResult.getBlockPos();
+				Direction facing = hitResult.getDirection().getOpposite();
+				BlockPos placementPos = hitPos.relative(facing.getOpposite());
+				Direction placementDirection = world.isEmptyBlock(placementPos.below()) ? facing : Direction.UP;
+				
+				if (PrimordialFireBlock.canBePlacedAt(world, placementPos, placementDirection)) {
+					BlockState primordialFireState = SpectrumBlocks.PRIMORDIAL_FIRE.get().getStateForPosition(world, placementPos, facing);
+					world.setBlock(placementPos, primordialFireState, 11);
+					world.gameEvent(owner, GameEvent.BLOCK_PLACE, placementPos);
+					
+					stack.shrink(1);
+				}
+				return stack;
+			}
+		}, () -> ItemPredicate.Builder.item().of(SpectrumItems.DOOMBLOOM_SEED.get()).build());
 	}
 	
 	protected static void registerPvP() {
@@ -287,7 +329,11 @@ public class SpectrumItemProjectileBehaviors {
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
-				var recipe = CraftingTabletItem.getStoredRecipe(projectile.level(), stack).value();
+				RecipeHolder<?> storedRecipe = CraftingTabletItem.getStoredRecipe(projectile.level(), stack);
+				if(storedRecipe == null) {
+					return stack;
+				}
+				var recipe = storedRecipe.value();
 				if (recipe instanceof CraftingRecipe craftingRecipe && hitResult.getEntity() instanceof ServerPlayer target) {
 					CraftingTabletItem.tryCraftRecipe(target, craftingRecipe, projectile.level());
 				}

@@ -32,7 +32,7 @@ import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -65,11 +65,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(Level world) {
-		if (world.isClientSide) {
-			if (world.isClientSide()) {
-				ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.FUSION_SHRINE));
-			}
-		}
+		ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.FUSION_SHRINE));
 	}
 	
 	/*
@@ -101,11 +97,11 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
 		} else {
-			if (world.isClientSide) {
-				ModonomiconHelper.renderMultiblock(multiblock, SpectrumMultiblocks.FUSION_SHRINE_TEXT, blockPos.below(2), Rotation.NONE);
-			} else if (world.getBlockEntity(blockPos) instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-				fusionShrineBlockEntity.scatterContents(world);
-			}
+            if (world.isClientSide()) {
+                ModonomiconHelper.renderMultiblock(multiblock, SpectrumMultiblocks.FUSION_SHRINE_TEXT, blockPos.below(2), Rotation.NONE);
+            } else if (world.getBlockEntity(blockPos) instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+                fusionShrineBlockEntity.scatterContents(world);
+            }
 		}
 		
 		return valid;
@@ -115,10 +111,9 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(LIGHT_LEVEL);
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new FusionShrineBlockEntity(pos, state);
 	}
 	
@@ -157,70 +152,75 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if (!world.isClientSide) {
-			// Specially handle fluid items
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (entity instanceof ItemEntity itemEntity && blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-				ItemStack itemStack = itemEntity.getItem();
-				Optional<IFluidHandlerItem> fluidHandler = FluidUtil.getFluidHandler(itemStack);
-				
-				// We're not considering stacked fluid storages for the time being
-				if (fluidHandler.isPresent()) {
-					FluidUtil.tryFluidTransfer(fusionShrineBlockEntity.tank, fluidHandler.get(), 1000, true);
-				} else {
-					itemEntity.setItem(InventoryHelper.smartAddToInventory(itemStack, fusionShrineBlockEntity, null));
-					fusionShrineBlockEntity.inventoryChanged();
-					return;
-				}
+		if (!world.isClientSide() && entity instanceof ItemEntity itemEntity) {
+			// do not pick up items that were results of crafting
+			if (entity.position().x % 0.5 == 0 && entity.position().z % 0.5 == 0) {
+				super.fallOn(world, state, pos, entity, fallDistance);
+				return;
 			}
 			
-			// do not pick up items that were results of crafting
-			if (entity.position().x % 0.5 != 0 && entity.position().z % 0.5 != 0) {
-				super.fallOn(world, state, pos, entity, fallDistance);
+			// Specially handle fluid items
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+				ItemStack stack = itemEntity.getItem();
+				Optional<IFluidHandlerItem> fluidHandler = FluidUtil.getFluidHandler(stack);
+				
+				if (fluidHandler.isPresent()) {
+					FluidStack transferredStack = FluidUtil.tryFluidTransfer(fusionShrineBlockEntity.tank, fluidHandler.get(), 1000, true);
+					if(!transferredStack.isEmpty()) {
+						var containerItem = fluidHandler.get().getContainer();
+						itemEntity.setItem(containerItem);
+						return;
+					}
+				}
+				itemEntity.setItem(InventoryHelper.smartAddToInventory(stack, fusionShrineBlockEntity, null));
+				fusionShrineBlockEntity.inventoryChanged();
+				return;
 			}
 		}
+		
+		super.fallOn(world, state, pos, entity, fallDistance);
 	}
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (world.isClientSide) {
-			verifyStructure(world, pos, null);
-			return ItemInteractionResult.SUCCESS;
-		} else {
-			verifySkyAccess((ServerLevel) world, pos);
-			
-			// if the structure is valid the player can put / retrieve items and fluids into the shrine
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity && verifyStructure(world, pos, (ServerPlayer) player)) {
-				fusionShrineBlockEntity.setOwner(player);
-				
-				if (FluidUtil.interactWithFluidHandler(player, hand, fusionShrineBlockEntity.getTank())) {
-					fusionShrineBlockEntity.inventoryChanged();
-					return ItemInteractionResult.CONSUME;
-				}
-				if ((player.isShiftKeyDown() || handStack.isEmpty()) && retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
-					fusionShrineBlockEntity.inventoryChanged();
-					return ItemInteractionResult.CONSUME;
-				}
-				if (!handStack.isEmpty() && inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
-					fusionShrineBlockEntity.inventoryChanged();
-					return ItemInteractionResult.CONSUME;
-				}
-			}
-			
-			return ItemInteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            verifyStructure(world, pos, null);
+            return ItemInteractionResult.SUCCESS;
+        } else {
+            verifySkyAccess((ServerLevel) world, pos);
+
+            // if the structure is valid the player can put / retrieve items and fluids into the shrine
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity && verifyStructure(world, pos, (ServerPlayer) player)) {
+                fusionShrineBlockEntity.setOwner(player);
+
+                if (FluidUtil.interactWithFluidHandler(player, hand, fusionShrineBlockEntity.getTank())) {
+                    fusionShrineBlockEntity.inventoryChanged();
+                    return ItemInteractionResult.CONSUME;
+                }
+                if ((player.isShiftKeyDown() || handStack.isEmpty()) && retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
+                    fusionShrineBlockEntity.inventoryChanged();
+                    return ItemInteractionResult.CONSUME;
+                }
+                if (!handStack.isEmpty() && inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
+                    fusionShrineBlockEntity.inventoryChanged();
+                    return ItemInteractionResult.CONSUME;
+                }
+            }
+
+            return ItemInteractionResult.CONSUME;
+        }
 	}
 	
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.FUSION_SHRINE.get(), world.isClientSide ? FusionShrineBlockEntity::clientTick : FusionShrineBlockEntity::serverTick);
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return createTickerHelper(type, SpectrumBlockEntities.FUSION_SHRINE.get(), world.isClientSide() ? FusionShrineBlockEntity::clientTick : FusionShrineBlockEntity::serverTick);
 	}
 	
 	static {

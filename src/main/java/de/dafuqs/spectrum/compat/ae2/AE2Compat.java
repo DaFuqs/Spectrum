@@ -6,10 +6,13 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.SpectrumItems.*;
 import de.dafuqs.spectrum.registries.client.*;
+import net.minecraft.client.renderer.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.registries.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
@@ -30,13 +33,18 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	public static DeferredItem<Item> PURE_FLUIX = SpectrumItems.register("pure_fluix", () -> new Item(IS.of()));
 	
 	@Override
-	public void register() {
+	public void register(IEventBus modBus) {
 	
 	}
 	
 	@Override
-	public void registerClient() {
-	
+	public void registerClient(FMLClientSetupEvent event) {
+		ItemBlockRenderTypes.setRenderLayer(SMALL_CERTUS_QUARTZ_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_CERTUS_QUARTZ_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(CERTUS_QUARTZ_CLUSTER.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SMALL_FLUIX_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LARGE_FLUIX_BUD.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(FLUIX_CLUSTER.get(), RenderType.cutout());
 	}
 	
 }

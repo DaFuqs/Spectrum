@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -69,7 +69,7 @@ public class OminousSaplingBlock extends BushBlock implements EntityBlock {
 	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new OminousSaplingBlockEntity(SpectrumBlockEntities.OMINOUS_SAPLING.get(), pos, state);
 	}
-	
+
 	@Override
 	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return null;

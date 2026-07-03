@@ -11,13 +11,11 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
-import net.minecraft.stats.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -71,7 +69,7 @@ public class GuidebookItem extends ModonomiconItem implements LoomPatternProvide
 	}
 	
 	@Override
-	public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
 		if (!world.isClientSide() && user instanceof ServerPlayer serverPlayerEntity) {
 			// Process new advancement unlocks that got added
 			// after spectrum has been installed / updated

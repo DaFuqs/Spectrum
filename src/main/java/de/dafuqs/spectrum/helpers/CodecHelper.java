@@ -10,6 +10,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import org.apache.commons.lang3.math.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;
@@ -101,7 +102,7 @@ public class CodecHelper {
 		};
 	}
 	
-	public static <T, D> Optional<T> from(DynamicOps<D> ops, Codec<T> codec, D elem) {
+	public static <T, D> Optional<T> from(DynamicOps<D> ops, Codec<T> codec, @Nullable D elem) {
 		if (elem == null) return Optional.empty();
 		return codec.decode(ops, elem).result().map(com.mojang.datafixers.util.Pair::getFirst);
 	}

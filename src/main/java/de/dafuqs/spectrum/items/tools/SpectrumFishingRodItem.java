@@ -31,7 +31,7 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 		ItemStack itemStack = user.getItemInHand(hand);
 		
 		if (user.fishing != null) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				int damage = user.fishing.retrieve(itemStack);
 				itemStack.hurtAndBreak(damage, user, LivingEntity.getSlotForHand(hand));
 			}

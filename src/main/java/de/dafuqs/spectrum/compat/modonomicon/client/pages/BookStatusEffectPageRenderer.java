@@ -6,7 +6,12 @@ import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.texture.*;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.world.effect.*;
+
+import java.util.*;
 
 public class BookStatusEffectPageRenderer extends BookTextPageRenderer {
 	
@@ -14,8 +19,12 @@ public class BookStatusEffectPageRenderer extends BookTextPageRenderer {
 	
 	public BookStatusEffectPageRenderer(BookStatusEffectPage page) {
 		super(page);
-		var statusEffect = BuiltInRegistries.MOB_EFFECT.getHolder(page.getStatusEffectId()).orElse(null);
-		this.statusEffectSprite = Minecraft.getInstance().getMobEffectTextures().get(statusEffect);
+		Optional<Holder.Reference<MobEffect>> statusEffect = BuiltInRegistries.MOB_EFFECT.getHolder(page.getStatusEffectId());
+		if(statusEffect.isEmpty()) {
+			this.statusEffectSprite = Minecraft.getInstance().getMobEffectTextures().get(MobEffects.FIRE_RESISTANCE); // TODO: render missing image instead?
+		} else {
+			this.statusEffectSprite = Minecraft.getInstance().getMobEffectTextures().get(statusEffect.get());
+		}
 	}
 	
 	@Override

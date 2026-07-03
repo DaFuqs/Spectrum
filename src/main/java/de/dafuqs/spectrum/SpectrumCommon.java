@@ -16,6 +16,7 @@ import de.dafuqs.spectrum.loot.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.resources.*;
@@ -36,7 +37,7 @@ import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
 import net.neoforged.neoforge.network.event.*;
 import net.neoforged.neoforge.network.registration.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.*;
 
 import java.util.*;
@@ -98,6 +99,7 @@ public class SpectrumCommon {
 		SpectrumEntityAttributes.register(modBus);
 		
 		// Register ALL the stuff
+		SpectrumGameRules.register();
 		logInfo("Registering Status Effects...");
 		SpectrumMobEffects.register(modBus);
 		logInfo("Registering Advancement Criteria...");
@@ -166,7 +168,6 @@ public class SpectrumCommon {
 		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
 		SpectrumOmniAcceleratorProjectiles.register();
 		SpectrumItemProjectileBehaviors.register();
-
 		SpectrumEntityColorProcessors.register();
 		
 		logInfo("Registering Commands...");
@@ -186,6 +187,7 @@ public class SpectrumCommon {
 			event.addListener(EntityFishingDataLoader.INSTANCE);
 			event.addListener(CrystalApothecarySimulationsDataLoader.INSTANCE);
 			ColorRegistry.registerColorRegistries(event);
+			PotionWorkshopBrewingRecipe.clearMemorizedRecipes();
 		});
 		
 		NeoForge.EVENT_BUS.addListener((Consumer<ServerStartingEvent>) event -> {
@@ -209,6 +211,7 @@ public class SpectrumCommon {
 
 		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
 		modBus.addListener((Consumer<FMLCommonSetupEvent>) event -> event.enqueueWork(() -> {
+			SpectrumCauldronInteractions.register();
 			SpectrumDispenserBehaviors.register();
 			SpectrumPresentUnpackBehaviors.register();
 			SpectrumItemGroups.registerSubTabs();

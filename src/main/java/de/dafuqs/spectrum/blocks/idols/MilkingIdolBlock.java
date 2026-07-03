@@ -16,7 +16,7 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -31,15 +31,15 @@ public class MilkingIdolBlock extends IdolBlock {
 		super(settings, particleEffect);
 		this.milkingRange = milkingRange;
 	}
-	
+
 	@Override
-	public MapCodec<? extends MilkingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends MilkingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 	
 	@Override
-	public boolean trigger(@NotNull ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		int boxSize = milkingRange + milkingRange;
 		
 		// Goats
@@ -107,7 +107,7 @@ public class MilkingIdolBlock extends IdolBlock {
 		return true;
 	}
 	
-	private void spawnItemStackAtEntity(ServerLevel world, @NotNull LivingEntity livingEntity, ItemStack itemStack) {
+	private void spawnItemStackAtEntity(ServerLevel world, LivingEntity livingEntity, ItemStack itemStack) {
 		ItemEntity itemEntity = new ItemEntity(world, livingEntity.position().x(), livingEntity.position().y() + 0.5, livingEntity.position().z(), itemStack);
 		itemEntity.push(0, -0.2F, 0);
 		world.addFreshEntity(itemEntity);

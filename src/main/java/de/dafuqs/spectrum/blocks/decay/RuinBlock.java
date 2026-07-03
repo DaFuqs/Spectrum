@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -39,7 +39,7 @@ public class RuinBlock extends DecayBlock {
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.setPlacedBy(world, pos, state, placer, itemStack);
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			world.playSound(null, pos, SpectrumSoundEvents.RUIN_PLACED, SoundSource.BLOCKS, 0.5F, 1.0F);
 		} else {
 			RandomSource random = world.getRandom();
@@ -76,38 +76,34 @@ public class RuinBlock extends DecayBlock {
 	
 	@Override
 	public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-		if (player instanceof ServerPlayer serverPlayer && shouldCreatePortalFacingUp(level, pos, state).isPresent()) {
+		if (player instanceof ServerPlayer serverPlayer && shouldCreatePortalFacingUp(level, pos, state) != null) {
 			SpectrumAdvancementCriteria.DEEPER_DOWN_PORTAL_OPENING.trigger(serverPlayer);
 		}
 		return super.playerWillDestroy(level, pos, state, player);
 	}
 	
 	@Override
-	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moved) {
-		super.onRemove(state, level, pos, newState, moved);
-		
-		if (newState.isAir()) {
-			Optional<Boolean> shouldCreatePortalFacingUp = shouldCreatePortalFacingUp(level, pos, state);
-			if (shouldCreatePortalFacingUp.isPresent()) {
-				level.setBlockAndUpdate(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, shouldCreatePortalFacingUp.get()));
-			}
+	protected void spawnAfterBreak(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack, boolean dropExperience) {
+		BlockState portalBlock = shouldCreatePortalFacingUp(level, pos, state);
+		if (portalBlock != null) {
+			level.setBlockAndUpdate(pos, portalBlock);
 		}
 	}
 	
-	protected Optional<Boolean> shouldCreatePortalFacingUp(Level level, BlockPos pos, BlockState state) {
+	protected @Nullable BlockState shouldCreatePortalFacingUp(Level level, BlockPos pos, BlockState state) {
 		DecayBlock.Conversion conversion = state.getValue(RuinBlock.CONVERSION);
 		if (level.dimension() == Level.NETHER) {
 			if (pos.getY() == level.getMinBuildHeight() + level.dimensionType().logicalHeight() - 1) { // Attempt to match the nether ceiling. Tricky...
-				return Optional.of(Boolean.TRUE);
+				return SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, true);
 			} else if (pos.getY() == level.getMinBuildHeight()) {
-				return Optional.of(Boolean.FALSE);
+				return SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, false);
 			}
 		} else if (conversion == Conversion.SPECIAL || level.dimension() == Level.OVERWORLD && pos.getY() == level.getMinBuildHeight()) {
-			return Optional.of(Boolean.FALSE);
+			return SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, false);
 		} else if (level.dimension() == SpectrumDimensionKeys.DIMENSION_KEY && pos.getY() == level.getMaxBuildHeight() - 1) { // highest layer cannot be built on
-			return Optional.of(Boolean.TRUE);
+			return SpectrumBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState().setValue(DeeperDownPortalBlock.FACING_UP, true);
 		}
-		return Optional.empty();
+		return null;
 	}
 	
 	

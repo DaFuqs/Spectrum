@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.compat.alloy_forgery;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.*;
 import net.minecraft.resources.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.fml.event.lifecycle.*;
 
 public class AlloyForgeryCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
@@ -14,12 +16,12 @@ public class AlloyForgeryCompat extends SpectrumIntegrationPacks.ModIntegrationP
 	public static final ResourceLocation BONE_ASH_ALLOY_FORGE_MULTIBLOCK_ID = SpectrumCommon.locate("bone_ash_alloy_forge");
 	
 	@Override
-	public void register() {
+	public void register(IEventBus modBus) {
 	
 	}
 	
 	@Override
-	public void registerClient() {
+	public void registerClient(FMLClientSetupEvent event) {
 	
 	}
 	

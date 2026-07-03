@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -23,7 +23,7 @@ public class FluidLogging {
 	public enum State implements StringRepresentable {
 		NOT_LOGGED("none", 0),
 		WATER("water", 0),
-		LIQUID_CRYSTAL("liquid_crystal", LiquidCrystalFluidBlock.LUMINANCE);
+		LIQUID_CRYSTAL("liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL_LIGHT_LEVEL);
 		
 		private final String name;
 		private final int luminance;

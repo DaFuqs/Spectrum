@@ -2,6 +2,7 @@
   "values": [
     "#minecraft:enchantable/weapon",
     "#minecraft:enchantable/mining_loot",
+    "#minecraft:enchantable/trident",
     "#spectrum:fishing_rods",
     {
       "id": "#malum:scythe",

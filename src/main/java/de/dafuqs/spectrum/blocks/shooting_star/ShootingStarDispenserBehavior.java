@@ -7,12 +7,12 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class ShootingStarDispenserBehavior extends DefaultDispenseItemBehavior {
 	
 	@Override
-	public ItemStack execute(@NotNull BlockSource pointer, @NotNull ItemStack stack) {
+	public ItemStack execute(BlockSource pointer, ItemStack stack) {
 		Direction direction = pointer.state().getValue(DispenserBlock.FACING);
 		
 		Level world = pointer.level();

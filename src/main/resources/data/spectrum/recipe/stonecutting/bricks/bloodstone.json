@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "ingredient": [
     {
-      "item": "spectrum:bloodstone_block"
+      "item": "spectrum:pure_bloodstone_block"
     }
   ],
   "result": {

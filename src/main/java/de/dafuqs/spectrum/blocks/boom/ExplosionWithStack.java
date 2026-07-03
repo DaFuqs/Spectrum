@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;
@@ -81,7 +81,7 @@ public class ExplosionWithStack extends Explosion {
 		
 	}
 	
-	public static void explode(ServerLevel level, @Nullable Entity source, @NotNull ItemStack stack, Vec3 pos, boolean preserveBlockAtExplosionCenter) {
+	public static void explode(ServerLevel level, @Nullable Entity source, ItemStack stack, Vec3 pos, boolean preserveBlockAtExplosionCenter) {
 		// boolean primodialFireDamage = false; // stack.getEnchantmentLevel(level.registryAccess().registry(Registries.ENCHANTMENT).get().getHolderOrThrow(SpectrumEnchantments.RESONANCE)) > 0;
 		// @Nullable DamageSource damageSource = primodialFireDamage ? SpectrumDamageTypes.incandescence(level, source) : Explosion.getDefaultDamageSource(level, source);
 		

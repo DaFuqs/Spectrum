@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -34,7 +34,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 	protected static final int INVENTORY_SIZE = 5;
 	public static final int MAX_ITEM_COUNT = 64;
 	protected NonNullList<ItemStack> items;
-	protected FluidTank tank = new SpectrumFluidTank(1000, this);
+	protected FluidTank tank = new SpectrumFluidTank(FluidType.BUCKET_VOLUME, this);
 	
 	@Override
 	public NonNullList<ItemStack> getItems() {
@@ -59,7 +59,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 	
 	@Override
 	public void inventoryChanged() {
-		if(this.level == null || this.level.isClientSide) return;
+		if(this.level == null || this.level.isClientSide()) return;
 		
 		BlockState state = getBlockState();
 		BarrelState barrelState = state.getValue(BARREL_STATE);
@@ -163,7 +163,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 		Component message = null;
 		
 		int daysSealed = getSealMinecraftDays();
-		int inventoryCount = InventoryHelper.countItemsInInventory(this.getItems());
+		int inventoryCount = InventoryHelper.countItemsInInventory(this);
 		
 		Optional<RecipeHolder<ITitrationBarrelRecipe>> optionalRecipe = getRecipeForInventory(world);
 		if (optionalRecipe.isEmpty()) {
@@ -248,7 +248,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 	}
 	
 	public boolean canBeSealed(@Nullable Player player) {
-		int itemCount = InventoryHelper.countItemsInInventory(getItems());
+		int itemCount = InventoryHelper.countItemsInInventory(this);
 		if (itemCount == 0 && tank.isEmpty()) {
 			return true; // tap empty barrel advancement
 		}

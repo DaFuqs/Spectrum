@@ -25,7 +25,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.phys.*;
 import org.apache.commons.lang3.mutable.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -174,7 +174,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
 			remove(RemovalReason.DISCARDED);
 			return;
 		}
-		
+		getEntityData().set(ID_LOYALTY, (byte) 4);
 		setNoPhysics(true);
 	}
 	
@@ -267,20 +267,21 @@ public class DragonTalonEntity extends BidentBaseEntity {
 			SlotReservingItem.free(rootStack);
 			return true;
 		} else if (player == getOwner()) {
+			// assume the player threw away / merged their talons back into a twinsword
+			// remove its merge cooldown penalty since we are nice
+			player.getCooldowns().removeCooldown(SpectrumItems.DRACONIC_TWINSWORD.get());
 			discard();
 		}
 		return false;
 	}
-	
-	@Nullable
+
 	@Override
-	public ItemEntity spawnAtLocation(ItemStack stack) {
+	public @Nullable ItemEntity spawnAtLocation(ItemStack stack) {
 		return null;
 	}
-	
-	@Nullable
+
 	@Override
-	public ItemEntity spawnAtLocation(ItemStack stack, float yOffset) {
+	public @Nullable ItemEntity spawnAtLocation(ItemStack stack, float yOffset) {
 		return null;
 	}
 }

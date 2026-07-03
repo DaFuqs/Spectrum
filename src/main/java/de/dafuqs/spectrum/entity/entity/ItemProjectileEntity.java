@@ -27,19 +27,17 @@ public class ItemProjectileEntity extends ThrowableItemProjectile {
 	protected void onHit(HitResult hitResult) {
 		ItemStack stack = getItem();
 		
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			ItemProjectileBehavior behavior = ItemProjectileBehavior.get(stack);
-			if (behavior != null) {
-				HitResult.Type type = hitResult.getType();
-				if (type == HitResult.Type.ENTITY) {
-					this.level().gameEvent(GameEvent.PROJECTILE_LAND, hitResult.getLocation(), GameEvent.Context.of(this, null));
-					stack = behavior.onEntityHit(this, stack, getOwner(), (EntityHitResult) hitResult);
-				} else if (type == HitResult.Type.BLOCK) {
-					BlockHitResult blockHitResult = (BlockHitResult) hitResult;
-					BlockPos blockPos = blockHitResult.getBlockPos();
-					this.level().gameEvent(GameEvent.PROJECTILE_LAND, blockPos, GameEvent.Context.of(this, this.level().getBlockState(blockPos)));
-					stack = behavior.onBlockHit(this, stack, getOwner(), (BlockHitResult) hitResult);
-				}
+			HitResult.Type type = hitResult.getType();
+			if (type == HitResult.Type.ENTITY) {
+				this.level().gameEvent(GameEvent.PROJECTILE_LAND, hitResult.getLocation(), GameEvent.Context.of(this, null));
+				stack = behavior.onEntityHit(this, stack, getOwner(), (EntityHitResult) hitResult);
+			} else if (type == HitResult.Type.BLOCK) {
+				BlockHitResult blockHitResult = (BlockHitResult) hitResult;
+				BlockPos blockPos = blockHitResult.getBlockPos();
+				this.level().gameEvent(GameEvent.PROJECTILE_LAND, blockPos, GameEvent.Context.of(this, this.level().getBlockState(blockPos)));
+				stack = behavior.onBlockHit(this, stack, getOwner(), (BlockHitResult) hitResult);
 			}
 			
 			this.level().broadcastEntityEvent(this, EntityEvent.DEATH);

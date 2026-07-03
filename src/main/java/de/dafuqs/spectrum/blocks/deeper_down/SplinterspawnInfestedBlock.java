@@ -23,7 +23,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -83,7 +83,7 @@ public class SplinterspawnInfestedBlock extends Block {
 				level.setBlockAndUpdate(offsetPos, newOffsetState);
 				level.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, offsetPos, getId(newOffsetState));
 				
-				playSound(level, offsetPos, level.random);
+				playSound(level, offsetPos, level.getRandom());
 				break;
 			}
 		}
@@ -132,7 +132,7 @@ public class SplinterspawnInfestedBlock extends Block {
 		splinterspawn.moveTo(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 0.0F, 0.0F);
 		level.addFreshEntity(splinterspawn);
 		splinterspawn.spawnAnim();
-		int experienceAmount = Support.getIntFromDecimalWithChance(splinterspawn.getExperienceReward(level, null) * SpectrumConfig.CONFIG.PestControlExperienceMultiplier.get(), level.random);
+		int experienceAmount = Support.getIntFromDecimalWithChance(splinterspawn.getExperienceReward(level, null) * SpectrumConfig.CONFIG.PestControlExperienceMultiplier.get(), level.getRandom());
 		splinterspawn.kill();
 		
 		if (dropExperience) {

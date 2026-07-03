@@ -18,7 +18,7 @@ public class MoltenFishingHook extends SpectrumFishingHook {
 	public void tick() {
 		Level world = this.level();
 		super.tick();
-		if (!world.isClientSide && tickCount % 20 == 0 && onGround()) {
+		if (!world.isClientSide() && tickCount % 20 == 0 && onGround()) {
 			FirestarterIdolBlock.causeFire((ServerLevel) this.level(), blockPosition(), Direction.DOWN);
 		}
 	}

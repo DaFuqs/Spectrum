@@ -52,7 +52,7 @@ public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance impl
 	private void showParticles() {
 		Level world = player.getCommandSenderWorld();
 		Vec3 pos = player.position();
-		RandomSource random = world.random;
+        RandomSource random = world.getRandom();
 		
 		for (int i = 0; i < 10; i++) {
 			player.getCommandSenderWorld().addParticle(

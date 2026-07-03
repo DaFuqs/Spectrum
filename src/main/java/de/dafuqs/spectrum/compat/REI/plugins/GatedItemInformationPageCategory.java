@@ -6,7 +6,7 @@ import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -14,7 +14,7 @@ import java.util.*;
 public abstract class GatedItemInformationPageCategory extends GatedDisplayCategory<GatedItemInformationDisplay> {
 	
 	@Override
-    public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull GatedItemInformationDisplay display) {
+    public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, GatedItemInformationDisplay display) {
 		Minecraft client = Minecraft.getInstance();
 		Item item = display.getItem();
 		widgets.add(Widgets.createSlot(new Point(startPoint.x - 5, startPoint.y + 3)).entries(display.getInputEntries().get(0)).markInput());

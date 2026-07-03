@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -31,7 +32,7 @@ public class ColorPickerScreenHandler extends AbstractContainerMenu implements I
 	public static final int PLAYER_INVENTORY_START_Y = 84;
 	
 	protected final Level world;
-	public final ServerPlayer player;
+	public final @Nullable ServerPlayer player;
 	protected ColorPickerBlockEntity blockEntity;
 	
 	// clientside

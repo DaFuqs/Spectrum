@@ -10,7 +10,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -24,9 +24,9 @@ public class RandomTeleportingIdolBlock extends IdolBlock {
 		this.horizontalRange = horizontalRange;
 		this.verticalRange = verticalRange;
 	}
-	
+
 	@Override
-	public MapCodec<? extends RandomTeleportingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends RandomTeleportingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

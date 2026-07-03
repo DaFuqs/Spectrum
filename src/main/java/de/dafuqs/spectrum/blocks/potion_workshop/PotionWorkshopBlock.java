@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class PotionWorkshopBlock extends HorizontalDirectionalBlock implements EntityBlock {
 	
@@ -50,11 +50,10 @@ public class PotionWorkshopBlock extends HorizontalDirectionalBlock implements E
 	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.POTION_WORKSHOP.get(), PotionWorkshopBlockEntity::tick);
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return world.isClientSide() ? null : Support.checkType(type, SpectrumBlockEntities.POTION_WORKSHOP.get(), PotionWorkshopBlockEntity::tick);
 	}
 	
 	@Override
@@ -71,10 +70,9 @@ public class PotionWorkshopBlock extends HorizontalDirectionalBlock implements E
 	public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
 		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		return defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
 	}
 	
@@ -86,12 +84,12 @@ public class PotionWorkshopBlock extends HorizontalDirectionalBlock implements E
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
-			return InteractionResult.SUCCESS;
-		} else {
-			this.openScreen(world, pos, player);
-			return InteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        } else {
+            this.openScreen(world, pos, player);
+            return InteractionResult.CONSUME;
+        }
 	}
 	
 	protected void openScreen(Level world, BlockPos pos, Player player) {

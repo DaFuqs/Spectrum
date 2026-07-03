@@ -24,7 +24,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -57,8 +57,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	protected boolean canWork;
 	float rotation = 0F;
 	
-	protected FlowAnimator animator;
-	@NotNull
+	protected @Nullable FlowAnimator animator;
 	protected FlowData<Float> _alpha = FlowData.NULL(), _speed = FlowData.NULL(), _bounce = FlowData.NULL();
 	
 	public CrystallarieumBlockEntity(BlockPos pos, BlockState state) {
@@ -68,7 +67,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	}
 	
 	@SuppressWarnings("unused")
-	public static void clientTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
+	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
 		if (crystallarieum.animator == null) {
 			crystallarieum.animator = FACTORY.create(FlowStates.INIT, crystallarieum);
 		} else {
@@ -79,7 +78,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			ParticleOptions particleEffect = ColoredSparkleRisingParticleEffect.of(crystallarieum.currentRecipe.value().getInkColor().getColorInt());
 			
 			int amount = 1 + crystallarieum.currentRecipe.value().getInkPerSecond();
-			if (Support.getIntFromDecimalWithChance(amount / 80.0, world.random) > 0) {
+			if (Support.getIntFromDecimalWithChance(amount / 80.0, world.getRandom()) > 0) {
 				double randomX = world.getRandom().nextDouble() * 0.8;
 				double randomZ = world.getRandom().nextDouble() * 0.8;
 				world.addAlwaysVisibleParticle(particleEffect, blockPos.getX() + 0.1 + randomX, blockPos.getY() + 1, blockPos.getZ() + 0.1 + randomZ, 0.0D, 0.03D, 0.0D);
@@ -102,7 +101,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	}
 	
 	@SuppressWarnings("unused")
-	public static void serverTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
+	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
 		if (crystallarieum.canWork) {
 			transferInk(crystallarieum);
 			
@@ -121,7 +120,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	 * Progress the recipe
 	 * gets called 1/second
 	 */
-	private static void tickRecipe(@NotNull Level world, BlockPos blockPos, CrystallarieumBlockEntity crystallarieum, @NotNull RecipeHolder<CrystallarieumRecipe> recipe) {
+	private static void tickRecipe(Level world, BlockPos blockPos, CrystallarieumBlockEntity crystallarieum, RecipeHolder<CrystallarieumRecipe> recipe) {
 		if (crystallarieum.currentCatalyst == CrystallarieumCatalyst.EMPTY && !recipe.value().growsWithoutCatalyst()) {
 			return;
 		}
@@ -133,7 +132,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		
 		// advance growing
 		float consumedInkFloat = (recipe.value().getInkPerSecond() * crystallarieum.currentCatalyst.growthAccelerationMod() * crystallarieum.currentCatalyst.inkConsumptionMod());
-		int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, world.random);
+		int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, world.getRandom());
 		if (crystallarieum.inkStorage.drainEnergy(recipe.value().getInkColor(), consumedInt) < consumedInt) {
 			crystallarieum.canWork = false;
 			crystallarieum.setInkDirty();
@@ -145,7 +144,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		crystallarieum.currentGrowthStageTicks += (int) (SECOND * crystallarieum.currentCatalyst.growthAccelerationMod());
 		
 		// check if a catalyst should get used up
-		if (world.random.nextFloat() < crystallarieum.currentCatalyst.consumeChancePerSecond()) {
+		if (world.getRandom().nextFloat() < crystallarieum.currentCatalyst.consumeChancePerSecond()) {
 			ItemStack catalystStack = crystallarieum.getItem(CATALYST_SLOT_ID);
 			catalystStack.shrink(1);
 			crystallarieum.updateInClientWorld();
@@ -207,7 +206,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("InkStorage")).ifPresent(storage ->
 				this.inkStorage = new IndividualCappedInkStorage(storage.maxPerColor(), storage.storedEnergy()));
 		if (nbt.contains("Looper", Tag.TAG_COMPOUND)) {
-			this.tickLooper = TickLooper.readNbt(nbt.getCompound("Looper"));
+			this.tickLooper = TickLooper.fromNbt(nbt.getCompound("Looper"));
 		}
 		
 		this.tank.readFromNBT(registryLookup, nbt);
@@ -296,7 +295,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		}
 		
 		if (changed) {
-			level.playSound(null, worldPosition, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 0.8F + level.random.nextFloat() * 0.6F);
+			level.playSound(null, worldPosition, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 0.8F + level.getRandom().nextFloat() * 0.6F);
 			if (player != null) {
 				this.ownerUUID = player;
 			}

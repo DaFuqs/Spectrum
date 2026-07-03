@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:modify_drops",
+  "block": {
+    "blocks": "#c:gobber_ores"
+  },
+  "modify_drops": [
+    {
+      "input": {
+        "item": "gobber2:gobber2_globette"
+      },
+      "output": "spectrum:pure_globette"
+    },
+    {
+      "input": {
+        "item": "gobber2:gobber2_globette_nether"
+      },
+      "output": "spectrum:pure_globette_nether"
+    },
+    {
+      "input": {
+        "item": "gobber2:gobber2_globette_end"
+      },
+      "output": "spectrum:pure_globette_end"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "spectrum:integration_pack_active",
+      "integration_pack": "gobber2"
+    }
+  ]
+}

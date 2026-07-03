@@ -16,7 +16,7 @@ import net.minecraft.world.level.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public record PlayDivinityAppliedEffectsPayload() implements CustomPacketPayload {
 	
@@ -44,7 +44,7 @@ public record PlayDivinityAppliedEffectsPayload() implements CustomPacketPayload
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

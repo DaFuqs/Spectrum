@@ -5,7 +5,7 @@ import com.mojang.serialization.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.function.Supplier;
 
@@ -22,12 +22,12 @@ public class EmptyRecipeSerializer<T extends Recipe<?>> implements RecipeSeriali
 	}
 	
 	@Override
-	public @NotNull MapCodec<T> codec() {
+	public MapCodec<T> codec() {
 		return MapCodec.unit(instance);
 	}
 	
 	@Override
-	public @NotNull StreamCodec<RegistryFriendlyByteBuf, T> streamCodec() {
+	public StreamCodec<RegistryFriendlyByteBuf, T> streamCodec() {
 		return StreamCodec.unit(instance.get());
 	}
 	

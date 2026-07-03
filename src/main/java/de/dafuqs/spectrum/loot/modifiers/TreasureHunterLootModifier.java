@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -14,16 +15,15 @@ import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -52,31 +52,34 @@ public class TreasureHunterLootModifier extends LootModifier {
 	}
 	
 	@Override
-	protected @NotNull ObjectArrayList<ItemStack> doApply(@NotNull ObjectArrayList<ItemStack> original, LootContext lootContext) {
+	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> original, LootContext lootContext) {
 		Entity killed = lootContext.getParamOrNull(LootContextParams.THIS_ENTITY);
-		Player player = lootContext.getParamOrNull(LootContextParams.LAST_DAMAGE_PLAYER);
-		DamageSource damageSource = lootContext.getParamOrNull(LootContextParams.DAMAGE_SOURCE);
+		if (killed == null) {
+			return original;
+		}
 		
+		DamageSource damageSource = lootContext.getParamOrNull(LootContextParams.DAMAGE_SOURCE);
 		if (damageSource == null) {
 			return original;
 		}
 		
-		ItemStack damageSourceWeapon = damageSource.getWeaponItem();
-		if (damageSourceWeapon == null) {
-			return original;
-		}
-		
-		int treasureHunterLevel;
-		if(damageSource.is(SpectrumDamageTypeTags.ALWAYS_DROPS_MOB_HEAD)) {
+		int treasureHunterLevel = 0;
+		if (damageSource.is(SpectrumDamageTypeTags.ALWAYS_DROPS_MOB_HEAD)) {
+			treasureHunterLevel = Integer.MAX_VALUE;
+		} else if(SpectrumConfig.CONFIG.ChargedCreepersDropSpectrumMobHeads.get() && damageSource.getEntity() instanceof Creeper creeper && creeper.isPowered()) {
 			treasureHunterLevel = Integer.MAX_VALUE;
 		} else {
-			treasureHunterLevel = SpectrumEnchantmentHelper.getLevel(killed.registryAccess(), SpectrumEnchantmentKeys.TREASURE_HUNTER, damageSourceWeapon);
+			ItemStack damageSourceWeapon = damageSource.getWeaponItem();
+			if (damageSourceWeapon != null) {
+				treasureHunterLevel = SpectrumEnchantmentHelper.getLevel(killed.registryAccess(), SpectrumEnchantmentKeys.TREASURE_HUNTER, damageSourceWeapon);
+			}
 		}
 		
 		if(treasureHunterLevel <= 0) {
 			return original;
 		}
 		
+		Player player = lootContext.getParamOrNull(LootContextParams.LAST_DAMAGE_PLAYER);
 		ServerLevel serverLevel = (ServerLevel) killed.level();
 		Vec3 pos = killed.position();
 		RandomSource random = lootContext.getRandom();
@@ -98,7 +101,7 @@ public class TreasureHunterLootModifier extends LootModifier {
 	}
 	
 	@Override
-	public @NotNull MapCodec<? extends IGlobalLootModifier> codec() {
+	public MapCodec<? extends IGlobalLootModifier> codec() {
 		return CODEC;
 	}
 	

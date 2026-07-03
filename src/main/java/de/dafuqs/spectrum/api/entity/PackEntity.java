@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.api.entity;
 
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;

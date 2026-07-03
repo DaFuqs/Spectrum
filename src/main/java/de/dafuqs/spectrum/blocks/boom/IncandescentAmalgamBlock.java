@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.function.*;
 
@@ -43,17 +43,17 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements SimpleW
 	}
 	
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(WATERLOGGED);
 	}
 	
 	@Override
-	public FluidState getFluidState(@NotNull BlockState state) {
+	public FluidState getFluidState(BlockState state) {
 		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 	
 	@Override
-	public BlockState updateShape(@NotNull BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
 		if (state.getValue(WATERLOGGED)) {
 			world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
 		}
@@ -61,7 +61,7 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements SimpleW
 	}
 	
 	@Override
-	public BlockState getStateForPlacement(@NotNull BlockPlaceContext ctx) {
+	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
 		return this.defaultBlockState().setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
 	}
@@ -123,7 +123,7 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements SimpleW
 	@Override
 	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		super.neighborChanged(state, world, pos, block, fromPos, notify);
-		if (!state.getValue(WATERLOGGED) && world.random.nextInt(10) == 0) {
+		if (!state.getValue(WATERLOGGED) && world.getRandom().nextInt(10) == 0) {
 			explode(world, pos);
 		}
 	}
@@ -141,7 +141,7 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements SimpleW
 	}
 	
 	protected static void explode(Level world, BlockPos pos) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (world.getBlockEntity(pos) instanceof PlacedItemBlockEntity placedItemBlockEntity) {
 				Player owner = placedItemBlockEntity.getOwnerIfOnline(world);
 				ItemStack stack = placedItemBlockEntity.getStack();
@@ -152,7 +152,7 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements SimpleW
 		}
 	}
 	
-	public static void explode(Level world, BlockPos pos, Entity owner, ItemStack stack) {
+	public static void explode(Level world, BlockPos pos, @Nullable Entity owner, ItemStack stack) {
 		float power = 8.0F;
 		if (stack.getItem() instanceof IncandescentAmalgamItem item) {
 			power = item.getExplosionPower(stack, false);

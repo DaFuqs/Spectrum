@@ -7,14 +7,13 @@ import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
 public interface Preenchanted {
 	
 	Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments();
-	
 	static ItemEnchantments buildDefaultEnchantments(HolderLookup.Provider lookup, Preenchanted item) {
 		ItemEnchantments.Mutable builder = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
 		for (Map.Entry<ResourceKey<Enchantment>, Integer> entry : item.getDefaultEnchantments().entrySet()) {
@@ -23,7 +22,7 @@ public interface Preenchanted {
 		return builder.toImmutable();
 	}
 	
-	static @NotNull <T extends Item & Preenchanted> ItemStack getDefaultEnchantedStack(HolderLookup.Provider lookup, T item) {
+	static <T extends Item & Preenchanted> ItemStack getDefaultEnchantedStack(HolderLookup.Provider lookup, T item) {
 		ItemStack stack = new ItemStack(item);
 		stack.set(DataComponents.ENCHANTMENTS, buildDefaultEnchantments(lookup, item));
 		return stack;
@@ -49,5 +48,4 @@ public interface Preenchanted {
 		
 		return defaultEnchants.isEmpty();
 	}
-	
 }

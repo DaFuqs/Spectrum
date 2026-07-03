@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -42,7 +42,7 @@ public class LastKillAttachmentType {
 		}
 		
 		@Override
-		public CustomPacketPayload.@NotNull Type<? extends CustomPacketPayload> type() {
+		public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
 			return TYPE;
 		}
 	}

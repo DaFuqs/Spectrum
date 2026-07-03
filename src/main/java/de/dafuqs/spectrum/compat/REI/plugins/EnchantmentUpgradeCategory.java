@@ -11,7 +11,7 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -32,17 +32,17 @@ public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpg
 	}
 	
 	@Override
-	public int getCraftingTime(@NotNull EnchantmentUpgradeDisplay display) {
+	public int getCraftingTime(EnchantmentUpgradeDisplay display) {
 		return 0;
 	}
 	
 	@Override
-	public Component getDescriptionText(@NotNull EnchantmentUpgradeDisplay display) {
+	public Component getDescriptionText(EnchantmentUpgradeDisplay display) {
 		return Component.translatable("container.spectrum.rei.enchantment_upgrade.required_item_count", 0);
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull EnchantmentUpgradeDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, EnchantmentUpgradeDisplay display) {
 		boolean overUnlocked = AdvancementHelper.hasAdvancement(Minecraft.getInstance().player, SpectrumAdvancements.OVERENCHANTING);
 		List<EntryIngredient> inputs = display.getInputEntries();
 		

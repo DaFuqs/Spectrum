@@ -16,7 +16,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -67,7 +67,7 @@ public class ArtistsPaletteItem extends SpectrumCurioItem implements InkStorageI
 	}
 	
 	@Override
-	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		var storage = getEnergyStorage(stack);
 		var colors = new ArrayList<InkColor>();
 		

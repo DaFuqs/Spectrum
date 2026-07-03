@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.world.item.*;
+import org.jspecify.annotations.Nullable;
 
 public class GlassArrowVariant {
 	
@@ -18,8 +19,8 @@ public class GlassArrowVariant {
 		return Registry.register(SpectrumRegistries.GLASS_ARROW_VARIANT, id, new GlassArrowVariant());
 	}
 	
-	protected ArrowItem arrow;
-	protected ParticleOptions particleEffect;
+	protected @Nullable ArrowItem arrow;
+	protected @Nullable ParticleOptions particleEffect;
 	
 	public static void init() {
 	}
@@ -30,11 +31,11 @@ public class GlassArrowVariant {
 		this.particleEffect = particleEffect;
 	}
 	
-	public ArrowItem getArrow() {
+	public @Nullable ArrowItem getArrow() {
 		return arrow;
 	}
 	
-	public ParticleOptions getParticleEffect() {
+	public @Nullable ParticleOptions getParticleEffect() {
 		return particleEffect;
 	}
 	

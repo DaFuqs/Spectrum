@@ -10,7 +10,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -28,9 +28,9 @@ public class AoEStatusEffectIdolBlock extends IdolBlock {
 		this.duration = duration;
 		this.range = range;
 	}
-	
+
 	@Override
-	public MapCodec<? extends AoEStatusEffectIdolBlock> codec() {
+	public @Nullable MapCodec<? extends AoEStatusEffectIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

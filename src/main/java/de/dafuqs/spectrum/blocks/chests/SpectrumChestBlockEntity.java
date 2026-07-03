@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 @OnlyIn(value = Dist.CLIENT, _interface = LidBlockEntity.class)
 public abstract class SpectrumChestBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity, ImplementedInventory {
@@ -79,7 +79,7 @@ public abstract class SpectrumChestBlockEntity extends RandomizableContainerBloc
 	}
 	
 	private static void playSound(Level world, BlockPos pos, SoundEvent soundEvent) {
-		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, soundEvent, SoundSource.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
+		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, soundEvent, SoundSource.BLOCKS, 0.5F, world.getRandom().nextFloat() * 0.1F + 0.9F);
 	}
 	
 	@SuppressWarnings("unused")
@@ -154,17 +154,15 @@ public abstract class SpectrumChestBlockEntity extends RandomizableContainerBloc
 		super.loadAdditional(tag, registryLookup);
 		
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		if (!this.tryLoadLootTable(tag)) {
-			ContainerHelper.loadAllItems(tag, this.inventory, registryLookup);
-		}
+		this.tryLoadLootTable(tag);
+		ContainerHelper.loadAllItems(tag, this.inventory, registryLookup);
 	}
 	
 	@Override
 	public void saveAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(tag, registryLookup);
-		if (!this.trySaveLootTable(tag)) {
-			ContainerHelper.saveAllItems(tag, this.inventory, registryLookup);
-		}
+		this.trySaveLootTable(tag);
+		ContainerHelper.saveAllItems(tag, this.inventory, registryLookup);
 	}
 	
 	public SoundEvent getOpenSound() {

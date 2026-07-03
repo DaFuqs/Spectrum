@@ -10,7 +10,7 @@ import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class Marrow extends AbstractSkeleton {
 	
@@ -41,7 +41,7 @@ public class Marrow extends AbstractSkeleton {
 	}
 	
 	@Override
-	protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
 		return SpectrumSoundEvents.ENTITY_MARROW_HURT;
 	}
 	
@@ -51,12 +51,12 @@ public class Marrow extends AbstractSkeleton {
 	}
 	
 	@Override
-	public @NotNull SoundEvent getStepSound() {
+	public SoundEvent getStepSound() {
 		return SpectrumSoundEvents.ENTITY_MARROW_STEP;
 	}
 	
 	@Override
-	protected @NotNull AbstractArrow getArrow(@NotNull ItemStack arrowStack, float velocity, @Nullable ItemStack weapon) {
+	protected AbstractArrow getArrow(ItemStack arrowStack, float velocity, @Nullable ItemStack weapon) {
 		AbstractArrow abstractArrow = super.getArrow(arrowStack, velocity, weapon);
 		if (abstractArrow instanceof Arrow arrow) {
 			arrow.addEffect(new MobEffectInstance(SpectrumMobEffects.STIFFNESS, 600));

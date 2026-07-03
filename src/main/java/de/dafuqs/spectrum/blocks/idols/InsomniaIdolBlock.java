@@ -13,7 +13,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -25,9 +25,9 @@ public class InsomniaIdolBlock extends IdolBlock {
 		super(settings, particleEffect);
 		this.additionalTicksSinceLastRest = additionalTicksSinceLastRest;
 	}
-	
+
 	@Override
-	public MapCodec<? extends InsomniaIdolBlock> codec() {
+	public @Nullable MapCodec<? extends InsomniaIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -37,7 +37,7 @@ public class InsomniaIdolBlock extends IdolBlock {
 		// spawn phantoms regardless of gamerule
 		// makes phantom drops accessible even with gamerule disabled
 		if (entity instanceof ServerPlayer serverPlayerEntity /*&& !world.getGameRules().getBoolean(GameRules.DO_INSOMNIA)*/) {
-			RandomSource random = world.random;
+			RandomSource random = world.getRandom();
 			
 			// play a phantom sound
 			world.playSound(null, blockPos, SoundEvents.PHANTOM_AMBIENT, SoundSource.BLOCKS, 1.0F, 0.8F + random.nextFloat() * 0.4F);

@@ -15,6 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
+import org.jspecify.annotations.Nullable;
 
 public interface PastelPayload {
 	
@@ -40,7 +41,7 @@ public interface PastelPayload {
 	 * @param destination the position of the node to arrive at
 	 * @param destinationNode the pastel node. Can be null if it was broken while the transmission was underway
 	 */
-	void arriveAtDestination(Level level, BlockPos destination, PastelNodeBlockEntity destinationNode);
+	void arriveAtDestination(Level level, BlockPos destination, @Nullable PastelNodeBlockEntity destinationNode);
 	
 	void render(PastelTransmissionParticle pastelTransmissionParticle, Level level, PoseStack poseStack, MultiBufferSource vertexConsumers, int light);
 	

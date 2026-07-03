@@ -18,7 +18,7 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public abstract class TriStateVineBlock extends BushBlock implements BonemealableBlock {
 	
@@ -48,7 +48,7 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 			BlockState newState = state.setValue(LIFE_STAGE, LifeStage.MATURE);
 			world.setBlock(pos, newState, 3);
 
-			world.playSound(null, pos, SpectrumSoundEvents.VINE_SHEAR, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.6F, 1.0F));
+			world.playSound(null, pos, SpectrumSoundEvents.VINE_SHEAR, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.getRandom(), 0.6F, 1.0F));
 			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newState));
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		} else if (handStack.is(SpectrumItems.MOONSTRUCK_NECTAR)) {
@@ -61,17 +61,16 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 			BlockState newState = state.setValue(LIFE_STAGE, LifeStage.GROWING);
 			world.setBlock(pos, newState, 3);
 			
-			world.playSound(null, pos, SpectrumSoundEvents.VINE_INFUSE, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.6F, 1.0F));
+			world.playSound(null, pos, SpectrumSoundEvents.VINE_INFUSE, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.getRandom(), 0.6F, 1.0F));
 			world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newState));
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		}
 		
 		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		Level world = ctx.getLevel();
 		BlockPos pos = ctx.getClickedPos();
 		

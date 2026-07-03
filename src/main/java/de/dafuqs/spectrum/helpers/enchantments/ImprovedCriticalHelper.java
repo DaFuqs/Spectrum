@@ -9,7 +9,7 @@ import net.minecraft.world.item.*;
 public class ImprovedCriticalHelper {
 	
 	public static float getAdditionalCritDamageMultiplier(int improvedCriticalLevel) {
-		return SpectrumConfig.CONFIG.ImprovedCriticalExtraDamageMultiplierPerLevel.get() * improvedCriticalLevel;
+		return SpectrumConfig.CONFIG.ImprovedCriticalExtraDamageMultiplierPerLevel.get().floatValue() * improvedCriticalLevel;
 	}
 	
 	public static float getAdditionalCritDamageMultiplier(HolderLookup.Provider lookup, ItemStack stack) {

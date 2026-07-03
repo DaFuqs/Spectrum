@@ -5,7 +5,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -43,11 +43,8 @@ public abstract class PlayerInventoryMixin {
 				continue;
 			}
 			
-			@Nullable IItemHandler itemHandler = inventoryStack.getCapability(Capabilities.ItemHandler.ITEM);
+			IItemHandler itemHandler = inventoryStack.getCapability(Capabilities.ItemHandler.ITEM);
 			if(itemHandler != null) {
-				if(!ItemStack.isSameItemSameComponents(stackToAdd, itemHandler.getStackInSlot(0))) {
-					continue;
-				}
 				if(!itemHandler.isItemValid(0, stackToAdd)) {
 					continue;
 				}

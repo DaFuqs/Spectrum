@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -72,21 +72,20 @@ public class ColorPickerBlock extends HorizontalDirectionalBlock implements Enti
 	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.COLOR_PICKER.get(), ColorPickerBlockEntity::tick);
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return world.isClientSide() ? null : Support.checkType(type, SpectrumBlockEntities.COLOR_PICKER.get(), ColorPickerBlockEntity::tick);
 	}
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
-			return InteractionResult.SUCCESS;
-		} else {
-			this.openScreen(world, pos, player);
-			return InteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        } else {
+            this.openScreen(world, pos, player);
+            return InteractionResult.CONSUME;
+        }
 	}
 	
 	protected void openScreen(Level world, BlockPos pos, Player player) {

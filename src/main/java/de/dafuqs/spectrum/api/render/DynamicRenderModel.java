@@ -11,14 +11,14 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;
 
 // TODO: use
 class ForwardingBakedModel implements BakedModel {
-	protected BakedModel wrapped;
+	protected @Nullable BakedModel wrapped;
 	
 	public BakedModel getWrappedModel() {
 		return this.wrapped;
@@ -81,16 +81,15 @@ public class DynamicRenderModel extends ForwardingBakedModel implements UnbakedM
 			this.wrapped = orig;
 		}
 		
-		@Nullable
 		@Override
-		public BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel world, @Nullable LivingEntity entity, int seed) {
+		public @Nullable BakedModel resolve(BakedModel model, ItemStack stack, @Nullable ClientLevel world, @Nullable LivingEntity entity, int seed) {
 			BakedModel newModel = wrapped.resolve(model, stack, world, entity, seed);
 			return newModel == model ? model : new DynamicRenderModel(newModel);
 		}
 	}
 	
 	// only used pre-bake; set to null after bake
-	private UnbakedModel baseUnbaked;
+	private @Nullable UnbakedModel baseUnbaked;
 	
 	// pre-bake constructor
 	public DynamicRenderModel(UnbakedModel base) {

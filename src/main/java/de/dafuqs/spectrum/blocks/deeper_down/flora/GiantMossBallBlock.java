@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class GiantMossBallBlock extends MossBallBlock {
 	
@@ -32,12 +32,12 @@ public class GiantMossBallBlock extends MossBallBlock {
 	}
 	
 	@Override
-	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+	public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return 30;
 	}
 	
 	@Override
-	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+	public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return 60;
 	}
 	

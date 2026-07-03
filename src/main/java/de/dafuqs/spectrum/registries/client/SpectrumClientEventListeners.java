@@ -37,6 +37,7 @@ import net.minecraft.util.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
+import net.minecraft.world.inventory.tooltip.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.block.*;
@@ -49,7 +50,7 @@ import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.event.entity.player.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import oshi.util.tuples.*;
 
 import java.util.*;
@@ -83,7 +84,7 @@ public class SpectrumClientEventListeners {
 			private final Map<EquipmentSlot, HumanoidModel<LivingEntity>> MODELS = new Object2ObjectArrayMap<>();
 			
 			@Override
-			public @NotNull HumanoidModel<?> getHumanoidArmorModel(@NotNull LivingEntity livingEntity, @NotNull ItemStack itemStack, @NotNull EquipmentSlot equipmentSlot, @NotNull HumanoidModel<?> original) {
+			public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
 				return MODELS.computeIfAbsent(equipmentSlot, this::provideArmorModelForSlot);
 			}
 			
@@ -99,7 +100,6 @@ public class SpectrumClientEventListeners {
 	private static void registerClientTooltipComponentFactoriesEvent(RegisterClientTooltipComponentFactoriesEvent event) {
 		event.register(CraftingTabletTooltipData.class, CraftingTabletTooltipComponent::new);
 		event.register(BottomlessBundleTooltipData.class, BottomlessBundleTooltipComponent::new);
-		event.register(PresentTooltipData.class, PresentTooltipComponent::new);
 	}
 	
 	@SubscribeEvent
@@ -266,12 +266,12 @@ public class SpectrumClientEventListeners {
 		event.registerReloadListener(BiomeRenderingDataLoader.INSTANCE);
 		event.registerReloadListener(new ResourceManagerReloadListener() {
 			@Override
-			public void onResourceManagerReload(@NotNull ResourceManager resourceManager) {
+			public void onResourceManagerReload(ResourceManager resourceManager) {
 				BiomeAttenuatingSoundInstance.clear();
 			}
 			
 			@Override
-			public @NotNull String getName() {
+			public String getName() {
 				return SpectrumCommon.MOD_ID + ":cache_clearer_client";
 			}
 		});
@@ -300,7 +300,7 @@ public class SpectrumClientEventListeners {
 		event.setCanceled(shouldCancel);
 	}
 	
-	private static boolean renderPlacementStaffOutline(PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, @NotNull BlockHitResult hitResult) {
+	private static boolean renderPlacementStaffOutline(PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, BlockHitResult hitResult) {
 		Minecraft client = Minecraft.getInstance();
 		ClientLevel world = client.level;
 		Player player = client.player;

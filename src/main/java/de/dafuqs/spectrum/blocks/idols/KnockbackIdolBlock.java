@@ -8,7 +8,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -22,9 +22,9 @@ public class KnockbackIdolBlock extends IdolBlock {
 		this.horizontalKnockback = horizontalKnockback;
 		this.verticalKnockback = verticalKnockback;
 	}
-	
+
 	@Override
-	public MapCodec<? extends KnockbackIdolBlock> codec() {
+	public @Nullable MapCodec<? extends KnockbackIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

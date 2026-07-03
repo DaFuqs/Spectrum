@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class JadeiteLotusStemBlock extends BushBlock {
 	
@@ -55,10 +55,9 @@ public class JadeiteLotusStemBlock extends BushBlock {
 		
 		return super.useItemOn(handStack, state, world, pos, player, hand, hit);
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		var world = ctx.getLevel();
 		var pos = ctx.getClickedPos();
 		var floor = world.getBlockState(pos.above());
@@ -126,12 +125,12 @@ public class JadeiteLotusStemBlock extends BushBlock {
 	}
 	
 	@Override
-	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+	public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return 30;
 	}
 	
 	@Override
-	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+	public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return 60;
 	}
 	

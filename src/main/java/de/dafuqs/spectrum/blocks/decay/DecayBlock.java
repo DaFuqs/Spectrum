@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.ticks.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -49,12 +49,12 @@ public abstract class DecayBlock extends DropExperienceBlock {
 	
 	public static final EnumProperty<Conversion> CONVERSION = EnumProperty.create("conversion", Conversion.class);
 	
-	protected final float spreadChance;
+	protected final double spreadChance;
 	protected final boolean canSpreadToBlockEntities;
 	protected final float damageOnTouching;
 	protected final int tier;
 	
-	public DecayBlock(Properties settings, float spreadChance, boolean canSpreadToBlockEntities, int tier, float damageOnTouching, IntProvider xpRange) {
+	public DecayBlock(Properties settings, double spreadChance, boolean canSpreadToBlockEntities, int tier, float damageOnTouching, IntProvider xpRange) {
 		super(xpRange, settings);
 		this.spreadChance = spreadChance;
 		this.canSpreadToBlockEntities = canSpreadToBlockEntities;
@@ -84,7 +84,7 @@ public abstract class DecayBlock extends DropExperienceBlock {
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.setPlacedBy(world, pos, state, placer, itemStack);
 		
-		if (!world.isClientSide && SpectrumConfig.CONFIG.LogPlacingOfDecay.get() && placer != null) {
+		if (!world.isClientSide() && SpectrumConfig.CONFIG.LogPlacingOfDecay.get() && placer != null) {
 			SpectrumCommon.logInfo(state.getBlock().getName().getString() + " was placed in " + world.dimension().location() + " at " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " by " + placer.getName());
 		}
 	}
@@ -119,9 +119,9 @@ public abstract class DecayBlock extends DropExperienceBlock {
 			Block updatedBlock = updatedState.getBlock();
 			
 			if (!(updatedBlock instanceof DecayBlock) && !(updatedBlock instanceof DecayAwayBlock)) {
-				@Nullable BlockState spreadState = this.getSpreadState(state, updatedState, world, fromPos);
+				BlockState spreadState = this.getSpreadState(state, updatedState, world, fromPos);
 				if (spreadState != null) {
-					world.scheduleTick(pos, this, 40 + world.random.nextInt(200), TickPriority.EXTREMELY_LOW);
+					world.scheduleTick(pos, this, 40 + world.getRandom().nextInt(200), TickPriority.EXTREMELY_LOW);
 				}
 			}
 		}
@@ -158,12 +158,12 @@ public abstract class DecayBlock extends DropExperienceBlock {
 		}
 	}
 	
-	protected boolean trySpreadInDirection(@NotNull Level world, BlockState state, @NotNull BlockPos originPos, Direction direction) {
+	protected boolean trySpreadInDirection(Level world, BlockState state, BlockPos originPos, Direction direction) {
 		BlockPos targetPos = originPos.relative(direction);
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		
 		if (canSpreadTo(world, targetPos, targetBlockState)) {
-			@Nullable BlockState spreadState = this.getSpreadState(state, targetBlockState, world, targetPos);
+			BlockState spreadState = this.getSpreadState(state, targetBlockState, world, targetPos);
 			if (spreadState != null) {
 				if (world.setBlockAndUpdate(targetPos, spreadState)) {
 					world.playSound(null, targetPos, spreadState.getSoundType().getPlaceSound(), SoundSource.BLOCKS, 0.5F, 1.0F);

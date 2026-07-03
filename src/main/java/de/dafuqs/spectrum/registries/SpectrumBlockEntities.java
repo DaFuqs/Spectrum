@@ -41,7 +41,6 @@ import net.neoforged.bus.api.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -78,7 +77,7 @@ public class SpectrumBlockEntities {
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<FabricationChestBlockEntity>> FABRICATION_CHEST = register("fabrication_chest", FabricationChestBlockEntity::new, SpectrumBlocks.FABRICATION_CHEST);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<HeartboundChestBlockEntity>> HEARTBOUND_CHEST = register("heartbound_chest", HeartboundChestBlockEntity::new, SpectrumBlocks.HEARTBOUND_CHEST);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BlackHoleChestBlockEntity>> BLACK_HOLE_CHEST = register("black_hole_chest", BlackHoleChestBlockEntity::new, SpectrumBlocks.BLACK_HOLE_CHEST);
-	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<TreasureChestBlockEntity>> PRESERVATION_CHEST = register("preservation_chest", TreasureChestBlockEntity::new, SpectrumBlocks.PRESERVATION_CHEST);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationChestBlockEntity>> PRESERVATION_CHEST = register("preservation_chest", PreservationChestBlockEntity::new, SpectrumBlocks.PRESERVATION_CHEST);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<AmphoraBlockEntity>> AMPHORA = register("amphora", AmphoraBlockEntity::new, SpectrumBlocks.CHESTNUT_NOXWOOD_AMPHORA, SpectrumBlocks.EBONY_NOXWOOD_AMPHORA, SpectrumBlocks.SLATE_NOXWOOD_AMPHORA, SpectrumBlocks.IVORY_NOXWOOD_AMPHORA, SpectrumBlocks.WEEPING_GALA_AMPHORA);
 	
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ProjectorBlockEntity>> PROJECTOR = register("projector", ProjectorBlockEntity::new, SpectrumBlocks.PYRITE_PROJECTOR);

@@ -18,6 +18,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -26,12 +27,12 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
 	private static final int LINE_HEIGHT = 9;
 
-    private static BookTextHolder catalystText;
-	private static BookTextHolder speedText;
-	private static BookTextHolder inkDrainText;
-	private static BookTextHolder depletionText;
-    private BookTextHolder craftingTimeText1 = null;
-    private BookTextHolder craftingTimeText2 = null;
+    private static @Nullable BookTextHolder catalystText;
+	private static @Nullable BookTextHolder speedText;
+	private static @Nullable BookTextHolder inkDrainText;
+	private static @Nullable BookTextHolder depletionText;
+    private @Nullable BookTextHolder craftingTimeText1 = null;
+    private @Nullable BookTextHolder craftingTimeText2 = null;
 
     public BookCrystallarieumGrowingPageRenderer(BookGatedRecipePage<CrystallarieumRecipe> page) {
         super(page);

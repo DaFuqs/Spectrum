@@ -21,12 +21,11 @@ public class RevelationToast implements Toast {
 	private final ResourceLocation TEXTURE = SpectrumCommon.locate("textures/gui/toasts.png");
 	private final ItemStack itemStack;
 	private final SoundEvent soundEvent;
-	private boolean soundPlayed;
+	private boolean soundPlayed = false;
 	
 	public RevelationToast(ItemStack itemStack, SoundEvent soundEvent) {
 		this.itemStack = itemStack;
 		this.soundEvent = soundEvent;
-		this.soundPlayed = false;
 	}
 	
 	public static void showRevelationToast(Minecraft client, ItemStack itemStack, SoundEvent soundEvent) {
@@ -70,9 +69,7 @@ public class RevelationToast implements Toast {
 		
 		if (!this.soundPlayed && startTime > 0L) {
 			this.soundPlayed = true;
-			if (this.soundEvent != null) {
-				manager.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(this.soundEvent, 1.0F, 0.6F));
-			}
+			manager.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(this.soundEvent, 1.0F, 0.6F));
 		}
 		
 		drawContext.renderItem(itemStack, 8, 8);

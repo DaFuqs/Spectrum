@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class JadeVineBulbBlock extends Block implements JadeVine, NaturesStaffTriggered {
 	
@@ -70,12 +70,12 @@ public class JadeVineBulbBlock extends Block implements JadeVine, NaturesStaffTr
 	}
 	
 	@Override
-	public boolean canSurvive(@NotNull BlockState state, LevelReader world, BlockPos pos) {
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
 		return world.getBlockState(pos.above()).getBlock() instanceof JadeVineRootsBlock;
 	}
 	
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(DEAD);
 	}
 	

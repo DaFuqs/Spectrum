@@ -61,6 +61,7 @@ import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
+import net.minecraft.core.cauldron.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
@@ -92,7 +93,7 @@ import net.neoforged.bus.api.*;
 import net.neoforged.fml.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;
@@ -249,7 +250,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> ANCIENT_CHISELED_POLISHED_BLACKSLAG = register(simple(blockWithItem("ancient_chiseled_polished_blackslag", () -> new Block(blackslag(SoundType.DEEPSLATE_BRICKS)), InkColors.BLACK)));
 	
 	public static final DeferredBlock<Block> SHALE_CLAY = register(singleton(blockWithItem("shale_clay", () -> new ShaleClayBlock(Weathering.WeatheringLevel.UNAFFECTED, blackslag(SoundType.MUD_BRICKS)), InkColors.BROWN), TexturedModel.COLUMN));
-	public static final DeferredBlock<Block> TILLED_SHALE_CLAY = register(singleton(blockWithItem("tilled_shale_clay", () -> new TilledShaleClayBlock(BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY.get()), SHALE_CLAY.get().defaultBlockState()), InkColors.BROWN), SpectrumTexturedModelProviders.farmland(b -> SHALE_CLAY.get(), "_side", b -> b, "")));
+	public static final DeferredBlock<Block> TILLED_SHALE_CLAY = register(singleton(blockWithItem("tilled_shale_clay", () -> new ImmutableFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY.get()), SHALE_CLAY.get().defaultBlockState()), InkColors.BROWN), SpectrumTexturedModelProviders.farmland(b -> SHALE_CLAY.get(), "_side", b -> b, "")));
 	
 	public static final DeferredBlock<Block> POLISHED_SHALE_CLAY = register(blockWithItem("polished_shale_clay", () -> new ShaleClayBlock(Weathering.WeatheringLevel.UNAFFECTED, BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY.get())), InkColors.BROWN));
 	public static final DeferredBlock<Block> POLISHED_SHALE_CLAY_STAIRS = register(blockWithItem("polished_shale_clay_stairs", () -> new WeatheringStairsBlock(Weathering.WeatheringLevel.UNAFFECTED, POLISHED_SHALE_CLAY.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY.get())), InkColors.BROWN));
@@ -346,7 +347,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> BONE_ASH_TILE_WALL = register(blockWithItem("bone_ash_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(BONE_ASH_TILES.get())), InkColors.CYAN));
 	
 	public static final DeferredBlock<Block> SLUSH = register(simple(blockWithItem("slush", () -> new SlushBlock(blackslag(SoundType.MUDDY_MANGROVE_ROOTS)), InkColors.BROWN)));
-	public static final DeferredBlock<Block> OVERGROWN_SLUSH = register(snowy(blockWithItem("overgrown_slush", () -> new SlushVegetationBlock(blackslag(SoundType.MUDDY_MANGROVE_ROOTS)), InkColors.BROWN), SpectrumTexturedModelProviders.cubeBottomTopParticle(b -> b, "_side", b -> b, "_top", b -> SLUSH.get(), "", b -> b, "_top"), SpectrumTexturedModelProviders.cubeBottomTopParticle(b -> b, "_snow_side", b -> b, "_snow_top", b -> SLUSH.get(), "", b -> b, "_snow_top")));
+	public static final DeferredBlock<Block> OVERGROWN_SLUSH = register(snowy(blockWithItem("overgrown_slush", () -> new OvergrownSlushBlock(blackslag(SoundType.MUDDY_MANGROVE_ROOTS)), InkColors.BROWN), SpectrumTexturedModelProviders.cubeBottomTopParticle(b -> b, "_side", b -> b, "_top", b -> SLUSH.get(), "", b -> b, "_top"), SpectrumTexturedModelProviders.cubeBottomTopParticle(b -> b, "_snow_side", b -> b, "_snow_top", b -> SLUSH.get(), "", b -> b, "_snow_top")));
 	public static final DeferredBlock<Block> TILLED_SLUSH = register(singleton(blockWithItem("tilled_slush", () -> new TilledSlushBlock(BlockBehaviour.Properties.ofFullCopy(SLUSH.get()), SLUSH.get().defaultBlockState()), InkColors.BROWN), SpectrumTexturedModelProviders.farmland(b -> SLUSH.get(), "", b -> b, "")));
 	
 	public static final DeferredBlock<Block> BLACK_MATERIA = register(simple(blockWithItem("black_materia", () -> new BlackMateriaBlock(settings(MapColor.TERRACOTTA_BLACK, SoundType.SAND, 0.0F).instrument(NoteBlockInstrument.SNARE).randomTicks()), InkColors.GRAY)));
@@ -551,7 +552,7 @@ public class SpectrumBlocks {
 			.withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(BottomlessBundleBlock.LOCKED, ModelLocationUtils.getModelLocation(block, "_locked"), ModelLocationUtils.getModelLocation(block, "_unlocked"))))
 			.withPredefinedItemModel());
 	
-	public static final DeferredBlock<Block> PERSISTENT_LIGHT = register(singleton(block("persistent_light", () -> new PersistentLightBlock(BlockBehaviour.Properties.ofFullCopy(LIGHT).replaceable().air().sound(SpectrumSoundTypes.LIGHT).instabreak())), SpectrumTexturedModelProviders.particle(SpectrumTextures.SHIMMERSTONE_LIGHT)));
+	public static final DeferredBlock<Block> PERSISTENT_LIGHT = register(singleton(block("persistent_light", () -> new PersistentLightBlock(BlockBehaviour.Properties.ofFullCopy(LIGHT).replaceable().sound(SpectrumSoundTypes.LIGHT).instabreak())), SpectrumTexturedModelProviders.particle(SpectrumTextures.SHIMMERSTONE_LIGHT)));
 	public static final DeferredBlock<Block> TRANSIENT_LIGHT = register(parented(block("transient_light", () -> new TransientLightBlock(BlockBehaviour.Properties.ofFullCopy(PERSISTENT_LIGHT.get()).randomTicks())), b -> PERSISTENT_LIGHT.get()));
 	
 	private static BlockBehaviour.Properties decay(MapColor mapColor, SoundType soundGroup, float strength, float resistance, PushReaction pistonBehavior) {
@@ -1152,7 +1153,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> RAW_AZURITE_BLOCK = register(simple(blockWithItem("raw_azurite_block", () -> new AzuriteBlock(ore().mapColor(MapColor.COLOR_BLUE)), InkColors.BLUE)));
 	public static final DeferredBlock<AzuriteOreBlock> DEEPSLATE_AZURITE_ORE = register(simpleMirrored(blockWithItem("deepslate_azurite_ore", () -> new AzuriteOreBlock(UniformInt.of(4, 7), deepslateOre().randomTicks(), SpectrumAdvancements.REVEAL_AZURITE, Blocks.DEEPSLATE.defaultBlockState()), InkColors.BLUE)));
 	public static final DeferredBlock<AzuriteOreBlock> BLACKSLAG_AZURITE_ORE = register(simpleMirrored(blockWithItem("blackslag_azurite_ore", () -> new AzuriteOreBlock(UniformInt.of(4, 7), blackslagOre().randomTicks(), SpectrumAdvancements.REVEAL_AZURITE, BLACKSLAG.get().defaultBlockState()), InkColors.BLUE)));
-	public static final DeferredBlock<Block> AZURITE_BLOCK = register(defaultUpFacing(blockWithItem("azurite_block", () -> new SpectrumFacingBlock(BlockBehaviour.Properties.ofFullCopy(LAPIS_BLOCK).mapColor(MapColor.COLOR_BLUE)), InkColors.BLUE), TexturedModel.CUBE_TOP_BOTTOM));
+	public static final DeferredBlock<Block> PURE_AZURITE_BLOCK = register(defaultUpFacing(blockWithItem("pure_azurite_block", () -> new SpectrumFacingBlock(BlockBehaviour.Properties.ofFullCopy(LAPIS_BLOCK).mapColor(MapColor.COLOR_BLUE)), InkColors.BLUE), TexturedModel.CUBE_TOP_BOTTOM));
 	public static final DeferredBlock<SpectrumClusterBlock> AZURITE_CLUSTER = register(cluster(blockWithItem("azurite_cluster", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_BLUE, SpectrumSoundTypes.SMALL_ONYX_BUD, 2), SpectrumClusterBlock.GrowthStage.CLUSTER), () -> IS.of(Rarity.UNCOMMON), InkColors.BLUE), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> LARGE_AZURITE_BUD = register(cluster(blockWithItem("large_azurite_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_BLUE, SpectrumSoundTypes.LARGE_ONYX_BUD, 3), SpectrumClusterBlock.GrowthStage.LARGE), () -> IS.of(Rarity.UNCOMMON), InkColors.BLUE), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> SMALL_AZURITE_BUD = register(cluster(blockWithItem("small_azurite_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_BLUE, SpectrumSoundTypes.ONYX_CLUSTER, 5), SpectrumClusterBlock.GrowthStage.SMALL), () -> IS.of(Rarity.UNCOMMON), InkColors.BLUE), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
@@ -1161,13 +1162,13 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> RAW_MALACHITE_BLOCK = register(simple(blockWithItem("raw_malachite_block", () -> new Block(ore().mapColor(MapColor.EMERALD)), InkColors.GREEN)));
 	public static final DeferredBlock<Block> DEEPSLATE_MALACHITE_ORE = register(simple(blockWithItem("deepslate_malachite_ore", () -> new CloakedOreBlock(UniformInt.of(7, 11), deepslateOre(), SpectrumAdvancements.REVEAL_MALACHITE, Blocks.DEEPSLATE.defaultBlockState()), () -> IS.of(Rarity.UNCOMMON), InkColors.GREEN)));
 	public static final DeferredBlock<Block> BLACKSLAG_MALACHITE_ORE = register(singleton(blockWithItem("blackslag_malachite_ore", () -> new CloakedOreBlock(UniformInt.of(7, 11), blackslagOre(), SpectrumAdvancements.REVEAL_MALACHITE, BLACKSLAG.get().defaultBlockState()), () -> IS.of(Rarity.UNCOMMON), InkColors.GREEN), TexturedModel.COLUMN_ALT));
-	public static final DeferredBlock<Block> MALACHITE_BLOCK = register(defaultUpFacing(blockWithItem("malachite_block", () -> new SpectrumFacingBlock(gemstoneBlock(MapColor.EMERALD, SoundType.CHAIN)), () -> IS.of(Rarity.UNCOMMON), InkColors.GREEN), TexturedModel.COLUMN_ALT));
+	public static final DeferredBlock<Block> PURE_MALACHITE_BLOCK = register(defaultUpFacing(blockWithItem("pure_malachite_block", () -> new SpectrumFacingBlock(gemstoneBlock(MapColor.EMERALD, SoundType.CHAIN)), () -> IS.of(Rarity.UNCOMMON), InkColors.GREEN), TexturedModel.COLUMN_ALT));
 	public static final DeferredBlock<SpectrumClusterBlock> MALACHITE_CLUSTER = register(cluster(blockWithItem("malachite_cluster", () -> new SpectrumClusterBlock(gemstone(MapColor.EMERALD, SoundType.CHAIN, 9), SpectrumClusterBlock.GrowthStage.CLUSTER), () -> IS.of(Rarity.UNCOMMON), InkColors.GREEN), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> LARGE_MALACHITE_BUD = register(cluster(blockWithItem("large_malachite_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.EMERALD, SoundType.CHAIN, 7), SpectrumClusterBlock.GrowthStage.LARGE), () -> IS.of(Rarity.UNCOMMON), InkColors.GREEN), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> SMALL_MALACHITE_BUD = register(cluster(blockWithItem("small_malachite_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.EMERALD, SoundType.CHAIN, 5), SpectrumClusterBlock.GrowthStage.SMALL), () -> IS.of(Rarity.UNCOMMON), InkColors.GREEN), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	
 	public static final DeferredBlock<Block> RAW_BLOODSTONE_BLOCK = register(simple(blockWithItem("raw_bloodstone_block", () -> new Block(ore().mapColor(MapColor.COLOR_RED).sound(SpectrumSoundTypes.ONYX_CLUSTER)), InkColors.RED)));
-	public static final DeferredBlock<Block> BLOODSTONE_BLOCK = register(defaultUpFacing(blockWithItem("bloodstone_block", () -> new SpectrumFacingBlock(gemstoneBlock(MapColor.COLOR_RED, SpectrumSoundTypes.ONYX_CLUSTER)), () -> IS.of(Rarity.UNCOMMON), InkColors.RED), TexturedModel.COLUMN));
+	public static final DeferredBlock<Block> PURE_BLOODSTONE_BLOCK = register(defaultUpFacing(blockWithItem("pure_bloodstone_block", () -> new SpectrumFacingBlock(gemstoneBlock(MapColor.COLOR_RED, SpectrumSoundTypes.ONYX_CLUSTER)), () -> IS.of(Rarity.UNCOMMON), InkColors.RED), TexturedModel.COLUMN));
 	public static final DeferredBlock<SpectrumClusterBlock> BLOODSTONE_CLUSTER = register(cluster(blockWithItem("bloodstone_cluster", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumSoundTypes.SMALL_ONYX_BUD, 6), SpectrumClusterBlock.GrowthStage.CLUSTER), () -> IS.of(Rarity.UNCOMMON), InkColors.RED), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> LARGE_BLOODSTONE_BUD = register(cluster(blockWithItem("large_bloodstone_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumSoundTypes.SMALL_ONYX_BUD, 4), SpectrumClusterBlock.GrowthStage.LARGE), () -> IS.of(Rarity.UNCOMMON), InkColors.RED), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> SMALL_BLOODSTONE_BUD = register(cluster(blockWithItem("small_bloodstone_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumSoundTypes.ONYX_CLUSTER, 3), SpectrumClusterBlock.GrowthStage.SMALL), () -> IS.of(Rarity.UNCOMMON), InkColors.RED), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
@@ -1325,15 +1326,15 @@ public class SpectrumBlocks {
 		return BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT.get()).forceSolidOn();
 	}
 	
-	public static final DeferredBlock<Block> UPGRADE_SPEED = register(parented(blockWithItem("upgrade_speed", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.SPEED, 1, InkColors.MAGENTA_COLOR), block -> new UpgradeBlockItem(block, IS.of(16), "upgrade_speed"), InkColors.LIGHT_GRAY), b -> b));
-	public static final DeferredBlock<Block> UPGRADE_SPEED2 = register(parented(blockWithItem("upgrade_speed2", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.SPEED, 2, InkColors.MAGENTA_COLOR), block -> new UpgradeBlockItem(block, IS.of(16, Rarity.UNCOMMON), "upgrade_speed2"), InkColors.LIGHT_GRAY), b -> UPGRADE_SPEED.get()));
-	public static final DeferredBlock<Block> UPGRADE_SPEED3 = register(parented(blockWithItem("upgrade_speed3", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.SPEED, 8, InkColors.MAGENTA_COLOR), block -> new UpgradeBlockItem(block, IS.of(16, Rarity.RARE), "upgrade_speed3"), InkColors.LIGHT_GRAY), b -> UPGRADE_SPEED.get()));
-	public static final DeferredBlock<Block> UPGRADE_EFFICIENCY = register(parented(blockWithItem("upgrade_efficiency", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.EFFICIENCY, 1, InkColors.YELLOW_COLOR), block -> new UpgradeBlockItem(block, IS.of(16, Rarity.UNCOMMON), "upgrade_efficiency"), InkColors.LIGHT_GRAY), b -> b));
-	public static final DeferredBlock<Block> UPGRADE_EFFICIENCY2 = register(parented(blockWithItem("upgrade_efficiency2", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.EFFICIENCY, 4, InkColors.YELLOW_COLOR), block -> new UpgradeBlockItem(block, IS.of(16, Rarity.RARE), "upgrade_efficiency2"), InkColors.LIGHT_GRAY), b -> UPGRADE_EFFICIENCY.get()));
-	public static final DeferredBlock<Block> UPGRADE_YIELD = register(parented(blockWithItem("upgrade_yield", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.YIELD, 1, InkColors.CYAN_COLOR), block -> new UpgradeBlockItem(block, IS.of(16, Rarity.UNCOMMON), "upgrade_yield"), InkColors.LIGHT_GRAY), b -> b));
-	public static final DeferredBlock<Block> UPGRADE_YIELD2 = register(parented(blockWithItem("upgrade_yield2", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.YIELD, 4, InkColors.CYAN_COLOR), block -> new UpgradeBlockItem(block, IS.of(16, Rarity.RARE), "upgrade_yield2"), InkColors.LIGHT_GRAY), b -> UPGRADE_YIELD.get()));
-	public static final DeferredBlock<Block> UPGRADE_EXPERIENCE = register(parented(blockWithItem("upgrade_experience", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.EXPERIENCE, 1, InkColors.PURPLE_COLOR), block -> new UpgradeBlockItem(block, IS.of(16), "upgrade_experience"), InkColors.LIGHT_GRAY), b -> b));
-	public static final DeferredBlock<Block> UPGRADE_EXPERIENCE2 = register(parented(blockWithItem("upgrade_experience2", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.EXPERIENCE, 4, InkColors.PURPLE_COLOR), block -> new UpgradeBlockItem(block, IS.of(16, Rarity.UNCOMMON), "upgrade_experience2"), InkColors.LIGHT_GRAY), b -> UPGRADE_EXPERIENCE.get()));
+	public static final DeferredBlock<Block> UPGRADE_SPEED = register(parented(blockWithItem("upgrade_speed", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.SPEED, 1, InkColors.MAGENTA_COLOR, "upgrade_speed"), () -> IS.of(16, Rarity.UNCOMMON), InkColors.LIGHT_GRAY), b -> b));
+	public static final DeferredBlock<Block> UPGRADE_SPEED2 = register(parented(blockWithItem("upgrade_speed2", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.SPEED, 2, InkColors.MAGENTA_COLOR, "upgrade_speed2"), () -> IS.of(16, Rarity.UNCOMMON), InkColors.LIGHT_GRAY), b -> UPGRADE_SPEED.get()));
+	public static final DeferredBlock<Block> UPGRADE_SPEED3 = register(parented(blockWithItem("upgrade_speed3", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.SPEED, 8, InkColors.MAGENTA_COLOR, "upgrade_speed3"), () -> IS.of(16, Rarity.UNCOMMON), InkColors.LIGHT_GRAY), b -> UPGRADE_SPEED.get()));
+	public static final DeferredBlock<Block> UPGRADE_EFFICIENCY = register(parented(blockWithItem("upgrade_efficiency", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.EFFICIENCY, 1, InkColors.YELLOW_COLOR, "upgrade_efficiency"), () -> IS.of(16, Rarity.UNCOMMON), InkColors.LIGHT_GRAY), b -> b));
+	public static final DeferredBlock<Block> UPGRADE_EFFICIENCY2 = register(parented(blockWithItem("upgrade_efficiency2", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.EFFICIENCY, 4, InkColors.YELLOW_COLOR, "upgrade_efficiency2"), () -> IS.of(16, Rarity.UNCOMMON), InkColors.LIGHT_GRAY), b -> UPGRADE_EFFICIENCY.get()));
+	public static final DeferredBlock<Block> UPGRADE_YIELD = register(parented(blockWithItem("upgrade_yield", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.YIELD, 1, InkColors.CYAN_COLOR, "upgrade_yield"), () -> IS.of(16, Rarity.UNCOMMON), InkColors.LIGHT_GRAY), b -> b));
+	public static final DeferredBlock<Block> UPGRADE_YIELD2 = register(parented(blockWithItem("upgrade_yield2", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.YIELD, 4, InkColors.CYAN_COLOR, "upgrade_yield2"), () -> IS.of(16, Rarity.UNCOMMON), InkColors.LIGHT_GRAY), b -> UPGRADE_YIELD.get()));
+	public static final DeferredBlock<Block> UPGRADE_EXPERIENCE = register(parented(blockWithItem("upgrade_experience", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.EXPERIENCE, 1, InkColors.PURPLE_COLOR, "upgrade_experience"), () -> IS.of(16, Rarity.UNCOMMON), InkColors.LIGHT_GRAY), b -> b));
+	public static final DeferredBlock<Block> UPGRADE_EXPERIENCE2 = register(parented(blockWithItem("upgrade_experience2", () -> new UpgradeBlock(upgrade(), Upgradeable.UpgradeType.EXPERIENCE, 4, InkColors.PURPLE_COLOR, "upgrade_experience2"), () -> IS.of(16, Rarity.UNCOMMON), InkColors.LIGHT_GRAY), b -> UPGRADE_EXPERIENCE.get()));
 	
 	public static final DeferredBlock<RedstoneSandBlock> REDSTONE_SAND = register(simple(blockWithItem("redstone_sand", () -> new RedstoneSandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.FIRE)), InkColors.RED)));
 	public static final DeferredBlock<EnderGlassBlock> ENDER_GLASS = register(blockWithItem("ender_glass", () -> new EnderGlassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).mapColor(MapColor.COLOR_PURPLE).noOcclusion().isRedstoneConductor(SpectrumBlocks::never).isValidSpawn((state, world, pos, entityType) -> EnderGlassBlock.getTransparencyState(state) == EnderGlassBlock.TransparencyState.SOLID).isSuffocating((state, world, pos) -> EnderGlassBlock.getTransparencyState(state) == EnderGlassBlock.TransparencyState.SOLID).isViewBlocking((state, world, pos) -> EnderGlassBlock.getTransparencyState(state) == EnderGlassBlock.TransparencyState.SOLID)), InkColors.PURPLE).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_solid")).withBlockModel((ctx, block) ->
@@ -1815,7 +1816,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<DikeGateBlock> DIKE_GATE = register(simple(blockWithItem("dike_gate", () -> new DikeGateBlock(preservationBlock().lightLevel(state -> 3).sound(SoundType.GLASS).noOcclusion().emissiveRendering(SpectrumBlocks::always).hasPostProcess(SpectrumBlocks::always).isRedstoneConductor(SpectrumBlocks::never).isSuffocating(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never)), InkColors.BLUE)));
 	public static final DeferredBlock<DreamGateBlock> DREAM_GATE = register(simple(blockWithItem("dream_gate", () -> new DreamGateBlock(preservationBlock().lightLevel(state -> 3).sound(SoundType.GLASS).noOcclusion().emissiveRendering(SpectrumBlocks::always).hasPostProcess(SpectrumBlocks::always).isRedstoneConductor(SpectrumBlocks::never).isSuffocating(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never)), InkColors.BLUE)));
 	public static final DeferredBlock<InvisibleWallBlock> INVISIBLE_WALL = register(singleton(blockWithItem("invisible_wall", () -> new InvisibleWallBlock(preservationBlock().lightLevel(state -> 3).sound(SoundType.GLASS).noOcclusion().isViewBlocking(SpectrumBlocks::never)), InkColors.BLUE), SpectrumTexturedModelProviders.particle(b -> Blocks.GLASS, "")).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, ETHEREAL_PLATFORM.get())));
-	public static final DeferredBlock<TreasureChestBlock> PRESERVATION_CHEST = register(singletonWithSoup(blockWithItem("preservation_chest", () -> new TreasureChestBlock(preservationBlock()), InkColors.BLUE), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<PreservationChestBlock> PRESERVATION_CHEST = register(singletonWithSoup(blockWithItem("preservation_chest", () -> new PreservationChestBlock(preservationBlock()), InkColors.BLUE), ModelLocationUtils::getModelLocation));
 	
 	public static final DeferredBlock<Block> DOWNSTONE = register(simple(blockWithItem("downstone", () -> new Block(preservationBlock()), InkColors.BLUE))); // "raw" preservation stone, used in the Deeper Down bottom in place of bedrock
 	
@@ -1919,7 +1920,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> EVOKER_IDOL = register(idol(blockWithItem("evoker_idol", () -> new EntitySummoningIdolBlock(idol(SpectrumSoundTypes.EVOKER_IDOL), ParticleTypes.ANGRY_VILLAGER, EntityType.VEX) {
 		@Override
 		public void afterSummon(ServerLevel world, Entity entity) {
-			((Vex) entity).setLimitedLife(20 * (30 + world.random.nextInt(90)));
+			((Vex) entity).setLimitedLife(20 * (30 + world.getRandom().nextInt(90)));
 		}
 	}, InkColors.PINK)));
 	public static final DeferredBlock<Block> FISH_IDOL = register(idol(blockWithItem("fish_idol", () -> new StatusEffectIdolBlock(idol(SpectrumSoundTypes.FISH_IDOL), ParticleTypes.SPLASH, MobEffects.WATER_BREATHING, 0, 200), InkColors.PINK)));
@@ -1967,7 +1968,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> SNOW_GOLEM_IDOL = register(idol(blockWithItem("snow_golem_idol", () -> new ProjectileIdolBlock(idol(SpectrumSoundTypes.SNOW_GOLEM_IDOL), ParticleTypes.SNOWFLAKE, EntityType.SNOWBALL, SoundEvents.ARROW_SHOOT, 3.0F, 1.1F) {
 		@Override
 		public Projectile createProjectile(ServerLevel world, BlockPos mobBlockPos, Position position, Direction side) {
-			world.playSound(null, mobBlockPos.getX(), mobBlockPos.getY(), mobBlockPos.getZ(), SoundEvents.SNOW_GOLEM_SHOOT, SoundSource.BLOCKS, 1.0F, 0.4F / world.random.nextFloat() * 0.4F + 0.8F);
+			world.playSound(null, mobBlockPos.getX(), mobBlockPos.getY(), mobBlockPos.getZ(), SoundEvents.SNOW_GOLEM_SHOOT, SoundSource.BLOCKS, 1.0F, 0.4F / world.getRandom().nextFloat() * 0.4F + 0.8F);
 			return new Snowball(world, position.x(), position.y(), position.z());
 		}
 	}, InkColors.PINK)));
@@ -1986,10 +1987,15 @@ public class SpectrumBlocks {
 		return settings(mapColor, SoundType.EMPTY, 100.0F).replaceable().noCollission().pushReaction(PushReaction.DESTROY).noLootTable().liquid();
 	}
 	
-	public static final DeferredBlock<Block> LIQUID_CRYSTAL = register(singleton(block("liquid_crystal", () -> new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL.get(), BLAZING_CRYSTAL.get().defaultBlockState(), fluid(MapColor.CRIMSON_STEM).lightLevel((state) -> LiquidCrystalFluidBlock.LUMINANCE).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
+	public static final DeferredBlock<Block> LIQUID_CRYSTAL = register(singleton(block("liquid_crystal", () -> new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL.get(), BLAZING_CRYSTAL.get().defaultBlockState(), fluid(MapColor.CRIMSON_STEM).lightLevel((state) -> SpectrumFluids.LIQUID_CRYSTAL_LIGHT_LEVEL).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
 	public static final DeferredBlock<Block> SLUDGE = register(singleton(block("sludge", () -> new SludgeFluidBlock(SpectrumFluids.SLUDGE.get(), MUD.defaultBlockState(), fluid(MapColor.TERRACOTTA_BROWN).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
 	public static final DeferredBlock<Block> MIDNIGHT_SOLUTION = register(singleton(block("midnight_solution", () -> new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION.get(), BLACK_MATERIA.get().defaultBlockState(), fluid(MapColor.WARPED_STEM).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
-	public static final DeferredBlock<Block> DRAGONROT = register(singleton(block("dragonrot", () -> new DragonrotFluidBlock(SpectrumFluids.DRAGONROT.get(), BLACKSTONE.defaultBlockState(), fluid(MapColor.ICE).lightLevel((state) -> 15).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
+	public static final DeferredBlock<Block> DRAGONROT = register(singleton(block("dragonrot", () -> new DragonrotFluidBlock(SpectrumFluids.DRAGONROT.get(), BLACKSTONE.defaultBlockState(), fluid(MapColor.ICE).lightLevel((state) -> SpectrumFluids.DRAGONROT_LIGHT_LEVEL).replaceable())), SpectrumTexturedModelProviders.particle(b -> b, "_still")));
+	
+	public static final DeferredBlock<Block> LIQUID_CRYSTAL_CAULDRON = register(simple(block("liquid_crystal_cauldron", () -> new SpectrumCauldronBlock(SpectrumFluids.LIQUID_CRYSTAL_TYPE, CauldronInteraction.newInteractionMap(SpectrumCauldronInteractions.LIQUID_CRYSTAL_INTERACTION), BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)))));
+	public static final DeferredBlock<Block> SLUDGE_CAULDRON = register(simple(block("sludge_cauldron", () -> new SpectrumCauldronBlock(SpectrumFluids.LIQUID_CRYSTAL_TYPE, CauldronInteraction.newInteractionMap(SpectrumCauldronInteractions.SLUDGE_INTERACTION), BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)))));
+	public static final DeferredBlock<Block> MIDNIGHT_SOLUTION_CAULDRON = register(simple(block("midnight_solution_cauldron", () -> new SpectrumCauldronBlock(SpectrumFluids.LIQUID_CRYSTAL_TYPE, CauldronInteraction.newInteractionMap(SpectrumCauldronInteractions.MIDNIGHT_SOLUTION_INTERACTION), BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)))));
+	public static final DeferredBlock<Block> DRAGONROT_CAULDRON = register(simple(block("dragonrot_cauldron", () -> new SpectrumCauldronBlock(SpectrumFluids.LIQUID_CRYSTAL_TYPE, CauldronInteraction.newInteractionMap(SpectrumCauldronInteractions.DRAGONROT_INTERACTION), BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)))));
 	
 	public static final DeferredBlock<Block> TOPAZ_BRICKS = register(simple(blockWithItem("topaz_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_TOPAZ.get())), InkColors.CYAN)));
 	public static final DeferredBlock<Block> AMETHYST_BRICKS = register(simple(blockWithItem("amethyst_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_AMETHYST.get())), InkColors.MAGENTA)));
@@ -1998,10 +2004,10 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> MOONSTONE_BRICKS = register(simple(blockWithItem("moonstone_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_MOONSTONE.get())), InkColors.WHITE)));
 	public static final DeferredBlock<Block> MIXED_GEMSTONE_BRICKS = register(simple(blockWithItem("mixed_gemstone_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_AMETHYST.get())), InkColors.MAGENTA)));
 	
-	public static final DeferredBlock<Block> AZURITE_BRICKS = register(simple(blockWithItem("azurite_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(AZURITE_BLOCK.get())), InkColors.BLUE)));
-	public static final DeferredBlock<Block> MALACHITE_BRICKS = register(simple(blockWithItem("malachite_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(MALACHITE_BLOCK.get())), InkColors.GREEN)));
-	public static final DeferredBlock<Block> BLOODSTONE_BRICKS = register(simple(blockWithItem("bloodstone_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BLOODSTONE_BLOCK.get())), InkColors.RED)));
-	public static final DeferredBlock<Block> MIXED_REFINED_CRYSTAL_BRICKS = register(simple(blockWithItem("mixed_refined_crystal_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(AZURITE_BLOCK.get())), InkColors.BLUE)));
+	public static final DeferredBlock<Block> AZURITE_BRICKS = register(simple(blockWithItem("azurite_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(PURE_AZURITE_BLOCK.get())), InkColors.BLUE)));
+	public static final DeferredBlock<Block> MALACHITE_BRICKS = register(simple(blockWithItem("malachite_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(PURE_MALACHITE_BLOCK.get())), InkColors.GREEN)));
+	public static final DeferredBlock<Block> BLOODSTONE_BRICKS = register(simple(blockWithItem("bloodstone_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(PURE_BLOODSTONE_BLOCK.get())), InkColors.RED)));
+	public static final DeferredBlock<Block> MIXED_REFINED_CRYSTAL_BRICKS = register(simple(blockWithItem("mixed_refined_crystal_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(PURE_AZURITE_BLOCK.get())), InkColors.BLUE)));
 	
 	static boolean never(BlockState state, BlockGetter world, BlockPos pos, EntityType<?> type) {
 		return false;
@@ -2299,14 +2305,12 @@ public class SpectrumBlocks {
 			});*/
 			return this;
 		}
-		
-		@Nullable
-		public DeferredBlock<T> holder() {
+
+		public @Nullable DeferredBlock<T> holder() {
 			return holder;
 		}
-		
-		@Nullable
-		public Item item() {
+
+		public @Nullable Item item() {
 			return item;
 		}
 		
@@ -2696,6 +2700,8 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(WITHER_IDOL.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(WITHER_SKELETON_IDOL.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(ZOMBIE_IDOL.get(), RenderType.translucent());
+		
+		ItemBlockRenderTypes.setRenderLayer(LIQUID_CRYSTAL_CAULDRON.get(), RenderType.translucent());
 	}
 	
 }

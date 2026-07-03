@@ -90,12 +90,12 @@ public class AloeBlock extends BushBlock implements BonemealableBlock {
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		int age = state.getValue(AGE);
 		if (age > 1) {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return InteractionResult.SUCCESS;
 			} else {
 				world.setBlockAndUpdate(pos, state.setValue(AGE, age - 1));
 				player.getInventory().placeItemBackInInventory(this.asItem().getDefaultInstance());
-				world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
+				world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 				return InteractionResult.CONSUME;
 			}
 		}

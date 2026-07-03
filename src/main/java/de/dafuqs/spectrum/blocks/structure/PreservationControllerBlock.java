@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class PreservationControllerBlock extends BaseEntityBlock {
 	
@@ -31,7 +31,7 @@ public class PreservationControllerBlock extends BaseEntityBlock {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (!world.isClientSide && player.isCreative()) { // for testing and building structures
+		if (!world.isClientSide() && player.isCreative()) { // for testing and building structures
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof PreservationControllerBlockEntity preservationControllerBlockEntity) {
 				if (player.isShiftKeyDown()) {
@@ -52,17 +52,15 @@ public class PreservationControllerBlock extends BaseEntityBlock {
 		}
 		return this.defaultBlockState().setValue(FACING, direction);
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PreservationControllerBlockEntity(pos, state);
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.PRESERVATION_CONTROLLER.get(), PreservationControllerBlockEntity::serverTick);
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return world.isClientSide() ? null : createTickerHelper(type, SpectrumBlockEntities.PRESERVATION_CONTROLLER.get(), PreservationControllerBlockEntity::serverTick);
 	}
 	
 	@Override

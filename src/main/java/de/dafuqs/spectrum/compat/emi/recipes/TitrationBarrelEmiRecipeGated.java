@@ -11,8 +11,8 @@ import net.minecraft.network.chat.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.fluids.crafting.*;
+import org.jspecify.annotations.Nullable;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -31,7 +31,7 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 		displayedStacks = buildFermentationOutputVariations(recipe);
 	}
 	
-	private static List<EmiStack> buildFermentationOutputVariations(ITitrationBarrelRecipe recipe) {
+	private static @Nullable List<EmiStack> buildFermentationOutputVariations(ITitrationBarrelRecipe recipe) {
 		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData().isPresent()) {
 			return titrationBarrelRecipe.getOutputVariations(TitrationBarrelRecipe.FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS).stream().map(EmiStack::of).toList();
 		}

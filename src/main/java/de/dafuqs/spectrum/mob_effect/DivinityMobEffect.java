@@ -13,7 +13,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -33,14 +33,14 @@ public class DivinityMobEffect extends MobEffect {
 	@Override
 	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
 		Level world = entity.level();
-		if (amplifier > CIRCLET_AMPLIFIER && world.isClientSide) { // the circlet gives divinity 0, not showing effects; the ascension one does
+		if (amplifier > CIRCLET_AMPLIFIER && world.isClientSide()) { // the circlet gives divinity 0, not showing effects; the ascension one does
 			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.RED, VectorPattern.EIGHT, 0.2);
 		}
 		
 		boolean healAndSaturate = SAVED_DURATION % 80 == 0;
 		
 		if (entity instanceof Player player) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				SpectrumAdvancementCriteria.DIVINITY_TICK.trigger((ServerPlayer) player);
 			}
 			if (healAndSaturate) {
@@ -62,7 +62,7 @@ public class DivinityMobEffect extends MobEffect {
 	}
 	
 	@Override
-	public void onEffectStarted(@NotNull LivingEntity entity, int amplifier) {
+	public void onEffectStarted(LivingEntity entity, int amplifier) {
 		super.onEffectStarted(entity, amplifier);
 		if (entity instanceof Player) {
 			if (entity instanceof ServerPlayer player) {
@@ -75,7 +75,7 @@ public class DivinityMobEffect extends MobEffect {
 	}
 	
 	@Override
-	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+	public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
 		cures.add(SpectrumEffectCures.COMMAND_ONLY);
 	}
 	

@@ -13,7 +13,7 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -41,7 +41,7 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull PedestalCraftingDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, PedestalCraftingDisplay display) {
 		ResourceLocation backgroundTexture = PedestalScreen.getBackgroundTextureForTier(display.getTier());
 		widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 1 + 18)).animationDurationTicks(display.craftingTime));
 		
@@ -54,8 +54,8 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 		
 		// crafting grid slots
 		List<Slot> slots = Lists.newArrayList();
-		for (int x = 0; x < 3; x++) {
-			for (int y = 0; y < 3; y++) {
+		for (int y = 0; y < 3; y++) {
+			for (int x = 0; x < 3; x++) {
 				slots.add(Widgets.createSlot(new Point(startPoint.x + 1 + x * 18, startPoint.y + 2 + y * 18)).disableBackground().markInput().disableBackground().entries(input.get(y * 3 + x)));
 			}
 		}

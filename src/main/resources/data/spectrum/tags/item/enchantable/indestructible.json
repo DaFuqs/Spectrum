@@ -1,8 +1,6 @@
 {
   "values": [
-    "#minecraft:enchantable/durability",
-
-    "spectrum:ender_splice"
+    "#minecraft:enchantable/durability"
   ],
   "remove": [
     {
@@ -10,7 +8,7 @@
       "required": false
     },
     {
-      "id": "bewitchment:death_protection_poppet",
+      "id": "witchery:death_protection_poppet",
       "required": false
     }
   ]

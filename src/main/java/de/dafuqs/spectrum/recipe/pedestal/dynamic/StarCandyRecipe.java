@@ -1,19 +1,16 @@
 package de.dafuqs.spectrum.recipe.pedestal.dynamic;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
-import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -27,10 +24,10 @@ public class StarCandyRecipe extends ShapelessPedestalRecipe {
 	
 	@Override
 	public ItemStack assemble(PedestalRecipeInput input, HolderLookup.Provider wrapperLookup) {
-		@Nullable Player player = input.getPlayer();
+		Player player = input.getPlayer();
 		
 		//TODO: use a random seeded with the games time or similar
-		// so calculations are consistent between client, server, guis & recipe output
+		// so calculations are consistent between client, server, GUIs & recipe output
 		RandomSource r = input.getLevel().getRandom();
 		double luck = player == null ? 0 : player.getAttributeValue(Attributes.LUCK);
 		

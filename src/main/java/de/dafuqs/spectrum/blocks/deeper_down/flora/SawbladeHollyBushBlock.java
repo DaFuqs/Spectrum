@@ -20,7 +20,7 @@ import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlock {
 	
@@ -73,7 +73,7 @@ public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlo
 		
 		if (entity instanceof LivingEntity && !entity.getType().is(SpectrumEntityTypeTags.POKING_DAMAGE_IMMUNE)) {
 			entity.makeStuckInBlock(state, new Vec3(0.8, 0.75, 0.8));
-			if (!world.isClientSide && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
+			if (!world.isClientSide() && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
 				double difX = Math.abs(entity.getX() - entity.xOld);
 				double difZ = Math.abs(entity.getZ() - entity.zOld);
 				if (difX >= 0.003 || difZ >= 0.003) {
@@ -107,7 +107,7 @@ public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlo
 		int age = state.getValue(AGE);
 		
 		if (canBeSheared(age) && handStack.is(Tags.Items.TOOLS_SHEAR)) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, player.getMainHandItem(), SpectrumLootTableKeys.SAWBLADE_HOLLY_SHEARING)) {
 					popResource(world, pos, stack);
 				}
@@ -117,22 +117,22 @@ public class SawbladeHollyBushBlock extends BushBlock implements BonemealableBlo
 			BlockState newState = state.setValue(AGE, state.getValue(AGE) - 1);
 			world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
 			world.gameEvent(GameEvent.SHEAR, pos, GameEvent.Context.of(player, newState));
-			world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+			world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 			
-			return ItemInteractionResult.sidedSuccess(world.isClientSide);
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		} else if (age == MAX_AGE) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, player.getMainHandItem(), SpectrumLootTableKeys.SAWBLADE_HOLLY_HARVESTING)) {
 					popResource(world, pos, stack);
 				}
 			}
-			world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+			world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 			
 			BlockState newState = state.setValue(AGE, 4);
 			world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
 			world.gameEvent(GameEvent.SHEAR, pos, GameEvent.Context.of(player, newState));
 			
-			return ItemInteractionResult.sidedSuccess(world.isClientSide);
+			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		} else {
 			return super.useItemOn(handStack, state, world, pos, player, hand, hit);
 		}

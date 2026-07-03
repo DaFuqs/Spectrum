@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -21,14 +21,14 @@ public class LineTeleportingIdolBlock extends IdolBlock {
 		super(settings, particleEffect);
 		this.range = range;
 	}
-	
+
 	@Override
-	public MapCodec<? extends LineTeleportingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends LineTeleportingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 	
-	public static Direction getLookDirection(@NotNull Entity entity, boolean mirrorVertical, boolean mirrorHorizontal) {
+	public static Direction getLookDirection(Entity entity, boolean mirrorVertical, boolean mirrorHorizontal) {
 		double pitch = entity.getXRot();
 		if (pitch < -60) {
 			return mirrorVertical ? Direction.UP : Direction.DOWN;
@@ -59,7 +59,7 @@ public class LineTeleportingIdolBlock extends IdolBlock {
 	
 	@Override
 	public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
-		if (!world.isClientSide && !hasCooldown(state)) {
+		if (!world.isClientSide() && !hasCooldown(state)) {
 			if (trigger((ServerLevel) world, pos, state, entity, getLookDirection(entity, true, false).getOpposite())) { // we want the movement direction here, instead of only "top"
 				playTriggerParticles((ServerLevel) world, pos);
 				playTriggerSound(world, pos);

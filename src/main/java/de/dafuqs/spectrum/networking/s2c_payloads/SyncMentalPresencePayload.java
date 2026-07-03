@@ -9,7 +9,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 // TODO: Why tf is that a packet and not handled in the synced component instead?
 public record SyncMentalPresencePayload(double value) implements CustomPacketPayload {
@@ -30,7 +30,7 @@ public record SyncMentalPresencePayload(double value) implements CustomPacketPay
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

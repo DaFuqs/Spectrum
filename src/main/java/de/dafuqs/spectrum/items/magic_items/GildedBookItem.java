@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.items.magic_items;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -19,7 +19,7 @@ public class GildedBookItem extends BookItem {
 	}
 	
 	@Override
-	public int getEnchantmentValue(@NotNull ItemStack stack) {
+	public int getEnchantmentValue(ItemStack stack) {
 		return Items.GOLDEN_PICKAXE.getEnchantmentValue();
 	}
 	

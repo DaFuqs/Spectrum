@@ -16,7 +16,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -33,14 +33,14 @@ public class MiscPlayerDataAttachmentType {
 	
 	public static final AttachmentType<MiscPlayerDataAttachmentType> ATTACHMENT_TYPE = AttachmentType.builder((holder) -> new MiscPlayerDataAttachmentType((Player) holder)).serialize(CODEC).build();
 	
-	public MiscPlayerDataAttachmentType(@NotNull Player player) {
+	public MiscPlayerDataAttachmentType(Player player) {
 		this.player = player;
 	}
 	
 	private MiscPlayerDataAttachmentType() {
 	}
 	
-	private Player player;
+	private @Nullable Player player;
 	
 	// Sleep
 	private int ticksBeforeSleep = -1, sleepingWindow = -1, sleepInvincibility;
@@ -210,11 +210,11 @@ public class MiscPlayerDataAttachmentType {
 		sleepInvincibility = invulnTicks;
 	}
 	
-	public void setLastSleepItem(@NotNull ItemStack stack) {
+	public void setLastSleepItem(ItemStack stack) {
 		this.sleepAlteringEffects = stack.getOrDefault(SpectrumDataComponentTypes.SLEEP_ALTERING_EFFECTS, List.of());
 	}
 	
-	public static MiscPlayerDataAttachmentType get(@NotNull Player player) {
+	public static MiscPlayerDataAttachmentType get(Player player) {
 		MiscPlayerDataAttachmentType data = player.getData(ATTACHMENT_TYPE);
 		if (data.player == null) {
 			data.player = player;

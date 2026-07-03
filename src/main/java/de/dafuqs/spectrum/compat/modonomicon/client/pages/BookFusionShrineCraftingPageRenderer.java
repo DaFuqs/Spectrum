@@ -12,7 +12,7 @@ import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -48,7 +48,7 @@ public class BookFusionShrineCraftingPageRenderer extends BookGatedRecipePageRen
 		}
 		
 		if (!recipe.getFluid().isEmpty()) {
-			@NotNull Ingredient fluidIngredient = FluidRendering.fluidIngredientAsBucket(recipe.getFluid());
+			Ingredient fluidIngredient = FluidRendering.fluidIngredientAsBucket(recipe.getFluid());
 			parentScreen.renderItemStack(drawContext, recipeX + 14, recipeY + 31, mouseX, mouseY, recipe.getToastSymbol()); // the shrine
 			parentScreen.renderIngredient(drawContext, recipeX + 30, recipeY + 31, mouseX, mouseY, fluidIngredient); // the fluid
 		} else {

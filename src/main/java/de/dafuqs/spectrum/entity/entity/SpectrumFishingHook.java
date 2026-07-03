@@ -35,7 +35,7 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.*;
 
 import java.util.*;
@@ -86,11 +86,11 @@ public abstract class SpectrumFishingHook extends FishingHook {
 		this.moveTo(d0, d1, d2, f1, f);
 		Vec3 vec3 = new Vec3((-f3), Mth.clamp(-(f5 / f4), -5.0F, 5.0F), (-f2));
 		double d3 = vec3.length();
-		vec3 = vec3.multiply(0.6 / d3 + this.random.triangle(0.5, 0.0103365), 0.6 / d3 + this.random.triangle(0.5, 0.0103365), 0.6 / d3 + this.random.triangle(0.5, 0.0103365));
+		vec3 = vec3.multiply(0.6 / d3 + this.getRandom().triangle(0.5, 0.0103365), 0.6 / d3 + this.getRandom().triangle(0.5, 0.0103365), 0.6 / d3 + this.getRandom().triangle(0.5, 0.0103365));
 		this.setDeltaMovement(vec3);
 		//noinspection SuspiciousNameCombination
-		this.setYRot((float)(Mth.atan2(vec3.x, vec3.z) * 180.0F / (float)Math.PI));
-		this.setXRot((float)(Mth.atan2(vec3.y, vec3.horizontalDistance()) * 180.0F / (float)Math.PI));
+		this.setYRot((float)(Mth.atan2(vec3.x, vec3.z) * 180.0F / Math.PI));
+		this.setXRot((float)(Mth.atan2(vec3.y, vec3.horizontalDistance()) * 180.0F / Math.PI));
 		this.yRotO = this.getYRot();
 		this.xRotO = this.getXRot();
 	}
@@ -120,7 +120,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 		Player owner = this.getPlayerOwner();
 		if (owner == null) {
 			this.discard();
-		} else if (this.level().isClientSide || !this.shouldStopFishing(owner)) {
+		} else if (this.level().isClientSide() || !this.shouldStopFishing(owner)) {
 			if (this.onGround()) {
 				this.life++;
 				if (this.life >= 1200) {
@@ -176,7 +176,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 						d += Math.signum(d) * 0.1;
 					}
 					
-					this.setDeltaMovement(vec3d.x * 0.9, vec3d.y - d * (double) this.random.nextFloat() * 0.2, vec3d.z * 0.9);
+					this.setDeltaMovement(vec3d.x * 0.9, vec3d.y - d * (double) this.getRandom().nextFloat() * 0.2, vec3d.z * 0.9);
 					if (this.nibble <= 0 && this.timeUntilHooked <= 0) {
 						this.openWater = true;
 					} else {
@@ -189,7 +189,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 							this.setDeltaMovement(this.getDeltaMovement().add(0.0, -0.1 * (double) this.syncronizedRandom.nextFloat() * (double) this.syncronizedRandom.nextFloat(), 0.0));
 						}
 						
-						if (!this.level().isClientSide) {
+						if (!this.level().isClientSide()) {
 							this.catchingFish(blockPos);
 						}
 					} else {
@@ -232,11 +232,11 @@ public abstract class SpectrumFishingHook extends FishingHook {
 		ServerLevel serverWorld = (ServerLevel) this.level();
 		int i = 1;
 		BlockPos blockPos = pos.above();
-		if (this.random.nextFloat() < 0.25F && this.level().isRainingAt(blockPos)) {
+		if (this.getRandom().nextFloat() < 0.25F && this.level().isRainingAt(blockPos)) {
 			i++;
 		}
 		
-		if (this.random.nextFloat() < 0.5F && !this.level().canSeeSky(blockPos)) {
+		if (this.getRandom().nextFloat() < 0.5F && !this.level().canSeeSky(blockPos)) {
 			i--;
 		}
 		
@@ -250,7 +250,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 		} else if (this.timeUntilHooked > 0) {
 			this.timeUntilHooked -= i;
 			if (this.timeUntilHooked > 0)
-				this.fishAngle = this.fishAngle + (float) this.random.triangle(0.0, 9.188);
+				this.fishAngle = this.fishAngle + (float) this.getRandom().triangle(0.0, 9.188);
 			float f = this.fishAngle * (float) (Math.PI / 180.0);
 			float g = Mth.sin(f);
 			float h = Mth.cos(f);
@@ -261,7 +261,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 			Tuple<SimpleParticleType, SimpleParticleType> particles = getFluidParticles(blockState);
 			if (this.timeUntilHooked > 0) {
 				if (particles != null) {
-					if (this.random.nextFloat() < 0.15F) {
+					if (this.getRandom().nextFloat() < 0.15F) {
 						serverWorld.sendParticles(particles.getA(), d, e - 0.1F, j, 1, g, 0.1, h, 0.0);
 					}
 					float k = g * 0.04F;
@@ -270,7 +270,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 					serverWorld.sendParticles(particles.getB(), d, e, j, 0, (-l), 0.01, k, 1.0);
 				}
 			} else if (particles != null) {
-				this.playSound(SoundEvents.FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
+				this.playSound(SoundEvents.FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.getRandom().nextFloat() - this.getRandom().nextFloat()) * 0.4F);
 				double m = this.getY() + 0.5;
 				serverWorld.sendParticles(
 						particles.getA(), this.getX(), m, this.getZ(), (int) (1.0F + this.getBbWidth() * 20.0F), this.getBbWidth(), 0.0, this.getBbWidth(), 0.2F
@@ -278,7 +278,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 				serverWorld.sendParticles(
 						particles.getB(), this.getX(), m, this.getZ(), (int) (1.0F + this.getBbWidth() * 20.0F), this.getBbWidth(), 0.0, this.getBbWidth(), 0.2F
 				);
-				this.nibble = Mth.nextInt(this.random, 20, 40);
+				this.nibble = Mth.nextInt(this.getRandom(), 20, 40);
 				this.getEntityData().set(DATA_BITING, true);
 			}
 		} else if (this.timeUntilLured > 0) {
@@ -292,32 +292,31 @@ public abstract class SpectrumFishingHook extends FishingHook {
 				f += (float) (60 - this.timeUntilLured) * 0.01F;
 			}
 			
-			if (this.random.nextFloat() < f) {
-				float g = Mth.nextFloat(this.random, 0.0F, 360.0F) * (float) (Math.PI / 180.0);
-				float h = Mth.nextFloat(this.random, 25.0F, 60.0F);
+			if (this.getRandom().nextFloat() < f) {
+				float g = Mth.nextFloat(this.getRandom(), 0.0F, 360.0F) * (float) (Math.PI / 180.0);
+				float h = Mth.nextFloat(this.getRandom(), 25.0F, 60.0F);
 				double d = this.getX() + (double) (Mth.sin(g) * h) * 0.1;
 				double e = ((float) Mth.floor(this.getY()) + 1.0);
 				double j = this.getZ() + (double) (Mth.cos(g) * h) * 0.1;
 				BlockState blockState = serverWorld.getBlockState(BlockPos.containing(d, e - 1.0, j));
 				Tuple<SimpleParticleType, SimpleParticleType> particles = getFluidParticles(blockState);
 				if (particles != null) {
-					serverWorld.sendParticles(particles.getA(), d, e, j, 2 + this.random.nextInt(2), 0.1F, 0.0, 0.1F, 0.0);
+					serverWorld.sendParticles(particles.getA(), d, e, j, 2 + this.getRandom().nextInt(2), 0.1F, 0.0, 0.1F, 0.0);
 				}
 			}
 			
 			if (this.timeUntilLured <= 0) {
-				this.fishAngle = Mth.nextFloat(this.random, 0.0F, 360.0F);
-				this.timeUntilHooked = Mth.nextInt(this.random, 20, 80);
+				this.fishAngle = Mth.nextFloat(this.getRandom(), 0.0F, 360.0F);
+				this.timeUntilHooked = Mth.nextInt(this.getRandom(), 20, 80);
 			}
 		} else {
-			this.timeUntilLured = Mth.nextInt(this.random, 100, 600);
+			this.timeUntilLured = Mth.nextInt(this.getRandom(), 100, 600);
 			this.timeUntilLured = this.timeUntilLured - this.lureSpeed;
 			this.timeUntilLured = Math.max(1, this.timeUntilLured);
 		}
 	}
-	
-	@Nullable
-	private Tuple<SimpleParticleType, SimpleParticleType> getFluidParticles(BlockState blockState) {
+
+	private @Nullable Tuple<SimpleParticleType, SimpleParticleType> getFluidParticles(BlockState blockState) {
 		Tuple<SimpleParticleType, SimpleParticleType> particles = null;
 		if (this.level().getBlockState(blockPosition()).getBlock() instanceof SpectrumFluidBlock spectrumFluidBlock) {
 			particles = spectrumFluidBlock.getFishingParticles();
@@ -461,7 +460,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 		}
 		
 		for (ItemStack fishedStack : fishedStacks) {
-			int experienceAmount = this.random.nextInt(6) + 1;
+			int experienceAmount = this.getRandom().nextInt(6) + 1;
 			
 			ItemStack rod = playerEntity.getMainHandItem().getItem() instanceof SpectrumFishingRodItem ? playerEntity.getMainHandItem() : playerEntity.getOffhandItem();
 			experienceAmount = EnchantmentHelper.processBlockExperience((ServerLevel) level(), rod, experienceAmount);

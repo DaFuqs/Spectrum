@@ -9,7 +9,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.levelgen.feature.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
 	
-	private static ImmutableList<Block> CANNOT_REPLACE_BLOCKS = null;
+	private static @Nullable ImmutableList<Block> CANNOT_REPLACE_BLOCKS = null;
 	private static final int BIG_MAX_OFFSET = 5;
 	private static final int BIG_COUNT = 50;
 	private static final int SMALL_MAX_OFFSET = 8;
@@ -29,7 +29,7 @@ public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
 	}
 	
 	@Override
-	public boolean place(@NotNull FeaturePlaceContext<ColumnsFeatureConfig> context) {
+	public boolean place(FeaturePlaceContext<ColumnsFeatureConfig> context) {
 		if(CANNOT_REPLACE_BLOCKS == null) {
 			CANNOT_REPLACE_BLOCKS = ImmutableList.of(Blocks.BEDROCK, Blocks.CHEST, Blocks.SPAWNER, SpectrumBlocks.DOWNSTONE.get());
 		}
@@ -91,9 +91,8 @@ public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
 			}
 		}
 	}
-	
-	@Nullable
-	private static BlockPos moveDownToGround(LevelAccessor world, int seaLevel, BlockPos.MutableBlockPos mutablePos, int distance) {
+
+	private static @Nullable BlockPos moveDownToGround(LevelAccessor world, int seaLevel, BlockPos.MutableBlockPos mutablePos, int distance) {
 		while (mutablePos.getY() > world.getMinBuildHeight() + 1 && distance > 0) {
 			--distance;
 			if (canPlaceAt(world, seaLevel, mutablePos)) {
@@ -115,9 +114,8 @@ public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
 			return !blockState.isAir() && !blockState.is(SpectrumBlockTags.DEEPER_DOWN_FEATURE_REPLACEABLES) && !CANNOT_REPLACE_BLOCKS.contains(blockState.getBlock());
 		}
 	}
-	
-	@Nullable
-	private static BlockPos moveUpToAir(LevelAccessor world, BlockPos.MutableBlockPos mutablePos, int distance) {
+
+	private static @Nullable BlockPos moveUpToAir(LevelAccessor world, BlockPos.MutableBlockPos mutablePos, int distance) {
 		while (mutablePos.getY() < world.getMaxBuildHeight() && distance > 0) {
 			--distance;
 			BlockState blockState = world.getBlockState(mutablePos);

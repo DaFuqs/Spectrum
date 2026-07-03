@@ -6,7 +6,7 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.storage.loot.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -20,7 +20,7 @@ public class MemoryManifestingCriterion extends SimpleCriterionTrigger<MemoryMan
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

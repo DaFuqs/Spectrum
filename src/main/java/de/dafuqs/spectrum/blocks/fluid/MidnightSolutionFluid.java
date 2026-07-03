@@ -27,38 +27,43 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	
 	@Override
-	public @NotNull FluidType getFluidType() {
+	public FluidType getFluidType() {
 		return SpectrumFluids.MIDNIGHT_SOLUTION_TYPE.get();
 	}
 	
 	@Override
-	public @NotNull Fluid getSource() {
+	public Fluid getSource() {
 		return SpectrumFluids.MIDNIGHT_SOLUTION.get();
 	}
 	
 	@Override
-	public @NotNull Fluid getFlowing() {
+	public Fluid getFlowing() {
 		return SpectrumFluids.FLOWING_MIDNIGHT_SOLUTION.get();
 	}
 	
 	@Override
-	public @NotNull Item getBucket() {
+	public Item getBucket() {
 		return SpectrumItems.MIDNIGHT_SOLUTION_BUCKET.get();
 	}
 	
 	@Override
-	protected @NotNull BlockState createLegacyBlock(FluidState fluidState) {
+	protected BlockState createLegacyBlock(FluidState fluidState) {
 		return SpectrumBlocks.MIDNIGHT_SOLUTION.get().defaultBlockState().setValue(BlockStateProperties.LEVEL, getLegacyLevel(fluidState));
 	}
 	
 	@Override
-	public boolean isSame(@NotNull Fluid fluid) {
+	public boolean isSame(Fluid fluid) {
 		return fluid == SpectrumFluids.MIDNIGHT_SOLUTION.get() || fluid == SpectrumFluids.FLOWING_MIDNIGHT_SOLUTION.get();
+	}
+	
+	@Override
+	protected boolean canConvertToSource(Level level) {
+		return level.getGameRules().getBoolean(SpectrumGameRules.RULE_MIDNIGHT_SOLUTION_SOURCE_CONVERSION);
 	}
 	
 	@Override
@@ -87,9 +92,9 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 			}
 		}
 		
-		boolean converted = BlackMateriaBlock.spreadBlackMateria(world, pos, world.random, MidnightSolutionFluidBlock.SPREAD_BLOCKSTATE);
+		boolean converted = BlackMateriaBlock.spreadBlackMateria(world, pos, world.getRandom(), MidnightSolutionFluidBlock.SPREAD_BLOCKSTATE);
 		if (converted) {
-			world.scheduleTick(pos, state.getType(), 400 + world.random.nextInt(800));
+			world.scheduleTick(pos, state.getType(), 400 + world.getRandom().nextInt(800));
 		}
 	}
 	
@@ -113,7 +118,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (entity instanceof LivingEntity livingEntity) {
 				if (!livingEntity.isDeadOrDying() && world.getGameTime() % 20 == 0) {
 					var damageMult = 1F;
@@ -132,7 +137,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 					}
 				}
 			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.hasPickUpDelay()) {
-				if (world.random.nextInt(120) == 0) {
+				if (world.getRandom().nextInt(120) == 0) {
 					disenchantItemAndSpawnXP(world, itemEntity);
 				}
 			}
@@ -152,7 +157,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 		// basically disenchanting the item
 		ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(itemStack);
 		if (!enchantments.isEmpty()) {
-			int randomEnchantmentIndex = world.random.nextInt(enchantments.size());
+			int randomEnchantmentIndex = world.getRandom().nextInt(enchantments.size());
 			Object2IntMap.Entry<Holder<Enchantment>> entryToRemove = enchantments.entrySet().stream().toList().get(randomEnchantmentIndex);
 			Tuple<ItemStack, Integer> result = SpectrumEnchantmentHelper.removeEnchantments(itemStack, entryToRemove.getKey());
 			
@@ -165,7 +170,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 			ItemEnchantments canvasEnchantments = itemStack.get(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS);
 			Item boundItem = BuiltInRegistries.ITEM.get(itemStack.get(SpectrumDataComponentTypes.BOUND_ITEM));
 			if (!canvasEnchantments.isEmpty()) {
-				int randomEnchantmentIndex = world.random.nextInt(canvasEnchantments.size());
+				int randomEnchantmentIndex = world.getRandom().nextInt(canvasEnchantments.size());
 				Object2IntMap.Entry<Holder<Enchantment>> entryToRemove = canvasEnchantments.entrySet().stream().toList().get(randomEnchantmentIndex);
 				
 				var builder = new ItemEnchantments.Mutable(canvasEnchantments);

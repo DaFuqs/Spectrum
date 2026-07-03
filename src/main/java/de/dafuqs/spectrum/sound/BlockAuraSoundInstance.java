@@ -14,7 +14,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -22,7 +22,7 @@ import java.util.*;
 public class BlockAuraSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	public static final List<BlockAuraSoundInstance> INSTANCES = new ArrayList<>();
-	private static final int MAX_DISTANCE = 48;
+	private static final int MAX_DISTANCE = 32;
 	private static final int SPACING = 16;
 	private static final float MIN_VOLUME = 0.01F;
 	private static final float MAX_VOLUME = 1.0F;
@@ -59,7 +59,7 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 			updatePositionAndCount();
 		}
 		
-		float targetVolume = (float) Mth.clamp((sources.size() * 0.05 - 0.5), MIN_VOLUME, MAX_VOLUME) * SpectrumConfig.CONFIG.OreAuraSoundVolume.get();
+		float targetVolume = (float) Mth.clamp((sources.size() * 0.05 - 0.5), MIN_VOLUME, MAX_VOLUME) * SpectrumConfig.CONFIG.OreAuraSoundVolume.get().floatValue();
 		
 		if (this.volumeHold < targetVolume) {
 			this.volumeHold += VOLUME_EASING_STEPS;

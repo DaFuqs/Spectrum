@@ -21,7 +21,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -41,11 +41,12 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		craftingTabletItemStack.remove(SpectrumDataComponentTypes.STORED_RECIPE);
 	}
 	
-	public static @Nullable RecipeHolder<?> getStoredRecipe(Level world, ItemStack itemStack) {
+	public static @Nullable RecipeHolder<?> getStoredRecipe(@Nullable Level world, ItemStack itemStack) {
 		if (world != null) {
-			var id = itemStack.get(SpectrumDataComponentTypes.STORED_RECIPE);
-			if (id != null)
+			ResourceLocation id = itemStack.get(SpectrumDataComponentTypes.STORED_RECIPE);
+			if (id != null) {
 				return world.getRecipeManager().byKey(id).orElse(null);
+			}
 		}
 		return null;
 	}
@@ -56,22 +57,22 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		
 		var storedRecipe = getStoredRecipe(world, itemStack);
 		if (storedRecipe == null || user.isShiftKeyDown()) {
-			if (world.isClientSide) {
-				return InteractionResultHolder.success(user.getItemInHand(hand));
-			} else {
-				user.openMenu(createScreenHandlerFactory(world, (ServerPlayer) user, itemStack));
-				return InteractionResultHolder.consume(user.getItemInHand(hand));
-			}
+            if (world.isClientSide()) {
+                return InteractionResultHolder.success(user.getItemInHand(hand));
+            } else {
+                user.openMenu(createScreenHandlerFactory(world, (ServerPlayer) user, itemStack));
+                return InteractionResultHolder.consume(user.getItemInHand(hand));
+            }
 		} else {
 			if (storedRecipe.value() instanceof PedestalRecipe) {
 				return InteractionResultHolder.pass(user.getItemInHand(hand));
 			} else {
 				if (tryCraftRecipe(user, storedRecipe.value(), world)) {
-					if (world.isClientSide) {
-						return InteractionResultHolder.success(user.getItemInHand(hand));
-					} else {
-						return InteractionResultHolder.consume(user.getItemInHand(hand));
-					}
+                    if (world.isClientSide()) {
+                        return InteractionResultHolder.success(user.getItemInHand(hand));
+                    } else {
+                        return InteractionResultHolder.consume(user.getItemInHand(hand));
+                    }
 				}
 				user.playSound(SpectrumSoundEvents.USE_FAIL, 1.0F, 1.0F);
 				return InteractionResultHolder.fail(user.getItemInHand(hand));
@@ -88,12 +89,12 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		
 		Container playerInventory = serverPlayerEntity.getInventory();
 		boolean hasInInventory = InventoryHelper.hasInInventory(ingredients, playerInventory);
-		if (world.isClientSide) {
-			return hasInInventory;
-		}
+        if (world.isClientSide()) {
+            return hasInInventory;
+        }
 		
 		if (InventoryHelper.hasInInventory(ingredients, playerInventory)) {
-			List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(ingredients, playerInventory);
+			List<ItemStack> remainders = InventoryHelper.decrementInInventoryAndReturnRemainders(ingredients, playerInventory);
 			
 			ItemStack craftingResult = recipe.getResultItem(serverPlayerEntity.level().registryAccess()).copy();
 			serverPlayerEntity.getInventory().placeItemBackInInventory(craftingResult);

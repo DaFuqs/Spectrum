@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.render.armor;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
+import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
@@ -11,15 +12,17 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.resources.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 import net.neoforged.neoforge.client.event.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class BedrockCapeRenderer {
 	
-	private static <T extends Entity> void registerCapeLayer(EntityRenderer<T> baseRenderer) {
+	private static <T extends Entity> void registerCapeLayer(@Nullable EntityRenderer<T> baseRenderer) {
 		if (!(baseRenderer instanceof LivingEntityRenderer<?, ?> livingRenderer)) {
 			return;
 		}
@@ -57,10 +60,11 @@ public class BedrockCapeRenderer {
 		}
 		
 		@Override
-		public void render(@NotNull PoseStack poseStack, @NotNull MultiBufferSource bufferSource, int packedLight, @NotNull LivingEntity livingEntity,
+		public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, LivingEntity livingEntity,
 						   float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
 			
-			if(!livingEntity.getItemBySlot(EquipmentSlot.CHEST).is(SpectrumItems.BEDROCK_CHESTPLATE)) {
+			ItemStack chestStack = livingEntity.getItemBySlot(EquipmentSlot.CHEST);
+			if(!(chestStack.getItem() instanceof BedrockArmorItem bedrockArmorItem)) {
 				return;
 			}
 			
@@ -71,7 +75,8 @@ public class BedrockCapeRenderer {
 			}
 			float capeZOffset = capeRotations.getB();
 			
-			VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entitySolid(SpectrumModelLayerLocations.BEDROCK_ARMOR_ID));
+			ResourceLocation armorTexture = bedrockArmorItem.getArmorTexture(chestStack, livingEntity, EquipmentSlot.CHEST, BedrockArmorItem.ARMOR_MATERIAL_LAYER, true);
+			VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entitySolid(armorTexture));
 			poseStack.pushPose();
 			poseStack.translate(0, 0.5, 0);
 			poseStack.mulPose(Axis.XP.rotationDegrees(Mth.clamp(capeRotations.getA(), -25, 0)));

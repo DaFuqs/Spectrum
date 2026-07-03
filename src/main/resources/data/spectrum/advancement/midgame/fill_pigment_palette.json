@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/craft_pigment_palette",
+  "parent": "spectrum:midgame/equip_pigment_palette",
   "display": {
     "icon": {
       "id": "spectrum:pigment_palette"
@@ -74,7 +74,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/craft_pigment_palette"
+        "advancement_identifier": "spectrum:midgame/equip_pigment_palette"
       }
     }
   }

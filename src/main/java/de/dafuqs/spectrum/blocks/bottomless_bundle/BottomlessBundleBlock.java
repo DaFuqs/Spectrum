@@ -21,7 +21,7 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -48,10 +48,9 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new BottomlessBundleBlockEntity(pos, state);
 	}
 	
@@ -67,12 +66,12 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (player.isShiftKeyDown()) {
 				BlockEntity be = world.getBlockEntity(pos);
 				if (be instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-					long amount = bottomlessBundleBlockEntity.storage().count;
-					ItemStack variant = bottomlessBundleBlockEntity.storage().variant;
+					long amount = bottomlessBundleBlockEntity.storage().count();
+					ItemStack variant = bottomlessBundleBlockEntity.storage().variant();
 					long maxStoredAmount = bottomlessBundleBlockEntity.storage().getCapacity();
 					if (variant == null || variant.isEmpty()) {
 						player.displayClientMessage(Component.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), true);
@@ -131,7 +130,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-			float curr = bottomlessBundleBlockEntity.storage().count;
+			float curr = bottomlessBundleBlockEntity.storage().count();
 			float max = bottomlessBundleBlockEntity.storage().getCapacity();
 			int signal = Mth.floor(curr / max * 14.0f) + (curr > 0 ? 1 : 0);
 			return signal;
@@ -167,7 +166,7 @@ public class BottomlessBundleBlock extends BaseEntityBlock {
 	
 	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 				bottomlessBundleBlockEntity.setBundle(itemStack.copy(), world.registryAccess());

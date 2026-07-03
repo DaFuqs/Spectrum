@@ -28,7 +28,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -58,15 +58,15 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		this.pastelNodeType = pastelNodeType;
 		registerDefaultState(defaultBlockState().setValue(LIT, false).setValue(REDSTONE_EMITTING, false));
 	}
-	
+
 	@Override
-	public MapCodec<? extends PastelNodeBlock> codec() {
+	public @Nullable MapCodec<? extends PastelNodeBlock> codec() {
 		// TODO: make the CODEC
 		return null;
 	}
 	
 	@Override
-	public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 	
@@ -97,10 +97,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		BlockState blockState = ctx.getLevel().getBlockState(ctx.getClickedPos().relative(direction.getOpposite()));
 		return blockState.is(this) && blockState.getValue(FACING) == direction ? this.defaultBlockState().setValue(FACING, direction.getOpposite()) : this.defaultBlockState().setValue(FACING, direction);
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return ((w, p, s, b) -> PastelNodeBlockEntity.tick(w, p, s, (PastelNodeBlockEntity) b));
 	}
 	
@@ -141,7 +140,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		
 		if (player.isShiftKeyDown() && stack.isEmpty()) {
 			if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_UPGRADING)) {
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					var removed = blockEntity.tryRemoveUpgrade();
 					if (!removed.isEmpty()) {
 						if (!player.getAbilities().instabuild) {
@@ -173,7 +172,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		} else if (tryColorUsingStackInHand(stack, world, pos, player, hand)) {
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		} else if (this.pastelNodeType.usesFilters()) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				player.openMenu(blockEntity);
 			}
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
@@ -199,8 +198,8 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	
 	private static void sendDebugMessage(Level world, BlockPos pos, Player player, PastelNodeBlockEntity blockEntity) {
 		if (blockEntity != null) {
-			Optional<? extends PastelNetwork<?>> network = blockEntity.networkUUID.isPresent() ? Pastel.getInstance(world.isClientSide).getNetwork(blockEntity.networkUUID.get()) : Optional.empty();
-			String prefix = world.isClientSide ? "C (" : "S (";
+			Optional<? extends PastelNetwork<?>> network = blockEntity.networkUUID.isPresent() ? Pastel.getInstance(world.isClientSide()).getNetwork(blockEntity.networkUUID.get()) : Optional.empty();
+			String prefix = world.isClientSide() ? "C (" : "S (";
 			Optional<DyeColor> color = blockEntity.getColor();
 			String colorString = color.isEmpty() ? "<uncolored>" : color.get().toString();
 			if (network.isEmpty()) {
@@ -210,9 +209,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 			}
 		}
 	}
-	
+
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @Nullable VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPES.get(state.getValue(FACING));
 	}
 	
@@ -223,10 +222,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		}
 		return null;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PastelNodeBlockEntity(pos, state);
 	}
 	

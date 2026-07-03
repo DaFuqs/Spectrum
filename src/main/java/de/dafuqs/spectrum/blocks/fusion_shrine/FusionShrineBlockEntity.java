@@ -28,8 +28,9 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
+import net.neoforged.neoforge.fluids.capability.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -37,22 +38,27 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	
 	protected static final int INVENTORY_SIZE = 7;
 	
-	private UUID ownerUUID;
-	private UpgradeHolder upgrades;
-	private RecipeHolder<FusionShrineRecipe> currentRecipe;
+	private @Nullable UUID ownerUUID;
+	private @Nullable UpgradeHolder upgrades;
+	private @Nullable RecipeHolder<FusionShrineRecipe> currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
 	
 	private boolean inventoryChanged = true;
 	
-	public final FluidTank tank = new SpectrumFluidTank(1000, this);
+	public final FluidTank tank = new SpectrumFluidTank(FluidType.BUCKET_VOLUME, this) {
+		@Override
+		protected void onContentsChanged() {
+			super.onContentsChanged();
+		}
+	};
 	
 	public FusionShrineBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.FUSION_SHRINE.get(), pos, state, INVENTORY_SIZE);
 	}
 	
 	@SuppressWarnings("unused")
-	public static void clientTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
+	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		if (!fusionShrineBlockEntity.isEmpty()) {
 			int randomSlot = world.getRandom().nextInt(fusionShrineBlockEntity.getContainerSize());
 			ItemStack randomStack = fusionShrineBlockEntity.getItem(randomSlot);
@@ -88,16 +94,16 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
 	}
 	
-	public void scatterContents(@NotNull Level world) {
+	public void scatterContents(Level world) {
 		PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerLevel) world, Vec3.atCenterOf(this.getBlockPos()), ColoredCraftingParticleEffect.RED, 1, new Vec3(0, -0.5, 0));
-		world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
-		world.playSound(null, this.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.5F + world.random.nextFloat() * 0.2F);
+		world.playSound(null, this.getBlockPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+		world.playSound(null, this.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.9F + world.getRandom().nextFloat() * 0.2F, 0.5F + world.getRandom().nextFloat() * 0.2F);
 		FusionShrineBlock.scatterContents(world, this.getBlockPos());
 		this.inventoryChanged();
 	}
 	
 	@SuppressWarnings("unused")
-	public static void serverTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
+	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		if (fusionShrineBlockEntity.upgrades == null) {
 			fusionShrineBlockEntity.calculateUpgrades();
 		}
@@ -166,9 +172,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		
 		fusionShrineBlockEntity.setChanged();
 	}
-	
-	@Nullable
-	private static RecipeHolder<FusionShrineRecipe> calculateRecipe(@NotNull Level world, FusionShrineBlockEntity fusionShrineBlockEntity) {
+
+	private static @Nullable RecipeHolder<FusionShrineRecipe> calculateRecipe(Level world, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		if (fusionShrineBlockEntity.currentRecipe != null) {
 			if (fusionShrineBlockEntity.currentRecipe.value().matches(fusionShrineBlockEntity.getRecipeInput(), world)) {
 				return fusionShrineBlockEntity.currentRecipe;
@@ -186,9 +191,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
 		
 		scatterContents(world, blockPos.above(), fusionShrineBlockEntity); // drop remaining items
-		
-		fusionShrineBlockEntity.tank.setFluid(FluidStack.EMPTY);
-		world.setBlock(blockPos, world.getBlockState(blockPos).setValue(FusionShrineBlock.LIGHT_LEVEL, 0), 3);
+		fusionShrineBlockEntity.tank.drain(FluidType.BUCKET_VOLUME, IFluidHandler.FluidAction.EXECUTE);
 	}
 	
 	@Override
@@ -242,7 +245,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	
 	public void playSound(SoundEvent soundEvent, float volume) {
 		if (level != null) {
-			RandomSource random = level.random;
+			RandomSource random = level.getRandom();
 			level.playSound(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), soundEvent, SoundSource.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
 		}
 	}
@@ -254,15 +257,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
 	}
 	
-	public @NotNull FluidTank getTank() {
+	public FluidTank getTank() {
 		return this.tank;
-	}
-	
-	// TODO: unused
-	private void setLightForFluid(BlockPos blockPos, Fluid fluid) {
-		if (level == null) return;
-		int fluidLight = fluid.getFluidType().getLightLevel();
-		level.setBlock(blockPos, level.getBlockState(blockPos).setValue(FusionShrineBlock.LIGHT_LEVEL, fluidLight), Block.UPDATE_ALL);
 	}
 	
 	public FluidRecipeInput<FluidTank> getRecipeInput() {
@@ -273,7 +269,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	// "owned" is not to be taken literally here. The owner
 	// is always set to the last player interacted with to trigger advancements
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
@@ -310,6 +306,13 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	@Override
 	public void onFluidContentsChanged() {
 		this.inventoryChanged();
+		setLightForFluid(getBlockPos(), tank.getFluid().getFluid());
+	}
+	
+	private void setLightForFluid(BlockPos blockPos, Fluid fluid) {
+		if (level == null) return;
+		int fluidLight = fluid.getFluidType().getLightLevel();
+		level.setBlock(blockPos, level.getBlockState(blockPos).setValue(FusionShrineBlock.LIGHT_LEVEL, fluidLight), Block.UPDATE_ALL);
 	}
 	
 }

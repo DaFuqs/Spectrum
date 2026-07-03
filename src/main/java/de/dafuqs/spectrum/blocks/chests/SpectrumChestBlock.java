@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
+import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.animal.*;
@@ -45,15 +46,26 @@ public abstract class SpectrumChestBlock extends BaseEntityBlock {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
-			return InteractionResult.SUCCESS;
-		} else {
-			this.openScreen(world, pos, player);
-			return InteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        } else {
+            this.openScreen(world, pos, player);
+            return InteractionResult.CONSUME;
+        }
 	}
 	
-	public abstract void openScreen(Level world, BlockPos pos, Player player);
+	public void openScreen(Level world, BlockPos pos, Player player) {
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof SpectrumChestBlockEntity chestBlockEntity) {
+			if (!isChestBlocked(world, pos)) {
+				if (chestBlockEntity.canOpen(player)) {
+					player.openMenu(chestBlockEntity);
+				} else if(!player.isSpectator()) {
+					world.playSound(null, pos, SoundEvents.CHEST_LOCKED, SoundSource.PLAYERS, 1.0F, 1.0F);
+				}
+			}
+		}
+	}
 	
 	@Override
 	public boolean hasAnalogOutputSignal(BlockState state) {

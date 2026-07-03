@@ -22,5 +22,4 @@ public class BedrockHoeItem extends HoeItem implements Preenchanted {
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
-	
 }

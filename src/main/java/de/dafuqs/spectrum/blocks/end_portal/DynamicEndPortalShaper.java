@@ -20,14 +20,18 @@ class DynamicEndPortalShaper implements EndPortalShaper {
 			.or(BlockStatePredicate.forBlock(SpectrumBlocks.CRACKED_END_PORTAL_FRAME.get()).where(CrackedEndPortalFrameBlock.EYE_TYPE, Predicates.equalTo(CrackedEndPortalFrameBlock.EndPortalFrameEye.WITH_EYE_OF_ENDER)));
 	
 	public void placePortals(Level level, BlockPos startPos) {
+		boolean playLevelEvent = false;
 		var portalPositions = findValidPortal(level, startPos);
 		for (Set<BlockPos> portal : portalPositions) {
 			for (BlockPos pos : portal) {
 				level.setBlock(pos, Blocks.END_PORTAL.defaultBlockState(), Block.UPDATE_CLIENTS);
+				playLevelEvent = true;
 			}
 		}
 		
-		level.globalLevelEvent(LevelEvent.SOUND_END_PORTAL_SPAWN, startPos, 0);
+		if(playLevelEvent) {
+			level.globalLevelEvent(LevelEvent.SOUND_END_PORTAL_SPAWN, startPos, 0);
+		}
 	}
 	
 	public void destroyNeighboringPortalBlocks(Level level, BlockPos startPos) {

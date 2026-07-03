@@ -8,7 +8,7 @@ import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class CompactingChestScreen extends AbstractContainerScreen<CompactingChestScreenHandler> {
 	
@@ -62,7 +62,7 @@ public class CompactingChestScreen extends AbstractContainerScreen<CompactingChe
 	}
 	
 	@Override
-	public void render(@NotNull GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
+	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
 		renderBackground(drawContext, mouseX, mouseY, delta);
 		super.render(drawContext, mouseX, mouseY, delta);
 		

@@ -12,7 +12,7 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.client.textures.*;
 import net.neoforged.neoforge.fluids.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.joml.Math;
 
 import java.util.*;
@@ -27,7 +27,7 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 	@Override
 	public void render(FusionShrineBlockEntity fusionShrineBlockEntity, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light, int overlay) {
 		// the fluid in the shrine
-		@NotNull FluidStack fluidStack = fusionShrineBlockEntity.getTank().getFluid();
+		FluidStack fluidStack = fusionShrineBlockEntity.getTank().getFluid();
 		if (!fluidStack.isEmpty()) {
 			poseStack.pushPose();
 			IClientFluidTypeExtensions renderData = IClientFluidTypeExtensions.of(fluidStack.getFluid());

@@ -5,6 +5,8 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.fusion_shrine.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -18,7 +20,8 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
-import org.jetbrains.annotations.*;
+import net.neoforged.neoforge.fluids.capability.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -35,17 +38,15 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 	public MapCodec<? extends CrystallarieumBlock> codec() {
 		return CODEC;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new CrystallarieumBlockEntity(pos, state);
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.CRYSTALLARIEUM.get(), world.isClientSide ? CrystallarieumBlockEntity::clientTick : CrystallarieumBlockEntity::serverTick);
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return createTickerHelper(type, SpectrumBlockEntities.CRYSTALLARIEUM.get(), world.isClientSide() ? CrystallarieumBlockEntity::clientTick : CrystallarieumBlockEntity::serverTick);
 	}
 	
 	@Override
@@ -61,20 +62,33 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 	
 	@Override
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if (!world.isClientSide && entity instanceof ItemEntity itemEntity) {
+		if (!world.isClientSide() && entity instanceof ItemEntity itemEntity) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
 				ItemStack stack = itemEntity.getItem();
+				
+				Optional<IFluidHandlerItem> fluidHandler = FluidUtil.getFluidHandler(stack);
+				
+				if (fluidHandler.isPresent()) {
+					FluidStack transferredStack = FluidUtil.tryFluidTransfer(crystallarieumBlockEntity.tank, fluidHandler.get(), 1000, true);
+					if(!transferredStack.isEmpty()) {
+						var containerItem = fluidHandler.get().getContainer();
+						itemEntity.setItem(containerItem);
+						return;
+					}
+				}
+				
 				crystallarieumBlockEntity.acceptStack(stack, false, itemEntity.getOwner() != null ? itemEntity.getOwner().getUUID() : null);
+				return;
 			}
-		} else {
-			super.fallOn(world, state, pos, entity, fallDistance);
 		}
+		
+		super.fallOn(world, state, pos, entity, fallDistance);
 	}
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			// if the structure is valid the player can put / retrieve blocks into the shrine
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {

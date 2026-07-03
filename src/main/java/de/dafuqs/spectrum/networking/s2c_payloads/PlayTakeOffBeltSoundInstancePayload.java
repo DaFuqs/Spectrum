@@ -8,7 +8,7 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public record PlayTakeOffBeltSoundInstancePayload() implements CustomPacketPayload {
 	
@@ -28,7 +28,7 @@ public record PlayTakeOffBeltSoundInstancePayload() implements CustomPacketPaylo
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

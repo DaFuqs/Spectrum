@@ -14,6 +14,7 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.enchantment.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -23,7 +24,7 @@ public class EnchantmentRegisteredCondition extends BookCondition {
 	
 	protected ResourceKey<Enchantment> enchantmentKey;
 	
-	public EnchantmentRegisteredCondition(Component tooltip, ResourceKey<Enchantment> enchantmentKey) {
+	public EnchantmentRegisteredCondition(@Nullable Component tooltip, ResourceKey<Enchantment> enchantmentKey) {
 		super(tooltip);
 		this.enchantmentKey = enchantmentKey;
 	}

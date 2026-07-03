@@ -10,7 +10,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.items.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
 
@@ -30,9 +30,11 @@ public class TrinketChangeCriterion extends SimpleCriterionTrigger<TrinketChange
 				for (int i = 0; i < equippedCurios.getSlots(); i++) {
 					ItemStack stack = equippedCurios.getStackInSlot(i);
 					
-					equippedStacks.add(stack);
-					if (stack.is(SpectrumItemTags.TRINKETS)) {
-						spectrumStacks++;
+					if(!stack.isEmpty()) {
+						equippedStacks.add(stack);
+						if (stack.is(SpectrumItemTags.TRINKETS)) {
+							spectrumStacks++;
+						}
 					}
 				}
 				return conditions.matches(equippedStacks, equippedStacks.size(), spectrumStacks);
@@ -42,38 +44,38 @@ public class TrinketChangeCriterion extends SimpleCriterionTrigger<TrinketChange
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	
 	public record Conditions(
 			Optional<ContextAwarePredicate> player,
-			Optional<List<ItemPredicate>> itemPredicates,
-			Optional<MinMaxBounds.Ints> totalCountRange,
-			Optional<MinMaxBounds.Ints> spectrumCountRange
+			List<ItemPredicate> itemPredicates,
+			MinMaxBounds.Ints totalCountRange,
+			MinMaxBounds.Ints spectrumCountRange
 	) implements SimpleCriterionTrigger.SimpleInstance {
 		
 		public static final Codec<TrinketChangeCriterion.Conditions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 				ContextAwarePredicate.CODEC.optionalFieldOf("player").forGetter(TrinketChangeCriterion.Conditions::player),
-				ItemPredicate.CODEC.listOf().optionalFieldOf("items").forGetter(TrinketChangeCriterion.Conditions::itemPredicates),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("total_count").forGetter(TrinketChangeCriterion.Conditions::totalCountRange),
-				MinMaxBounds.Ints.CODEC.optionalFieldOf("spectrum_count").forGetter(TrinketChangeCriterion.Conditions::spectrumCountRange)
+				ItemPredicate.CODEC.listOf().optionalFieldOf("items", List.of()).forGetter(TrinketChangeCriterion.Conditions::itemPredicates),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("total_count", MinMaxBounds.Ints.ANY).forGetter(TrinketChangeCriterion.Conditions::totalCountRange),
+				MinMaxBounds.Ints.CODEC.optionalFieldOf("spectrum_count", MinMaxBounds.Ints.ANY).forGetter(TrinketChangeCriterion.Conditions::spectrumCountRange)
 		).apply(instance, TrinketChangeCriterion.Conditions::new));
 		
 		public boolean matches(List<ItemStack> trinketStacks, int totalCount, int spectrumCount) {
-			if(this.totalCountRange.isPresent() && !this.totalCountRange.get().matches(totalCount)) {
+			if(!this.totalCountRange.matches(totalCount)) {
 				return false;
 			}
-			if(this.spectrumCountRange.isPresent() && this.spectrumCountRange.get().matches(spectrumCount)) {
+			if(!this.spectrumCountRange.matches(spectrumCount)) {
 				return false;
 			}
 			
-			int i = this.itemPredicates.orElse(List.of()).size();
+			int i = this.itemPredicates.size();
 			if (i == 0) {
 				return true;
 			}
 			
-			List<ItemPredicate> requiredTrinkets = new ObjectArrayList<>(this.itemPredicates.get());
+			List<ItemPredicate> requiredTrinkets = new ObjectArrayList<>(this.itemPredicates);
 			for (ItemStack trinketStack : trinketStacks) {
 				if (requiredTrinkets.isEmpty()) {
 					return true;

@@ -12,6 +12,7 @@ import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
@@ -30,7 +31,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.phys.*;
 import org.apache.commons.lang3.mutable.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -337,10 +338,9 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 			}
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	protected EntityHitResult findHitEntity(Vec3 currentPosition, Vec3 nextPosition) {
+	protected @Nullable EntityHitResult findHitEntity(Vec3 currentPosition, Vec3 nextPosition) {
 		return ProjectileUtil.getEntityHitResult(
 				this.level(), this, currentPosition, nextPosition, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0), this::canHitEntity
 		);
@@ -349,11 +349,15 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 	private float getDamage(ItemStack stack) {
 		//TODO can we use a built in function for this?
 		var damage = new MutableDouble(0);
-		var key = Attributes.ATTACK_DAMAGE.unwrapKey().orElse(null);
+		Optional<ResourceKey<Attribute>> key = Attributes.ATTACK_DAMAGE.unwrapKey();
+		if(key.isEmpty()) {
+			return 0;
+		}
+		
 		var base = Attributes.ATTACK_DAMAGE.value().getDefaultValue();
 		var modifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
 		modifiers.forEach(EquipmentSlot.MAINHAND, (attribute, modifier) -> {
-			if (attribute.is(key)) {
+			if (attribute.is(key.get())) {
 				var value = modifier.amount();
 				damage.addAndGet(switch (modifier.operation()) {
 					case ADD_VALUE -> value;
@@ -446,7 +450,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 	
 	private ItemStack getRootStack() {
 		if (getOwner() instanceof Player player) {
-			return DraconicTwinswordItem.findThrownStack(player, uuid);
+			return DragonTalonItem.findThrownStack(player, uuid);
 		}
 		return ItemStack.EMPTY;
 	}
@@ -468,7 +472,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 			return false;
 		}
 		
-		var rootStack = DraconicTwinswordItem.findThrownStack(player, uuid);
+		var rootStack = DragonTalonItem.findThrownStack(player, uuid);
 		if (!rootStack.isEmpty()) {
 			if (this.level().isClientSide())
 				return true;
@@ -483,16 +487,14 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 		}
 		return false;
 	}
-	
-	@Nullable
+
 	@Override
-	public ItemEntity spawnAtLocation(ItemStack stack) {
+	public @Nullable ItemEntity spawnAtLocation(ItemStack stack) {
 		return null;
 	}
-	
-	@Nullable
+
 	@Override
-	public ItemEntity spawnAtLocation(ItemStack stack, float yOffset) {
+	public @Nullable ItemEntity spawnAtLocation(ItemStack stack, float yOffset) {
 		return null;
 	}
 }

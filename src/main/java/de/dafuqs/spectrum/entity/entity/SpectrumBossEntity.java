@@ -17,7 +17,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class SpectrumBossEntity extends FlyingMob {
 	
@@ -119,7 +119,7 @@ public class SpectrumBossEntity extends FlyingMob {
 		// => should they battle in a team the kill counts for all players
 		// instead of just the one that did the killing blow like in vanilla
 		Level world = this.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			for (Player closeByPlayer : this.level().getEntities(EntityType.PLAYER, getBoundingBox().inflate(24), Entity::isAlive)) {
 				CriteriaTriggers.ENTITY_KILLED_PLAYER.trigger((ServerPlayer) closeByPlayer, this, damageSource);
 			}

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.food.*;
+import net.minecraft.world.item.*;
 
 @SuppressWarnings("unused")
 public class SpectrumFoodComponents {
@@ -332,11 +333,13 @@ public class SpectrumFoodComponents {
 			.nutrition(20).saturationModifier(SAT_NORMAL).spectrum$setEatSeconds(TIME_FEAST)
 			.effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100), 1.0F)
 			.effect(() -> new MobEffectInstance(SpectrumMobEffects.NOURISHING, 12000, 1), 1.0F)
+			.usingConvertsTo(Items.BOWL)
 			.build();
 	
 	public static final FoodProperties DRAGONBONE_BROTH = new FoodProperties.Builder()
 			.nutrition(6).saturationModifier(SAT_LOW)
 			.effect(() -> new MobEffectInstance(SpectrumMobEffects.MAGIC_ANNULATION, 2400, 1), 1.0F)
+			.usingConvertsTo(Items.BOWL)
 			.build();
 	
 	public static final FoodProperties AQUA_REGIA = new FoodProperties.Builder()

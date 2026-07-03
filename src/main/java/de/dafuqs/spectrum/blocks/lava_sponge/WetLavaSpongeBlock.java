@@ -27,9 +27,9 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
 	// even more in the nether
 	private static int getRandomTickTime(Level world) {
 		if (world.dimensionType().ultraWarm()) {
-			return 10 + world.random.nextInt(5);
+			return 10 + world.getRandom().nextInt(5);
 		} else {
-			return 20 + world.random.nextInt(10);
+			return 20 + world.getRandom().nextInt(10);
 		}
 	}
 	

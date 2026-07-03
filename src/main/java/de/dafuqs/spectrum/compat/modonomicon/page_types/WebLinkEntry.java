@@ -10,6 +10,7 @@ import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import org.jspecify.annotations.Nullable;
 
 /**
  * A node that is a link to another existing entry
@@ -20,7 +21,7 @@ public class WebLinkEntry extends BookEntry {
 	
 	private final String url;
 	
-	public WebLinkEntry(ResourceLocation id, BookEntryData data, ResourceLocation commandToRunOnFirstReadId, String url) {
+	public WebLinkEntry(ResourceLocation id, BookEntryData data, @Nullable ResourceLocation commandToRunOnFirstReadId, String url) {
 		super(id, data, commandToRunOnFirstReadId);
 		this.url = url;
 	}

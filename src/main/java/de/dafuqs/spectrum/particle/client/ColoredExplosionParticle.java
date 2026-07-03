@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.particle.client;
 import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 
 public class ColoredExplosionParticle extends HugeExplosionParticle {

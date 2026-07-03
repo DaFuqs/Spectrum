@@ -17,27 +17,27 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.neoforged.neoforge.fluids.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public abstract class SludgeFluid extends SpectrumFluid {
 	
 	@Override
-	public @NotNull FluidType getFluidType() {
+	public FluidType getFluidType() {
 		return SpectrumFluids.SLUDGE_TYPE.get();
 	}
 	
 	@Override
-	public @NotNull Fluid getSource() {
+	public Fluid getSource() {
 		return SpectrumFluids.SLUDGE.get();
 	}
 	
 	@Override
-	public @NotNull Fluid getFlowing() {
+	public Fluid getFlowing() {
 		return SpectrumFluids.FLOWING_SLUDGE.get();
 	}
 	
 	@Override
-	public @NotNull Item getBucket() {
+	public Item getBucket() {
 		return SpectrumItems.SLUDGE_BUCKET.get();
 	}
 	
@@ -47,8 +47,13 @@ public abstract class SludgeFluid extends SpectrumFluid {
 	}
 	
 	@Override
-	public boolean isSame(@NotNull Fluid fluid) {
+	public boolean isSame(Fluid fluid) {
 		return fluid == SpectrumFluids.SLUDGE.get() || fluid == SpectrumFluids.FLOWING_SLUDGE.get();
+	}
+	
+	@Override
+	protected boolean canConvertToSource(Level level) {
+		return level.getGameRules().getBoolean(SpectrumGameRules.RULE_SLUDGE_SOURCE_CONVERSION);
 	}
 	
 	@Override
@@ -98,7 +103,7 @@ public abstract class SludgeFluid extends SpectrumFluid {
 	public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		
-		if (!world.isClientSide && entity instanceof LivingEntity livingEntity) {
+		if (!world.isClientSide() && entity instanceof LivingEntity livingEntity) {
 			// the entity is hurt at air == -20 and then reset to air = 0
 			// this way the entity loses its breath way faster, but gets damaged just as slow afterwards
 			if (livingEntity.isEyeInFluidType(SpectrumFluids.SLUDGE_TYPE.get()) && world.getGameTime() % 2 == 0 && livingEntity.getAirSupply() > 0) {

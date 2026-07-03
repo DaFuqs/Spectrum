@@ -8,6 +8,7 @@ import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -35,8 +36,8 @@ public class GlowBlock extends Block {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static GlowBlock byColor(InkColor color) {
+
+	public static @Nullable GlowBlock byColor(InkColor color) {
 		return GLOWBLOCKS.get(color);
 	}
 	

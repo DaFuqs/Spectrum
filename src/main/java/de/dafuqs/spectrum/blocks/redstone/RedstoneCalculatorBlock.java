@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.ticks.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public class RedstoneCalculatorBlock extends DiodeBlock implements EntityBlock {
 	
@@ -66,7 +66,7 @@ public class RedstoneCalculatorBlock extends DiodeBlock implements EntityBlock {
 			
 			this.update(world, pos, state);
 			
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		}
 	}
 	
@@ -148,7 +148,7 @@ public class RedstoneCalculatorBlock extends DiodeBlock implements EntityBlock {
 	}
 	
 	@Override
-	protected int getOutputSignal(@NotNull BlockGetter world, BlockPos pos, BlockState state) {
+	protected int getOutputSignal(BlockGetter world, BlockPos pos, BlockState state) {
 		return world.getBlockEntity(pos) instanceof RedstoneCalculatorBlockEntity redstoneCalculatorBlockEntity ? redstoneCalculatorBlockEntity.getOutputSignal() : 0;
 	}
 	

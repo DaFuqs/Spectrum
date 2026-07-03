@@ -69,12 +69,17 @@ public class EnchanterRecipe extends GatedSpectrumRecipe<RecipeInput> {
 		return false;
 	}
 	
+	public boolean copyComponents() {
+		return this.copyComponents;
+	}
+	
 	@Override
 	public ItemStack assemble(RecipeInput inv, HolderLookup.Provider drm) {
-		if (this.copyComponents) {
-			return inv.getItem(0).transmuteCopy(output.getItem(), output.getCount());
+		ItemStack result = output.copy();
+		if(this.copyComponents) {
+			copyComponents(result, inv.getItem(0));
 		}
-		return output.copy();
+		return result;
 	}
 	
 	@Override
@@ -123,7 +128,7 @@ public class EnchanterRecipe extends GatedSpectrumRecipe<RecipeInput> {
 	}
 	
 	public boolean areYieldAndEfficiencyUpgradesDisabled() {
-		return copyComponents || noBenefitsFromYieldAndEfficiencyUpgrades;
+		return noBenefitsFromYieldAndEfficiencyUpgrades;
 	}
 	
 	@Override

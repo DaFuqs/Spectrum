@@ -16,7 +16,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.concurrent.*;

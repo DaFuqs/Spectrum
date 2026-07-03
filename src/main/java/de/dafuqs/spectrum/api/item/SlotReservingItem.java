@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.api.item;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -12,11 +12,11 @@ public interface SlotReservingItem {
 		return stack.has(SpectrumDataComponentTypes.SLOT_RESERVER);
 	}
 	
-	static UUID getReserver(ItemStack stack) {
+	static @Nullable UUID getReserver(ItemStack stack) {
 		return stack.get(SpectrumDataComponentTypes.SLOT_RESERVER);
 	}
 	
-	static boolean isReserver(ItemStack stack, @NotNull  UUID uuid) {
+	static boolean isReserver(ItemStack stack,  UUID uuid) {
 		return uuid.equals(getReserver(stack));
 	}
 	

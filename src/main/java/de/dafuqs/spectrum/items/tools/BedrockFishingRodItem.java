@@ -11,7 +11,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -27,7 +26,7 @@ public class BedrockFishingRodItem extends SpectrumFishingRodItem implements Pre
 	}
 	
 	@Override
-	public boolean isEnchantable(@NotNull ItemStack stack) {
+	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
 	
@@ -46,5 +45,4 @@ public class BedrockFishingRodItem extends SpectrumFishingRodItem implements Pre
 		super.appendHoverText(stack, context, tooltip, type);
 		tooltip.add(Component.translatable("item.spectrum.bedrock_fishing_rod.tooltip").withStyle(ChatFormatting.GRAY));
 	}
-	
 }

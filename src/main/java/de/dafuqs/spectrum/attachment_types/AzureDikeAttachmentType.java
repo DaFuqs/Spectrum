@@ -16,7 +16,7 @@ import net.minecraft.world.level.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
 
@@ -61,7 +61,7 @@ public class AzureDikeAttachmentType {
 	
 	public static void recalculate(LivingEntity livingEntity) {
 		Level level = livingEntity.level();
-		if (!level.isClientSide) {
+		if (!level.isClientSide()) {
 			AzureDikeAttachmentType attachment = livingEntity.getData(ATTACHMENT_TYPE);
 			
 			Optional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(livingEntity);
@@ -118,7 +118,7 @@ public class AzureDikeAttachmentType {
 		}
 		
 		@Override
-		public @NotNull Type<? extends CustomPacketPayload> type() {
+		public Type<? extends CustomPacketPayload> type() {
 			return TYPE;
 		}
 	}

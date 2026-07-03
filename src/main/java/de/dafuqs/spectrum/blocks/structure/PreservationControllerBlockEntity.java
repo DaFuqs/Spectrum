@@ -20,21 +20,23 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
+
+import javax.annotation.*;
 
 import java.util.*;
 
 public class PreservationControllerBlockEntity extends BlockEntity {
 	
-	private Vec3i entranceOffset;
-	private Vec3i checkRange;
-	private ResourceLocation requiredAdvancement;
-	private MobEffect requiredEffect;
-	private String checkName;
+	private @Nullable Vec3i entranceOffset;
+	private @Nullable Vec3i checkRange;
+	private @Nullable ResourceLocation requiredAdvancement;
+	private @Nullable MobEffect requiredEffect;
+	private @Nullable String checkName;
 	
-	private AABB checkBox;
-	private Vec3i checkBoxOffset;
-	private BlockPos destinationPos;
+	private @Nullable AABB checkBox;
+	private @Nullable Vec3i checkBoxOffset;
+	private @Nullable BlockPos destinationPos;
 	
 	private boolean spawnParticles;
 	
@@ -42,7 +44,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		super(SpectrumBlockEntities.PRESERVATION_CONTROLLER.get(), pos, state);
 	}
 	
-	public static void serverTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, PreservationControllerBlockEntity blockEntity) {
+	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, PreservationControllerBlockEntity blockEntity) {
 		if (world.getGameTime() % 20 == 0 && blockEntity.entranceOffset != null && blockEntity.checkRange != null && blockEntity.requiredAdvancement != null) {
 			if (blockEntity.checkBox == null) {
 				calculateLocationData(world, blockPos, blockState, blockEntity);
@@ -58,7 +60,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		}
 	}
 	
-	private static void calculateLocationData(Level world, BlockPos blockPos, @NotNull BlockState blockState, @NotNull PreservationControllerBlockEntity blockEntity) {
+	private static void calculateLocationData(Level world, BlockPos blockPos, BlockState blockState, PreservationControllerBlockEntity blockEntity) {
 		BlockState state = world.getBlockState(blockPos);
 		if (!state.is(SpectrumBlocks.PRESERVATION_CONTROLLER)) {
 			return;
@@ -210,7 +212,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		}
 	}
 	
-	public void yeetPlayer(@NotNull Player player) {
+	public void yeetPlayer(Player player) {
 		if (this.destinationPos != null) {
 			player.hurt(SpectrumDamageTypes.dike(player.level()), 1.0F);
 			Vec3 vec = Vec3.atCenterOf(destinationPos);

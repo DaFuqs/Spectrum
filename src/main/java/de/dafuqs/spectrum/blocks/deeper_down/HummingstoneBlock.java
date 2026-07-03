@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class HummingstoneBlock extends BaseEntityBlock {
 	
@@ -81,10 +81,10 @@ public class HummingstoneBlock extends BaseEntityBlock {
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		if (!state.getValue(HUMMING)) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				startHumming(world, pos, state, player, false);
 			}
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		}
 		return super.useWithoutItem(state, world, pos, player, hit);
 	}
@@ -97,7 +97,7 @@ public class HummingstoneBlock extends BaseEntityBlock {
 	@Override
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.randomTick(state, world, pos, random);
-		if (!world.isClientSide && state.getValue(HUMMING)) {
+		if (!world.isClientSide() && state.getValue(HUMMING)) {
 			stopHumming(world, pos, state);
 		}
 	}
@@ -105,7 +105,7 @@ public class HummingstoneBlock extends BaseEntityBlock {
 	@Override
 	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
 		super.entityInside(state, world, pos, entity);
-		if (!world.isClientSide && !state.getValue(HUMMING)) {
+		if (!world.isClientSide() && !state.getValue(HUMMING)) {
 			startHumming(world, pos, state, entity, false);
 		}
 	}
@@ -113,22 +113,21 @@ public class HummingstoneBlock extends BaseEntityBlock {
 	@Override
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		super.fallOn(world, state, pos, entity, fallDistance);
-		if (!world.isClientSide && !state.getValue(HUMMING)) {
+		if (!world.isClientSide() && !state.getValue(HUMMING)) {
 			startHumming(world, pos, state, entity, false);
 		}
 	}
 	
 	@Override
 	public void onProjectileHit(Level world, BlockState state, BlockHitResult hit, Projectile projectile) {
-		if (!world.isClientSide && !state.getValue(HUMMING)) {
+		if (!world.isClientSide() && !state.getValue(HUMMING)) {
 			startHumming(world, hit.getBlockPos(), state, projectile.getOwner(), false);
 		}
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.HUMMINGSTONE.get(), HummingstoneBlockEntity::serverTick);
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return world.isClientSide() ? null : createTickerHelper(type, SpectrumBlockEntities.HUMMINGSTONE.get(), HummingstoneBlockEntity::serverTick);
 	}
 	
 	@Override
@@ -150,14 +149,14 @@ public class HummingstoneBlock extends BaseEntityBlock {
 		if (!state.getValue(HUMMING)) {
 			world.setBlockAndUpdate(pos, state.setValue(HUMMING, true));
 		}
-		if (!causedByOtherHum || world.random.nextFloat() < CHANCE_TO_ECHO_HUM_EVENT) {
+		if (!causedByOtherHum || world.getRandom().nextFloat() < CHANCE_TO_ECHO_HUM_EVENT) {
 			world.gameEvent(entity, SpectrumGameEvents.HUMMINGSTONE_HUMMING, pos);
 		}
 	}
 	
 	public static void stopHumming(Level world, BlockPos pos, BlockState state) {
 		world.setBlockAndUpdate(pos, state.setValue(HUMMING, false));
-		world.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 0.5F, 0.5F + world.random.nextFloat() * 1.2F);
+		world.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 0.5F, 0.5F + world.getRandom().nextFloat() * 1.2F);
 	}
 	
 	public static void onHymn(Level world, BlockPos pos, @Nullable Entity entity) {
@@ -166,7 +165,7 @@ public class HummingstoneBlock extends BaseEntityBlock {
 		}
 		
 		world.gameEvent(entity, SpectrumGameEvents.HUMMINGSTONE_HYMN, pos);
-		world.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.25F, 0.5F + world.random.nextFloat() * 1.2F);
+		world.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.25F, 0.5F + world.getRandom().nextFloat() * 1.2F);
 		world.destroyBlock(pos, false);
 		popResource(world, pos, SpectrumItems.RESONANCE_SHARD.get().getDefaultInstance());
 		
@@ -174,16 +173,14 @@ public class HummingstoneBlock extends BaseEntityBlock {
 			SpectrumAdvancementCriteria.HUMMINGSTONE_HYMN.trigger(serverPlayerEntity, (ServerLevel) world, pos);
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new HummingstoneBlockEntity(pos, state);
 	}
-	
+
 	@Override
-	@Nullable
-	public <T extends BlockEntity> GameEventListener getListener(ServerLevel world, T blockEntity) {
+	public <T extends BlockEntity> @Nullable GameEventListener getListener(ServerLevel world, T blockEntity) {
 		if (blockEntity instanceof HummingstoneBlockEntity hummingstoneBlockEntity) {
 			return hummingstoneBlockEntity.listener;
 		}

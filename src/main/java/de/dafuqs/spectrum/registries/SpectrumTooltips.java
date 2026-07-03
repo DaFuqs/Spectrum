@@ -73,39 +73,35 @@ public class SpectrumTooltips {
 			entityType = EntityType.byString(spawningEntityType);
 		}
 		
-		try {
-			short spawnCount = blockEntityTag.getShort("SpawnCount");
-			short minSpawnDelay = blockEntityTag.getShort("MinSpawnDelay");
-			short maxSpawnDelay = blockEntityTag.getShort("MaxSpawnDelay");
-			short spawnRange = blockEntityTag.getShort("SpawnRange");
-			short requiredPlayerRange = blockEntityTag.getShort("RequiredPlayerRange");
-			short maxNearbyEntities = blockEntityTag.getShort("MaxNearbyEntities");
-			
-			if (entityType.isPresent()) {
-				lines.add(entityType.get().getDescription());
-			} else {
-				lines.add(Component.translatable("item.spectrum.spawner.tooltip.unknown_mob"));
-			}
-			if (spawnCount > 0) {
-				lines.add(Component.translatable("item.spectrum.spawner.tooltip.spawn_count", spawnCount).withStyle(ChatFormatting.GRAY));
-			}
-			if (minSpawnDelay > 0) {
-				lines.add(Component.translatable("item.spectrum.spawner.tooltip.min_spawn_delay", minSpawnDelay).withStyle(ChatFormatting.GRAY));
-			}
-			if (maxSpawnDelay > 0) {
-				lines.add(Component.translatable("item.spectrum.spawner.tooltip.max_spawn_delay", maxSpawnDelay).withStyle(ChatFormatting.GRAY));
-			}
-			if (spawnRange > 0) {
-				lines.add(Component.translatable("item.spectrum.spawner.tooltip.spawn_range", spawnRange).withStyle(ChatFormatting.GRAY));
-			}
-			if (requiredPlayerRange > 0) {
-				lines.add(Component.translatable("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange).withStyle(ChatFormatting.GRAY));
-			}
-			if (maxNearbyEntities > 0) {
-				lines.add(Component.translatable("item.spectrum.spawner.tooltip.max_nearby_entities", maxNearbyEntities).withStyle(ChatFormatting.GRAY));
-			}
-		} catch (Exception e) {
+		short spawnCount = blockEntityTag.getShort("SpawnCount");
+		short minSpawnDelay = blockEntityTag.getShort("MinSpawnDelay");
+		short maxSpawnDelay = blockEntityTag.getShort("MaxSpawnDelay");
+		short spawnRange = blockEntityTag.getShort("SpawnRange");
+		short requiredPlayerRange = blockEntityTag.getShort("RequiredPlayerRange");
+		short maxNearbyEntities = blockEntityTag.getShort("MaxNearbyEntities");
+		
+		if (entityType.isPresent()) {
+			lines.add(entityType.get().getDescription());
+		} else {
 			lines.add(Component.translatable("item.spectrum.spawner.tooltip.unknown_mob"));
+		}
+		if (spawnCount > 0) {
+			lines.add(Component.translatable("item.spectrum.spawner.tooltip.spawn_count", spawnCount).withStyle(ChatFormatting.GRAY));
+		}
+		if (minSpawnDelay > 0) {
+			lines.add(Component.translatable("item.spectrum.spawner.tooltip.min_spawn_delay", minSpawnDelay).withStyle(ChatFormatting.GRAY));
+		}
+		if (maxSpawnDelay > 0) {
+			lines.add(Component.translatable("item.spectrum.spawner.tooltip.max_spawn_delay", maxSpawnDelay).withStyle(ChatFormatting.GRAY));
+		}
+		if (spawnRange > 0) {
+			lines.add(Component.translatable("item.spectrum.spawner.tooltip.spawn_range", spawnRange).withStyle(ChatFormatting.GRAY));
+		}
+		if (requiredPlayerRange > 0) {
+			lines.add(Component.translatable("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange).withStyle(ChatFormatting.GRAY));
+		}
+		if (maxNearbyEntities > 0) {
+			lines.add(Component.translatable("item.spectrum.spawner.tooltip.max_nearby_entities", maxNearbyEntities).withStyle(ChatFormatting.GRAY));
 		}
 	}
 	

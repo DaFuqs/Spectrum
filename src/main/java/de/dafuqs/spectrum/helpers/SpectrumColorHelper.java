@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.items.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 import org.joml.*;
 
 import java.awt.*;
@@ -24,16 +24,6 @@ public class SpectrumColorHelper {
 	 */
 	public static List<DyeColor> VANILLA_DYE_COLORS = Arrays.stream(DyeColor.values()).filter(dyeColor -> dyeColor.getId() < 16).toList();
 	public static final Vector3f WASH = new Vector3f(1F, 1F, 1F);
-	
-	public static Vector3f getRGBVec(DyeColor dyeColor) {
-		return InkColor.ofDyeColor(dyeColor).getColorVec();
-	}
-	
-	public static int getInt(DyeColor dyeColor) {
-		Vector3f vec = getRGBVec(dyeColor);
-		return new Color(vec.x(), vec.y(), vec.z()).getRGB() & 0x00FFFFFF;
-	}
-	
 	private static final Pattern PARSE_PATTERN = Pattern.compile("#([0-9a-fA-F]{2})(?:([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})?)?");
 	
 	/**
@@ -80,7 +70,6 @@ public class SpectrumColorHelper {
 		return Color.getHSBColor((float) seed / Integer.MAX_VALUE, 0.7F, 0.9F).getRGB();
 	}
 	
-	@NotNull
 	public static Vector3f colorIntToVec(int color) {
 		Color colorObj = new Color(color);
 		float[] argb = new float[4];
@@ -93,7 +82,7 @@ public class SpectrumColorHelper {
 		return colorObj.getRGB();
 	}
 	
-	public static Optional<DyeColor> getDyeColorOfItemStack(@NotNull ItemStack itemStack) {
+	public static Optional<DyeColor> getDyeColorOfItemStack(ItemStack itemStack) {
 		if (!itemStack.isEmpty()) {
 			Item item = itemStack.getItem();
 			if (item instanceof DyeItem dyeItem) {

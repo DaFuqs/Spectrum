@@ -15,7 +15,7 @@
       "chance": 0.5
     }
   ],
-  "processingTime": 150,
+  "processing_time": 150,
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",

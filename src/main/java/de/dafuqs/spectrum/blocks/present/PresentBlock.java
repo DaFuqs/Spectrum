@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.present;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -17,6 +18,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
@@ -27,8 +29,8 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -88,7 +90,7 @@ public class PresentBlock extends BaseEntityBlock {
 	}
 	
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(OPENING, VARIANT);
 	}
 	
@@ -98,17 +100,16 @@ public class PresentBlock extends BaseEntityBlock {
 	}
 	
 	@Override
-	public boolean canSurvive(@NotNull BlockState state, LevelReader world, BlockPos pos) {
+	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
 		BlockState downState = world.getBlockState(pos.below());
 		return downState.isFaceSturdy(world, pos, Direction.UP);
 	}
 	
 	@Override
-	public void setPlacedBy(@NotNull Level world, @NotNull BlockPos pos, BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack itemStack) {
+	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		world.setBlockAndUpdate(pos, state.setValue(PresentBlock.VARIANT, PresentBlockItem.getWrapData(itemStack).variant()));
 		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
-			presentBlockEntity.setPresent(itemStack);
+			presentBlockEntity.setPresent(itemStack.copyWithCount(1));
 		}
 	}
 	
@@ -117,7 +118,7 @@ public class PresentBlock extends BaseEntityBlock {
 		if (!player.getAbilities().mayBuild) {
 			return InteractionResult.PASS;
 		} else {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return InteractionResult.SUCCESS;
 			} else {
 				BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -153,7 +154,7 @@ public class PresentBlock extends BaseEntityBlock {
 	
 	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-		if (state.getValue(OPENING) && !world.isClientSide) {
+		if (state.getValue(OPENING) && !world.isClientSide()) {
 			if (world.getBlockEntity(pos) instanceof PresentBlockEntity presentBlockEntity) {
 				int openingTick = presentBlockEntity.openingTick();
 				Vec3 posVec = new Vec3(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
@@ -194,7 +195,7 @@ public class PresentBlock extends BaseEntityBlock {
 	
 	public static void spawnParticlesClient(Level world, BlockPos pos, Map<InkColor, Integer> colors) {
 		if (colors.isEmpty()) {
-			int randomColor = DyeColor.byId(world.random.nextInt(DyeColor.values().length)).getTextureDiffuseColor();
+			int randomColor = DyeColor.byId(world.getRandom().nextInt(DyeColor.values().length)).getTextureDiffuseColor();
 			spawnParticlesClient(world, pos, randomColor, 15);
 		} else {
 			for (Map.Entry<InkColor, Integer> color : colors.entrySet()) {
@@ -207,7 +208,7 @@ public class PresentBlock extends BaseEntityBlock {
 		double posX = pos.getX() + 0.5;
 		double posY = pos.getY() + 0.25;
 		double posZ = pos.getZ() + 0.5;
-		RandomSource random = world.random;
+		RandomSource random = world.getRandom();
 		Vector3f colorVec = SpectrumColorHelper.colorIntToVec(color);
 		for (int i = 0; i < amount; i++) {
 			double randX = 0.35 - random.nextFloat() * 0.7;
@@ -221,9 +222,17 @@ public class PresentBlock extends BaseEntityBlock {
 		}
 	}
 	
-	@Nullable
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
+		WrappedPresentComponent presentComponent = PresentBlockItem.getWrapData(context.getItemInHand());
+		if (presentComponent != null) {
+			return this.defaultBlockState().setValue(VARIANT, presentComponent.variant());
+		}
+		return super.getStateForPlacement(context);
+	}
+	
+	@Override
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PresentBlockEntity(pos, state);
 	}
 	

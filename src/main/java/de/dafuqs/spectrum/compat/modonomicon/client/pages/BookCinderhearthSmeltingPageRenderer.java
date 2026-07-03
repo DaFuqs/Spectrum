@@ -6,15 +6,15 @@ import com.klikli_dev.modonomicon.data.*;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import net.minecraft.util.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -22,8 +22,8 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
 	
 	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/cinderhearth.png");
 	
-	private List<BookTextHolder> chanceTexts1 = null;
-	private List<BookTextHolder> chanceTexts2 = null;
+	private @Nullable List<BookTextHolder> chanceTexts1 = null;
+	private @Nullable List<BookTextHolder> chanceTexts2 = null;
 	
 	public BookCinderhearthSmeltingPageRenderer(BookGatedRecipePage<CinderhearthRecipe> page) {
 		super(page);
@@ -43,22 +43,20 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
 		}
 	}
 	
-	private List<BookTextHolder> createChanceTexts(CinderhearthRecipe recipe) {
-		if (recipe == null) return null;
-		
+	private @Nullable List<BookTextHolder> createChanceTexts(CinderhearthRecipe recipe) {
 		Level world = Minecraft.getInstance().level;
 		if (world == null) return null;
 		
 		ResourceLocation font = BookDataManager.Client.get().safeFont(this.page.getBook().getFont());
 		
 		List<BookTextHolder> chanceTexts = new ArrayList<>();
-		List<Tuple<ItemStack, Float>> possibleOutputs = recipe.getResultsWithChance();
+		List<StackWithChance> possibleOutputs = recipe.getResultsWithChance();
 		
 		int chanceTextIndex = 0;
-		for (Tuple<ItemStack, Float> possibleOutput : possibleOutputs) {
-			if (possibleOutput.getB() < 1.0F) {
+		for (StackWithChance possibleOutput : possibleOutputs) {
+			if (possibleOutput.chance() < 1.0F) {
 				if (chanceTexts.size() < chanceTextIndex + 1) {
-					chanceTexts.add(new BookTextHolder(Component.literal(String.format("%f.2%%", possibleOutput.getB() * 100)).withStyle(s -> s.withFont(font))));
+					chanceTexts.add(new BookTextHolder(Component.literal(String.format("%f.2%%", possibleOutput.chance() * 100)).withStyle(s -> s.withFont(font))));
 				}
 				chanceTextIndex++;
 			}
@@ -80,7 +78,7 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
 		
 		RenderSystem.enableBlend();
 		
-		List<Tuple<ItemStack, Float>> possibleOutputs = recipe.getResultsWithChance();
+		List<StackWithChance> possibleOutputs = recipe.getResultsWithChance();
 		recipeX = Math.max(recipeX, recipeX + 26 - possibleOutputs.size() * 10);
 		
 		int backgroundTextureWidth = 34 + possibleOutputs.size() * 24;
@@ -98,11 +96,11 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
 		// outputs
 		int chanceTextIndex = 0;
 		for (int i = 0; i < possibleOutputs.size(); i++) {
-			Tuple<ItemStack, Float> possibleOutput = possibleOutputs.get(i);
+			StackWithChance possibleOutput = possibleOutputs.get(i);
 			int x = recipeX + 37 + i * 23;
-			parentScreen.renderItemStack(drawContext, x, recipeY + 6, mouseX, mouseY, possibleOutput.getA());
+			parentScreen.renderItemStack(drawContext, x, recipeY + 6, mouseX, mouseY, possibleOutput.stack());
 			
-			if (possibleOutput.getB() < 1.0F) {
+			if (possibleOutput.chance() < 1.0F) {
 				var chance = second ? chanceTexts2 : chanceTexts1;
 				
 				if (chance == null)

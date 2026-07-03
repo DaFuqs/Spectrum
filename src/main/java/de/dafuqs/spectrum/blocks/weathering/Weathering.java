@@ -8,7 +8,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -72,7 +72,7 @@ public interface Weathering extends ChangeOverTimeBlock<Weathering.WeatheringLev
 	}
 	
 	@Override
-	default @NotNull Optional<BlockState> getNext(BlockState state) {
+	default Optional<BlockState> getNext(BlockState state) {
 		return getIncreasedWeatheredBlock(state.getBlock()).map((block) -> block.withPropertiesOf(state));
 	}
 	
@@ -86,7 +86,7 @@ public interface Weathering extends ChangeOverTimeBlock<Weathering.WeatheringLev
 		if (world.isRaining() && world.getBiome(pos).value().getPrecipitationAt(pos) != Biome.Precipitation.NONE) {
 			chance += 0.5F;
 		}
-		return world.random.nextFloat() < chance;
+		return world.getRandom().nextFloat() < chance;
 	}
 	
 	enum WeatheringLevel {

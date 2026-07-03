@@ -11,7 +11,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -28,7 +27,7 @@ public class MobEffectHelper {
 		return (int) (originalDuration * (1 + ADDITIONAL_EFFECT_DURATION_MODIFIER_PER_LEVEL * (1 + prolongingAmplifier)));
 	}
 
-    public static void clearRandomEffect(@NotNull LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
+    public static void clearRandomEffect(LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
         Collection<MobEffectInstance> currentEffects = entity.getActiveEffects();
         List<MobEffectInstance> toRemove = new ArrayList<>();
         for (MobEffectInstance instance : currentEffects) {
@@ -42,11 +41,11 @@ public class MobEffectHelper {
         }
         
         Level world = entity.level();
-        int randomIndex = world.random.nextInt(toRemove.size());
+        int randomIndex = world.getRandom().nextInt(toRemove.size());
         entity.removeEffect(toRemove.get(randomIndex).getEffect());
     }
 
-    public static void clearEffects(@NotNull LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
+    public static void clearEffects(LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
         Set<Holder<MobEffect>> effectsToRemove = new HashSet<>();
         for (MobEffectInstance instance : entity.getActiveEffects()) {
             if (effectPredicate.test(instance)) {
@@ -59,7 +58,7 @@ public class MobEffectHelper {
         }
     }
 
-    public static void shortenEffects(@NotNull LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
+    public static void shortenEffects(LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
         for (MobEffectInstance instance : entity.getActiveEffects()) {
             if (effectPredicate.test(instance)) {
 				shortenEffect(entity, instance);

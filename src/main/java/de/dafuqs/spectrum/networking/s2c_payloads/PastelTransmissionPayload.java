@@ -12,7 +12,7 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -26,7 +26,7 @@ public record PastelTransmissionPayload(int networkColor, int travelTime, Pastel
 			PastelTransmissionPayload::new
 	);
 	
-	public static void sendPastelTransmissionParticle(ServerPastelNetwork network, int travelTime, @NotNull PastelTransmission transmission) {
+	public static void sendPastelTransmissionParticle(ServerPastelNetwork network, int travelTime, PastelTransmission transmission) {
 		Packet<?> packet = new ClientboundCustomPayloadPacket(new PastelTransmissionPayload(network.getColor(), travelTime, transmission));
 		Set<ServerPlayer> targetPlayers = new HashSet<ServerPlayer>();
 		targetPlayers.addAll(network.getLevel().getChunkSource().chunkMap.getPlayers(new ChunkPos(transmission.getNodePositions().getFirst()), false));
@@ -47,7 +47,7 @@ public record PastelTransmissionPayload(int networkColor, int travelTime, Pastel
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

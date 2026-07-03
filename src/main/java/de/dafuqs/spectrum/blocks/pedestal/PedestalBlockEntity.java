@@ -37,6 +37,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -60,7 +61,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	protected long cachedMaxPedestalTierTick;
 	protected UpgradeHolder upgrades;
 	protected boolean inventoryChanged;
-	public @Nullable RecipeHolder<?> currentRecipe;
+	protected @Nullable RecipeHolder<?> currentRecipe;
 	
 	private static final int RECIPE_RECALCULATION_TICKS = 4;
 	protected long cachedRecipeTime = Long.MIN_VALUE;
@@ -91,7 +92,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	@SuppressWarnings("unused")
-	public static void clientTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
+	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
 		Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 		if (currentRecipe instanceof PedestalRecipe pedestalRecipe) {
 			Map<GemstoneColor, Integer> gemstonePowderInputs = pedestalRecipe.getPowderInputs();
@@ -101,7 +102,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 				if (amount > 0) {
 					ParticleOptions particleEffect = ColoredCraftingParticleEffect.of(entry.getKey().getColor());
 					
-					float particleAmount = Support.getIntFromDecimalWithChance(amount * 0.125, world.random);
+					float particleAmount = Support.getIntFromDecimalWithChance(amount * 0.125, world.getRandom());
 					for (int i = 0; i < particleAmount; i++) {
 						float randomX = 2.0F - world.getRandom().nextFloat() * 5;
 						float randomZ = 2.0F - world.getRandom().nextFloat() * 5;
@@ -112,7 +113,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 	}
 	
-	public static void spawnCraftingStartParticles(@NotNull Level world, BlockPos blockPos) {
+	public static void spawnCraftingStartParticles(Level world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
 			Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
@@ -126,14 +127,14 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 						
 						amount = amount * 4;
 						for (int i = 0; i < amount; i++) {
-							Direction direction = Direction.getRandom(world.random);
+							Direction direction = Direction.getRandom(world.getRandom());
 							if (direction != Direction.DOWN) {
 								BlockPos offsetPos = blockPos.relative(direction);
 								BlockState offsetState = world.getBlockState(offsetPos);
 								if (!offsetState.isFaceSturdy(world, offsetPos, direction.getOpposite())) {
-									double d = direction.getStepX() == 0 ? world.random.nextDouble() : 0.5D + (double) direction.getStepX() * 0.6D;
-									double e = direction.getStepY() == 0 ? world.random.nextDouble() : 0.5D + (double) direction.getStepY() * 0.6D;
-									double f = direction.getStepZ() == 0 ? world.random.nextDouble() : 0.5D + (double) direction.getStepZ() * 0.6D;
+									double d = direction.getStepX() == 0 ? world.getRandom().nextDouble() : 0.5D + (double) direction.getStepX() * 0.6D;
+									double e = direction.getStepY() == 0 ? world.getRandom().nextDouble() : 0.5D + (double) direction.getStepY() * 0.6D;
+									double f = direction.getStepZ() == 0 ? world.getRandom().nextDouble() : 0.5D + (double) direction.getStepZ() * 0.6D;
 									world.addParticle(particleEffect, (double) blockPos.getX() + d, (double) blockPos.getY() + e, (double) blockPos.getZ() + f, 0.0D, 0.03D, 0.0D);
 								}
 							}
@@ -144,7 +145,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 	}
 	
-	public static void serverTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
+	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
 		if (pedestalBlockEntity.upgrades == null) {
 			pedestalBlockEntity.calculateUpgrades();
 		}
@@ -244,17 +245,17 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	@Contract(pure = true)
-	public static PedestalVariant getVariant(@NotNull PedestalBlockEntity pedestalBlockEntity) {
+	public static PedestalVariant getVariant(PedestalBlockEntity pedestalBlockEntity) {
 		return pedestalBlockEntity.pedestalVariant;
 	}
 	
-	public static void spawnOutputAsItemEntity(ServerLevel world, BlockPos blockPos, @NotNull PedestalBlockEntity pedestalBlockEntity, ItemStack outputItemStack) {
+	public static void spawnOutputAsItemEntity(ServerLevel world, BlockPos blockPos, PedestalBlockEntity pedestalBlockEntity, ItemStack outputItemStack) {
 		// spawn crafting output
 		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, pedestalBlockEntity.worldPosition, outputItemStack, outputItemStack.getCount(), new Vec3(0, 0.1, 0));
 		pedestalBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
 		
 		// spawn XP
-		MultiblockCrafter.spawnExperience(world, pedestalBlockEntity.worldPosition, pedestalBlockEntity.storedXP, world.random);
+		MultiblockCrafter.spawnExperience(world, pedestalBlockEntity.worldPosition, pedestalBlockEntity.storedXP, world.getRandom());
 		pedestalBlockEntity.storedXP = 0;
 		
 		// only triggered on server side. Therefore, has to be sent to client via S2C packet
@@ -275,13 +276,13 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	public static void playCraftingFinishedSoundEvent(PedestalBlockEntity pedestalBlockEntity, Recipe<?> craftingRecipe) {
 		Level world = pedestalBlockEntity.getLevel();
 		if (world != null && craftingRecipe instanceof PedestalRecipe pedestalRecipe) {
-			pedestalBlockEntity.playSound(pedestalRecipe.getSoundEvent(world.random));
+			pedestalBlockEntity.playSound(pedestalRecipe.getSoundEvent(world.getRandom()));
 		} else {
 			pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_GENERIC);
 		}
 	}
 	
-	public static @Nullable RecipeHolder<?> calculateRecipe(Level world, @NotNull PedestalBlockEntity pedestalBlockEntity) {
+	public static @Nullable RecipeHolder<?> calculateRecipe(Level world, PedestalBlockEntity pedestalBlockEntity) {
 		var currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 		
 		if (!pedestalBlockEntity.inventoryChanged) {
@@ -375,7 +376,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		if (!recipe.areYieldUpgradesDisabled()) {
 			double yieldModifier = pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD);
 			if (yieldModifier != 1.0) {
-				int modifiedCount = Support.getIntFromDecimalWithChance(outputStack.getCount() * yieldModifier, world.random);
+				int modifiedCount = Support.getIntFromDecimalWithChance(outputStack.getCount() * yieldModifier, world.getRandom());
 				outputStack.setCount(Math.min(outputStack.getMaxStackSize(), modifiedCount));
 			}
 		}
@@ -521,7 +522,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	@Override
-	public void setItem(int slot, @NotNull ItemStack stack) {
+	public void setItem(int slot, ItemStack stack) {
 		this.inventory.set(slot, stack);
 		if (stack.getCount() > this.getMaxStackSize()) {
 			stack.setCount(this.getMaxStackSize());
@@ -546,10 +547,9 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			recipeMatcher.accountStack(itemStack);
 		}
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	
@@ -621,7 +621,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	
 	private void playSound(SoundEvent soundEvent) {
 		if (level == null) return;
-		level.playSound(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), soundEvent, SoundSource.BLOCKS, 0.9F + level.random.nextFloat() * 0.2F, 0.9F + level.random.nextFloat() * 0.15F);
+		level.playSound(null, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), soundEvent, SoundSource.BLOCKS, 0.9F + level.getRandom().nextFloat() * 0.2F, 0.9F + level.getRandom().nextFloat() * 0.15F);
 	}
 	
 	private boolean craftVanillaRecipe(Level level, @Nullable CraftingRecipe recipe, PedestalBlockEntity pedestal, int maxCountPerStack) {
@@ -714,7 +714,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	}
 	
 	@Override
-	public boolean canPlaceItemThroughFace(int slot, @NotNull ItemStack stack, @Nullable Direction dir) {
+	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction dir) {
 		if (stack.is(getGemstonePowderItemForSlot(slot))) {
 			return true;
 		}
@@ -758,6 +758,11 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 	}
 	
+	@Override
+	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction dir) {
+		return true;
+	}
+	
 	private boolean hasCraftingTablet() {
 		return inventory.get(CRAFTING_TABLET_SLOT_ID).getCount() > 0;
 	}
@@ -771,11 +776,6 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		int line = slot / 3;
 		int posInLine = slot % 3;
 		return line * recipeWidth + posInLine;
-	}
-	
-	@Override
-	public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction dir) {
-		return slot == OUTPUT_SLOT_ID;
 	}
 	
 	@Override
@@ -839,8 +839,6 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		return this.pedestalVariant.getRecipeTier();
 	}
 	
-	
-	@NotNull
 	private PedestalRecipeTier getStructureTier() {
 		Multiblock multiblock;
 		

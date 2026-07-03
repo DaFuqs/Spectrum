@@ -7,8 +7,9 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
+import org.jspecify.annotations.Nullable;
 
-public record TimeOfDayPredicate(TimeHelper.TimeOfDay name, MinMaxBounds.Ints range) {
+public record TimeOfDayPredicate(TimeHelper.@Nullable TimeOfDay name, MinMaxBounds.Ints range) {
 	
 	private static final Codec<TimeOfDayPredicate> NAMED_CODEC = StringRepresentable.fromEnum(TimeHelper.TimeOfDay::values).xmap(t -> new TimeOfDayPredicate(t, MinMaxBounds.Ints.between(t.from, t.to - 1)), TimeOfDayPredicate::name);
 	private static final Codec<TimeOfDayPredicate> RANGED_CODEC = MinMaxBounds.Ints.CODEC.xmap(t -> new TimeOfDayPredicate(null, t), TimeOfDayPredicate::range);

@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -205,7 +205,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	}
 	
 	@Override
-	public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registryLookup) {
+	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(tag, registryLookup);
 		
 		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(tag);

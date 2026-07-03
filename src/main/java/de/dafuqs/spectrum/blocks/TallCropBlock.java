@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 /**
  * A crop block that is two blocks tall.
@@ -109,7 +109,7 @@ public class TallCropBlock extends CropBlock {
      * Returns the bottom block state for the given age.
      */
     @Override
-	public @NotNull BlockState getStateForAge(int age) {
+	public BlockState getStateForAge(int age) {
         return this.withAgeAndHalf(age, DoubleBlockHalf.LOWER);
     }
     
@@ -157,10 +157,9 @@ public class TallCropBlock extends CropBlock {
 			return doubleBlockHalf == DoubleBlockHalf.LOWER && direction == Direction.DOWN && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, world, pos, neighborPos);
 		}
 	}
-	
+
 	@Override
-	@Nullable
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		BlockPos blockPos = ctx.getClickedPos();
 		Level world = ctx.getLevel();
 		return blockPos.getY() < world.getMaxBuildHeight() - 1 && world.getBlockState(blockPos.above()).canBeReplaced(ctx) ? this.withAgeAndHalf(0, DoubleBlockHalf.LOWER) : null;
@@ -206,7 +205,7 @@ public class TallCropBlock extends CropBlock {
 	
 	@Override
 	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			breakTheOtherHalf(world, pos, state, player);
 		}
 		

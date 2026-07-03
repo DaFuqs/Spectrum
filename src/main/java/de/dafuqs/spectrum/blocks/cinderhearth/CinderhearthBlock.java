@@ -25,7 +25,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -58,34 +58,32 @@ public class CinderhearthBlock extends BaseEntityBlock {
 	protected MapCodec<? extends BaseEntityBlock> codec() {
 		return CODEC;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new CinderhearthBlockEntity(pos, state);
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : createTickerHelper(type, SpectrumBlockEntities.CINDERHEARTH.get(), CinderhearthBlockEntity::serverTick);
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return world.isClientSide() ? null : createTickerHelper(type, SpectrumBlockEntities.CINDERHEARTH.get(), CinderhearthBlockEntity::serverTick);
 	}
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
-			verifyStructure(world, pos, null);
-			return InteractionResult.SUCCESS;
-		} else {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
-				cinderhearthBlockEntity.setOwner(player);
-				if (verifyStructure(world, pos, (ServerPlayer) player) != CinderhearthBlockEntity.CinderHearthStructureType.NONE) {
-					player.openMenu(cinderhearthBlockEntity);
-				}
-			}
-			return InteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            verifyStructure(world, pos, null);
+            return InteractionResult.SUCCESS;
+        } else {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
+                cinderhearthBlockEntity.setOwner(player);
+                if (verifyStructure(world, pos, (ServerPlayer) player) != CinderhearthBlockEntity.CinderHearthStructureType.NONE) {
+                    player.openMenu(cinderhearthBlockEntity);
+                }
+            }
+            return InteractionResult.CONSUME;
+        }
 	}
 	
 	@Override
@@ -191,7 +189,7 @@ public class CinderhearthBlock extends BaseEntityBlock {
 		}
 	}
 	
-	public static CinderhearthBlockEntity.CinderHearthStructureType verifyStructure(Level world, @NotNull BlockPos blockPos, @Nullable ServerPlayer serverPlayerEntity) {
+	public static CinderhearthBlockEntity.CinderHearthStructureType verifyStructure(Level world, BlockPos blockPos, @Nullable ServerPlayer serverPlayerEntity) {
 		Rotation rotation = Support.rotationFromDirection(world.getBlockState(blockPos).getValue(FACING).getOpposite());
 		
 		Multiblock multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.CINDERHEARTH);
@@ -207,14 +205,14 @@ public class CinderhearthBlock extends BaseEntityBlock {
 		}
 		
 		boolean structureValid = completedStructure != CinderhearthBlockEntity.CinderHearthStructureType.NONE;
-		
-		if (world.isClientSide) {
-			if (!structureValid) {
-				ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.CINDERHEARTH), SpectrumMultiblocks.CINDERHEARTH_TEXT, blockPos.below(4), rotation);
-			}
-		} else if (structureValid && serverPlayerEntity != null) {
-			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
-		}
+
+        if (world.isClientSide()) {
+            if (!structureValid) {
+                ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.CINDERHEARTH), SpectrumMultiblocks.CINDERHEARTH_TEXT, blockPos.below(4), rotation);
+            }
+        } else if (structureValid && serverPlayerEntity != null) {
+            SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
+        }
 		
 		return completedStructure;
 	}

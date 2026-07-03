@@ -27,7 +27,7 @@ import net.minecraft.world.level.portal.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -66,11 +66,11 @@ public class EnderSpliceItem extends Item {
 		return world1.dimension().location().toString().equals(world2.dimension().location().toString());
 	}
 	
-	public static void setTeleportTargetPos(@NotNull ItemStack itemStack, Level world, Vec3 pos) {
+	public static void setTeleportTargetPos(ItemStack itemStack, Level world, Vec3 pos) {
 		itemStack.set(SpectrumDataComponentTypes.ENDER_SPLICE, new EnderSpliceComponent(pos, world.dimension()));
 	}
 	
-	public static void setTeleportTargetPlayer(@NotNull ItemStack itemStack, ServerPlayer player) {
+	public static void setTeleportTargetPlayer(ItemStack itemStack, ServerPlayer player) {
 		itemStack.set(SpectrumDataComponentTypes.ENDER_SPLICE, new EnderSpliceComponent(player.getName().getString(), player.getUUID()));
 	}
 	
@@ -84,7 +84,7 @@ public class EnderSpliceItem extends Item {
 	
 	@Override
 	public ItemStack finishUsingItem(ItemStack itemStack, Level world, LivingEntity user) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			if (getTeleportTargetPos(itemStack).isEmpty() && getTeleportTargetPlayerUUID(itemStack).isEmpty()) {
 				interactWithEntityClient();
 			}
@@ -133,7 +133,7 @@ public class EnderSpliceItem extends Item {
 		if (unbreakingLevel == 0) {
 			itemStack.shrink(1);
 		} else {
-			itemStack.shrink(Support.getIntFromDecimalWithChance(1.0 / (1 + unbreakingLevel), world.random));
+			itemStack.shrink(Support.getIntFromDecimalWithChance(1.0 / (1 + unbreakingLevel), world.getRandom()));
 		}
 	}
 	
@@ -183,7 +183,7 @@ public class EnderSpliceItem extends Item {
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			startSoundInstance(user);
 		}
 		return ItemUtils.startUsingInstantly(world, user, hand);
@@ -230,18 +230,18 @@ public class EnderSpliceItem extends Item {
 		tooltip.add(Component.translatable("item.spectrum.ender_splice.tooltip.unbound"));
 	}
 	
-	public static Optional<Tuple<ResourceKey<Level>, Vec3>> getTeleportTargetPos(@NotNull ItemStack itemStack) {
+	public static Optional<Tuple<ResourceKey<Level>, Vec3>> getTeleportTargetPos(ItemStack itemStack) {
 		var component = itemStack.getOrDefault(SpectrumDataComponentTypes.ENDER_SPLICE, EnderSpliceComponent.DEFAULT);
 		if (component.pos().isPresent() && component.dimension().isPresent())
 			return Optional.of(new Tuple<>(component.dimension().get(), component.pos().get()));
 		return Optional.empty();
 	}
 	
-	public static Optional<UUID> getTeleportTargetPlayerUUID(@NotNull ItemStack itemStack) {
+	public static Optional<UUID> getTeleportTargetPlayerUUID(ItemStack itemStack) {
 		return itemStack.getOrDefault(SpectrumDataComponentTypes.ENDER_SPLICE, EnderSpliceComponent.DEFAULT).targetUUID();
 	}
 	
-	public static Optional<String> getTeleportTargetPlayerName(@NotNull ItemStack itemStack) {
+	public static Optional<String> getTeleportTargetPlayerName(ItemStack itemStack) {
 		return itemStack.getOrDefault(SpectrumDataComponentTypes.ENDER_SPLICE, EnderSpliceComponent.DEFAULT).targetName();
 	}
 	
@@ -251,12 +251,12 @@ public class EnderSpliceItem extends Item {
 	}
 	
 	@Override
-	public int getEnchantmentValue(@NotNull ItemStack stack) {
+	public int getEnchantmentValue(ItemStack stack) {
 		return 50;
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.UNBREAKING);
 	}
 	

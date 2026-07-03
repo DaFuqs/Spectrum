@@ -23,7 +23,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import net.neoforged.neoforge.fluids.crafting.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -45,14 +45,10 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 	protected final boolean playCraftingFinishedEffects;
 	
 	protected final List<WorldConditionsPredicate> worldConditionsPredicates;
-	@NotNull
 	protected final FusionShrineRecipeWorldEffect startWorldEffect;
-	@NotNull
 	protected final List<FusionShrineRecipeWorldEffect> duringWorldEffects;
-	@NotNull
 	protected final FusionShrineRecipeWorldEffect finishWorldEffect;
-	@Nullable
-	protected final Component description;
+	protected @Nullable final Component description;
 	// copy all components from the first stack in the ingredients to the output stack
 	protected final boolean copyComponents;
 	
@@ -69,9 +65,9 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 			boolean playCraftingFinishedEffects,
 			boolean copyComponents,
 			List<WorldConditionsPredicate> worldConditionsPredicates,
-			@NotNull FusionShrineRecipeWorldEffect startWorldEffect,
-			@NotNull List<FusionShrineRecipeWorldEffect> duringWorldEffects,
-			@NotNull FusionShrineRecipeWorldEffect finishWorldEffect,
+			FusionShrineRecipeWorldEffect startWorldEffect,
+			List<FusionShrineRecipeWorldEffect> duringWorldEffects,
+			FusionShrineRecipeWorldEffect finishWorldEffect,
 			@Nullable Component description
 	) {
 		super(group, secret, requiredAdvancementIdentifier);
@@ -95,7 +91,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 	}
 	
 	@Override
-	public boolean matches(FluidRecipeInput<FluidTank> fluidRecipeInput, @NotNull Level level) {
+	public boolean matches(FluidRecipeInput<FluidTank> fluidRecipeInput, Level level) {
 		FluidTank fluidStorage = fluidRecipeInput.getTank();
 		if (!this.fluid.test(fluidStorage.getFluid())) {
 			return false;
@@ -109,7 +105,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 	}
 	
 	@Override
-	public @NotNull ItemStack assemble(@NotNull FluidRecipeInput<FluidTank> fluidRecipeInput, HolderLookup.@NotNull Provider provider) {
+	public ItemStack assemble(FluidRecipeInput<FluidTank> fluidRecipeInput, HolderLookup.Provider provider) {
 		return output.copy();
 	}
 	
@@ -166,14 +162,14 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 	}
 	
 	public boolean areYieldAndEfficiencyUpgradesDisabled() {
-		return copyComponents || noBenefitsFromYieldAndEfficiencyUpgrades;
+		return noBenefitsFromYieldAndEfficiencyUpgrades;
 	}
 	
 	/**
 	 * @param tick The crafting tick if the fusion shrine recipe
 	 * @return The effect that should be played for the given recipe tick
 	 */
-	public FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick, int totalTicks) {
+	public @Nullable FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick, int totalTicks) {
 		if (tick == 1) {
 			return this.startWorldEffect;
 		}
@@ -257,7 +253,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 						if (currentStack == firstStack && this.copyComponents) { // if `copyComponents` is set, it usually is a transformation. Don't apply efficiency there
 							reducedAmountAfterMod = ingredientStack.getCount();
 						} else {
-							reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.random);
+							reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.getRandom());
 						}
 						currentStack.shrink(reducedAmountAfterMod);
 						break;
@@ -279,7 +275,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 				ItemStack currentStack = fusionShrineBlockEntity.getItem(i);
 				if (ingredientStack.test(currentStack)) {
 					int reducedAmount = recipesCrafted * ingredientStack.getCount();
-					int reducedAmountAfterMod = efficiencyModifier == 1 ? reducedAmount : Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
+					int reducedAmountAfterMod = i == 0 && copyComponents ? reducedAmount
+							: efficiencyModifier == 1 ? reducedAmount : Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.getRandom());
 					
 					ItemStack currentRemainder = currentStack.getCraftingRemainingItem();
 					currentStack.shrink(reducedAmountAfterMod);
@@ -296,12 +293,12 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 		}
 	}
 	
-	protected void spawnCraftingResultAndXP(@NotNull Level world, @NotNull FusionShrineBlockEntity fusionShrineBlockEntity, @NotNull ItemStack stack, int recipeCount) {
+	protected void spawnCraftingResultAndXP(Level world, FusionShrineBlockEntity fusionShrineBlockEntity, ItemStack stack, int recipeCount) {
 		int resultAmountBeforeMod = recipeCount * stack.getCount();
 		double yieldModifier = areYieldAndEfficiencyUpgradesDisabled() ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.YIELD);
-		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
+		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.getRandom());
 		
-		int intExperience = Support.getIntFromDecimalWithChance(recipeCount * experience, world.random);
+		int intExperience = Support.getIntFromDecimalWithChance(recipeCount * experience, world.getRandom());
 		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, fusionShrineBlockEntity.getBlockPos().above(2), stack, resultAmountAfterMod, MultiblockCrafter.RECIPE_STACK_VELOCITY);
 		
 		if (experience > 0) {

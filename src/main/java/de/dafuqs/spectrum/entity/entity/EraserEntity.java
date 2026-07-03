@@ -24,7 +24,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -229,7 +229,7 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 		
 		Holder<MobEffect> statusEffect;
 		int amplifier = 0;
-		switch (world.random.nextInt(30)) {
+		switch (world.getRandom().nextInt(30)) {
 			case 1 -> {
 				statusEffect = MobEffects.MOVEMENT_SPEED;
 				amplifier = random.nextInt(2);
@@ -240,7 +240,6 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 			}
 			case 3 -> {
 				statusEffect = MobEffects.CONFUSION;
-				amplifier = 0;
 			}
 			case 4, 5, 6 -> {
 				statusEffect = SpectrumMobEffects.STIFFNESS;
@@ -282,12 +281,12 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 			ItemStack exchangedStack = ItemUtils.createFilledResult(handStack, player, bucketedStack, false);
 			player.setItemInHand(hand, exchangedStack);
 			Level world = entity.level();
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) player, bucketedStack);
 			}
 			
 			entity.discard();
-			return Optional.of(InteractionResult.sidedSuccess(world.isClientSide));
+			return Optional.of(InteractionResult.sidedSuccess(world.isClientSide()));
 		} else {
 			return Optional.empty();
 		}
@@ -328,17 +327,17 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 	}
 	
 	@Override
-	public @NotNull ItemStack getBucketItemStack() {
+	public ItemStack getBucketItemStack() {
 		return new ItemStack(SpectrumItems.BUCKET_OF_ERASER.get());
 	}
 	
 	@Override
-	public @NotNull SoundEvent getPickupSound() {
+	public SoundEvent getPickupSound() {
 		return SoundEvents.BUCKET_FILL;
 	}
 	
 	public static class SwarmingSpiderData extends SpiderEffectsGroupData {
-		public Holder<MobEffect> effect;
+		public @Nullable Holder<MobEffect> effect;
 		public int amplifier = 0;
 		
 		public SwarmingSpiderData() {

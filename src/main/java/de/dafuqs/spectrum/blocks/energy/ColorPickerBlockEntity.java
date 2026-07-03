@@ -31,7 +31,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -43,7 +43,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 	public static final long TICKS_PER_CONVERSION = 5;
 	public static final long STORAGE_AMOUNT = 64 * 64 * 64 * 100;
 	
-	public NonNullList<ItemStack> inventory;
+	protected NonNullList<ItemStack> inventory;
 	protected TotalCappedInkStorage inkStorage;
 	protected boolean paused;
 	protected boolean inkDirty;
@@ -60,7 +60,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 	
 	@SuppressWarnings("unused")
 	public static void tick(Level world, BlockPos pos, BlockState state, ColorPickerBlockEntity blockEntity) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			blockEntity.inkDirty = false;
 			if (!blockEntity.paused) {
 				boolean convertedPigment = false;
@@ -201,7 +201,7 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 				this.inkStorage.addEnergy(inkColor, amount);
 				
 				if (SpectrumConfig.CONFIG.BlockSoundVolume.get() > 0) {
-					world.playSound(null, worldPosition, SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get() / 3, 1.0F);
+					world.playSound(null, worldPosition, SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() / 3F, 1.0F);
 				}
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world,
 						new Vec3(worldPosition.getX() + 0.5, worldPosition.getY() + 0.7, worldPosition.getZ() + 0.5),
@@ -296,10 +296,9 @@ public class ColorPickerBlockEntity extends RandomizableContainerBlockEntity imp
 		this.saveAdditional(nbtCompound, registryLookup);
 		return nbtCompound;
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	

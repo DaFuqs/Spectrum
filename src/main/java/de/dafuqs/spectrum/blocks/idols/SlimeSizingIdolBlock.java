@@ -13,7 +13,7 @@ import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -27,9 +27,9 @@ public class SlimeSizingIdolBlock extends IdolBlock {
 		this.range = range;
 		this.maxSize = maxSize;
 	}
-	
+
 	@Override
-	public MapCodec<? extends SlimeSizingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends SlimeSizingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -55,7 +55,7 @@ public class SlimeSizingIdolBlock extends IdolBlock {
 				
 				AABB boundingBox = slimeEntity.getBoundingBox();
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world, slimeEntity.position().add(0, boundingBox.getYsize() / 2, 0), ((SlimeEntityAccessor) slimeEntity).invokeGetParticleType(), newSize * 8, new Vec3(boundingBox.getXsize(), boundingBox.getYsize(), boundingBox.getZsize()), new Vec3(0.1, 0.1, 0.1));
-				slimeEntity.playSound(((SlimeEntityAccessor) slimeEntity).invokeGetSquishSound(), ((SlimeEntityAccessor) slimeEntity).invokeGetSoundVolume(), ((world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 1.0F) / 0.8F);
+				slimeEntity.playSound(((SlimeEntityAccessor) slimeEntity).invokeGetSquishSound(), ((SlimeEntityAccessor) slimeEntity).invokeGetSoundVolume(), ((world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.2F + 1.0F) / 0.8F);
 				
 				// grant advancements
 				if (entity instanceof ServerPlayer serverPlayerEntity) {

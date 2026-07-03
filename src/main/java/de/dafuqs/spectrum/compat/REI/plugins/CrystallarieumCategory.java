@@ -14,7 +14,7 @@ import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -39,7 +39,7 @@ public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumD
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull CrystallarieumDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, CrystallarieumDisplay display) {
 		// input
 		EntryIngredient input = display.getInputEntries().get(0);
 		widgets.add(Widgets.createSlot(new Point(startPoint.x - 2, startPoint.y + 1 + 8)).markInput().entries(input));

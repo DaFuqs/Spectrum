@@ -10,7 +10,7 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -35,7 +35,7 @@ public class FusionShrineCategory extends GatedDisplayCategory<FusionShrineDispl
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull FusionShrineDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, FusionShrineDisplay display) {
 		List<EntryIngredient> inputs = display.getInputEntries();
 		
 		// shrine + fluid

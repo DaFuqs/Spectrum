@@ -34,10 +34,10 @@ public class SpectrumGemstoneBlock extends AmethystBlock {
 	
 	@Override
 	public void onProjectileHit(Level world, BlockState state, BlockHitResult hit, Projectile projectile) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			BlockPos blockPos = hit.getBlockPos();
-			world.playSound(null, blockPos, hitSoundEvent, SoundSource.BLOCKS, 1.0F, 0.5F + world.random.nextFloat() * 1.2F);
-			world.playSound(null, blockPos, chimeSoundEvent, SoundSource.BLOCKS, 1.0F, 0.5F + world.random.nextFloat() * 1.2F);
+			world.playSound(null, blockPos, hitSoundEvent, SoundSource.BLOCKS, 1.0F, 0.5F + world.getRandom().nextFloat() * 1.2F);
+			world.playSound(null, blockPos, chimeSoundEvent, SoundSource.BLOCKS, 1.0F, 0.5F + world.getRandom().nextFloat() * 1.2F);
 		}
 	}
 	

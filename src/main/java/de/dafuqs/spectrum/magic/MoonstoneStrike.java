@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -55,9 +55,9 @@ public class MoonstoneStrike {
 	public static void create(Level world, @Nullable Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power, float knockbackMod) {
 		MoonstoneStrike moonstoneStrike = new MoonstoneStrike(world, entity, damageSource, x, y, z, power, knockbackMod);
 		
-		if (world.isClientSide) {
-			world.playLocalSound(x, y, z, SpectrumSoundEvents.MOONSTONE_STRIKE, SoundSource.BLOCKS, 4.0F, (1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.2F) * 0.7F, false);
-			world.playLocalSound(x, y, z, SpectrumSoundEvents.SOFT_HUM, SoundSource.BLOCKS, 0.5F, (1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.2F) * 0.7F, false);
+		if (world.isClientSide()) {
+			world.playLocalSound(x, y, z, SpectrumSoundEvents.MOONSTONE_STRIKE, SoundSource.BLOCKS, 4.0F, (1.0F + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.2F) * 0.7F, false);
+			world.playLocalSound(x, y, z, SpectrumSoundEvents.SOFT_HUM, SoundSource.BLOCKS, 0.5F, (1.0F + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.2F) * 0.7F, false);
 			world.addParticle(SpectrumParticleTypes.MOONSTONE_STRIKE, x, y, z, 1.0, 0.0, 0.0);
 		} else {
 			moonstoneStrike.damageAndKnockbackEntities();
@@ -108,7 +108,7 @@ public class MoonstoneStrike {
 		
 		for (Entity entity : world.getEntities(this.entity, new AABB(minX, minY, minZ, maxX, maxY, maxZ))) {
 			//TODO: Can we convert this into an explosion subclass?
-			if (!entity.ignoreExplosion(null)) {
+			//if (!entity.ignoreExplosion(null)) {
 				double unitDist = Math.sqrt(entity.distanceToSqr(center)) / (double) reach;
 				
 				if (unitDist <= 1.0) { // Within a sphere of the explosion
@@ -144,7 +144,7 @@ public class MoonstoneStrike {
 						
 						entity.onExplosionHit(this.entity);
 					}
-				}
+				//}
 			}
 		}
 	}

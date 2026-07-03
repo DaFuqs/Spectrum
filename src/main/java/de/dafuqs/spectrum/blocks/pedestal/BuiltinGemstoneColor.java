@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public enum BuiltinGemstoneColor implements GemstoneColor, StringRepresentable {
 	CYAN("cyan", InkColors.CYAN_COLOR),
@@ -51,7 +51,7 @@ public enum BuiltinGemstoneColor implements GemstoneColor, StringRepresentable {
 	}
 	
 	@Override
-	public @NotNull String getSerializedName() {
+	public String getSerializedName() {
 		return name();
 	}
 }

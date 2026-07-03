@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import com.simibubi.create.content.fluids.*;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
@@ -23,6 +24,7 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.advancements.*;
 import net.minecraft.client.resources.model.*;
@@ -65,9 +67,13 @@ import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
-import org.jetbrains.annotations.*;
+import net.neoforged.neoforge.fluids.*;
+import net.neoforged.neoforge.items.*;
+import net.neoforged.neoforge.items.wrapper.*;
+import org.jspecify.annotations.Nullable;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
+import top.theillusivec4.curios.api.type.inventory.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
@@ -90,13 +96,21 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
+	public static void registerCauldronFluids(RegisterCauldronFluidContentEvent event) {
+		event.register(SpectrumBlocks.LIQUID_CRYSTAL_CAULDRON.get(), SpectrumFluids.LIQUID_CRYSTAL.get(), FluidType.BUCKET_VOLUME, null);
+		event.register(SpectrumBlocks.SLUDGE_CAULDRON.get(), SpectrumFluids.SLUDGE.get(), FluidType.BUCKET_VOLUME, null);
+		event.register(SpectrumBlocks.DRAGONROT_CAULDRON.get(), SpectrumFluids.DRAGONROT.get(), FluidType.BUCKET_VOLUME, null);
+		event.register(SpectrumBlocks.MIDNIGHT_SOLUTION_CAULDRON.get(), SpectrumFluids.MIDNIGHT_SOLUTION.get(), FluidType.BUCKET_VOLUME, null);
+	}
+	
+	@SubscribeEvent
 	public static InteractionResult exchangeBlock(PlayerInteractEvent.LeftClickBlock event) {
 		Level world = event.getLevel();
 		BlockPos pos = event.getPos();
 		Player player = event.getEntity();
 		Direction direction = event.getFace();
 		
-		if (!world.isClientSide && !player.isSpectator()) {
+		if (!world.isClientSide() && !player.isSpectator()) {
 			
 			ItemStack mainHandStack = player.getMainHandItem();
 			if (mainHandStack.getItem() instanceof ExchangeStaffItem exchangeStaffItem) {
@@ -107,8 +121,7 @@ public class SpectrumEventListeners {
 					if (storedBlock.isPresent()
 							&& storedBlock.get() != targetBlockState.getBlock()
 							&& storedBlock.get().asItem() != Items.AIR
-							&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandItem(),
-							true, direction)) {
+							&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandItem(), true, direction)) {
 						return InteractionResult.SUCCESS;
 					}
 				}
@@ -414,13 +427,13 @@ public class SpectrumEventListeners {
 				Vec3 velocity = entity.getDeltaMovement();
 				entity.setDeltaMovement(velocity.x(), 0.5, velocity.z());
 				Level world = entity.level();
-				if (world.isClientSide) { // it is split here so the particles spawn immediately, without network lag
-					ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
-					ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
-				} else if (entity instanceof ServerPlayer serverPlayerEntity) {
-					PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) entity.level(), entity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
-					PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) entity.level(), entity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
-				}
+                if (world.isClientSide()) { // it is split here so the particles spawn immediately, without network lag
+                    ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
+                    ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
+                } else if (entity instanceof ServerPlayer serverPlayerEntity) {
+                    PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) entity.level(), entity.position(), ColoredCraftingParticleEffect.WHITE, VectorPattern.EIGHT, 0.4);
+                    PlayParticleWithPatternAndVelocityPayload.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerLevel) entity.level(), entity.position(), ColoredCraftingParticleEffect.BLUE, VectorPattern.EIGHT_OFFSET, 0.5);
+                }
 				entity.level().playSound(null, entity.blockPosition(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundSource.PLAYERS, 1.0F, 1.0F);
 				event.setCanceled(true);
 			}
@@ -439,13 +452,23 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	private static void canPlayerSleep(CanPlayerSleepEvent event) {
-		var player = event.getEntity();
-		var reason = event.getProblem();
+		ServerPlayer player = event.getEntity();
+		Player.BedSleepingProblem problem = event.getProblem();
 		
-		if (reason != Player.BedSleepingProblem.NOT_POSSIBLE_NOW && MiscPlayerDataAttachmentType.get(player).isSleeping()) {
+		if (problem != Player.BedSleepingProblem.NOT_POSSIBLE_NOW && MiscPlayerDataAttachmentType.get(player).isSleeping()) {
 			event.setProblem(null);
-		} else if (player.hasEffect(SpectrumMobEffects.SOMNOLENCE) && (reason == Player.BedSleepingProblem.NOT_POSSIBLE_NOW || reason == Player.BedSleepingProblem.NOT_SAFE)) {
+		} else if (player.hasEffect(SpectrumMobEffects.SOMNOLENCE) && (problem == Player.BedSleepingProblem.NOT_POSSIBLE_NOW || problem == Player.BedSleepingProblem.NOT_SAFE)) {
 			event.setProblem(null);
+		}
+	}
+	
+	@SubscribeEvent
+	private static void canPlayerContinueSleeping(CanContinueSleepingEvent event) {
+		LivingEntity entity = event.getEntity();
+		Player.BedSleepingProblem problem = event.getProblem();
+		
+		if (entity.hasEffect(SpectrumMobEffects.SOMNOLENCE) && (problem == Player.BedSleepingProblem.NOT_POSSIBLE_NOW || problem == Player.BedSleepingProblem.NOT_SAFE)) {
+			event.setContinueSleeping(true);
 		}
 	}
 	
@@ -467,7 +490,7 @@ public class SpectrumEventListeners {
 			}
 			
 			@Override
-			public @NotNull String getName() {
+			public String getName() {
 				return SpectrumCommon.MOD_ID + ":resources_cleanup";
 			}
 		});
@@ -607,7 +630,7 @@ public class SpectrumEventListeners {
 				ItemStack mainHandStack = livingAttacker.getMainHandItem();
 				int level = SpectrumEnchantmentHelper.getLevel(livingAttacker.level().registryAccess(), SpectrumEnchantmentKeys.FIRST_STRIKE, mainHandStack);
 				if (level > 0) {
-					float additionalFirstStrikeDamage = SpectrumConfig.CONFIG.FirstStrikeDamagePerLevel.get() * level;
+					float additionalFirstStrikeDamage = SpectrumConfig.CONFIG.FirstStrikeDamagePerLevel.get().floatValue() * level;
 					event.setNewDamage(newDamage + additionalFirstStrikeDamage);
 				}
 			}
@@ -641,7 +664,7 @@ public class SpectrumEventListeners {
 		if (!source.is(DamageTypes.THORNS) && sourceEntity instanceof LivingEntity livingSource) {
 			int disarmingLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), SpectrumEnchantmentKeys.DISARMING, livingSource.getMainHandItem());
 			if (disarmingLevel > 0) {
-				float disarmingChance = disarmingLevel * (hurtEntity instanceof Player ? SpectrumConfig.CONFIG.DisarmingChancePerLevelPlayers.get() : SpectrumConfig.CONFIG.DisarmingChancePerLevelMobs.get());
+				float disarmingChance = disarmingLevel * (hurtEntity instanceof Player ? SpectrumConfig.CONFIG.DisarmingChancePerLevelPlayers.get().floatValue() : SpectrumConfig.CONFIG.DisarmingChancePerLevelMobs.get().floatValue());
 				if(level.getRandom().nextFloat() < disarmingChance) {
 					disarmEntity(hurtEntity);
 				}
@@ -689,8 +712,10 @@ public class SpectrumEventListeners {
 	private static void playerWakeUp(PlayerWakeUpEvent event) {
 		Player player = event.getEntity();
 		
-		MiscPlayerDataAttachmentType.get(player).resetSleepingState(false);
-		player.removeEffect(SpectrumMobEffects.SOMNOLENCE);
+		if(player.isAddedToLevel()) {
+			MiscPlayerDataAttachmentType.get(player).resetSleepingState(false);
+			player.removeEffect(SpectrumMobEffects.SOMNOLENCE);
+		}
 	}
 	
 	@SubscribeEvent
@@ -717,7 +742,7 @@ public class SpectrumEventListeners {
 		}
 		
 		Level world = projectile.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			Entity entity = entityHitResult.getEntity();
 			if (entity instanceof LivingEntity livingEntity) {
 				boolean protect = false;
@@ -793,10 +818,10 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	private static void onSleepFinished(SleepFinishedTimeEvent event) {
-		LevelAccessor l = event.getLevel();
-		var time = TimeHelper.getTimeOfDay(l.dayTime());
-		if (time.isDay()) {
-			event.setTimeAddition(-11000L);
+		long time = event.getLevel().dayTime();
+		TimeHelper.TimeOfDay timeOfDay = TimeHelper.getTimeOfDay(time);
+		if (timeOfDay.isDay()) {
+			event.setTimeAddition((time - time % 24000) + 13000L);
 		}
 	}
 	
@@ -826,7 +851,11 @@ public class SpectrumEventListeners {
 		Level level = entity.level();
 		
 		if(entity instanceof Player player && !player.getAbilities().flying) {
-			float appliedGravity = applyGravityBasedOnInventory(player, player.getInventory());
+			float appliedGravity = applyGravityBasedOnInventory(player, new InvWrapper(player.getInventory()));
+			Optional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(player);
+			if(curiosInventory.isPresent()) {
+				appliedGravity += applyGravityBasedOnInventory(player, curiosInventory.get().getEquippedCurios());
+			}
 			
 			// taking flight
 			if(level.getGameTime() % 20 == 0 && player instanceof ServerPlayer serverPlayer) {
@@ -836,6 +865,11 @@ public class SpectrumEventListeners {
 				} else if (appliedGravity < -0.025) {
 					Support.grantAdvancementCriterion(serverPlayer, "midgame/carry_too_many_heavy_gravity_blocks", "gravity");
 				}
+			}
+			
+			// if falling very slowly => reset fall distance / damage
+			if (entity.getDeltaMovement().y > -0.4) {
+				entity.fallDistance = 0;
 			}
 		}
 		
@@ -861,7 +895,7 @@ public class SpectrumEventListeners {
 		}
 		
 		if(entity instanceof AbstractChestedHorse horse && horse.hasChest()) {
-			float appliedGravity = applyGravityBasedOnInventory(horse, horse.getInventory());
+			float appliedGravity = applyGravityBasedOnInventory(horse, new InvWrapper(horse.getInventory()));
 				
 			// when the animal is sent flying trigger a hidden advancement
 			if (appliedGravity > 0.081 && level.getGameTime() % 20 == 0) {
@@ -876,6 +910,11 @@ public class SpectrumEventListeners {
 					horse.hurt(horse.damageSources().fellOutOfWorld(), 10);
 				}
 			}
+			
+			// if falling very slowly => reset fall distance / damage
+			if (entity.getDeltaMovement().y > -0.4) {
+				entity.fallDistance = 0;
+			}
 		}
 	}
 	
@@ -885,15 +924,18 @@ public class SpectrumEventListeners {
 	 *
 	 * @return The additional Y Velocity that was applied
 	 */
-	public static float applyGravityBasedOnInventory(LivingEntity entity, Container inventory) {
+	public static float applyGravityBasedOnInventory(LivingEntity entity, IItemHandler itemHandler) {
 		if (!entity.isPushable() || entity.isNoGravity() || entity.isSpectator()) {
 			return 0;
 		}
 		
 		float appliedGravityThisTick = 0F;
-		for(int i = 0; i < inventory.getContainerSize(); i++) {
-			ItemStack stack = inventory.getItem(i);
+		for(int i = 0; i < itemHandler.getSlots(); i++) {
+			ItemStack stack = itemHandler.getStackInSlot(i);
 			appliedGravityThisTick += stack.getOrDefault(SpectrumDataComponentTypes.GRAVITABLE, 0F) * stack.getCount();
+			if(stack.getItem() instanceof GravityRingItem gravityRingItem) {
+				appliedGravityThisTick += gravityRingItem.getGravityMod(stack);
+			}
 		}
 		
 		if(appliedGravityThisTick != 0) {

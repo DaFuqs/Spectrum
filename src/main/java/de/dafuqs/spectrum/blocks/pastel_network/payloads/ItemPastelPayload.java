@@ -16,17 +16,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class ItemPastelPayload implements PastelPayload {
 	
-	public static final MapCodec<de.dafuqs.spectrum.blocks.pastel_network.payloads.ItemPastelPayload> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-			ItemStack.CODEC.fieldOf("stack").forGetter(de.dafuqs.spectrum.blocks.pastel_network.payloads.ItemPastelPayload::getItemStack)
-	).apply(i, de.dafuqs.spectrum.blocks.pastel_network.payloads.ItemPastelPayload::new));
+	public static final MapCodec<ItemPastelPayload> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ItemStack.CODEC.fieldOf("stack").forGetter(ItemPastelPayload::getItemStack)
+	).apply(i, ItemPastelPayload::new));
 	
-	public static final StreamCodec<RegistryFriendlyByteBuf, de.dafuqs.spectrum.blocks.pastel_network.payloads.ItemPastelPayload> STREAM_CODEC = StreamCodec.composite(
-			ItemStack.STREAM_CODEC, de.dafuqs.spectrum.blocks.pastel_network.payloads.ItemPastelPayload::getItemStack,
-			de.dafuqs.spectrum.blocks.pastel_network.payloads.ItemPastelPayload::new
+	public static final StreamCodec<RegistryFriendlyByteBuf, ItemPastelPayload> STREAM_CODEC = StreamCodec.composite(
+			ItemStack.STREAM_CODEC, ItemPastelPayload::getItemStack,
+			ItemPastelPayload::new
 	);
 	
 	private final ItemStack itemStack;
@@ -65,11 +65,11 @@ public class ItemPastelPayload implements PastelPayload {
 		particle.itemRenderer.renderStatic(this.itemStack, ItemDisplayContext.GROUND, light, OverlayTexture.NO_OVERLAY, poseStack, vertexConsumers, level, 0);
 	}
 	
-	public MapCodec<de.dafuqs.spectrum.blocks.pastel_network.payloads.ItemPastelPayload> codec() {
+	public MapCodec<ItemPastelPayload> codec() {
 		return CODEC;
 	}
 	
-	public StreamCodec<RegistryFriendlyByteBuf, de.dafuqs.spectrum.blocks.pastel_network.payloads.ItemPastelPayload> streamCodec() {
+	public StreamCodec<RegistryFriendlyByteBuf, ItemPastelPayload> streamCodec() {
 		return STREAM_CODEC;
 	}
 }

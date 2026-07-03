@@ -12,6 +12,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -61,7 +62,7 @@ public class ColoredStrippedLogBlock extends FlammableRotatedPillarBlock impleme
 		return this.color;
 	}
 	
-	public static ColoredStrippedLogBlock byColor(InkColor color) {
+	public static @Nullable ColoredStrippedLogBlock byColor(InkColor color) {
 		return LOGS.get(color);
 	}
 	

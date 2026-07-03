@@ -78,7 +78,7 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	
 	private void updateVolume() {
 		Minecraft client = Minecraft.getInstance();
-		this.volume = Math.max(0, 0.75F * (SpectrumConfig.CONFIG.BlockSoundVolume.get() - sourceBlockPos.distManhattan(client.player.blockPosition()) / 64F));
+		this.volume = Math.max(0, 0.75F * (SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() - sourceBlockPos.distManhattan(client.player.blockPosition()) / 64F));
 	}
 	
 	@Override

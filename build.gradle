@@ -2,6 +2,7 @@ plugins {
 	id 'maven-publish'
 	id 'idea'
 	id 'net.neoforged.moddev' version '2.0.140'
+	id 'org.openrewrite.rewrite' version "latest.release"
 }
 
 version = project.mod_version
@@ -12,7 +13,7 @@ repositories {
 	maven { url = "https://maven.shedaniel.me/" } // REI
 	maven { url = "https://maven.terraformersmc.com/" } // Modmenu, EMI
 	maven { url = "https://maven.nucleoid.xyz/" } // Common Protection API
-	maven { url = "https://maven.blamejared.com" } // JEI
+	maven { url = "https://maven.blamejared.com" } // JEI, Botania
 	maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components API
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release/" } // Entity Reach Attribute
 	maven { url = "https://api.modrinth.com/maven" }
@@ -28,6 +29,10 @@ repositories {
 	}
 	// maven { url = "https://maven.kyrptonaught.dev" } // CustomPortalAPI as requirement for Starry Skies
 	mavenCentral()
+}
+
+rewrite {
+	activeRecipe "org.openrewrite.java.jspecify.JSpecifyBestPractices"
 }
 
 base {
@@ -92,6 +97,8 @@ configurations {
 }
 
 dependencies {
+	rewrite "org.openrewrite.recipe:rewrite-migrate-java:3.34.1"
+
 	// TODO: remove additionalRuntimeClasspath for MC 1.21.9+
 	// see https://github.com/neoforged/ModDevGradle?tab=readme-ov-file#external-dependencies-runs
 	// jgrapht (the graph lib we use) and its dependencies
@@ -118,6 +125,8 @@ dependencies {
 	} // https://github.com/klikli-dev/modonomicon
 	implementation("maven.modrinth:exclusions-lib:${project.exclusionslib_version}")
 
+	implementation "org.jspecify:jspecify:1.0.0"
+
 	compileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}:api"
 	runtimeOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}"
 
@@ -138,7 +147,7 @@ dependencies {
 	/*implementation*/ /*runtimeOnly*/ compileOnly("maven.modrinth:lodestonelib:${project.lodestone_version}") { transitive = false }
 	/*implementation*/ /*runtimeOnly*/ compileOnly("maven.modrinth:malum:${project.malum_version}") { transitive = false }
 	/*implementation*/ /*runtimeOnly*/ compileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}") { transitive = false }
-	// implementation("maven.modrinth:botania:${project.botania_version}") // still on MC 1.20.1
+	/*implementation*/ /*runtimeOnly*/ compileOnly("vazkii.botania:botania-neoforge-1.21.1:${project.botania_version}") { transitive = false }
 	// implementation("maven.modrinth:vanity:${project.vanityslots_version}")
 
 	// Datagen dependencies

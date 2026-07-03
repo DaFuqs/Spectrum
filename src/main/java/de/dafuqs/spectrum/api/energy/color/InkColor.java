@@ -12,6 +12,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.material.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

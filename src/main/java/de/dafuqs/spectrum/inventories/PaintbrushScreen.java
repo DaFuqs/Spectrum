@@ -9,7 +9,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 

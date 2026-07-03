@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.Nullable;
 
 public class CinderhearthScreenHandler extends AbstractContainerMenu {
 	
@@ -21,7 +22,7 @@ public class CinderhearthScreenHandler extends AbstractContainerMenu {
 	private final CinderhearthBlockEntity blockEntity;
 	private final ContainerData propertyDelegate;
 	
-	public final ServerPlayer player;
+	public final @Nullable ServerPlayer player;
 	
 	// clientside
 	public CinderhearthScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {

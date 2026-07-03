@@ -1,0 +1,13 @@
+{
+  "type": "spectrum:primordial_fire_burning",
+  "ingredient": [
+    {
+      "tag": "spectrum:lime_logs"
+    }
+  ],
+  "result": {
+    "id": "spectrum:lime_pigment",
+    "count": 3
+  },
+  "required_advancement": "spectrum:hidden/collect_pigment/lime"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates_item/blocking_sword_oversized",
+  "textures": {
+    "layer0": "spectrum:item/nectar_lance_oversized"
+  }
+}

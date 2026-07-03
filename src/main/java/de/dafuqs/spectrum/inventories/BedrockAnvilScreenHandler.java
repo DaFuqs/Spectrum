@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
@@ -17,7 +16,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import org.apache.commons.lang3.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -31,8 +30,8 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 	
 	private final DataSlot levelCost;
 	private int repairItemCount;
-	private String newItemName;
-	private String newLoreString;
+	private @Nullable String newItemName;
+	private @Nullable String newLoreString;
 	
 	public BedrockAnvilScreenHandler(int syncId, Inventory inventory) {
 		this(syncId, inventory, ContainerLevelAccess.NULL);
@@ -65,7 +64,6 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 		for (i = 0; i < 9; ++i) {
 			this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 24 + 142));
 		}
-		
 	}
 	
 	protected boolean isValidBlock(BlockState state) {
@@ -100,6 +98,9 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 		
 		this.levelCost.set(0);
 		this.access.execute((world, pos) -> world.levelEvent(LevelEvent.SOUND_ANVIL_USED, pos, 0));
+		
+		this.newItemName = null;
+		this.newLoreString = null;
 	}
 	
 	public void createResult() {
@@ -114,8 +115,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 			ItemStack outputStack = inputStack.copy();
 			ItemStack repairSlotStack = this.inputSlots.getItem(SECOND_INPUT_SLOT_INDEX);
 			ItemEnchantments.Mutable builder = new ItemEnchantments.Mutable(EnchantmentHelper.getEnchantmentsForCrafting(outputStack));
-			repairLevelCost += (long) inputStack.getOrDefault(DataComponents.REPAIR_COST, 0)
-					+ (long) repairSlotStack.getOrDefault(DataComponents.REPAIR_COST, 0);
+			repairLevelCost += (long) inputStack.getOrDefault(DataComponents.REPAIR_COST, 0) + (long) repairSlotStack.getOrDefault(DataComponents.REPAIR_COST, 0);
 			this.repairItemCount = 0;
 			boolean pigmentInRepairSlot = repairSlotStack.getItem() instanceof PigmentItem;
 			if (pigmentInRepairSlot) {
@@ -222,7 +222,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 			// We tweaked the way renaming is handled
 			// - renamings are free
 			// - name coloring via pigment
-			if (pigmentInRepairSlot || this.newItemName != null && !StringUtil.isBlank(this.newItemName)) {
+			if (this.newItemName != null && !StringUtil.isBlank(this.newItemName)) {
 				MutableComponent newName = Component.literal(this.newItemName);
 				if (inputStack.getHoverName() instanceof MutableComponent inputText) {
 					newName.setStyle(inputText.getStyle());
@@ -231,9 +231,13 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 				if (pigmentInRepairSlot) {
 					int newColor = ((PigmentItem) repairSlotStack.getItem()).getInkColor().getColorInt();
 					newName = newName.setStyle(newName.getStyle().withColor(newColor));
+					outputStack.set(DataComponents.CUSTOM_NAME, newName);
+				} else if(this.newItemName.equals(inputStack.getHoverName().getString())) {
+					outputStack.remove(DataComponents.CUSTOM_NAME);
+				} else {
+					outputStack.set(DataComponents.CUSTOM_NAME, newName);
 				}
 				
-				outputStack.set(DataComponents.CUSTOM_NAME, newName);
 			} else if (inputStack.has(DataComponents.CUSTOM_NAME)) {
 				outputStack.remove(DataComponents.CUSTOM_NAME);
 			}
@@ -264,7 +268,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 //				itemStack2 = ItemStack.EMPTY;
 //			}
 			
-			if (!combined || pigmentInRepairSlot) { // We added this if - Renames are free
+			if (!combined && pigmentInRepairSlot) { // We added this if - Renames are free
 				this.levelCost.set(0);
 			} else if (!outputStack.isEmpty()) {
 				int repairCost = outputStack.getOrDefault(DataComponents.REPAIR_COST, 0);
@@ -307,9 +311,8 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 			return false;
 		}
 	}
-	
-	@Nullable
-	private static String sanitize(String name, int maxLength) {
+
+	private static @Nullable String sanitize(String name, int maxLength) {
 		String string = StringUtil.filterText(name);
 		return string.length() <= maxLength ? string : null;
 	}

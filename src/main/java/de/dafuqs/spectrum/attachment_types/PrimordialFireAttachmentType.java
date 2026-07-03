@@ -24,7 +24,7 @@ import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -49,7 +49,7 @@ public class PrimordialFireAttachmentType {
 		}
 		
 		@Override
-		public CustomPacketPayload.@NotNull Type<? extends CustomPacketPayload> type() {
+		public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
 			return TYPE;
 		}
 	}
@@ -104,7 +104,7 @@ public class PrimordialFireAttachmentType {
 	public static void tick(LivingEntity entity) {
 		Level level = entity.level();
 		long primordialFireTicks = entity.getData(ATTACHMENT_TYPE);
-		if(level.isClientSide) {
+		if (level.isClientSide()) {
 			clientTick(entity, primordialFireTicks);
 		} else {
 			serverTick(entity, primordialFireTicks);
@@ -156,14 +156,14 @@ public class PrimordialFireAttachmentType {
 			if (fluidHeight > 0) {
 				
 				Level world = entity.level();
-				RandomSource random = world.random;
+				RandomSource random = world.getRandom();
 				Vec3 pos = entity.position();
 				
 				for (int i = 0; i < 2; i++) {
 					world.addParticle(ParticleTypes.BUBBLE_POP, entity.getRandomX(1), pos.y() + Math.min(fluidHeight, entity.getBbHeight()) * random.nextFloat(), entity.getRandomZ(1), 0.0, 0.04, 0.0);
 					world.addParticle(ParticleTypes.SMOKE, entity.getRandomX(1), pos.y() + Math.min(fluidHeight, entity.getBbHeight()) * random.nextFloat(), entity.getRandomZ(1), 0.0, 0.04, 0.0);
 				}
-				if (world.random.nextInt(12) == 0) {
+				if (world.getRandom().nextInt(12) == 0) {
 					entity.playSound(SoundEvents.FIRE_EXTINGUISH, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
 				}
 			}

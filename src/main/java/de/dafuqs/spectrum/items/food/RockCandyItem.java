@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.items.food;
 
-import com.simibubi.create.infrastructure.config.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -16,8 +15,7 @@ import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;
@@ -110,7 +108,7 @@ public class RockCandyItem extends Item {
 	}
 	
 	// *technically* we should prob. check if the entities share the same fluid pool, but eh
-	private static @NotNull List<ItemEntity> searchSecondaryIngredients(ItemEntity itemEntity, Level level, AABB boundingBox) {
+	private static List<ItemEntity> searchSecondaryIngredients(ItemEntity itemEntity, Level level, AABB boundingBox) {
 		return level.getEntitiesOfClass(ItemEntity.class, boundingBox.inflate(ITEM_SEARCH_RANGE),
 				entity -> !entity.hasPickUpDelay() && entity.isAlive() && entity != itemEntity && entity.isInFluidType(SpectrumFluids.LIQUID_CRYSTAL_TYPE.get()) && RockCandyVariant.getFor(entity.getItem()) != null);
 	}
@@ -160,7 +158,7 @@ public class RockCandyItem extends Item {
 		}
 		
 		@Override
-		public @NotNull String getSerializedName() {
+		public String getSerializedName() {
 			return this.toString().toLowerCase(Locale.ROOT);
 		}
 		

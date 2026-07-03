@@ -5,6 +5,7 @@ import com.klikli_dev.modonomicon.api.multiblock.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
+import org.jspecify.annotations.Nullable;
 
 public class SpectrumMultiblocks {
 	
@@ -29,7 +30,7 @@ public class SpectrumMultiblocks {
 	public static final ResourceLocation CINDERHEARTH = SpectrumCommon.locate("cinderhearth");
 	public static final ResourceLocation CINDERHEARTH_WITHOUT_LAVA = SpectrumCommon.locate("cinderhearth_no_lava");
 	
-	public static Multiblock get(ResourceLocation id) {
+	public static Multiblock get(@Nullable ResourceLocation id) {
 		return ModonomiconAPI.get().getMultiblock(id);
 	}
 	

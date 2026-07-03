@@ -49,12 +49,12 @@ public class SpectrumResourceConditions {
 				.apply(instance, Registered::new));
 		
 		@Override
-		public boolean test(@NotNull IContext context) {
+		public boolean test(IContext context) {
 			return registryEntryRegistered(context, this.registry(), this.value());
 		}
 		
 		@Override
-		public @NotNull MapCodec<? extends ICondition> codec() {
+		public MapCodec<? extends ICondition> codec() {
 			return Registered.CODEC;
 		}
 		

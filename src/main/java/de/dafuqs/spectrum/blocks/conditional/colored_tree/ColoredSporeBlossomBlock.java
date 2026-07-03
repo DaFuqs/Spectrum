@@ -8,7 +8,9 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
+
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -37,8 +39,8 @@ public class ColoredSporeBlossomBlock extends SporeBlossomBlock {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredSporeBlossomBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredSporeBlossomBlock byColor(InkColor color) {
 		return BLOSSOMS.get(color);
 	}
 	
@@ -63,12 +65,12 @@ public class ColoredSporeBlossomBlock extends SporeBlossomBlock {
 	}
 	
 	@Override
-	public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+	public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return 60;
 	}
 	
 	@Override
-	public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+	public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
 		return 100;
 	}
 	

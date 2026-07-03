@@ -5,7 +5,7 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 public class DiagonalBlock extends Block {
 	
@@ -22,10 +22,9 @@ public class DiagonalBlock extends Block {
 	public MapCodec<? extends DiagonalBlock> codec() {
 		return CODEC;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		var state = super.getStateForPlacement(ctx);
 		var player = ctx.getPlayer();
 		

@@ -6,6 +6,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.Nullable;
 
 public class WeatheringSlabBlock extends SlabBlock implements Weathering {
 	
@@ -15,9 +16,9 @@ public class WeatheringSlabBlock extends SlabBlock implements Weathering {
 		super(settings);
 		this.weatheringLevel = weatheringLevel;
 	}
-	
+
 	@Override
-	public MapCodec<? extends WeatheringSlabBlock> codec() {
+	public @Nullable MapCodec<? extends WeatheringSlabBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

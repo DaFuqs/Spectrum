@@ -22,7 +22,7 @@ public class InGameOverlayRendererMixin {
 	private static void spectrum$renderPrimordialFire(Minecraft client, PoseStack matrices, CallbackInfo ci) {
 		if (!client.player.isSpectator()) {
 			if (PrimordialFireAttachmentType.isOnPrimordialFire(client.player)) {
-				renderPrimordialFireOverlay(client, matrices);
+				spectrum$renderPrimordialFireOverlay(client, matrices);
 			}
 		}
 	}
@@ -36,7 +36,7 @@ public class InGameOverlayRendererMixin {
 	
 	// [VanillaCopy] uses different texture for fire overlay
 	@Unique
-	private static void renderPrimordialFireOverlay(Minecraft client, PoseStack matrices) {
+	private static void spectrum$renderPrimordialFireOverlay(Minecraft client, PoseStack matrices) {
 		RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
 		RenderSystem.depthFunc(519);
 		RenderSystem.depthMask(false);

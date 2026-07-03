@@ -10,7 +10,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;
@@ -23,7 +23,7 @@ public class AttackRingItem extends SpectrumCurioItem {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/jeopardant"));
 	}
 	
-	public static double getAttackModifierForEntity(LivingEntity entity) {
+	public static double getAttackModifierForEntity(@Nullable LivingEntity entity) {
 		if (entity == null) {
 			return 0;
 		} else {
@@ -46,7 +46,7 @@ public class AttackRingItem extends SpectrumCurioItem {
 	
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag type) {
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		Minecraft client = Minecraft.getInstance();
 		long mod = Math.round(getAttackModifierForEntity(client.player) * 100);

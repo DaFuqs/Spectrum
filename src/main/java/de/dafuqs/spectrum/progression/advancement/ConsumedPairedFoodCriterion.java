@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 
@@ -18,7 +18,7 @@ public class ConsumedPairedFoodCriterion extends SimpleCriterionTrigger<Consumed
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

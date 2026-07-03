@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public interface JadeVine {
 	
@@ -25,7 +25,7 @@ public interface JadeVine {
 	static void spawnBloomParticlesClient(Level world, BlockPos blockPos) {
 		spawnParticlesClient(world, blockPos, SpectrumParticleTypes.JADE_VINES_BLOOM);
 		
-		RandomSource random = world.random;
+		RandomSource random = world.getRandom();
 		double x = blockPos.getX() + 0.2 + (random.nextFloat() * 0.6);
 		double y = blockPos.getY() + 0.2 + (random.nextFloat() * 0.6);
 		double z = blockPos.getZ() + 0.2 + (random.nextFloat() * 0.6);
@@ -37,7 +37,7 @@ public interface JadeVine {
 	}
 	
 	private static void spawnParticlesClient(Level world, BlockPos blockPos, ParticleOptions particleType) {
-		RandomSource random = world.random;
+		RandomSource random = world.getRandom();
 		double x = blockPos.getX() + 0.2 + (random.nextFloat() * 0.6);
 		double y = blockPos.getY() + 0.2 + (random.nextFloat() * 0.6);
 		double z = blockPos.getZ() + 0.2 + (random.nextFloat() * 0.6);
@@ -53,7 +53,7 @@ public interface JadeVine {
 		PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world, Vec3.atCenterOf(blockPos), SpectrumParticleTypes.JADE_VINES, amount, new Vec3(0.6, 0.6, 0.6), new Vec3(0.12, 0.12, 0.12));
 	}
 	
-	static boolean isExposedToSunlight(@NotNull Level world, @NotNull BlockPos blockPos) {
+	static boolean isExposedToSunlight(Level world, BlockPos blockPos) {
 		return world.getBrightness(LightLayer.SKY, blockPos) > 8 && TimeHelper.isBrightSunlight(world);
 	}
 	

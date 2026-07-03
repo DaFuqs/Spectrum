@@ -4,6 +4,7 @@
     "#minecraft:enchantable/weapon",
     "#minecraft:enchantable/bow",
     "#minecraft:enchantable/crossbow",
+    "#minecraft:enchantable/trident",
     "#spectrum:fishing_rods",
     {
       "id": "#malum:scythe",

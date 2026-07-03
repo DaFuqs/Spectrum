@@ -1,0 +1,27 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"parent": "spectrum:templates_item/handheld_oversized",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [45, 155, 0],
+			"translation": [-6.49, 6, -2],
+			"scale": [1.75, 1.75, 1.75]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [45, 155, 0],
+			"translation": [8.51, 2, 2.5],
+			"scale": [1.75, 1.75, 1.75]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -180, -5],
+			"translation": [-15, 5, -11],
+			"scale": [1.25, 1.25, 1.25]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -180, -5],
+			"translation": [5, 5, -11],
+			"scale": [1.25, 1.25, 1.25]
+		}
+	}
+}

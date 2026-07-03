@@ -8,12 +8,12 @@ import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.items.*;
-import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.*;
 import org.jgrapht.alg.shortestpath.*;
 import org.jgrapht.graph.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.*;
@@ -136,13 +136,17 @@ public class PastelTransmissionLogic {
 			proposals.put(stack, proposals.getOrDefault(stack, 0L) + stack.getCount());
 		}
 		
-		for (ItemStack stack : proposals.keySet()) {
-			long proposedAmount = Math.min(Math.min(proposals.get(stack), sourceNode.getMaxTransferredAmount()), totalAvailableStorage);
+		for (Map.Entry<ItemStack, Long> proposal : proposals.entrySet()) {
+			ItemStack stack = proposal.getKey();
+			long proposedAmount = Math.min(Math.min(proposal.getValue(), sourceNode.getMaxTransferredAmount()), totalAvailableStorage);
 			if (proposedAmount == 0)
 				continue;
 			
 			ItemStack proposedStack = stack.copyWithCount((int) proposedAmount);
 			int simulatedAmount = (int) (proposedAmount - ItemHandlerHelper.insertItemStacked(destinationStorage, proposedStack, true).getCount());
+			if(simulatedAmount == 0) {
+				continue;
+			}
 			Tuple<Integer, List<ItemStack>> matchingStacks = InventoryHelper.getStackCountInInventory(proposedStack, sourceStorage, simulatedAmount);
 			
 			if (matchingStacks.getA() == 0)

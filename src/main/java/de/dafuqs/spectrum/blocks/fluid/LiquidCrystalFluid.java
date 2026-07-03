@@ -20,38 +20,43 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.fluids.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	
 	@Override
-	public @NotNull FluidType getFluidType() {
+	public FluidType getFluidType() {
 		return SpectrumFluids.LIQUID_CRYSTAL_TYPE.get();
 	}
 	
 	@Override
-	public @NotNull Fluid getSource() {
+	public Fluid getSource() {
 		return SpectrumFluids.LIQUID_CRYSTAL.get();
 	}
 	
 	@Override
-	public @NotNull Fluid getFlowing() {
+	public Fluid getFlowing() {
 		return SpectrumFluids.FLOWING_LIQUID_CRYSTAL.get();
 	}
 	
 	@Override
-	public @NotNull Item getBucket() {
+	public Item getBucket() {
 		return SpectrumItems.LIQUID_CRYSTAL_BUCKET.get();
 	}
 	
 	@Override
-	protected @NotNull BlockState createLegacyBlock(FluidState fluidState) {
+	protected BlockState createLegacyBlock(FluidState fluidState) {
 		return SpectrumBlocks.LIQUID_CRYSTAL.get().defaultBlockState().setValue(BlockStateProperties.LEVEL, getLegacyLevel(fluidState));
 	}
 	
 	@Override
-	public boolean isSame(@NotNull Fluid fluid) {
+	public boolean isSame(Fluid fluid) {
 		return fluid == SpectrumFluids.LIQUID_CRYSTAL.get() || fluid == SpectrumFluids.FLOWING_LIQUID_CRYSTAL.get();
+	}
+	
+	@Override
+	protected boolean canConvertToSource(Level level) {
+		return level.getGameRules().getBoolean(SpectrumGameRules.RULE_LIQUID_CRYSTAL_SOURCE_CONVERSION);
 	}
 	
 	@Override
@@ -93,7 +98,7 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		
 		// just check every x ticks for performance and slow healing
 		if (world.getGameTime() % 200 == 0) {
-			if(!world.isClientSide && entity instanceof LivingEntity livingEntity) {
+			if(!world.isClientSide() && entity instanceof LivingEntity livingEntity) {
 				MobEffectInstance regenerationInstance = livingEntity.getEffect(MobEffects.REGENERATION);
 				if (regenerationInstance == null) {
 					MobEffectInstance newRegenerationInstance = new MobEffectInstance(MobEffects.REGENERATION, 80);

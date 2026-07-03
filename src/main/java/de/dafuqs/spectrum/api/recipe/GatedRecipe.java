@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.fml.loading.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -19,11 +19,11 @@ public interface GatedRecipe<C extends RecipeInput> extends Recipe<C> {
 	
 	Optional<ResourceLocation> getRequiredAdvancementIdentifier();
 	
-	ResourceLocation getRecipeTypeUnlockIdentifier();
+	@Nullable ResourceLocation getRecipeTypeUnlockIdentifier();
 	
 	String getRecipeTypeShortID();
 	
-	default boolean canPlayerCraft(Player playerEntity) {
+	default boolean canPlayerCraft(@Nullable Player playerEntity) {
 		return AdvancementHelper.hasAdvancement(playerEntity, getRecipeTypeUnlockIdentifier())
 				&& AdvancementHelper.hasAdvancement(playerEntity, getRequiredAdvancementIdentifier().orElse(null));
 	}

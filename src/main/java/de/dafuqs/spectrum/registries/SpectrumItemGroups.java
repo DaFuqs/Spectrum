@@ -574,18 +574,18 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.BLACKSLAG_AZURITE_ORE);
 					entries.accept(SpectrumItems.RAW_AZURITE);
 					entries.accept(SpectrumBlocks.RAW_AZURITE_BLOCK);
-					entries.accept(SpectrumBlocks.AZURITE_BLOCK);
+					entries.accept(SpectrumBlocks.PURE_AZURITE_BLOCK);
 					
 					entries.accept(SpectrumBlocks.MALACHITE_ORE);
 					entries.accept(SpectrumBlocks.DEEPSLATE_MALACHITE_ORE);
 					entries.accept(SpectrumBlocks.BLACKSLAG_MALACHITE_ORE);
 					entries.accept(SpectrumItems.RAW_MALACHITE);
 					entries.accept(SpectrumBlocks.RAW_MALACHITE_BLOCK);
-					entries.accept(SpectrumBlocks.MALACHITE_BLOCK);
+					entries.accept(SpectrumBlocks.PURE_MALACHITE_BLOCK);
 					
 					entries.accept(SpectrumItems.RAW_BLOODSTONE);
 					entries.accept(SpectrumBlocks.RAW_BLOODSTONE_BLOCK);
-					entries.accept(SpectrumBlocks.BLOODSTONE_BLOCK);
+					entries.accept(SpectrumBlocks.PURE_BLOODSTONE_BLOCK);
 					
 					entries.accept(SpectrumItems.BISMUTH_FLAKE);
 					entries.accept(SpectrumBlocks.SMALL_BISMUTH_BUD);

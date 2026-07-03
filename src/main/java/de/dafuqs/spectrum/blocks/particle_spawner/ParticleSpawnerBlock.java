@@ -44,7 +44,7 @@ public class ParticleSpawnerBlock extends AbstractParticleSpawnerBlock implement
 	
 	@Override
 	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (this.checkGettingPowered(world, pos)) {
 				this.power(world, pos);
 			} else {

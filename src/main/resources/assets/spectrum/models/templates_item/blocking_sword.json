@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:item/handheld_oversized",
+  "parent": "spectrum:templates_item/handheld_oversized",
   "display": {
     "thirdperson_righthand": {
       "rotation": [ 45, 155, 0 ],
@@ -14,17 +14,12 @@
     "firstperson_righthand": {
       "rotation": [ 0, 180, -5 ],
       "translation": [ -15, 5, -11 ],
-      "scale": [ 1.25, 1.25, 1.25 ]
+      "scale": [ 1, 1, 1 ]
     },
     "firstperson_lefthand": {
       "rotation": [ 0, 180, -5 ],
       "translation": [ 5, 5, -11 ],
-      "scale": [ 1.25, 1.25, 1.25 ]
-    },
-    "gui": {
-      "rotation": [ 15, -25, -5 ],
-      "translation": [ 2, 3, 0 ],
-      "scale": [ 0.65, 0.65, 0.65 ]
+      "scale": [ 1, 1, 1 ]
     }
   }
 }

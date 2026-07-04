@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
+import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.recipe.*;
@@ -14,6 +15,8 @@ import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
+import net.minecraft.world.level.block.state.predicate.*;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
@@ -49,6 +52,7 @@ public class SpectrumRegistries {
 		event.dataPackRegistry(SpectrumRegistryKeys.KINDLING_VARIANT, KindlingVariant.DIRECT_CODEC, KindlingVariant.DIRECT_CODEC);
 		event.dataPackRegistry(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, LizardFrillVariant.DIRECT_CODEC, LizardFrillVariant.DIRECT_CODEC);
 		event.dataPackRegistry(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, LizardHornVariant.DIRECT_CODEC, LizardHornVariant.DIRECT_CODEC);
+		event.dataPackRegistry(SpectrumRegistryKeys.GEODE_ORES, GeodeOreDefinition.CODEC, GeodeOreDefinition.CODEC);
 	}
 	
 	public static <T> T getRandomTagEntry(Registry<T> registry, TagKey<T> tag, RandomSource random, T fallback) {

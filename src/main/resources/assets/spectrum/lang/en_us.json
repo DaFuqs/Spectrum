@@ -5880,6 +5880,10 @@
   "config.spectrum.nightfalls_blade_mining_speed": "Mining speed of the Nightfalls Blade",
   "config.spectrum.nightfalls_blade_attack_damage": "Attack damage of the Nightfalls Blade",
   "config.spectrum.nightfalls_blade_enchantability": "Enchantability of the Nightfalls Blade",
+  "config.spectrum.dragonrot_dripstone_drip_chance": "Dragonrot Dripstone Drip Chance",
+  "config.spectrum.liquid_crystal_dripstone_drip_chance": "Liquid Crystal Dripstone Drip Chance",
+  "config.spectrum.midnight_solution_dripstone_drip_chance": "Midnight Solution Dripstone Drip Chance",
+  "config.spectrum.sludge_dripstone_drip_chance": "Sludge Dripstone Drip Chance",
 
   "trinkets.slot.chest.pin": "Pin",
   "trinkets.slot.head.crown": "Crown",

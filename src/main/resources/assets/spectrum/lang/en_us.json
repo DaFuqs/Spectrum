@@ -2670,6 +2670,7 @@
   "book.spectrum.guidebook.undergrowth_manor.page4.title": "The Dreiton",
   "book.spectrum.guidebook.undergrowth_manor.page5.text": "I was not expecting to find a person here, much less a sleeping woman.\\\n\\\nAt first I thought she was dead, but I quickly realized that she is breathing. They are just... very soft, very shallow, very quiet breaths.\\\n\\\n*This place is falling apart... she must have been here for decades if not centuries.*",
   "book.spectrum.guidebook.undergrowth_manor.page4.text": "*...I don't think she is going to wake up.*",
+  "book.spectrum.guidebook.undergrowth_manor.pyrite_projector.text": "Even though I managed to replicate these things close-to-perfectly (at least visually), I still do not have the sightest clue how to operate these things.\\\nWhat are these for...?",
   "book.spectrum.guidebook.foundry.page0.text": "I still remember my first days in this world, when I laboriously knocked coal out of stone to melt ore. But those days are numbered – the future is now, old me.\\\n\\\nBut there is a price to pay: I will lose out on the experience I would get from smelting.",
   "book.spectrum.guidebook.foundry.page1.text": "Automatically smelts broken blocks. Used on a [#](bb00bb)Fishing Rod[#]() it will set its hook on fire.\\\n\\\nMax Level: 1\\\nApplicable to mining tools and [#](bb00bb)Spectrum's Fishing Rods[#]().\\\nMutually exclusive with Silk Touch.",
   "book.spectrum.guidebook.four_upgrade_slots": "4 upgrade slots",

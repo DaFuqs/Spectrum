@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.config;
 
 import net.minecraft.resources.*;
+import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.*;
 import org.apache.commons.lang3.tuple.*;
 
@@ -146,6 +147,11 @@ public class SpectrumConfig {
 	public final ModConfigSpec.ConfigValue<Integer> MaxLevelForEffectsInGreaterPotionPendant;
 	public final ModConfigSpec.ConfigValue<Boolean> DecayIsStoppedBySupportedClaimMods;
 	public final ModConfigSpec.ConfigValue<Boolean> REIListsUnrevealedRecipesAsNotUnlocked;
+	
+	public final ModConfigSpec.ConfigValue<Double> DragonrotDripstoneDripChance;
+	public final ModConfigSpec.ConfigValue<Double> LiquidCrystalDripstoneDripChance;
+	public final ModConfigSpec.ConfigValue<Double> MidnightSolutionDripstoneDripChance;
+	public final ModConfigSpec.ConfigValue<Double> SludgeDripstoneDripChance;
 	
 	private SpectrumConfig(ModConfigSpec.Builder builder) {
 		ToastTimeMilliseconds = builder
@@ -644,6 +650,23 @@ public class SpectrumConfig {
 			Setting this value to false will instead not show this screen, showing no recipes whatsoever, until unlocked
 			""")
 				.define("rei_lists_unrevealed_recipes_as_not_unlocked", true);
+		
+		DragonrotDripstoneDripChance = builder
+				.translation("config.spectrum.dragonrot_dripstone_drip_chance")
+				.comment("The chance for Dripstone to fill a Cauldron with Dragonrot")
+				.define("dragonrot_dripstone_drip_chance", 0.01D);
+		LiquidCrystalDripstoneDripChance = builder
+				.translation("config.spectrum.liquid_crystal_dripstone_drip_chance")
+				.comment("The chance for Dripstone to fill a Cauldron with Liquid Crystal")
+				.define("liquid_crystal_dripstone_drip_chance", 0.01D);
+		MidnightSolutionDripstoneDripChance = builder
+				.translation("config.spectrum.midnight_solution_dripstone_drip_chance")
+				.comment("The chance for Dripstone to fill a Cauldron with Midnight Solution")
+				.define("midnight_solution_dripstone_drip_chance", 0.01D);
+		SludgeDripstoneDripChance = builder
+				.translation("config.spectrum.sludge_dripstone_drip_chance")
+				.comment("The chance for Dripstone to fill a Cauldron with Sludge")
+				.define("sludge_dripstone_drip_chance", 0.01D);
 	}
 	
 	public final boolean canPedestalCraftVanillaRecipes() {

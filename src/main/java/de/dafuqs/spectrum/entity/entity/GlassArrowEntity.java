@@ -24,7 +24,7 @@ public class GlassArrowEntity extends AbstractArrow {
 	private static final String VARIANT_STRING = "variant";
 	private static final EntityDataAccessor<GlassArrowVariant> VARIANT = SynchedEntityData.defineId(GlassArrowEntity.class, SpectrumTrackedDataHandlerRegistry.GLASS_ARROW_VARIANT);
 	
-	public static final float DAMAGE_MODIFIER = 1.25F;
+	public static final float DAMAGE_MODIFIER = 1.5F;
 	
 	public GlassArrowEntity(EntityType<? extends GlassArrowEntity> entityType, Level world) {
 		super(entityType, world);

@@ -88,7 +88,7 @@ public class SpectrumFluids {
 	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_SLUDGE = registerFluid("flowing_sludge", SludgeFluid.FlowingSludge::new);
 	public static final int SLUDGE_COLOR = 0xFF4e2e0a;
 	public static final Vector3f SLUDGE_COLOR_VEC = SpectrumColorHelper.colorIntToVec(SLUDGE_COLOR);
-	public static final float SLUDGE_OVERLAY_ALPHA = 0.995F;
+	public static final float SLUDGE_OVERLAY_ALPHA = 1.0F;
 	
 	// MIDNIGHT SOLUTION
 	public static final int MIDNIGHT_SOLUTION_LIGHT_LEVEL = 0;
@@ -118,7 +118,7 @@ public class SpectrumFluids {
 	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_MIDNIGHT_SOLUTION = registerFluid("flowing_midnight_solution", MidnightSolutionFluid.Flowing::new);
 	public static final int MIDNIGHT_SOLUTION_COLOR = 0xFF11183b;
 	public static final Vector3f MIDNIGHT_SOLUTION_COLOR_VEC = SpectrumColorHelper.colorIntToVec(MIDNIGHT_SOLUTION_COLOR);
-	public static final float MIDNIGHT_SOLUTION_OVERLAY_ALPHA = 0.995F;
+	public static final float MIDNIGHT_SOLUTION_OVERLAY_ALPHA = 1.0F;
 	
 	// DRAGONROT
 	public static final int DRAGONROT_LIGHT_LEVEL = 15;
@@ -148,7 +148,7 @@ public class SpectrumFluids {
 	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_DRAGONROT = registerFluid("flowing_dragonrot", DragonrotFluid.Flowing::new);
 	public static final int DRAGONROT_COLOR = 0xFFe3772f;
 	public static final Vector3f DRAGONROT_COLOR_VEC = SpectrumColorHelper.colorIntToVec(DRAGONROT_COLOR);
-	public static final float DRAGONROT_OVERLAY_ALPHA = 0.98F;
+	public static final float DRAGONROT_OVERLAY_ALPHA = 1.0F;
 	
 	public static void register(IEventBus eventBus) {
 		FLUID_REGISTRAR.register(eventBus);

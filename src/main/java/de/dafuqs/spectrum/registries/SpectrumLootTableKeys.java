@@ -35,6 +35,23 @@ public class SpectrumLootTableKeys {
 	public static final ResourceKey<LootTable> IVORY_NOXCAP_STRIPPING = keyOf("gameplay/stripping/ivory_noxcap_stripping");
 	public static final ResourceKey<LootTable> CHESTNUT_NOXCAP_STRIPPING = keyOf("gameplay/stripping/chestnut_noxcap_stripping");
 	
+	public static final ResourceKey<LootTable> BLACK_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/black");
+	public static final ResourceKey<LootTable> BLUE_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/blue");
+	public static final ResourceKey<LootTable> BROWN_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/brown");
+	public static final ResourceKey<LootTable> CYAN_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/cyan");
+	public static final ResourceKey<LootTable> GRAY_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/gray");
+	public static final ResourceKey<LootTable> GREEN_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/green");
+	public static final ResourceKey<LootTable> LIGHT_BLUE_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/light_blue");
+	public static final ResourceKey<LootTable> LIGHT_GRAY_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/light_gray");
+	public static final ResourceKey<LootTable> LIME_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/lime");
+	public static final ResourceKey<LootTable> MAGENTA_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/magenta");
+	public static final ResourceKey<LootTable> ORANGE_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/orange");
+	public static final ResourceKey<LootTable> PINK_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/pink");
+	public static final ResourceKey<LootTable> PURPLE_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/purple");
+	public static final ResourceKey<LootTable> RED_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/red");
+	public static final ResourceKey<LootTable> WHITE_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/white");
+	public static final ResourceKey<LootTable> YELLOW_LOG_STRIPPING = keyOf("gameplay/stripping/colored_logs/yellow");
+	
 	public static ResourceKey<LootTable> keyOf(String id) {
 		return ResourceKey.create(Registries.LOOT_TABLE, SpectrumCommon.locate(id));
 	}

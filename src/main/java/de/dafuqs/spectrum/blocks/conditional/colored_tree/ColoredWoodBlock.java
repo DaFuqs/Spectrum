@@ -40,7 +40,11 @@ public class ColoredWoodBlock extends FlammableLogBlock implements RevelationAwa
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		return Map.of(this.defaultBlockState(), Blocks.OAK_WOOD.defaultBlockState());
+		Map<BlockState, BlockState> map = new Hashtable<>();
+		for (Direction.Axis axis : RotatedPillarBlock.AXIS.getPossibleValues()) {
+			map.put(this.defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis), Blocks.OAK_WOOD.defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis));
+		}
+		return map;
 	}
 	
 	@Override

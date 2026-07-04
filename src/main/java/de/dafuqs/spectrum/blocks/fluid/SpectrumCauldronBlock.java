@@ -17,9 +17,9 @@ import java.util.function.*;
 
 public class SpectrumCauldronBlock extends AbstractCauldronBlock {
 
-	protected final Supplier<FluidType> fluidType;
+	protected final Supplier<SpectrumFluid> fluidType;
 	
-    public SpectrumCauldronBlock(Supplier<FluidType> fluidType, CauldronInteraction.InteractionMap interactions, BlockBehaviour.Properties properties) {
+    public SpectrumCauldronBlock(Supplier<SpectrumFluid> fluidType, CauldronInteraction.InteractionMap interactions, BlockBehaviour.Properties properties) {
         super(properties, interactions);
 		this.fluidType = fluidType;
     }
@@ -37,11 +37,11 @@ public class SpectrumCauldronBlock extends AbstractCauldronBlock {
 	@Override
 	protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		if (this.isEntityInsideContent(state, pos, entity)) {
-			entity.clearFire();
+			this.getFluidType().onEntityCollision(state, level, pos, entity);
 		}
 	}
 	
-	protected FluidType getFluidType() {
+	protected SpectrumFluid getFluidType() {
 		return fluidType.get();
 	}
 	

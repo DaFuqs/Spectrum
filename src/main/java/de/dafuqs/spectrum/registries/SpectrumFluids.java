@@ -7,13 +7,17 @@ import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.neoforged.bus.api.*;
@@ -32,7 +36,7 @@ public class SpectrumFluids {
 	
 	// LIQUID CRYSTAL
 	public static final int LIQUID_CRYSTAL_LIGHT_LEVEL = 11;
-	public static final DeferredHolder<FluidType, FluidType> LIQUID_CRYSTAL_TYPE = registerFluidType("liquid_crystal", () -> new FluidType(FluidType.Properties.create()
+	public static final DeferredHolder<FluidType, FluidType> LIQUID_CRYSTAL_TYPE = registerFluidType("liquid_crystal", () -> new SpectrumFluidType(true, SpectrumGameRules.RULE_LIQUID_CRYSTAL_SOURCE_CONVERSION, FluidType.Properties.create()
 			.descriptionId("block.spectrum.liquid_crystal")
 			.fallDistanceModifier(0F)
 			.canDrown(true).canExtinguish(true).supportsBoating(true).canHydrate(true).lightLevel(LIQUID_CRYSTAL_LIGHT_LEVEL)
@@ -40,19 +44,6 @@ public class SpectrumFluids {
 			.density(800).viscosity(1000).temperature(200)
 			.sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL).sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
 			.addDripstoneDripping(SpectrumConfig.CONFIG.LiquidCrystalDripstoneDripChance.get().floatValue(), SpectrumParticleTypes.DRIPPING_LIQUID_CRYSTAL, SpectrumBlocks.LIQUID_CRYSTAL_CAULDRON.get(), SoundEvents.POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON)) {
-		
-		@Override
-		public boolean isVaporizedOnPlacement(Level level, BlockPos pos, FluidStack stack) {
-			return level.dimensionType().ultraWarm();
-		}
-		
-		@Override
-		public boolean canConvertToSource(FluidState state, LevelReader reader, BlockPos pos) {
-			if (reader instanceof Level level) {
-				return level.getGameRules().getBoolean(SpectrumGameRules.RULE_LIQUID_CRYSTAL_SOURCE_CONVERSION);
-			}
-			return super.canConvertToSource(state, reader, pos);
-		}
 	});
 	public static final DeferredHolder<Fluid, SpectrumFluid> LIQUID_CRYSTAL = registerFluid("liquid_crystal", LiquidCrystalFluid.Still::new);
 	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_LIQUID_CRYSTAL = registerFluid("flowing_liquid_crystal", LiquidCrystalFluid.Flowing::new);
@@ -62,7 +53,7 @@ public class SpectrumFluids {
 	
 	// SLUDGE
 	public static final int SLUDGE_LIGHT_LEVEL = 0;
-	public static final DeferredHolder<FluidType, FluidType> SLUDGE_TYPE = registerFluidType("sludge", () -> new FluidType(FluidType.Properties.create()
+	public static final DeferredHolder<FluidType, FluidType> SLUDGE_TYPE = registerFluidType("sludge", () -> new SpectrumFluidType(true, SpectrumGameRules.RULE_SLUDGE_SOURCE_CONVERSION, FluidType.Properties.create()
 			.descriptionId("block.spectrum.sludge")
 			.fallDistanceModifier(0F)
 			.canDrown(true).canExtinguish(true).supportsBoating(false).canHydrate(false).lightLevel(SLUDGE_LIGHT_LEVEL)
@@ -70,19 +61,6 @@ public class SpectrumFluids {
 			.density(5000).viscosity(8000).temperature(350)
 			.sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL).sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
 			.addDripstoneDripping(SpectrumConfig.CONFIG.SludgeDripstoneDripChance.get().floatValue(), SpectrumParticleTypes.DRIPPING_SLUDGE, SpectrumBlocks.SLUDGE_CAULDRON.get(), SoundEvents.POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON)) {
-		
-		@Override
-		public boolean isVaporizedOnPlacement(Level level, BlockPos pos, FluidStack stack) {
-			return level.dimensionType().ultraWarm();
-		}
-		
-		@Override
-		public boolean canConvertToSource(FluidState state, LevelReader reader, BlockPos pos) {
-			if (reader instanceof Level level) {
-				return level.getGameRules().getBoolean(SpectrumGameRules.RULE_SLUDGE_SOURCE_CONVERSION);
-			}
-			return super.canConvertToSource(state, reader, pos);
-		}
 	});
 	public static final DeferredHolder<Fluid, SpectrumFluid> SLUDGE = registerFluid("sludge", SludgeFluid.StillSludge::new);
 	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_SLUDGE = registerFluid("flowing_sludge", SludgeFluid.FlowingSludge::new);
@@ -92,27 +70,15 @@ public class SpectrumFluids {
 	
 	// MIDNIGHT SOLUTION
 	public static final int MIDNIGHT_SOLUTION_LIGHT_LEVEL = 0;
-	public static final DeferredHolder<FluidType, FluidType> MIDNIGHT_SOLUTION_TYPE = registerFluidType("midnight_solution", () -> new FluidType(FluidType.Properties.create()
+	public static final DeferredHolder<FluidType, FluidType> MIDNIGHT_SOLUTION_TYPE = registerFluidType("midnight_solution", () -> new SpectrumFluidType(true, SpectrumGameRules.RULE_MIDNIGHT_SOLUTION_SOURCE_CONVERSION,
+			FluidType.Properties.create()
 			.descriptionId("block.spectrum.midnight_solution")
 			.fallDistanceModifier(0F)
 			.canDrown(true).canExtinguish(true).supportsBoating(true).canHydrate(false).lightLevel(MIDNIGHT_SOLUTION_LIGHT_LEVEL)
 			.pathType(PathType.LAVA).adjacentPathType(null)
-			.density(1500).viscosity(2000).temperature(300)
+			.density(1500).viscosity(2000).temperature(-100)
 			.sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL).sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
 			.addDripstoneDripping(SpectrumConfig.CONFIG.MidnightSolutionDripstoneDripChance.get().floatValue(), SpectrumParticleTypes.DRIPPING_MIDNIGHT_SOLUTION, SpectrumBlocks.MIDNIGHT_SOLUTION_CAULDRON.get(), SoundEvents.POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON)) {
-		
-		@Override
-		public boolean isVaporizedOnPlacement(Level level, BlockPos pos, FluidStack stack) {
-			return level.dimensionType().ultraWarm();
-		}
-		
-		@Override
-		public boolean canConvertToSource(FluidState state, LevelReader reader, BlockPos pos) {
-			if (reader instanceof Level level) {
-				return level.getGameRules().getBoolean(SpectrumGameRules.RULE_MIDNIGHT_SOLUTION_SOURCE_CONVERSION);
-			}
-			return super.canConvertToSource(state, reader, pos);
-		}
 	});
 	public static final DeferredHolder<Fluid, SpectrumFluid> MIDNIGHT_SOLUTION = registerFluid("midnight_solution", MidnightSolutionFluid.Still::new);
 	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_MIDNIGHT_SOLUTION = registerFluid("flowing_midnight_solution", MidnightSolutionFluid.Flowing::new);
@@ -122,7 +88,7 @@ public class SpectrumFluids {
 	
 	// DRAGONROT
 	public static final int DRAGONROT_LIGHT_LEVEL = 15;
-	public static final DeferredHolder<FluidType, FluidType> DRAGONROT_TYPE = registerFluidType("dragonrot", () -> new FluidType(FluidType.Properties.create()
+	public static final DeferredHolder<FluidType, FluidType> DRAGONROT_TYPE = registerFluidType("dragonrot", () -> new SpectrumFluidType(false, SpectrumGameRules.RULE_DRAGONROT_SOURCE_CONVERSION, FluidType.Properties.create()
 			.descriptionId("block.spectrum.dragonrot")
 			.fallDistanceModifier(0F)
 			.canDrown(true).canExtinguish(true).supportsBoating(true).canHydrate(false).lightLevel(DRAGONROT_LIGHT_LEVEL)
@@ -130,19 +96,6 @@ public class SpectrumFluids {
 			.density(2000).viscosity(3000).temperature(650)
 			.sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL).sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
 			.addDripstoneDripping(SpectrumConfig.CONFIG.DragonrotDripstoneDripChance.get().floatValue(), SpectrumParticleTypes.DRIPPING_DRAGONROT, SpectrumBlocks.DRAGONROT_CAULDRON.get(), SoundEvents.POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON)) {
-		
-		@Override
-		public boolean isVaporizedOnPlacement(Level level, BlockPos pos, FluidStack stack) {
-			return level.dimensionType().ultraWarm();
-		}
-		
-		@Override
-		public boolean canConvertToSource(FluidState state, LevelReader reader, BlockPos pos) {
-			if (reader instanceof Level level) {
-				return level.getGameRules().getBoolean(SpectrumGameRules.RULE_DRAGONROT_SOURCE_CONVERSION);
-			}
-			return super.canConvertToSource(state, reader, pos);
-		}
 	});
 	public static final DeferredHolder<Fluid, SpectrumFluid> DRAGONROT = registerFluid("dragonrot", DragonrotFluid.Still::new);
 	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_DRAGONROT = registerFluid("flowing_dragonrot", DragonrotFluid.Flowing::new);

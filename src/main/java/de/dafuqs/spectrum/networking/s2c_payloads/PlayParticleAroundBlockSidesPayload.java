@@ -33,7 +33,7 @@ public record PlayParticleAroundBlockSidesPayload(BlockPos pos, int quantity, Ve
 		Packet<?> packet = new ClientboundCustomPayloadPacket(new PlayParticleAroundBlockSidesPayload(pos, quantity, velocity, particleEffect, sides));
 		
 		for (ServerPlayer player : level.getChunkSource().chunkMap.getPlayers(new ChunkPos(pos), false)) {
-			if (sendCheck.test(player))
+			if (!sendCheck.test(player))
 				continue;
 			
 			player.connection.send(packet);

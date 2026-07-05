@@ -977,7 +977,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> WEEPING_GALA_LAMP = register(redstoneLamp(blockWithItem("weeping_gala_lamp", () -> new FlammableRedstoneLampBlock(galaWood(MapColor.COLOR_BROWN).lightLevel(LANTERN_LIGHT_PROVIDER)), InkColors.LIME)));
 	public static final DeferredBlock<Block> WEEPING_GALA_LIGHT = register(axisRotated(blockWithItem("weeping_gala_light", () -> new FlammableRotatedPillarBlock(galaWood(MapColor.COLOR_BROWN).lightLevel(state -> 15).noOcclusion()), InkColors.LIME), SpectrumTexturedModelProviders.BASE_TRANS_LIGHT_CORE));
 	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> WEEPING_GALA_SIGN = registerSign("weeping_gala", SpectrumWoodTypes.WEEPING_GALA, galaWood(MapColor.COLOR_BROWN));
-	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> WEEPING_GALA_HANGING_SIGN = registerHangingSign("weeping_gala", SpectrumWoodTypes.EBONY_NOXWOOD, galaWood(MapColor.COLOR_BROWN));
+	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> WEEPING_GALA_HANGING_SIGN = registerHangingSign("weeping_gala", SpectrumWoodTypes.WEEPING_GALA, galaWood(MapColor.COLOR_BROWN));
 	
 	public static BlockBehaviour.Properties basalMarble() {
 		return settings(MapColor.COLOR_GRAY, SoundType.DRIPSTONE_BLOCK, 8.0F).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops();

@@ -96,24 +96,26 @@ public class EnderGlassBlock extends Block {
 	}
 	
 	@Override
-	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean movedByPiston) {
 		if (!world.isClientSide()) {
-			BlockState fromPosBlockState = world.getBlockState(fromPos);
-			if (fromPosBlockState.getBlock() instanceof EnderGlassBlock) {
-				TransparencyState neighborState = fromPosBlockState.getValue(TRANSPARENCY_STATE);
+			BlockState fromPosState = world.getBlockState(fromPos);
+			if (fromPosState.getBlock() instanceof EnderGlassBlock) {
+				TransparencyState neighborState = fromPosState.getValue(TRANSPARENCY_STATE);
 				TransparencyState currentState = state.getValue(TRANSPARENCY_STATE);
 				
 				if (neighborState != currentState) {
 					world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(TRANSPARENCY_STATE, neighborState));
 				}
-			} else if (fromPosBlockState.isSignalSource() || block.defaultBlockState().isSignalSource()) {
+			} else if(block == Blocks.REDSTONE_WIRE && fromPosState.isAir()) {
+				// funky redstone mechanics
+			} else if (fromPosState.isSignalSource() || block.defaultBlockState().isSignalSource()) {
 				TransparencyState targetState = getTransparencyStateForRedstonePower(world.getBestNeighborSignal(pos));
 				if (getTransparencyState(state) != targetState) {
 					world.setBlockAndUpdate(pos, state.setValue(TRANSPARENCY_STATE, targetState));
 				}
 			}
 		}
-		super.neighborChanged(state, world, pos, block, fromPos, notify);
+		super.neighborChanged(state, world, pos, block, fromPos, movedByPiston);
 	}
 	
 	public static TransparencyState getTransparencyState(BlockState state) {

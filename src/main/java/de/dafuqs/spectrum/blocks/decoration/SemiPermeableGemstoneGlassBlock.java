@@ -12,20 +12,20 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.shapes.*;
 
-public class GemstonePlayerOnlyGlassBlock extends GemstoneGlassBlock {
+public class SemiPermeableGemstoneGlassBlock extends GemstoneGlassBlock {
 	
-	public final MapCodec<GemstonePlayerOnlyGlassBlock> codec;
+	public final MapCodec<SemiPermeableGemstoneGlassBlock> codec;
 	
-	public GemstonePlayerOnlyGlassBlock(Properties settings, GemstoneColor gemstoneColor) {
+	public SemiPermeableGemstoneGlassBlock(Properties settings, GemstoneColor gemstoneColor) {
 		super(settings, gemstoneColor);
 		this.codec = RecordCodecBuilder.mapCodec(i -> i.group(
 				propertiesCodec(),
 				SpectrumRegistries.GEMSTONE_COLOR.byNameCodec().fieldOf("color").forGetter(b -> b.gemstoneColor)
-		).apply(i, GemstonePlayerOnlyGlassBlock::new));
+		).apply(i, SemiPermeableGemstoneGlassBlock::new));
 	}
 	
 	@Override
-	public MapCodec<? extends GemstonePlayerOnlyGlassBlock> codec() {
+	public MapCodec<? extends SemiPermeableGemstoneGlassBlock> codec() {
 		return codec;
 	}
 	
@@ -37,13 +37,7 @@ public class GemstonePlayerOnlyGlassBlock extends GemstoneGlassBlock {
 	@Override
 	@Deprecated
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		if (context instanceof EntityCollisionContext entityShapeContext) {
-			Entity entity = entityShapeContext.getEntity();
-			if (entity instanceof Player) {
-				return Shapes.empty();
-			}
-		}
-		return state.getShape(world, pos);
+		return SemiPermeableGlassBlock.isPlayerOrPlayerRiderCollision(context) ? Shapes.empty() : state.getShape(world, pos);
 	}
 	
 }

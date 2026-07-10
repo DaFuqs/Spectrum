@@ -4552,7 +4552,7 @@
   "item.spectrum.enchantment_canvas.tooltip.not_bound2": "§7캔버스가 해당 유형의 아이템에 결속됩니다",
   "item.spectrum.ender_splice": "엔더 접합체",
   "item.spectrum.ender_splice.tooltip.bound_player": "%s§7에게 결속됨. 사용하여 순간이동합니다",
-  "item.spectrum.ender_splice.tooltip.bound_pos": "$s§7의 %d %d %d§7에 결속됨. 사용하여 순간이동합니다",
+  "item.spectrum.ender_splice.tooltip.bound_pos": "%4$s§7의 %1$d %2$d %3$d§7에 결속됨. 사용하여 순간이동합니다",
   "item.spectrum.ender_splice.tooltip.unbound": "§7사용하여 현재 위치에 결속합니다",
   "item.spectrum.ender_splice.wrong_dimension": "이 엔더 접합체의 에너지는 다른 차원으로 순간이동시킬 만큼 강력하지 않습니다",
   "item.spectrum.eraser_spawn_egg": "말소자 생성 알",
@@ -5219,7 +5219,7 @@
   "recipeGroup.spectrum.colorful_azaleas_ink": "다채로운 진달래 잉크",
   "recipeGroup.spectrum.gemstone_bricks": "보석 벽돌",
 
-  "spectrum.gui.guidebook.reveal_hint_button.text": "통찰력 밝히기   ",
+  "spectrum.gui.guidebook.reveal_hint_button.text": "통찰 개방   ",
   "spectrum.gui.guidebook.reveal_hint_button.tooltip.lacking_resource": "인벤토리에 이 아이템이 없습니다",
   "spectrum.gui.guidebook.reveal_hint_button.tooltip.pay": "약간의 대가를 지불하고 아이디어 밝히기",
 

@@ -968,11 +968,12 @@ public class SpectrumEventListeners {
 		}
 		
 		// RAZING GAMING
+		float defaultDestroyTime = state.getBlock().defaultDestroyTime();
 		int razingLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantmentKeys.RAZING, handStack);
-		if (razingLevel > 0) {
+		if (defaultDestroyTime > 0 && razingLevel > 0) {
 			Tool tool = handStack.get(DataComponents.TOOL);
 			if(tool != null && tool.isCorrectForDrops(state)) {
-				double razingMultiplier = (razingLevel + 1) * state.getBlock().defaultDestroyTime() / 16F;
+				double razingMultiplier = (razingLevel + 1) * defaultDestroyTime / 16F;
 				razingMultiplier = Math.max(1, razingMultiplier);
 				event.setNewSpeed((float) (event.getOriginalSpeed() * razingMultiplier));
 			}

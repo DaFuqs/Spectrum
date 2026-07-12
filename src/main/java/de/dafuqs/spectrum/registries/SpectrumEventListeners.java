@@ -37,6 +37,7 @@ import net.minecraft.server.packs.resources.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
 import net.minecraft.tags.*;
+import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
@@ -961,7 +962,7 @@ public class SpectrumEventListeners {
 		// INEXORABLE GAMING
 		int inexorableLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantmentKeys.INEXORABLE, handStack);
 		if (inexorableLevel > 0) {
-			float original = player.getInventory().getDestroySpeed(state);
+			float original = handStack.getDestroySpeed(state);
 			event.setNewSpeed(Math.max(original, event.getNewSpeed()));
 			return;
 		}
@@ -970,9 +971,10 @@ public class SpectrumEventListeners {
 		int razingLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantmentKeys.RAZING, handStack);
 		if (razingLevel > 0) {
 			Tool tool = handStack.get(DataComponents.TOOL);
-			if(tool != null && tool.getMiningSpeed(state) > tool.defaultMiningSpeed()) {
-				float hardness = state.getBlock().defaultDestroyTime();
-				event.setNewSpeed((float) Math.max(1 + hardness, Math.pow(2, 1 + razingLevel / 8F)));
+			if(tool != null && tool.isCorrectForDrops(state)) {
+				double razingMultiplier = (razingLevel + 1) * state.getBlock().defaultDestroyTime() / 16F;
+				razingMultiplier = Math.max(1, razingMultiplier);
+				event.setNewSpeed((float) (event.getOriginalSpeed() * razingMultiplier));
 			}
 		}
 		

@@ -4,6 +4,7 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.resources.*;
+import net.neoforged.neoforge.registries.*;
 
 import java.util.function.*;
 
@@ -17,6 +18,8 @@ public abstract class PastelPayloadType {
 		this.codec = codec;
 	}
 	
+	public abstract DeferredHolder<PastelPayloadType, ?> getPayloadType();
+	
 	public void tick(PastelTransmissionLogic logic) {
 		transferBetween(logic, PastelNodeType.SENDER, PastelNodeType.GATHER, PastelTransmissionLogic.TransferMode.PUSH_PULL);
 		transferBetween(logic, PastelNodeType.PROVIDER, PastelNodeType.GATHER, PastelTransmissionLogic.TransferMode.PULL);
@@ -25,7 +28,7 @@ public abstract class PastelPayloadType {
 	}
 	
 	protected void transferBetween(PastelTransmissionLogic logic, PastelNodeType sourceType, PastelNodeType destinationType, PastelTransmissionLogic.TransferMode transferMode) {
-		for (PastelNodeBlockEntity sourceNode : logic.getLoadedNodes(sourceType)) {
+		for (PastelNodeBlockEntity sourceNode : logic.getLoadedNodes(getPayloadType(), sourceType)) {
 			if (!sourceNode.isEnabled()) {
 				continue;
 			}

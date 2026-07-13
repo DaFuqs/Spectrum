@@ -17,7 +17,6 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.network.chat.contents.*;
 import net.minecraft.network.protocol.*;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.resources.*;
@@ -440,11 +439,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 	}
 	
-	public long getActiveTransfers(ResourceKey<PastelPayloadType> payloadType) {
+	public long getUnderway(ResourceKey<PastelPayloadType> payloadType) {
 		return this.activeTransfers.getOrDefault(payloadType, 0L);
 	}
 	
-	public void addTransfer(ResourceKey<PastelPayloadType> payloadType, long amount) {
+	public void addUnderway(ResourceKey<PastelPayloadType> payloadType, long amount) {
 		this.activeTransfers.put(payloadType, Math.max(0,  this.activeTransfers.getOrDefault(payloadType, 0L) + amount));
 		this.setChanged();
 	}

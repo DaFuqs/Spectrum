@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.GraphPath;
 import org.jgrapht.graph.DefaultEdge;
@@ -20,6 +21,11 @@ public class ItemPastelPayloadType extends PastelPayloadType {
 	
 	public ItemPastelPayloadType() {
 		super(SpectrumCommon.locate("item"), SpectrumPastelPayloads.ITEM.get());
+	}
+	
+	@Override
+	public DeferredHolder<PastelPayloadType, ?> getPayloadType() {
+		return SpectrumPastelPayloadTypes.ITEM;
 	}
 	
 	public static @Nullable IItemHandler getConnectedItemStorage(PastelNodeBlockEntity pastelNodeBlockEntity) {
@@ -38,7 +44,7 @@ public class ItemPastelPayloadType extends PastelPayloadType {
 			return;
 		}
 		
-		for (PastelNodeBlockEntity destinationNode : logic.getLoadedNodes(type)) {
+		for (PastelNodeBlockEntity destinationNode : logic.getLoadedNodes(getPayloadType(), type)) {
 			if (!destinationNode.isEnabled() || !sourceNode.cooldownExceededTo(destinationNode)) {
 				continue;
 			}
@@ -54,7 +60,7 @@ public class ItemPastelPayloadType extends PastelPayloadType {
 	}
 	
 	private boolean transferBetween(PastelTransmissionLogic logic, PastelNodeBlockEntity sourceNode, IItemHandler sourceStorage, PastelNodeBlockEntity destinationNode, IItemHandler destinationStorage, PastelTransmissionLogic.TransferMode transferMode) {
-		long underwayCount = destinationNode.getActiveTransfers(SpectrumPastelPayloadTypes.ITEM.getKey());
+		long underwayCount = destinationNode.getUnderway(getPayloadType().getKey());
 		Predicate<ItemStack> filter = sourceNode.getTransferFilterTo(destinationNode);
 		int transferLimit = Math.max(sourceNode.getMaxTransferredAmount(), destinationNode.getMaxTransferredAmount());
 		for (int slotId = 0; slotId < sourceStorage.getSlots(); slotId++) {
@@ -95,7 +101,7 @@ public class ItemPastelPayloadType extends PastelPayloadType {
 			PastelPayload payload = new ItemPastelPayload(stack.copyWithCount(extracted));
 			PastelTransmission transmission = new PastelTransmission(graphPath.getVertexList(), payload, sourceNode.getTransferTime());
 			logic.addTransmission(sourceNode, destinationNode, transferMode, transmission);
-			destinationNode.addTransfer(SpectrumPastelPayloadTypes.ITEM.getKey(), extracted);
+			destinationNode.addUnderway(getPayloadType().getKey(), extracted);
 			return true;
 		}
 		return false;

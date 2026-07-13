@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.neoforged.neoforge.registries.*;
@@ -81,20 +82,25 @@ public class PastelTransmissionLogic {
 		}
 	}
 	
-	public Set<PastelNodeBlockEntity> getLoadedNodes(PastelNodeType type) {
+	private Set<PastelNodeBlockEntity> getLoadedNodes(@Nullable PastelNodeType type) {
+		if(type == null) {
+			Set<PastelNodeBlockEntity> set = new ObjectArraySet<>();
+			for(Set<PastelNodeBlockEntity> e : this.network.loadedNodes.values()) {
+				set.addAll(e);
+			}
+			return set;
+		}
 		return this.network.getLoadedNodes(type);
 	}
 	
-	public Set<PastelNodeBlockEntity> getLoadedNodes(DeferredHolder<PastelPayloadType, ?> payloadType) {
+	public Set<PastelNodeBlockEntity> getLoadedNodes(@NotNull DeferredHolder<PastelPayloadType, ?> payloadType, @Nullable PastelNodeType nodeType) {
 		Set<PastelNodeBlockEntity> nodes = new HashSet<>();
-		for(PastelNodeType type : PastelNodeType.values()) {
-			var loaded = this.getLoadedNodes(type);
-			for(PastelNodeBlockEntity entity : loaded) {
-				for(Supplier<? extends PastelPayloadType> typeSupplier : entity.getSupportedPayloads()) {
-					if(typeSupplier.get().equals(payloadType.get())) {
-						nodes.add(entity);
-						break;
-					}
+		var loaded = this.getLoadedNodes(nodeType);
+		for(PastelNodeBlockEntity entity : loaded) {
+			for(Supplier<? extends PastelPayloadType> typeSupplier : entity.getSupportedPayloads()) {
+				if(typeSupplier.get().equals(payloadType.get())) {
+					nodes.add(entity);
+					break;
 				}
 			}
 		}

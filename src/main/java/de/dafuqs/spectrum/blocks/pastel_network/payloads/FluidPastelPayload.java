@@ -48,6 +48,7 @@ public record FluidPastelPayload(FluidStack fluidStack) implements PastelPayload
 			@Nullable IFluidHandler destinationHandler = FluidPastelPayloadType.getConnectedFluidStorage(destinationNode);
 			if (destinationHandler != null) {
 				destinationHandler.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
+				destinationNode.addUnderway(SpectrumPastelPayloadTypes.FLUID.getKey(), -fluidStack.getAmount());
 			}
 		}
 	}

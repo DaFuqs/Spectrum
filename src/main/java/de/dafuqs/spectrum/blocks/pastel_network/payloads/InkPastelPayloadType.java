@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.state.*;
+import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -15,6 +16,11 @@ public class InkPastelPayloadType extends PastelPayloadType {
 	
 	public InkPastelPayloadType() {
 		super(SpectrumCommon.locate("ink"), SpectrumPastelPayloads.INK.get());
+	}
+	
+	@Override
+	public DeferredHolder<PastelPayloadType, ?> getPayloadType() {
+		return SpectrumPastelPayloadTypes.INK;
 	}
 	
 	public static @Nullable InkCapability getConnectedInkStorage(PastelNodeBlockEntity pastelNodeBlockEntity) {
@@ -28,7 +34,7 @@ public class InkPastelPayloadType extends PastelPayloadType {
 	
 	@Override
 	public void tick(PastelTransmissionLogic logic) {
-		Set<PastelNodeBlockEntity> nodes = logic.getLoadedNodes(SpectrumPastelPayloadTypes.INK);
+		Set<PastelNodeBlockEntity> nodes = logic.getLoadedNodes(getPayloadType(), null);
 		if (nodes.size() < 2) return;
 		
 		List<InkCapability> targets = new ArrayList<>(nodes.size());

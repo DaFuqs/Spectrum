@@ -17,7 +17,7 @@ public abstract class PastelPayloadType {
 		this.codec = codec;
 	}
 	
-	public void tick(PastelTransmissionLogic logic, PastelNetwork.NodePriority priority) {
+	public void tick(PastelTransmissionLogic logic) {
 		transferBetween(logic, PastelNodeType.SENDER, PastelNodeType.GATHER, PastelTransmissionLogic.TransferMode.PUSH_PULL);
 		transferBetween(logic, PastelNodeType.PROVIDER, PastelNodeType.GATHER, PastelTransmissionLogic.TransferMode.PULL);
 		transferBetween(logic, PastelNodeType.STORAGE, PastelNodeType.GATHER, PastelTransmissionLogic.TransferMode.PULL);
@@ -26,7 +26,7 @@ public abstract class PastelPayloadType {
 	
 	protected void transferBetween(PastelTransmissionLogic logic, PastelNodeType sourceType, PastelNodeType destinationType, PastelTransmissionLogic.TransferMode transferMode) {
 		for (PastelNodeBlockEntity sourceNode : logic.getLoadedNodes(sourceType)) {
-			if (!sourceNode.canTransfer()) {
+			if (!sourceNode.isEnabled()) {
 				continue;
 			}
 			

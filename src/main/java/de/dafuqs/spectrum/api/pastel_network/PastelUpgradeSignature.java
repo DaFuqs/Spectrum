@@ -16,13 +16,13 @@ public final class PastelUpgradeSignature {
 	public final String name;
 	public final ResourceLocation outerRing, innerRing;
 	public final int stack, speed, slotRows;
-	public final float stackMult, speedMult;
-	public final boolean light, priority, triggerTransfer, lamp, sensor;
+	public final float stackMult, speedMult, transferRateMult;
+	public final boolean light, triggerTransfer, lamp, sensor;
 	public final Category category;
 	public final RedstoneStateModifier preProcessor;
 	public final RedstoneStateModifier postProcessor;
 	
-	private PastelUpgradeSignature(Item upgradeItem, String name, ResourceLocation outerRing, ResourceLocation innerRing, int stack, int speed, int slotRows, float stackMult, float speedMult, boolean light, boolean priority, boolean triggerTransfer, boolean lamp, boolean sensor, Category category, RedstoneStateModifier preProcessor, RedstoneStateModifier postProcessor) {
+	private PastelUpgradeSignature(Item upgradeItem, String name, ResourceLocation outerRing, ResourceLocation innerRing, int stack, int speed, int slotRows, float stackMult, float speedMult, float transferRateMult, boolean light, boolean triggerTransfer, boolean lamp, boolean sensor, Category category, RedstoneStateModifier preProcessor, RedstoneStateModifier postProcessor) {
 		this.upgradeItem = upgradeItem;
 		this.name = name;
 		this.outerRing = outerRing;
@@ -32,8 +32,8 @@ public final class PastelUpgradeSignature {
 		this.slotRows = slotRows;
 		this.stackMult = stackMult;
 		this.speedMult = speedMult;
+		this.transferRateMult = transferRateMult;
 		this.light = light;
-		this.priority = priority;
 		this.triggerTransfer = triggerTransfer;
 		this.lamp = lamp;
 		this.category = category;
@@ -60,8 +60,8 @@ public final class PastelUpgradeSignature {
 		private final String namespace;
 		private String name, outerRing, innerRing;
 		private int stackMod, speedMod, slotRowMod;
-		private float stackMult = 1, speedMult = 1;
-		private boolean light, priority, triggerTransfer, lamp, sensor;
+		private float stackMult = 1, speedMult = 1, transferRateMult = 1;
+		private boolean light, triggerTransfer, lamp, sensor;
 		private RedstoneStateModifier preProcessor = RedstoneStateModifier.PASS;
 		private RedstoneStateModifier postProcessor = RedstoneStateModifier.PASS;
 
@@ -129,8 +129,8 @@ public final class PastelUpgradeSignature {
 			return this;
 		}
 
-		public Builder priority(boolean priority) {
-			this.priority = priority;
+		public Builder transferRateMultiplier(float transferRateMultiplier) {
+			this.transferRateMult = transferRateMultiplier;
 			return this;
 		}
 
@@ -172,8 +172,8 @@ public final class PastelUpgradeSignature {
 					slotRowMod,
 					stackMult,
 					speedMult,
+					transferRateMult,
 					light,
-					priority,
 					triggerTransfer,
 					lamp,
 					sensor,
@@ -196,7 +196,7 @@ public final class PastelUpgradeSignature {
 					0,
 					0,
 					0,
-					false,
+					1,
 					false,
 					triggerTransfer,
 					lamp,

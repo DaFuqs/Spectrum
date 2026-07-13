@@ -27,6 +27,8 @@ public class PastelTransmissionLogic {
 	
 	public static final int DEFAULT_MAX_TRANSFER_AMOUNT = 1;
 	public static final int DEFAULT_TRANSFER_TICKS_PER_NODE = 30;
+	public static final int DEFAULT_TRANSFER_RATE = 20;
+	
 	private final ServerPastelNetwork network;
 	
 	private DijkstraShortestPath<BlockPos, DefaultEdge> dijkstra;
@@ -73,14 +75,14 @@ public class PastelTransmissionLogic {
 		return path;
 	}
 	
-	public void tick(PastelNetwork.NodePriority priority) {
+	public void tick() {
 		for(Map.Entry<ResourceKey<PastelPayloadType>, PastelPayloadType> payloadType : SpectrumRegistries.PASTEL_PAYLOAD_TYPE.entrySet()) {
-			payloadType.getValue().tick(this, priority);
+			payloadType.getValue().tick(this);
 		}
 	}
 	
 	public Set<PastelNodeBlockEntity> getLoadedNodes(PastelNodeType type) {
-		return this.network.getLoadedNodes(type, PastelNetwork.NodePriority.GENERIC);
+		return this.network.getLoadedNodes(type);
 	}
 	
 	public Set<PastelNodeBlockEntity> getLoadedNodes(DeferredHolder<PastelPayloadType, ?> payloadType) {

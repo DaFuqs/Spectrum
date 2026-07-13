@@ -4,10 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.pastel_network.network.PastelTransmission;
 import de.dafuqs.spectrum.blocks.pastel_network.network.PastelTransmissionLogic;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.networking.s2c_payloads.PastelNodeStatusUpdatePayload;
 import net.minecraft.core.*;
-import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.capabilities.*;
@@ -17,9 +14,6 @@ import org.jetbrains.annotations.*;
 import org.jgrapht.GraphPath;
 import org.jgrapht.graph.DefaultEdge;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
 
 public class ItemPastelPayloadType extends PastelPayloadType {
@@ -45,7 +39,7 @@ public class ItemPastelPayloadType extends PastelPayloadType {
 		}
 		
 		for (PastelNodeBlockEntity destinationNode : logic.getLoadedNodes(type)) {
-			if (!destinationNode.canTransfer()) {
+			if (!destinationNode.isEnabled() || !sourceNode.cooldownExceededTo(destinationNode)) {
 				continue;
 			}
 			
@@ -60,66 +54,48 @@ public class ItemPastelPayloadType extends PastelPayloadType {
 	}
 	
 	private boolean transferBetween(PastelTransmissionLogic logic, PastelNodeBlockEntity sourceNode, IItemHandler sourceStorage, PastelNodeBlockEntity destinationNode, IItemHandler destinationStorage, PastelTransmissionLogic.TransferMode transferMode) {
-		// check how much room is in the target inventory
-		long totalAvailableStorage = -destinationNode.getItemCountUnderway();
-		for (int d = 0; d < destinationStorage.getSlots(); d++) {
-			ItemStack stack = destinationStorage.getStackInSlot(d);
-			
-			if (stack.isEmpty()) {
-				totalAvailableStorage += destinationStorage.getSlotLimit(d);
-			} else {
-				totalAvailableStorage += Math.min(destinationStorage.getSlotLimit(d), stack.getMaxStackSize()) - stack.getCount();
-			}
-		}
-		
-		if (totalAvailableStorage <= 0)
-			return false;
-		
+		long underwayCount = destinationNode.getActiveTransfers(SpectrumPastelPayloadTypes.ITEM.getKey());
 		Predicate<ItemStack> filter = sourceNode.getTransferFilterTo(destinationNode);
-		Map<ItemStack, Long> proposals = new HashMap<>();
-		for (int s = 0; s < sourceStorage.getSlots(); s++) {
-			ItemStack stack = sourceStorage.extractItem(s, PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT, true);
+		int transferLimit = Math.max(sourceNode.getMaxTransferredAmount(), destinationNode.getMaxTransferredAmount());
+		for (int slotId = 0; slotId < sourceStorage.getSlots(); slotId++) {
+			ItemStack stack = sourceStorage.extractItem(slotId, transferLimit, true);
 			
+			// is the stack valid?
 			if (stack.isEmpty())
 				continue;
 			if (!filter.test(stack))
 				continue;
 			
-			proposals.put(stack, proposals.getOrDefault(stack, 0L) + stack.getCount());
-		}
-		
-		for (ItemStack stack : proposals.keySet()) {
-			long proposedAmount = Math.min(Math.min(proposals.get(stack), sourceNode.getMaxTransferredAmount()), totalAvailableStorage);
-			if (proposedAmount == 0)
-				continue;
-			
-			ItemStack proposedStack = stack.copyWithCount((int) proposedAmount);
-			int simulatedAmount = (int) (proposedAmount - ItemHandlerHelper.insertItemStacked(destinationStorage, proposedStack, true).getCount());
-			if(simulatedAmount == 0) {
+			// how many items can be transferred from source to destination?
+			long proposedAmount = stack.getCount();
+			ItemStack proposedStack = stack.copyWithCount((int) (proposedAmount + underwayCount));
+			int unableToInsertAmount = ItemHandlerHelper.insertItemStacked(destinationStorage, proposedStack, true).getCount();
+			int amountToSend = stack.getCount() - unableToInsertAmount;
+			if(amountToSend < 1) {
 				continue;
 			}
-			Tuple<Integer, List<ItemStack>> matchingStacks = InventoryHelper.getStackCountInInventory(proposedStack, sourceStorage, simulatedAmount);
 			
-			if (matchingStacks.getA() == 0)
-				continue;
-			
+			// Find a valid path from source to target
+			// there always should be one - but better safe than sorry
 			GraphPath<BlockPos, DefaultEdge> graphPath = logic.getPath(sourceNode, destinationNode);
 			if (graphPath == null) {
 				return false;
 			}
 			
-			PastelPayload payload = new ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount));
-			PastelTransmission transmission = new PastelTransmission(graphPath.getVertexList(), payload, sourceNode.getTransferTime());
+			// Remove from source inventory
 			int extracted = 0;
-			for (int i = 0; i < sourceStorage.getSlots(); i++) {
-				if (ItemStack.isSameItemSameComponents(proposedStack, sourceStorage.getStackInSlot(i)))
-					extracted += sourceStorage.extractItem(i, simulatedAmount - extracted, false).getCount();
-				if (extracted == simulatedAmount)
+			for (int sourceSlot = 0; sourceSlot < sourceStorage.getSlots(); sourceSlot++) {
+				if (ItemStack.isSameItemSameComponents(stack, sourceStorage.getStackInSlot(sourceSlot)))
+					extracted += sourceStorage.extractItem(sourceSlot, amountToSend - extracted, false).getCount();
+				if (extracted == amountToSend)
 					break;
 			}
 			
+			// Send the items
+			PastelPayload payload = new ItemPastelPayload(stack.copyWithCount(extracted));
+			PastelTransmission transmission = new PastelTransmission(graphPath.getVertexList(), payload, sourceNode.getTransferTime());
 			logic.addTransmission(sourceNode, destinationNode, transferMode, transmission);
-			destinationNode.addItemCountUnderway(simulatedAmount);
+			destinationNode.addTransfer(SpectrumPastelPayloadTypes.ITEM.getKey(), extracted);
 			return true;
 		}
 		return false;

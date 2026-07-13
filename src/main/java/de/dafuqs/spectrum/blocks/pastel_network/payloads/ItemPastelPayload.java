@@ -50,7 +50,7 @@ public record ItemPastelPayload(ItemStack itemStack) implements PastelPayload {
 			if (destinationStorage != null) {
 				inserted = count;
 				inserted -= ItemHandlerHelper.insertItemStacked(destinationStorage, itemStack.copyWithCount(count), false).getCount();
-				destinationNode.addItemCountUnderway(-count);
+				destinationNode.addTransfer(SpectrumPastelPayloadTypes.ITEM.getKey(), -count);
 			}
 		}
 		
@@ -59,7 +59,7 @@ public record ItemPastelPayload(ItemStack itemStack) implements PastelPayload {
 			long diff = amount - inserted;
 			InWorldInteractionHelper.scatter(level, destination.getX() + 0.5, destination.getY() + 0.5, destination.getZ() + 0.5, itemStack, diff);
 			if (destinationNode != null) {
-				destinationNode.addItemCountUnderway(-diff);
+				destinationNode.addTransfer(SpectrumPastelPayloadTypes.ITEM.getKey(), -diff);
 			}
 		}
 	}

@@ -144,6 +144,7 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 			}
 		}
 		if (foundNetwork != null) {
+			foundNetwork.abortAllTransmissions();
 			this.networks.remove(foundNetwork);
 			PastelNetworkRemovedPayload.send(foundNetwork);
 		}

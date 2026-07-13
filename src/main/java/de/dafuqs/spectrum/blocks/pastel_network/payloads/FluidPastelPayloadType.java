@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.pastel_network.payloads;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
-import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.capabilities.*;
@@ -12,8 +11,6 @@ import net.neoforged.neoforge.fluids.capability.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
-
-import java.util.*;
 
 public class FluidPastelPayloadType extends PastelPayloadType {
 	
@@ -39,7 +36,7 @@ public class FluidPastelPayloadType extends PastelPayloadType {
 		}
 		
 		for (PastelNodeBlockEntity destinationNode : logic.getLoadedNodes(type)) {
-			if (!destinationNode.canTransfer()) {
+			if (!destinationNode.isEnabled() || !sourceNode.cooldownExceededTo(destinationNode)) {
 				continue;
 			}
 			

@@ -28,10 +28,6 @@ public interface PastelUpgradeable {
 		}
 
 		applySlotUpgrade(upgrade);
-
-		if (upgrade.priority) {
-			upgradePriority();
-		}
 	}
 
 	void applyCompounding(PastelUpgradeSignature upgrade);
@@ -39,8 +35,6 @@ public interface PastelUpgradeable {
 	void applySimple(PastelUpgradeSignature upgrade);
 
 	void applySlotUpgrade(PastelUpgradeSignature upgrade);
-
-	void upgradePriority();
 
 	void markLit();
 

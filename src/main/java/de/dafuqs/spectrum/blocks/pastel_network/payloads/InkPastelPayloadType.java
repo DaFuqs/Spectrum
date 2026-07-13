@@ -3,12 +3,9 @@ package de.dafuqs.spectrum.blocks.pastel_network.payloads;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.ink.capability.*;
-import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
-import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import net.minecraft.core.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import org.jetbrains.annotations.*;
 
@@ -30,12 +27,16 @@ public class InkPastelPayloadType extends PastelPayloadType {
 	}
 	
 	@Override
-	public void tick(PastelTransmissionLogic logic, PastelNetwork.NodePriority priority) {
+	public void tick(PastelTransmissionLogic logic) {
 		Set<PastelNodeBlockEntity> nodes = logic.getLoadedNodes(SpectrumPastelPayloadTypes.INK);
 		if (nodes.size() < 2) return;
 		
 		List<InkCapability> targets = new ArrayList<>(nodes.size());
 		for (PastelNodeBlockEntity node : nodes) {
+			if (!node.isEnabled()) {
+				continue;
+			}
+			
 			InkCapability inkCapability = getConnectedInkStorage(node);
 			if (inkCapability != null) {
 				targets.add(inkCapability);

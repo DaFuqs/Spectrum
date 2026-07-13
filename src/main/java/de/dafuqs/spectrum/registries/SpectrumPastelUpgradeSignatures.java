@@ -46,7 +46,7 @@ public class SpectrumPastelUpgradeSignatures {
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> RATE = register(
 				"rate", () -> PastelUpgradeSignature.builder(SpectrumItems.RESONANCE_SHARD.get(), NON_COMPOUNDING, SpectrumCommon.MOD_ID)
-						.named("rate").priority(true).build()
+						.named("rate").transferRateMultiplier(0.5F).build()
 		);
 		DeferredHolder<PastelUpgradeSignature, PastelUpgradeSignature> LIGHT = register(
 				"light", () -> PastelUpgradeSignature.builder(SpectrumItems.SHIMMERSTONE_GEM.get(), NON_COMPOUNDING, SpectrumCommon.MOD_ID)

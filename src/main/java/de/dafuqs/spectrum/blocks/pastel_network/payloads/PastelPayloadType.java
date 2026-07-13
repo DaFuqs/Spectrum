@@ -20,6 +20,10 @@ public abstract class PastelPayloadType {
 	
 	public abstract DeferredHolder<PastelPayloadType, ?> getPayloadType();
 	
+	public boolean runsEveryTick() {
+		return false;
+	}
+	
 	public void tick(PastelTransmissionLogic logic) {
 		transferBetween(logic, PastelNodeType.SENDER, PastelNodeType.GATHER, PastelTransmissionLogic.TransferMode.PUSH_PULL);
 		transferBetween(logic, PastelNodeType.PROVIDER, PastelNodeType.GATHER, PastelTransmissionLogic.TransferMode.PULL);

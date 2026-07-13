@@ -51,71 +51,87 @@ public class InkTransferHelper {
 	}
 	
 	private static void equalizeInk(List<InkCapability> targets, InkColor color) {
-		long total = 0;
+		final double PRESSURE_FACTOR = 0.02;
 		
-		// collect targets that accept this color
-		List<InkStorage> accepting = new ArrayList<>(targets.size());
-		for (InkCapability s : targets) {
-			InkStorage storage = s.getStorage();
+		List<InkStorage> storages = new ArrayList<>();
+		for (InkCapability cap : targets) {
+			InkStorage storage = cap.getStorage();
 			if (storage.accepts(color)) {
-				accepting.add(storage);
-				total += storage.getEnergy(color);
+				storages.add(storage);
 			}
 		}
 		
-		if (accepting.isEmpty() || total == 0) return;
+		if (storages.isEmpty()) {
+			return;
+		}
 		
-		long idealTarget = total / accepting.size();
+		// Compute average
+		long total = 0;
+		for (InkStorage s : storages) {
+			total += s.getEnergy(color);
+		}
+		double avg = (double) total / storages.size();
 		
-		// drain targets above target value
-		long pooled = 0;
-		for (InkStorage s : accepting) {
+		for (InkStorage s : storages) {
 			long current = s.getEnergy(color);
-			long delta = idealTarget - current;
-			long step = delta / 32;
-			if (step == 0 && delta != 0) {
-				step = delta > 0 ? 1 : -1;
-			}
+			double diff = avg - current;
 			
-			long smoothedTarget = current + step;
-			
-			if (current > smoothedTarget) {
-				long excess = current - smoothedTarget;
-				pooled += s.drainEnergy(color, excess);
-			}
-		}
-		
-		if (pooled <= 0) return;
-		
-		// refill targets below target
-		for (InkStorage s : accepting) {
-			long current = s.getEnergy(color);
-			long delta = idealTarget - current;
-			long step = delta / 32;
-			if (step == 0 && delta != 0) {
-				step = delta > 0 ? 1 : -1;
-			}
-			long smoothedTarget = current + step;
-			
-			if (current < smoothedTarget && pooled > 0) {
-				long needed = smoothedTarget - current;
-				long added = needed - s.addEnergy(color, needed);
-				pooled -= added;
-			}
-		}
-		
-		// If leftover pooled energy exists (due to capacity limits),
-		// redistribute with pressure flow
-		if (pooled > 0) {
-			for (InkStorage s : accepting) {
-				long room = s.getRoom(color);
-				if (room > 0) {
-					long toAdd = Math.min(pooled, room);
-					long added = -s.addEnergy(color, toAdd);
-					pooled -= added;
+			if (diff > 0) { // Needs ink
+				long remainingNeed = (long) Math.ceil(diff * PRESSURE_FACTOR);
+				
+				for (InkStorage other : storages) {
+					if (other == s) continue;
+					
+					long available = other.getEnergy(color);
+					if (available <= 0) continue;
+					
+					long room = s.getRoom(color);
+					if (room <= 0) break;
+					
+					long toTransfer = Math.min(Math.min(available, remainingNeed), room);
+					
+					if (toTransfer > 0) {
+						long drained = other.drainEnergy(color, toTransfer);
+						long leftover = s.addEnergy(color, drained);
+						
+						if (leftover != 0) {
+							other.addEnergy(color, leftover);
+						}
+						
+						remainingNeed -= drained;
+						if (remainingNeed <= 0) break;
+					}
 				}
-				if (pooled <= 0) break;
+				
+			} else if (diff < 0) { // Has excess
+				long remainingExcess = (long) Math.ceil(-diff * PRESSURE_FACTOR);
+				
+				for (InkStorage other : storages) {
+					if (other == s) continue;
+					
+					long room = other.getRoom(color);
+					if (room <= 0) continue;
+					
+					long toTransfer = Math.min(room, remainingExcess);
+					
+					if (toTransfer > 0) {
+						long drained = s.drainEnergy(color, toTransfer);
+						long leftover = other.addEnergy(color, drained);
+						
+						if (leftover != 0) {
+							s.addEnergy(color, leftover);
+						}
+						
+						remainingExcess -= drained;
+						if (remainingExcess <= 0) break;
+					}
+				}
 			}
+		}
+		
+		for (InkCapability cap : targets) {
+			cap.markDirty();
 		}
 	}
+	
 }

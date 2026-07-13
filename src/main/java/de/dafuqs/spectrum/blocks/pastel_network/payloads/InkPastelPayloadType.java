@@ -23,6 +23,11 @@ public class InkPastelPayloadType extends PastelPayloadType {
 		return SpectrumPastelPayloadTypes.INK;
 	}
 	
+	@Override
+	public boolean runsEveryTick() {
+		return true;
+	}
+	
 	public static @Nullable InkCapability getConnectedInkStorage(PastelNodeBlockEntity pastelNodeBlockEntity) {
 		BlockState state = pastelNodeBlockEntity.getBlockState();
 		if (!(state.getBlock() instanceof PastelNodeBlock)) {

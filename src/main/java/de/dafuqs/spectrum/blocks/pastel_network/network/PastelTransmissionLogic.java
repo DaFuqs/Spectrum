@@ -76,9 +76,11 @@ public class PastelTransmissionLogic {
 		return path;
 	}
 	
-	public void tick() {
+	public void tick(boolean longTick) {
 		for(Map.Entry<ResourceKey<PastelPayloadType>, PastelPayloadType> payloadType : SpectrumRegistries.PASTEL_PAYLOAD_TYPE.entrySet()) {
-			payloadType.getValue().tick(this);
+			if(longTick || payloadType.getValue().runsEveryTick()) {
+				payloadType.getValue().tick(this);
+			}
 		}
 	}
 	

@@ -316,11 +316,11 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 		var cap = transferLooper.reachedCap();
 		if (cap) {
 			this.transferLooper.reset();
-			try {
-				this.transmissionLogic.tick();
-			} catch (Exception e) {
-				// hmmmmmm. Block getting unloaded / new one placed while logic is running?
-			}
+		}
+		try {
+			this.transmissionLogic.tick(cap);
+		} catch (Exception e) {
+			// hmmmmmm. Block getting unloaded / new one placed while logic is running?
 		}
 		tickNodeEffects();
 	}

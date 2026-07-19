@@ -5414,7 +5414,7 @@
 
   "book.spectrum.guidebook.titration_barrel.page0.text": "用[彩色木材](entry://general/colored_trees@colored_wood)来发酵[食物](entry://cuisine/titration_barrel@kimchi)和[饮品](entry://cuisine/infused_beverages)，这个想法并不难想到。\\\n随着时间的推移，木材的特性会渗入其中。结果就是有时更美味，有时像黑暗料理（虽然也可能是我厨艺问题），但结果总是很有趣。\\\n\\\n桶内最多可容纳一组物品和一桶液体。",
   "book.spectrum.guidebook.titration_barrel.page1.text": "*有时候我眨个眼，世界都像静止了一样? 每次眨眼，木桶的发酵进度好像都在推进。*",
-  "book.spectrum.guidebook.titration_barrel.page2.text": "发酵可不只是用来做饮品！ 泡菜由两种不同的蔬菜制成，是一道丰盛的配菜。",
+  "book.spectrum.guidebook.titration_barrel.page2.text": "发酵可不只是用来做饮品！ 泡菜由三种不同的蔬菜制成，是一道丰盛的配菜。",
   "book.spectrum.guidebook.titration_barrel.page3.text": "需要一点时间，但比直接把原料丢在一起更高效。",
   "book.spectrum.guidebook.titration_barrel.page4.text": "经过轻微发酵，仍然保留[牛奶](item://minecraft:milk_bucket)的特性。食用后会祛除当前所有状态效果。",
   "book.spectrum.guidebook.titration_barrel.page5.text": "很棒的零食。咬下一小块很快就吃完了，甚至饱腹感很强。\\\n香甜可口，果香浓郁。",

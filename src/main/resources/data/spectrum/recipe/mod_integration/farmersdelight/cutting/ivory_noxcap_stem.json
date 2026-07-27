@@ -2,24 +2,30 @@
   "type": "farmersdelight:cutting",
   "ingredients": [
     {
-      "item": "spectrum:moonstone_block"
+      "item": "spectrum:ivory_noxcap_stem"
     }
   ],
   "result": [
     {
       "item": {
-        "count": 4,
-        "id": "spectrum:moonstone_shard"
+        "count": 1,
+        "id": "spectrum:stripped_ivory_noxcap_stem"
+      }
+    },
+    {
+      "item": {
+        "count": 1,
+        "id": "spectrum:myceylon"
       }
     }
   ],
   "tool": [
     {
       "type": "farmersdelight:item_ability",
-      "action": "pickaxe:dig"
+      "action": "axe_strip"
     },
     {
-      "tag": "minecraft:pickaxes"
+      "tag": "minecraft:axes"
     }
   ],
   "neoforge:conditions": [

@@ -551,7 +551,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		
 		var curLevel = resultStack.get(DataComponents.STORED_ENCHANTMENTS).getLevel(upgrade.getEnchantment());
 		var targetLevel = Math.min(curLevel + 1, upgrade.getLevelCap());
-		var xpCost = upgrade.getXPScaling().apply(curLevel);
+		var xpCost = upgrade.getRequiredXPForSourceLevel(curLevel);
 		drainExperience(xpCost);
 		
 		
@@ -571,7 +571,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		
 		// update the item amount if chain upgrading
 		if (recipeMatches(this, level)) {
-			craftingTimeTotal = upgrade.getItemScaling().apply(targetLevel);
+			craftingTimeTotal = upgrade.getRequiredItemCountForSourceLevel(targetLevel);
 		} else {
 			currentRecipe = null;
 		}
@@ -621,7 +621,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				enchanter.currentItemProcessingTime = 0;
 				
 				var level = enchanter.items.get(0).get(DataComponents.STORED_ENCHANTMENTS).getLevel(upgrade.value().getEnchantment());
-				enchanter.craftingTimeTotal = upgrade.value().getItemScaling().apply(level);
+				enchanter.craftingTimeTotal = upgrade.value().getRequiredItemCountForSourceLevel(level);
 				
 				EnchanterInventory testInventory = new EnchanterInventory();
 				testInventory.setItem(0, enchanter.virtualInventory.getItem(0));

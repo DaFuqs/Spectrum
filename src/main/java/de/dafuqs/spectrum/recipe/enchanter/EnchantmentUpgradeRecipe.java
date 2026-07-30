@@ -1,10 +1,11 @@
 package de.dafuqs.spectrum.recipe.enchanter;
 
-import com.google.gson.*;
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.pastel_network.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
@@ -14,6 +15,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
+import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
@@ -21,14 +23,28 @@ import net.minecraft.world.level.*;
 
 import java.util.*;
 
-public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
+public class EnchantmentUpgradeRecipe extends GatedStackSpectrumRecipe<RecipeInput> {
+	
+	public record LevelData(Ingredient ingredient, int countPerBowl, int experience) {
+		
+		public static final Codec<LevelData> CODEC = RecordCodecBuilder.create(i -> i.group(
+				Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(LevelData::ingredient),
+				ExtraCodecs.POSITIVE_INT.fieldOf("ingredient_count_per_bowl").forGetter(LevelData::countPerBowl),
+				ExtraCodecs.POSITIVE_INT.fieldOf("experience").forGetter(LevelData::experience)
+		).apply(i, LevelData::new));
+		
+		public static final StreamCodec<RegistryFriendlyByteBuf, LevelData> STREAM_CODEC = PacketCodecHelper.tuple(
+				Ingredient.CONTENTS_STREAM_CODEC, o -> o.ingredient,
+				ByteBufCodecs.INT, o -> o.countPerBowl,
+				ByteBufCodecs.INT, o -> o.experience,
+				LevelData::new
+		);
+		
+	}
 	
 	protected final Either<Holder<Enchantment>, ResourceKey<Enchantment>> either;
-	protected final int levelCap;
-	protected final Ingredient bulkItem;
-	protected final RecipeScaling.ScalingData itemScaling, XPScaling;
-	
-	protected final NonNullList<Ingredient> inputs;
+	protected final List<LevelData> levelData;
+	protected final NonNullList<IngredientStack> inputs;
 	protected final ItemStack output;
 	
 	public EnchantmentUpgradeRecipe(
@@ -36,31 +52,22 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 			boolean secret,
 			Optional<ResourceLocation> requiredAdvancementIdentifier,
 			Either<Holder<Enchantment>, ResourceKey<Enchantment>> enchantmentEntry,
-			int levelCap,
-			Ingredient bulkItem,
-			RecipeScaling.ScalingData XPScaling,
-			RecipeScaling.ScalingData itemScaling
+			List<LevelData> levelData
 	) {
 		super(group, secret, requiredAdvancementIdentifier);
 		
 		this.either = enchantmentEntry;
-		this.levelCap = levelCap;
-		this.bulkItem = bulkItem;
-		this.itemScaling = itemScaling;
-		this.XPScaling = XPScaling;
-		
-		NonNullList<Ingredient> inputs = NonNullList.withSize(2, Ingredient.EMPTY);
+		this.levelData = levelData;
 		
 		if (enchantmentEntry.left().isPresent()) {
-			var enchantment = enchantmentEntry.left().get();
-			var baseMax = enchantment.value().getMaxLevel();
-			if (levelCap < baseMax)
-				throw new JsonParseException("Level Cap cannot be lower than the Enchantment's base level (levelCap " + levelCap + "< enchantment's" + baseMax + ")");
-			
-			ItemStack ingredientStack = new ItemStack(Items.ENCHANTED_BOOK);
-			ingredientStack.enchant(enchantment, 1);
-			inputs.set(0, Ingredient.of(ingredientStack));
-			inputs.set(1, bulkItem);
+			NonNullList<IngredientStack> inputs = NonNullList.withSize(1 + levelData.size(), IngredientStack.EMPTY);
+			ItemStack stack = new ItemStack(Items.ENCHANTED_BOOK);
+			stack.enchant(enchantmentEntry.left().get(), 1);
+			inputs.set(0, IngredientStack.of(Ingredient.of(stack)));
+			for(int i = 0; i < levelData.size(); ++i) {
+				LevelData ld = levelData.get(i);
+				inputs.set(i + 1, IngredientStack.of(ld.ingredient(), ld.countPerBowl()));
+			}
 			this.inputs = inputs;
 			
 			ItemStack outputStack = new ItemStack(Items.ENCHANTED_BOOK);
@@ -71,7 +78,6 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 			this.output = ItemStack.EMPTY;
 		}
 	}
-	
 	
 	@Override
 	public boolean matches(RecipeInput inv, Level world) {
@@ -94,13 +100,14 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 			
 			var bookLevel = enchantments.getLevel(enchantment);
 			
-			if (!enchantments.keySet().contains(enchantment) || bookLevel >= levelCap) {
+			if (!enchantments.keySet().contains(enchantment) || bookLevel >= getLevelCap()) {
 				return false;
 			}
 			
 			// Check XP requirements
 			var availableXp = ExperienceStorageItem.getStoredExperience(inv.getItem(1));
-			var requiredXp = XPScaling.apply(bookLevel);
+			LevelData levelData = getForSourceLevel(bookLevel);
+			var requiredXp = levelData.experience();
 			
 			if (availableXp < requiredXp)
 				return false;
@@ -112,7 +119,7 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 				
 				if (!currentStack.isEmpty()) {
 					ItemStack slotStack = inv.getItem(i + 1);
-					if (bulkItem.test(slotStack)) {
+					if (levelData.ingredient().test(slotStack)) {
 						bulkInput += slotStack.getCount();
 					} else {
 						return false;
@@ -120,9 +127,29 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 				}
 			}
 			
-			return bulkInput >= itemScaling.apply(bookLevel);
+			return bulkInput >= levelData.countPerBowl() * 8;
 		}
 		return false;
+	}
+	
+	public List<LevelData> getLevelData() {
+		return this.levelData;
+	}
+	
+	public LevelData getForSourceLevel(int sourceLevel) {
+		return this.levelData.get(sourceLevel - 1);
+	}
+	
+	public int getRequiredXPForSourceLevel(int sourceLevel) {
+		return this.levelData.get(sourceLevel - 1).experience();
+	}
+	
+	public int getRequiredItemCountForSourceLevel(int sourceLevel) {
+		return this.levelData.get(sourceLevel - 1).countPerBowl() * 8;
+	}
+	
+	public int getLevelCap() {
+		return this.levelData.size() + 1;
 	}
 	
 	@Override
@@ -166,32 +193,8 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 	}
 	
 	@Override
-	public NonNullList<Ingredient> getIngredients() {
-		return inputs;
-	}
-	
-	// Janky Hack
-	public Item getBulkItem() {
-		var match = bulkItem.getItems();
-		if (match.length > 0)
-			return bulkItem.getItems()[0].getItem();
-		return Items.AIR;
-	}
-	
-	public int getBaseXPCost() {
-		return XPScaling.apply(1);
-	}
-	
-	public int getBaseItemCost() {
-		return itemScaling.apply(1);
-	}
-	
-	public RecipeScaling.ScalingData getXPScaling() {
-		return XPScaling;
-	}
-	
-	public RecipeScaling.ScalingData getItemScaling() {
-		return itemScaling;
+	public List<IngredientStack> getIngredientStacks() {
+		return this.inputs;
 	}
 	
 	public Holder<Enchantment> getEnchantment() {
@@ -199,10 +202,6 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 			throw new UnsupportedOperationException("Attempted to match a datagen enchantment upgrade");
 		}
 		return either.left().get();
-	}
-	
-	public int getLevelCap() {
-		return levelCap;
 	}
 	
 	public boolean isInNormalRange(int level) {
@@ -219,10 +218,7 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
 				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
 				Codec.either(Enchantment.CODEC, ResourceKey.codec(Registries.ENCHANTMENT)).fieldOf("enchantment").forGetter(c -> c.either),
-				Codec.INT.fieldOf("level_cap").forGetter(recipe -> recipe.levelCap),
-				Ingredient.CODEC_NONEMPTY.fieldOf("bulk_item").forGetter(recipe -> recipe.bulkItem),
-				RecipeScaling.CODEC.fieldOf("xp_scaling").forGetter(recipe -> recipe.XPScaling),
-				RecipeScaling.CODEC.fieldOf("item_scaling").forGetter(recipe -> recipe.itemScaling)
+				LevelData.CODEC.listOf().fieldOf("levels").forGetter(recipe -> recipe.levelData)
 		).apply(i, EnchantmentUpgradeRecipe::new));
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, EnchantmentUpgradeRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
@@ -230,10 +226,7 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe<RecipeInput> {
 				ByteBufCodecs.BOOL, recipe -> recipe.secret,
 				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
 				ByteBufCodecs.either(Enchantment.STREAM_CODEC, ResourceKey.streamCodec(Registries.ENCHANTMENT)), c -> c.either,
-				ByteBufCodecs.VAR_INT, recipe -> recipe.levelCap,
-				Ingredient.CONTENTS_STREAM_CODEC, recipe -> recipe.bulkItem,
-				RecipeScaling.PACKET_CODEC, recipe -> recipe.XPScaling,
-				RecipeScaling.PACKET_CODEC, recipe -> recipe.itemScaling,
+				LevelData.STREAM_CODEC.apply(ByteBufCodecs.collection(NonNullList::createWithCapacity)), recipe -> recipe.levelData,
 				EnchantmentUpgradeRecipe::new
 		);
 		

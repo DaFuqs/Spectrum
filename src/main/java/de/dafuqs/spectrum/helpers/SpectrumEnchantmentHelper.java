@@ -214,4 +214,12 @@ public class SpectrumEnchantmentHelper {
 		}
 	}
 	
+	public static ItemStack getEnchantedBookStackWith(Holder<Enchantment> enchant, int level) {
+		var enchStack = new ItemStack(Items.ENCHANTED_BOOK);
+		var builder = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+		builder.set(enchant, level);
+		enchStack.set(DataComponents.STORED_ENCHANTMENTS, builder.toImmutable());
+		return enchStack;
+	}
+	
 }

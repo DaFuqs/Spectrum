@@ -9,13 +9,17 @@ import me.shedaniel.rei.impl.client.util.*;
 import java.util.*;
 import java.util.function.*;
 
-public class IndexedEntryWidget extends EntryWidget {
+public class OffsetEntryWidget extends EntryWidget {
 	
+	List<EntryIngredient> inputs;
 	private final Supplier<Integer> indexer;
+	int prevIndex = -1;
 	
-	public IndexedEntryWidget(Point point, Supplier<Integer> indexer) {
+	public OffsetEntryWidget(Point point, List<EntryIngredient> inputs, Supplier<Integer> indexer) {
 		super(point);
+		this.inputs = inputs;
 		this.indexer = indexer;
+		entries(inputs.getFirst());
 	}
 	
 	@Override
@@ -30,6 +34,10 @@ public class IndexedEntryWidget extends EntryWidget {
 	
 	@Override
 	public EntryStack<?> getCurrentEntry() {
-		return getCyclingEntries().get().get(indexer.get());
+		int i = indexer.get();
+		if(i != prevIndex) {
+			entries(inputs.get(i));
+		}
+		return getCyclingEntries().get().get(i);
 	}
 }

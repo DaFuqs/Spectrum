@@ -76,6 +76,14 @@ public class IngredientStack implements ICustomIngredient {
 		return new IngredientStack(ingredient);
 	}
 	
+	public static IngredientStack of(ItemStack stack) {
+		return new IngredientStack(Ingredient.of(stack));
+	}
+	
+	public static IngredientStack of(Ingredient ingredient, int count) {
+		return new IngredientStack(ingredient, DataComponentPredicate.EMPTY, DataComponentPatch.EMPTY, count);
+	}
+	
 	public static IngredientStack ofItems(Item item) {
 		return new IngredientStack(Ingredient.of(item));
 	}

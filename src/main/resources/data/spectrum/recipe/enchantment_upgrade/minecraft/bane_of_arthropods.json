@@ -1,16 +1,42 @@
 {
   "type": "spectrum:enchantment_upgrade",
+  "group": "vanilla_enchantment_upgrades",
+  "enchantment": "minecraft:bane_of_arthropods",
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:black_pigment"
+      },
+      "ingredient_count_per_bowl": 1,
+      "experience": 100
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:black_pigment"
+      },
+      "ingredient_count_per_bowl": 2,
+      "experience": 200
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:black_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 400
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
+
+
+
   "bulk_item": {
     "item": "spectrum:black_pigment"
   },
-  "enchantment": "minecraft:bane_of_arthropods",
-  "group": "vanilla_enchantment_upgrades",
   "item_scaling": {
     "type": "spectrum:doubling",
     "scaling_value": 8
   },
   "level_cap": 8,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
   "xp_scaling": {
     "type": "spectrum:doubling",
     "scaling_value": 100

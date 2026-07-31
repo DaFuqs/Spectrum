@@ -752,49 +752,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.LARGE_AZURITE_BUD);
 					entries.accept(SpectrumBlocks.AZURITE_CLUSTER);
 					entries.accept(SpectrumItems.PURE_AZURITE);
-					
-					if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.AE2_ID)) {
-						entries.accept(AE2Compat.PURE_CERTUS_QUARTZ);
-						entries.accept(AE2Compat.SMALL_CERTUS_QUARTZ_BUD);
-						entries.accept(AE2Compat.LARGE_CERTUS_QUARTZ_BUD);
-						entries.accept(AE2Compat.CERTUS_QUARTZ_CLUSTER);
-						entries.accept(AE2Compat.PURE_CERTUS_QUARTZ_BLOCK);
-						
-						entries.accept(AE2Compat.PURE_FLUIX);
-						entries.accept(AE2Compat.SMALL_FLUIX_BUD);
-						entries.accept(AE2Compat.LARGE_FLUIX_BUD);
-						entries.accept(AE2Compat.FLUIX_CLUSTER);
-						entries.accept(AE2Compat.PURE_FLUIX_BLOCK);
-					}
-					
-					if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.CREATE_ID)) {
-						entries.accept(CreateCompat.PURE_ZINC);
-						entries.accept(CreateCompat.SMALL_ZINC_BUD);
-						entries.accept(CreateCompat.LARGE_ZINC_BUD);
-						entries.accept(CreateCompat.ZINC_CLUSTER);
-						entries.accept(CreateCompat.PURE_ZINC_BLOCK);
-					}
-					
-					if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.GOBBER_ID)) {
-						entries.accept(GobberCompat.PURE_GLOBETTE);
-						entries.accept(GobberCompat.SMALL_GLOBETTE_BUD);
-						entries.accept(GobberCompat.LARGE_GLOBETTE_BUD);
-						entries.accept(GobberCompat.GLOBETTE_CLUSTER);
-						entries.accept(GobberCompat.PURE_GLOBETTE_BLOCK);
-						
-						entries.accept(GobberCompat.PURE_GLOBETTE_NETHER);
-						entries.accept(GobberCompat.SMALL_GLOBETTE_NETHER_BUD);
-						entries.accept(GobberCompat.LARGE_GLOBETTE_NETHER_BUD);
-						entries.accept(GobberCompat.GLOBETTE_NETHER_CLUSTER);
-						entries.accept(GobberCompat.PURE_GLOBETTE_NETHER_BLOCK);
-						
-						entries.accept(GobberCompat.PURE_GLOBETTE_END);
-						entries.accept(GobberCompat.SMALL_GLOBETTE_END_BUD);
-						entries.accept(GobberCompat.LARGE_GLOBETTE_END_BUD);
-						entries.accept(GobberCompat.GLOBETTE_END_CLUSTER);
-						entries.accept(GobberCompat.PURE_GLOBETTE_END_BLOCK);
-					}
-					
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_BLOCKS, Component.translatable("itemGroup.spectrum.blocks"))

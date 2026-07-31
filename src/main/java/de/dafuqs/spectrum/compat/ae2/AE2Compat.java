@@ -1,18 +1,23 @@
 package de.dafuqs.spectrum.compat.ae2;
 
+import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.SpectrumItems.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.renderer.*;
+import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.event.lifecycle.*;
+import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.registries.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
@@ -34,7 +39,7 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	@Override
 	public void register(IEventBus modBus) {
-	
+		NeoForge.EVENT_BUS.addListener(CreateCompat::addItemsToSubTabs);
 	}
 	
 	@Override
@@ -45,6 +50,25 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		ItemBlockRenderTypes.setRenderLayer(SMALL_FLUIX_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(LARGE_FLUIX_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(FLUIX_CLUSTER.get(), RenderType.cutout());
+	}
+	
+	@SubscribeEvent
+	public static void addItemsToSubTabs(CreativeSubTabEvent event) {
+		ResourceLocation subGroupId = event.subGroup().getIdentifier();
+		
+		if (subGroupId.equals(ItemGroupIDs.SUBTAB_PURE_RESOURCES)) {
+			event.getItemDisplayBuilder().accept(PURE_CERTUS_QUARTZ);
+			event.getItemDisplayBuilder().accept(SMALL_CERTUS_QUARTZ_BUD);
+			event.getItemDisplayBuilder().accept(LARGE_CERTUS_QUARTZ_BUD);
+			event.getItemDisplayBuilder().accept(CERTUS_QUARTZ_CLUSTER);
+			event.getItemDisplayBuilder().accept(PURE_CERTUS_QUARTZ_BLOCK);
+			
+			event.getItemDisplayBuilder().accept(PURE_FLUIX);
+			event.getItemDisplayBuilder().accept(SMALL_FLUIX_BUD);
+			event.getItemDisplayBuilder().accept(LARGE_FLUIX_BUD);
+			event.getItemDisplayBuilder().accept(FLUIX_CLUSTER);
+			event.getItemDisplayBuilder().accept(PURE_FLUIX_BLOCK);
+		}
 	}
 	
 }

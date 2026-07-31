@@ -3231,6 +3231,10 @@
   "config.spectrum.nightfalls_blade_mining_speed": "夜幕之刃挖掘速度",
   "config.spectrum.nightfalls_blade_attack_damage": "夜幕之刃攻击伤害",
   "config.spectrum.nightfalls_blade_enchantability": "夜幕之刃附魔能力",
+  "config.spectrum.dragonrot_dripstone_drip_chance": "龙腐脓浆钟乳石滴落概率",
+  "config.spectrum.liquid_crystal_dripstone_drip_chance": "液体水晶钟乳石滴落概率",
+  "config.spectrum.midnight_solution_dripstone_drip_chance": "午夜溶液钟乳石滴落概率",
+  "config.spectrum.sludge_dripstone_drip_chance": "泥浆钟乳石滴落概率",
 
   "item.spectrum.least_black_lotus": "淡黑莲花",
   "item.spectrum.least_black_lotus.tooltip": "是不是洗掉色了?",
@@ -3925,7 +3929,7 @@
   "book.spectrum.guidebook.pastel_upgrades.enhancing.text": "所有能提供物品的节点都有两个升级环槽。右键可安装升级，潜行右键可取下。同类升级可以叠加，但通常不是线性叠加。\\\n\\\n升级效果永远作用于**源节点**。",
   "book.spectrum.guidebook.pastel_upgrades.transfer.name": "传输升级",
   "book.spectrum.guidebook.pastel_upgrades.transfer.raw_malachite.text": "略微缩短[#](449900)传输时间[#]()。\\\n\\\n*延迟有时会成为一个问题。*",
-  "book.spectrum.guidebook.pastel_upgrades.transfer.pure_malachite.text": "大幅缩短[#](449900)传输时间[#]()。\\\n\\\n*传输时间？听都没听过。*",
+  "book.spectrum.guidebook.pastel_upgrades.transfer.pure_malachite.text": "大幅缩短[#](449900)传输时间[#]()。\\\n\\\n*传输时间?听都没听过。*",
   "book.spectrum.guidebook.pastel_upgrades.transfer.raw_azurite.text": "+1行[#](449900)过滤槽位[#]()。\\\n[收集节点](entry://pastel_network/gather_node)获得双倍槽位。\\\n\\\n*过滤?真不熟*",
   "book.spectrum.guidebook.pastel_upgrades.transfer.pure_azurite.text": "+2行[#](449900)过滤槽位[#]()。\\\n[收集节点](entry://pastel_network/gather_node)获得双倍槽位。\\\n\\\n*...多点也没什么不好。*",
   "book.spectrum.guidebook.pastel_upgrades.transfer.raw_bloodstone.text": "增加每批传输的[#](449900)物品数量[#]()。\\\n\\\n*囤囤鼠都没我囤的多吧?*",
@@ -3976,7 +3980,7 @@
   "book.spectrum.guidebook.creature_manipulation.axolotls.text": "适用于所有颜色的美西螈。",
   "book.spectrum.guidebook.creature_manipulation.parrots.text": "适用于所有颜色的鹦鹉。",
   "book.spectrum.guidebook.creature_manipulation.shulkers.text": "适用于所有颜色的潜影贝。",
-  "book.spectrum.guidebook.creature_manipulation.page0.text": "我这套\"创造生命\"的理论至今成果好坏参半。但我渐渐有了信心，相信自己一定能*做成点什么*。\\\n\\\n凭空创造生命固然艰难，但是结合现有的知识呢?\\\n\\\n弗兰肯斯坦当初也是这种感觉吗？ *这符不符合伦理?我不确定，但我非常愿意尝试。*",
+  "book.spectrum.guidebook.creature_manipulation.page0.text": "我这套\"创造生命\"的理论至今成果好坏参半。但我渐渐有了信心，相信自己一定能*做成点什么*。\\\n\\\n凭空创造生命固然艰难，但是结合现有的知识呢?\\\n\\\n弗兰肯斯坦当初也是这种感觉吗? *这符不符合伦理?我不确定，但我非常愿意尝试。*",
 
   "book.spectrum.guidebook.crescent_clock.page0.text": "这座由时光见证者铸就的时钟，将指引我穿梭于无尽的开端与终末之间——月相更迭。\\\n\\\n\\\n\\\n*倘若我们这些暗影曾有所冒犯，只需知晓这一点，一切便都能得到宽恕。*",
   "book.spectrum.guidebook.crescent_clock.page1.text": "*当这些幻象浮现之时，你不过是在此处沉睡。\\\n而这脆弱虚无的故事，也不过是一场幻梦罢了。*",
@@ -4032,7 +4036,7 @@
   "book.spectrum.guidebook.deep_dripstone_caves.page1.text": "从钟乳石的规模来看，这些洞穴想必创世之初便已经存在了。\\\n我很好奇这里的巨型钟乳石究竟能长到多大。我已经见过绵延数百格的了。\\\n地面上满是[#](bb00bb)水坑[#]()。",
 
   "book.spectrum.guidebook.delving_deeper_down.name": "深入探究",
-  "book.spectrum.guidebook.delving_deeper_down.page0.text": "我从未想过这是可能的。当我一路向下，穿透基岩深处时，一扇漆黑的传送门缓缓向我展开。它会通往何方？唯有亲自前行，才能知晓答案。\\\n\\\n*只是每当我向下望去，心头总会涌起一阵莫名的沉重...*",
+  "book.spectrum.guidebook.delving_deeper_down.page0.text": "我从未想过这是可能的。当我一路向下，穿透基岩深处时，一扇漆黑的传送门缓缓向我展开。它会通往何方?唯有亲自前行，才能知晓答案。\\\n\\\n*只是每当我向下望去，心头总会涌起一阵莫名的沉重...*",
   "book.spectrum.guidebook.delving_deeper_down.page1.title": "深域",
   "book.spectrum.guidebook.delving_deeper_down.page1.text": "一个万古以来从未见过一丝阳光的地方。一个永无白昼、被永恒黑暗笼罩的领域。\\\n\\\n在那深渊之下，究竟有什么在等着我去发现?",
 
@@ -4200,6 +4204,8 @@
   "book.spectrum.guidebook.foundry.page0.text": "我还记得刚来到这个世界时，我费力地从石头里敲出煤炭来熔炼矿石。但那些日子已经成为过去了——看看现在，未来如期而至啦，老滑头。\\\n\\\n当然，这是有代价的: 这种方式烧炼的矿石是没有经验的。",
   "book.spectrum.guidebook.foundry.page1.text": "自动熔炼挖掉的方块。用在[#](bb00bb)钓鱼竿[#]()上时，会点燃鱼钩。\\\n\\\n最大等级: 1\\\n适用于采掘工具和[#](bb00bb)光谱世界的钓鱼竿[#]()。\\\n与精准采集互斥。",
 
+  "book.spectrum.guidebook.undergrowth_manor.pyrite_projector.text": "虽说我几乎完美复刻出了这种装置，至少外观看不出差别，但我完全搞不懂该怎么启动它们。这些东西到底有什么用途...?",
+
   "book.spectrum.guidebook.freigeist.page0.text": "当第一滴液体触碰到我的嘴唇时，它就已经让我的身体充满了无穷的力量。光是回忆起来，就让我的手再次因紧绷而*颤抖*。这感觉可不好。\\\n但在那一刻，这样强大又充满活力的力量可是我此前未曾拥有的。\\\n\\\n真的值得把这瓶东西用光吗?所谓福祸相依，如果我一旦出现意外，那么死亡的代价肯定是非常大的。",
   "book.spectrum.guidebook.freigeist.page1.text": "*抚慰他吧，\\\n 你那从未停滞的心雨，\\\n是雪白色悲哀的眼泪。\\\n 抚慰他吧，\\\n 那隐藏的不朽之花，\\\n在那片黎明的土地。*",
 
@@ -4349,7 +4355,7 @@
   "book.spectrum.guidebook.ideas.a_new_ore": "关于一种新矿物",
   "book.spectrum.guidebook.ideas.a_new_resource": "关于一种新资源",
   "book.spectrum.guidebook.ideas.amethyst.page0.text": "紫水晶晶洞通常能在地下找到",
-  "book.spectrum.guidebook.ideas.azurite.page0.text": "在基岩上方的区域里，我注意到了一束束醒目的蓝色光线。不知道是什么东西造成的。",
+  "book.spectrum.guidebook.ideas.azurite.page0.text": "在熔岩层周围的一些地方，我注意到了一束束醒目的蓝色光线。不知道是什么东西造成的。",
   "book.spectrum.guidebook.ideas.azurite.page1.text": "这些光环还伴随着轻微的嗡嗡声，似乎是由富含蓝色矿石的巨大矿床造成的！ 它被埋藏在岩石中，数量稀少，但规模巨大。",
   "book.spectrum.guidebook.ideas.citrine.page0.text": "我在环游世界的时候，见过一些晶洞就贴在地表附近——大多数是在海岸或峡谷附近。",
   "book.spectrum.guidebook.ideas.clover.page0.text": "我曾经在平原看到过一些常见的植物！以前运气一直不怎么样，不知道现在会不会不一样?",
@@ -5237,7 +5243,7 @@
   "book.spectrum.guidebook.ring_of_pursuit.page0.text": "挖矿就是我的本命。\\\n直到现在我才想到，不仅要升级我的工具，还要升级整体挖矿效率。这枚戒指甚至会随着我的能力而一起成长，简直是个奇迹。",
   "book.spectrum.guidebook.ring_of_pursuit.page1.text": "可以在[拾色器](entry://ink/color_picker)中注入[品红色墨水](entry://ink/ink)提升挖掘速度。",
 
-  "book.spectrum.guidebook.rock_candy.about.text": "把[糖](item://minecraft:sugar)（正好要4份）放进[液态水晶](entry://general/liquid_crystal)里化开，再插一根[木棍](item://minecraft:stick)，过一会儿木棍就会裹上香甜酥脆的**冰糖**！\\\n\\\n说不定还能加点别的材料？毕竟这可是液态*水晶*，应该能玩出更多花样...",
+  "book.spectrum.guidebook.rock_candy.about.text": "把[糖](item://minecraft:sugar)（正好要4份）放进[液态水晶](entry://general/liquid_crystal)里化开，再插一根[木棍](item://minecraft:stick)，过一会儿木棍就会裹上香甜酥脆的**冰糖**！\\\n\\\n说不定还能加点别的材料?毕竟这可是液态*水晶*，应该能玩出更多花样...",
   "book.spectrum.guidebook.rock_candy.growing.text": "小提示:只吃脆脆的糖衣就行，千万*别*啃木棍！信我，我试过，巨难吃。",
   "book.spectrum.guidebook.rock_candy.growing.title": "冰糖结晶",
   "book.spectrum.guidebook.gemstone_rock_candy.name": "宝石晶糖",
@@ -5357,7 +5363,7 @@
   "book.spectrum.guidebook.star_candy.recipe.text": "我在想，能不能烤出效果更强、样子更炫的星糖呢。",
   "book.spectrum.guidebook.star_candy_variants.variants.text": "今天才发现，合着天上还藏着个糖果厂啊，愣是没人告诉我。\\\n为什么宇宙突然跟我玩稀有度这套?太不讲理了。\\\n\\\n...不过话说回来，开出好东西的时候，是真的爽。",
   "book.spectrum.guidebook.star_candy_variants.magnificent.text": "这就是那种超稀有的款。那种\"我去这玩意儿居然真的存在\"的款。那种\"不知道该吃还是该供起来\"的款。 伪装成零食的奇迹。\\\n\\\n*我可以吃了它*。\\\n*我也可以把它供着*。",
-  "book.spectrum.guidebook.star_candy_variants.sugary.text": "今天属实是手黑了，对吧？就跟抽奖直接抽到保底一样。\\\n一颗平平无奇的小星星，吃着就跟普通白糖一个味，营养价值也基本为零。\\\n\\\n*这世界里有糖尿病这说法不?帮朋友问问*",
+  "book.spectrum.guidebook.star_candy_variants.sugary.text": "今天属实是手黑了，对吧?就跟抽奖直接抽到保底一样。\\\n一颗平平无奇的小星星，吃着就跟普通白糖一个味，营养价值也基本为零。\\\n\\\n*这世界里有糖尿病这说法不?帮朋友问问*",
   "book.spectrum.guidebook.star_candy_variants.name": "稀有款",
 
   "book.spectrum.guidebook.stargazing.name": "凝望星空",
@@ -5407,7 +5413,7 @@
 
   "book.spectrum.guidebook.titration_barrel.page0.text": "用[彩色木材](entry://general/colored_trees@colored_wood)来发酵[食物](entry://cuisine/titration_barrel@kimchi)和[饮品](entry://cuisine/infused_beverages)，这个想法并不难想到。\\\n随着时间的推移，木材的特性会渗入其中。结果就是有时更美味，有时像黑暗料理（虽然也可能是我厨艺问题），但结果总是很有趣。\\\n\\\n桶内最多可容纳一组物品和一桶液体。",
   "book.spectrum.guidebook.titration_barrel.page1.text": "*有时候我眨个眼，世界都像静止了一样? 每次眨眼，木桶的发酵进度好像都在推进。*",
-  "book.spectrum.guidebook.titration_barrel.page2.text": "发酵可不只是用来做饮品！ 泡菜由两种不同的蔬菜制成，是一道丰盛的配菜。",
+  "book.spectrum.guidebook.titration_barrel.page2.text": "发酵可不只是用来做饮品！ 泡菜由三种不同的蔬菜制成，是一道丰盛的配菜。",
   "book.spectrum.guidebook.titration_barrel.page3.text": "需要一点时间，但比直接把原料丢在一起更高效。",
   "book.spectrum.guidebook.titration_barrel.page4.text": "经过轻微发酵，仍然保留[牛奶](item://minecraft:milk_bucket)的特性。食用后会祛除当前所有状态效果。",
   "book.spectrum.guidebook.titration_barrel.page5.text": "很棒的零食。咬下一小块很快就吃完了，甚至饱腹感很强。\\\n香甜可口，果香浓郁。",
@@ -5788,7 +5794,7 @@
   "book.spectrum.guidebook.mod_integration.spelunkery.name": "Spelunkery",
   "book.spectrum.guidebook.mod_integration.spelunkery.page0.text": "我这双探洞老眼，好像看到什么在那里闪闪发光?\\\n\\\n是个没见过的新鲜玩意儿！\\\n\\\n我太爱宝贝了！",
   "book.spectrum.guidebook.mod_integration.spelunkery.black_materia_sluice.title": "洗去你的失误",
-  "book.spectrum.guidebook.mod_integration.spelunkery.black_materia_sluice.text": "失败的实验搞出了这么个... *怪东西*。闻着就不对劲，透着一股邪气，但...说不定能从里面筛出点啥?\\\n\\\n蜘蛛。全是蜘蛛，蜘蛛，还是蜘蛛，我恨死它们了，我恨！我恨！我恨...\\\n肯定还有别的办法。或许我可以用它来*过滤*别的东西？某种和它性质相近的东西...",
+  "book.spectrum.guidebook.mod_integration.spelunkery.black_materia_sluice.text": "失败的实验搞出了这么个... *怪东西*。闻着就不对劲，透着一股邪气，但...说不定能从里面筛出点啥?\\\n\\\n蜘蛛。全是蜘蛛，蜘蛛，还是蜘蛛，我恨死它们了，我恨！我恨！我恨...\\\n肯定还有别的办法。或许我可以用它来*过滤*别的东西?某种和它性质相近的东西...",
   "book.spectrum.guidebook.mod_integration.supplementaries.name": "锦致装饰",
   "book.spectrum.guidebook.mod_integration.supplementaries.page0.text": "锦致装饰与七彩世界的交织",
   "book.spectrum.guidebook.mod_integration.supplementaries.page1.text": "*至少比等待商人好多了*",
@@ -6075,7 +6081,7 @@
   "advancements.spectrum.build_spirit_instiller_structure.description": "建造灵魂灌注台",
   "advancements.spectrum.manifest_memory.title": "再度归来",
   "advancements.spectrum.manifest_memory.description": "创造并显现一个记忆",
-  "advancements.spectrum.craft_blacklisted_memory_fail.title": "再一次？",
+  "advancements.spectrum.craft_blacklisted_memory_fail.title": "再一次?",
   "advancements.spectrum.craft_blacklisted_memory_fail.description": "尝试唤醒过于强大、无法复活的生物记忆...并成功失败",
   "advancements.spectrum.craft_blacklisted_memory_success.title": "再一次！",
   "advancements.spectrum.craft_blacklisted_memory_success.description": "成功唤醒强大生物的记忆。你越来越熟练了，不是吗?",
@@ -6285,7 +6291,7 @@
   "advancements.spectrum.use_decay_away_on_sculk.title": "深暗净化",
   "advancements.spectrum.use_decay_away_on_sculk.description": "看起来幽匿方块也完全符合自我复制生物的定义",
   "advancements.spectrum.collect_one_cookbook.title": "他人的怀旧",
-  "advancements.spectrum.collect_one_cookbook.description": "这些东西得有多古老？作者肯定早已不在人世了",
+  "advancements.spectrum.collect_one_cookbook.description": "这些东西得有多古老?作者肯定早已不在人世了",
   "advancements.spectrum.collect_all_cookbooks.title": "又一曲安魂挽歌",
   "advancements.spectrum.collect_all_cookbooks.description": "凝视这小小的收藏，便是凝视逝去文明的鲜活过往。提醒着你，他们曾真实存在",
   "advancements.spectrum.eat_each_cookbook_heavy_meal.title": "深域美食家",
@@ -6450,7 +6456,7 @@
   "advancements.spectrum.defeat_paintlich.description": "与一位年长的名人进行一场轻松的辩论并取胜",
 
   "book.spectrum.guidebook.mysterious_locket.page4.title": "挂坠中的秘密",
-  "book.spectrum.guidebook.mysterious_locket.page4.text": "里面还夹着一张小纸条……它会是谁留下的呢？",
+  "book.spectrum.guidebook.mysterious_locket.page4.text": "里面还夹着一张小纸条……它会是谁留下的呢?",
   "book.spectrum.guidebook.mysterious_locket.page5.title": "无名字条",
   "book.spectrum.guidebook.mysterious_locket.page5.text": "现在我已经通晓德雷顿语，背面的铭文很容易就能解读：\n\n“别傻了，阿斯忒拉斯——月亮不会发光，它只是反射太阳的光芒。”"
 

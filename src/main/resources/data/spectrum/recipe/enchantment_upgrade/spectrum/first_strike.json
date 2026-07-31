@@ -2,34 +2,34 @@
   "type": "spectrum:enchantment_upgrade",
   "enchantment": "spectrum:first_strike",
   "levels": [
-  {
-    "ingredient": {
-      "item": "spectrum:pink_pigment"
+    {
+      "ingredient": {
+        "item": "spectrum:pink_pigment"
+      },
+      "ingredient_count_per_bowl": 2,
+      "experience": 400
     },
-    "ingredient_count_per_bowl": 2,
-    "experience": 400
-  },
-  {
-    "ingredient": {
-      "item": "spectrum:pink_pigment"
+    {
+      "ingredient": {
+        "item": "spectrum:pink_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 800
     },
-    "ingredient_count_per_bowl": 4,
-    "experience": 800
-  },
-  {
-    "ingredient": {
-      "item": "spectrum:pink_pigment"
+    {
+      "ingredient": {
+        "item": "spectrum:pink_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 1600
     },
-    "ingredient_count_per_bowl": 8,
-    "experience": 1600
-  },
-  {
-    "ingredient": {
-      "item": "spectrum:pink_pigment"
-    },
-    "ingredient_count_per_bowl": 16,
-    "experience": 3200
-  }
-],
+    {
+      "ingredient": {
+        "item": "spectrum:pink_pigment"
+      },
+      "ingredient_count_per_bowl": 16,
+      "experience": 3200
+    }
+  ],
   "required_advancement": "spectrum:unlocks/enchantments/first_strike"
 }

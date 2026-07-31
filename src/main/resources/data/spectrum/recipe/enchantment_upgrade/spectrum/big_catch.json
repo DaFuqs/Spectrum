@@ -8,7 +8,7 @@
       },
       "ingredient_count_per_bowl": 2,
       "experience": 400
-  },
+    },
     {
       "ingredient": {
         "item": "spectrum:light_blue_pigment"

@@ -1,7 +1,11 @@
 {
   "type": "minecraft:smelting",
   "group": "coal",
-  "ingredient": [{"item": "spectrum:blackslag_coal_ore"}],
+  "ingredient": [
+    {
+      "item": "spectrum:blackslag_coal_ore"
+    }
+  ],
   "result": {
     "id": "minecraft:coal"
   },

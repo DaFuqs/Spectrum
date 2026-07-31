@@ -9,7 +9,7 @@
       "id": "spectrum:pure_emerald"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "consume_chance_per_second": 0.04,
       "growth_acceleration_mod": 4.0,

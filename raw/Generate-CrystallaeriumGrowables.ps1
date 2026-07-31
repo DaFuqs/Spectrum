@@ -478,7 +478,7 @@ foreach($entry in $entries.GetEnumerator()) {
       "id": "spectrum:pure_$name"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "consume_chance_per_second": x.x,
       "growth_acceleration_mod": x.x,

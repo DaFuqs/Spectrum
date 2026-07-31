@@ -20,7 +20,6 @@ import net.minecraft.world.level.*;
 import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.client.textures.*;
 import net.neoforged.neoforge.fluids.*;
-import javax.annotation.*;
 
 
 public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEntity> implements BlockEntityRenderer<T> {
@@ -77,7 +76,7 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 			
 		}
 		
-		ItemStack catalystStack = crystal.getItem(CrystallarieumBlockEntity.CATALYST_SLOT_ID);
+		ItemStack catalystStack = crystal.getItem(CrystallarieumBlockEntity.ADDITIVE_SLOT_ID);
 		if (catalystStack.isEmpty())
 			return;
 		

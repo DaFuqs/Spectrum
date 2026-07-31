@@ -9,7 +9,7 @@
       "id": "spectrum:pure_bloodstone"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "consume_chance_per_second": 0.05,
       "growth_acceleration_mod": 7.5,

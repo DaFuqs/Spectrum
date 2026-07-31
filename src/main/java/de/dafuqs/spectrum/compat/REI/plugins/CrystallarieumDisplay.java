@@ -12,16 +12,15 @@ import net.minecraft.client.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
 
 import java.util.*;
 
 public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	
 	protected final List<EntryIngredient> growthStages;
-	protected final List<CrystallarieumCatalyst> catalysts;
+	protected final List<CrystallarieumAdditive> additives;
 	protected final InkColor inkColor;
-	protected final boolean growsWithoutCatalyst;
+	protected final boolean growsWithoutAdditive;
 	protected final int secondsPerStage;
 	
 	public CrystallarieumDisplay(RecipeHolder<CrystallarieumRecipe> recipe) {
@@ -31,9 +30,9 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 		for (BlockState state : recipe.value().getGrowthStages()) {
 			growthStages.add(EntryIngredients.of(state.getBlock().asItem()));
 		}
-		this.catalysts = recipe.value().getCatalysts();
+		this.additives = recipe.value().getAdditives();
 		this.inkColor = recipe.value().getInkColor();
-		this.growsWithoutCatalyst = recipe.value().growsWithoutCatalyst();
+		this.growsWithoutAdditive = recipe.value().growsWithoutAdditive();
 		this.secondsPerStage = recipe.value().getSecondsPerGrowthStage();
 	}
 	

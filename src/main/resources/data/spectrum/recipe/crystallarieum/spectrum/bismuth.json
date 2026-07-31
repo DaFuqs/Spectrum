@@ -9,7 +9,7 @@
       "id": "spectrum:bismuth_crystal"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "consume_chance_per_second": 0.2,
       "growth_acceleration_mod": 8.0,

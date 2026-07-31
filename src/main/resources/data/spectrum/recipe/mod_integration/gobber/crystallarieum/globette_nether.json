@@ -15,7 +15,7 @@
       "id": "spectrum:pure_globette_nether"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "ingredient": {
         "item": "gobber2:gobber2_foo"

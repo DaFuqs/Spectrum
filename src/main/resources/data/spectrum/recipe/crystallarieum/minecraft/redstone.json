@@ -9,7 +9,7 @@
       "id": "spectrum:pure_redstone"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "consume_chance_per_second": 0.01,
       "growth_acceleration_mod": 8.0,

@@ -15,7 +15,7 @@
       "id": "spectrum:pure_globette_end"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "ingredient": {
         "item": "gobber2:gobber2_foo"

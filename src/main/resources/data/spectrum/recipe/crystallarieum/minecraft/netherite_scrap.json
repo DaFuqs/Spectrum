@@ -9,7 +9,7 @@
       "id": "spectrum:pure_netherite_scrap"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "consume_chance_per_second": 0.02,
       "growth_acceleration_mod": 1.5,

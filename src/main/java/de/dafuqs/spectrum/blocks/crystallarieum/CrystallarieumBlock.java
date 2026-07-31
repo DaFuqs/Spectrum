@@ -5,8 +5,6 @@ import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.fusion_shrine.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -112,7 +110,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 							crystallarieumBlockEntity.setOwner(player);
 						}
 					} else {
-						if (exchangeStack(world, pos, player, hand, stack, crystallarieumBlockEntity, CrystallarieumBlockEntity.CATALYST_SLOT_ID)) {
+						if (exchangeStack(world, pos, player, hand, stack, crystallarieumBlockEntity, CrystallarieumBlockEntity.ADDITIVE_SLOT_ID)) {
 							crystallarieumBlockEntity.setOwner(player);
 						}
 					}

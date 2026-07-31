@@ -6,7 +6,7 @@
   "ink_color": "spectrum:orange",
   "ink_cost_tier": 3,
   "seconds_per_growth_stage": 60,
-  "fluid_medium": {
+  "fluid": {
     "fluid": "minecraft:lava"
   },
   "additional_recipe_manager_results": [

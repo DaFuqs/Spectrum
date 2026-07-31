@@ -463,7 +463,7 @@ foreach($entry in $entries.GetEnumerator()) {
     New-Item -Path ".\crystallarieum\$name`.json" -ItemType File -Force -Value @"
 {
   "type": "spectrum:crystallarieum_growing",
-  "fluid_medium": {
+  "fluid": {
     "fluid": "$Fluid"
   },
   "ingredient": {

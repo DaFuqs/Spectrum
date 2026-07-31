@@ -1,6 +1,6 @@
 {
   "type": "spectrum:crystallarieum_growing",
-  "fluid_medium": {
+  "fluid": {
     "fluid": "minecraft:lava"
   },
   "additional_recipe_manager_results": [

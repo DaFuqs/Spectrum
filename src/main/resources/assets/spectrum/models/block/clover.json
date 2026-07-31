@@ -1,138 +1,45 @@
 {
-  "parent": "minecraft:block/block",
-  "credit": "Made with Blockbench",
-  "textures": {
-    "0": "spectrum:block/clover",
-    "particle": "spectrum:block/clover"
-  },
-  "elements": [
-    {
-      "from": [
-        2,
-        1,
-        2
-      ],
-      "to": [
-        15,
-        1,
-        14
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            0,
-            0,
-            12,
-            1
-          ],
-          "tintindex": 0,
-          "texture": "#0"
-        },
-        "east": {
-          "uv": [
-            0,
-            0,
-            12,
-            1
-          ],
-          "tintindex": 0,
-          "texture": "#0"
-        },
-        "south": {
-          "uv": [
-            0,
-            0,
-            12,
-            1
-          ],
-          "tintindex": 0,
-          "texture": "#0"
-        },
-        "west": {
-          "uv": [
-            0,
-            0,
-            12,
-            1
-          ],
-          "tintindex": 0,
-          "texture": "#0"
-        },
-        "up": {
-          "uv": [
-            1,
-            1,
-            14,
-            14
-          ],
-          "tintindex": 0,
-          "texture": "#0"
-        },
-        "down": {
-          "uv": [
-            1,
-            1,
-            14,
-            14
-          ],
-          "tintindex": 0,
-          "texture": "#0"
-        }
-      }
-    },
-    {
-      "from": [
-        8,
-        0,
-        8
-      ],
-      "to": [
-        9,
-        1,
-        9
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            6,
-            7,
-            7,
-            8
-          ],
-          "tintindex": 0,
-          "texture": "#0"
-        },
-        "east": {
-          "uv": [
-            6,
-            7,
-            7,
-            8
-          ],
-          "tintindex": 0,
-          "texture": "#0"
-        },
-        "south": {
-          "uv": [
-            8,
-            5,
-            9,
-            6
-          ],
-          "tintindex": 0,
-          "texture": "#0"
-        },
-        "west": {
-          "uv": [
-            5,
-            7,
-            6,
-            8
-          ],
-          "tintindex": 0,
-          "texture": "#0"
-        }
-      }
-    }
-  ]
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"textures": {
+		"0": "spectrum:block/clover",
+		"particle": "spectrum:block/clover"
+	},
+	"elements": [
+		{
+			"from": [2, 1, 2],
+			"to": [15, 1, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 12, 1], "texture": "#0", "tintindex": 0},
+				"east": {"uv": [0, 0, 12, 1], "texture": "#0", "tintindex": 0},
+				"south": {"uv": [0, 0, 12, 1], "texture": "#0", "tintindex": 0},
+				"west": {"uv": [0, 0, 12, 1], "texture": "#0", "tintindex": 0},
+				"up": {"uv": [1, 1, 14, 14], "texture": "#0", "tintindex": 0},
+				"down": {"uv": [1, 1, 14, 14], "texture": "#0", "tintindex": 0}
+			}
+		},
+		{
+			"from": [8.5, 0, 8],
+			"to": [9.5, 1, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [9, 0.5, 8]},
+			"faces": {
+				"north": {"uv": [6, 7, 7, 8], "texture": "#0", "tintindex": 0},
+				"east": {"uv": [6, 7, 7, 8], "texture": "#0", "tintindex": 0},
+				"south": {"uv": [8, 5, 9, 6], "texture": "#0", "tintindex": 0},
+				"west": {"uv": [5, 7, 6, 8], "texture": "#0", "tintindex": 0}
+			}
+		},
+		{
+			"from": [8.5, 0, 8],
+			"to": [9.5, 1, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [9, 0.5, 8]},
+			"faces": {
+				"north": {"uv": [6, 7, 7, 8], "texture": "#0", "tintindex": 0},
+				"east": {"uv": [6, 7, 7, 8], "texture": "#0", "tintindex": 0},
+				"south": {"uv": [8, 5, 9, 6], "texture": "#0", "tintindex": 0},
+				"west": {"uv": [5, 7, 6, 8], "texture": "#0", "tintindex": 0}
+			}
+		}
+	]
 }

@@ -1,20 +1,21 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:light_blue_pigment"
-  },
   "enchantment": "spectrum:big_catch",
-  "item_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      32,
-      128
-    ]
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 2,
+      "experience": 400
   },
-  "level_cap": 3,
-  "required_advancement": "spectrum:unlocks/enchantments/big_catch",
-  "xp_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_value": 400
-  }
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 800
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/big_catch"
 }

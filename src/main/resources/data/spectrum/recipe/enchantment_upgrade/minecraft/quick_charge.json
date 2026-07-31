@@ -1,28 +1,36 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:red_pigment"
-  },
-  "enchantment": "minecraft:quick_charge",
   "group": "vanilla_enchantment_upgrades",
-  "item_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      8,
-      32,
-      512,
-      512
-    ]
-  },
-  "level_cap": 5,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_projectile",
-  "xp_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      200,
-      1600,
-      5000,
-      10000
-    ]
-  }
+  "enchantment": "minecraft:quick_charge",
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:red_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 400
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:red_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 800
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:red_pigment"
+      },
+      "ingredient_count_per_bowl": 16,
+      "experience": 1600
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:red_pigment"
+      },
+      "ingredient_count_per_bowl": 32,
+      "experience": 3200
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_projectile"
 }

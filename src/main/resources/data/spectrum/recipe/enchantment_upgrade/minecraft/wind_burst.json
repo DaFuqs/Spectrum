@@ -1,18 +1,36 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:yellow_pigment"
-  },
-  "enchantment": "minecraft:wind_burst",
   "group": "vanilla_enchantment_upgrades",
-  "item_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_value": 16
-  },
-  "level_cap": 5,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
-  "xp_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_value": 200
-  }
+  "enchantment": "minecraft:wind_burst",
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:yellow_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 400
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:yellow_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 800
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:yellow_pigment"
+      },
+      "ingredient_count_per_bowl": 16,
+      "experience": 1600
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:yellow_pigment"
+      },
+      "ingredient_count_per_bowl": 32,
+      "experience": 3200
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage"
 }

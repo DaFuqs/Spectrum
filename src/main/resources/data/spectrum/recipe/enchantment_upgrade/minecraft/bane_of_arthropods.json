@@ -25,20 +25,5 @@
       "experience": 400
     }
   ],
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
-
-
-
-  "bulk_item": {
-    "item": "spectrum:black_pigment"
-  },
-  "item_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_value": 8
-  },
-  "level_cap": 8,
-  "xp_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_value": 100
-  }
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage"
 }

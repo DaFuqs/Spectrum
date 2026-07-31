@@ -1,28 +1,36 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:light_blue_pigment"
-  },
-  "enchantment": "minecraft:fortune",
   "group": "vanilla_enchantment_upgrades",
-  "item_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      32,
-      128,
-      256,
-      512
-    ]
-  },
-  "level_cap": 5,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_luck",
-  "xp_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      100,
-      400,
-      3000,
-      10000
-    ]
-  }
+  "enchantment": "minecraft:fortune",
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 400
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 800
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 16,
+      "experience": 1600
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 32,
+      "experience": 3200
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_luck"
 }

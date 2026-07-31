@@ -1,28 +1,36 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:black_pigment"
-  },
-  "enchantment": "minecraft:knockback",
   "group": "vanilla_enchantment_upgrades",
-  "item_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      8,
-      32,
-      128,
-      256
-    ]
-  },
-  "level_cap": 5,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
-  "xp_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      200,
-      1600,
-      3200,
-      6400
-    ]
-  }
+  "enchantment": "minecraft:knockback",
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:black_pigment"
+      },
+      "ingredient_count_per_bowl": 2,
+      "experience": 200
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:black_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 400
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:black_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 800
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:black_pigment"
+      },
+      "ingredient_count_per_bowl": 16,
+      "experience": 1600
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage"
 }

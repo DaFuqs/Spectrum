@@ -1,21 +1,22 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:blue_pigment"
-  },
-  "enchantment": "minecraft:depth_strider",
   "group": "vanilla_enchantment_upgrades",
-  "item_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      8,
-      32
-    ]
-  },
-  "level_cap": 3,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_water",
-  "xp_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_value": 200
-  }
+  "enchantment": "minecraft:depth_strider",
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:blue_pigment"
+      },
+      "ingredient_count_per_bowl": 2,
+      "experience": 200
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:blue_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 400
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_water"
 }

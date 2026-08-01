@@ -1,15 +1,15 @@
 {
   "criteria": {
-    "collected_topaz_shard": {
+    "unlocked_ink": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_shards/topaz"
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
       }
     },
-    "collected_mermaids_gem": {
+    "collected_ash": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:collect_mermaids_gem"
+        "advancement_identifier": "spectrum:hidden/collect_ash"
       }
     }
   }

@@ -151,7 +151,6 @@ public class SpectrumConfig {
 	public final ModConfigSpec.ConfigValue<Double> DragonrotDripstoneDripChance;
 	public final ModConfigSpec.ConfigValue<Double> LiquidCrystalDripstoneDripChance;
 	public final ModConfigSpec.ConfigValue<Double> MidnightSolutionDripstoneDripChance;
-	public final ModConfigSpec.ConfigValue<Double> SludgeDripstoneDripChance;
 	
 	private SpectrumConfig(ModConfigSpec.Builder builder) {
 		ToastTimeMilliseconds = builder
@@ -663,10 +662,6 @@ public class SpectrumConfig {
 				.translation("config.spectrum.midnight_solution_dripstone_drip_chance")
 				.comment("The chance for Dripstone to fill a Cauldron with Midnight Solution")
 				.define("midnight_solution_dripstone_drip_chance", 0.01D);
-		SludgeDripstoneDripChance = builder
-				.translation("config.spectrum.sludge_dripstone_drip_chance")
-				.comment("The chance for Dripstone to fill a Cauldron with Sludge")
-				.define("sludge_dripstone_drip_chance", 0.01D);
 	}
 	
 	public final boolean canPedestalCraftVanillaRecipes() {

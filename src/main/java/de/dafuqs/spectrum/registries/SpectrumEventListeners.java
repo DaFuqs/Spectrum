@@ -99,7 +99,6 @@ public class SpectrumEventListeners {
 	@SubscribeEvent
 	public static void registerCauldronFluids(RegisterCauldronFluidContentEvent event) {
 		event.register(SpectrumBlocks.LIQUID_CRYSTAL_CAULDRON.get(), SpectrumFluids.LIQUID_CRYSTAL.get(), FluidType.BUCKET_VOLUME, null);
-		event.register(SpectrumBlocks.SLUDGE_CAULDRON.get(), SpectrumFluids.SLUDGE.get(), FluidType.BUCKET_VOLUME, null);
 		event.register(SpectrumBlocks.DRAGONROT_CAULDRON.get(), SpectrumFluids.DRAGONROT.get(), FluidType.BUCKET_VOLUME, null);
 		event.register(SpectrumBlocks.MIDNIGHT_SOLUTION_CAULDRON.get(), SpectrumFluids.MIDNIGHT_SOLUTION.get(), FluidType.BUCKET_VOLUME, null);
 	}

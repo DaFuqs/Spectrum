@@ -54,8 +54,6 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 			return state.isSource() && direction != Direction.DOWN ? SpectrumBlocks.FROSTBITE_CRYSTAL.get().defaultBlockState() : Blocks.CALCITE.defaultBlockState();
 		} else if (otherState.is(FluidTags.LAVA)) {
 			return state.isSource() && direction != Direction.DOWN ? SpectrumBlocks.BLAZING_CRYSTAL.get().defaultBlockState() : Blocks.COBBLED_DEEPSLATE.defaultBlockState();
-		} else if (otherState.is(SpectrumFluidTags.SLUDGE)) {
-			return Blocks.CLAY.defaultBlockState();
 		}
 		return null;
 	}

@@ -93,7 +93,6 @@
     "accessors.WorldRendererAccessor",
     "client.AbstractInventoryScreenMixin",
     "client.BipedEntityModelMixin",
-    "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.ClientLanguageMixin",
     "client.DeathScreenMixin",

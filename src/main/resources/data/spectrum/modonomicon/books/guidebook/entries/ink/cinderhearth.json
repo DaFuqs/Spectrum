@@ -25,14 +25,23 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cinderhearth.page0.text",
-      "title": "block.spectrum.cinderhearth"
+      "title": "block.spectrum.cinderhearth",
+      "text": "book.spectrum.guidebook.cinderhearth.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.cinderhearth.page1.text",
       "title": "container.spectrum.rei.pedestal_recipe",
       "recipe_id": "spectrum:pedestal/tier3/cinderhearth"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/cinderhearth_ash"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "text": "book.spectrum.guidebook.cinderhearth.knowledge_gem.text"
     },
     {
       "type": "modonomicon:multiblock",

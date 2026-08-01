@@ -45,7 +45,6 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 	public static final ResourceLocation LIQUID_CRYSTAL_CONVERTING_PAGE = SpectrumCommon.locate("liquid_crystal_converting");
 	public static final ResourceLocation MIDNIGHT_SOLUTION_CONVERTING_PAGE = SpectrumCommon.locate("midnight_solution_converting");
 	public static final ResourceLocation DRAGONROT_CONVERTING_PAGE = SpectrumCommon.locate("dragonrot_converting");
-	public static final ResourceLocation SLUDGE_CONVERTING_PAGE = SpectrumCommon.locate("sludge_converting");
 	public static final ResourceLocation CRYSTALLARIEUM_GROWING_PAGE = SpectrumCommon.locate("crystallarieum_growing");
 	public static final ResourceLocation CINDERHEARTH_SMELTING_PAGE = SpectrumCommon.locate("cinderhearth_smelting");
 	public static final ResourceLocation TITRATION_BARREL_FERMENTING_PAGE = SpectrumCommon.locate("titration_barrel_fermenting");
@@ -86,7 +85,6 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 		registerGatedRecipePage(LIQUID_CRYSTAL_CONVERTING_PAGE, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, false);
 		registerGatedRecipePage(MIDNIGHT_SOLUTION_CONVERTING_PAGE, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, false);
 		registerGatedRecipePage(DRAGONROT_CONVERTING_PAGE, SpectrumRecipeTypes.DRAGONROT_CONVERTING, false);
-		registerGatedRecipePage(SLUDGE_CONVERTING_PAGE, SpectrumRecipeTypes.SLUDGE_CONVERTING, false);
 		registerGatedRecipePage(CRYSTALLARIEUM_GROWING_PAGE, SpectrumRecipeTypes.CRYSTALLARIEUM, false);
 		registerGatedRecipePage(CINDERHEARTH_SMELTING_PAGE, SpectrumRecipeTypes.CINDERHEARTH, false);
 		registerGatedRecipePage(TITRATION_BARREL_FERMENTING_PAGE, SpectrumRecipeTypes.TITRATION_BARREL, true);
@@ -156,13 +154,6 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 			@Override
 			public ResourceLocation getBackgroundTexture() {
 				return SpectrumCommon.locate("textures/gui/guidebook/dragonrot.png");
-			}
-		});
-		
-		PageRendererRegistry.registerPageRenderer(SLUDGE_CONVERTING_PAGE, p -> new BookFluidConvertingPageRenderer<>((BookGatedRecipePage<SludgeConvertingRecipe>) p) {
-			@Override
-			public ResourceLocation getBackgroundTexture() {
-				return SpectrumCommon.locate("textures/gui/guidebook/sludge.png");
 			}
 		});
 	}

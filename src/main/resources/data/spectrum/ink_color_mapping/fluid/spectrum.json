@@ -3,10 +3,6 @@
     "spectrum:liquid_crystal",
     "spectrum:flowing_liquid_crystal"
   ],
-  "spectrum:brown": [
-    "spectrum:sludge",
-    "spectrum:flowing_sludge"
-  ],
   "spectrum:black": [
     "spectrum:midnight_solution",
     "spectrum:flowing_midnight_solution"

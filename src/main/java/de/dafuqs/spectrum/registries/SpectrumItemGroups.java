@@ -663,7 +663,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.MOONSTONE_CORE);
 					
 					entries.accept(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
-					entries.accept(SpectrumItems.SLUDGE_BUCKET);
 					entries.accept(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
 					entries.accept(SpectrumItems.DRAGONROT_BUCKET);
 				}).build();

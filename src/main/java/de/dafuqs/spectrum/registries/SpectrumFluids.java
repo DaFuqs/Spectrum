@@ -51,23 +51,6 @@ public class SpectrumFluids {
 	public static final Vector3f LIQUID_CRYSTAL_COLOR_VEC = SpectrumColorHelper.colorIntToVec(LIQUID_CRYSTAL_COLOR);
 	public static final float LIQUID_CRYSTAL_OVERLAY_ALPHA = 0.6F;
 	
-	// SLUDGE
-	public static final int SLUDGE_LIGHT_LEVEL = 0;
-	public static final DeferredHolder<FluidType, FluidType> SLUDGE_TYPE = registerFluidType("sludge", () -> new SpectrumFluidType(true, SpectrumGameRules.RULE_SLUDGE_SOURCE_CONVERSION, FluidType.Properties.create()
-			.descriptionId("block.spectrum.sludge")
-			.fallDistanceModifier(0F)
-			.canDrown(true).canExtinguish(true).supportsBoating(false).canHydrate(false).lightLevel(SLUDGE_LIGHT_LEVEL)
-			.pathType(PathType.WATER).adjacentPathType(PathType.WATER_BORDER)
-			.density(5000).viscosity(8000).temperature(350)
-			.sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL).sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
-			.addDripstoneDripping(SpectrumConfig.CONFIG.SludgeDripstoneDripChance.get().floatValue(), SpectrumParticleTypes.DRIPPING_SLUDGE, SpectrumBlocks.SLUDGE_CAULDRON.get(), SoundEvents.POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON)) {
-	});
-	public static final DeferredHolder<Fluid, SpectrumFluid> SLUDGE = registerFluid("sludge", SludgeFluid.StillSludge::new);
-	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_SLUDGE = registerFluid("flowing_sludge", SludgeFluid.FlowingSludge::new);
-	public static final int SLUDGE_COLOR = 0xFF4e2e0a;
-	public static final Vector3f SLUDGE_COLOR_VEC = SpectrumColorHelper.colorIntToVec(SLUDGE_COLOR);
-	public static final float SLUDGE_OVERLAY_ALPHA = 1.0F;
-	
 	// MIDNIGHT SOLUTION
 	public static final int MIDNIGHT_SOLUTION_LIGHT_LEVEL = 0;
 	public static final DeferredHolder<FluidType, FluidType> MIDNIGHT_SOLUTION_TYPE = registerFluidType("midnight_solution", () -> new SpectrumFluidType(true, SpectrumGameRules.RULE_MIDNIGHT_SOLUTION_SOURCE_CONVERSION,
@@ -118,7 +101,6 @@ public class SpectrumFluids {
 	
 	public static void registerClient(RegisterClientExtensionsEvent event) {
 		setupFluidRendering(event, LIQUID_CRYSTAL_TYPE.get(), "liquid_crystal", LIQUID_CRYSTAL_OVERLAY_ALPHA);
-		setupFluidRendering(event, SLUDGE_TYPE.get(), "sludge", SLUDGE_OVERLAY_ALPHA);
 		setupFluidRendering(event, MIDNIGHT_SOLUTION_TYPE.get(), "midnight_solution", MIDNIGHT_SOLUTION_OVERLAY_ALPHA);
 		setupFluidRendering(event, DRAGONROT_TYPE.get(), "dragonrot", DRAGONROT_OVERLAY_ALPHA);
 		

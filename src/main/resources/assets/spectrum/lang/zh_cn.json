@@ -916,9 +916,6 @@
   "block.spectrum.stuck_storm_stone": "风暴之石",
   "block.spectrum.radiating_ender": "末影辐光",
   "item.spectrum.bone_ash": "龙骨灰",
-  "item.spectrum.sludge_bucket": "泥浆桶",
-  "block.spectrum.sludge": "泥浆",
-  "block.spectrum.flowing_sludge": "泥浆",
   "item.spectrum.liquid_crystal_bucket": "液态水晶桶",
   "block.spectrum.liquid_crystal": "液态水晶",
   "block.spectrum.flowing_liquid_crystal": "液态水晶",
@@ -2599,7 +2596,6 @@
   "container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2": "这个配方",
   "container.spectrum.rei.enchanting.title": "附魔物品",
   "container.spectrum.rei.enchantment_upgrading.title": "附魔升级",
-  "container.spectrum.rei.sludge_converting.title": "泥浆:侵染",
   "container.spectrum.rei.liquid_crystal_converting.title": "液态水晶:侵染",
   "container.spectrum.rei.midnight_solution_converting.title": "午夜溶液:侵染",
   "container.spectrum.rei.dragonrot_converting.title": "龙腐脓浆:侵染",
@@ -2949,7 +2945,6 @@
   "spectrum.subtitles.celestial_pocket_watch_ticking": "天体怀表：滴答作响",
   "spectrum.subtitles.shooting_star_cracker": "流星：破裂",
   "spectrum.subtitles.block.memory.advance": "记忆：再塑",
-  "spectrum.subtitles.block.sludge.ambient": "泥浆：冒泡",
   "spectrum.subtitles.block.liquid_crystal.ambient": "液态水晶：鸣响",
   "spectrum.subtitles.block.midnight_solution.ambient": "午夜溶液：嘶嘶作响",
   "spectrum.subtitles.howling_wind_high": "风声：呼啸",
@@ -3234,7 +3229,6 @@
   "config.spectrum.dragonrot_dripstone_drip_chance": "龙腐脓浆钟乳石滴落概率",
   "config.spectrum.liquid_crystal_dripstone_drip_chance": "液体水晶钟乳石滴落概率",
   "config.spectrum.midnight_solution_dripstone_drip_chance": "午夜溶液钟乳石滴落概率",
-  "config.spectrum.sludge_dripstone_drip_chance": "泥浆钟乳石滴落概率",
 
   "item.spectrum.least_black_lotus": "淡黑莲花",
   "item.spectrum.least_black_lotus.tooltip": "是不是洗掉色了?",
@@ -3500,7 +3494,6 @@
   "tag.spectrum.mob_heads.lizard_heads": "恶蜥的头",
   "tag.spectrum.weeping_gala_logs": "乳脂原木",
   "tag.spectrum.requires_omni_accelerator_pvp_enabled": "需要启用全能发射器 PvP",
-  "tag.spectrum.sludge": "泥浆",
   "tag.spectrum.dragonrot": "龙腐脓浆",
   "tag.spectrum.liquid_crystal": "液态水晶",
   "tag.spectrum.midnight_solution": "午夜溶液",
@@ -3515,7 +3508,6 @@
   "tag.spectrum.pastel_node_upgrades": "绘彩节点升级用品",
   "tag.spectrum.tag_filtering_items": "标签筛选物品",
   "tag.spectrum.unlocks_bag_of_holding": "解锁手持末影袋",
-  "tag.spectrum.crossbows": "光谱弩",
 
   "spectrum.gui.guidebook.reveal_hint_button.text": "解锁线索",
   "spectrum.gui.guidebook.reveal_hint_button.tooltip.pay": "支付少量费用以解锁提示",
@@ -3970,7 +3962,7 @@
   "book.spectrum.guidebook.crafting_tablet.page1.title": "基座自动化",
   "book.spectrum.guidebook.crafting_tablet.page1.text": "总有一天，我需要频繁反复合成某样材料，以至于想过搞自动化。或许我也会变成某种流水生产线每个物品都搞自动生产的肝帝人皇。\\\n\\\n[七彩基座](entry://general/pedestal)有专门放置合成模板的槽位。使用漏斗或者类似的器件填充基座的时候，物品会按照合成模板中配方的指示均匀地落在对应的槽位上。",
 
-  "book.spectrum.guidebook.crawfish.page0.text": "看看我上次钓鱼钓上来了什么！这其实不是鱼，而是一种**甲壳动物**。\\\n\\\n它们似乎即使在[最泥泞的池塘](entry://magical_blocks/sludge)里也能活得好好的。",
+  "book.spectrum.guidebook.crawfish.page0.text": "看看我上次钓鱼钓上来了什么！这其实不是鱼，而是一种**甲壳动物**。\\\n\\\n它们似乎即使在最泥泞的池塘里也能活得好好的。",
 
   "book.spectrum.guidebook.creating_enchanted_books.name": "制作附魔书",
   "book.spectrum.guidebook.creating_enchanted_books.page0.text": "[附魔基座](entry://enchanting/enchanter)可以消耗[颜料](entry://general/pigment)，原材料与经验对[#](bb00bb)普通书本[#]()添加附魔。 \\\n\\\n虽然经验开销略高于附魔台，但我可以对附魔的附魔进行更为细致入微的选取。",
@@ -4687,7 +4679,6 @@
 
   "book.spectrum.guidebook.liquid_crystal.page0.text": "宝石晶的纯净能量以液态形式存在，似乎具有治疗效果。",
   "book.spectrum.guidebook.liquid_crystal.page1.text": "使其与其他液体结合会产生具有有趣特性的各种材料。",
-  "book.spectrum.guidebook.liquid_crystal.page2.text": "液态水晶与[液态泥浆](entry://magical_blocks/sludge)[#]()碰撞，产生了[#](bb00bb)黏土[#]()！肯定还有更多组合等待发现！\\\n\\\n*从未见过如此不平衡的现象。*",
   "book.spectrum.guidebook.liquid_crystal.page3.text": "完整的一格液态水晶在吸收了[#](bb00bb)熔岩[#]()的巨大热量之后形成了这个东西。\\\n感觉很像[](item://minecraft:magma_block)，但要热得多。",
   "book.spectrum.guidebook.liquid_crystal.page4.text": "当[#](bb00bb)水[#]()流入液态水晶的源头时，水晶固化了。\\\n只是轻轻触碰，我就感受到了凛冽而刺骨的严寒。我将其命名为霜冻水晶。",
 
@@ -4825,12 +4816,6 @@
   "book.spectrum.guidebook.moonstone_shards.page1.text": "我从来都不是无所不能的，将来也不会是。就算拥有世间所有魔法也一样，没有人可以真正的做到全能。但只要心怀谦逊、谨慎与信念，我至少能离那份完美更近一点。\\\n\\\n**[#](b9bebe)纯净。**",
 
   "book.spectrum.guidebook.moving_budding_blocks": "可移动的母岩",
-
-  "book.spectrum.guidebook.sludge.page0.text": "这东西...也算个成果吧。我本来想做出点厉害的玩意儿，结果失败了，最后就搞出了这东西。而且我连当初想做什么都忘了，真服了。\\\n泥浆本身既不好看，也没什么用，有用的*是*和其他液体混合的效果，例如和[#](bb00bb)水[#]()混合会变成[](item://minecraft:dirt)，和[#](bb00bb)熔岩[#]()混合则会变成[](item://minecraft:mud)。",
-  "book.spectrum.guidebook.sludge.page1.text": "*虽然泥浆浴听起来挺养生的，但千万别试。相信我，我试过了。*",
-  "book.spectrum.guidebook.sludge.page2.text": "有些物品接触泥浆后会发生鞣化。\\\n比如把[](item://minecraft:rotten_flesh)扔进去，就会变成[](item://minecraft:rabbit_hide)。",
-  "book.spectrum.guidebook.sludge.page3.text": "还有些物品则会被纯化。\\\n为什么小麦会变成线呢?怎么会事呢? 莫非是线面?",
-  "book.spectrum.guidebook.sludge.page4.text": "我不小心把一片[四叶草](entry://general/clover)掉进了泥浆里。\\\n我找了半天也没找着，可运气不错，我居然捡到了一片[翠绿的龟壳！](item://minecraft:turtle_scute)",
 
   "book.spectrum.guidebook.multitool.page0.text": "每次出门冒险的时候，我总要带上一大包工具，虽说我连成吨的石头都能随便扛，这点工具根本不算什么。但如果有一把能集镐、斧、锹、锄于一体的万用工具，那肯定方便多了。",
   "book.spectrum.guidebook.multitool.page1.text": "虽然单独做某件事时效率没那么高，但总好过每隔三秒就要切一次工具。",
@@ -6368,7 +6353,6 @@
   "structure.minecraft.village_taiga": "针叶林村庄",
 
   "fluid_type.spectrum.liquid_crystal": "液态水晶",
-  "fluid_type.spectrum.sludge": "泥浆",
   "fluid_type.spectrum.midnight_solution": "午夜溶液",
   "fluid_type.spectrum.dragonrot": "龙腐脓浆",
 

@@ -23,7 +23,9 @@ public class FluidLogging {
 	public enum State implements StringRepresentable {
 		NOT_LOGGED("none", 0),
 		WATER("water", 0),
-		LIQUID_CRYSTAL("liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL_LIGHT_LEVEL);
+		LIQUID_CRYSTAL("liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL_LIGHT_LEVEL),
+		MIDNIGHT_SOLUTION("midnight_solution", SpectrumFluids.MIDNIGHT_SOLUTION_LIGHT_LEVEL),
+		DRAGONROT("dragonrot", SpectrumFluids.DRAGONROT_LIGHT_LEVEL);
 		
 		private final String name;
 		private final int luminance;
@@ -42,6 +44,12 @@ public class FluidLogging {
 			switch (this) {
 				case LIQUID_CRYSTAL -> {
 					return SpectrumFluids.LIQUID_CRYSTAL.get().getSource(false);
+				}
+				case MIDNIGHT_SOLUTION -> {
+					return SpectrumFluids.MIDNIGHT_SOLUTION.get().getSource(false);
+				}
+				case DRAGONROT -> {
+					return SpectrumFluids.MIDNIGHT_SOLUTION.get().getSource(false);
 				}
 				case WATER -> {
 					return Fluids.WATER.getSource(false);
@@ -65,6 +73,9 @@ public class FluidLogging {
 			if (this == State.LIQUID_CRYSTAL) {
 				SpectrumFluids.LIQUID_CRYSTAL.get().onEntityCollision(state, world, pos, entity);
 			}
+			if (this == State.MIDNIGHT_SOLUTION) {
+				SpectrumFluids.MIDNIGHT_SOLUTION.get().onEntityCollision(state, world, pos, entity);
+			}
 		}
 	}
 	
@@ -80,7 +91,7 @@ public class FluidLogging {
 		
 		@Override
 		default boolean canPlaceLiquid(@Nullable Player player, BlockGetter world, BlockPos pos, BlockState state, Fluid fluid) {
-			return state.getValue(ANY_INCLUDING_NONE) == State.NOT_LOGGED && (fluid == Fluids.WATER || fluid == SpectrumFluids.LIQUID_CRYSTAL.get());
+			return state.getValue(ANY_INCLUDING_NONE) == State.NOT_LOGGED && (fluid == Fluids.WATER || fluid == SpectrumFluids.LIQUID_CRYSTAL.get() || fluid == SpectrumFluids.MIDNIGHT_SOLUTION.get());
 		}
 		
 		@Override
@@ -92,6 +103,9 @@ public class FluidLogging {
 						world.scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(world));
 					} else if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL.get()) {
 						world.setBlock(pos, state.setValue(ANY_INCLUDING_NONE, State.LIQUID_CRYSTAL), Block.UPDATE_ALL);
+						world.scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(world));
+					} else if (fluidState.getType() == SpectrumFluids.MIDNIGHT_SOLUTION.get()) {
+						world.setBlock(pos, state.setValue(ANY_INCLUDING_NONE, State.MIDNIGHT_SOLUTION), Block.UPDATE_ALL);
 						world.scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(world));
 					}
 				}
@@ -122,6 +136,12 @@ public class FluidLogging {
 					world.destroyBlock(pos, true);
 				}
 				return new ItemStack(SpectrumItems.LIQUID_CRYSTAL_BUCKET.get());
+			} else if (fluidLog == State.MIDNIGHT_SOLUTION) {
+				world.setBlock(pos, state.setValue(ANY_INCLUDING_NONE, State.NOT_LOGGED), Block.UPDATE_ALL);
+				if (!state.canSurvive(world, pos)) {
+					world.destroyBlock(pos, true);
+				}
+				return new ItemStack(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET.get());
 			}
 			
 			return ItemStack.EMPTY;

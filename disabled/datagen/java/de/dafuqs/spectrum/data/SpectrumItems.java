@@ -232,7 +232,6 @@ public class SpectrumItems {
 	
 	// Fluid Buckets
 	public static final DeferredItem<Item> LIQUID_CRYSTAL_BUCKET = register(simple(item("liquid_crystal_bucket", () -> new BucketItem(SpectrumFluids.LIQUID_CRYSTAL.get(), IS.of(1).craftRemainder(BUCKET)), InkColors.LIGHT_GRAY)));
-	public static final DeferredItem<Item> SLUDGE_BUCKET = register(simple(item("sludge_bucket", () -> new BucketItem(SpectrumFluids.SLUDGE.get(), IS.of(1).craftRemainder(BUCKET)), InkColors.BROWN)));
 	public static final DeferredItem<Item> MIDNIGHT_SOLUTION_BUCKET = register(simple(item("midnight_solution_bucket", () -> new BucketItem(SpectrumFluids.MIDNIGHT_SOLUTION.get(), IS.of(1).craftRemainder(BUCKET)), InkColors.GRAY)));
 	public static final DeferredItem<Item> DRAGONROT_BUCKET = register(simple(item("dragonrot_bucket", () -> new BucketItem(SpectrumFluids.DRAGONROT.get(), IS.of(1).craftRemainder(BUCKET)), InkColors.LIGHT_GRAY)));
 	

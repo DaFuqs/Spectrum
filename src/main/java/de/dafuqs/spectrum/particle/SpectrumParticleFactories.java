@@ -82,7 +82,6 @@ public class SpectrumParticleFactories {
 		event.registerSpriteSet(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, LitParticle.Factory::new);
 		event.registerSpriteSet(SpectrumParticleTypes.DRAGONROT, BubblePopParticle.Provider::new);
 		event.registerSpriteSet(SpectrumParticleTypes.VOID_FOG, VoidFogParticle.Factory::new);
-		event.registerSpriteSet(SpectrumParticleTypes.SLUDGE_POP, BubblePopParticle.Provider::new);
 		event.registerSpriteSet(SpectrumParticleTypes.BLUE_BUBBLE_POP, BubblePopParticle.Provider::new);
 		event.registerSpriteSet(SpectrumParticleTypes.GREEN_BUBBLE_POP, BubblePopParticle.Provider::new);
 		event.registerSpriteSet(SpectrumParticleTypes.SPIRIT_SALLOW, WindParticle.Factory::new);
@@ -104,32 +103,27 @@ public class SpectrumParticleFactories {
 		event.registerSpriteSet(SpectrumParticleTypes.AZURE_MOTE_SMALL, AzureMoteParticle.Factory::new);
 		
 		// Fluid Splash
-		event.registerSpriteSet(SpectrumParticleTypes.SLUDGE_SPLASH, SplashParticle.Provider::new);
 		event.registerSpriteSet(SpectrumParticleTypes.LIQUID_CRYSTAL_SPLASH, SplashParticle.Provider::new);
 		event.registerSpriteSet(SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH, SplashParticle.Provider::new);
 		event.registerSpriteSet(SpectrumParticleTypes.DRAGONROT_SPLASH, SplashParticle.Provider::new);
 		
 		// Fluid Dripping
-		event.registerSpriteSet(SpectrumParticleTypes.DRIPPING_SLUDGE, SpectrumBlockLeakParticles.DrippingSludgeFactory::new);
 		event.registerSpriteSet(SpectrumParticleTypes.DRIPPING_LIQUID_CRYSTAL, SpectrumBlockLeakParticles.DrippingLiquidCrystalFactory::new);
 		event.registerSpriteSet(SpectrumParticleTypes.DRIPPING_MIDNIGHT_SOLUTION, SpectrumBlockLeakParticles.DrippingMidnightSolutionFactory::new);
 		event.registerSpriteSet(SpectrumParticleTypes.DRIPPING_DRAGONROT, SpectrumBlockLeakParticles.DrippingDragonrotFactory::new);
 		
 		// Fluid Falling
-		event.registerSpriteSet(SpectrumParticleTypes.FALLING_SLUDGE, SpectrumBlockLeakParticles.FallingSludgeFactory::new);
 		event.registerSpriteSet(SpectrumParticleTypes.FALLING_LIQUID_CRYSTAL, SpectrumBlockLeakParticles.FallingLiquidCrystalFactory::new);
 		event.registerSpriteSet(SpectrumParticleTypes.FALLING_MIDNIGHT_SOLUTION, SpectrumBlockLeakParticles.FallingMidnightSolutionFactory::new);
 		event.registerSpriteSet(SpectrumParticleTypes.FALLING_DRAGONROT, SpectrumBlockLeakParticles.FallingDragonrotFactory::new);
 		
 		// Fluid Landing
-		event.registerSpriteSet(SpectrumParticleTypes.LANDING_SLUDGE, SpectrumBlockLeakParticles.LandingSludgeFactory::new);
 		event.registerSpriteSet(SpectrumParticleTypes.LANDING_LIQUID_CRYSTAL, SpectrumBlockLeakParticles.LandingLiquidCrystalFactory::new);
 		event.registerSpriteSet(SpectrumParticleTypes.LANDING_MIDNIGHT_SOLUTION, SpectrumBlockLeakParticles.LandingMidnightSolutionFactory::new);
 		event.registerSpriteSet(SpectrumParticleTypes.LANDING_DRAGONROT, SpectrumBlockLeakParticles.LandingDragonrotFactory::new);
 		
 		// Fluid Fishing
 		event.registerSpriteSet(SpectrumParticleTypes.LAVA_FISHING, WakeParticle.Provider::new);
-		event.registerSpriteSet(SpectrumParticleTypes.SLUDGE_FISHING, WakeParticle.Provider::new);
 		event.registerSpriteSet(SpectrumParticleTypes.LIQUID_CRYSTAL_FISHING, WakeParticle.Provider::new);
 		event.registerSpriteSet(SpectrumParticleTypes.MIDNIGHT_SOLUTION_FISHING, WakeParticle.Provider::new);
 		event.registerSpriteSet(SpectrumParticleTypes.DRAGONROT_FISHING, WakeParticle.Provider::new);
@@ -148,6 +142,7 @@ public class SpectrumParticleFactories {
 		event.registerSpriteSet(SpectrumParticleTypes.DYNAMIC_ALWAYS_SHOW, DynamicParticle.Factory::new);
 	}
 	
+	// TODO: unused
 	public static TextureSheetParticle createFallingSporeBlossom(SimpleParticleType type, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 		int i = (int) (64.0F / Mth.randomBetween(world.getRandom(), 0.1F, 0.9F));
 		DripParticle blockLeakParticle = new DripParticle.FallingParticle(world, x, y, z, Fluids.EMPTY, i);

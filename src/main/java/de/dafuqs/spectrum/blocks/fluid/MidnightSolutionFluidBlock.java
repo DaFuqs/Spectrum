@@ -111,7 +111,6 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public @Nullable BlockState handleFluidCollision(Level world, FluidState state, FluidState otherState, Direction direction) {
 		if (otherState.is(FluidTags.LAVA)) return Blocks.BLACKSTONE.defaultBlockState();
-		if (otherState.is(SpectrumFluidTags.SLUDGE)) return SpectrumBlocks.BLACK_SLUDGE.get().defaultBlockState();
 		return null;
 	}
 	

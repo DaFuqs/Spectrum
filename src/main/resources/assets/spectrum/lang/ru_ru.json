@@ -5111,9 +5111,8 @@
   "multiblock.spectrum.alloy_forgery.bone_ash_alloy_forge": "Костяная кузня",
   "multiblock.spectrum.alloy_forgery.calcite_alloy_forge": "Кальцитовая кузня",
   "multiblock.spectrum.alloy_forgery.pyrite_alloy_forge": "Пиритовая кузня",
-  "multiblock.spectrum.alloy_forgery.shale_clay_alloy_forge": "Глиносланцевая кузня",															   
-  
-  "recipe.spectrum.fusion_shrine.no_rgb.hint": "Откажитесь от своих методов CMYK",
+  "multiblock.spectrum.alloy_forgery.shale_clay_alloy_forge": "Глиносланцевая кузня",
+
   "recipe.spectrum.liquid_crystal.liquid_crystal_converting.hint": "",
   "recipe.spectrum.pedestal.tier1.food.salted_jaramel_tart.hint": "Очень солёный пирог",
   "recipe.spectrum.pedestal.tier1.food.salted_jaramel_trifle.hint": "Очень солёный трайфл",

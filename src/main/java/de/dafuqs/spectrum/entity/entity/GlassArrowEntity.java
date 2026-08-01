@@ -156,10 +156,20 @@ public class GlassArrowEntity extends AbstractArrow {
 		return this.entityData.get(VARIANT);
 	}
 	
+	// Null when shot from a dispenser
+	@Override
+	public @Nullable ItemStack getWeaponItem() {
+		return super.getWeaponItem();
+	}
+	
 	@Override
 	protected void doKnockback(LivingEntity target, DamageSource source) {
 		double punch = getVariant() == GlassArrowVariant.CITRINE ? 5 : 0;
-		punch += this.level() instanceof ServerLevel serverWorld ? EnchantmentHelper.modifyKnockback(serverWorld, getWeaponItem(), target, source, 0.0F) : 0.0F;
+		if(this.level() instanceof ServerLevel serverWorld) {
+			ItemStack weapon = getWeaponItem();
+			punch += weapon != null ? EnchantmentHelper.modifyKnockback(serverWorld, weapon, target, source, 0.0F) : 0.0F;
+		}
+		
 		if (punch > 0.0) {
 			double e = Math.max(0.0, 1.0 - target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
 			Vec3 vec3d = this.getDeltaMovement().multiply(1.0, 0.0, 1.0).normalize().scale(punch * 0.6 * e);

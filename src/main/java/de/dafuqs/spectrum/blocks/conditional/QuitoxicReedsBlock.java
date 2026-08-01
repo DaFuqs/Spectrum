@@ -163,7 +163,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 					BlockState replacement = switch (loggingState) {
 						case FluidLogging.State.LIQUID_CRYSTAL -> SpectrumBlocks.SLUSH.get().defaultBlockState();
 						case FluidLogging.State.DRAGONROT -> SpectrumBlocks.ROTTEN_GROUND.get().defaultBlockState();
-						default -> Blocks.CLAY.defaultBlockState();
+						default -> Blocks.COARSE_DIRT.defaultBlockState();
 					};
 					world.setBlockAndUpdate(posToConsumeBlock.get(), replacement);
 					world.playSound(null, posToConsumeBlock.get(), SoundEvents.GRAVEL_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);

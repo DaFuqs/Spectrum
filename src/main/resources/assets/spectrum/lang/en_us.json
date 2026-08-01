@@ -2821,7 +2821,7 @@
   "book.spectrum.guidebook.ideas.preservation_ruins.page0.text": "A villager told me they found different types of structures made from unbreakable stone hidden near the upper Deepslate layer in the Overworld in every biome.",
   "book.spectrum.guidebook.ideas.preservation_ruins.page1.text": "The entrance seems to be blocked by a powerful force field. However, whoever built it was kind enough to leave me some clues! The hearts on the sides of the force field indicate that I need to have [#](2c2e8e)Azure Dike[#]() active.",
   "book.spectrum.guidebook.ideas.preservation_ruins.page1.title": "Blue Hearts",
-  "book.spectrum.guidebook.ideas.preservation_ruins.page2.text": "The Colored Spore Blossoms on the ceiling and the engravings on the walls behind them hint at the solution. The powder engraving hints at $(l:general/color_mixing)the mixing of Gemstone Powder$() I figured out earlier.",
+  "book.spectrum.guidebook.ideas.preservation_ruins.page2.text": "The Colored Spore Blossoms on the ceiling and the engravings on the walls behind them hint at the solution. The powder engraving hints at [the mixing of Gemstone Powder](entry://general/color_mixing_cmy) I figured out earlier.",
   "book.spectrum.guidebook.ideas.preservation_ruins.page2.title": "Colored Spore Blossoms",
   "book.spectrum.guidebook.ideas.preservation_ruins.page3.text": "Is there a way to crack the Bedrock?\\\nOnce I am inside, it is best to look at the relevant pages in my book for the blocks I find there.",
   "book.spectrum.guidebook.ideas.preservation_ruins.page3.title": "Bedrock Seal",

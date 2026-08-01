@@ -11,6 +11,7 @@ import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
@@ -55,7 +56,13 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 		}
 		
 		for (BlockState growthStageState : recipe.getGrowthStages()) {
-			Item blockStateItem = growthStageState.getBlock().asItem();
+			Block block = growthStageState.getBlock();
+			// Yes, there was a request for the Crystallarieum to grow fluids
+			if(block instanceof LiquidBlock liquidBlock) {
+				outputs.add(EntryIngredients.of(liquidBlock.fluid));
+				continue;
+			}
+			Item blockStateItem = block.asItem();
 			if (blockStateItem != Items.AIR) {
 				outputs.add(EntryIngredients.of(blockStateItem));
 			}

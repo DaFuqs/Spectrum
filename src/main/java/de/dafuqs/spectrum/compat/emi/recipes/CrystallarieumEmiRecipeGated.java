@@ -11,8 +11,11 @@ import dev.emi.emi.api.widget.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
+import java.util.function.*;
 import java.util.stream.*;
 
 public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<CrystallarieumRecipe> {
@@ -44,7 +47,11 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 		
 		widgets.addFillingArrow(40, 9, recipe.getSecondsPerGrowthStage() * 1000);
 		
-		List<EmiStack> states = recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).toList();
+		// Yes, there was a request for the Crystallarieum to grow fluids
+		List<EmiStack> states = recipe.getGrowthStages().stream().map(state -> {
+			Block block = state.getBlock();
+			return block instanceof LiquidBlock liquidBlock ? EmiStack.of(liquidBlock.fluid) : EmiStack.of(block);
+		}).toList();
 		Iterator<EmiStack> it = states.iterator();
 		widgets.addSlot(it.next(), 20, 0);
 		int x = 66;

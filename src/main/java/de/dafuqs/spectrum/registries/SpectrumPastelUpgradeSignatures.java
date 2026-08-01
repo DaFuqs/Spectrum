@@ -33,7 +33,7 @@ public class SpectrumPastelUpgradeSignatures {
 		register("strong_filter", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_AZURITE.get(), FILTER, SpectrumCommon.MOD_ID)
 						.named("strong_filter").slotRowMod(2).build());
 		register("rate", () -> PastelUpgradeSignature.builder(SpectrumItems.RESONANCE_SHARD.get(), NON_COMPOUNDING, SpectrumCommon.MOD_ID)
-						.named("rate").priority().build());
+						.named("rate").transferRateMultiplier(0.5F).build());
 		register("light", () -> PastelUpgradeSignature.builder(SpectrumItems.SHIMMERSTONE_GEM.get(), NON_COMPOUNDING, SpectrumCommon.MOD_ID)
 						.named("light").light().build());
 		register("always_active", () -> PastelUpgradeSignature.builder(SpectrumItems.PURE_REDSTONE.get(), REDSTONE, SpectrumCommon.MOD_ID)

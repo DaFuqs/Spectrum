@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import com.klikli_dev.modonomicon.registry.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
@@ -12,7 +12,7 @@ import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.conditional.*;
-import de.dafuqs.spectrum.items.energy.*;
+import de.dafuqs.spectrum.items.ink.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.item_frame.*;
 import de.dafuqs.spectrum.items.magic_items.*;

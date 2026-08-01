@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.fractal.api.*;
 import de.dafuqs.fractal.interfaces.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.boom.*;
@@ -226,10 +226,16 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.ITEM_ROUNDEL);
 					entries.accept(SpectrumBlocks.POTION_WORKSHOP);
 					entries.accept(SpectrumBlocks.SPIRIT_INSTILLER);
-					entries.accept(SpectrumBlocks.CRYSTALLARIEUM);
-					entries.accept(SpectrumBlocks.CINDERHEARTH);
 					entries.accept(SpectrumBlocks.CRYSTAL_APOTHECARY);
+					
 					entries.accept(SpectrumBlocks.COLOR_PICKER);
+					entries.accept(SpectrumBlocks.DAWNBRUSH);
+					entries.accept(SpectrumBlocks.TWILL);
+					entries.accept(SpectrumBlocks.VANTACLAST);
+					
+					entries.accept(SpectrumBlocks.TINTING_STATION);
+					entries.accept(SpectrumBlocks.CINDERHEARTH);
+					entries.accept(SpectrumBlocks.CRYSTALLARIEUM);
 					
 					entries.accept(SpectrumBlocks.UPGRADE_SPEED);
 					entries.accept(SpectrumBlocks.UPGRADE_SPEED2);
@@ -242,10 +248,19 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.UPGRADE_EXPERIENCE2);
 					
 					entries.accept(SpectrumBlocks.CONNECTION_NODE);
-					entries.accept(SpectrumBlocks.PROVIDER_NODE);
-					entries.accept(SpectrumBlocks.SENDER_NODE);
-					entries.accept(SpectrumBlocks.STORAGE_NODE);
-					entries.accept(SpectrumBlocks.GATHER_NODE);
+					entries.accept(SpectrumBlocks.INK_NODE);
+					entries.accept(SpectrumBlocks.ITEM_PROVIDER_NODE);
+					entries.accept(SpectrumBlocks.ITEM_SENDER_NODE);
+					entries.accept(SpectrumBlocks.ITEM_STORAGE_NODE);
+					entries.accept(SpectrumBlocks.ITEM_GATHER_NODE);
+					entries.accept(SpectrumBlocks.FLUID_PROVIDER_NODE);
+					entries.accept(SpectrumBlocks.FLUID_SENDER_NODE);
+					entries.accept(SpectrumBlocks.FLUID_STORAGE_NODE);
+					entries.accept(SpectrumBlocks.FLUID_GATHER_NODE);
+					entries.accept(SpectrumBlocks.OMNI_PROVIDER_NODE);
+					entries.accept(SpectrumBlocks.OMNI_SENDER_NODE);
+					entries.accept(SpectrumBlocks.OMNI_STORAGE_NODE);
+					entries.accept(SpectrumBlocks.OMNI_GATHER_NODE);
 					
 					entries.accept(SpectrumBlocks.LIGHT_LEVEL_DETECTOR);
 					entries.accept(SpectrumBlocks.WEATHER_DETECTOR);

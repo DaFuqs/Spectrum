@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.mob_head.client;
 import com.google.common.collect.*;
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.render.*;

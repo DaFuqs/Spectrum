@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.networking.s2c_payloads;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.networking.*;
 import it.unimi.dsi.fastutil.objects.*;

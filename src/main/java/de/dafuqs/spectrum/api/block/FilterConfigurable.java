@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.api.block;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
@@ -25,6 +24,15 @@ import org.jspecify.annotations.Nullable;
 import java.util.*;
 
 public interface FilterConfigurable {
+	
+	// 'effectively' private
+	class Cache {
+		private static final Map<ResourceLocation, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
+	}
+	
+	static void invalidateCache() {
+		Cache.CACHED_ITEM_TAG_MAP.clear();
+	}
 	
 	default Object2BooleanMap<TagKey<Item>> getFilteredTags() {
 		return Object2BooleanMaps.emptyMap();
@@ -96,7 +104,7 @@ public interface FilterConfigurable {
 		}
 		
 		// Copied from PastelNodeBlockEntity. This entire section could potentially be a candidate to move into its own function.
-		TagKey<Item> tag = SpectrumCommon.CACHED_ITEM_TAG_MAP.computeIfAbsent(identifier, tagId -> BuiltInRegistries.ITEM.getTagNames()
+		TagKey<Item> tag = Cache.CACHED_ITEM_TAG_MAP.computeIfAbsent(identifier, tagId -> BuiltInRegistries.ITEM.getTagNames()
 				.filter(t -> t.location().equals(tagId))
 				.findFirst()
 				.orElse(null));
@@ -223,7 +231,7 @@ public interface FilterConfigurable {
 	
 	record ExtendedData(List<ItemStack> filterItems, int rows, int slotsPerRow, int drawnSlots) {
 		
-		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedData> PACKET_CODEC = StreamCodec.composite(
+		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedData> STREAM_CODEC = StreamCodec.composite(
 				ItemStack.OPTIONAL_STREAM_CODEC.apply(ByteBufCodecs.list()), ExtendedData::filterItems,
 				ByteBufCodecs.VAR_INT, ExtendedData::rows,
 				ByteBufCodecs.VAR_INT, ExtendedData::slotsPerRow,
@@ -239,9 +247,9 @@ public interface FilterConfigurable {
 			this(pos, new ExtendedData(configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots()));
 		}
 		
-		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedDataWithPos> PACKET_CODEC = StreamCodec.composite(
+		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedDataWithPos> STREAM_CODEC = StreamCodec.composite(
 				BlockPos.STREAM_CODEC, c -> c.pos,
-				ExtendedData.PACKET_CODEC, c -> c.data,
+				ExtendedData.STREAM_CODEC, c -> c.data,
 				ExtendedDataWithPos::new
 		);
 		

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.*;
@@ -27,6 +27,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -188,8 +189,8 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				continue;
 			}
 			if (dyeColor.isPresent()) {
-				BlockState coloredBlockState = BlockVariantHelper.getCursedBlockColorVariant(this.level(), blockPos, dyeColor.get());
-				if (!coloredBlockState.isAir()) {
+				@Nullable BlockState coloredBlockState = VariantHelper.getColoredBlockState(this.level(), blockPos, inkColor);
+				if (coloredBlockState != null) {
 					this.level().setBlockAndUpdate(blockPos, coloredBlockState);
 				}
 			}

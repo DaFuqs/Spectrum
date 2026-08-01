@@ -164,8 +164,8 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 	
 	@Override
 	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
-		int x = (this.width - this.imageWidth) / 2;
-		int y = (this.height - this.imageHeight) / 2;
+		int x = getGuiLeft();
+		int y = getGuiTop();
 		
 		// the background
 		drawContext.blit(GUI_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
@@ -204,8 +204,8 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 	}
 	
 	protected void setupInputFields(ParticleSpawnerBlockEntity blockEntity) {
-		int startX = (this.width - this.imageWidth) / 2 + 3;
-		int startY = (this.height - this.imageHeight) / 2 + 3;
+		int startX = getGuiLeft() + 3;
+		int startY = getGuiTop() + 3;
 		
 		ParticleSpawnerConfiguration configuration = blockEntity.getConfiguration();
 		cyanField = addTextFieldWidget(startX + 16, startY + 51, Component.literal("Cyan"), String.valueOf(configuration.cmyColor().getX()), this::isPositiveDecimalNumber100);

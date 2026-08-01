@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.mob_effect.*;

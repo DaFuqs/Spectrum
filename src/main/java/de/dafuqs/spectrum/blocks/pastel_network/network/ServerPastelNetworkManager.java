@@ -141,6 +141,7 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 			}
 		}
 		if (foundNetwork != null) {
+			foundNetwork.abortAllTransmissions();
 			this.networks.remove(foundNetwork);
 			PastelNetworkRemovedPayload.send(foundNetwork);
 		}
@@ -151,7 +152,7 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 		if (optional.isPresent()) {
 			ServerPastelNetwork network = optional.get();
 			
-			if (network.size() == 1) {
+			if (network.size() <= 1) {
 				this.removeNetwork(network.getUUID());
 			} else {
 				network.removeNode(node, reason);

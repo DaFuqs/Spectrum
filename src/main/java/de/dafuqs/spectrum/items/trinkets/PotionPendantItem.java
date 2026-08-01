@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;

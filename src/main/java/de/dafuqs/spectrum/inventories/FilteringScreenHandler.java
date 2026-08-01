@@ -22,11 +22,11 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
 	
 	// clientside
 	public FilteringScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
-		this(syncId, playerInventory, FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.decode(buf));
+		this(syncId, playerInventory, FilterConfigurable.ExtendedDataWithPos.STREAM_CODEC.decode(buf));
 	}
 	
 	public FilteringScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data) {
-		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, data,
+		this(SpectrumMenuTypes.FILTERING, syncId, playerInventory, data,
 				(handler) -> new Tuple<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, data.data().filterItems(), handler), new Integer[]{
 						data.data().rows(),
 						data.data().slotsPerRow(),

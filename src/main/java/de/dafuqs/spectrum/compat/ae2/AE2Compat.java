@@ -4,6 +4,8 @@ import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.registries.*;

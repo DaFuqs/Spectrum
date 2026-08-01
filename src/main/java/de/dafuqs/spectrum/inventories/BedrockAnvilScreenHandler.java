@@ -38,7 +38,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 	}
 	
 	public BedrockAnvilScreenHandler(int syncId, Inventory inventory, ContainerLevelAccess context) {
-		super(SpectrumScreenHandlerTypes.BEDROCK_ANVIL, syncId, inventory, context);
+		super(SpectrumMenuTypes.BEDROCK_ANVIL, syncId, inventory, context);
 		this.levelCost = DataSlot.standalone();
 		this.addDataSlot(this.levelCost);
 	}

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.entity.*;
 import net.minecraft.world.entity.*;

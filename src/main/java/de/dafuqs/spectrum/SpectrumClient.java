@@ -58,7 +58,7 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		
 		modBus.addListener(SpectrumFluids::registerClient);
 		modBus.addListener(SpectrumBlockEntities::registerClient);
-		modBus.addListener(SpectrumScreenHandlerTypes::registerClient);
+		modBus.addListener(SpectrumMenuTypes::registerClient);
 		modBus.addListener(SpectrumModelLayerLocations::register);
 		modBus.addListener(BedrockCapeRenderer::registerLayers);
 		

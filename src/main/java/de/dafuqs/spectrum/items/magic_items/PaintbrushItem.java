@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.entity.*;
@@ -150,14 +150,8 @@ public class PaintbrushItem extends Item implements SignApplicator {
 		}
 		
 		InkColor inkColor = optionalInkColor.get();
-		Optional<DyeColor> optionalDyeColor = inkColor.getDyeColor();
-		if (optionalDyeColor.isEmpty()) {
-			return false;
-		}
-		DyeColor dyeColor = optionalDyeColor.get();
-		
-		BlockState newBlockState = BlockVariantHelper.getCursedBlockColorVariant(context.getLevel(), context.getClickedPos(), dyeColor);
-		if (newBlockState.isAir()) {
+		@Nullable BlockState newBlockState = VariantHelper.getColoredBlockState(context.getLevel(), context.getClickedPos(), inkColor);
+		if (newBlockState == null) {
 			return false;
 		}
 		

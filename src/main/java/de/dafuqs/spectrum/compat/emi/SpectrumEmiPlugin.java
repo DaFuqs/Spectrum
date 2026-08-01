@@ -254,10 +254,10 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 	}
 	
 	public void registerRecipeHandlers(EmiRegistry registry) {
-		registry.addRecipeHandler(SpectrumScreenHandlerTypes.PEDESTAL, new PedestalRecipeHandler());
-		registry.addRecipeHandler(SpectrumScreenHandlerTypes.CRAFTING_TABLET, new CraftingTabletRecipeHandler());
-		registry.addRecipeHandler(SpectrumScreenHandlerTypes.CINDERHEARTH, new CinderhearthRecipeHandler());
-		registry.addRecipeHandler(SpectrumScreenHandlerTypes.POTION_WORKSHOP, new PotionWorkshopRecipeHandler());
+		registry.addRecipeHandler(SpectrumMenuTypes.PEDESTAL, new PedestalRecipeHandler());
+		registry.addRecipeHandler(SpectrumMenuTypes.CRAFTING_TABLET, new CraftingTabletRecipeHandler());
+		registry.addRecipeHandler(SpectrumMenuTypes.CINDERHEARTH, new CinderhearthRecipeHandler());
+		registry.addRecipeHandler(SpectrumMenuTypes.POTION_WORKSHOP, new PotionWorkshopRecipeHandler());
 	}
 	
 	public static ResourceLocation syntheticId(String type, Block block) {

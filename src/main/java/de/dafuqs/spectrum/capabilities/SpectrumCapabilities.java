@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.capabilities;
 
+import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.chests.*;
-import de.dafuqs.spectrum.blocks.cinderhearth.*;
-import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
-import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
+import de.dafuqs.spectrum.blocks.ink.gen.*;
+import de.dafuqs.spectrum.blocks.ink.sink.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
@@ -54,7 +54,6 @@ public class SpectrumCapabilities {
 		
 		// ItemHandler.ITEM
 		event.registerItem(Capabilities.ItemHandler.ITEM, (stack, ctx) -> BottomlessItemCapability.get(stack), SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem());
-		
 		/*
 			// BAG_OF_HOLDING only works server side
 			// the client does not know about the content of the ender chest, unless opened
@@ -63,6 +62,21 @@ public class SpectrumCapabilities {
 		
 		// FluidHandler.ITEM
 		event.registerItem(Capabilities.FluidHandler.ITEM, (stack, v) -> new FluidHandlerItemStackSimple.Consumable(SpectrumDataComponentTypes.FLUID_CONTENT, stack, 1000), SpectrumItems.MERMAIDS_GEM.get());
+		
+		// Ink Blocks
+		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.TWILL.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
+		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.VANTACLAST.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
+		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.DAWNBRUSH.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
+		
+		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.COLOR_PICKER.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
+		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.TINTING_STATION.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
+		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.CINDERHEARTH.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
+		event.registerBlockEntity(InkCapabilities.BLOCK, SpectrumBlockEntities.CRYSTALLARIEUM.get(), (blockEntity, context) -> BlockEntityInkCapability.of(blockEntity));
+		
+		// Ink Items
+		event.registerItem(InkCapabilities.ITEM, (stack, ctx) -> ItemInkCapability.of(stack),
+				SpectrumItems.INK_FLASK, SpectrumItems.INK_ASSORTMENT, SpectrumItems.CREATIVE_INK_ASSORTMENT, SpectrumItems.PIGMENT_PALETTE, SpectrumItems.ARTISTS_PALETTE,
+				SpectrumItems.SHIELDGRASP_AMULET, SpectrumItems.HEARTSINGERS_REWARD, SpectrumItems.GLOVES_OF_DAWNS_GRASP, SpectrumItems.RING_OF_PURSUIT, SpectrumItems.RING_OF_DENSER_STEPS, SpectrumItems.RING_OF_AERIAL_GRACE, SpectrumItems.LAURELS_OF_SERENITY);
     }
 
 }

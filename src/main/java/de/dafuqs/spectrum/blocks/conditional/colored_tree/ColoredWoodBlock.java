@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.deeper_down.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.flammable.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
@@ -20,7 +20,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.*;
 import java.util.function.*;
 
-public class ColoredWoodBlock extends StrippingLootPillarBlock implements RevelationAware, ColoredTree {
+public class ColoredWoodBlock extends FlammableLogBlock implements RevelationAware, ColoredTree {
 	
 	private static final Map<InkColor, ColoredWoodBlock> WOOD = new Object2ObjectArrayMap<>();
 	protected final InkColor color;

@@ -1,20 +1,18 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
 import de.dafuqs.spectrum.blocks.block_flooder.*;
 import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.chests.*;
-import de.dafuqs.spectrum.blocks.cinderhearth.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.conditional.amaranth.*;
 import de.dafuqs.spectrum.blocks.conditional.blood_orchid.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.conditional.resonant_lily.*;
-import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.blocks.decay.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.deeper_down.*;
@@ -23,7 +21,6 @@ import de.dafuqs.spectrum.blocks.deeper_down.groundcover.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.blocks.end_portal.*;
 import de.dafuqs.spectrum.blocks.ender.*;
-import de.dafuqs.spectrum.blocks.energy.*;
 import de.dafuqs.spectrum.blocks.farming.*;
 import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
@@ -31,6 +28,8 @@ import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.blocks.geology.*;
 import de.dafuqs.spectrum.blocks.idols.*;
+import de.dafuqs.spectrum.blocks.ink.gen.*;
+import de.dafuqs.spectrum.blocks.ink.sink.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.item_roundel.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
@@ -58,6 +57,7 @@ import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.client.*;
+import net.minecraft.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.core.cauldron.*;
@@ -101,6 +101,7 @@ import java.util.function.*;
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 import static de.dafuqs.spectrum.data.SpectrumModelHelper.*;
 import static de.dafuqs.spectrum.registries.SpectrumItems.*;
+import static me.shedaniel.rei.api.common.entry.comparison.EntryComparator.component;
 import static net.minecraft.world.level.block.Blocks.*;
 
 @SuppressWarnings({"unused"})
@@ -136,12 +137,20 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> ITEM_BOWL_CALCITE = register(singleton(blockWithItem("item_bowl_calcite", () -> new ItemBowlBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.PINK), TexturedModel.createDefault(b -> new TextureMapping().put(TextureSlot.TEXTURE, SpectrumCommon.locate("block/item_bowl_calcite")).put(TextureSlot.SIDE, SpectrumCommon.locate("block/polished_calcite_pillar_side")).put(SpectrumTextureSlots.BASE, SpectrumCommon.locate("block/polished_calcite")), SpectrumModelTemplates.BOWL)));
 	public static final DeferredBlock<Block> ITEM_ROUNDEL = register(singleton(blockWithItem("item_roundel", () -> new ItemRoundelBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.PINK), SpectrumTexturedModelProviders.ROUNDEL));
 	public static final DeferredBlock<Block> POTION_WORKSHOP = register(defaultNorthHorizontalFacing(blockWithItem("potion_workshop", () -> new PotionWorkshopBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.PURPLE), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<Block> CRYSTAL_APOTHECARY = register(singletonWithSoup(blockWithItem("crystal_apothecary", () -> new CrystalApothecaryBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
+	
+	// Ink Generators
+	public static final DeferredBlock<Block> COLOR_PICKER = register(defaultWestHorizontalFacing(blockWithItem("color_picker", () -> new ColorPickerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<Block> TWILL = register(defaultWestHorizontalFacing(blockWithItem("twill", () -> new TwillBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<Block> VANTACLAST = register(defaultWestHorizontalFacing(blockWithItem("vantaclast", () -> new VantaclastBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<Block> DAWNBRUSH = register(defaultWestHorizontalFacing(blockWithItem("dawnbrush", () -> new DawnbrushBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
+	
+	// Ink Sinks
+	public static final DeferredBlock<Block> TINTING_STATION = register(defaultWestHorizontalFacing(blockWithItem("tinting_station", () -> new TintingStationBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<SpiritInstillerBlock> SPIRIT_INSTILLER = register(singletonWithSoup(blockWithItem("spirit_instiller", () -> new SpiritInstillerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.WHITE), ModelLocationUtils::getModelLocation).withPredefinedItemModel());
 	public static final DeferredBlock<CrystallarieumBlock> CRYSTALLARIEUM = register(singletonWithSoup(blockWithItem("crystallarieum", () -> new CrystallarieumBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.BROWN), ModelLocationUtils::getModelLocation).withPredefinedItemModel());
 	public static final DeferredBlock<Block> CINDERHEARTH = register(defaultNorthHorizontalFacing(blockWithItem("cinderhearth", () -> new CinderhearthBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of().fireResistant(), InkColors.ORANGE), ModelLocationUtils::getModelLocation));
 	
-	public static final DeferredBlock<Block> COLOR_PICKER = register(defaultWestHorizontalFacing(blockWithItem("color_picker", () -> new ColorPickerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
-	public static final DeferredBlock<Block> CRYSTAL_APOTHECARY = register(singletonWithSoup(blockWithItem("crystal_apothecary", () -> new CrystalApothecaryBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of(), InkColors.GREEN), ModelLocationUtils::getModelLocation));
 	
 	private static BlockBehaviour.Properties gemstone(MapColor mapColor, SoundType blockSoundGroup, int luminance) {
 		return settings(mapColor, blockSoundGroup, 1.5F).forceSolidOn().noOcclusion().lightLevel((state) -> luminance).pushReaction(PushReaction.DESTROY);
@@ -568,11 +577,25 @@ public class SpectrumBlocks {
 		return settings(MapColor.NONE, soundGroup, 1.0F).pushReaction(PushReaction.DESTROY).noOcclusion();
 	}
 	
-	public static final DeferredBlock<PastelNodeBlock> CONNECTION_NODE = register(blockWithItem("connection_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.CONNECTION), () -> IS.of(), InkColors.LIGHT_GRAY).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> PROVIDER_NODE = register(blockWithItem("provider_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER), () -> IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> STORAGE_NODE = register(blockWithItem("storage_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.TOPAZ_CLUSTER), PastelNodeType.STORAGE), () -> IS.of(), InkColors.CYAN).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> SENDER_NODE = register(blockWithItem("sender_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.CITRINE_CLUSTER), PastelNodeType.SENDER), () -> IS.of(), InkColors.YELLOW).withPredefinedItemModel());
-	public static final DeferredBlock<PastelNodeBlock> GATHER_NODE = register(blockWithItem("gather_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.ONYX_CLUSTER), PastelNodeType.GATHER), () -> IS.of(), InkColors.BLACK).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> CONNECTION_NODE = register(blockWithItem("connection_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.CONNECTION, Set.of(), List.of(Component.translatable("block.spectrum.connection_node.tooltip"))), () -> IS.of(), InkColors.LIGHT_GRAY).withPredefinedItemModel());
+	
+	public static final DeferredBlock<PastelNodeBlock> INK_NODE = register(blockWithItem("ink_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.SENDER, Set.of(SpectrumPastelPayloadTypes.INK), List.of(Component.translatable("block.spectrum.ink_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.ink_pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
+	
+	// TODO: rename ids to "item_*" with next major update
+	public static final DeferredBlock<PastelNodeBlock> ITEM_PROVIDER_NODE = register(blockWithItem("provider_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER, Set.of(SpectrumPastelPayloadTypes.ITEM), List.of(Component.translatable("block.spectrum.provider_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> ITEM_STORAGE_NODE = register(blockWithItem("storage_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.TOPAZ_CLUSTER), PastelNodeType.STORAGE, Set.of(SpectrumPastelPayloadTypes.ITEM), List.of(Component.translatable("block.spectrum.storage_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.CYAN).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> ITEM_SENDER_NODE = register(blockWithItem("sender_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.CITRINE_CLUSTER), PastelNodeType.SENDER, Set.of(SpectrumPastelPayloadTypes.ITEM), List.of(Component.translatable("block.spectrum.sender_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.YELLOW).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> ITEM_GATHER_NODE = register(blockWithItem("gather_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.ONYX_CLUSTER), PastelNodeType.GATHER, Set.of(SpectrumPastelPayloadTypes.ITEM), List.of(Component.translatable("block.spectrum.gather_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.BLACK).withPredefinedItemModel());
+	
+	public static final DeferredBlock<PastelNodeBlock> FLUID_PROVIDER_NODE = register(blockWithItem("fluid_provider_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER, Set.of(SpectrumPastelPayloadTypes.FLUID), List.of(Component.translatable("block.spectrum.fluid_provider_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.fluid_pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> FLUID_STORAGE_NODE = register(blockWithItem("fluid_storage_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.TOPAZ_CLUSTER), PastelNodeType.STORAGE, Set.of(SpectrumPastelPayloadTypes.FLUID), List.of(Component.translatable("block.spectrum.fluid_storage_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.fluid_pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.CYAN).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> FLUID_SENDER_NODE = register(blockWithItem("fluid_sender_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.CITRINE_CLUSTER), PastelNodeType.SENDER, Set.of(SpectrumPastelPayloadTypes.FLUID), List.of(Component.translatable("block.spectrum.fluid_sender_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.fluid_pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.YELLOW).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> FLUID_GATHER_NODE = register(blockWithItem("fluid_gather_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.ONYX_CLUSTER), PastelNodeType.GATHER, Set.of(SpectrumPastelPayloadTypes.FLUID), List.of(Component.translatable("block.spectrum.fluid_gather_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.fluid_pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.BLACK).withPredefinedItemModel());
+	
+	public static final DeferredBlock<PastelNodeBlock> OMNI_PROVIDER_NODE = register(blockWithItem("omni_provider_node", () -> new PastelNodeBlock(pastelNode(SoundType.AMETHYST_CLUSTER), PastelNodeType.PROVIDER, Set.of(SpectrumPastelPayloadTypes.FLUID, SpectrumPastelPayloadTypes.ITEM, SpectrumPastelPayloadTypes.INK), List.of(Component.translatable("block.spectrum.ink_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.omni_provider_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.omni_pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.MAGENTA).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> OMNI_STORAGE_NODE = register(blockWithItem("omni_storage_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.TOPAZ_CLUSTER), PastelNodeType.STORAGE, Set.of(SpectrumPastelPayloadTypes.FLUID, SpectrumPastelPayloadTypes.ITEM, SpectrumPastelPayloadTypes.INK), List.of(Component.translatable("block.spectrum.ink_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.omni_storage_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.omni_pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.CYAN).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> OMNI_SENDER_NODE = register(blockWithItem("omni_sender_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.CITRINE_CLUSTER), PastelNodeType.SENDER, Set.of(SpectrumPastelPayloadTypes.FLUID, SpectrumPastelPayloadTypes.ITEM, SpectrumPastelPayloadTypes.INK), List.of(Component.translatable("block.spectrum.ink_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.omni_sender_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.omni_pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.YELLOW).withPredefinedItemModel());
+	public static final DeferredBlock<PastelNodeBlock> OMNI_GATHER_NODE = register(blockWithItem("omni_gather_node", () -> new PastelNodeBlock(pastelNode(SpectrumSoundTypes.ONYX_CLUSTER), PastelNodeType.GATHER, Set.of(SpectrumPastelPayloadTypes.FLUID, SpectrumPastelPayloadTypes.ITEM, SpectrumPastelPayloadTypes.INK), List.of(Component.translatable("block.spectrum.ink_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.omni_gather_node.tooltip").withStyle(ChatFormatting.WHITE), Component.translatable("block.spectrum.omni_pastel_network_nodes.tooltip.placing").withStyle(ChatFormatting.GRAY))), () -> IS.of(), InkColors.BLACK).withPredefinedItemModel());
 	
 	// COLORED BLOCK FAMILIES
 	
@@ -1892,7 +1915,14 @@ public class SpectrumBlocks {
 		for (SpectrumSkullType type : SpectrumSkullType.values()) {
 			BlockRegistrar<SpectrumSkullBlock> head = block(type.getSerializedName() + "_head", () -> new SpectrumSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(SKELETON_SKULL).instrument(NoteBlockInstrument.CUSTOM_HEAD))).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, SpectrumModelTemplates.SKULL_ITEM)).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModelTemplates.MOB_HEAD));
 			DeferredBlock<SpectrumWallSkullBlock> wallHead = register(block(type.getSerializedName() + "_wall_head", () -> new SpectrumWallSkullBlock(type, BlockBehaviour.Properties.ofFullCopy(SKELETON_SKULL).dropsLike(head.holder.get()))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, SpectrumModelTemplates.MOB_HEAD)));
-			register(head.withItem(block -> new SpectrumSkullBlockItem(block, wallHead.get(), IS.of(), type)));
+			
+			register(head.withItem(block -> {
+				Item.Properties itemProperies = IS.of();
+				if (type == SpectrumSkullType.WITHER) {
+					itemProperies = itemProperies.component(SpectrumDataComponentTypes.DAMAGE_IMMUNE, List.of(DamageTypeTags.IS_EXPLOSION));
+				}
+				return new SpectrumSkullBlockItem(block, wallHead.get(), itemProperies, type);
+			}));
 		}
 		
 		REGISTRAR.register(eventBus);
@@ -2330,10 +2360,10 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(PRESENT.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(BOTTOMLESS_BUNDLE.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(CONNECTION_NODE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(PROVIDER_NODE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(STORAGE_NODE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(SENDER_NODE.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(GATHER_NODE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ITEM_PROVIDER_NODE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ITEM_STORAGE_NODE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ITEM_SENDER_NODE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ITEM_GATHER_NODE.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(VARIA_SPROUT.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(SLATE_NOXSHROOM.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(EBONY_NOXSHROOM.get(), RenderType.cutout());

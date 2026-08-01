@@ -2,14 +2,17 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
+import de.dafuqs.spectrum.registries.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.items.*;
+import net.minecraft.resources.*;
+import net.neoforged.neoforge.registries.*;
+import org.jetbrains.annotations.*;
 import org.jgrapht.*;
-import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.*;
 import org.jgrapht.alg.shortestpath.*;
 import org.jgrapht.graph.*;
@@ -21,7 +24,7 @@ import java.util.function.*;
 @SuppressWarnings("UnstableApiUsage")
 public class PastelTransmissionLogic {
 	
-	private enum TransferMode {
+	public enum TransferMode {
 		PUSH,
 		PULL,
 		PUSH_PULL
@@ -29,6 +32,8 @@ public class PastelTransmissionLogic {
 	
 	public static final int DEFAULT_MAX_TRANSFER_AMOUNT = 1;
 	public static final int DEFAULT_TRANSFER_TICKS_PER_NODE = 30;
+	public static final int DEFAULT_TRANSFER_RATE = 20;
+	
 	private final ServerPastelNetwork network;
 	
 	private DijkstraShortestPath<BlockPos, DefaultEdge> dijkstra;
@@ -44,7 +49,11 @@ public class PastelTransmissionLogic {
 		this.pathCache = new HashMap<>();
 	}
 	
-	public @Nullable GraphPath<BlockPos, DefaultEdge> getPath(Graph<BlockPos, DefaultEdge> graph, PastelNodeBlockEntity source, PastelNodeBlockEntity destination) {
+	public @Nullable GraphPath<BlockPos, DefaultEdge> getPath(PastelNodeBlockEntity source, PastelNodeBlockEntity destination) {
+		return this.getPath(this.network.getGraph(), source, destination);
+	}
+	
+	protected @Nullable GraphPath<BlockPos, DefaultEdge> getPath(Graph<BlockPos, DefaultEdge> graph, PastelNodeBlockEntity source, PastelNodeBlockEntity destination) {
 		if (this.dijkstra == null) {
 			this.dijkstra = new DijkstraShortestPath<>(graph);
 		}
@@ -71,119 +80,46 @@ public class PastelTransmissionLogic {
 		return path;
 	}
 	
-	public void tick(PastelNetwork.NodePriority priority) {
-		transferBetween(PastelNodeType.SENDER, PastelNodeType.GATHER, TransferMode.PUSH_PULL, priority);
-		transferBetween(PastelNodeType.PROVIDER, PastelNodeType.GATHER, TransferMode.PULL, priority);
-		transferBetween(PastelNodeType.STORAGE, PastelNodeType.GATHER, TransferMode.PULL, priority);
-		transferBetween(PastelNodeType.SENDER, PastelNodeType.STORAGE, TransferMode.PUSH, priority);
-	}
-	
-	private void transferBetween(PastelNodeType sourceType, PastelNodeType destinationType, TransferMode transferMode, PastelNetwork.NodePriority priority) {
-		for (PastelNodeBlockEntity sourceNode : this.network.getLoadedNodes(sourceType, priority)) {
-			if (!sourceNode.canTransfer()) {
-				continue;
-			}
-			
-			IItemHandler sourceStorage = sourceNode.getConnectedStorage();
-			if (sourceStorage != null) {
-				tryTransferToType(sourceNode, sourceStorage, destinationType, transferMode);
+	public void tick(boolean longTick) {
+		for(Map.Entry<ResourceKey<PastelPayloadType>, PastelPayloadType> payloadType : SpectrumRegistries.PASTEL_PAYLOAD_TYPE.entrySet()) {
+			if(longTick || payloadType.getValue().runsEveryTick()) {
+				payloadType.getValue().tick(this);
 			}
 		}
 	}
 	
-	private void tryTransferToType(PastelNodeBlockEntity sourceNode, IItemHandler sourceStorage, PastelNodeType type, TransferMode transferMode) {
-		for (PastelNodeBlockEntity destinationNode : this.network.getLoadedNodes(type, PastelNetwork.NodePriority.GENERIC)) {
-			if (!destinationNode.canTransfer()) {
-				continue;
+	private Set<PastelNodeBlockEntity> getLoadedNodes(@Nullable PastelNodeType type) {
+		if(type == null) {
+			Set<PastelNodeBlockEntity> set = new ObjectArraySet<>();
+			for(Set<PastelNodeBlockEntity> e : this.network.loadedNodes.values()) {
+				set.addAll(e);
 			}
-			
-			IItemHandler destinationStorage = destinationNode.getConnectedStorage();
-			if (destinationStorage != null) {
-				boolean success = transferBetween(sourceNode, sourceStorage, destinationNode, destinationStorage, transferMode);
-				if (success && transferMode != TransferMode.PULL) {
-					return;
+			return set;
+		}
+		return this.network.getLoadedNodes(type);
+	}
+	
+	public Set<PastelNodeBlockEntity> getLoadedNodes(@NotNull DeferredHolder<PastelPayloadType, ?> payloadType, @Nullable PastelNodeType nodeType) {
+		Set<PastelNodeBlockEntity> nodes = new HashSet<>();
+		var loaded = this.getLoadedNodes(nodeType);
+		for(PastelNodeBlockEntity entity : loaded) {
+			for(Supplier<? extends PastelPayloadType> typeSupplier : entity.getSupportedPayloads()) {
+				if(typeSupplier.get().equals(payloadType.get())) {
+					nodes.add(entity);
+					break;
 				}
 			}
 		}
+		return nodes;
 	}
 	
-	private boolean transferBetween(PastelNodeBlockEntity sourceNode, IItemHandler sourceStorage, PastelNodeBlockEntity destinationNode, IItemHandler destinationStorage, TransferMode transferMode) {
-		// check how much room is in the target inventory
-		long totalAvailableStorage = -destinationNode.getItemCountUnderway();
-		for (int d = 0; d < destinationStorage.getSlots(); d++) {
-			ItemStack stack = destinationStorage.getStackInSlot(d);
-			
-			if (stack.isEmpty()) {
-				totalAvailableStorage += destinationStorage.getSlotLimit(d);
-			} else {
-				totalAvailableStorage += Math.min(destinationStorage.getSlotLimit(d), stack.getMaxStackSize()) - stack.getCount();
-			}
-		}
+	public void addTransmission(PastelNodeBlockEntity sourceNode, PastelNodeBlockEntity destinationNode, PastelTransmissionLogic.TransferMode transferMode, PastelTransmission transmission) {
+		PastelNodeStatusUpdatePayload.sendPastelNodeStatusUpdate(List.of(sourceNode), true);
+		destinationNode.markTransferred(transferMode != PastelTransmissionLogic.TransferMode.PUSH);
+		sourceNode.markTransferred(transferMode != PastelTransmissionLogic.TransferMode.PULL);
 		
-		if (totalAvailableStorage <= 0)
-			return false;
-		
-		Predicate<ItemStack> filter = sourceNode.getTransferFilterTo(destinationNode);
-		Map<ItemStack, Long> proposals = new HashMap<>();
-		for (int s = 0; s < sourceStorage.getSlots(); s++) {
-			ItemStack stack = sourceStorage.extractItem(s, DEFAULT_MAX_TRANSFER_AMOUNT, true);
-			
-			if (stack.isEmpty())
-				continue;
-			if (!filter.test(stack))
-				continue;
-			
-			proposals.put(stack, proposals.getOrDefault(stack, 0L) + stack.getCount());
-		}
-		
-		for (Map.Entry<ItemStack, Long> proposal : proposals.entrySet()) {
-			ItemStack stack = proposal.getKey();
-			long proposedAmount = Math.min(Math.min(proposal.getValue(), sourceNode.getMaxTransferredAmount()), totalAvailableStorage);
-			if (proposedAmount == 0)
-				continue;
-			
-			ItemStack proposedStack = stack.copyWithCount((int) proposedAmount);
-			int simulatedAmount = (int) (proposedAmount - ItemHandlerHelper.insertItemStacked(destinationStorage, proposedStack, true).getCount());
-			if(simulatedAmount == 0) {
-				continue;
-			}
-			Tuple<Integer, List<ItemStack>> matchingStacks = InventoryHelper.getStackCountInInventory(proposedStack, sourceStorage, simulatedAmount);
-			
-			if (matchingStacks.getA() == 0)
-				continue;
-			
-			Optional<PastelTransmission> transmission = createTransmissionOnValidPath(sourceNode, destinationNode, new ItemPastelPayload(proposedStack.copyWithCount(simulatedAmount)), sourceNode.getTransferTime());
-			if (transmission.isPresent()) {
-				int extracted = 0;
-				for (int i = 0; i < sourceStorage.getSlots(); i++) {
-					if (ItemStack.isSameItemSameComponents(proposedStack, sourceStorage.getStackInSlot(i)))
-						extracted += sourceStorage.extractItem(i, simulatedAmount - extracted, false).getCount();
-					if (extracted == simulatedAmount)
-						break;
-				}
-				
-				PastelTransmission trans = transmission.get();
-				int travelTime = trans.getTransmissionDuration();
-				this.network.addTransmission(trans, travelTime);
-				PastelTransmissionPayload.sendPastelTransmissionParticle(this.network, trans.getTransmissionDuration(), transmission.get());
-				
-				destinationNode.markTransferred(transferMode != TransferMode.PUSH);
-				sourceNode.markTransferred(transferMode != TransferMode.PULL);
-				
-				destinationNode.addItemCountUnderway(simulatedAmount);
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public Optional<PastelTransmission> createTransmissionOnValidPath(PastelNodeBlockEntity source, PastelNodeBlockEntity destination, PastelPayload payload, int vertexTime) {
-		GraphPath<BlockPos, DefaultEdge> graphPath = getPath(this.network.getGraph(), source, destination);
-		if (graphPath != null) {
-			PastelNodeStatusUpdatePayload.sendPastelNodeStatusUpdate(List.of(source), true);
-			return Optional.of(new PastelTransmission(graphPath.getVertexList(), payload, vertexTime));
-		}
-		return Optional.empty();
+		network.addTransmission(transmission, transmission.getTransmissionDuration());
+		PastelTransmissionPayload.sendPastelTransmissionParticle(network, transmission.getTransmissionDuration(), transmission);
 	}
 	
 }

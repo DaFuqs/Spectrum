@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.inventories;
 
-import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 
@@ -76,7 +75,7 @@ public enum AutoCraftingMode {
 		}
 	}
 	
-	public static void clearCache() {
+	public static void invalidateCache() {
 		CACHE.clear();
 	}
 	

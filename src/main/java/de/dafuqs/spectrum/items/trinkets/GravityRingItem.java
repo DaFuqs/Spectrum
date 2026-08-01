@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import com.google.common.collect.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.ai.attributes.*;

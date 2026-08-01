@@ -4,7 +4,7 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 import com.google.common.collect.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.components.*;

@@ -4,7 +4,7 @@ import com.mojang.blaze3d.shaders.*;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.config.*;

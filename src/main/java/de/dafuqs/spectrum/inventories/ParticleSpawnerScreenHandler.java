@@ -20,7 +20,7 @@ public class ParticleSpawnerScreenHandler extends AbstractContainerMenu {
 	
 	// serverside
 	public ParticleSpawnerScreenHandler(int syncId, Inventory playerInventory, ParticleSpawnerBlockEntity blockEntity) {
-		super(SpectrumScreenHandlerTypes.PARTICLE_SPAWNER, syncId);
+		super(SpectrumMenuTypes.PARTICLE_SPAWNER, syncId);
 		
 		this.player = playerInventory.player;
 		this.blockEntity = blockEntity;

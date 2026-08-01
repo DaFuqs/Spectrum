@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.pastel_network.*;
@@ -29,6 +29,8 @@ public class SpectrumRegistryKeys {
 	public static final ResourceKey<Registry<ResonanceProcessor>> RESONANCE_PROCESSOR = of("resonance_processor");
 	public static final ResourceKey<Registry<MapCodec<? extends PastelPayload>>> PASTEL_PAYLOAD_TYPE = of("pastel_payload_type");
 	public static final ResourceKey<Registry<GeodeOreDefinition>> GEODE_ORES = of("geode_ores");
+	public static final ResourceKey<Registry<PastelPayloadType>> PASTEL_PAYLOAD_TYPE = of("pastel_payload_type");
+	public static final ResourceKey<Registry<MapCodec<? extends PastelPayload>>> PASTEL_PAYLOAD = of("pastel_payload");
 	
 	private static <T> ResourceKey<Registry<T>> of(String name) {
 		return ResourceKey.createRegistryKey(SpectrumCommon.locate(name));

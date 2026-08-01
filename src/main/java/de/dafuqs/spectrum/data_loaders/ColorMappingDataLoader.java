@@ -1,22 +1,16 @@
 package de.dafuqs.spectrum.data_loaders;
 
 import com.google.gson.*;
-import com.mojang.datafixers.util.*;
-import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.packs.resources.*;
-import net.minecraft.util.*;
 import net.minecraft.util.profiling.*;
 import javax.annotation.*;
 
 import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
 
 public class ColorMappingDataLoader<T> extends SimpleJsonResourceReloadListener {
 	

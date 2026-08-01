@@ -26,12 +26,9 @@ public class CompactingChestScreen extends AbstractContainerScreen<CompactingChe
 	}
 	
 	protected void setupInputFields() {
-		int x = (this.width - this.imageWidth) / 2 + 3;
-		int y = (this.height - this.imageHeight) / 2 + 3;
-		
 		addWidget(Button.builder(Component.literal("Mode"), this::craftingModeButtonPressed)
 				.size(16, 16)
-				.pos(x + 154, y + 6)
+				.pos(getGuiLeft() + 157, getGuiTop() + 9)
 				.build());
 	}
 	
@@ -42,7 +39,7 @@ public class CompactingChestScreen extends AbstractContainerScreen<CompactingChe
 	@Override
 	protected void renderLabels(GuiGraphics drawContext, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
-		int titleX = (imageWidth - font.width(title)) / 2; // 8;
+		int titleX = (imageWidth - font.width(title)) / 2;
 		int titleY = 6;
 		Component title = this.title;
 		int inventoryX = 8;

@@ -315,7 +315,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	
 	@Override
 	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.encode(buffer, new ExtendedDataWithPos(worldPosition, this));
+		FilterConfigurable.ExtendedDataWithPos.STREAM_CODEC.encode(buffer, new ExtendedDataWithPos(worldPosition, this));
 	}
 	
 	@Override

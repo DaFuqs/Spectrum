@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.networking.s2c_payloads;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.networking.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
@@ -37,7 +37,7 @@ public record UpdateBlockEntityInkPayload(BlockPos pos, Map<InkColor, Long> stor
 		Level level = context.player().level();
 		BlockEntity blockEntity = level.getBlockEntity(payload.pos);
 		if (blockEntity instanceof InkStorageBlockEntity<?> inkStorageBlockEntity) {
-			inkStorageBlockEntity.getEnergyStorage().setEnergy(payload.storage, payload.currentTotal);
+			inkStorageBlockEntity.getInkStorage().setEnergy(payload.storage, payload.currentTotal);
 		}
 	}
 	

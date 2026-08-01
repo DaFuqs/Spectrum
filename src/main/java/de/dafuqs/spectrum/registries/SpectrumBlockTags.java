@@ -13,6 +13,7 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> AMARANTH_PLANTABLE = spectrum("amaranth_plantable");
 	public static final TagKey<Block> MERMAIDS_BRUSH_PLANTABLE = spectrum("mermaids_brush_plantable");
 	public static final TagKey<Block> QUITOXIC_REEDS_PLANTABLE = spectrum("quitoxic_reeds_plantable");
+	public static final TagKey<Block> QUITOXIC_REEDS_CONSUMABLE = spectrum("quitoxic_reeds_consumable");
 	public static final TagKey<Block> SAWBLADE_HOLLY_PLANTABLE = spectrum("sawblade_holly_plantable");
 	public static final TagKey<Block> DOOMBLOOM_PLANTABLE = spectrum("doombloom_plantable");
 	public static final TagKey<Block> SNAPPING_IVY_PLANTABLE = spectrum("snapping_ivy_plantable");

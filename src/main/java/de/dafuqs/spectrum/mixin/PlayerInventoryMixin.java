@@ -44,9 +44,13 @@ public abstract class PlayerInventoryMixin {
 			
 			IItemHandler itemHandler = inventoryStack.getCapability(Capabilities.ItemHandler.ITEM);
 			if(itemHandler != null) {
-				if(!itemHandler.isItemValid(0, stackToAdd)) {
+				// This is a very Bottomless Bundle specific check
+				// but that is the only item with the 'stores items' tag
+				ItemStack firstStack = itemHandler.getStackInSlot(0);
+				if(firstStack.isEmpty() || !ItemStack.isSameItemSameComponents(firstStack, stackToAdd)) {
 					continue;
 				}
+				
 				ItemStack remainder = itemHandler.insertItem(i, stackToAdd, false);
 				stackToAdd.setCount(remainder.getCount());
 				if (remainder.isEmpty()) {

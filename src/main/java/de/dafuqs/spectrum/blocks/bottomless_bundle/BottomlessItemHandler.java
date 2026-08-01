@@ -53,10 +53,7 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 		long space = capacity - this.count;
 		if (!deletesOverflow && space <= 0L) return 0L;
 		long toInsert = Math.min(space, maxAmount);
-		if (this.variant.isEmpty()) {
-			// Lock template to one copy of the item
-			this.variant = insertedVariant.copyWithCount(1);
-		}
+		this.variant = insertedVariant.copyWithCount(1);
 		if(!simulate) {
 			this.count += toInsert;
 		}
@@ -128,8 +125,12 @@ public class BottomlessItemHandler implements IItemHandler, Iterable<ItemStack> 
 		if (toInsert.isEmpty()) return false;
 		if (!toInsert.canFitInsideContainerItems()) return false;
 		
-		if (!this.locked()) {
-			if (this.isEmpty()) return true;
+		if(this.locked()) {
+			return ItemStack.isSameItemSameComponents(this.variant, toInsert);
+		} else {
+			if(this.isEmpty()) {
+				return true;
+			}
 		}
 		return ItemStack.isSameItemSameComponents(this.variant, toInsert);
 	}

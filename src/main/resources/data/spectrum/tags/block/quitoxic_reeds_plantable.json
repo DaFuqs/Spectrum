@@ -1,8 +1,8 @@
 {
   "values": [
     "#spectrum:quitoxic_reeds_consumable",
-    "minecraft:coarse_dirt"
-    "spectrum:slush"
+    "minecraft:coarse_dirt",
+    "spectrum:slush",
     "spectrum:rotten_ground"
   ]
 }

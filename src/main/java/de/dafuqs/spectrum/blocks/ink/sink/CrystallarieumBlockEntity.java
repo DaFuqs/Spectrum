@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.ink.sink;
 
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.api.fluid.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -23,7 +23,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

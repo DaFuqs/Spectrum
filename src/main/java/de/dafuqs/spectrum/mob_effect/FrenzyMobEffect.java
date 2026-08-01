@@ -6,7 +6,6 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.neoforged.neoforge.common.*;
-import javax.annotation.*;
 
 import java.util.*;
 

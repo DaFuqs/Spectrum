@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.api.item;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.item.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

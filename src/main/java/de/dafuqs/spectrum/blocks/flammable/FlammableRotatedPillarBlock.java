@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.blocks.flammable;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import org.jspecify.annotations.Nullable;
-
-import javax.annotation.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.*;
 
 public class FlammableRotatedPillarBlock extends RotatedPillarBlock {
 	

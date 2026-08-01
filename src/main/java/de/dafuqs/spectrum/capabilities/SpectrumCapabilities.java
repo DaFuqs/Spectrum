@@ -18,7 +18,6 @@ import net.minecraft.core.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import net.neoforged.neoforge.items.wrapper.*;
-import javax.annotation.*;
 
 public class SpectrumCapabilities {
 

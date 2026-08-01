@@ -3,9 +3,6 @@ package de.dafuqs.spectrum.data_loaders;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.predicate.block.*;
-import net.minecraft.core.*;
-import net.minecraft.core.registries.*;
-import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 
 import java.util.*;

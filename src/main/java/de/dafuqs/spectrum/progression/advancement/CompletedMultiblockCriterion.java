@@ -3,11 +3,9 @@ package de.dafuqs.spectrum.progression.advancement;
 import com.klikli_dev.modonomicon.api.multiblock.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import javax.annotation.*;
 
 import java.util.*;
 

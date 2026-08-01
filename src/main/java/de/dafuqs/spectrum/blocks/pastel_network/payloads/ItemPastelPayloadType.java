@@ -1,21 +1,19 @@
 package de.dafuqs.spectrum.blocks.pastel_network.payloads;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.pastel_network.network.PastelTransmission;
-import de.dafuqs.spectrum.blocks.pastel_network.network.PastelTransmissionLogic;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.core.*;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.capabilities.*;
-import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.items.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
-import org.jgrapht.GraphPath;
-import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.*;
+import org.jgrapht.graph.*;
 
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public class ItemPastelPayloadType extends PastelPayloadType {
 	

@@ -4,4 +4,4 @@
 package de.dafuqs.spectrum.blocks.potion_workshop;
 
 import net.minecraft.*;
-import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.*;

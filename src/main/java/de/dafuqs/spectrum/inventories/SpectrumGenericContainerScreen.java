@@ -9,8 +9,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
 
-import javax.annotation.*;
-
 public class SpectrumGenericContainerScreen extends AbstractContainerScreen<GenericSpectrumContainerScreenHandler> {
 	
 	private static final ResourceLocation TIER_1_TEXTURE_6x9 = SpectrumCommon.locate("textures/gui/container/generic_54_tier_1.png");

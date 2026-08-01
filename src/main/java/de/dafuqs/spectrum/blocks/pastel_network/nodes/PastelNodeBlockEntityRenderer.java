@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
-import com.mojang.authlib.minecraft.client.*;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
@@ -8,7 +7,6 @@ import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
@@ -19,8 +17,6 @@ import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<PastelNodeBlockEntity> {
 	

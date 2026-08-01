@@ -9,7 +9,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 import java.util.*;
 

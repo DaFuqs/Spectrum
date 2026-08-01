@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.world.item.crafting.*;
-import javax.annotation.*;
 
 import java.util.*;
 

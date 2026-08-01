@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.magic.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.magic.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.entity.*;
@@ -12,7 +12,7 @@ import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class BidentMirrorImageEntity extends BidentBaseEntity {
 	public BidentMirrorImageEntity(Level world) {

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.decay;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
@@ -14,7 +13,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class ForfeitureBlock extends DecayBlock {
 	

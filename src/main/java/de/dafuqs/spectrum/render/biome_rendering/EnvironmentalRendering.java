@@ -3,19 +3,18 @@ package de.dafuqs.spectrum.render.biome_rendering;
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.data_loaders.client.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Cursor3D;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.client.*;
+import net.minecraft.core.*;
+import net.minecraft.resources.*;
+import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.level.biome.*;
 import net.neoforged.neoforge.client.event.*;
 import org.joml.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.lang.Math;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 public class EnvironmentalRendering {
 	

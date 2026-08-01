@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.resources.*;
-import javax.annotation.*;
 
 
 public class KindlingEntityRenderer extends MobRenderer<KindlingEntity, KindlingEntityModel> {

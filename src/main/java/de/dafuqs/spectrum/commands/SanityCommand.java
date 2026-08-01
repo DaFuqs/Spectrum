@@ -14,7 +14,7 @@ import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
-import de.dafuqs.spectrum.blocks.pedestal.BuiltinGemstoneColor;
+import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.recipe.*;
@@ -23,8 +23,8 @@ import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.*;
-import net.minecraft.commands.Commands;
 import net.minecraft.commands.*;
+import net.minecraft.commands.Commands;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.locale.*;
@@ -45,7 +45,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
 import org.apache.commons.lang3.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

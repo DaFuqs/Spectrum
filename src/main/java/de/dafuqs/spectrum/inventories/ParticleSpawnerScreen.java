@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
-import de.dafuqs.spectrum.data_loaders.client.ParticleSpawnerParticlesDataLoader;
+import de.dafuqs.spectrum.data_loaders.client.*;
 import de.dafuqs.spectrum.mixin.client.accessors.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import net.minecraft.*;
@@ -18,7 +18,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.*;
-import javax.annotation.*;
 import org.lwjgl.glfw.*;
 
 import java.util.*;

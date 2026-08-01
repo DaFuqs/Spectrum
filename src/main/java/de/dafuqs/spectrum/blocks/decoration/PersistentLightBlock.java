@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.particle.*;
@@ -18,7 +17,6 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.api.distmarker.*;
-import javax.annotation.*;
 
 public class PersistentLightBlock extends LightBlock {
 	

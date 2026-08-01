@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.deeper_down.client;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.client.*;

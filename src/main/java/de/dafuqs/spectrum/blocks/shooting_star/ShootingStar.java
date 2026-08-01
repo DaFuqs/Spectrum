@@ -8,17 +8,12 @@ import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.storage.loot.*;
-import javax.annotation.*;
-
 import org.jetbrains.annotations.*;
 import org.joml.*;
 
 import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
 
 public interface ShootingStar {
 	

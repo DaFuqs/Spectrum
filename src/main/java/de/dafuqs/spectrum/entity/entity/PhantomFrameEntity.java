@@ -12,7 +12,6 @@ import net.minecraft.world.entity.decoration.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
 
 public class PhantomFrameEntity extends ItemFrame {
 	

@@ -8,9 +8,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jspecify.annotations.Nullable;
-
-import javax.annotation.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

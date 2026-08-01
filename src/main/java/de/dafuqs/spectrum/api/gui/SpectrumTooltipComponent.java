@@ -6,7 +6,6 @@ import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.client.gui.screens.inventory.tooltip.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 public interface SpectrumTooltipComponent extends ClientTooltipComponent {
 	

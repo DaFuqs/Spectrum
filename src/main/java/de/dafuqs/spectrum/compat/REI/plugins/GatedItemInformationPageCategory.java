@@ -6,7 +6,6 @@ import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 import java.util.*;
 

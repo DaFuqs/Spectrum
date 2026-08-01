@@ -8,7 +8,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.decoration.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import javax.annotation.*;
 
 public class PhantomGlowFrameEntity extends PhantomFrameEntity {
 	

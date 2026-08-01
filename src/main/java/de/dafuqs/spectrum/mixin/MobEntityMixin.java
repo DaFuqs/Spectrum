@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.mob_effect.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.entity.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;

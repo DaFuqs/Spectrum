@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.mob_effect;
 
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import javax.annotation.*;
 
 public class ScarredMobEffect extends MobEffect {
 	

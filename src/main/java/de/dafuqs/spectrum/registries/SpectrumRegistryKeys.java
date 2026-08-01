@@ -11,7 +11,6 @@ import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 

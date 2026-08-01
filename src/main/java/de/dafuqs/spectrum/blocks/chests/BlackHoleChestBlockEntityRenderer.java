@@ -14,7 +14,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
 
 
 @SuppressWarnings({"unused", "FieldCanBeLocal"})

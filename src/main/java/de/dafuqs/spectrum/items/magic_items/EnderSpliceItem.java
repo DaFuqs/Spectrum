@@ -27,7 +27,6 @@ import net.minecraft.world.level.portal.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
-import javax.annotation.*;
 
 import java.util.*;
 

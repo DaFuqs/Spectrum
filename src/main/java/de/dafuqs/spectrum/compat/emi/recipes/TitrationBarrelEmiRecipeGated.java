@@ -10,9 +10,7 @@ import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.api.distmarker.*;
-import net.neoforged.neoforge.fluids.crafting.*;
-import org.jspecify.annotations.Nullable;
-import net.minecraft.world.level.material.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

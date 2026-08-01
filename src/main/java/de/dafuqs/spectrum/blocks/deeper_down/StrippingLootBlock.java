@@ -8,7 +8,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class StrippingLootBlock extends Block implements StrippableDrop {
 	

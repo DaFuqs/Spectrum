@@ -17,7 +17,6 @@ import net.minecraft.util.random.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
-import javax.annotation.*;
 
 import java.util.*;
 

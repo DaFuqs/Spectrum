@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.monster.*;
 import net.neoforged.api.distmarker.*;
-import javax.annotation.*;
 
 @OnlyIn(Dist.CLIENT)
 public class SplinterspawnRenderer extends SilverfishRenderer {

@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.common.*;
-import javax.annotation.*;
 
 import java.util.*;
 

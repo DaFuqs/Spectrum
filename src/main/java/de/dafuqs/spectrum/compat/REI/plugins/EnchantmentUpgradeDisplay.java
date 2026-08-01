@@ -1,29 +1,21 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
-import com.google.common.collect.*;
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.magic_items.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
-import dev.emi.emi.api.stack.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
-import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
-import javax.annotation.*;
 
 import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
 
 public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	

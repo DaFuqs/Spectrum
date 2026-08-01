@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.blocks.upgrade.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 import java.util.*;
 

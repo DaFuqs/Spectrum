@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.component.*;

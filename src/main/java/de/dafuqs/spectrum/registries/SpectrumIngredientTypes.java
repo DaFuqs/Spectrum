@@ -2,11 +2,6 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
-import de.dafuqs.spectrum.deeper_down.*;
-import de.dafuqs.spectrum.mixin.accessors.*;
-import net.minecraft.core.registries.*;
-import net.minecraft.resources.*;
-import net.minecraft.world.level.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.common.crafting.*;
 import net.neoforged.neoforge.registries.*;

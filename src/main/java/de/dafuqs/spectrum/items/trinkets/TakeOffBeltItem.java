@@ -18,7 +18,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;

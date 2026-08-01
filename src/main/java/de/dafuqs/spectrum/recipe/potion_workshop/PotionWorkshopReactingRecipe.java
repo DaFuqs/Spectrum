@@ -17,7 +17,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import javax.annotation.*;
 
 import java.util.*;
 

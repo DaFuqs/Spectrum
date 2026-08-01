@@ -14,7 +14,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public record PotionRecipeEffect(
 		boolean applicableToPotions,

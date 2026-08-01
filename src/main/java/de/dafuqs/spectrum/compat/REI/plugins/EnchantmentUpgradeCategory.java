@@ -11,7 +11,6 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
-import javax.annotation.*;
 
 import java.util.*;
 

@@ -7,7 +7,7 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public record TimeOfDayPredicate(TimeHelper.@Nullable TimeOfDay name, MinMaxBounds.Ints range) {
 	

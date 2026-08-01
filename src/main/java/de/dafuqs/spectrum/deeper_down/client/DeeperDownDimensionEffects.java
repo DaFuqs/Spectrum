@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.deeper_down.client;
 
 import net.minecraft.client.renderer.*;
 import net.minecraft.world.phys.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 
 public class DeeperDownDimensionEffects extends DimensionSpecialEffects {

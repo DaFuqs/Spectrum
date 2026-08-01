@@ -9,7 +9,6 @@ import vazkii.botania.api.item.*;
 import vazkii.botania.api.mana.*;
 import vazkii.botania.common.handler.*;
 import vazkii.botania.common.helper.*;
-import vazkii.botania.network.*;
 import vazkii.botania.network.clientbound.*;
 import vazkii.botania.xplat.*;
 

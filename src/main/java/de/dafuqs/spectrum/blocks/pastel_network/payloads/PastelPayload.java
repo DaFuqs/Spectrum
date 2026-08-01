@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.blocks.pastel_network.payloads;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.particle.client.*;
 import de.dafuqs.spectrum.registries.*;
@@ -11,11 +9,8 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.resources.*;
 import net.minecraft.world.level.*;
-import net.neoforged.bus.api.*;
-import net.neoforged.neoforge.registries.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public interface PastelPayload {
 	

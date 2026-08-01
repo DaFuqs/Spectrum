@@ -9,7 +9,6 @@ import net.minecraft.core.particles.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
-import javax.annotation.*;
 import org.joml.*;
 
 public class ColoredFluidRisingParticleEffect implements ParticleOptions {

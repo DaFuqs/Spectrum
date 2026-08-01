@@ -28,7 +28,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
-import javax.annotation.*;
 
 import java.util.*;
 

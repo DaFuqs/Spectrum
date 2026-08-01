@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.particle.client;
 
 import com.mojang.blaze3d.vertex.*;
-import de.dafuqs.spectrum.blocks.pastel_network.payloads.PastelPayload;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.render.*;

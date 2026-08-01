@@ -15,8 +15,6 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import org.jetbrains.annotations.*;
 
-import javax.annotation.*;
-
 import java.util.*;
 
 public class BookPedestalCraftingPageRenderer extends BookGatedRecipePageRenderer<PedestalRecipe, BookGatedRecipePage<PedestalRecipe>> {

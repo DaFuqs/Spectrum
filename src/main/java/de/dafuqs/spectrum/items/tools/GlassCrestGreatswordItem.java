@@ -5,9 +5,9 @@ import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.magic.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
-import de.dafuqs.spectrum.magic.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
@@ -25,7 +25,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

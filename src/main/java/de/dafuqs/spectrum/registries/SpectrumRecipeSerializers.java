@@ -21,13 +21,10 @@ import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.*;
-import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
-
-import java.util.function.*;
 
 public class SpectrumRecipeSerializers {
 	

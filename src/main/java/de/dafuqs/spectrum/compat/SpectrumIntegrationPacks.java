@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.compat;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.alloy_forgery.*;
 import de.dafuqs.spectrum.compat.botania.*;

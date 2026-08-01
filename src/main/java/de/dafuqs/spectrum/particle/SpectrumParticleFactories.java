@@ -8,7 +8,6 @@ import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.material.*;
-import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.client.event.*;
 
 // See ParticleManager for vanilla

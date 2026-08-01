@@ -9,7 +9,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.common.*;
-import javax.annotation.*;
 
 import java.util.*;
 

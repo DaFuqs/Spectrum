@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.render.biome_rendering;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import de.dafuqs.spectrum.*;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.config.*;
 import net.minecraft.util.*;
 

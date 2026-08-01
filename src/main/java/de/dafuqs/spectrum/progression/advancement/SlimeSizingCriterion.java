@@ -4,7 +4,6 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.*;
-import javax.annotation.*;
 
 import java.util.*;
 

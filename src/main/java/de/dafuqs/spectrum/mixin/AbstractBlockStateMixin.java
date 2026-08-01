@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
@@ -16,8 +15,6 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.shapes.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
-
-import javax.swing.text.html.*;
 
 @Mixin(BlockBehaviour.BlockStateBase.class)
 public abstract class AbstractBlockStateMixin {

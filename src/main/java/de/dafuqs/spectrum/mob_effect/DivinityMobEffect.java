@@ -9,11 +9,9 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.*;
-import javax.annotation.*;
 
 import java.util.*;
 

@@ -9,7 +9,7 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 

@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.*;
@@ -13,10 +12,8 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.*;
-import net.neoforged.neoforge.items.*;
 import org.jetbrains.annotations.*;
 
 public record FluidPastelPayload(FluidStack fluidStack) implements PastelPayload {

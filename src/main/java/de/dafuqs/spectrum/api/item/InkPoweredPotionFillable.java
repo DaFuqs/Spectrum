@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.ink.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 import java.util.*;
 

@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.decay.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;

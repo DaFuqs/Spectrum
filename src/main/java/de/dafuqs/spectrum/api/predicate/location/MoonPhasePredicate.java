@@ -6,7 +6,6 @@ import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
-import javax.annotation.*;
 
 public enum MoonPhasePredicate implements StringRepresentable {
 	FULL_MOON,

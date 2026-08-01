@@ -8,7 +8,6 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
-import net.minecraft.resources.*;
 import net.minecraft.world.effect.*;
 
 import java.util.*;

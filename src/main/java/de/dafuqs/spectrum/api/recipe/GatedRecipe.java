@@ -7,9 +7,8 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.crafting.*;
-import net.neoforged.api.distmarker.*;
 import net.neoforged.fml.loading.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

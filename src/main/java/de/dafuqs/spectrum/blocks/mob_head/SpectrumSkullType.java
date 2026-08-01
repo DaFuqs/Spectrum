@@ -8,7 +8,6 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.block.*;
-import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;

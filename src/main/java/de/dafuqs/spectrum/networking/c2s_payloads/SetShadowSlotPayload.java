@@ -10,7 +10,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 public record SetShadowSlotPayload(int screenHandlerSyncId, int slotId, ItemStack shadowStack) implements CustomPacketPayload {
 	

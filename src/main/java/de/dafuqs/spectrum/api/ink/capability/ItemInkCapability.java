@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.api.ink.capability;
 
 import de.dafuqs.spectrum.api.ink.storage.*;
-import net.minecraft.core.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.*;
 
 import javax.annotation.*;
 

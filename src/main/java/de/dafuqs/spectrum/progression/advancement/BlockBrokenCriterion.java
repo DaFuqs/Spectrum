@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.api.predicate.block.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
 
 import java.util.*;
 

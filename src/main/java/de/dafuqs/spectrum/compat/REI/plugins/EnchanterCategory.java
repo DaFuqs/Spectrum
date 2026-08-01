@@ -7,7 +7,6 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import javax.annotation.*;
 
 
 public abstract class EnchanterCategory<T extends EnchanterDisplay> extends GatedDisplayCategory<T> {

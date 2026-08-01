@@ -8,7 +8,6 @@ import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
-import javax.annotation.*;
 
 public class CompactingChestScreen extends AbstractContainerScreen<CompactingChestScreenHandler> {
 	

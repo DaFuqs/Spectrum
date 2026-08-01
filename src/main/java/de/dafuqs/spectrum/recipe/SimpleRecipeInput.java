@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.recipe;
 
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import javax.annotation.*;
 
 import java.util.*;
 

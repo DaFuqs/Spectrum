@@ -24,7 +24,6 @@ import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 import java.util.*;
 

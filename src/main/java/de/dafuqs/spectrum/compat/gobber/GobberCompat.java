@@ -18,8 +18,7 @@ import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.registries.*;
 
-import static de.dafuqs.spectrum.registries.SpectrumBlocks.blockWithItem;
-import static de.dafuqs.spectrum.registries.SpectrumBlocks.cluster;
+import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
 
 public class GobberCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	

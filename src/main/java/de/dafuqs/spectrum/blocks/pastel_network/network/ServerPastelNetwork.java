@@ -15,7 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import org.jgrapht.alg.connectivity.*;
 import org.jgrapht.graph.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.concurrent.*;

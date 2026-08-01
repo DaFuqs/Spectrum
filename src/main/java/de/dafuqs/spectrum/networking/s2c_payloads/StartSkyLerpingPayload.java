@@ -13,7 +13,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.dimension.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 public record StartSkyLerpingPayload(long startTime, long endTime) implements CustomPacketPayload {
 	

@@ -27,7 +27,6 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
-import javax.annotation.*;
 
 public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	

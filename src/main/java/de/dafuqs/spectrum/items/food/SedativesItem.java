@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.*;
 import net.minecraft.server.level.*;
 import net.minecraft.stats.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;

@@ -13,7 +13,6 @@ import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
-import javax.annotation.*;
 
 public class SpectrumLootConditionTypes {
 	

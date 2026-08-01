@@ -8,7 +8,6 @@ import net.minecraft.advancements.critereon.MinMaxBounds.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.storage.loot.*;
-import javax.annotation.*;
 
 import java.util.*;
 

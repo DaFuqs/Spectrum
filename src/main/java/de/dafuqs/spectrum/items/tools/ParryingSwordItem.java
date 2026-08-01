@@ -14,7 +14,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public abstract class ParryingSwordItem extends SwordItem implements ExtendedItemBarProvider {
 	

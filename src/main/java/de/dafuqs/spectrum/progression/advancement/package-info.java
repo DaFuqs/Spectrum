@@ -4,4 +4,4 @@
 package de.dafuqs.spectrum.progression.advancement;
 
 import net.minecraft.*;
-import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.*;

@@ -1,10 +1,8 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import com.mojang.logging.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.helpers.enchantments.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.loot.*;
@@ -35,8 +33,7 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import org.jspecify.annotations.Nullable;
-import org.slf4j.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

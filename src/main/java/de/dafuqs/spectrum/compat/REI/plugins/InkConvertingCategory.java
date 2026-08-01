@@ -8,7 +8,6 @@ import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
-import javax.annotation.*;
 
 import java.util.*;
 

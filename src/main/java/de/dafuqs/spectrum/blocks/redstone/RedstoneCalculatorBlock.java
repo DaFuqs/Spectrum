@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.ticks.*;
-import javax.annotation.*;
 
 public class RedstoneCalculatorBlock extends DiodeBlock implements EntityBlock {
 	

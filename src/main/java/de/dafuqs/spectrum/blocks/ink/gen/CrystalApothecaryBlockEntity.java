@@ -25,7 +25,6 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
 
 import java.util.*;
 import java.util.stream.*;

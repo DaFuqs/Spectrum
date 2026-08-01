@@ -15,7 +15,6 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.*;
-import javax.annotation.*;
 
 import java.util.*;
 

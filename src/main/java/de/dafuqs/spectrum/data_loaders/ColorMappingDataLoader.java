@@ -8,7 +8,6 @@ import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.profiling.*;
-import javax.annotation.*;
 
 import java.util.*;
 

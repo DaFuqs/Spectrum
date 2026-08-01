@@ -3,12 +3,11 @@ package de.dafuqs.spectrum.blocks.chests;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
-import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class CompactingChestBlock extends SpectrumChestBlock {
 	

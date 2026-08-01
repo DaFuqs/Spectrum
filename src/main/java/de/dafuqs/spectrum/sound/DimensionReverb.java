@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.resources.sounds.*;
-import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import org.lwjgl.openal.*;
 

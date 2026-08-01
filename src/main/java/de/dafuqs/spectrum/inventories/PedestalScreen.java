@@ -16,8 +16,6 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.block.*;
 import org.jetbrains.annotations.*;
 
-import javax.annotation.*;
-
 public class PedestalScreen extends AbstractContainerScreen<PedestalScreenHandler> {
 	
 	public static final ResourceLocation BACKGROUND1 = SpectrumCommon.locate("textures/gui/container/pedestal1.png");

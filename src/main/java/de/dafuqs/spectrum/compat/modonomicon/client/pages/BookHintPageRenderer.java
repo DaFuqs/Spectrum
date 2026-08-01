@@ -15,7 +15,7 @@ import net.minecraft.client.gui.components.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
 import net.neoforged.neoforge.network.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

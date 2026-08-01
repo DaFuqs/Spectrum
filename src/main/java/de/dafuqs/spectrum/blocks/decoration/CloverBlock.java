@@ -10,7 +10,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
 
 public class CloverBlock extends BushBlock implements BonemealableBlock {
 	

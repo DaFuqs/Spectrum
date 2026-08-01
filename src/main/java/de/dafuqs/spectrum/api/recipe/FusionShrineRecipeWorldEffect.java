@@ -12,7 +12,6 @@ import net.minecraft.network.codec.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
 
 /**
  * Effects that are played when crafting with the fusion shrine

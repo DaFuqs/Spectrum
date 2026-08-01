@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
 import javax.annotation.Nullable;

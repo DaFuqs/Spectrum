@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.api.ink.storage;
 
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import javax.annotation.*;
 
 /**
  * Defines that an object holds a PigmentEnergyStorage

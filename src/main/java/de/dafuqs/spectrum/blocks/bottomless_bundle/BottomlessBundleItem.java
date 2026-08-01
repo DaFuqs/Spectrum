@@ -27,7 +27,6 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.neoforged.api.distmarker.*;
-import javax.annotation.*;
 
 import java.util.*;
 

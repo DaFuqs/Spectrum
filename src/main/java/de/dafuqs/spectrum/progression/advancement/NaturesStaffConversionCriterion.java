@@ -7,7 +7,6 @@ import net.minecraft.core.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
 
 import java.util.*;
 

@@ -9,10 +9,10 @@ import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.*;
 
 import java.util.*;
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public class MobEffectHelper {
 	

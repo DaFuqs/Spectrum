@@ -10,13 +10,10 @@ import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.world.level.block.state.predicate.*;
-import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.neoforged.neoforge.registries.*;
 
 import java.util.*;

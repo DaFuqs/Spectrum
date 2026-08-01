@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

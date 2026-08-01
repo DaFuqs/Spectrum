@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.item_bowl;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -18,10 +17,8 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
 
 import java.util.*;
 

@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.render.animation;
 
-import javax.annotation.*;
-
 import java.util.*;
 
 /**

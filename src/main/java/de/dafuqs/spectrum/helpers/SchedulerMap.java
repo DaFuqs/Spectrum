@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.helpers;
 
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
-import javax.annotation.*;
 
 import java.util.*;
 

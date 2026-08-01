@@ -10,7 +10,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
-import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;

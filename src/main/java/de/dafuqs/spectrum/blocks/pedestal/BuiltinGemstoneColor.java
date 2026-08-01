@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 public enum BuiltinGemstoneColor implements GemstoneColor, StringRepresentable {
 	CYAN("cyan", InkColors.CYAN_COLOR),

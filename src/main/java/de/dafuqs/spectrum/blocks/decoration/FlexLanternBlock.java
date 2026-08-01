@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class FlexLanternBlock extends DiagonalBlock implements SimpleWaterloggedBlock {
 	

@@ -12,7 +12,7 @@ import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.compat.modonomicon.unlock_conditions.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
-import de.dafuqs.spectrum.recipe.color_picker.InkConvertingRecipe;
+import de.dafuqs.spectrum.recipe.color_picker.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;

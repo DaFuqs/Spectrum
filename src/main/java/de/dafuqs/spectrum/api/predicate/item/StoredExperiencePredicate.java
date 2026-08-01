@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.component.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 public record StoredExperiencePredicate(MinMaxBounds.Ints experience) implements SingleComponentItemPredicate<Integer> {
 	

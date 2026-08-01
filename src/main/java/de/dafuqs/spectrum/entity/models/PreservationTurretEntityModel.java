@@ -7,7 +7,6 @@ import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.*;
-import javax.annotation.*;
 
 
 public class PreservationTurretEntityModel<T extends PreservationTurretEntity> extends ListModel<T> {

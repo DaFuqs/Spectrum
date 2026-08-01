@@ -4,14 +4,9 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.*;
-import net.minecraft.core.registries.*;
-import net.minecraft.resources.*;
-import net.minecraft.world.item.enchantment.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.common.conditions.*;
 import net.neoforged.neoforge.registries.*;
-
-import java.util.*;
 
 public class SpectrumResourceConditions {
 	

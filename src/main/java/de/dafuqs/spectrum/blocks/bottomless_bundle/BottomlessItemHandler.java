@@ -1,14 +1,7 @@
 package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
-import de.dafuqs.spectrum.registries.*;
-import net.minecraft.core.*;
-import net.minecraft.core.component.*;
-import net.minecraft.core.registries.*;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.*;
-import net.neoforged.neoforge.items.IItemHandler;
-import javax.annotation.*;
+import net.minecraft.world.item.*;
+import net.neoforged.neoforge.items.*;
 
 import java.util.*;
 

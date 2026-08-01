@@ -10,7 +10,6 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.world.item.crafting.*;
-import javax.annotation.*;
 
 import java.util.*;
 import java.util.stream.*;

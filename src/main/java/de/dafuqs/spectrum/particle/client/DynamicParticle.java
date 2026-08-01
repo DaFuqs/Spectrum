@@ -8,7 +8,6 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.registries.*;
-import javax.annotation.*;
 
 
 public class DynamicParticle extends TextureSheetParticle {

@@ -21,7 +21,7 @@ import net.neoforged.bus.api.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.registries.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
 import static de.dafuqs.spectrum.registries.SpectrumItems.*;

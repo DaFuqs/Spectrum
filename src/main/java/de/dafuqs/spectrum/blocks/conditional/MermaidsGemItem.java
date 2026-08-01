@@ -17,7 +17,6 @@ import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.*;
-import javax.annotation.*;
 
 import java.util.*;
 

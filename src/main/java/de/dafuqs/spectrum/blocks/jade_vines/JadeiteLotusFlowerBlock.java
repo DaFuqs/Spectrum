@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
-import javax.annotation.*;
 
 public class JadeiteLotusFlowerBlock extends SpectrumFacingBlock {
 	

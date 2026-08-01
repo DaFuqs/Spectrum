@@ -8,7 +8,6 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 public record GuidebookConfirmationButtonPressedPayload(String confirmationString) implements CustomPacketPayload {
 	

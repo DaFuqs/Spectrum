@@ -15,7 +15,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
 import org.lwjgl.glfw.*;
 

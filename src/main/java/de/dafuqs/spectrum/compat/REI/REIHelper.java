@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.recipe.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.neoforged.neoforge.fluids.crafting.*;
-import javax.annotation.*;
 
 import java.util.*;
 import java.util.stream.*;

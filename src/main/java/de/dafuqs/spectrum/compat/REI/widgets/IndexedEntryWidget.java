@@ -4,9 +4,7 @@ import me.shedaniel.math.*;
 import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.impl.client.gui.widget.*;
-import me.shedaniel.rei.impl.client.util.*;
 
-import java.util.*;
 import java.util.function.*;
 
 public class IndexedEntryWidget extends EntryWidget {

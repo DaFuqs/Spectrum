@@ -12,7 +12,6 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.inventory.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 import java.util.*;
 

@@ -12,10 +12,8 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
-import java.util.function.*;
 import java.util.stream.*;
 
 public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<CrystallarieumRecipe> {

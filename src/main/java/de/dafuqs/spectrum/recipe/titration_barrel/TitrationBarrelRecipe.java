@@ -23,7 +23,6 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import net.neoforged.neoforge.fluids.crafting.*;
-import javax.annotation.*;
 
 import java.util.*;
 

@@ -6,7 +6,6 @@ import net.minecraft.core.particles.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
 
 import java.util.*;
 

@@ -6,7 +6,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.neoforged.fml.loading.*;
 import org.apache.commons.io.output.*;
-import org.spongepowered.include.com.google.common.base.*;
 
 import java.io.*;
 import java.nio.charset.*;

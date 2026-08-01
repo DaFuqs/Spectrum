@@ -3,12 +3,11 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.compat.REI.*;
-import de.dafuqs.spectrum.recipe.color_picker.InkConvertingRecipe;
+import de.dafuqs.spectrum.recipe.color_picker.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.world.item.crafting.*;
-import javax.annotation.*;
 
 import java.util.*;
 

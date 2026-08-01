@@ -7,11 +7,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.level.gameevent.*;
-import net.minecraft.world.level.material.*;
-import net.minecraft.world.phys.shapes.*;
-import net.neoforged.neoforge.fluids.*;
 
 import java.util.function.*;
 

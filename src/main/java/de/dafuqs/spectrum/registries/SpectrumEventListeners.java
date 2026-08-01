@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import com.simibubi.create.content.fluids.*;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
@@ -24,7 +23,6 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.advancements.*;
 import net.minecraft.client.resources.model.*;
@@ -37,7 +35,6 @@ import net.minecraft.server.packs.resources.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
 import net.minecraft.tags.*;
-import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
@@ -71,10 +68,9 @@ import net.neoforged.neoforge.event.tick.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.items.*;
 import net.neoforged.neoforge.items.wrapper.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
-import top.theillusivec4.curios.api.type.inventory.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;

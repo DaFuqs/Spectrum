@@ -1,10 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import com.llamalad7.mixinextras.injector.*;
-import com.mojang.authlib.*;
-import com.mojang.authlib.minecraft.*;
 import de.dafuqs.spectrum.render.*;
-import net.minecraft.*;
 import net.minecraft.client.resources.*;
 import net.minecraft.resources.*;
 import org.spongepowered.asm.mixin.*;

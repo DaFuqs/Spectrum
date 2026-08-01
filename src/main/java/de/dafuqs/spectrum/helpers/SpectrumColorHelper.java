@@ -1,17 +1,15 @@
 package de.dafuqs.spectrum.helpers;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.items.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 import org.joml.*;
 
 import java.awt.*;
 import java.lang.Math;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.regex.*;
 
 public class SpectrumColorHelper {

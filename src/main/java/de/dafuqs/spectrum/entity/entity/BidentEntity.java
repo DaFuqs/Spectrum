@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.entity.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.phys.*;
 
 public class BidentEntity extends BidentBaseEntity {
 	

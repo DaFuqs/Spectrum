@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.inventories.widgets.ink;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -8,7 +7,6 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.resources.*;
 import org.jetbrains.annotations.*;
 
 import javax.annotation.Nullable;

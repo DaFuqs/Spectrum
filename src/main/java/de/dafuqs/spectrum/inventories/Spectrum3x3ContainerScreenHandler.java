@@ -7,8 +7,6 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
 
-import javax.annotation.*;
-
 public class Spectrum3x3ContainerScreenHandler extends AbstractContainerMenu {
 	
 	private final ScreenBackgroundVariant tier;

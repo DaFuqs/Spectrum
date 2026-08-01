@@ -4,4 +4,4 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import net.minecraft.*;
-import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.*;

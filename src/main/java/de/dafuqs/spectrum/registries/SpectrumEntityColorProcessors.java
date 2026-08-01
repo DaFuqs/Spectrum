@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.entity.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

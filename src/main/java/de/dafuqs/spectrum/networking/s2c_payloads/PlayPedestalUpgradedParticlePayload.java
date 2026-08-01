@@ -15,7 +15,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 public record PlayPedestalUpgradedParticlePayload(BlockPos pedestalPos, PedestalRecipeTier newTier) implements CustomPacketPayload {
 	

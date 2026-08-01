@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import javax.annotation.*;
 
 
 public class PedestalBlockEntityRenderer<C extends PedestalBlockEntity> implements BlockEntityRenderer<C> {

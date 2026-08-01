@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 import java.util.*;
 

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.end_portal;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.*;

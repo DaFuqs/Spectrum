@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.config;
 
 import net.minecraft.resources.*;
-import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.*;
 import org.apache.commons.lang3.tuple.*;
 

@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.magic.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
@@ -18,7 +18,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class GlassArrowEntity extends AbstractArrow {
 	

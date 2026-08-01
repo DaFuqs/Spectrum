@@ -1,10 +1,6 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
-import net.minecraft.*;
-import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
-
-import java.util.*;
 
 public enum PastelNodeType implements StringRepresentable {
 	CONNECTION(false, false),

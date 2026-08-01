@@ -3,8 +3,6 @@ package de.dafuqs.spectrum.render.armor;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import de.dafuqs.spectrum.items.armor.*;
-import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.renderer.*;
@@ -18,7 +16,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.client.event.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class BedrockCapeRenderer {
 	

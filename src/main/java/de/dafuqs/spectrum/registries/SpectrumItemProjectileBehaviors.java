@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
@@ -13,14 +12,10 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.sound.*;
-import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
@@ -33,11 +28,9 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
-import org.jspecify.annotations.Nullable;
-import vazkii.botania.common.helper.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
-import java.util.function.*;
 
 public class SpectrumItemProjectileBehaviors {
 	

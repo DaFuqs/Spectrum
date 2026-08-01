@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.*;
-import javax.annotation.*;
 
 import java.util.*;
 import java.util.stream.*;

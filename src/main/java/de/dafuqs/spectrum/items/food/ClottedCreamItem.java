@@ -5,7 +5,6 @@ import net.minecraft.advancements.*;
 import net.minecraft.server.level.*;
 import net.minecraft.stats.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.*;

@@ -15,7 +15,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.*;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;

@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.registries;
 
 import net.minecraft.world.level.block.state.properties.*;
 
-import static de.dafuqs.spectrum.SpectrumCommon.*;
-
 public class SpectrumWoodTypes {
 	public static final WoodType SLATE_NOXWOOD = new WoodType("slate_noxwood", SpectrumBlockSetTypes.NOXWOOD);
 	public static final WoodType EBONY_NOXWOOD = new WoodType("ebony_noxwood", SpectrumBlockSetTypes.NOXWOOD);

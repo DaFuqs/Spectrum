@@ -122,6 +122,7 @@ public class PrimordialFireAttachmentType {
 		}
 		
 		primordialFireTicks -= entity.getFluidHeight(FluidTags.WATER) > 0 ? 3 : 1;
+		primordialFireTicks = Math.max(0, primordialFireTicks);
 		entity.setData(ATTACHMENT_TYPE, primordialFireTicks);
 		
 		// was on fire, but is not any longer

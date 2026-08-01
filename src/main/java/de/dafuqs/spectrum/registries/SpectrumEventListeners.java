@@ -986,8 +986,8 @@ public class SpectrumEventListeners {
 			inertiaLevel = Math.min(4, inertiaLevel);
 			var inertia = handStack.getOrDefault(SpectrumDataComponentTypes.INERTIA, InertiaComponent.DEFAULT);
 			if (state.is(inertia.lastMined())) {
-				var additionalSpeedPercent = 2.0 * Math.log(inertia.count()) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);
-				event.setNewSpeed(event.getNewSpeed() * 0.5F + (float) additionalSpeedPercent);
+				double additionalSpeedMultiplier = 0.5 + 2.0 * Math.log(inertia.count()) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);
+				event.setNewSpeed(event.getNewSpeed() * (float) additionalSpeedMultiplier);
 			} else {
 				event.setNewSpeed(event.getNewSpeed() / 4);
 			}

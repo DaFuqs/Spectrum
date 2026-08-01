@@ -27,7 +27,6 @@ public class SpectrumRegistryKeys {
 	public static final ResourceKey<Registry<PastelUpgradeSignature>> PASTEL_UPGRADE = of("pastel_upgrade");
 	public static final ResourceKey<Registry<MapCodec<? extends ResonanceProcessor>>> RESONANCE_PROCESSOR_TYPE = of("resonance_processor_type");
 	public static final ResourceKey<Registry<ResonanceProcessor>> RESONANCE_PROCESSOR = of("resonance_processor");
-	public static final ResourceKey<Registry<MapCodec<? extends PastelPayload>>> PASTEL_PAYLOAD_TYPE = of("pastel_payload_type");
 	public static final ResourceKey<Registry<GeodeOreDefinition>> GEODE_ORES = of("geode_ores");
 	public static final ResourceKey<Registry<PastelPayloadType>> PASTEL_PAYLOAD_TYPE = of("pastel_payload_type");
 	public static final ResourceKey<Registry<MapCodec<? extends PastelPayload>>> PASTEL_PAYLOAD = of("pastel_payload");

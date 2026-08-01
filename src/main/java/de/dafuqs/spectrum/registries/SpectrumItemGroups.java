@@ -229,11 +229,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.CRYSTAL_APOTHECARY);
 					
 					entries.accept(SpectrumBlocks.COLOR_PICKER);
-					entries.accept(SpectrumBlocks.DAWNBRUSH);
-					entries.accept(SpectrumBlocks.TWILL);
-					entries.accept(SpectrumBlocks.VANTACLAST);
-					
-					entries.accept(SpectrumBlocks.TINTING_STATION);
 					entries.accept(SpectrumBlocks.CINDERHEARTH);
 					entries.accept(SpectrumBlocks.CRYSTALLARIEUM);
 					
@@ -1564,6 +1559,13 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.PRESERVATION_CHEST);
 					
 					entries.accept(SpectrumItems.DIVINATION_HEART);
+					
+					// TODO: Finish impl
+					entries.accept(SpectrumBlocks.DAWNBRUSH);
+					entries.accept(SpectrumBlocks.TWILL);
+					entries.accept(SpectrumBlocks.VANTACLAST);
+					
+					entries.accept(SpectrumBlocks.TINTING_STATION);
 				}).build();
 	}
 	

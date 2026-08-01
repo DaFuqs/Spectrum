@@ -516,8 +516,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	@Override
-	public void writeClientSideData(@NotNull AbstractContainerMenu menu, @NotNull RegistryFriendlyByteBuf buffer) {
-		FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.encode(buffer, new FilterConfigurable.ExtendedDataWithPos(this.getBlockPos(), this));
+	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
+		ExtendedDataWithPos.STREAM_CODEC.encode(buffer, new FilterConfigurable.ExtendedDataWithPos(this.getBlockPos(), this));
 	}
 	
 	public boolean equals(Object obj) {

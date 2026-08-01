@@ -13,6 +13,7 @@ import net.minecraft.resources.*;
 import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.*;
+import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.*;
 import org.jgrapht.alg.shortestpath.*;
 import org.jgrapht.graph.*;

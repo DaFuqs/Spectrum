@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.shooting_star;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import io.netty.buffer.*;

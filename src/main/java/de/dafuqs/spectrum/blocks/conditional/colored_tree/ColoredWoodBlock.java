@@ -20,7 +20,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.*;
 import java.util.function.*;
 
-public class ColoredWoodBlock extends FlammableLogBlock implements RevelationAware, ColoredTree {
+public class ColoredWoodBlock extends StrippingLootPillarBlock implements RevelationAware, ColoredTree {
 	
 	private static final Map<InkColor, ColoredWoodBlock> WOOD = new Object2ObjectArrayMap<>();
 	protected final InkColor color;

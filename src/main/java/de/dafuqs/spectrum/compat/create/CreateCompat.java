@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.compat.create;
 
 import com.simibubi.create.api.event.*;
-import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.fractal.api.*;
+import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.compat.*;
-import de.dafuqs.spectrum.compat.botania.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.renderer.*;
@@ -29,10 +29,10 @@ import static de.dafuqs.spectrum.registries.SpectrumItems.*;
 public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	public static DeferredItem<Item> PURE_ZINC = SpectrumItems.register("pure_zinc", () -> new Item(IS.of()));
-	public static DeferredBlock<SpectrumClusterBlock> SMALL_ZINC_BUD = SpectrumBlocks.register(cluster(blockWithItem("small_zinc_bud", () -> new SpectrumClusterBlock(BlockBehaviour.Properties.of().pushReaction(PushReaction.DESTROY).destroyTime(1.0f).mapColor(Blocks.LIGHT_GRAY_CONCRETE.defaultMapColor()).requiresCorrectToolForDrops().noOcclusion(), SpectrumClusterBlock.GrowthStage.SMALL), InkColors.BROWN), ModelTemplates.CROSS));
-	public static DeferredBlock<SpectrumClusterBlock> LARGE_ZINC_BUD = SpectrumBlocks.register(cluster(blockWithItem("large_zinc_bud", () -> new SpectrumClusterBlock(BlockBehaviour.Properties.ofFullCopy(SMALL_ZINC_BUD.get()), SpectrumClusterBlock.GrowthStage.LARGE), InkColors.BROWN), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
-	public static DeferredBlock<SpectrumClusterBlock> ZINC_CLUSTER = SpectrumBlocks.register(cluster(blockWithItem("zinc_cluster", () -> new SpectrumClusterBlock(BlockBehaviour.Properties.ofFullCopy(SMALL_ZINC_BUD.get()), SpectrumClusterBlock.GrowthStage.CLUSTER), InkColors.BROWN), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
-	public static DeferredBlock<Block> PURE_ZINC_BLOCK = SpectrumBlocks.register(simple(blockWithItem("pure_zinc_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)), InkColors.BROWN)));
+	public static DeferredBlock<SpectrumClusterBlock> SMALL_ZINC_BUD = SpectrumBlocks.register(cluster(blockWithItem("small_zinc_bud", () -> new SpectrumClusterBlock(BlockBehaviour.Properties.of().pushReaction(PushReaction.DESTROY).destroyTime(1.0f).mapColor(Blocks.LIGHT_GRAY_CONCRETE.defaultMapColor()).requiresCorrectToolForDrops().noOcclusion(), SpectrumClusterBlock.GrowthStage.SMALL)), ModelTemplates.CROSS));
+	public static DeferredBlock<SpectrumClusterBlock> LARGE_ZINC_BUD = SpectrumBlocks.register(cluster(blockWithItem("large_zinc_bud", () -> new SpectrumClusterBlock(BlockBehaviour.Properties.ofFullCopy(SMALL_ZINC_BUD.get()), SpectrumClusterBlock.GrowthStage.LARGE)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
+	public static DeferredBlock<SpectrumClusterBlock> ZINC_CLUSTER = SpectrumBlocks.register(cluster(blockWithItem("zinc_cluster", () -> new SpectrumClusterBlock(BlockBehaviour.Properties.ofFullCopy(SMALL_ZINC_BUD.get()), SpectrumClusterBlock.GrowthStage.CLUSTER)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
+	public static DeferredBlock<Block> PURE_ZINC_BLOCK = SpectrumBlocks.register(simple(blockWithItem("pure_zinc_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)))));
 	
 	@Override
 	public void register(IEventBus modBus) {

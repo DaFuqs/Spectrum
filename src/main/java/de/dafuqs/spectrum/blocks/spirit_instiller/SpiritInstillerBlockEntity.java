@@ -19,6 +19,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -27,10 +28,11 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
-public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter {
+public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter, WorldlyContainer {
 	
 	private static final FlowAnimator.Factory<SpiritInstillerBlockEntity> FACTORY;
 	private static final KeyFrame<Float> platformPos = (tickDelta, time) -> (float) (Math.sin((time + tickDelta + 15) / 23) + 6F) * 2F;
@@ -533,5 +535,20 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 				.push();
 		
 		FACTORY = builder.build();
+	}
+	
+	@Override
+	public int[] getSlotsForFace(Direction side) {
+		return new int[]{0};
+	}
+	
+	@Override
+	public boolean canPlaceItemThroughFace(int index, ItemStack itemStack, @Nullable Direction direction) {
+		return true;
+	}
+	
+	@Override
+	public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+		return true;
 	}
 }

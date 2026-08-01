@@ -25,7 +25,7 @@ public class SpectrumCapabilities {
 		// ItemHandler.BLOCK
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.FUSION_SHRINE.get(), (FusionShrineBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));;
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.PEDESTAL.get(), (PedestalBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.SPIRIT_INSTILLER.get(), (SpiritInstillerBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.SPIRIT_INSTILLER.get(), (SpiritInstillerBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.ENCHANTER.get(), (EnchanterBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CINDERHEARTH.get(), (CinderhearthBlockEntity blockEntity, Direction direction) -> new SidedInvWrapper(blockEntity, direction));
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SpectrumBlockEntities.CRYSTALLARIEUM.get(), (CrystallarieumBlockEntity blockEntity, Direction direction) -> new InvWrapper(blockEntity));

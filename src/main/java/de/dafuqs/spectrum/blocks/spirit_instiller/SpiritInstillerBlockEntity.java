@@ -48,15 +48,15 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	}};
 	
 	private boolean inventoryChanged;
-	private UUID ownerUUID;
-	private UpgradeHolder upgrades;
+	private @Nullable UUID ownerUUID;
+	private @Nullable UpgradeHolder upgrades;
 	private Rotation multiblockRotation = Rotation.NONE;
-	private RecipeHolder<SpiritInstillerRecipe> currentRecipe;
+	private @Nullable RecipeHolder<SpiritInstillerRecipe> currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
 	private boolean validStructure;
 	
-	protected FlowAnimator animator;
+	protected @Nullable FlowAnimator animator;
 	protected FlowData<Float> _platformY = FlowData.NULL(), _haloY = FlowData.NULL(),
 			_platformSpin = FlowData.NULL(), _haloSpin = FlowData.NULL(),
 			_haloAlpha = FlowData.NULL(), _blossomAlpha = FlowData.NULL();
@@ -158,41 +158,50 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	}
 	
 	private static void calculateCurrentRecipe(Level world, SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+		ItemStack instillerStack = spiritInstillerBlockEntity.getItem(SpiritInstillerRecipe.CENTER_INGREDIENT);
+		if (instillerStack.isEmpty()) {
+			spiritInstillerBlockEntity.craftingTime = 0;
+			spiritInstillerBlockEntity.currentRecipe = null;
+			spiritInstillerBlockEntity.updateInClientWorld();
+			return;
+		}
+		
+		// fetch item bowl stacks
+		spiritInstillerBlockEntity.setItem(SpiritInstillerRecipe.CENTER_INGREDIENT, instillerStack);
+		
+		// left item bowl
+		if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+			spiritInstillerBlockEntity.setItem(SpiritInstillerRecipe.FIRST_INGREDIENT, itemBowlBlockEntity.getItem(0));
+		} else {
+			spiritInstillerBlockEntity.setItem(SpiritInstillerRecipe.FIRST_INGREDIENT, ItemStack.EMPTY);
+		}
+		// right item bowl
+		if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
+			spiritInstillerBlockEntity.setItem(SpiritInstillerRecipe.SECOND_INGREDIENT, itemBowlBlockEntity.getItem(0));
+		} else {
+			spiritInstillerBlockEntity.setItem(SpiritInstillerRecipe.SECOND_INGREDIENT, ItemStack.EMPTY);
+		}
+		
 		// test the cached recipe => faster
 		if (spiritInstillerBlockEntity.currentRecipe != null && !spiritInstillerBlockEntity.isEmpty()) {
 			if (spiritInstillerBlockEntity.currentRecipe.value().matches(spiritInstillerBlockEntity.getRecipeInput(), world)) {
+				spiritInstillerBlockEntity.updateInClientWorld();
 				return;
 			}
 		}
 		
-		// cached recipe did not match => calculate new
-		spiritInstillerBlockEntity.craftingTime = 0;
-		spiritInstillerBlockEntity.currentRecipe = null;
-		
-		ItemStack instillerStack = spiritInstillerBlockEntity.getItem(SpiritInstillerRecipe.CENTER_INGREDIENT);
-		if (!instillerStack.isEmpty()) {
-			spiritInstillerBlockEntity.setItem(SpiritInstillerRecipe.CENTER_INGREDIENT, instillerStack);
-			
-			// left item bowl
-			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				spiritInstillerBlockEntity.setItem(SpiritInstillerRecipe.FIRST_INGREDIENT, itemBowlBlockEntity.getItem(0));
-			} else {
-				spiritInstillerBlockEntity.setItem(SpiritInstillerRecipe.FIRST_INGREDIENT, ItemStack.EMPTY);
-			}
-			// right item bowl
-			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				spiritInstillerBlockEntity.setItem(SpiritInstillerRecipe.SECOND_INGREDIENT, itemBowlBlockEntity.getItem(0));
-			} else {
-				spiritInstillerBlockEntity.setItem(SpiritInstillerRecipe.SECOND_INGREDIENT, ItemStack.EMPTY);
-			}
-			
-			RecipeHolder<SpiritInstillerRecipe> spiritInstillerRecipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.SPIRIT_INSTILLING, spiritInstillerBlockEntity.getRecipeInput(), world).orElse(null);
-			if (spiritInstillerRecipe != null) {
-				spiritInstillerBlockEntity.currentRecipe = spiritInstillerRecipe;
-				spiritInstillerBlockEntity.craftingTimeTotal = (int) Math.ceil(spiritInstillerRecipe.value().getCraftingTime() / spiritInstillerBlockEntity.upgrades.getEffectiveValue(Upgradeable.UpgradeType.SPEED));
-			}
+		// dies abitger recipe match?
+		RecipeHolder<SpiritInstillerRecipe> spiritInstillerRecipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.SPIRIT_INSTILLING, spiritInstillerBlockEntity.getRecipeInput(), world).orElse(null);
+		if (spiritInstillerRecipe != null) {
+			spiritInstillerBlockEntity.currentRecipe = spiritInstillerRecipe;
+			spiritInstillerBlockEntity.craftingTimeTotal = (int) Math.ceil(spiritInstillerRecipe.value().getCraftingTime() / spiritInstillerBlockEntity.upgrades.getEffectiveValue(Upgradeable.UpgradeType.SPEED));
+			spiritInstillerBlockEntity.updateInClientWorld();
+			return;
 		}
 		
+		// no matching recipe found
+		spiritInstillerBlockEntity.craftingTime = 0;
+		spiritInstillerBlockEntity.currentRecipe = null;
 		spiritInstillerBlockEntity.updateInClientWorld();
 	}
 	

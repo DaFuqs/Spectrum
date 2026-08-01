@@ -9,7 +9,7 @@
     "collected_ash": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_ash"
+        "advancement_identifier": "spectrum:hidden/collect_blazing_crystal"
       }
     }
   }

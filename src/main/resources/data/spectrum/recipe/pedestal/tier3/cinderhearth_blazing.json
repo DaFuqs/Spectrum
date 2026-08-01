@@ -19,11 +19,11 @@
     "C": "spectrum:polished_calcite",
     "B": "spectrum:polished_basalt",
     "G": "minecraft:diamond",
-    "F": "spectrum:ash"
+    "F": "spectrum:blazing_crystal"
   },
   "result": {
     "id": "spectrum:cinderhearth",
     "count": 1
   },
-  "required_advancement": "spectrum:unlocks/blocks/cinderhearth"
+  "required_advancement": "spectrum:unlocks/blocks/cinderhearth_blazing"
 }

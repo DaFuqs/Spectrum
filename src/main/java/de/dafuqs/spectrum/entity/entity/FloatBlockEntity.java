@@ -257,6 +257,7 @@ public class FloatBlockEntity extends Entity {
 		boolean canPlace = this.blockState.canSurvive(this.level(), blockPos);
 		
 		if (!this.canSetBlock || !canPlace || !canReplace) {
+			this.dropAsItem();
 			return;
 		}
 		

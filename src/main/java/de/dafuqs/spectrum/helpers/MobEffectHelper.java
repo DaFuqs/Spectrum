@@ -105,9 +105,9 @@ public class MobEffectHelper {
 	private static final StatusEffectBackground NIGHT_ALCHEMY = new StatusEffectBackground("night_alchemy");
 	
 	public static ResourceLocation getTextureLocation(ResourceLocation original, MobEffectInstance effect, RenderType renderType) {
-		var type = effect.getEffect();
+		Holder<MobEffect> type = effect.getEffect();
 		
-		if (type == SpectrumMobEffects.DIVINITY)
+		if (type.is(SpectrumMobEffects.DIVINITY))
 			return DIVINITY.get(renderType);
 		
 		if (type.is(SpectrumMobEffectTags.NIGHT_ALCHEMY))

@@ -81,7 +81,7 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 	
 	@Override
 	public boolean canBeAffected(MobEffectInstance effect) {
-		return super.canBeAffected(effect) && effect.getEffect() != SpectrumMobEffects.DEADLY_POISON;
+		return super.canBeAffected(effect) && !effect.getEffect().is(SpectrumMobEffects.DEADLY_POISON);
 	}
 	
 	@Override

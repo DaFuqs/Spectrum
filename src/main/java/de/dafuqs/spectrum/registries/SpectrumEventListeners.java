@@ -139,7 +139,7 @@ public class SpectrumEventListeners {
 	@SubscribeEvent
 	public static void fatalSlumberKill(MobEffectEvent.Expired event) {
 		MobEffectInstance effectInstance = event.getEffectInstance();
-		if (effectInstance.getEffect().value() == SpectrumMobEffects.FATAL_SLUMBER.value()) {
+		if (effectInstance.getEffect().is(SpectrumMobEffects.FATAL_SLUMBER)) {
 			LivingEntity entity = event.getEntity();
 			
 			if (entity.level().isClientSide())

@@ -103,7 +103,7 @@ public class SleepMobEffect extends MobEffect {
 	public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
 		Holder<MobEffect> holder = effectInstance.getEffect();
 		
-		if (holder.equals(SpectrumMobEffects.SOMNOLENCE) || holder.equals(SpectrumMobEffects.CALMING)) {
+		if (holder.is(SpectrumMobEffects.SOMNOLENCE) || holder.is(SpectrumMobEffects.CALMING)) {
 			cures.add(SpectrumEffectCures.SEDATIVES);
 		}
 	}

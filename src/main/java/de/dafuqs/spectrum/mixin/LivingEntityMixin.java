@@ -306,6 +306,7 @@ public abstract class LivingEntityMixin {
 		
 		return false;
 	}
+	
 	// TODO: move to event
 	@Inject(method = "addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z", at = @At("HEAD"), cancellable = true)
 	private void spectrum$addEffect(MobEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
@@ -332,13 +333,13 @@ public abstract class LivingEntityMixin {
 		}
 		
 		float resistanceModifier = Mth.clamp(SleepMobEffect.getSleepResistance(effect, entity), 0.1F, 10F);
-		if (effectType == SpectrumMobEffects.ETERNAL_SLUMBER) {
+		if (effectType.is(SpectrumMobEffects.ETERNAL_SLUMBER)) {
 			if (SleepMobEffect.isImmuneish(entity)) {
 				effect.spectrum$setDuration(Math.round(effect.getDuration() / resistanceModifier));
 			} else if (!entity.getType().is(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
 				effect.spectrum$setDuration(MobEffectInstance.INFINITE_DURATION);
 			}
-		} else if (effectType == SpectrumMobEffects.FATAL_SLUMBER) {
+		} else if (effectType.is(SpectrumMobEffects.FATAL_SLUMBER)) {
 			if (SleepMobEffect.isImmuneish(entity) && entity.getType().is(Tags.EntityTypes.BOSSES)) {
 				effect.spectrum$setDuration(20 * 60);
 			} else {
@@ -346,6 +347,7 @@ public abstract class LivingEntityMixin {
 			}
 		}
 	}
+	
 	// TODO: move to event
 	@Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
 	private void spectrum$applyBonusDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {

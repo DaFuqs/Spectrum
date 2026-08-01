@@ -39,8 +39,8 @@
       "recipe_id": "spectrum:pedestal/tier3/cinderhearth_ash"
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title": "container.spectrum.rei.pedestal_recipe",
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.cinderhearth.knowledge_gem.title",
       "text": "book.spectrum.guidebook.cinderhearth.knowledge_gem.text"
     },
     {

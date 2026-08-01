@@ -18,7 +18,7 @@
   "key": {
     "C": "spectrum:polished_calcite",
     "B": "spectrum:polished_basalt",
-    "G": "spectrum:diamond",
+    "G": "minecraft:diamond",
     "F": "spectrum:ash"
   },
   "result": {

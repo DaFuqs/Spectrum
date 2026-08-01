@@ -269,6 +269,31 @@ public class SanityCommand {
 		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, "Enchantment Upgrade", recipeManager, registryManager);
 		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.SPIRIT_INSTILLING, "Spirit Instiller", recipeManager, registryManager);
 		
+		// Items that are meant to be enchantable but not really
+		for (Map.Entry<ResourceKey<Item>, Item> item : BuiltInRegistries.ITEM.entrySet()) {
+			if (!item.getKey().location().getNamespace().equals(modId)) {
+				continue;
+			}
+			
+			Item i = item.getValue();
+			
+			ItemStack defaultStack = i.getDefaultInstance();
+			boolean isEnchantable = i.isEnchantable(defaultStack);
+			int enchantmentValue = i.getEnchantmentValue(defaultStack);
+			if(isEnchantable) {
+				if(enchantmentValue <= 0) {
+					SpectrumCommon.logWarning("[SANITY: Enchantability] " + item.getValue().getDescriptionId() + " is enchantable, but has an enchantment value of " + enchantmentValue);
+				}
+			}
+			if(enchantmentValue > 0) {
+				if(!isEnchantable) {
+					if(i == SpectrumItems.GILDED_BOOK.get()) {
+						continue;
+					}
+					SpectrumCommon.logWarning("[SANITY: Enchantability] " + item.getValue().getDescriptionId() + " is has a positive enchantment value, but its default instance is not enchantable");
+				}
+			}
+		}
 		
 		// Impossible to unlock block cloaks
 		for (Map.Entry<ResourceLocation, List<BlockState>> cloaks : RevelationRegistry.getBlockStateEntries().entrySet()) {

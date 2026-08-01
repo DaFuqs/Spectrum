@@ -621,7 +621,7 @@ public class SpectrumConfig {
 		
 		NightfallsBladeEnchantability = builder
 				.translation("config.spectrum.nightfalls_blade_enchantability")
-				.define("nightfalls_blade_enchantability", 0);
+				.define("nightfalls_blade_enchantability", 1);
 		
 		MaxLevelForEffectsInLesserPotionPendant = builder
 				.translation("config.spectrum.max_level_for_effects_in_lesser_potion_pendant")

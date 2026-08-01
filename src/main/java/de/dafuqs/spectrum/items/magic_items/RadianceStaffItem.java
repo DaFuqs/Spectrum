@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -187,6 +188,11 @@ public class RadianceStaffItem extends Item implements InkPowered {
 				playDenySound(world, user);
 			}
 		}
+	}
+
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getMaxStackSize() == 1;
 	}
 	
 	@Override

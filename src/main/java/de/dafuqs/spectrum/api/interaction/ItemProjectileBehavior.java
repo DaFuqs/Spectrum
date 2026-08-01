@@ -178,14 +178,14 @@ public interface ItemProjectileBehavior {
 				livingOwner.setLastHurtMob(target);
 			}
 			
-			if (dealDamage(projectile, owner, target)) {
+			if (dealDamage(projectile, owner, target) && target.getType() != EntityType.ENDERMAN) {
 				int targetFireTicks = target.getRemainingFireTicks();
 				if (projectile.isOnFire()) {
 					target.setRemainingFireTicks(targetFireTicks);
 				}
 				
 				if (target instanceof LivingEntity livingTarget) {
-					if (owner.level() instanceof ServerLevel serverWorld) {
+					if (owner.level() instanceof ServerLevel serverWorld && livingTarget.getLastDamageSource() != null) {
 						EnchantmentHelper.doPostAttackEffectsWithItemSource(serverWorld, target, livingTarget.getLastDamageSource(), stack);
 					}
 					if (target != owner && target instanceof Player && owner instanceof ServerPlayer serverPlayerOwner && !projectile.isSilent()) {

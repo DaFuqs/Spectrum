@@ -38,7 +38,7 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
 	@Override
 	public void register(IEventBus modBus) {
-		NeoForge.EVENT_BUS.addListener(CreateCompat::addItemsToSubTabs);
+		NeoForge.EVENT_BUS.addListener(AE2Compat::addItemsToSubTabs);
 	}
 	
 	@Override

@@ -3,89 +3,89 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"textures": {
-		"2": "spectrum:block/gather_node_crystal",
+		"2": "spectrum:block/sender_node_crystal",
 		"3": "spectrum:block/pastel_node_inner_ring_blank",
 		"4": "spectrum:block/pastel_node_redstone_ring_blank",
 		"5": "spectrum:block/pastel_node_outer_ring_blank",
-		"particle": "spectrum:block/pastel_node_base"
+		"particle": "spectrum:block/pastel_omni_node_base"
 	},
 	"elements": [
 		{
 			"name": "base",
 			"from": [7, 2, 7],
 			"to": [9, 2, 9],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 7]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 2, 8]},
 			"faces": {
-				"up": {"uv": [10, 2, 8, 0], "texture": "#particle"},
-				"down": {"uv": [12, 0, 10, 2], "texture": "#particle"}
+				"up": {"uv": [14, 2, 12, 0], "texture": "#particle"},
+				"down": {"uv": [16, 0, 14, 2], "texture": "#particle"}
 			}
 		},
 		{
 			"name": "leaf1",
-			"from": [6, 2, 8],
-			"to": [10, 2, 12],
-			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 2, 9]},
+			"from": [5.5, 2, 8],
+			"to": [10.5, 2, 14],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [7.5, 2, 9]},
 			"faces": {
-				"up": {"uv": [4, 12, 0, 8], "texture": "#particle"},
-				"down": {"uv": [8, 8, 4, 12], "texture": "#particle"}
+				"up": {"uv": [5, 6, 0, 0], "texture": "#particle"},
+				"down": {"uv": [10, 0, 5, 6], "texture": "#missing"}
 			}
 		},
 		{
 			"name": "leaf2",
-			"from": [6, 2, 4],
-			"to": [10, 2, 8],
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 2, 7]},
+			"from": [5.5, 2, 2],
+			"to": [10.5, 2, 8],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8.5, 2, 7]},
 			"faces": {
-				"up": {"uv": [4, 4, 0, 0], "texture": "#particle"},
-				"down": {"uv": [8, 0, 4, 4], "texture": "#particle"}
+				"up": {"uv": [0, 0, 5, 6], "texture": "#particle"},
+				"down": {"uv": [10, 0, 5, 6], "rotation": 180, "texture": "#particle"}
 			}
 		},
 		{
 			"name": "leaf3",
-			"from": [4, 2, 6],
-			"to": [8, 2, 10],
-			"rotation": {"angle": -22.5, "axis": "z", "origin": [7, 2, 8]},
+			"from": [2, 2, 5.5],
+			"to": [8, 2, 10.5],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [7, 2, 7.5]},
 			"faces": {
-				"up": {"uv": [4, 8, 0, 4], "texture": "#particle"},
-				"down": {"uv": [8, 4, 4, 8], "texture": "#particle"}
+				"up": {"uv": [5, 12, 0, 6], "rotation": 270, "texture": "#particle"},
+				"down": {"uv": [5, 12, 10, 6], "rotation": 270, "texture": "#particle"}
 			}
 		},
 		{
 			"name": "leaf4",
-			"from": [8, 2, 6],
-			"to": [12, 2, 10],
-			"rotation": {"angle": 22.5, "axis": "z", "origin": [9, 2, 8]},
+			"from": [8, 2, 5.5],
+			"to": [14, 2, 10.5],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [9, 2, 8.5]},
 			"faces": {
-				"up": {"uv": [4, 16, 0, 12], "texture": "#particle"},
-				"down": {"uv": [8, 12, 4, 16], "texture": "#particle"}
+				"up": {"uv": [5, 12, 0, 6], "rotation": 90, "texture": "#particle"},
+				"down": {"uv": [5, 12, 10, 6], "rotation": 90, "texture": "#particle"}
 			}
 		},
 		{
 			"name": "crystal",
-			"from": [6.5, 7, 6.5],
-			"to": [9.5, 14, 9.5],
-			"rotation": {"angle": 45, "axis": "x", "origin": [8, 10.5, 8]},
+			"from": [6.5, 8, 6.5],
+			"to": [9.5, 11, 9.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
 			"faces": {
-				"north": {"uv": [0, 0, 3, 7], "texture": "#2"},
-				"east": {"uv": [0, 0, 3, 7], "texture": "#2"},
-				"south": {"uv": [0, 0, 3, 7], "texture": "#2"},
-				"west": {"uv": [0, 0, 3, 7], "texture": "#2"},
-				"up": {"uv": [3, 0, 6, 3], "rotation": 270, "texture": "#2"},
-				"down": {"uv": [3, 3, 6, 6], "rotation": 90, "texture": "#2"}
+				"north": {"uv": [3, 0, 0, 3], "texture": "#2"},
+				"east": {"uv": [3, 0, 0, 3], "texture": "#2"},
+				"south": {"uv": [3, 0, 0, 3], "texture": "#2"},
+				"west": {"uv": [3, 0, 0, 3], "texture": "#2"},
+				"up": {"uv": [3, 6, 6, 3], "rotation": 180, "texture": "#2"},
+				"down": {"uv": [3, 3, 0, 6], "rotation": 270, "texture": "#2"}
 			}
 		},
 		{
 			"name": "crystal inner",
-			"from": [9.64264, 12.15, 11.65736],
-			"to": [6.34264, 8.85, 4.35736],
-			"rotation": {"angle": -45, "axis": "x", "origin": [7.99264, 10.5, 8.00736]},
+			"from": [9.64264, 11.15, 9.65736],
+			"to": [6.34264, 7.85, 6.35736],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
 			"faces": {
-				"north": {"uv": [6, 2, 8, 4], "rotation": 270, "texture": "#2"},
-				"east": {"uv": [6, 0, 8, 2], "rotation": 270, "texture": "#2"},
-				"south": {"uv": [6, 0, 8, 2], "rotation": 270, "texture": "#2"},
-				"west": {"uv": [6, 0, 8, 2], "rotation": 270, "texture": "#2"},
-				"up": {"uv": [6, 2, 8, 4], "rotation": 270, "texture": "#2"},
-				"down": {"uv": [6, 2, 8, 4], "rotation": 270, "texture": "#2"}
+				"north": {"uv": [3, 3, 6, 0], "rotation": 90, "texture": "#2"},
+				"east": {"uv": [3, 3, 6, 0], "rotation": 90, "texture": "#2"},
+				"south": {"uv": [3, 3, 6, 0], "rotation": 90, "texture": "#2"},
+				"west": {"uv": [3, 3, 6, 0], "rotation": 90, "texture": "#2"},
+				"up": {"uv": [3, 3, 6, 0], "rotation": 180, "texture": "#2"},
+				"down": {"uv": [3, 3, 6, 0], "texture": "#2"}
 			}
 		},
 		{

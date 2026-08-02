@@ -32,7 +32,7 @@ public class BaseInkScreenHandler extends AbstractContainerMenu implements InkCo
 	public static final int PLAYER_INVENTORY_START_Y = 84;
 	
 	protected final Level world;
-	public final ServerPlayer serverPlayer;
+	public final @Nullable ServerPlayer serverPlayer;
 	protected BaseInkBlockEntity<?> blockEntity;
 	protected int inventorySize;
 	
@@ -53,6 +53,7 @@ public class BaseInkScreenHandler extends AbstractContainerMenu implements InkCo
 	protected BaseInkScreenHandler(@Nullable MenuType<?> menuType, int syncId, Inventory playerInventory, BaseInkBlockEntity<?> blockEntity, Optional<Holder<InkColor>> selectedColor, int inventorySize) {
 		super(menuType, syncId);
 		
+		this.inventorySize = inventorySize;
 		this.blockEntity = blockEntity;
 		this.blockEntity.setSelectedColor(selectedColor);
 		this.serverPlayer = playerInventory.player instanceof ServerPlayer serverPlayerEntity ? serverPlayerEntity : null;

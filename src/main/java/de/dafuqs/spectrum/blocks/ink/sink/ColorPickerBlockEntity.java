@@ -32,7 +32,7 @@ import java.util.*;
 public class ColorPickerBlockEntity extends BaseInkBlockEntity<TotalCappedInkStorage> implements MenuProvider {
 	
 	public static final long TICKS_PER_CONVERSION = 5;
-	public static final long INK_CAPACITY = (long) Math.pow(256, 2);
+	public static final long INK_CAPACITY = 64 * 64 * 64 * 100; // (long) Math.pow(256, 2);
 	protected @Nullable InkConvertingRecipe cachedRecipe;
 	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {

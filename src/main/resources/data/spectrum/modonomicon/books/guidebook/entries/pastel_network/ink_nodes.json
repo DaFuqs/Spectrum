@@ -17,11 +17,11 @@
   "pages": [
     {
       "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.ink_nodes.name",
       "text": "book.spectrum.guidebook.ink_nodes.about.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "book.spectrum.guidebook.ink_nodes.name",
       "recipe_id": "spectrum:pedestal/tier3/pastel_network/ink_node"
     },
     {

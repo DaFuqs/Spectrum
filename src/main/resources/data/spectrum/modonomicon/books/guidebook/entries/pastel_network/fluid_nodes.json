@@ -22,6 +22,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.sender_node.name",
       "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_provider_node"
     },
     {
@@ -31,6 +32,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.storage_node.name",
       "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_storage_node"
     },
     {
@@ -40,6 +42,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.sender_node.name",
       "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_sender_node"
     },
     {
@@ -49,6 +52,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.gather_node.name",
       "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_gather_node"
     },
     {

@@ -154,7 +154,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 				// consume 1 block close to the reed when growing.
 				// if the quitoxic reeds are growing in liquid crystal: 1/4 chance to consume
 				// search for block it could be planted on. 1 block => 1 quitoxic reed
-				Optional<BlockPos> posToConsumeBlock = searchConsumableBlock(world, pos.below(height), SpectrumBlockTags.QUITOXIC_REEDS_CONSUMABLE, random);
+				Optional<BlockPos> posToConsumeBlock = searchConsumableBlock(world, pos.below(height), SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE, SpectrumBlockTags.QUITOXIC_REEDS_CONSUMABLE, random);
 				if (posToConsumeBlock.isEmpty()) {
 					return;
 				}
@@ -182,23 +182,25 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 		}
 	}
 	
-	private Optional<BlockPos> searchConsumableBlock(Level world, BlockPos origin, TagKey<Block> searchTag, RandomSource random) {
+	private Optional<BlockPos> searchConsumableBlock(Level world, BlockPos origin, TagKey<Block> continueTag, TagKey<Block> searchTag, RandomSource random) {
 		Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
 		AtomicReference<BlockPos> lastFoundPos = new AtomicReference<>(origin);
 		BlockPos.breadthFirstTraversal(origin, MAX_CONSUMABLE_BLOCK_SEARCH_DISTANCE, 100,
 				(pos, blockPosConsumer) -> {
-					lastFoundPos.set(pos);
+					if(world.getBlockState(pos).is(searchTag)) {
+						lastFoundPos.set(pos);
+					}
 					blockPosConsumer.accept(pos.relative(direction));
 					blockPosConsumer.accept(pos.relative(Direction.DOWN));
 					blockPosConsumer.accept(pos.relative(Direction.UP));
 				},
-				pos -> world.getBlockState(pos).is(searchTag)
+				pos -> world.getBlockState(pos).is(continueTag)
 		);
 		
-		if (lastFoundPos.get().equals(origin)) {
-			return Optional.empty();
-		} else {
+		if (world.getBlockState(lastFoundPos.get()).is(searchTag)) {
 			return Optional.of(lastFoundPos.get());
+		} else {
+			return Optional.empty();
 		}
 	}
 	

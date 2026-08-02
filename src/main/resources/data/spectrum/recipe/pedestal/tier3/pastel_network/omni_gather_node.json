@@ -2,9 +2,10 @@
   "type": "spectrum:pedestal",
   "group": "pastel_network",
   "time": 240,
-  "tier": "advanced",
+  "tier": "complex",
   "colors": {
-    "spectrum:black": 4
+    "spectrum:black": 4,
+    "spectrum:white": 4
   },
   "experience": 1.0,
   "pattern": [

@@ -23,17 +23,13 @@
     {
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.sender_node.name",
-      "text": "book.spectrum.guidebook.sender_node.page0.text"
+      "text": "book.spectrum.guidebook.sender_node.about.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id": "spectrum:pedestal/tier3/pastel_network/item_sender_node"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title": "container.spectrum.rei.pure_recipe",
-      "recipe_id": "spectrum:pedestal/tier3/pastel_network/item_sender_node_refined"
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/item_sender_node",
+      "text": "book.spectrum.guidebook.sender_node.recipe.text"
     }
   ]
 }

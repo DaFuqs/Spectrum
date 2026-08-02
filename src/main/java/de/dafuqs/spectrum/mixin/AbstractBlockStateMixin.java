@@ -29,7 +29,8 @@ public abstract class AbstractBlockStateMixin {
 	}
 	
 	// https://github.com/apace100/water-walking-fix
-	@ModifyReturnValue(method = "getCollisionShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;", at = @At("RETURN"))
+	// dummied out due to sable crash
+	/*@ModifyReturnValue(method = "getCollisionShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;", at = @At("RETURN"))
 	public VoxelShape getFluidloggedCollisionShape(VoxelShape original, BlockGetter level, BlockPos pos, CollisionContext context) {
 		FluidState fluidState = spectrum$getFluidStateHelper(level, pos);
 		if(fluidState == null || fluidState.isEmpty()) {
@@ -66,5 +67,5 @@ public abstract class AbstractBlockStateMixin {
 		for (int i = 0; i <= 8; i++) {
 			FLUID_LEVEL_SHAPES[i] = Block.box(0.0, 0.0, 0.0, 16.0, i, 16.0);
 		}
-	}
+	}*/
 }

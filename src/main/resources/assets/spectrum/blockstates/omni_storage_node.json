@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "spectrum:block/omni_storage_node"
+    }
+  }
+}

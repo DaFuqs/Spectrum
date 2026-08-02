@@ -422,6 +422,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return PastelNodeType.CONNECTION;
 	}
 	
+	public PastelNodeBases.PastelNodeBase getNodeBase() {
+		if (this.getBlockState().getBlock() instanceof PastelNodeBlock pastelNodeBlock) {
+			return pastelNodeBlock.base;
+		}
+		return PastelNodeBases.ITEM;
+	}
+	
 	public Set<Supplier<? extends PastelPayloadType>> getSupportedPayloads() {
 		if (this.getBlockState().getBlock() instanceof PastelNodeBlock pastelNodeBlock) {
 			return pastelNodeBlock.supportedPayloads;

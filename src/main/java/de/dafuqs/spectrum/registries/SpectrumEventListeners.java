@@ -90,6 +90,11 @@ public class SpectrumEventListeners {
 		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/sender_node_crystal")));
 		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/storage_node_crystal")));
 		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/gather_node_crystal")));
+		
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_item_base")));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_ink_base")));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_fluid_base")));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_omni_base")));
 	}
 	
 	@SubscribeEvent

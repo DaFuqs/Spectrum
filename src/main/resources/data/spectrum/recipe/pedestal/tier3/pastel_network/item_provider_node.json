@@ -4,7 +4,7 @@
   "time": 80,
   "tier": "advanced",
   "colors": {
-    "spectrum:black": 1
+    "spectrum:magenta": 1
   },
   "experience": 1.0,
   "pattern": [
@@ -13,14 +13,14 @@
     "YXY"
   ],
   "key": {
-    "S": "spectrum:onyx_shard",
+    "S": "minecraft:amethyst_shard",
     "X": "spectrum:polished_basalt",
     "Y": "spectrum:polished_calcite",
     "A": "spectrum:raw_azurite"
   },
   "result": {
-    "id": "spectrum:gather_node",
+    "id": "spectrum:provider_node",
     "count": 1
   },
-  "required_advancement": "spectrum:unlocks/blocks/pastel_network"
+  "required_advancement": "spectrum:unlocks/pastel_network/item"
 }

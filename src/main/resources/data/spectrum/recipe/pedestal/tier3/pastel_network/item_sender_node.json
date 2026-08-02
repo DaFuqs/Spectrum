@@ -3,7 +3,9 @@
   "group": "pastel_network",
   "time": 80,
   "tier": "advanced",
-  "colors": {},
+  "colors": {
+    "spectrum:yellow": 1
+  },
   "experience": 1.0,
   "pattern": [
     " A ",
@@ -11,14 +13,14 @@
     "YXY"
   ],
   "key": {
-    "S": "minecraft:quartz",
+    "S": "spectrum:citrine_shard",
     "X": "spectrum:polished_basalt",
     "Y": "spectrum:polished_calcite",
     "A": "spectrum:raw_azurite"
   },
   "result": {
-    "id": "spectrum:connection_node",
-    "count": 4
+    "id": "spectrum:sender_node",
+    "count": 1
   },
-  "required_advancement": "spectrum:unlocks/pastel_network/base"
+  "required_advancement": "spectrum:unlocks/pastel_network/item"
 }

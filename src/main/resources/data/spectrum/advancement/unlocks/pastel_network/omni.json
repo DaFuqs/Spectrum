@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_item_pastel_network": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/pastel_network/item"
+      }
+    },
+    "unlocked_fluid_pastel_network": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/pastel_network/fluid"
+      }
+    },
+    "unlocked_ink_pastel_network": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/pastel_network/ink"
+      }
+    }
+  }
+}

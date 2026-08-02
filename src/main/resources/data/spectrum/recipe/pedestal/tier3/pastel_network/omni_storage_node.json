@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "pastel_network",
+  "time": 240,
+  "tier": "advanced",
+  "colors": {
+    "spectrum:cyan": 4
+  },
+  "experience": 1.0,
+  "pattern": [
+    " A ",
+    "PSM",
+    "YXY"
+  ],
+  "key": {
+    "S": "spectrum:topaz_shard",
+    "X": "spectrum:polished_basalt",
+    "Y": "spectrum:polished_calcite",
+    "A": "spectrum:raw_azurite",
+    "M": "spectrum:mermaids_gem",
+    "P": "#spectrum:pigments"
+  },
+  "result": {
+    "id": "spectrum:omni_storage_node",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/pastel_network/omni"
+}

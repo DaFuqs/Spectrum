@@ -3,7 +3,11 @@
   "group": "pure_pastel_network",
   "time": 80,
   "tier": "advanced",
-  "colors": {},
+  "colors": {
+    "spectrum:cyan": 4,
+    "spectrum:magenta": 4,
+    "spectrum:yellow": 4
+  },
   "experience": 4.0,
   "pattern": [
     " A ",
@@ -11,14 +15,14 @@
     "YXY"
   ],
   "key": {
-    "S": "minecraft:quartz",
+    "S": "#spectrum:pigments",
     "X": "spectrum:polished_basalt",
     "Y": "spectrum:polished_calcite",
     "A": "spectrum:pure_azurite"
   },
   "result": {
-    "id": "spectrum:connection_node",
-    "count": 32
+    "id": "spectrum:ink_node",
+    "count": 8
   },
-  "required_advancement": "spectrum:unlocks/pastel_network/base_refined"
+  "required_advancement": "spectrum:unlocks/pastel_network/ink_refined"
 }

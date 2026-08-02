@@ -1,0 +1,10 @@
+{
+  "criteria": {
+    "unlocked_refined_pastel_network": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/pastel_network/base_refined"
+      }
+    }
+  }
+}

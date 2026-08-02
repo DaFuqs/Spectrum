@@ -6,10 +6,10 @@
         "advancement_identifier": "spectrum:unlocks/pastel_network/base"
       }
     },
-    "unlocked_black_hole_chest": {
+    "unlocked_ink_use": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/blocks/black_hole_chest"
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
       }
     }
   }

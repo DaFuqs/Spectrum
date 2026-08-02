@@ -1,26 +1,28 @@
 {
   "type": "spectrum:pedestal",
   "group": "pastel_network",
-  "time": 80,
+  "time": 240,
   "tier": "advanced",
   "colors": {
-    "spectrum:magenta": 1
+    "spectrum:magenta": 4
   },
   "experience": 1.0,
   "pattern": [
     " A ",
-    "ASA",
+    "PSM",
     "YXY"
   ],
   "key": {
     "S": "minecraft:amethyst_shard",
     "X": "spectrum:polished_basalt",
     "Y": "spectrum:polished_calcite",
-    "A": "spectrum:raw_azurite"
+    "A": "spectrum:raw_azurite",
+    "M": "spectrum:mermaids_gem",
+    "P": "#spectrum:pigments"
   },
   "result": {
-    "id": "spectrum:provider_node",
+    "id": "spectrum:omni_provider_node",
     "count": 1
   },
-  "required_advancement": "spectrum:unlocks/blocks/pastel_network"
+  "required_advancement": "spectrum:unlocks/pastel_network/omni"
 }

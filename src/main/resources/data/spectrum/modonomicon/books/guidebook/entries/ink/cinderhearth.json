@@ -36,7 +36,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id": "spectrum:pedestal/tier3/cinderhearth_blazing.json"
+      "recipe_id": "spectrum:pedestal/tier3/cinderhearth_blazing"
     },
     {
       "type": "modonomicon:text",

@@ -1,5 +1,11 @@
 {
   "criteria": {
+    "unlocked_pastel_network": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/pastel_network/base"
+      }
+    },
     "has_any_advanced_pastel_network_advancement": {
       "trigger": "revelationary:advancement_count",
       "conditions": {

@@ -4,23 +4,24 @@
   "time": 80,
   "tier": "advanced",
   "colors": {
-    "spectrum:cyan": 4
+    "spectrum:yellow": 4
   },
   "experience": 4.0,
   "pattern": [
-    " A ",
+    " M ",
     "ASA",
     "YXY"
   ],
   "key": {
-    "S": "spectrum:topaz_shard",
+    "S": "spectrum:citrine_shard",
     "X": "spectrum:polished_basalt",
     "Y": "spectrum:polished_calcite",
-    "A": "spectrum:pure_azurite"
+    "A": "spectrum:pure_azurite",
+    "M": "spectrum:mermaids_gem"
   },
   "result": {
-    "id": "spectrum:storage_node",
+    "id": "spectrum:fluid_sender_node",
     "count": 8
   },
-  "required_advancement": "spectrum:unlocks/blocks/pastel_network_refined"
+  "required_advancement": "spectrum:unlocks/pastel_network/fluid_refined"
 }

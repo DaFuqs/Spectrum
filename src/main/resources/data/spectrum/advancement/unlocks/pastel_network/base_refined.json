@@ -3,7 +3,7 @@
     "unlocked_pastel_network": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/blocks/pastel_network"
+        "advancement_identifier": "spectrum:unlocks/pastel_network/base"
       }
     },
     "grown_azurite_in_crystallarieum": {

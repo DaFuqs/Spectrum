@@ -39,8 +39,10 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation SPAWNER_CREATURE_CHANGE = SpectrumCommon.locate("milestones/unlock_spawner_creature_change");
 	public static final ResourceLocation SPAWNER_MANIPULATION = SpectrumCommon.locate("milestones/unlock_spawner_manipulation");
 	public static final ResourceLocation UNLOCK_SHOOTING_STARS = SpectrumCommon.locate("milestones/unlock_shooting_stars");
-	public static final ResourceLocation PASTEL_NODE_UPGRADING = SpectrumCommon.locate("milestones/unlock_pastel_node_upgrading");
-	public static final ResourceLocation PASTEL_NODE_COLORING = SpectrumCommon.locate("milestones/unlock_pastel_node_coloring");
+	
+	// Pastel Network Features
+	public static final ResourceLocation PASTEL_NODE_UPGRADING = SpectrumCommon.locate("unlocks/pastel_network/unlock_pastel_node_upgrading");
+	public static final ResourceLocation PASTEL_NODE_COLORING = SpectrumCommon.locate("unlocks/pastel_network/unlock_pastel_node_coloring");
 	
 	// Paintbrush Abilities
 	public static final ResourceLocation PAINTBRUSH_COLORING = SpectrumCommon.locate("collect_pigment");

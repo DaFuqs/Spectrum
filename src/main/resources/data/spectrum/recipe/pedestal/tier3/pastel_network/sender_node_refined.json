@@ -4,11 +4,7 @@
   "time": 80,
   "tier": "advanced",
   "colors": {
-    "spectrum:magenta": 0,
-    "spectrum:yellow": 4,
-    "spectrum:cyan": 0,
-    "spectrum:black": 0,
-    "spectrum:white": 0
+    "spectrum:yellow": 4
   },
   "experience": 4.0,
   "pattern": [

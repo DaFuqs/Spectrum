@@ -33,6 +33,11 @@
     "#spectrum:alloy_forges",
     "#spectrum:basal_marbles",
 
+    "spectrum:twill",
+    "spectrum:vantaclast",
+    "spectrum:dawnbrush",
+    "spectrum:tinting_station",
+
     "spectrum:topaz_cluster",
     "spectrum:citrine_cluster",
     "spectrum:onyx_cluster",

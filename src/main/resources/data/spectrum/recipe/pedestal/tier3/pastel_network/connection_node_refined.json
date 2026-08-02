@@ -3,13 +3,7 @@
   "group": "pure_pastel_network",
   "time": 80,
   "tier": "advanced",
-  "colors": {
-    "spectrum:magenta": 0,
-    "spectrum:yellow": 0,
-    "spectrum:cyan": 0,
-    "spectrum:black": 0,
-    "spectrum:white": 0
-  },
+  "colors": {},
   "experience": 4.0,
   "pattern": [
     " A ",

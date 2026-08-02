@@ -1,0 +1,22 @@
+{
+  "values": [
+    "spectrum:connection_node",
+
+    "spectrum:ink_node",
+
+    "spectrum:provider_node",
+    "spectrum:storage_node",
+    "spectrum:sender_node",
+    "spectrum:gather_node",
+
+    "spectrum:fluid_provider_node",
+    "spectrum:fluid_storage_node",
+    "spectrum:fluid_sender_node",
+    "spectrum:fluid_gather_node",
+
+    "spectrum:omni_provider_node",
+    "spectrum:omni_storage_node",
+    "spectrum:omni_sender_node",
+    "spectrum:omni_gather_node"
+  ]
+}

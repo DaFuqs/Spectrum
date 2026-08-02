@@ -6,13 +6,16 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.client.*;
+import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
+import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.items.*;
 import org.jspecify.annotations.*;
 
@@ -27,8 +30,19 @@ public record ItemPastelPayload(ItemStack itemStack) implements PastelPayload {
 			ItemPastelPayload::new
 	);
 	
-	public void render(PastelTransmissionParticle particle, Level level, PoseStack poseStack, final MultiBufferSource vertexConsumers, int light) {
+	public void renderAfterEntities(PastelTransmissionParticle particle, Level level, PoseStack poseStack, final MultiBufferSource vertexConsumers, Camera camera, float tickDelta) {
+		Vec3 cameraPos = camera.getPosition();
+		Vec3 pos = particle.getPos();
+		
+		poseStack.pushPose();
+		
+		poseStack.translate(pos.x() - cameraPos.x, pos.y() - cameraPos.y, pos.z() - cameraPos.z);
+		int light = particle.getLightColor(tickDelta);
+		poseStack.mulPose(camera.rotation());
+		poseStack.scale(0.65F, 0.65F, 0.65F);
+		poseStack.translate(0, -0.15, 0);
 		particle.itemRenderer.renderStatic(this.itemStack, ItemDisplayContext.GROUND, light, OverlayTexture.NO_OVERLAY, poseStack, vertexConsumers, level, 0);
+		poseStack.popPose();
 	}
 	
 	public MapCodec<ItemPastelPayload> codec() {

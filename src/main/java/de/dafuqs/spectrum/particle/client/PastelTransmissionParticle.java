@@ -73,28 +73,24 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
 		this.y = Mth.lerp(nodeProgress, source.y, destination.y);
 		this.z = Mth.lerp(nodeProgress, source.z, destination.z);
 		
+		payload.tick(level, this);
+		
 		if (SpectrumConfig.CONFIG.PastelNetworkParticles.get() && this.age % 2 == 0) {
 			level.addParticle(particleEffect, x + random.nextDouble() * 0.4 - 0.2, y + random.nextDouble() * 0.4 - 0.2, z + random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2);
 		}
 	}
 	
 	@Override
-	public void renderAsEntity(final PoseStack poseStack, final MultiBufferSource vertexConsumers, final Camera camera, final float tickDelta) {
-		final Vec3 cameraPos = camera.getPosition();
-		final float x = (float) (Mth.lerp(tickDelta, xo, this.x));
-		final float y = (float) (Mth.lerp(tickDelta, yo, this.y));
-		final float z = (float) (Mth.lerp(tickDelta, zo, this.z));
-		
-		poseStack.pushPose();
-		
-		poseStack.translate(x - cameraPos.x, y - cameraPos.y, z - cameraPos.z);
-		final int light = getLightColor(tickDelta);
-		poseStack.mulPose(camera.rotation());
-		poseStack.scale(0.65F, 0.65F, 0.65F);
-		poseStack.translate(0, -0.15, 0);
-		payload.render(this, level, poseStack, vertexConsumers, light);
-		
-		poseStack.popPose();
+	public void renderAfterEntities(final PoseStack poseStack, final MultiBufferSource vertexConsumers, final Camera camera, final float tickDelta) {
+		payload.renderAfterEntities(this, level, poseStack, vertexConsumers, camera, tickDelta);
+	}
+	
+	public int getLightColor(float partialTick) {
+		return super.getLightColor(partialTick);
+	}
+	
+	public Vec3 getPos(float partialTick) {
+		return new Vec3(Mth.lerp(partialTick, xo, this.x), Mth.lerp(partialTick, yo, this.y), Mth.lerp(partialTick, zo, this.z));
 	}
 	
 }

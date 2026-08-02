@@ -248,7 +248,7 @@ public class SpectrumClientEventListeners {
 		MultiBufferSource.BufferSource bufferSource = minecraft.renderBuffers().bufferSource();
 		
 		if (stage == RenderLevelStageEvent.Stage.AFTER_ENTITIES) {
-			((ExtendedParticleManager) minecraft.particleEngine).render(event.getPoseStack(), bufferSource, event.getCamera(), event.getPartialTick().getGameTimeDeltaTicks());
+			((ExtendedParticleManager) minecraft.particleEngine).renderAfterEntities(event.getPoseStack(), bufferSource, event.getCamera(), event.getPartialTick().getGameTimeDeltaTicks());
 		} else if (stage == RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS) {
 			Entity focusedEntity = event.getCamera().getEntity();
 			

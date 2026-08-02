@@ -5,6 +5,7 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.particle.client.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
@@ -26,10 +27,10 @@ public interface PastelPayload {
 	 * @param destination the position of the node to arrive at
 	 * @param destinationNode the pastel node. Can be null if it was broken while the transmission was underway
 	 */
-	void arriveAtDestination(Level level, BlockPos destination, @Nullable PastelNodeBlockEntity destinationNode);
+	default void arriveAtDestination(Level level, BlockPos destination, @Nullable PastelNodeBlockEntity destinationNode) { }
 	
-	void render(PastelTransmissionParticle pastelTransmissionParticle, Level level, PoseStack poseStack, MultiBufferSource vertexConsumers, int light);
+	default void renderAfterEntities(PastelTransmissionParticle pastelTransmissionParticle, Level level, PoseStack poseStack, MultiBufferSource vertexConsumers, final Camera camera, final float tickDelta) { }
 	
-	// void spawnTravelParticles(Level level); // TODO
+	default void tick(Level level, PastelTransmissionParticle particle) { }
 	
 }

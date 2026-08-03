@@ -24,7 +24,7 @@ public abstract class DrawContextMixin {
 	@Shadow
 	public abstract void renderOutline(int x, int y, int width, int height, int color);
 	
-	@Inject(method = "renderItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V", at = @At(value = "INVOKE", target = "net/minecraft/world/item/ItemStack.getCount ()I", ordinal = 0))
+	@Inject(method = "renderItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;push()V"))
 	protected void spectrum$drawSlotBackground(Font textRenderer, ItemStack stack, int x, int y, String countOverride, CallbackInfo ci) {
 		SlotBackgroundEffectProvider backgroundEffectProvider = null;
 		

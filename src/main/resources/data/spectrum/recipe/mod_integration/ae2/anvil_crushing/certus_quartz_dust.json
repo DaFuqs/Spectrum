@@ -2,7 +2,7 @@
   "type": "spectrum:anvil_crushing",
   "ingredient": [
     {
-      "tag": "c:certus_quartz"
+      "tag": "c:gems/certus_quartz"
     }
   ],
   "crushedItemsPerPointOfDamage": 1,

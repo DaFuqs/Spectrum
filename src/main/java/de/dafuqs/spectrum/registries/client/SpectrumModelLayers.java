@@ -66,7 +66,7 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation ENDERMITE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("endermite_head"), "main");
 	public static final ModelLayerLocation EVOKER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("evoker_head"), "main");
 	public static final ModelLayerLocation FOX_ARCTIC_HEAD = new ModelLayerLocation(SpectrumCommon.locate("fox_arctic_head"), "main");
-	public static final ModelLayerLocation FOX_HEAD = new ModelLayerLocation(SpectrumCommon.locate("fox_head"), "main");
+	public static final ModelLayerLocation FOX_RED_HEAD = new ModelLayerLocation(SpectrumCommon.locate("fox_red_head"), "main");
 	public static final ModelLayerLocation FROG_COLD_HEAD = new ModelLayerLocation(SpectrumCommon.locate("frog_cold_head"), "main");
 	public static final ModelLayerLocation FROG_TEMPERATE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("frog_temperate_head"), "main");
 	public static final ModelLayerLocation FROG_WARM_HEAD = new ModelLayerLocation(SpectrumCommon.locate("frog_warm_head"), "main");
@@ -86,11 +86,11 @@ public class SpectrumModelLayers {
 	public static final ModelLayerLocation MULE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("mule_head"), "main");
 	public static final ModelLayerLocation OCELOT_HEAD = new ModelLayerLocation(SpectrumCommon.locate("ocelot_head"), "main");
 	public static final ModelLayerLocation PANDA_HEAD = new ModelLayerLocation(SpectrumCommon.locate("panda_head"), "main");
+	public static final ModelLayerLocation PARROT_RED_BLUE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_red_blue_head"), "main");
 	public static final ModelLayerLocation PARROT_BLUE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_blue_head"), "main");
-	public static final ModelLayerLocation PARROT_CYAN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_cyan_head"), "main");
-	public static final ModelLayerLocation PARROT_GRAY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_gray_head"), "main");
 	public static final ModelLayerLocation PARROT_GREEN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_green_head"), "main");
-	public static final ModelLayerLocation PARROT_RED_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_red_head"), "main");
+	public static final ModelLayerLocation PARROT_YELLOW_BLUE_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_yellow_blue_head"), "main");
+	public static final ModelLayerLocation PARROT_GRAY_HEAD = new ModelLayerLocation(SpectrumCommon.locate("parrot_gray_head"), "main");
 	public static final ModelLayerLocation PHANTOM_HEAD = new ModelLayerLocation(SpectrumCommon.locate("phantom_head"), "main");
 	public static final ModelLayerLocation PIG_HEAD = new ModelLayerLocation(SpectrumCommon.locate("pig_head"), "main");
 	public static final ModelLayerLocation PILLAGER_HEAD = new ModelLayerLocation(SpectrumCommon.locate("pillager_head"), "main");
@@ -184,12 +184,12 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(KINDLING_ARMOR, KindlingEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(KINDLING_COUGH, KindlingCoughEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ERASER, EraserEntityModel::getTexturedModelData);
-		
+
 		EntityModelLayerRegistry.registerModelLayer(MARROW, SkeletonModel::createBodyLayer);
 		EntityModelLayerRegistry.registerModelLayer(MARROW_INNER_ARMOR, SkeletonModel::createBodyLayer);
 		EntityModelLayerRegistry.registerModelLayer(MARROW_OUTER_ARMOR, SkeletonModel::createBodyLayer);
 		EntityModelLayerRegistry.registerModelLayer(MARROW_OUTER_LAYER, SkeletonModel::createBodyLayer);
-		
+
 		EntityModelLayerRegistry.registerModelLayer(ALLAY_HEAD, AllayHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_BLUE_HEAD, AxolotlHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_CYAN_HEAD, AxolotlHeadModel::getTexturedModelData);
@@ -214,7 +214,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(ENDERMAN_HEAD_OVERLAY, EndermanHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ENDERMITE_HEAD, EndermiteHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(EVOKER_HEAD, IllagerHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(FOX_HEAD, FoxHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(FOX_RED_HEAD, FoxHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(FOX_ARCTIC_HEAD, FoxHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(FROG_COLD_HEAD, FrogHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(FROG_TEMPERATE_HEAD, FrogHeadModel::getTexturedModelData);
@@ -236,10 +236,10 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(OCELOT_HEAD, CatHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(PANDA_HEAD, PandaHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(PARROT_BLUE_HEAD, ParrotHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(PARROT_CYAN_HEAD, ParrotHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PARROT_YELLOW_BLUE_HEAD, ParrotHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(PARROT_GRAY_HEAD, ParrotHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(PARROT_GREEN_HEAD, ParrotHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(PARROT_RED_HEAD, ParrotHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(PARROT_RED_BLUE_HEAD, ParrotHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(PHANTOM_HEAD, PhantomHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(PIG_HEAD, PigHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(POLAR_BEAR_HEAD, BearHeadModel::getTexturedModelData);

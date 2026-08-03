@@ -20,7 +20,7 @@
     "A": "spectrum:amaranth_grains",
     "J": "spectrum:jaramel",
     "E": "#c:eggs",
-    "M": "#c:foods/milk",
+    "M": "#c:drinks/milk",
     "G": "minecraft:ghast_tear"
   },
   "result": {

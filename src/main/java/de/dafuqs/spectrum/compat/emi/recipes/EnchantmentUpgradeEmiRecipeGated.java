@@ -75,7 +75,7 @@ public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<Enc
 		// Knowledge Gem and Enchanter
 		final var gem = new DynamicStackWidget(c -> {
 			int xp =  levelData.get(selectedSourceLevel - 1).experience();
-			return EmiStack.of(KnowledgeGemItem.getKnowledgeDropStackWithXP(xp, false));
+			return EmiStack.of(KnowledgeGemItem.getKnowledgeDropStackWithXP(xp, true));
 		}, 0, 111, 5);
 		widgets.add(gem);
 		widgets.addSlot(EmiStack.of(SpectrumBlocks.ENCHANTER), 111, 51).drawBack(false);

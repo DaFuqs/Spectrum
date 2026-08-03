@@ -19,6 +19,7 @@ import net.minecraft.world.level.*;
 public class BookEnchanterUpgradingPageRenderer extends BookGatedRecipePageRenderer<EnchantmentUpgradeRecipe, BookGatedRecipePage<EnchantmentUpgradeRecipe>> {
 	
 	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/enchanter_crafting.png");
+	private static final ItemStack ENCHANTER = SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance();
 	
 	public BookEnchanterUpgradingPageRenderer(BookGatedRecipePage<EnchantmentUpgradeRecipe> page) {
 		super(page);
@@ -44,23 +45,24 @@ public class BookEnchanterUpgradingPageRenderer extends BookGatedRecipePageRende
 		NonNullList<Ingredient> ingredients = recipe.getIngredients();
 		
 		// surrounding input slots
-		IngredientStack bowlStack = IngredientStack.of(recipe.getForSourceLevel(0).ingredient(), recipe.getForSourceLevel(0).countPerBowl());
-		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX - 13, recipeY, mouseX, mouseY, bowlStack);
-		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX - 37, recipeY, mouseX, mouseY, bowlStack);
-		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX - 53, recipeY + 16, mouseX, mouseY, bowlStack);
-		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX - 53, recipeY + 40, mouseX, mouseY, bowlStack);
-		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX - 37, recipeY + 56, mouseX, mouseY, bowlStack);
-		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX - 13, recipeY + 56, mouseX, mouseY, bowlStack);
+		EnchantmentUpgradeRecipe.LevelData levelOneData = recipe.getForSourceLevel(1);
+		IngredientStack bowlStack = IngredientStack.of(levelOneData.ingredient(), levelOneData.countPerBowl());
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 13, recipeY, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 37, recipeY, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 53, recipeY + 16, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 53, recipeY + 40, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 37, recipeY + 56, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 13, recipeY + 56, mouseX, mouseY, bowlStack);
 		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX - 3, recipeY + 40, mouseX, mouseY, bowlStack);
 		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX - 3, recipeY + 16, mouseX, mouseY, bowlStack);
 		
 		// center input slot
-		parentScreen.renderIngredient(drawContext, recipeX - 25, recipeY + 28, mouseX, mouseY, ingredients.getFirst());
+		parentScreen.renderIngredient(drawContext, recipeX + 25, recipeY + 28, mouseX, mouseY, ingredients.getFirst());
 		
 		// Knowledge Gem and Enchanter
-		ItemStack knowledgeDropStackWithXP = KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getForSourceLevel(0).experience(), true);
+		ItemStack knowledgeDropStackWithXP = KnowledgeGemItem.getKnowledgeDropStackWithXP(levelOneData.experience(), true);
 		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 9, mouseX, mouseY, knowledgeDropStackWithXP);
-		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 46, mouseX, mouseY, SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance());
+		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 46, mouseX, mouseY, ENCHANTER);
 		
 		// the output
 		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 31, mouseX, mouseY, recipe.getResultItem(world.registryAccess()));

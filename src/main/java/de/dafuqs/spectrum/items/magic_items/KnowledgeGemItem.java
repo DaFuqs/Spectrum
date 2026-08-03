@@ -36,7 +36,9 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 	public static ItemStack getKnowledgeDropStackWithXP(int experience, boolean noStoreTooltip) {
 		ItemStack stack = new ItemStack(SpectrumItems.KNOWLEDGE_GEM.get());
 		stack.set(SpectrumDataComponentTypes.STORED_EXPERIENCE, experience);
-		if (noStoreTooltip) stack.set(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP, Unit.INSTANCE);
+		if (noStoreTooltip) {
+			stack.set(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP, Unit.INSTANCE);
+		}
 		return stack;
 	}
 	
@@ -119,14 +121,10 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 		} else {
 			tooltip.add(Component.literal(storedExperience + " ").withStyle(ChatFormatting.GREEN).append(Component.translatable("item.spectrum.knowledge_gem.tooltip.stored_experience", maxExperience).withStyle(ChatFormatting.GRAY)));
 		}
-		if (shouldDisplayUsageTooltip(stack)) {
+		if (!stack.has(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP)) {
 			tooltip.add(Component.translatable("item.spectrum.knowledge_gem.tooltip.use", getTransferableExperiencePerTick(lookup, stack)).withStyle(ChatFormatting.GRAY));
 			addBannerPatternProviderTooltip(tooltip);
 		}
-	}
-	
-	public boolean shouldDisplayUsageTooltip(ItemStack itemStack) {
-		return itemStack.has(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP);
 	}
 	
 	public boolean removePlayerExperience(Player playerEntity, int experience) {

@@ -27,13 +27,6 @@ public class InGameOverlayRendererMixin {
 		}
 	}
 	
-	@Inject(method = "renderFire", at = @At(value = "HEAD"), cancellable = true)
-	private static void spectrum$cancelFireOverlayWithPrimordialFire(Minecraft client, PoseStack matrices, CallbackInfo ci) {
-		if (PrimordialFireAttachmentType.isOnPrimordialFire(client.player)) {
-			ci.cancel();
-		}
-	}
-	
 	// [VanillaCopy] uses different texture for fire overlay
 	@Unique
 	private static void spectrum$renderPrimordialFireOverlay(Minecraft client, PoseStack matrices) {

@@ -18,7 +18,7 @@ public class ClientLanguageMixin {
 	private Map<String, String> storage;
 	
 	@Inject(method = "<init>(Ljava/util/Map;ZLjava/util/Map;)V", at = @At("TAIL"))
-	private void addTranslations(Map<String,String> translations, boolean rightToLeft, Map<String, Component> componentStorage, CallbackInfo ci) {
+	private void spectrum$addTranslations(Map<String,String> translations, boolean rightToLeft, Map<String, Component> componentStorage, CallbackInfo ci) {
 		Calendar calendar = Calendar.getInstance();
 		if (calendar.get(Calendar.MONTH) != Calendar.APRIL || calendar.get(Calendar.DAY_OF_MONTH) != 1) return;
 		

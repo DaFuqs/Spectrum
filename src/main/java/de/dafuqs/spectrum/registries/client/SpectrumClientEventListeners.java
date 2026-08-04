@@ -111,6 +111,13 @@ public class SpectrumClientEventListeners {
 	}
 	
 	@SubscribeEvent
+	private static void registerRenderBlockScreenEffectEvent(RenderBlockScreenEffectEvent event) {
+		if(event.getOverlayType() == RenderBlockScreenEffectEvent.OverlayType.FIRE && PrimordialFireAttachmentType.isOnPrimordialFire(event.getPlayer())) {
+			event.setCanceled(true);
+		}
+	}
+	
+	@SubscribeEvent
 	private static void registerDimensionSpecialEffectsEvent(RegisterDimensionSpecialEffectsEvent event) {
 		event.register(SpectrumDimensionKeys.DIMENSION_EFFECTS_ID, new DeeperDownDimensionEffects());
 	}

@@ -109,9 +109,8 @@ public class TotalCappedInkStorage extends InkStorage {
 	
 	@Override
 	public void clearContent() {
-		Set<InkColor> supportedColors = this.storedEnergy.keySet();
 		Map<InkColor, Long> newContent = new HashMap<>();
-		for (InkColor color : supportedColors) {
+		for (InkColor color : this.storedEnergy.keySet()) {
 			newContent.put(color, 0L);
 		}
 		this.storedEnergy = newContent;
@@ -121,9 +120,10 @@ public class TotalCappedInkStorage extends InkStorage {
 	@Override
 	public List<Component> getTooltip() {
 		List<Component> tooltip = new ArrayList<>();
-		long maxEnergyPerColor = getMaxPerColor();
-		tooltip.add(Component.translatable("item.spectrum.ink_storage.stores_ink_per_type", Support.getShortenedNumberString(maxEnergyPerColor)));
+		
+		tooltip.add(Component.translatable("item.spectrum.total_capped_energy_storage.tooltip", Support.getShortenedNumberString(getMaxTotal())));
 		appendInkStoreBulletTooltips(tooltip);
+		
 		return tooltip;
 	}
 	

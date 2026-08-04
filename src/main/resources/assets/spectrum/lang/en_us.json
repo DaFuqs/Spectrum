@@ -5005,7 +5005,7 @@
   "item.spectrum.topaz_glass_arrow.tooltip": "Pulls the target in your direction",
   "item.spectrum.topaz_powder": "Topaz Powder",
   "item.spectrum.topaz_shard": "Topaz Shard",
-  "item.spectrum.total_capped_simple_pigment_energy_storage.tooltip": "§7Stores up to %d§7 Ink in total",
+  "item.spectrum.total_capped_energy_storage.tooltip": "§7Stores up to %d§7 Ink in total",
   "item.spectrum.totem_pendant": "Totem Pendant",
   "item.spectrum.totem_pendant.tooltip": "§7One-time Protection from Death",
   "item.spectrum.triple_meat_pot_pie": "Triple Meat Pot Pie",

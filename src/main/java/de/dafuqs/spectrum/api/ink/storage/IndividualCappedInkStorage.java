@@ -40,6 +40,12 @@ public class IndividualCappedInkStorage extends InkStorage {
 		}
 	}
 	
+	// Overridden for speed and to preserve order
+	@Override
+	public Collection<InkColor> acceptedColors() {
+		return this.storedEnergy.keySet();
+	}
+	
 	@Override
 	public boolean accepts(InkColor color) {
 		return this.storedEnergy.containsKey(color);
@@ -148,16 +154,12 @@ public class IndividualCappedInkStorage extends InkStorage {
 	@Override
 	public void clearContent() {
 		Set<InkColor> supportedColors = this.storedEnergy.keySet();
-		Map<InkColor, Long> newContent = new HashMap<>();
+		Map<InkColor, Long> newContent = new Object2LongArrayMap<>();
 		for (InkColor color : supportedColors) {
 			newContent.put(color, 0L);
 		}
 		this.storedEnergy = newContent;
 		this.currentTotal = 0L;
-	}
-	
-	public Set<InkColor> getSupportedColors() {
-		return this.storedEnergy.keySet();
 	}
 	
 }

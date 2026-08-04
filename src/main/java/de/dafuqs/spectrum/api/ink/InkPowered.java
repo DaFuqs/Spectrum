@@ -1,19 +1,17 @@
 package de.dafuqs.spectrum.api.ink;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import net.minecraft.server.level.*;
 import net.minecraft.world.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.player.*;
@@ -28,11 +26,6 @@ import java.util.*;
 
 public interface InkPowered {
 	
-	/**
-	 * The advancement the player needs to have in order to use ink powered tools
-	 */
-	ResourceLocation REQUIRED_ADVANCEMENT = SpectrumCommon.locate("milestones/unlock_ink_use");
-	
 	
 	@OnlyIn(Dist.CLIENT)
 	static boolean canUseClient() {
@@ -41,7 +34,7 @@ public interface InkPowered {
 	}
 	
 	static boolean canUse(@Nullable Player playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, InkPowered.REQUIRED_ADVANCEMENT);
+		return AdvancementHelper.hasAdvancement(playerEntity, SpectrumAdvancements.UNLOCK_INK_USE);
 	}
 	
 	/**
@@ -70,7 +63,7 @@ public interface InkPowered {
 	
 	private static long tryDrainEnergy(ItemStack stack, InkColor color, long amount, @Nullable Player player) {
 		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
-			if (!inkStorageItem.getDrainability().canDrain(player != null)) {
+			if (!inkStorageItem.canDrain(player != null)) {
 				return 0;
 			}
 			

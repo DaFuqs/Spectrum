@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.ink.storage.*;
 
 public interface InkCapability {
 	InkStorage getStorage();
-	
 	void markDirty();
+	boolean canFill();
+	boolean canDrain(boolean player);
 }

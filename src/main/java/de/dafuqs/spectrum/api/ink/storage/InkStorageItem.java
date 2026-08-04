@@ -11,32 +11,14 @@ import net.minecraft.world.item.*;
  * @param <PStorage>
  */
 public interface InkStorageItem<PStorage extends InkStorage> {
-
-	enum Drainability {
-		ALWAYS, // ink storage should be able to be used via both machines and players
-		MACHINE_ONLY, // ink storage should only be drained via machines (block entities)
-		PLAYER_ONLY, // ink storage should only be drained via a player (ink storage trinkets)
-		NEVER; // ink storage should never be drained, only filled (upgradeable trinkets)
-
-		public boolean canDrain(boolean isPlayer) {
-			switch (this) {
-				case NEVER -> {
-					return false;
-				}
-				case PLAYER_ONLY -> {
-					return isPlayer;
-				}
-				case MACHINE_ONLY -> {
-					return !isPlayer;
-				}
-				default -> {
-					return true;
-				}
-			}
-		}
+	
+	default boolean canFill() {
+		return true;
 	}
 	
-	Drainability getDrainability();
+	default boolean canDrain(boolean player) {
+		return true;
+	}
 	
 	PStorage getEnergyStorage(ItemStack itemStack);
 	

@@ -23,11 +23,6 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	}
 	
 	@Override
-	public Drainability getDrainability() {
-		return Drainability.ALWAYS;
-	}
-	
-	@Override
 	public IndividualCappedInkStorage getEnergyStorage(ItemStack itemStack) {
 		var storage = itemStack.get(SpectrumDataComponentTypes.INK_STORAGE);
 		if (storage != null)

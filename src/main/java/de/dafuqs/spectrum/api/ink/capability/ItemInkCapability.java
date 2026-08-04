@@ -23,12 +23,24 @@ public class ItemInkCapability implements InkCapability {
 		this.storage = inkStorageItem.getEnergyStorage(stack);
 	}
 	
+	@Override
 	public InkStorage getStorage() {
 		return storage;
 	}
 	
+	@Override
 	public void markDirty() {
 		item.setEnergyStorage(stack, storage);
+	}
+	
+	@Override
+	public boolean canFill() {
+		return item.canFill();
+	}
+	
+	@Override
+	public boolean canDrain(boolean player) {
+		return item.canDrain(player);
 	}
 	
 }

@@ -26,11 +26,11 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation REVEAL_SHIMMERSTONE = locate("milestones/reveal_shimmerstone");
 	public static final ResourceLocation REVEAL_STORM_STONES = SpectrumCommon.locate("milestones/reveal_storm_stones");
 	public static final ResourceLocation REVEAL_STRATINE = locate("milestones/reveal_stratine");
-	
 	public static final ResourceLocation REVEAL_FROSTBITE_RESOURCES = SpectrumCommon.locate("milestones/reveal_frostbite_resources");
 	public static final ResourceLocation REVEAL_INCANDESCENT_RESOURCES = SpectrumCommon.locate("milestones/reveal_incandescent_resources");
 	
 	// Milestones with unlocks
+	public static final ResourceLocation UNLOCK_INK_USE = locate("milestones/unlock_ink_use");
 	public static final ResourceLocation APPLY_CONFLICTING_ENCHANTMENTS = SpectrumCommon.locate("milestones/unlock_conflicted_enchanting_with_enchanter");
 	public static final ResourceLocation UNLOCK_COMPLEX_REAGENTS = SpectrumCommon.locate("milestones/unlock_complex_reagents");
 	public static final ResourceLocation FOURTH_BREWING_SLOT = SpectrumCommon.locate("milestones/unlock_fourth_potion_workshop_reagent_slot");
@@ -145,5 +145,4 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation FAILED_CREATING_PLAYER_SPAWNER = SpectrumCommon.locate("midgame/failed_creating_player_spawner");
 	public static final ResourceLocation FAILED_CREATING_EMPTY_OR_BLACKLISTED_SPAWNER = SpectrumCommon.locate("midgame/failed_creating_empty_or_blacklisted_spawner");
 	public static final ResourceLocation PLACE_FORGOTTEN_MEMORY = SpectrumCommon.locate("place_forgotten_memory");
-	
 }

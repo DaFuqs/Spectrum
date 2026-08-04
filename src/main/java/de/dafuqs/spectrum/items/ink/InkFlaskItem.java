@@ -25,11 +25,6 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	}
 	
 	@Override
-	public Drainability getDrainability() {
-		return Drainability.ALWAYS;
-	}
-	
-	@Override
 	public SingleInkStorage getEnergyStorage(ItemStack itemStack) {
 		var storage = itemStack.get(SpectrumDataComponentTypes.INK_STORAGE);
 		if (storage != null)

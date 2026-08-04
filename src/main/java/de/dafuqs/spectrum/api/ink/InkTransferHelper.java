@@ -63,30 +63,35 @@ public class InkTransferHelper {
 		}
 		double avg = (double) total / map.size();
 		
-		for (Map.Entry<InkStorage, InkCapability> entry : map.entrySet()) {
-			InkStorage s = entry.getKey();
-			long current = s.getEnergy(color);
+		for (Map.Entry<InkStorage, InkCapability> source : map.entrySet()) {
+			InkCapability sourceCapability = source.getValue();
+			InkStorage sourceStorage = source.getKey();
+			long current = sourceStorage.getEnergy(color);
 			double diff = avg - current;
 			
 			if (diff > 0) { // Needs ink
+				if (!sourceCapability.canFill()) continue;
+				
 				long remainingNeed = (long) Math.ceil(diff * PRESSURE_FACTOR);
 				
 				for (Map.Entry<InkStorage, InkCapability> other : map.entrySet()) {
-					if (other == s) continue;
+					if (other == sourceStorage) continue;
+					InkCapability otherCapability = other.getValue();
+					if (!otherCapability.canDrain(false)) continue;
 					
-					long available = other.getKey().getEnergy(color);
+					InkStorage otherStorage = other.getKey();
+					long available = otherStorage.getEnergy(color);
 					if (available <= 0) continue;
 					
-					long room = s.getRoom(color);
+					long room = sourceStorage.getRoom(color);
 					if (room <= 0) break;
 					
 					long toTransfer = Math.min(Math.min(available, remainingNeed), room);
-					
 					if (toTransfer > 0) {
-						long drained = other.getKey().drainEnergy(color, toTransfer);
-						s.addEnergy(color, drained);
-						dirtyCapabilities.add(other.getValue());
-						dirtyCapabilities.add(entry.getValue());
+						long drained = otherStorage.drainEnergy(color, toTransfer);
+						sourceStorage.addEnergy(color, drained);
+						dirtyCapabilities.add(otherCapability);
+						dirtyCapabilities.add(sourceCapability);
 						
 						remainingNeed -= drained;
 						if (remainingNeed <= 0) break;
@@ -94,20 +99,25 @@ public class InkTransferHelper {
 				}
 				
 			} else if (diff < 0) { // Has excess
+				if (!sourceCapability.canDrain(false)) continue;
+				
 				long remainingExcess = (long) Math.ceil(-diff * PRESSURE_FACTOR);
 				
-				for (Map.Entry<InkStorage, InkCapability> other : map.entrySet()) {
-					if (other == s) continue;
+				for (Map.Entry<InkStorage, InkCapability> destination : map.entrySet()) {
+					if (destination == sourceStorage) continue;
+					InkCapability destinationCapability = destination.getValue();
+					if (!destinationCapability.canFill()) continue;
 					
-					long room = other.getKey().getRoom(color);
+					InkStorage destinationStorage = destination.getKey();
+					long room = destinationStorage.getRoom(color);
 					if (room <= 0) continue;
 					
 					long toTransfer = Math.min(room, remainingExcess);
 					if (toTransfer > 0) {
-						long drained = s.drainEnergy(color, toTransfer);
-						other.getKey().addEnergy(color, drained);
-						dirtyCapabilities.add(other.getValue());
-						dirtyCapabilities.add(entry.getValue());
+						long drained = sourceStorage.drainEnergy(color, toTransfer);
+						destinationStorage.addEnergy(color, drained);
+						dirtyCapabilities.add(destinationCapability);
+						dirtyCapabilities.add(sourceCapability);
 						
 						remainingExcess -= drained;
 						if (remainingExcess <= 0) break;

@@ -68,8 +68,8 @@ public class InkDrainCurioItem extends SpectrumCurioItem implements InkStorageIt
 	}
 	
 	@Override
-	public Drainability getDrainability() {
-		return Drainability.NEVER;
+	public boolean canDrain(boolean player) {
+		return false;
 	}
 	
 	@Override

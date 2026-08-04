@@ -41,7 +41,7 @@ public abstract class InkGeneratorBlockEntity extends BaseInkBlockEntity<TotalCa
 				blockEntity.paused = true;
 			}
 		}
-		blockEntity.tryFillInkContainer(OUTPUT_SLOT_ID);
+		blockEntity.equalizeInkContainer(OUTPUT_SLOT_ID);
 	}
 	
 	@Override

@@ -139,12 +139,12 @@ public abstract class BaseInkBlockEntity<T extends InkStorage> extends Randomiza
 		return INVENTORY_SIZE;
 	}
 	
-	public void tryFillInkContainer(int slotId) {
+	public void equalizeInkContainer(int slotId) {
 		ItemStack slotStack = inventory.get(slotId);
-		InkCapability itemCapability = slotStack.getCapability(InkCapabilities.ITEM, null);
-		if (itemCapability != null) {
+		InkCapability inkCapability = slotStack.getCapability(InkCapabilities.ITEM, null);
+		if (inkCapability != null) {
 			InkCapability blockCapability = getInkCapability();
-			InkTransferHelper.equalizeInk(blockCapability, itemCapability, this.selectedColor.map(Holder::value).orElse(null));
+			InkTransferHelper.equalizeInk(blockCapability, inkCapability, this.selectedColor.map(Holder::value).orElse(null));
 		}
 	}
 	

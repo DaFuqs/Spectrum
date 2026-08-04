@@ -37,11 +37,6 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 	}
 	
 	@Override
-	public Drainability getDrainability() {
-		return Drainability.ALWAYS;
-	}
-	
-	@Override
 	public CreativeInkStorage getEnergyStorage(ItemStack itemStack) {
 		return new CreativeInkStorage();
 	}

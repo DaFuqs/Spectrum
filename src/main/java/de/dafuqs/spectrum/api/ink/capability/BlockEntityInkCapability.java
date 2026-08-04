@@ -27,12 +27,24 @@ public class BlockEntityInkCapability implements InkCapability {
 		this.storage = inkBlockEntity.getInkStorage();
 	}
 	
+	@Override
 	public InkStorage getStorage() {
 		return storage;
 	}
 	
+	@Override
 	public void markDirty() {
 		inkStorageBlockEntity.setInkDirty();
+	}
+	
+	@Override
+	public boolean canFill() {
+		return true;
+	}
+	
+	@Override
+	public boolean canDrain(boolean player) {
+		return true;
 	}
 	
 }

@@ -98,7 +98,7 @@ public class TintingStationBlockEntity extends BaseInkBlockEntity<IndividualCapp
 			}
 		}
 		
-		blockEntity.tryFillInkContainer(OUTPUT_SLOT_ID);
+		blockEntity.equalizeInkContainer(OUTPUT_SLOT_ID);
 	}
 	
 	// Cleaned up version of net.minecraft.world.item.component.DyedItemColor

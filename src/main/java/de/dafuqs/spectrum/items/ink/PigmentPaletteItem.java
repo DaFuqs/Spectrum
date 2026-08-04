@@ -29,8 +29,8 @@ public class PigmentPaletteItem extends SpectrumCurioItem implements InkStorageI
 	}
 	
 	@Override
-	public Drainability getDrainability() {
-		return Drainability.PLAYER_ONLY;
+	public boolean canDrain(boolean player) {
+		return player;
 	}
 	
 	@Override

@@ -2494,7 +2494,7 @@
   "book.spectrum.guidebook.crystal_gardens.moss_balls.title": "Moss Balls",
   "book.spectrum.guidebook.crystal_gardens.page0.text": "Lakes of [Liquid Crystal](entry://general/liquid_crystal) and giant [crystalline structures](entry://dimension/hummingstone) define its appearance.",
   "book.spectrum.guidebook.crystal_gardens.page1.text": "The ground is covered with a small layer of soil. Not much, but more than enough to cover it with a thick carpet of moss.\\\n\\\nUnlike most other biomes, the many natural light sources in this one seem to allow for the growth of plants here, which I can also find on the surface.",
-  "book.spectrum.guidebook.crystallarieum.page0.text": "With budding blocks in mind, I designed an Ink-powered device that is able to grow chunks of raw ore into sparkling crystals.\\\n\\\nGrowing resources requires:\n- it being filled with the matching fluid\n- a starter bud thrown in\n- additives thrown in\n- a specific color of Ink, supplied via [Flask](entry://ink/ink_flask)",
+  "book.spectrum.guidebook.crystallarieum.page0.text": "With budding blocks in mind, I designed an Ink-powered device that is able to grow chunks of raw ore into sparkling crystals.\\\n\\\nGrowing resources requires:\n- it being filled with the matching fluid\n- a starter bud thrown in\n- additives thrown in\n- a specific color of [Ink](entry://pastel_network/ink_nodes)",
   "book.spectrum.guidebook.crystallarieum.page1.text": "Though my best efforts at growing [gems](entry://general/shards) failed, I quickly realised that it could grow all sorts of other resources.",
   "book.spectrum.guidebook.crystallarieum.page10.title": "Gold",
   "book.spectrum.guidebook.crystallarieum.page11.title": "Iron",

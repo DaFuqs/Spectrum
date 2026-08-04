@@ -109,16 +109,6 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 		upperecho.y = (float) (-0.5 - (bounce / 3));
 		halo.render(matrices, vertices, LightTexture.FULL_BRIGHT, overlay, argb);
 		
-		//Fairly lazily placed ink storage. Due to be removed once ink update happens
-		ItemStack inkStorageStack = crystal.getItem(CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID);
-		if (!inkStorageStack.isEmpty()) {
-			matrices.scale(0.65F, 0.65F, 0.65F);
-			matrices.mulPose(Axis.XP.rotationDegrees(180));
-			matrices.translate(0, 0.975 + bounce / 3, 0);
-			Minecraft.getInstance().getItemRenderer().renderStatic(inkStorageStack, ItemDisplayContext.GROUND, light, overlay, matrices, vertexConsumers, crystal.getLevel(), 0);
-			
-		}
-		
 		matrices.popPose();
 	}
 	

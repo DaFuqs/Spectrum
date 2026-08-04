@@ -1,12 +1,15 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.inventories.widgets.ink.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
+
+import java.util.function.*;
 
 public class InkStorageScreen extends BaseInkScreen<InkStorageScreenHandler> {
 	
@@ -24,9 +27,9 @@ public class InkStorageScreen extends BaseInkScreen<InkStorageScreenHandler> {
 	protected void init() {
 		super.init();
 		
-		this.inkPieWidget = new InkPieWidget(getGuiLeft() + 54, getGuiTop() + 21, 42, 42, this.menu.getBlockEntity());
+		this.inkPieWidget = new InkPieWidget(getGuiLeft() + 54, getGuiTop() + 21, () -> menu.getBlockEntity().getInkCapability());
 		addRenderableWidget(this.inkPieWidget);
-		this.stackedInkBarWidget = new StackedInkBarWidget(getGuiLeft() + 100, getGuiTop() + 21, 4, 40, this.menu.getBlockEntity());
+		this.stackedInkBarWidget = new StackedInkBarWidget(getGuiLeft() + 100, getGuiTop() + 21, this.menu.getBlockEntity().getInkCapability());
 		addRenderableWidget(stackedInkBarWidget);
 	}
 	

@@ -30,18 +30,18 @@ public abstract class InkGeneratorBlockEntity extends BaseInkBlockEntity<TotalCa
 	@SuppressWarnings("unused")
 	public static void serverTick(Level level, BlockPos pos, BlockState state, InkGeneratorBlockEntity blockEntity) {
 		blockEntity.inkDirty = false;
-		if (!blockEntity.paused) {
-			boolean logicSuccess = false;
-			if (shouldTickLogic(level)) {
-				logicSuccess = blockEntity.tickLogic(level);
-			}
-			boolean filledContainer = blockEntity.tryFillInkContainer();
-			
-			if (logicSuccess || filledContainer) {
-				//blockEntity.updateInClientWorld();
+		if (blockEntity.paused) {
+			return;
+		}
+		
+		if (blockEntity.shouldTickLogic(level)) {
+			if(blockEntity.tickLogic(level)) {
 				blockEntity.setInkDirty();
+			} else {
+				blockEntity.paused = true;
 			}
 		}
+		blockEntity.tryFillInkContainer(OUTPUT_SLOT_ID);
 	}
 	
 	@Override
@@ -66,7 +66,7 @@ public abstract class InkGeneratorBlockEntity extends BaseInkBlockEntity<TotalCa
 		BaseInkScreenHandler.ScreenOpeningData.STREAM_CODEC.encode(buffer, new BaseInkScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
-	protected static boolean shouldTickLogic(Level world) {
+	protected boolean shouldTickLogic(Level world) {
 		return world.getGameTime() % RUN_LOGIC_EVERY_X_TICKS == 0;
 	}
 	

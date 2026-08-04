@@ -45,8 +45,7 @@ public class InkContainerInteractionCriterion extends SimpleCriterionTrigger<Ink
 			return itemPredicate.test(stack)
 					&& changeRange.test(change)
 					&& changeInkColorPredicate.test(changeColor)
-					&& colorRanges.entrySet().stream().allMatch(entry -> colorRanges.get(entry.getKey()).test(colors.get(entry.getKey())));
-			
+					&& colorRanges.entrySet().stream().allMatch(entry -> colorRanges.get(entry.getKey()).test(colors.getOrDefault(entry.getKey(), 0L)));
 		}
 	}
 	

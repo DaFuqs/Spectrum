@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories.widgets.ink;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -10,6 +11,7 @@ import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class InkListWidgetWithBorderAndTitle extends InkListWidget {
 	
@@ -17,15 +19,15 @@ public class InkListWidgetWithBorderAndTitle extends InkListWidget {
 	protected static final ResourceLocation INK_SPRITE = SpectrumCommon.locate("widget/ink_text");
 	protected static final int TITLE_HEIGHT = 18;
 	
-	public InkListWidgetWithBorderAndTitle(int x, int y, int height, InkStorageBlockEntity<?> inkStorageBlockEntity) {
-		super(x, y, height, inkStorageBlockEntity, 4, 1, 5);
+	public InkListWidgetWithBorderAndTitle(int x, int y, int height, Supplier<InkCapability> inkCapability) {
+		super(x, y, height, inkCapability, 4, 1, 5);
 	}
 	
 	@Override
 	protected void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 		// We first collect the colors we need to draw
 		// this widget does skip ink colors that the player has no access to yet
-		InkStorage inkStorage = inkStorageBlockEntity.getInkStorage();
+		InkStorage inkStorage = inkCapability.get().getStorage();
 		List<Tuple<InkColor, Long>> inkColorAmountsOverZero = new ArrayList<>();
 		for (InkColor color : colors) {
 			long amount = inkStorage.getEnergy(color);

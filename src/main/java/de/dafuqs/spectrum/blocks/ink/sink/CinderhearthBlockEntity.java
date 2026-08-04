@@ -1,12 +1,15 @@
 package de.dafuqs.spectrum.blocks.ink.sink;
 
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.capabilities.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
@@ -58,7 +61,6 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	private UpgradeHolder upgrades;
 	private RecipeHolder<?> currentRecipe; // blasting & cinderhearth
 	private boolean usesEfficiency;
-	protected boolean canTransferInk;
 	protected boolean inkDirty;
 	
 	protected CinderHearthStructureType structure = CinderHearthStructureType.NONE;
@@ -190,7 +192,6 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		this.propertyDelegate.craftingTime = nbt.getShort("CraftingTime");
 		this.propertyDelegate.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.usesEfficiency = nbt.getBoolean("UsesEfficiency");
-		this.canTransferInk = nbt.getBoolean("Paused");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
 		if (nbt.contains("Structure", Tag.TAG_ANY_NUMERIC)) {
 			this.structure = CinderHearthStructureType.values()[nbt.getInt("Structure")];
@@ -214,7 +215,6 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		nbt.putShort("CraftingTime", (short) this.propertyDelegate.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.propertyDelegate.craftingTimeTotal);
 		nbt.putBoolean("UsesEfficiency", this.usesEfficiency);
-		nbt.putBoolean("Paused", this.canTransferInk);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
 		nbt.putInt("Structure", this.structure.ordinal());
 		if (this.upgrades != null) {
@@ -232,24 +232,16 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		if (cinderhearthBlockEntity.upgrades == null) {
 			cinderhearthBlockEntity.calculateUpgrades();
 		}
-		cinderhearthBlockEntity.inkDirty = false;
 		
-		if (cinderhearthBlockEntity.canTransferInk) {
-			boolean didSomething = false;
+		if (cinderhearthBlockEntity.inkDirty || cinderhearthBlockEntity.inventoryChanged) {
 			ItemStack stack = cinderhearthBlockEntity.getItem(INK_PROVIDER_SLOT_ID);
-			if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
-				InkStorage itemStorage = inkStorageItem.getEnergyStorage(stack);
-				didSomething = InkStorage.transferInk(itemStorage, cinderhearthBlockEntity.inkStorage) != 0;
-				if (didSomething) {
-					inkStorageItem.setEnergyStorage(stack, itemStorage);
-				}
-			}
-			if (didSomething) {
-				cinderhearthBlockEntity.setInkDirty();
-			} else {
-				cinderhearthBlockEntity.canTransferInk = false;
+			InkCapability stackCapability = stack.getCapability(InkCapabilities.ITEM);
+			InkCapability cinderhearthCapability = world.getCapability(InkCapabilities.BLOCK, blockPos);
+			if (stackCapability != null && cinderhearthCapability != null) {
+				InkTransferHelper.equalizeInk(stackCapability, cinderhearthCapability);
 			}
 		}
+		cinderhearthBlockEntity.inkDirty = false;
 		
 		if (cinderhearthBlockEntity.inventoryChanged) {
 			calculateRecipe(world, cinderhearthBlockEntity);
@@ -542,7 +534,6 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 	
 	public void inventoryChanged() {
 		this.inventoryChanged = true;
-		this.canTransferInk = true;
 		this.setChanged();
 	}
 	

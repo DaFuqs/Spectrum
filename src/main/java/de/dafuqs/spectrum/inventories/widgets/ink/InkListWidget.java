@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.inventories.widgets.ink;
 
+import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -10,6 +11,7 @@ import net.minecraft.network.chat.*;
 import org.jetbrains.annotations.*;
 
 import javax.annotation.Nullable;
+import java.util.function.*;
 
 public class InkListWidget extends AbstractWidget {
 	
@@ -17,19 +19,19 @@ public class InkListWidget extends AbstractWidget {
 	protected final int widthPerColor;
 	protected final int spaceBetweenColors;
 	protected final Iterable<InkColor> colors;
-	protected final InkStorageBlockEntity<?> inkStorageBlockEntity;
+	protected final Supplier<InkCapability> inkCapability;
 	
-	public InkListWidget(int x, int y, int height, InkStorageBlockEntity<?> inkStorageBlockEntity) {
-		this(x, y, height, inkStorageBlockEntity, 4, 2, 0);
+	public InkListWidget(int x, int y, int height, Supplier<InkCapability> inkCapability) {
+		this(x, y, height, inkCapability, 4, 2, 0);
 	}
 	
-	public InkListWidget(int x, int y, int height, InkStorageBlockEntity<?> inkStorageBlockEntity, int widthPerColor, int spaceBetweenColors, int padding) {
-		super(x, y, inkStorageBlockEntity.getInkStorage().acceptedColors().size() * (widthPerColor + spaceBetweenColors) - spaceBetweenColors + padding + padding, height, Component.empty());
+	public InkListWidget(int x, int y, int height, Supplier<InkCapability> inkCapability, int widthPerColor, int spaceBetweenColors, int padding) {
+		super(x, y, inkCapability.get().getStorage().acceptedColors().size() * (widthPerColor + spaceBetweenColors) - spaceBetweenColors + padding + padding, height, Component.empty());
 		this.widthPerColor = widthPerColor;
 		this.padding = padding;
 		this.spaceBetweenColors = spaceBetweenColors;
-		this.inkStorageBlockEntity = inkStorageBlockEntity;
-		this.colors = inkStorageBlockEntity.getInkStorage().acceptedColors();
+		this.inkCapability = inkCapability;
+		this.colors = inkCapability.get().getStorage().acceptedColors();
 	}
 	
 	@Override
@@ -39,9 +41,8 @@ public class InkListWidget extends AbstractWidget {
 	
 	@Override
 	protected void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-		InkStorage inkStorage = inkStorageBlockEntity.getInkStorage();
+		InkStorage inkStorage = inkCapability.get().getStorage();
 		
-		// foreground bars
 		int startHeight = getY() + getHeight() + padding;
 		int currentXOffset = 0;
 		long total = inkStorage.getMaxPerColor();
@@ -57,7 +58,7 @@ public class InkListWidget extends AbstractWidget {
 	
 	@Nullable
 	public Tooltip getTooltip() {
-		return inkStorageBlockEntity.getInkStorage().getWidgetTooltip();
+		return inkCapability.get().getStorage().getWidgetTooltip();
 	}
 	
 }

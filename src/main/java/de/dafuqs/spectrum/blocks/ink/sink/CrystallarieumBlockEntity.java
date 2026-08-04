@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.blocks.ink.sink;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.fluid.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.components.*;
@@ -31,13 +33,12 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	
 	private final static FlowAnimator.Factory<CrystallarieumBlockEntity> FACTORY;
 	
+	protected final static int INVENTORY_SIZE = 1;
 	protected final static int ADDITIVE_SLOT_ID = 0;
-	protected final static int INK_STORAGE_STACK_SLOT_ID = 1;
-	protected final static int INVENTORY_SIZE = 2;
 	
 	public static final long INK_STORAGE_SIZE = 64 * 64 * 100;
 	
-	protected IndividualCappedInkStorage inkStorage;
+	protected IndividualCappedInkStorage inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE);
 	protected boolean inkDirty;
 	
 	@Nullable
@@ -53,7 +54,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	protected TickLooper tickLooper = new TickLooper(SECOND);
 	
 	protected int currentGrowthStageTicks;
-	protected boolean canWork;
+	protected boolean canWork = true;
 	float rotation = 0F;
 	
 	protected @Nullable FlowAnimator animator;
@@ -61,8 +62,6 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	
 	public CrystallarieumBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.CRYSTALLARIEUM.get(), pos, state, INVENTORY_SIZE);
-		this.inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE);
-		this.canWork = true;
 	}
 	
 	@SuppressWarnings("unused")
@@ -102,7 +101,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	@SuppressWarnings("unused")
 	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
 		if (crystallarieum.canWork) {
-			transferInk(crystallarieum);
+			crystallarieum.canWork = false;
 			
 			var recipe = crystallarieum.currentRecipe;
 			if (recipe != null) {
@@ -170,17 +169,6 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 				crystallarieum.canWork = false;
 			}
 			crystallarieum.currentGrowthStageTicks = 0;
-		}
-	}
-	
-	private static void transferInk(CrystallarieumBlockEntity crystallarieum) {
-		ItemStack inkStorageStack = crystallarieum.getItem(INK_STORAGE_STACK_SLOT_ID);
-		if (inkStorageStack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
-			InkStorage itemInkStorage = inkStorageItem.getEnergyStorage(inkStorageStack);
-			long transferredAmount = InkStorage.transferInk(itemInkStorage, crystallarieum.inkStorage);
-			if (transferredAmount > 0) {
-				inkStorageItem.setEnergyStorage(inkStorageStack, itemInkStorage);
-			}
 		}
 	}
 	
@@ -255,16 +243,8 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		boolean changed = false;
 		
 		if (level == null) return;
-		if (itemStack.getItem() instanceof InkStorageItem<?> inkStorageItem && inkStorageItem.getDrainability().canDrain(false)) {
-			ItemStack currentInkStorageStack = getItem(INK_STORAGE_STACK_SLOT_ID);
-			if (currentInkStorageStack.isEmpty()) {
-				setItem(INK_STORAGE_STACK_SLOT_ID, itemStack.copy());
-				if (!creative) {
-					itemStack.setCount(0);
-				}
-				changed = true;
-			}
-		} else if (level.getBlockState(worldPosition.above()).isAir()) {
+		
+		if (level.getBlockState(worldPosition.above()).isAir()) {
 			var recipe = level.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.CRYSTALLARIEUM, new SingleRecipeInput(itemStack), level);
 			if (recipe.isPresent()) {
 				if (!creative) {
@@ -345,7 +325,14 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	
 	@Override
 	public void setInkDirty() {
+		setChanged();
 		this.inkDirty = true;
+	}
+	
+	@Override
+	public void setChanged() {
+		super.setChanged();
+		this.canWork = true;
 	}
 	
 	@Override
@@ -355,9 +342,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	
 	@Override
 	public boolean canPlaceItem(int slot, ItemStack stack) {
-		if (slot == INK_STORAGE_STACK_SLOT_ID) {
-			return stack.getItem() instanceof InkStorageItem;
-		} else if (this.currentRecipe != null) {
+		if (this.currentRecipe != null) {
 			return this.currentRecipe.value().getAdditive(stack) != CrystallarieumAdditive.EMPTY;
 		}
 		return false;

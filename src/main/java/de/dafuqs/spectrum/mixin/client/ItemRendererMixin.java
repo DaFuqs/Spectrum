@@ -37,18 +37,4 @@ public abstract class ItemRendererMixin {
 		SpectrumModelPredicateProviders.DISPLAY_CONTEXT = displayContext;
 	}
 	
-	@Inject(at = @At("HEAD"), method = "render", cancellable = true)
-	private void spectrum$dynRender(ItemStack stack, ItemDisplayContext renderMode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
-		// if model is a dynamic one, check the renderers
-		if (model instanceof DynamicRenderModel dm) {
-			DynamicItemRenderer renderer = DynamicItemRenderer.RENDERERS.get(stack.getItem());
-			// shouldn't happen normally but check anyway
-			if (renderer != null) {
-				// unwrap the model here so that the custom renderer doesn't have to do it
-				renderer.render((ItemRenderer) (Object) this, stack, renderMode, leftHanded, matrices, vertexConsumers, light, overlay, dm.getWrappedModel());
-				ci.cancel();
-			}
-		}
-	}
-	
 }

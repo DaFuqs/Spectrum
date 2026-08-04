@@ -1,12 +1,16 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.ink.capability.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.inventories.widgets.ink.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import org.jetbrains.annotations.*;
+
+import java.util.function.*;
 
 public class TintingStationScreen extends BaseInkScreen<TintingStationScreenHandler> {
 	
@@ -22,7 +26,7 @@ public class TintingStationScreen extends BaseInkScreen<TintingStationScreenHand
 	protected void init() {
 		super.init();
 		
-		this.inkListWidget = new InkListWidgetWithBorderAndTitle(getGuiLeft() + 140, getGuiTop() + 40, 40, this.menu.getBlockEntity());
+		this.inkListWidget = new InkListWidgetWithBorderAndTitle(getGuiLeft() + 140, getGuiTop() + 40, 40, () -> menu.getBlockEntity().getInkCapability());
 		inkListWidget.setPosition(getGuiLeft() - this.inkListWidget.getWidth(), getGuiTop() + 40);
 		addRenderableWidget(inkListWidget);
 	}

@@ -16,55 +16,6 @@ import static de.dafuqs.spectrum.helpers.Support.*;
  **/
 public abstract class InkStorage implements Clearable {
 	
-	/**
-	 * Transfer Ink from one storage to another
-	 * Transfers Ink using a "pressure like" system: Tries to balance the ink in source and destination.
-	 * The more energy is in source, the more is getting transferred, up to when both storages even out.
-	 *
-	 * @param source      The ink storage that is getting drawn from
-	 * @param destination The ink storage receiving energy
-	 * @return the total amount of energy that could be transferred
-	 */
-	public static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination) {
-		long transferred = 0;
-		for (InkColor inkColor : source.getEnergy().keySet()) {
-			transferred += transferInk(source, destination, inkColor);
-		}
-		return transferred;
-	}
-	
-	/**
-	 * Transfer Ink from one storage to another
-	 * Transfers Ink using a "pressure like" system: Tries to balance the ink in source and destination.
-	 * The more energy is in source, the more is getting transferred, up to when both storages even out.
-	 *
-	 * @param source      The ink storage that is getting drawn from
-	 * @param destination The ink storage receiving energy
-	 * @param color       The ink type to transfer
-	 * @return the amount of energy that could be transferred
-	 */
-	public static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination, @NotNull InkColor color) {
-		if (!destination.accepts(color)) {
-			return 0;
-		}
-		
-		long sourceAmount = source.getEnergy(color);
-		if (sourceAmount > 0) {
-			long destinationRoom = destination.getRoom(color);
-			if (destinationRoom > 0) {
-				long destinationAmount = destination.getEnergy(color);
-				if (sourceAmount > destinationAmount + 1) {
-					long transferAmount = Math.max(1, (sourceAmount - destinationAmount) / 32); // the constant here is simulating pressure flow
-					transferAmount = Math.min(transferAmount, Math.min(sourceAmount, destinationRoom));
-					destination.addEnergy(color, transferAmount);
-					source.drainEnergy(color, transferAmount);
-					return transferAmount;
-				}
-			}
-		}
-		return 0;
-	}
-	
 	// if the storage is able to store this kind of color
 	public abstract boolean accepts(InkColor color);
 	

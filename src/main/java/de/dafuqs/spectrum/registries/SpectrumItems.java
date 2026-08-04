@@ -447,7 +447,7 @@ public class SpectrumItems {
 	// Specialty Magical Tools
 	public static final DeferredItem<KnowledgeGemItem> KNOWLEDGE_GEM = register("knowledge_gem", () -> new KnowledgeGemItem(IS.of(1, Rarity.UNCOMMON), 10000));
 	public static final DeferredItem<Item> CELESTIAL_POCKETWATCH = register("celestial_pocketwatch", () -> new CelestialPocketWatchItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<Item> ARTISANS_ATLAS = register("artisans_atlas", () -> new ArtisansAtlasItem(IS.of(Rarity.UNCOMMON)));
+	public static final DeferredItem<Item> ARTISANS_ATLAS = register("artisans_atlas", () -> new ArtisansAtlasItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> GILDED_BOOK = register("gilded_book", () -> new GildedBookItem(IS.of(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> ENCHANTMENT_CANVAS = register("enchantment_canvas", () -> new EnchantmentCanvasItem(IS.of(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> EVERPROMISE_RIBBON = register("everpromise_ribbon", () -> new EverpromiseRibbonItem(IS.of()));

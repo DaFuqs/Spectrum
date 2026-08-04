@@ -101,14 +101,6 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 					if (FluidUtil.interactWithFluidHandler(player, hand, crystallarieumBlockEntity.tank)) {
 						crystallarieumBlockEntity.updateInClientWorld();
 						return ItemInteractionResult.CONSUME;
-					}
-					
-					// hand is full and inventory is empty: add
-					// hand is full and inventory already contains item: exchange them
-					else if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
-						if (inkStorageItem.getDrainability().canDrain(false) && exchangeStack(world, pos, player, hand, stack, crystallarieumBlockEntity, CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID)) {
-							crystallarieumBlockEntity.setOwner(player);
-						}
 					} else {
 						if (exchangeStack(world, pos, player, hand, stack, crystallarieumBlockEntity, CrystallarieumBlockEntity.ADDITIVE_SLOT_ID)) {
 							crystallarieumBlockEntity.setOwner(player);

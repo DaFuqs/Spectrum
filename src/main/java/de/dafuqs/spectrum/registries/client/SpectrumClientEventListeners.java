@@ -1,16 +1,22 @@
 package de.dafuqs.spectrum.registries.client;
 
+import com.mojang.authlib.minecraft.client.*;
+import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.shaders.*;
+import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.interaction.*;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.client.*;
 import de.dafuqs.spectrum.deeper_down.client.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.inventories.widgets.ink.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -46,12 +52,15 @@ import net.minecraft.world.phys.shapes.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
+import net.neoforged.neoforge.client.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.event.entity.player.*;
+import org.joml.*;
 import org.jspecify.annotations.*;
 import oshi.util.tuples.*;
 
+import java.lang.Math;
 import java.util.*;
 
 @EventBusSubscriber(modid = SpectrumCommon.MOD_ID, value = Dist.CLIENT)
@@ -278,29 +287,43 @@ public class SpectrumClientEventListeners {
 	
 	@SubscribeEvent
 	private static void onRenderBlockOutlines(RenderHighlightEvent.Block event) {
-		boolean shouldCancel = false;
+		HudRenderers.hoveredCapability = null;
+		
+		Minecraft client = Minecraft.getInstance();
+		if (client.player == null) {
+			return;
+		}
 		BlockHitResult target = event.getTarget();
 		Camera camera = event.getCamera();
 		
-		Minecraft client = Minecraft.getInstance();
-		if (client.player != null) {
-			for (ItemStack handStack : client.player.getHandSlots()) {
-				Item handItem = handStack.getItem();
-				if (handItem instanceof ConstructorsStaffItem) {
-					shouldCancel = renderPlacementStaffOutline(event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), target);
+		boolean shouldCancel = false;
+		
+		outer:
+		for (ItemStack handStack : client.player.getHandSlots()) {
+			switch (handStack.getItem()) {
+				case PaintbrushItem paintbrushItem:
+					InkCapability inkCapability = client.level.getCapability(InkCapabilities.BLOCK, target.getBlockPos());
+					if (inkCapability != null) {
+						HudRenderers.hoveredCapability = inkCapability;
+						break outer;
+					}
 					break;
-				} else if (handItem instanceof ExchangeStaffItem) {
-					shouldCancel = renderExchangeStaffOutline(event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), handStack, target);
+				case ConstructorsStaffItem constructorsStaffItem:
+					shouldCancel = renderPlacementStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), target);
+					break outer;
+				case ExchangeStaffItem exchangeStaffItem:
+					shouldCancel = renderExchangeStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), handStack, target);
+					break outer;
+				default:
 					break;
-				}
 			}
 		}
 		
 		event.setCanceled(shouldCancel);
 	}
 	
-	private static boolean renderPlacementStaffOutline(PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, BlockHitResult hitResult) {
-		Minecraft client = Minecraft.getInstance();
+	
+	private static boolean renderPlacementStaffOutline(Minecraft client, PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, BlockHitResult hitResult) {
 		ClientLevel world = client.level;
 		Player player = client.player;
 		if (player == null || world == null) return false;
@@ -351,8 +374,7 @@ public class SpectrumClientEventListeners {
 		return false;
 	}
 	
-	private static boolean renderExchangeStaffOutline(PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, ItemStack exchangeStaffItemStack, BlockHitResult hitResult) {
-		Minecraft client = Minecraft.getInstance();
+	private static boolean renderExchangeStaffOutline(Minecraft client, PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, ItemStack exchangeStaffItemStack, BlockHitResult hitResult) {
 		ClientLevel world = client.level;
 		BlockPos lookingAtPos = hitResult.getBlockPos();
 		BlockState lookingAtState = world.getBlockState(lookingAtPos);

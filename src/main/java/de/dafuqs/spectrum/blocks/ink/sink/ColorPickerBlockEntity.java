@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.ink.sink;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.ink.*;
+import de.dafuqs.spectrum.blocks.ink.gen.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -29,48 +30,23 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ColorPickerBlockEntity extends BaseInkBlockEntity<TotalCappedInkStorage> implements MenuProvider {
+public class ColorPickerBlockEntity extends InkGeneratorBlockEntity implements MenuProvider {
 	
 	public static final long TICKS_PER_CONVERSION = 5;
-	public static final long INK_CAPACITY = 64 * 64 * 64 * 100; // (long) Math.pow(256, 2);
-	protected @Nullable InkConvertingRecipe cachedRecipe;
+	protected @Nullable RecipeHolder<InkConvertingRecipe> cachedRecipe;
 	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.COLOR_PICKER.get(), blockPos, blockState, new TotalCappedInkStorage(INK_CAPACITY, Map.of()));
-	}
-	
-	@SuppressWarnings("unused")
-	public static void serverTick(Level world, BlockPos pos, BlockState state, ColorPickerBlockEntity blockEntity) {
-		blockEntity.inkDirty = false;
-		if (!blockEntity.paused) {
-			boolean convertedPigment = false;
-			boolean shouldPause = true;
-			if (world.getGameTime() % TICKS_PER_CONVERSION == 0) {
-				convertedPigment = blockEntity.tryConvertPigmentToEnergy((ServerLevel) world);
-			} else {
-				shouldPause = false;
-			}
-			boolean filledContainer = blockEntity.tryFillInkContainer();
-			
-			if (convertedPigment || filledContainer) {
-				blockEntity.updateInClientWorld();
-				blockEntity.setInkDirty();
-			} else if (shouldPause) {
-				blockEntity.paused = true;
-			}
-		}
+		super(SpectrumBlockEntities.COLOR_PICKER.get(), blockPos, blockState, 3);
 	}
 	
 	@Override
-	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
-		super.loadAdditional(nbt, registryLookup);
-		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("ink_storage")).ifPresent(storage -> this.inkStorage = new TotalCappedInkStorage(storage.maxEnergyTotal(), storage.storedEnergy()));
+	protected boolean shouldTickLogic(Level world) {
+		return world.getGameTime() % TICKS_PER_CONVERSION == 0;
 	}
 	
 	@Override
-	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
-		super.saveAdditional(nbt, registryLookup);
-		CodecHelper.writeNbt(nbt, "ink_storage", InkStorageComponent.CODEC, new InkStorageComponent(this.inkStorage));
+	protected boolean tickLogic(Level level) {
+		return tryConvertPigmentToEnergy((ServerLevel) level);
 	}
 	
 	@Override
@@ -108,6 +84,8 @@ public class ColorPickerBlockEntity extends BaseInkBlockEntity<TotalCappedInkSto
 						new Vec3(0.0, 0.1, 0.0)
 				);
 				
+				setChanged();
+				
 				return true;
 			}
 		}
@@ -117,23 +95,12 @@ public class ColorPickerBlockEntity extends BaseInkBlockEntity<TotalCappedInkSto
 	protected @Nullable InkConvertingRecipe getInkConvertingRecipe(Level world) {
 		// is the current stack empty?
 		ItemStack inputStack = inventory.get(INPUT_SLOT_ID);
-		if (inputStack.isEmpty()) {
-			this.cachedRecipe = null;
-			return null;
-		}
-		
-		// does the cached recipe match?
-		if (this.cachedRecipe != null) {
-			if (this.cachedRecipe.getIngredients().get(INPUT_SLOT_ID).test(inputStack)) {
-				return this.cachedRecipe;
-			}
-		}
 		
 		// search matching recipe
-		Optional<RecipeHolder<InkConvertingRecipe>> recipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.INK_CONVERTING, new SingleRecipeInput(inventory.get(INPUT_SLOT_ID)), world);
+		Optional<RecipeHolder<InkConvertingRecipe>> recipe = world.getRecipeManager().getRecipeFor(SpectrumRecipeTypes.INK_CONVERTING, new SingleRecipeInput(inputStack), world, cachedRecipe);
 		if (recipe.isPresent()) {
-			this.cachedRecipe = recipe.get().value();
-			return this.cachedRecipe;
+			this.cachedRecipe = recipe.get();
+			return this.cachedRecipe.value();
 		} else {
 			this.cachedRecipe = null;
 			return null;

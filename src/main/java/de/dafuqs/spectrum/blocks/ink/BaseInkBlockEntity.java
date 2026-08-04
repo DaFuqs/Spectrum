@@ -43,8 +43,8 @@ public abstract class BaseInkBlockEntity<T extends InkStorage> extends Randomiza
 		return inkStorage;
 	}
 	
-	public InkCapability getCapability() {
-		return getLevel().getCapability(InkCapabilities.BLOCK, getBlockPos(), null);
+	public InkCapability getInkCapability() {
+		return getLevel().getCapability(InkCapabilities.BLOCK, getBlockPos());
 	}
 	
 	@Override
@@ -86,8 +86,8 @@ public abstract class BaseInkBlockEntity<T extends InkStorage> extends Randomiza
 	@Override
 	public void setChanged() {
 		super.setChanged();
+		this.paused = false;
 		if (this.level != null && !this.level.isClientSide) {
-			this.paused = false;
 			updateInClientWorld();
 		}
 	}
@@ -139,17 +139,13 @@ public abstract class BaseInkBlockEntity<T extends InkStorage> extends Randomiza
 		return INVENTORY_SIZE;
 	}
 	
-	public boolean tryFillInkContainer() {
-		long transferredAmount = 0;
-		
-		ItemStack stack = inventory.get(OUTPUT_SLOT_ID);
-		InkCapability itemStorage = stack.getCapability(InkCapabilities.ITEM, null);
-		if (itemStorage != null) {
-			InkCapability blockEntityStorage = this.level.getCapability(InkCapabilities.BLOCK, this.worldPosition, null);
-			transferredAmount = InkTransferHelper.transferInkOneWay(blockEntityStorage, itemStorage, this.selectedColor.map(Holder::value).orElse(null), getOwnerIfOnline(this.getLevel()), stack);
+	public void tryFillInkContainer(int slotId) {
+		ItemStack slotStack = inventory.get(slotId);
+		InkCapability itemCapability = slotStack.getCapability(InkCapabilities.ITEM, null);
+		if (itemCapability != null) {
+			InkCapability blockCapability = getInkCapability();
+			InkTransferHelper.equalizeInk(blockCapability, itemCapability, this.selectedColor.map(Holder::value).orElse(null));
 		}
-		
-		return transferredAmount > 0;
 	}
 	
 	public void setSelectedColor(Optional<Holder<InkColor>> inkColor) {

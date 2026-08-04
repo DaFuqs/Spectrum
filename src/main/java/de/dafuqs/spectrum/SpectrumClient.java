@@ -41,11 +41,15 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		modBus.addListener(SpectrumModelPredicateProviders::registerClient);
 		modBus.addListener(SpectrumEntityRenderers::registerClient);
 		modBus.addListener(SpectrumParticleFactories::register);
-		
 		modBus.addListener(HudRenderers::register);
-		NeoForge.EVENT_BUS.addListener(HudRenderers::registerPost);
+		modBus.addListener(SpectrumFluids::registerClient);
+		modBus.addListener(SpectrumBlockEntities::registerClient);
+		modBus.addListener(SpectrumMenuTypes::registerClient);
+		modBus.addListener(SpectrumModelLayerLocations::register);
+		modBus.addListener(BedrockCapeRenderer::registerLayers);
+		modBus.addListener(SpectrumColorProviders::registerBlocks);
+		modBus.addListener(SpectrumColorProviders::registerItems);
 		
-		NeoForge.EVENT_BUS.addListener(HudRenderers::registerPost);
 		SpectrumEnvironmentalDataOverrides.register();
 		SpectrumClientEventListeners.register(modBus);
 		
@@ -55,15 +59,6 @@ public class SpectrumClient implements RevealingCallback, ClientAdvancementPacke
 		
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
-		
-		modBus.addListener(SpectrumFluids::registerClient);
-		modBus.addListener(SpectrumBlockEntities::registerClient);
-		modBus.addListener(SpectrumMenuTypes::registerClient);
-		modBus.addListener(SpectrumModelLayerLocations::register);
-		modBus.addListener(BedrockCapeRenderer::registerLayers);
-		
-		modBus.addListener(SpectrumColorProviders::registerBlocks);
-		modBus.addListener(SpectrumColorProviders::registerItems);
 	}
 	
 	@Override

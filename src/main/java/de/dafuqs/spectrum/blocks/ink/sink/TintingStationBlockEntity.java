@@ -51,8 +51,7 @@ public class TintingStationBlockEntity extends BaseInkBlockEntity<IndividualCapp
 			return;
 		}
 		
-		boolean didSomething = true;
-		
+		blockEntity.paused = true;
 		Optional<Holder<InkColor>> inkColorHolder = blockEntity.getSelectedColor();
 		InkStorage inkStorage = blockEntity.getInkStorage();
 		
@@ -80,40 +79,26 @@ public class TintingStationBlockEntity extends BaseInkBlockEntity<IndividualCapp
 								output.grow(1);
 							}
 							
-							if (didSomething) {
-								inkStorage.addEnergy(selectedInkColor, -ITEM_COLORING_COST);
+							inkStorage.addEnergy(selectedInkColor, -ITEM_COLORING_COST);
+							
+							if (SpectrumConfig.CONFIG.BlockSoundVolume.get() > 0) {
+								blockEntity.getLevel().playSound(null, blockEntity.getBlockPos(), SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() / 3F, 1.0F);
 								
-								if (SpectrumConfig.CONFIG.BlockSoundVolume.get() > 0) {
-									blockEntity.getLevel().playSound(null, blockEntity.getBlockPos(), SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() / 3F, 1.0F);
-									
-									PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) blockEntity.getLevel(),
-											new Vec3(blockEntity.getBlockPos().getX() + 0.5, blockEntity.getBlockPos().getY() + 0.7, blockEntity.getBlockPos().getZ() + 0.5),
-											ColoredFluidRisingParticleEffect.of(selectedInkColor.getColorInt()),
-											5,
-											new Vec3(0.22, 0.0, 0.22),
-											new Vec3(0.0, 0.1, 0.0)
-									);
-								}
+								PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) blockEntity.getLevel(),
+										new Vec3(blockEntity.getBlockPos().getX() + 0.5, blockEntity.getBlockPos().getY() + 0.7, blockEntity.getBlockPos().getZ() + 0.5),
+										ColoredFluidRisingParticleEffect.of(selectedInkColor.getColorInt()),
+										5,
+										new Vec3(0.22, 0.0, 0.22),
+										new Vec3(0.0, 0.1, 0.0)
+								);
 							}
-						} else {
-							didSomething = false;
 						}
 					}
-				} else {
-					didSomething = false;
 				}
 			}
 		}
 		
-		if(!didSomething) {
-			didSomething = blockEntity.tryFillInkContainer();
-		}
-		
-		if (didSomething) {
-			blockEntity.setInkDirty();
-		} else {
-			blockEntity.paused = true;
-		}
+		blockEntity.tryFillInkContainer(OUTPUT_SLOT_ID);
 	}
 	
 	// Cleaned up version of net.minecraft.world.item.component.DyedItemColor

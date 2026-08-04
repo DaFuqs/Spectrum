@@ -27,7 +27,6 @@ public class SpectrumAdvancementCriteria {
 	public static PotionWorkshopBrewingCriterion POTION_WORKSHOP_BREWING = new PotionWorkshopBrewingCriterion();
 	public static PotionWorkshopCraftingCriterion POTION_WORKSHOP_CRAFTING = new PotionWorkshopCraftingCriterion();
 	public static TakeOffBeltJumpCriterion TAKE_OFF_BELT_JUMP = new TakeOffBeltJumpCriterion();
-	public static InkContainerInteractionCriterion INK_CONTAINER_INTERACTION = new InkContainerInteractionCriterion();
 	public static JeopardantKillCriterion JEOPARDANT_KILL = new JeopardantKillCriterion();
 	public static MemoryManifestingCriterion MEMORY_MANIFESTING = new MemoryManifestingCriterion();
 	public static SpiritInstillerCraftingCriterion SPIRIT_INSTILLER_CRAFTING = new SpiritInstillerCraftingCriterion();
@@ -68,7 +67,6 @@ public class SpectrumAdvancementCriteria {
 		REGISTRAR.register(PotionWorkshopBrewingCriterion.NAME, () -> POTION_WORKSHOP_BREWING);
 		REGISTRAR.register(PotionWorkshopCraftingCriterion.NAME, () -> POTION_WORKSHOP_CRAFTING);
 		REGISTRAR.register(TakeOffBeltJumpCriterion.NAME, () -> TAKE_OFF_BELT_JUMP);
-		REGISTRAR.register(InkContainerInteractionCriterion.NAME, () -> INK_CONTAINER_INTERACTION);
 		REGISTRAR.register(JeopardantKillCriterion.NAME, () -> JEOPARDANT_KILL);
 		REGISTRAR.register(MemoryManifestingCriterion.NAME, () -> MEMORY_MANIFESTING);
 		REGISTRAR.register(SpiritInstillerCraftingCriterion.NAME, () -> SPIRIT_INSTILLER_CRAFTING);

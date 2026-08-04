@@ -13,62 +13,68 @@
     }
   },
   "criteria": {
-    "filled_pigment_palette_with_cmyk_colors": {
-      "trigger": "spectrum:ink_container_interaction",
+    "filled_pigment_palette": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "spectrum:black": {
-          "min": 1
-        },
-        "spectrum:blue": {
-          "min": 1
-        },
-        "spectrum:brown": {
-          "min": 1
-        },
-        "spectrum:cyan": {
-          "min": 1
-        },
-        "spectrum:gray": {
-          "min": 1
-        },
-        "spectrum:green": {
-          "min": 1
-        },
-        "spectrum:light_blue": {
-          "min": 1
-        },
-        "spectrum:light_gray": {
-          "min": 1
-        },
-        "spectrum:lime": {
-          "min": 1
-        },
-        "spectrum:magenta": {
-          "min": 1
-        },
-        "spectrum:orange": {
-          "min": 1
-        },
-        "spectrum:pink": {
-          "min": 1
-        },
-        "spectrum:purple": {
-          "min": 1
-        },
-        "spectrum:red": {
-          "min": 1
-        },
-        "spectrum:white": {
-          "min": 1
-        },
-        "spectrum:yellow": {
-          "min": 1
-        },
-        "item": {
-          "items": [
-            "spectrum:pigment_palette"
-          ]
-        }
+        "items": [
+          {
+            "items": "spectrum:pigment_palette",
+            "predicates": {
+              "spectrum:ink": {
+                "colors": {
+                  "spectrum:black": {
+                    "min": 1
+                  },
+                  "spectrum:blue": {
+                    "min": 1
+                  },
+                  "spectrum:brown": {
+                    "min": 1
+                  },
+                  "spectrum:cyan": {
+                    "min": 1
+                  },
+                  "spectrum:gray": {
+                    "min": 1
+                  },
+                  "spectrum:green": {
+                    "min": 1
+                  },
+                  "spectrum:light_blue": {
+                    "min": 1
+                  },
+                  "spectrum:light_gray": {
+                    "min": 1
+                  },
+                  "spectrum:lime": {
+                    "min": 1
+                  },
+                  "spectrum:magenta": {
+                    "min": 1
+                  },
+                  "spectrum:orange": {
+                    "min": 1
+                  },
+                  "spectrum:pink": {
+                    "min": 1
+                  },
+                  "spectrum:purple": {
+                    "min": 1
+                  },
+                  "spectrum:red": {
+                    "min": 1
+                  },
+                  "spectrum:white": {
+                    "min": 1
+                  },
+                  "spectrum:yellow": {
+                    "min": 1
+                  }
+                }
+              }
+            }
+          }
+        ]
       }
     },
     "gotten_previous": {

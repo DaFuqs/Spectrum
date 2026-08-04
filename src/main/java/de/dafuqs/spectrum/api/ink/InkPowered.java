@@ -78,9 +78,6 @@ public interface InkPowered {
 			long drained = inkStorage.drainEnergy(color, amount);
 			
 			if (drained > 0) {
-				if (player instanceof ServerPlayer serverPlayer) {
-					SpectrumAdvancementCriteria.INK_CONTAINER_INTERACTION.trigger(serverPlayer, stack, inkStorage, color, -amount);
-				}
 				inkStorageItem.setEnergyStorage(stack, inkStorage);
 			}
 			

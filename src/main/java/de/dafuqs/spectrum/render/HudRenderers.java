@@ -71,7 +71,7 @@ public class HudRenderers {
 				guiGraphics.blitSprite(SPLASH_SPRITE, 8, -50, 100, 100);
 				InkPieWidget inkPieWidget = new InkPieWidget(30, -21, () -> hoveredCapability).setThickOutline();
 				inkPieWidget.render(guiGraphics, 0, 0, partialTick);
-				StackedInkBarWidget stackedInkBarWidget = new StackedInkBarWidget(80, -21, hoveredCapability).setThickOutline();
+				StackedInkBarWidget stackedInkBarWidget = new StackedInkBarWidget(80, -21, () -> hoveredCapability).setThickOutline();
 				stackedInkBarWidget.render(guiGraphics, 0, 0, partialTick);
 				poseStack.popPose();
 			}

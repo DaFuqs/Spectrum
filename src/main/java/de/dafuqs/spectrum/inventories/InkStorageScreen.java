@@ -29,7 +29,7 @@ public class InkStorageScreen extends BaseInkScreen<InkStorageScreenHandler> {
 		
 		this.inkPieWidget = new InkPieWidget(getGuiLeft() + 54, getGuiTop() + 21, () -> menu.getBlockEntity().getInkCapability());
 		addRenderableWidget(this.inkPieWidget);
-		this.stackedInkBarWidget = new StackedInkBarWidget(getGuiLeft() + 100, getGuiTop() + 21, this.menu.getBlockEntity().getInkCapability());
+		this.stackedInkBarWidget = new StackedInkBarWidget(getGuiLeft() + 100, getGuiTop() + 21, () -> this.menu.getBlockEntity().getInkCapability());
 		addRenderableWidget(stackedInkBarWidget);
 	}
 	

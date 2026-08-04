@@ -29,7 +29,7 @@ public class ColorPickerScreen extends BaseInkScreen<ColorPickerScreenHandler> {
 		
 		this.inkPieWidget = new InkPieWidget(getGuiLeft() + 54, getGuiTop() + 20, () -> menu.getBlockEntity().getInkCapability());
 		addRenderableWidget(this.inkPieWidget);
-		this.stackedInkBarWidget = new StackedInkBarWidget(getGuiLeft() + 99, getGuiTop() + 20, this.menu.getBlockEntity().getInkCapability());
+		this.stackedInkBarWidget = new StackedInkBarWidget(getGuiLeft() + 99, getGuiTop() + 20, () -> this.menu.getBlockEntity().getInkCapability());
 		addRenderableWidget(stackedInkBarWidget);
 	}
 	

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.widgets.ink.*;
@@ -9,6 +10,8 @@ import net.minecraft.client.gui.screens.inventory.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
+
+import java.util.function.*;
 
 public class CinderhearthScreen extends AbstractContainerScreen<CinderhearthScreenHandler> {
 	
@@ -24,7 +27,7 @@ public class CinderhearthScreen extends AbstractContainerScreen<CinderhearthScre
 	@Override
 	protected void init() {
 		super.init();
-		this.inkListWidget = new InkListWidget(getGuiLeft() + 140, getGuiTop() + 34, 40, this.menu.getBlockEntity());
+		this.inkListWidget = new InkListWidget(getGuiLeft() + 140, getGuiTop() + 34, 40, () -> menu.getBlockEntity().getLevel().getCapability(InkCapabilities.BLOCK, menu.getBlockEntity().getBlockPos()));
 		addRenderableWidget(inkListWidget);
 	}
 	

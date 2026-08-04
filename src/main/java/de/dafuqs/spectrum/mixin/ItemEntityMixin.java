@@ -69,7 +69,7 @@ public abstract class ItemEntityMixin {
 	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		ItemEntity thisItemEntity = (ItemEntity) (Object) this;
 		if (DamageImmunityHelper.isImmuneTo(thisItemEntity.getItem(), source)) {
-			cir.setReturnValue(true);
+			cir.setReturnValue(false);
 		} else if (source.is(SpectrumDamageTypes.PRIMORDIAL_FIRE)) {
 			if (PrimordialFireBurningRecipe.processItemEntity(thisItemEntity.level(), thisItemEntity)) {
 				cir.setReturnValue(true);

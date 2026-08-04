@@ -111,32 +111,6 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 		addInkPoweredTooltip(tooltip);
 	}
 	
-	public static class Renderer implements DynamicItemRenderer {
-		public Renderer() {
-		}
-		
-		@Override
-		public void render(ItemRenderer renderer, ItemStack stack, ItemDisplayContext mode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model) {
-			renderer.render(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
-			Minecraft client = Minecraft.getInstance();
-			if (mode != ItemDisplayContext.GUI || client.level == null) return;
-			
-			Optional<ItemStack> optionalStack = getFirstStack(client.level.registryAccess(), stack);
-			if (optionalStack.isEmpty()) {
-				return;
-			}
-			ItemStack bundledStack = optionalStack.get();
-			
-			BakedModel bundledModel = renderer.getModel(bundledStack, client.level, client.player, 0);
-			
-			matrices.pushPose();
-			matrices.scale(0.5F, 0.5F, 0.5F);
-			matrices.translate(0.5F, 0.5F, 0.5F);
-			renderer.render(bundledStack, mode, leftHanded, matrices, vertexConsumers, light, overlay, bundledModel);
-			matrices.popPose();
-		}
-	}
-	
 	@Override
 	public SlotEffect backgroundType(@Nullable Player player, ItemStack stack) {
 		var usable = InkPowered.hasAvailableInk(player, COST);

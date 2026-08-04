@@ -268,29 +268,6 @@ public class BottomlessBundleItem extends BlockItem {
 		
 	}
 	
-	@OnlyIn(Dist.CLIENT)
-	public static class Renderer implements DynamicItemRenderer {
-		public Renderer() {
-		}
-		
-		@Override
-		public void render(ItemRenderer renderer, ItemStack stack, ItemDisplayContext mode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model) {
-			// TODO
-			/*renderer.render(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
-			if (mode != ItemDisplayContext.GUI || getStoredAmount(stack) <= 0)
-				return;
-			ItemStack bundledStack = BottomlessBundleItem.getTemplateVariant(stack);
-			Minecraft client = Minecraft.getInstance();
-			BakedModel bundledModel = renderer.getModel(bundledStack, client.level, client.player, 0);
-			
-			matrices.pushPose();
-			matrices.scale(0.5F, 0.5F, 0.5F);
-			matrices.translate(0.5F, 0.5F, 0.5F);
-			renderer.render(bundledStack, mode, leftHanded, matrices, vertexConsumers, light, overlay, bundledModel);
-			matrices.popPose();*/
-		}
-	}
-	
 	@Override
 	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.POWER);

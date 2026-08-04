@@ -5839,6 +5839,7 @@
   "config.spectrum.pastel_network_particles": "Pastel Network transfers spawn particles",
   "config.spectrum.repair_anything_recipe_repair_percentage": "How much an item gets repaired when crafting it with Moonstruck Nectar",
   "config.spectrum.charged_creepers_drop_spectrum_mob_heads": "Charged Creepers will drop Spectrum exclusive mob head when killing creatures",
+  "config.spectrum.dimension_portals": "Create Portals",
 
   "config.spectrum.gemstone_durability": "Durability of Gemstone tools",
   "config.spectrum.gemstone_mining_speed": "Mining speed of Gemstone tools",

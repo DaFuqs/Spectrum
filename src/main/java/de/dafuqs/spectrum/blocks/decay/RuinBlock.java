@@ -58,6 +58,9 @@ public class RuinBlock extends DecayBlock {
 		if (SpectrumDimensionTags.is(world, SpectrumDimensionTags.RUIN_SAFE)) {
 			return null;
 		}
+		if(world.dimension() == Level.OVERWORLD && stateToSpreadToPos.getY() == world.getMinBuildHeight() && SpectrumConfig.CONFIG.DimensionPortals.get() == SpectrumConfig.DimensionPortalSetting.PROTECT_LOWEST_OVERWORLD_LEVEL) {
+			return null;
+		}
 		
 		if (stateToSpreadTo.is(SpectrumBlockTags.RUIN_SPECIAL_CONVERSIONS)) {
 			return this.defaultBlockState().setValue(CONVERSION, Conversion.SPECIAL);
@@ -82,6 +85,10 @@ public class RuinBlock extends DecayBlock {
 	
 	@Override
 	protected void spawnAfterBreak(BlockState state, ServerLevel level, BlockPos pos, ItemStack stack, boolean dropExperience) {
+		if(SpectrumConfig.CONFIG.DimensionPortals.get() == SpectrumConfig.DimensionPortalSetting.NO_PORTALS) {
+			return;
+		}
+		
 		BlockState portalBlock = shouldCreatePortalFacingUp(level, pos, state);
 		if (portalBlock != null) {
 			level.setBlockAndUpdate(pos, portalBlock);
@@ -89,6 +96,10 @@ public class RuinBlock extends DecayBlock {
 	}
 	
 	protected @Nullable BlockState shouldCreatePortalFacingUp(Level level, BlockPos pos, BlockState state) {
+		if(SpectrumConfig.CONFIG.DimensionPortals.get() == SpectrumConfig.DimensionPortalSetting.NO_PORTALS) {
+			return null;
+		}
+		
 		DecayBlock.Conversion conversion = state.getValue(RuinBlock.CONVERSION);
 		if (level.dimension() == Level.NETHER) {
 			if (pos.getY() == level.getMinBuildHeight() + level.dimensionType().logicalHeight() - 1) { // Attempt to match the nether ceiling. Tricky...

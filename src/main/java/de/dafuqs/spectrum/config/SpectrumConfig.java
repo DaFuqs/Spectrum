@@ -151,7 +151,20 @@ public class SpectrumConfig {
 	public final ModConfigSpec.ConfigValue<Double> LiquidCrystalDripstoneDripChance;
 	public final ModConfigSpec.ConfigValue<Double> MidnightSolutionDripstoneDripChance;
 	
+	public final ModConfigSpec.ConfigValue<DimensionPortalSetting> DimensionPortals;
+	
+	public enum DimensionPortalSetting {
+		CREATE_PORTALS,
+		PROTECT_LOWEST_OVERWORLD_LEVEL,
+		NO_PORTALS
+	}
+	
 	private SpectrumConfig(ModConfigSpec.Builder builder) {
+		DimensionPortals = builder
+				.translation("config.spectrum.dimension_portals")
+				.comment("Allow the creation of portals using Ruin")
+				.defineEnum("dimension_portals", DimensionPortalSetting.CREATE_PORTALS);
+		
 		ToastTimeMilliseconds = builder
 				.translation("config.spectrum.toast_milliseconds")
 				.comment("The duration in milliseconds ingame recipe/unlock popups stay on the screen")

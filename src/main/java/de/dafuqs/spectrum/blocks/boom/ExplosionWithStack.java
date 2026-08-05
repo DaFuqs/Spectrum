@@ -24,7 +24,7 @@ import java.util.*;
 
 public class ExplosionWithStack extends Explosion {
 	
-	public static final int BASE_EXPLOSION_LEVEL = 3;
+	public static final int BASE_EXPLOSION_LEVEL = 4;
 	
 	private final ItemStack stack;
 	
@@ -89,8 +89,8 @@ public class ExplosionWithStack extends Explosion {
 		boolean damagesEntities = SpectrumEnchantmentHelper.hasEnchantment(enchantmentLookup, EnchantmentTags.DAMAGE_EXCLUSIVE, stack);
 		boolean causesFire = enchantments.getLevel(enchantmentLookup.getOrThrow(Enchantments.FLAME)) > 0;
 		
-		@Nullable DamageSource damageSource = Explosion.getDefaultDamageSource(level, source);
-		@Nullable ExplosionDamageCalculator damageCalculator = new EnhancedExplosionDamageCalculator(level, damageSource, stack, powerLevel > 0, damagesEntities, Optional.empty(), Optional.empty(), preserveBlockAtExplosionCenter ? Optional.of(BlockPos.containing(pos)) : Optional.empty());
+		DamageSource damageSource = Explosion.getDefaultDamageSource(level, source);
+		ExplosionDamageCalculator damageCalculator = new EnhancedExplosionDamageCalculator(level, damageSource, stack, powerLevel > 0, damagesEntities, Optional.empty(), Optional.empty(), preserveBlockAtExplosionCenter ? Optional.of(BlockPos.containing(pos)) : Optional.empty());
 		
 		int explosionRadius = BASE_EXPLOSION_LEVEL + powerLevel;
 		

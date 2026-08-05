@@ -15,6 +15,7 @@ public class SpectrumMobEffectTags {
 	public static TagKey<MobEffect> SOPORIFIC = of("soporific");
 	public static TagKey<MobEffect> NIGHT_ALCHEMY = of("night_alchemy");
 	public static TagKey<MobEffect> STACKING = of("stacking");
+	public static TagKey<MobEffect> ALWAYS_INFINITE = of("always_infinite");
 	
 	private static TagKey<MobEffect> of(String id) {
 		return TagKey.create(Registries.MOB_EFFECT, SpectrumCommon.locate(id));

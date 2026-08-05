@@ -4245,8 +4245,6 @@
   "effect.spectrum.effect_prolonging.desc": "Increases the duration of other status effects applied to you.",
   "effect.spectrum.eternal_slumber": "Eternal Slumber",
   "effect.spectrum.eternal_slumber.desc": "Locks the target into a deep, dreamless sleep, from which few can escape.",
-  "effect.spectrum.eternal_slumber.duration": "everlasting | %1$s",
-  "effect.spectrum.eternal_slumber.duration_inf": "everlasting",
   "effect.spectrum.fatal_slumber": "Fatal Slumber",
   "effect.spectrum.fatal_slumber.desc": "Induces instant death upon timing out.",
   "effect.spectrum.frenzy": "Frenzy",

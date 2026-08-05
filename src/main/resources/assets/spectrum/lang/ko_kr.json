@@ -4232,8 +4232,6 @@
   "effect.spectrum.effect_prolonging.desc": "자신에게 부여된 다른 상태 효과들의 지속 시간을 증가시킵니다.",
   "effect.spectrum.eternal_slumber": "영면",
   "effect.spectrum.eternal_slumber.desc": "대상을 꿈조차 꾸지 않는 깊은 잠에 빠뜨립니다. 그 누구도 쉽게 벗어날 수 없습니다.",
-  "effect.spectrum.eternal_slumber.duration": "영원함 | %1$s",
-  "effect.spectrum.eternal_slumber.duration_inf": "영원함",
   "effect.spectrum.fatal_slumber": "치명적 수면",
   "effect.spectrum.fatal_slumber.desc": "지속 시간이 끝나면 즉사합니다.",
   "effect.spectrum.frenzy": "광란",

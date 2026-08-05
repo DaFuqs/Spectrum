@@ -155,7 +155,7 @@ public class SpectrumClientEventListeners {
 		
 		if (stack.has(DataComponents.FOOD)) {
 			if (BuiltInRegistries.ITEM.getKey(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
-				TooltipHelper.addFoodComponentEffectTooltip(stack, event.getTooltipElements(), Item.TooltipContext.EMPTY.tickRate());
+				TooltipHelper.addFoodComponentEffectTooltip(Minecraft.getInstance(), stack, event.getTooltipElements(), Item.TooltipContext.EMPTY.tickRate());
 			}
 		}
 		if (stack.is(SpectrumItemTags.COMING_SOON_TOOLTIP)) {

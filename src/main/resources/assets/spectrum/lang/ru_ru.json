@@ -4231,8 +4231,6 @@
   "effect.spectrum.effect_prolonging.desc": "Увеличивает длительность других эффектов.",
   "effect.spectrum.eternal_slumber": "Вечная дремота",
   "effect.spectrum.eternal_slumber.desc": "Закрывает цель в глубоком, бессонном сне, из которого только некоторые смогут сбежать.",
-  "effect.spectrum.eternal_slumber.duration": "Вечный | %1$s",
-  "effect.spectrum.eternal_slumber.duration_inf": "Вечный",
   "effect.spectrum.fatal_slumber": "Фатальная дремота",
   "effect.spectrum.fatal_slumber.desc": "Вызывает мгновенную смерть по истечению времени.",
   "effect.spectrum.frenzy": "Неистовство",

@@ -3,9 +3,12 @@ package de.dafuqs.spectrum.helpers;
 import com.google.common.collect.*;
 import com.mojang.datafixers.util.*;
 import net.minecraft.*;
+import net.minecraft.client.*;
+import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.inventory.tooltip.*;
@@ -16,25 +19,25 @@ import java.util.*;
 
 public class TooltipHelper {
 	
-	public static void addFoodComponentEffectTooltip(ItemStack stack, List<Either<FormattedText, TooltipComponent>> tooltip, float updateTickRate) {
+	public static void addFoodComponentEffectTooltip(Minecraft minecraft, ItemStack stack, List<Either<FormattedText, TooltipComponent>> tooltip, float updateTickRate) {
 		FoodProperties foodComponent = stack.get(DataComponents.FOOD);
 		if (foodComponent != null) {
-			buildEffectTooltipWithChance(tooltip, foodComponent.effects(), stack.getUseAnimation() == UseAnim.DRINK ? Component.translatable("spectrum.food.whenDrunk") : Component.translatable("spectrum.food.whenEaten"), updateTickRate);
+			buildEffectTooltipWithChance(minecraft, tooltip, foodComponent.effects(), stack.getUseAnimation() == UseAnim.DRINK ? Component.translatable("spectrum.food.whenDrunk") : Component.translatable("spectrum.food.whenEaten"), updateTickRate);
 		}
 	}
 	
-	public static void buildEffectTooltipWithChance(List<Either<FormattedText, TooltipComponent>> tooltip, List<FoodProperties.PossibleEffect> entries, MutableComponent attributeModifierText, float updateTickRate) {
+	public static void buildEffectTooltipWithChance(Minecraft minecraft, List<Either<FormattedText, TooltipComponent>> tooltip, List<FoodProperties.PossibleEffect> entries, MutableComponent attributeModifierText, float updateTickRate) {
 		if (entries.isEmpty()) {
 			return;
 		}
 		
 		List<Pair<Attribute, AttributeModifier>> modifiersList = Lists.newArrayList();
-		for (var entry : entries) {
-			var statusEffectInstance = entry.effect();
-			var chance = entry.probability();
+		for (FoodProperties.PossibleEffect entry : entries) {
+			MobEffectInstance statusEffectInstance = entry.effect();
+			float chance = entry.probability();
+			MutableComponent translatableText = Component.translatable(statusEffectInstance.getDescriptionId());
+			Holder<MobEffect> statusEffect = statusEffectInstance.getEffect();
 			
-			var translatableText = Component.translatable(statusEffectInstance.getDescriptionId());
-			var statusEffect = statusEffectInstance.getEffect();
 			statusEffect.value().createModifiers(statusEffectInstance.getAmplifier(), (attribute, modifier) ->
 					modifiersList.add(new Pair<>(attribute.value(), modifier)));
 			
@@ -42,7 +45,7 @@ public class TooltipHelper {
 				translatableText = Component.translatable("potion.withAmplifier", translatableText, Component.translatable("potion.potency." + statusEffectInstance.getAmplifier()));
 			}
 			if (statusEffectInstance.getDuration() > 20) {
-				translatableText = Component.translatable("potion.withDuration", translatableText, StringUtil.formatTickDuration(statusEffectInstance.getDuration(), updateTickRate));
+				translatableText = Component.translatable("potion.withDuration", translatableText, MobEffectUtil.formatDuration(entry.effect(), 1.0F, minecraft.level.tickRateManager().tickrate()));
 			}
 			if (chance < 1.0F) {
 				translatableText = Component.translatable("spectrum.food.withChance", translatableText, Math.round(chance * 100));

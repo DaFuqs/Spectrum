@@ -2583,8 +2583,6 @@
   "effect.spectrum.calming.desc": "减少敌人的生成率和攻击性。",
   "effect.spectrum.eternal_slumber": "长梦无醒",
   "effect.spectrum.eternal_slumber.desc": "将目标禁锢于无梦的深度睡眠中，极少有人能挣脱。",
-  "effect.spectrum.eternal_slumber.duration": "永恒 | %1$s",
-  "effect.spectrum.eternal_slumber.duration_inf": "永恒",
   "effect.spectrum.fatal_slumber": "绝命长眠",
   "effect.spectrum.fatal_slumber.desc": "在时间结束时瞬间暴毙身亡。",
   "effect.spectrum.somnolence": "嗜睡",

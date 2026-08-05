@@ -62,7 +62,6 @@
     "ShearsDispenserBehaviorMixin",
     "SpawnDensityCapperMixin",
     "StatusEffectInstanceMixin",
-    "StatusEffectUtilMixin",
     "TemptGoalMixin",
     "TridentEntityMixin",
     "WitherEntityMixin",

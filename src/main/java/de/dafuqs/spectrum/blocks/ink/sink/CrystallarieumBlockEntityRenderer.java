@@ -144,21 +144,14 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 	public static LayerDefinition getTexturedModelData() {
 		MeshDefinition modelData = new MeshDefinition();
 		PartDefinition modelPartData = modelData.getRoot();
-		PartDefinition active = modelPartData.addOrReplaceChild("active", CubeListBuilder.create().texOffs(40, 34).addBox(-5.0F, -3.0F, -5.0F, 10.0F, 4.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 22.0F, 0.0F));
-		
-		PartDefinition inactive = modelPartData.addOrReplaceChild("inactive", CubeListBuilder.create().texOffs(80, 34).addBox(-5.0F, -3.0F, -5.0F, 10.0F, 4.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 22.0F, 0.0F));
-		
+		modelPartData.addOrReplaceChild("active", CubeListBuilder.create().texOffs(40, 34).addBox(-5.0F, -3.0F, -5.0F, 10.0F, 4.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 22.0F, 0.0F));
+		modelPartData.addOrReplaceChild("inactive", CubeListBuilder.create().texOffs(80, 34).addBox(-5.0F, -3.0F, -5.0F, 10.0F, 4.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 22.0F, 0.0F));
 		PartDefinition halo = modelPartData.addOrReplaceChild("halo", CubeListBuilder.create().texOffs(77, 48).addBox(-8.5F, 1.0F, -8.5F, 17.0F, 0.0F, 17.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -9.0F, 0.0F));
-		
-		PartDefinition diamond_r1 = halo.addOrReplaceChild("diamond_r1", CubeListBuilder.create().texOffs(80, 65).addBox(-7.5F, 0.0F, -7.5F, 15.0F, 0.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
-		
+		halo.addOrReplaceChild("diamond_r1", CubeListBuilder.create().texOffs(80, 65).addBox(-7.5F, 0.0F, -7.5F, 15.0F, 0.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
 		PartDefinition echo = halo.addOrReplaceChild("echo", CubeListBuilder.create(), PartPose.offset(0.0F, 0.5F, 0.0F));
-		
-		PartDefinition echoring_r1 = echo.addOrReplaceChild("echoring_r1", CubeListBuilder.create().texOffs(80, 80).addBox(-7.5F, 0.0F, -7.5F, 15.0F, 0.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
-		
+		echo.addOrReplaceChild("echoring_r1", CubeListBuilder.create().texOffs(80, 80).addBox(-7.5F, 0.0F, -7.5F, 15.0F, 0.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
 		PartDefinition upperecho = echo.addOrReplaceChild("upperecho", CubeListBuilder.create(), PartPose.offset(0.0F, -0.5F, 0.0F));
-		
-		PartDefinition echoring_r2 = upperecho.addOrReplaceChild("echoring_r2", CubeListBuilder.create().texOffs(80, 95).addBox(-7.5F, 0.0F, -7.5F, 15.0F, 0.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
+		upperecho.addOrReplaceChild("echoring_r2", CubeListBuilder.create().texOffs(80, 95).addBox(-7.5F, 0.0F, -7.5F, 15.0F, 0.0F, 15.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
 		return LayerDefinition.create(modelData, 128, 128);
 	}
 }

@@ -34,20 +34,22 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 	protected final List<BlockState> growthStages;
 	protected final int secondsPerGrowthStage;
 	protected final InkColor inkColor;
-	protected final int inkPerSecond;
+	protected final int inkCostTier;
+	protected final int inkCost;
 	protected final boolean growsWithoutAdditive;
 	protected final List<CrystallarieumAdditive> additives;
 	protected final FluidIngredient medium;
 	protected final List<ItemStack> additionalResults; // these aren't actual results, but recipe managers will treat it as such, showing this recipe as a way to get them. Use for drops of the growth blocks, for example
 	
-	public CrystallarieumRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Ingredient ingredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutAdditive, List<CrystallarieumAdditive> additives, FluidIngredient medium, List<ItemStack> additionalResults) {
+	public CrystallarieumRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Ingredient ingredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkCostTier, boolean growsWithoutAdditive, List<CrystallarieumAdditive> additives, FluidIngredient medium, List<ItemStack> additionalResults) {
 		super(group, secret, requiredAdvancementIdentifier);
 		
 		this.ingredient = ingredient;
 		this.growthStages = growthStages;
 		this.secondsPerGrowthStage = secondsPerGrowthStage;
 		this.inkColor = inkColor;
-		this.inkPerSecond = inkPerSecond;
+		this.inkCostTier = inkCostTier;
+		this.inkCost = inkCostTier * inkCostTier;
 		this.growsWithoutAdditive = growsWithoutAdditive;
 		this.additives = additives;
 		this.medium = medium;
@@ -199,8 +201,12 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 		return inkColor;
 	}
 	
-	public int getInkPerSecond() {
-		return inkPerSecond;
+	public int getInkCost() {
+		return inkCost;
+	}
+	
+	public int getInkCostTier() {
+		return inkCostTier;
 	}
 	
 	public boolean growsWithoutAdditive() {
@@ -237,10 +243,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 				BlockState.CODEC.listOf().fieldOf("growth_stage_states").forGetter(recipe -> recipe.growthStages),
 				Codec.INT.fieldOf("seconds_per_growth_stage").forGetter(recipe -> recipe.secondsPerGrowthStage),
 				InkColor.CODEC.fieldOf("ink_color").forGetter(recipe -> recipe.inkColor),
-				Codec.INT.xmap(
-						d -> d == 0 ? 0 : (1 << (d - 1)),
-						e -> e == 0 ? 0 : (31 - Integer.numberOfLeadingZeros(e)) + 1
-				).fieldOf("ink_cost_tier").forGetter(recipe -> recipe.inkPerSecond),
+				Codec.INT.fieldOf("ink_cost_tier").forGetter(recipe -> recipe.inkCostTier),
 				Codec.BOOL.optionalFieldOf("grows_without_additive", false).forGetter(recipe -> recipe.growsWithoutAdditive),
 				CrystallarieumAdditive.CODEC.listOf().fieldOf("additives").forGetter(recipe -> recipe.additives),
 				FluidIngredient.CODEC.fieldOf("fluid").forGetter(recipe -> recipe.medium),
@@ -255,7 +258,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 				PacketCodecHelper.BLOCK_STATE.apply(ByteBufCodecs.list()), recipe -> recipe.growthStages,
 				ByteBufCodecs.VAR_INT, recipe -> recipe.secondsPerGrowthStage,
 				InkColor.PACKET_CODEC, recipe -> recipe.inkColor,
-				ByteBufCodecs.VAR_INT, recipe -> recipe.inkPerSecond,
+				ByteBufCodecs.VAR_INT, recipe -> recipe.inkCostTier,
 				ByteBufCodecs.BOOL, recipe -> recipe.growsWithoutAdditive,
 				CrystallarieumAdditive.PACKET_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additives,
 				FluidIngredient.STREAM_CODEC, recipe -> recipe.medium,

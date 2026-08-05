@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.blocks.ink.sink;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.fluid.*;
-import de.dafuqs.spectrum.api.ink.*;
-import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.components.*;
@@ -55,7 +53,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	
 	protected int currentGrowthStageTicks;
 	protected boolean canWork = true;
-	float rotation = 0F;
+	protected float rotation = 0F;
 	
 	protected @Nullable FlowAnimator animator;
 	protected FlowData<Float> _alpha = FlowData.NULL(), _speed = FlowData.NULL(), _bounce = FlowData.NULL();
@@ -75,8 +73,8 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (crystallarieum.canWork && crystallarieum.currentRecipe != null) {
 			ParticleOptions particleEffect = ColoredSparkleRisingParticleEffect.of(crystallarieum.currentRecipe.value().getInkColor().getColorInt());
 			
-			int amount = 1 + crystallarieum.currentRecipe.value().getInkPerSecond();
-			if (Support.getIntFromDecimalWithChance(amount / 80.0, world.getRandom()) > 0) {
+			int amount = 1 + crystallarieum.currentRecipe.value().getInkCostTier();
+			if (Support.getIntFromDecimalWithChance(amount / 20.0, world.getRandom()) > 0) {
 				double randomX = world.getRandom().nextDouble() * 0.8;
 				double randomZ = world.getRandom().nextDouble() * 0.8;
 				world.addAlwaysVisibleParticle(particleEffect, blockPos.getX() + 0.1 + randomX, blockPos.getY() + 1, blockPos.getZ() + 0.1 + randomZ, 0.0D, 0.03D, 0.0D);
@@ -129,13 +127,16 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		}
 		
 		// advance growing
-		float consumedInkFloat = (recipe.value().getInkPerSecond() * crystallarieum.currentAdditive.growthAccelerationMod() * crystallarieum.currentAdditive.inkConsumptionMod());
-		int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, world.getRandom());
-		if (crystallarieum.inkStorage.drainEnergy(recipe.value().getInkColor(), consumedInt) < consumedInt) {
-			crystallarieum.canWork = false;
-			crystallarieum.setInkDirty();
-			crystallarieum.updateInClientWorld();
-			return;
+		int inkCostBase = recipe.value().getInkCost();
+		if(inkCostBase > 0) {
+			float consumedInkFloat = inkCostBase * crystallarieum.currentAdditive.growthAccelerationMod() * crystallarieum.currentAdditive.inkConsumptionMod();
+			int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, world.getRandom());
+			if (crystallarieum.inkStorage.drainEnergy(recipe.value().getInkColor(), consumedInt) < consumedInt) {
+				crystallarieum.canWork = false;
+				crystallarieum.setInkDirty();
+				crystallarieum.updateInClientWorld();
+				return;
+			}
 		}
 		
 		crystallarieum.setInkDirty();

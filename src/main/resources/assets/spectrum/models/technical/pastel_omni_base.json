@@ -23,7 +23,7 @@
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [-0.5, 2, 1]},
 			"faces": {
 				"up": {"uv": [5, 6, 0, 0], "texture": "#particle"},
-				"down": {"uv": [10, 0, 5, 6], "texture": "#missing"}
+				"down": {"uv": [10, 0, 5, 6], "texture": "#particle"}
 			}
 		},
 		{

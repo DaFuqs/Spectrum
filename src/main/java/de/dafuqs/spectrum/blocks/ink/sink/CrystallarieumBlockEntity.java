@@ -98,17 +98,19 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	
 	@SuppressWarnings("unused")
 	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
-		if (crystallarieum.canWork) {
-			crystallarieum.canWork = false;
-			
-			var recipe = crystallarieum.currentRecipe;
-			if (recipe != null) {
-				crystallarieum.tickLooper.tick();
-				if (crystallarieum.tickLooper.reachedCap()) {
-					tickRecipe(world, blockPos, crystallarieum, recipe);
-					crystallarieum.tickLooper.reset();
-				}
-			}
+		if (!crystallarieum.canWork) {
+			return;
+		}
+		
+		RecipeHolder<CrystallarieumRecipe> recipe = crystallarieum.currentRecipe;
+		if (recipe == null) {
+			return;
+		}
+		
+		crystallarieum.tickLooper.tick();
+		if (crystallarieum.tickLooper.reachedCap()) {
+			tickRecipe(world, blockPos, crystallarieum, recipe);
+			crystallarieum.tickLooper.reset();
 		}
 	}
 	
@@ -116,7 +118,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	 * Progress the recipe
 	 * gets called 1/second
 	 */
-	private static void tickRecipe(Level world, BlockPos blockPos, CrystallarieumBlockEntity crystallarieum, RecipeHolder<CrystallarieumRecipe> recipe) {
+	private static void tickRecipe(Level level, BlockPos pos, CrystallarieumBlockEntity crystallarieum, RecipeHolder<CrystallarieumRecipe> recipe) {
 		if (crystallarieum.currentAdditive == CrystallarieumAdditive.EMPTY && !recipe.value().growsWithoutAdditive()) {
 			return;
 		}
@@ -130,7 +132,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		int inkCostBase = recipe.value().getInkCost();
 		if(inkCostBase > 0) {
 			float consumedInkFloat = inkCostBase * crystallarieum.currentAdditive.growthAccelerationMod() * crystallarieum.currentAdditive.inkConsumptionMod();
-			int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, world.getRandom());
+			int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, level.getRandom());
 			if (crystallarieum.inkStorage.drainEnergy(recipe.value().getInkColor(), consumedInt) < consumedInt) {
 				crystallarieum.canWork = false;
 				crystallarieum.setInkDirty();
@@ -143,7 +145,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		crystallarieum.currentGrowthStageTicks += (int) (SECOND * crystallarieum.currentAdditive.growthAccelerationMod());
 		
 		// check if a catalyst should get used up
-		if (world.getRandom().nextFloat() < crystallarieum.currentAdditive.consumeChancePerSecond()) {
+		if (level.getRandom().nextFloat() < crystallarieum.currentAdditive.consumeChancePerSecond()) {
 			ItemStack catalystStack = crystallarieum.getItem(ADDITIVE_SLOT_ID);
 			catalystStack.shrink(1);
 			crystallarieum.updateInClientWorld();
@@ -157,14 +159,14 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		
 		// advanced enough? grow!
 		if (crystallarieum.currentGrowthStageTicks >= recipe.value().getSecondsPerGrowthStage() * SECOND) {
-			BlockPos topPos = blockPos.above();
-			BlockState topState = world.getBlockState(topPos);
+			BlockPos topPos = pos.above();
+			BlockState topState = level.getBlockState(topPos);
 			Optional<BlockState> nextState = recipe.value().getNextState(recipe, topState);
 			if (nextState.isPresent()) {
-				world.setBlockAndUpdate(topPos, nextState.get());
-				ServerPlayer owner = (ServerPlayer) crystallarieum.getOwnerIfOnline(world);
+				level.setBlockAndUpdate(topPos, nextState.get());
+				ServerPlayer owner = (ServerPlayer) crystallarieum.getOwnerIfOnline(level);
 				if (owner != null) {
-					SpectrumAdvancementCriteria.CRYSTALLARIEUM_GROWING.trigger(owner, (ServerLevel) world, topPos, crystallarieum.getItem(ADDITIVE_SLOT_ID));
+					SpectrumAdvancementCriteria.CRYSTALLARIEUM_GROWING.trigger(owner, (ServerLevel) level, topPos, crystallarieum.getItem(ADDITIVE_SLOT_ID));
 				}
 			} else {
 				crystallarieum.canWork = false;

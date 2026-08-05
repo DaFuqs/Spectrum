@@ -28,7 +28,7 @@
     },
     {
       "ingredient": {
-        "item": "spectrum:armadillo_scute"
+        "item": "minecraft:armadillo_scute"
       },
       "consume_chance_per_second": 0.01,
       "growth_acceleration_mod": 0.5,

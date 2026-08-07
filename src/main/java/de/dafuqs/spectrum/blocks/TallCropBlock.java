@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
+import net.neoforged.neoforge.common.*;
 import org.jspecify.annotations.*;
 
 /**
@@ -86,20 +87,27 @@ public class TallCropBlock extends CropBlock {
 	protected void tryGrow(BlockState state, ServerLevel world, BlockPos pos, RandomSource random, float upperBound) {
 		if (state.getValue(HALF) == DoubleBlockHalf.UPPER) return;
 		
+		if (!CommonHooks.canCropGrow(world, pos, state, random.nextInt((int)(25.0F / getGrowthSpeed(state, world, pos)) + 1) == 0)) {
+			return;
+		}
+		
 		if (world.getRawBrightness(pos, 0) >= 9) {
 			int age = this.getAge(state);
 			if (age < this.getMaxAge()) {
 				float moisture = getGrowthSpeed(state, world, pos);
+				
 				// More likely if there's more moisture
 				if (random.nextInt((int) (upperBound / moisture) + 1) == 0) {
+					BlockState newState = this.getStateForAge(age + 1);
 					if (age >= Block.UPDATE_CLIENTS) {
 						if (world.getBlockState(pos.above()).is(this) || world.getBlockState(pos.above()).canBeReplaced()) {
-							world.setBlock(pos, this.getStateForAge(age + 1), Block.UPDATE_CLIENTS);
+							world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
 							world.setBlock(pos.above(), this.withAgeAndHalf(age + 1, DoubleBlockHalf.UPPER), Block.UPDATE_CLIENTS);
 						}
 					} else {
-						world.setBlock(pos, this.getStateForAge(age + 1), Block.UPDATE_CLIENTS);
+						world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
                     }
+					CommonHooks.fireCropGrowPost(world, pos, state);
                 }
             }
         }

@@ -11,7 +11,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import org.joml.*;
 
-public class ColoredCraftingParticleEffect implements ParticleOptions {
+public record ColoredCraftingParticleEffect(Vector3f color) implements ParticleOptions {
 	
 	public static final ColoredCraftingParticleEffect BLACK = new ColoredCraftingParticleEffect(InkColors.BLACK_COLOR);
 	public static final ColoredCraftingParticleEffect BLUE = new ColoredCraftingParticleEffect(InkColors.BLUE_COLOR);
@@ -33,27 +33,18 @@ public class ColoredCraftingParticleEffect implements ParticleOptions {
 	public static final MapCodec<ColoredCraftingParticleEffect> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 			ExtraCodecs.VECTOR3F.fieldOf("color").forGetter((effect) -> effect.color)
 	).apply(instance, ColoredCraftingParticleEffect::new));
+	
 	public static final StreamCodec<RegistryFriendlyByteBuf, ColoredCraftingParticleEffect> PACKET_CODEC = StreamCodec.composite(
 			ByteBufCodecs.VECTOR3F, (effect) -> effect.color,
 			ColoredCraftingParticleEffect::new
 	);
 	
-	private final Vector3f color;
-	
 	public ColoredCraftingParticleEffect(int color) {
-		this.color = SpectrumColorHelper.colorIntToVec(color);
-	}
-	
-	public ColoredCraftingParticleEffect(Vector3f color) {
-		this.color = color;
+		this(SpectrumColorHelper.colorIntToVec(color));
 	}
 	
 	public ParticleType<ColoredCraftingParticleEffect> getType() {
 		return SpectrumParticleTypes.COLORED_CRAFTING;
-	}
-	
-	public Vector3f getColor() {
-		return this.color;
 	}
 	
 	public static ParticleOptions of(int color) {

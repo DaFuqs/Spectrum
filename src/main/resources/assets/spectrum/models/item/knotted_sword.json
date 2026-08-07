@@ -6,22 +6,9 @@
   "overrides": [
     {
       "predicate": {
-        "blocking": 1.0
-      },
-      "model": "spectrum:item/knotted_sword_blocking"
-    },
-    {
-      "predicate": {
         "oversized": 1.0
       },
       "model": "spectrum:item/knotted_sword_oversized"
-    },
-    {
-      "predicate": {
-        "blocking": 1.0,
-        "oversized": 1.0
-      },
-      "model": "spectrum:item/knotted_sword_blocking_oversized"
     }
   ]
 }

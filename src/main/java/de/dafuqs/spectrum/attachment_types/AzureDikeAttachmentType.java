@@ -53,8 +53,6 @@ public class AzureDikeAttachmentType {
 	public static final AttachmentType<AzureDikeAttachmentType> ATTACHMENT_TYPE =
 			AttachmentType.builder(AzureDikeAttachmentType::new)
 					.serialize(CODEC)
-					.copyOnDeath()
-					.copyHandler(COPY_HANDLER)
 					.sync(STREAM_CODEC)
 					.build();
 	

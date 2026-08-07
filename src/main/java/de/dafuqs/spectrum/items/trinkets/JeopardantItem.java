@@ -15,15 +15,13 @@ import top.theillusivec4.curios.api.*;
 
 import java.util.*;
 
-public class AttackRingItem extends SpectrumCurioItem {
+public class JeopardantItem extends SpectrumCurioItem {
 	
-	public static final ResourceLocation ATTACK_RING_DAMAGE_ID = SpectrumCommon.locate("jeopardant");
-	
-	public AttackRingItem(Properties settings) {
+	public JeopardantItem(Properties settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/jeopardant"));
 	}
 	
-	public static double getAttackModifierForEntity(@Nullable LivingEntity entity) {
+	public static double getAttackModifierForWearer(@Nullable LivingEntity entity) {
 		if (entity == null) {
 			return 0;
 		} else {
@@ -35,13 +33,6 @@ public class AttackRingItem extends SpectrumCurioItem {
 	@Override
 	public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
 		super.onUnequip(slotContext, newStack, stack);
-		
-		LivingEntity entity = slotContext.entity();
-		if (entity.getAttributes().hasModifier(Attributes.ATTACK_DAMAGE, AttackRingItem.ATTACK_RING_DAMAGE_ID)) {
-			Multimap<Holder<Attribute>, AttributeModifier> map = Multimaps.newMultimap(Maps.newLinkedHashMap(), ArrayList::new);
-			map.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_ID, AttackRingItem.getAttackModifierForEntity(entity), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
-			entity.getAttributes().removeAttributeModifiers(map);
-		}
 	}
 	
 	@OnlyIn(Dist.CLIENT)
@@ -49,7 +40,7 @@ public class AttackRingItem extends SpectrumCurioItem {
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		Minecraft client = Minecraft.getInstance();
-		long mod = Math.round(getAttackModifierForEntity(client.player) * 100);
+		long mod = Math.round(getAttackModifierForWearer(client.player) * 100);
 		if (mod == 0) {
 			tooltip.add(Component.translatable("item.spectrum.jeopardant.tooltip.damage_zero"));
 		} else {

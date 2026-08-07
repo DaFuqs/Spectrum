@@ -39,8 +39,7 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	}
 	
 	private void renderAsItemStack(BidentBaseEntity entity, float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light, ItemStack itemStack) {
-		SpectrumModelPredicateProviders.DISPLAY_CONTEXT = ItemDisplayContext.FIRST_PERSON_LEFT_HAND; // allow for oversized shenanigans
-		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.level(), null, entity.getId());
+		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.level(), null, SpectrumModelPredicateProviders.MAGIC_OVERSIZED_SEED);
 		
 		poseStack.pushPose();
 		poseStack.translate(0, entity.getBoundingBox().getSize() / 2, 0);

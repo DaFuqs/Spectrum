@@ -59,7 +59,6 @@ public abstract class ItemStackMixin {
 		}
 	}
 	
-	// TODO: move to event
 	@Inject(method = "getTooltipLines", at = @At(value = "INVOKE", target = "net/minecraft/world/item/TooltipFlag.isAdvanced ()Z", shift = At.Shift.BEFORE, ordinal = 1))
 	public void spectrum$AppendTooltip(Item.TooltipContext context, Player player, TooltipFlag type, CallbackInfoReturnable<List<Component>> cir, @Local Consumer<Component> consumer) {
 		var stack = (ItemStack) (Object) this;
@@ -76,7 +75,6 @@ public abstract class ItemStackMixin {
 		if (canvasEnchantments != null && !canvasEnchantments.isEmpty()) {
 			canvasEnchantments.addToTooltip(context, consumer, type);
 		}
-		
 	}
 	
 }

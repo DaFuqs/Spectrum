@@ -43,4 +43,9 @@ public class NightSaltsItem extends DrinkItem {
 		return 40;
 	}
 	
+	@Override
+	public UseAnim getUseAnimation(ItemStack stack) {
+		return UseAnim.TOOT_HORN;
+	}
+	
 }

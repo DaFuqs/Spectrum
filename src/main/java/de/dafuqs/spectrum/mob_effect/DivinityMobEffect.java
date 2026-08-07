@@ -74,7 +74,7 @@ public class DivinityMobEffect extends MobEffect {
 	
 	@Override
 	public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
-		cures.add(SpectrumEffectCures.COMMAND_ONLY);
+
 	}
 	
 }

@@ -58,9 +58,6 @@ public class SpectrumModelPredicateProviders {
 		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON.get());
 		registerOversizedItemPredicate(SpectrumItems.OMNI_ACCELERATOR.get());
 		
-		registerBlockingPredicate(SpectrumItems.NECTAR_LANCE.get());
-		registerBlockingPredicate(SpectrumItems.KNOTTED_SWORD.get());
-		
 		registerBidentThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT.get());
 		registerBidentThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT.get());
 		registerBidentThrowingItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT.get());
@@ -192,15 +189,11 @@ public class SpectrumModelPredicateProviders {
 				SlotReservingItem.isReservingSlot(stack) ? 1.0F : 0.0F);
 	}
 	
-	public static ItemDisplayContext DISPLAY_CONTEXT = ItemDisplayContext.FIXED;
+	public static int MAGIC_OVERSIZED_SEED = -567877769;
 	
 	private static void registerOversizedItemPredicate(Item item) {
 		ItemProperties.register(item, ResourceLocation.parse("oversized"), (stack, world, entity, seed) ->
-				DISPLAY_CONTEXT == ItemDisplayContext.FIRST_PERSON_LEFT_HAND
-						|| DISPLAY_CONTEXT == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND
-						|| DISPLAY_CONTEXT == ItemDisplayContext.THIRD_PERSON_LEFT_HAND
-						|| DISPLAY_CONTEXT == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND
-						? 1.0F : 0.0F
+				seed == MAGIC_OVERSIZED_SEED ? 1.0F : 0.0F
 		);
 	}
 	

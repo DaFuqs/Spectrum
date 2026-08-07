@@ -28,44 +28,4 @@ public abstract class AbstractBlockStateMixin {
 		return dropExperience;
 	}
 	
-	// https://github.com/apace100/water-walking-fix
-	// dummied out due to sable crash
-	/*@ModifyReturnValue(method = "getCollisionShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;", at = @At("RETURN"))
-	public VoxelShape getFluidloggedCollisionShape(VoxelShape original, BlockGetter level, BlockPos pos, CollisionContext context) {
-		FluidState fluidState = spectrum$getFluidStateHelper(level, pos);
-		if(fluidState == null || fluidState.isEmpty()) {
-			return original;
-		}
-		int fluidLevel = fluidState.getAmount();
-		if (fluidLevel == 0) return original;
-		VoxelShape fluidShape = FLUID_LEVEL_SHAPES[fluidLevel];
-		
-		if (context.isAbove(fluidShape, pos, true) && context.canStandOnFluid(spectrum$getFluidStateHelper(level, pos.above()), fluidState)) {
-			return Shapes.or(original, fluidShape);
-		}
-		return original;
-	}
-	
-	// Thank you, sable
-	@Unique
-	private static FluidState spectrum$getFluidStateHelper(BlockGetter level, BlockPos pos) {
-		if (level.isOutsideBuildHeight(pos)) {
-			return Fluids.EMPTY.defaultFluidState();
-		} else {
-			if (level instanceof LevelAccessor levelAccessor) {
-				ChunkAccess chunk = levelAccessor.getChunk(pos);
-				return chunk.getFluidState(pos);
-			}
-			return level.getFluidState(pos);
-		}
-	}
-	
-	@Unique
-	private static final VoxelShape[] FLUID_LEVEL_SHAPES;
-	static {
-		FLUID_LEVEL_SHAPES = new VoxelShape[16];
-		for (int i = 0; i <= 8; i++) {
-			FLUID_LEVEL_SHAPES[i] = Block.box(0.0, 0.0, 0.0, 16.0, i, 16.0);
-		}
-	}*/
 }

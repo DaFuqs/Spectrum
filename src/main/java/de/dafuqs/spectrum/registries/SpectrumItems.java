@@ -465,7 +465,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> FANCIFUL_BISMUTH_RING = register("fanciful_bismuth_ring", () -> new Item(IS.of(16, Rarity.UNCOMMON)));
 	
 	public static final DeferredItem<Item> GLOW_VISION_GOGGLES = register("glow_vision_goggles", () -> new GlowVisionGogglesItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<Item> JEOPARDANT = register("jeopardant", () -> new AttackRingItem(IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<Item> JEOPARDANT = register("jeopardant", () -> new JeopardantItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<SevenLeagueBootsItem> SEVEN_LEAGUE_BOOTS = register("seven_league_boots", () -> new SevenLeagueBootsItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> COTTON_CLOUD_BOOTS = register("cotton_cloud_boots", () -> new CottonCloudBootsItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> RADIANCE_PIN = register("radiance_pin", () -> new RadiancePinItem(IS.of(1, Rarity.UNCOMMON)));

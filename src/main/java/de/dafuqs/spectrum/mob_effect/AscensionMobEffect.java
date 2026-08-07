@@ -50,7 +50,7 @@ public class AscensionMobEffect extends MobEffect {
 	
 	@Override
 	public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
-		cures.add(SpectrumEffectCures.COMMAND_ONLY);
+
 	}
 	
 }

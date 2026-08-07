@@ -41,6 +41,7 @@ import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -102,6 +103,13 @@ public class SpectrumClientEventListeners {
 				return new BedrockArmorModel(root, slot);
 			}
 		}, SpectrumItems.BEDROCK_HELMET, SpectrumItems.BEDROCK_CHESTPLATE, SpectrumItems.BEDROCK_LEGGINGS, SpectrumItems.BEDROCK_BOOTS);
+		
+		event.registerItem(new IClientItemExtensions() {
+			@Override
+			public HumanoidModel.ArmPose getArmPose(LivingEntity entityLiving, InteractionHand hand, ItemStack itemStack) {
+				return HumanoidModel.ArmPose.CROSSBOW_HOLD;
+			}
+		}, SpectrumItems.NECTAR_LANCE);
 	}
 	
 	@SubscribeEvent

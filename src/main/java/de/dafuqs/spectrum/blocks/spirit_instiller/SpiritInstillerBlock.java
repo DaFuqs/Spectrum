@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -47,12 +47,12 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	}
 	
 	public static void clearCurrentlyRenderedMultiBlock(Level world) {
-		if (world.isClientSide) {
-			ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER));
-		}
+        if (world.isClientSide()) {
+            ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER));
+        }
 	}
 	
-	public static boolean verifyStructure(Level world, @NotNull BlockPos blockPos, @Nullable ServerPlayer serverPlayerEntity, @NotNull SpiritInstillerBlockEntity instiller) {
+	public static boolean verifyStructure(Level world, BlockPos blockPos, @Nullable ServerPlayer serverPlayerEntity, SpiritInstillerBlockEntity instiller) {
 		Multiblock multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER);
 		
 		Rotation lastBlockRotation = instiller.getMultiblockRotation();
@@ -80,31 +80,29 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblock);
 			}
 		} else {
-			if (world.isClientSide) {
-				Multiblock currentMultiBlock = MultiblockPreviewRenderer.getMultiblock();
-				if (currentMultiBlock == multiblock) {
-					lastBlockRotation = Rotation.values()[(MultiblockPreviewRenderer.getFacingRotation().ordinal() + 1) % Rotation.values().length]; // cycle rotation
-					instiller.setMultiblockRotation(lastBlockRotation);
-				}
-				ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER), SpectrumMultiblocks.SPIRIT_INSTILLER_TEXT, blockPos.below(2).relative(Support.directionFromRotation(lastBlockRotation), offset), lastBlockRotation);
-			} else {
-				scatterContents(world, blockPos);
-			}
+            if (world.isClientSide()) {
+                Multiblock currentMultiBlock = MultiblockPreviewRenderer.getMultiblock();
+                if (currentMultiBlock == multiblock) {
+                    lastBlockRotation = Rotation.values()[(MultiblockPreviewRenderer.getFacingRotation().ordinal() + 1) % Rotation.values().length]; // cycle rotation
+                    instiller.setMultiblockRotation(lastBlockRotation);
+                }
+                ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER), SpectrumMultiblocks.SPIRIT_INSTILLER_TEXT, blockPos.below(2).relative(Support.directionFromRotation(lastBlockRotation), offset), lastBlockRotation);
+            } else {
+                scatterContents(world, blockPos);
+            }
 		}
 		
 		return valid;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new SpiritInstillerBlockEntity(pos, state);
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return createTickerHelper(type, SpectrumBlockEntities.SPIRIT_INSTILLER.get(), world.isClientSide ? SpiritInstillerBlockEntity::clientTick : SpiritInstillerBlockEntity::serverTick);
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+		return createTickerHelper(type, SpectrumBlockEntities.SPIRIT_INSTILLER.get(), world.isClientSide() ? SpiritInstillerBlockEntity::clientTick : SpiritInstillerBlockEntity::serverTick);
 	}
 	
 	@Override
@@ -122,21 +120,21 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (world.isClientSide) {
-			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-				verifyStructure(world, pos, null, spiritInstillerBlockEntity);
-			}
-			return ItemInteractionResult.SUCCESS;
-		} else {
-			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-				if (verifyStructure(world, pos, (ServerPlayer) player, spiritInstillerBlockEntity)) {
-					if (exchangeStack(world, pos, player, hand, handStack, spiritInstillerBlockEntity)) {
-						spiritInstillerBlockEntity.setOwner(player);
-						spiritInstillerBlockEntity.inventoryChanged();
-					}
-				}
-			}
-			return ItemInteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+                verifyStructure(world, pos, null, spiritInstillerBlockEntity);
+            }
+            return ItemInteractionResult.SUCCESS;
+        } else {
+            if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+                if (verifyStructure(world, pos, (ServerPlayer) player, spiritInstillerBlockEntity)) {
+                    if (exchangeStack(world, pos, player, hand, handStack, spiritInstillerBlockEntity)) {
+                        spiritInstillerBlockEntity.setOwner(player);
+                        spiritInstillerBlockEntity.inventoryChanged();
+                    }
+                }
+            }
+            return ItemInteractionResult.CONSUME;
+        }
 	}
 }

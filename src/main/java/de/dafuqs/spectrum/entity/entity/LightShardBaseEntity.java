@@ -17,7 +17,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -41,10 +41,10 @@ public abstract class LightShardBaseEntity extends Projectile {
 	
 	public LightShardBaseEntity(EntityType<? extends Projectile> entityType, Level world) {
 		super(entityType, world);
-		this.scaleOffset = world.random.nextFloat() + 0.15F;
+		this.scaleOffset = world.getRandom().nextFloat() + 0.15F;
 	}
 	
-	public LightShardBaseEntity(EntityType<? extends Projectile> entityType, Level world, LivingEntity owner, float detectionRange, float damage, float lifeSpanTicks) {
+	public LightShardBaseEntity(EntityType<? extends Projectile> entityType, Level world, @Nullable LivingEntity owner, float detectionRange, float damage, float lifeSpanTicks) {
 		super(entityType, world);
 		
 		this.setOwner(owner);
@@ -102,7 +102,7 @@ public abstract class LightShardBaseEntity extends Projectile {
 		
 		if (this.targetEntity.isEmpty() || !isValidTarget(targetEntity.get())) {
 			Level world = this.level();
-			if (world.isClientSide)
+			if (world.isClientSide())
 				return;
 			
 			if (random.nextFloat() > 0.25)
@@ -125,7 +125,7 @@ public abstract class LightShardBaseEntity extends Projectile {
 		}
 	}
 	
-	protected void setTargetPredicate(@NotNull Predicate<LivingEntity> targetPredicate) {
+	protected void setTargetPredicate(Predicate<LivingEntity> targetPredicate) {
 		this.targetPredicate = targetPredicate;
 	}
 	
@@ -280,8 +280,8 @@ public abstract class LightShardBaseEntity extends Projectile {
 		return Math.round(getMaxAge() / 4F);
 	}
 	
-	public void setTarget(@NotNull LivingEntity target) {
-		this.target = Optional.ofNullable(target.getUUID());
+	public void setTarget(LivingEntity target) {
+		this.target = Optional.of(target.getUUID());
 		this.targetEntity = Optional.of(target);
 	}
 	
@@ -302,7 +302,7 @@ public abstract class LightShardBaseEntity extends Projectile {
 	protected void readAdditionalSaveData(CompoundTag nbt) {
 		super.readAdditionalSaveData(nbt);
 		if (nbt.contains("target")) {
-			target = Optional.ofNullable(nbt.getUUID("target"));
+			target = Optional.of(nbt.getUUID("target"));
 		}
 		
 		initialVelocity = new Vec3(

@@ -2,13 +2,10 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.advancements.critereon.*;
-import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -22,7 +19,7 @@ public class PastelNetworkCreationCriterion extends SimpleCriterionTrigger<Paste
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

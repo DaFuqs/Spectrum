@@ -6,7 +6,6 @@ import me.shedaniel.math.*;
 import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.client.registry.display.*;
 import net.minecraft.network.chat.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -20,7 +19,7 @@ public abstract class GatedDisplayCategory<T extends GatedRecipeDisplay> impleme
 	public static final Component SECRET_HINT = Component.translatable("container.spectrum.rei.pedestal_crafting.secret_recipe.hint");
 	
 	@Override
-	public List<Widget> setupDisplay(@NotNull T display, @NotNull Rectangle bounds) {
+	public List<Widget> setupDisplay(T display, Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - getDisplayHeight() / 2 + 5);
 		List<Widget> widgets = Lists.newArrayList();
 		
@@ -45,7 +44,7 @@ public abstract class GatedDisplayCategory<T extends GatedRecipeDisplay> impleme
 		return widgets;
 	}
 	
-	public abstract void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull T display);
+	public abstract void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, T display);
 	
 	// Special handling for "1 second"
 	// Looks nicer

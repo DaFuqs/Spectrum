@@ -11,7 +11,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -25,18 +24,18 @@ public record CompactingChestStatusUpdatePayload(BlockPos pos, long timeStamp) i
 	);
 	
 	public static void sendCompactingChestStatusUpdate(CompactingChestBlockEntity chest) {
-		PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) chest.getLevel(), new ChunkPos(chest.getBlockPos()), new CompactingChestStatusUpdatePayload(chest.getBlockPos(), chest.craftingTimeStamp));
+		PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) chest.getLevel(), new ChunkPos(chest.getBlockPos()), new CompactingChestStatusUpdatePayload(chest.getBlockPos(), chest.getCraftingTimeStamp()));
 	}
 	
 	@SuppressWarnings("resource")
 	public static void execute(CompactingChestStatusUpdatePayload payload, IPayloadContext context) {
 		Level level = context.player().level();
 		Optional<CompactingChestBlockEntity> entity = level.getBlockEntity(payload.pos, SpectrumBlockEntities.COMPACTING_CHEST.get());
-		entity.ifPresent(compactingChestBlockEntity -> compactingChestBlockEntity.craftingTimeStamp = payload.timeStamp());
+		entity.ifPresent(compactingChestBlockEntity -> compactingChestBlockEntity.setCraftingTimeStamp(payload.timeStamp()));
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

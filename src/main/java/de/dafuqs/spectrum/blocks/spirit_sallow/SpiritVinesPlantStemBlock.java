@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.blocks.pedestal.BuiltinGemstoneColor;
+import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
@@ -14,6 +14,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
+import org.jspecify.annotations.*;
 
 public class SpiritVinesPlantStemBlock extends GrowingPlantHeadBlock implements SpiritVine {
 	
@@ -24,9 +25,9 @@ public class SpiritVinesPlantStemBlock extends GrowingPlantHeadBlock implements 
 		this.registerDefaultState((this.stateDefinition.any()).setValue(CRYSTALS, false));
 		this.gemstoneColor = gemstoneColor;
 	}
-	
+
 	@Override
-	public MapCodec<? extends SpiritVinesPlantStemBlock> codec() {
+	public @Nullable MapCodec<? extends SpiritVinesPlantStemBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

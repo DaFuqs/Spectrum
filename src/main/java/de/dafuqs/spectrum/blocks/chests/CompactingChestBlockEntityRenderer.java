@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.*;
-import org.jetbrains.annotations.*;
 
 
 public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<CompactingChestBlockEntity> {
@@ -32,7 +31,7 @@ public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<C
 	}
 	
 	@SuppressWarnings("unused")
-	public static @NotNull LayerDefinition getTexturedModelData() {
+	public static LayerDefinition getTexturedModelData() {
 		MeshDefinition modelData = new MeshDefinition();
 		PartDefinition modelPartData = modelData.getRoot();
 		PartDefinition root = modelPartData.addOrReplaceChild("root", CubeListBuilder.create().texOffs(81, 44).addBox(-1.5F, -10.0F, -1.5F, 3.0F, 9.0F, 3.0F, new CubeDeformation(0.0F))

@@ -1,20 +1,14 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.*;
-import net.minecraft.network.chat.*;
 import net.minecraft.sounds.*;
-import net.minecraft.world.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-
-import java.util.*;
 
 public class NightSaltsItem extends DrinkItem {
 	
@@ -47,6 +41,11 @@ public class NightSaltsItem extends DrinkItem {
 	@Override
 	public int getUseDuration(ItemStack stack, LivingEntity user) {
 		return 40;
+	}
+	
+	@Override
+	public UseAnim getUseAnimation(ItemStack stack) {
+		return UseAnim.TOOT_HORN;
 	}
 	
 }

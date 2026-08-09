@@ -26,7 +26,7 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -43,11 +43,11 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 	
 	private int eatGrassTimer;
 	private EatBlockGoal eatGrassGoal;
-	public int eggLayTime;
+	protected int eggLayTime;
 	
 	public EggLayingWoolyPigEntity(EntityType<? extends Animal> entityType, Level world) {
 		super(entityType, world);
-		this.eggLayTime = this.random.nextInt(12000) + 12000;
+		this.eggLayTime = this.getRandom().nextInt(12000) + 12000;
 	}
 	
 	@Override
@@ -57,11 +57,11 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 		
 		if (handStack.getItem() instanceof DyeItem dyeItem && isAlive() && getColor() != dyeItem.getDyeColor()) {
 			world.playSound(player, this, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				setColor(dyeItem.getDyeColor());
 				handStack.shrink(1);
 			}
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		} else if (handStack.is(Items.BUCKET) && !this.isBaby()) {
 			player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
 			ItemStack itemStack2 = ItemUtils.createFilledResult(handStack, player, Items.MILK_BUCKET.getDefaultInstance());
@@ -128,9 +128,9 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 		}
 		
 		if (!this.level().isClientSide() && this.isAlive() && !this.isBaby() && --this.eggLayTime <= 0) {
-			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.getRandom().nextFloat() - this.getRandom().nextFloat()) * 0.2F + 1.0F);
 			this.spawnAtLocation(Items.EGG);
-			this.eggLayTime = this.random.nextInt(6000) + 6000;
+			this.eggLayTime = this.getRandom().nextInt(6000) + 6000;
 		}
 		
 		super.aiStep();
@@ -142,15 +142,14 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 		builder.define(COLOR_AND_SHEARED, (byte) 0);
 		builder.define(HATLESS, false);
 	}
-	
-	@Nullable
+
 	@Override
-	public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
+	public @Nullable AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
 		EggLayingWoolyPigEntity other = (EggLayingWoolyPigEntity) entity;
 		EggLayingWoolyPigEntity child = SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.get().create(world);
 		if (child != null) {
 			child.setColor(this.getChildColor(this, other));
-			if (world.random.nextInt(50) == 0) {
+			if (world.getRandom().nextInt(50) == 0) {
 				child.setHatless(true);
 			}
 		}
@@ -233,7 +232,7 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 		for (ItemStack droppedStack : getShearedStacks((ServerLevel) world)) {
 			ItemEntity itemEntity = this.spawnAtLocation(droppedStack, 1);
 			if (itemEntity != null) {
-				itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F));
+				itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((this.getRandom().nextFloat() - this.getRandom().nextFloat()) * 0.1F, this.getRandom().nextFloat() * 0.05F, (this.getRandom().nextFloat() - this.getRandom().nextFloat()) * 0.1F));
 			}
 		}
 	}
@@ -309,7 +308,7 @@ public class EggLayingWoolyPigEntity extends Animal implements Shearable {
 		if (optionalItem.isPresent() && optionalItem.get() instanceof DyeItem dyeItem) {
 			return dyeItem.getDyeColor();
 		}
-		return world.random.nextBoolean() ? dyeColor : dyeColor2;
+		return world.getRandom().nextBoolean() ? dyeColor : dyeColor2;
 	}
 	
 	private static CraftingInput createChildColorRecipeInput(DyeColor firstColor, DyeColor secondColor) {

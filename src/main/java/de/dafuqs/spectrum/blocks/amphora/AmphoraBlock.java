@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public class AmphoraBlock extends BaseEntityBlock {
 	
@@ -36,18 +36,18 @@ public class AmphoraBlock extends BaseEntityBlock {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
-			return InteractionResult.SUCCESS;
-		} else {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof AmphoraBlockEntity amphoraBlockEntity) {
-				player.openMenu(amphoraBlockEntity);
-				player.awardStat(Stats.OPEN_BARREL);
-				PiglinAi.angerNearbyPiglins(player, true);
-			}
-			
-			return InteractionResult.CONSUME;
-		}
+        if (world.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        } else {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof AmphoraBlockEntity amphoraBlockEntity) {
+                player.openMenu(amphoraBlockEntity);
+                player.awardStat(Stats.OPEN_BARREL);
+                PiglinAi.angerNearbyPiglins(player, true);
+            }
+
+            return InteractionResult.CONSUME;
+        }
 	}
 	
 	@Override
@@ -55,10 +55,9 @@ public class AmphoraBlock extends BaseEntityBlock {
 		Containers.dropContentsOnDestroy(state, newState, world, pos);
 		super.onRemove(state, world, pos, newState, moved);
 	}
-	
+
 	@Override
-	@Nullable
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new AmphoraBlockEntity(pos, state);
 	}
 	

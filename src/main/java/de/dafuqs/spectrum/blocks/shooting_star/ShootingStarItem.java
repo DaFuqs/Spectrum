@@ -13,7 +13,6 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -26,18 +25,18 @@ public class ShootingStarItem extends BlockItem implements ShootingStar {
 		this.shootingStarType = block.shootingStarType;
 	}
 	
-	public static @NotNull ItemStack getWithRemainingHits(@NotNull ShootingStarItem shootingStarItem, int remainingHits, boolean hardened) {
+	public static ItemStack getWithRemainingHits(ShootingStarItem shootingStarItem, int remainingHits, boolean hardened) {
 		return getWithRemainingHits(shootingStarItem.getDefaultInstance(), remainingHits, hardened);
 	}
 	
-	public static @NotNull ItemStack getWithRemainingHits(@NotNull ItemStack stack, int remainingHits, boolean hardened) {
+	public static ItemStack getWithRemainingHits(ItemStack stack, int remainingHits, boolean hardened) {
 		ShootingStarComponent component = new ShootingStarComponent(remainingHits, hardened);
 		stack.set(SpectrumDataComponentTypes.SHOOTING_STAR, component);
 		return stack;
 	}
 	
 	@Override
-	public InteractionResult useOn(@NotNull UseOnContext context) {
+	public InteractionResult useOn(UseOnContext context) {
 		if (context.getPlayer().isShiftKeyDown()) {
 			// place as block
 			return super.useOn(context);
@@ -45,7 +44,7 @@ public class ShootingStarItem extends BlockItem implements ShootingStar {
 			// place as entity
 			Level world = context.getLevel();
 			
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				ItemStack itemStack = context.getItemInHand();
 				Vec3 hitPos = context.getClickLocation();
 				Player user = context.getPlayer();
@@ -65,12 +64,11 @@ public class ShootingStarItem extends BlockItem implements ShootingStar {
 				}
 			}
 			
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		}
 	}
 	
-	@NotNull
-	public ShootingStarEntity getEntityForStack(@NotNull Level world, Vec3 pos, ItemStack stack) {
+	public ShootingStarEntity getEntityForStack(Level world, Vec3 pos, ItemStack stack) {
 		return new ShootingStarEntity(world, pos.x, pos.y, pos.z, this.shootingStarType, true, getRemainingHits(stack), isHardened(stack));
 	}
 	
@@ -90,18 +88,13 @@ public class ShootingStarItem extends BlockItem implements ShootingStar {
 		return stack.getOrDefault(SpectrumDataComponentTypes.SHOOTING_STAR, ShootingStarComponent.DEFAULT).hardened();
 	}
 	
-	public static int getRemainingHits(@NotNull ItemStack stack) {
+	public static int getRemainingHits(ItemStack stack) {
 		return stack.getOrDefault(SpectrumDataComponentTypes.SHOOTING_STAR, ShootingStarComponent.DEFAULT).remainingHits();
 	}
 	
 	public static void setHardened(ItemStack stack) {
 		ShootingStarComponent component = stack.getOrDefault(SpectrumDataComponentTypes.SHOOTING_STAR, ShootingStarComponent.DEFAULT);
-		if (component == null) {
-			component = new ShootingStarComponent(ShootingStarComponent.DEFAULT.remainingHits(), true);
-		} else {
-			component = new ShootingStarComponent(component.remainingHits(), true);
-		}
-		
+		component = new ShootingStarComponent(component.remainingHits(), true);
 		stack.set(SpectrumDataComponentTypes.SHOOTING_STAR, component);
 	}
 	

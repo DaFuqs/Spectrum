@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.entity.*;
@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.fml.loading.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -107,12 +107,11 @@ public class PaintbrushItem extends Item implements SignApplicator {
 	}
 	
 	@Override
-	public InteractionResult useOn(UseOnContext context) {
-		Level world = context.getLevel();
+	public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(context.getLevel().isClientSide());
 		}
-		return super.useOn(context);
+		return super.onItemUseFirst(stack, context);
 	}
 	
 	private boolean tryColorBlock(UseOnContext context) {
@@ -151,32 +150,26 @@ public class PaintbrushItem extends Item implements SignApplicator {
 		}
 		
 		InkColor inkColor = optionalInkColor.get();
-		Optional<DyeColor> optionalDyeColor = inkColor.getDyeColor();
-		if (optionalDyeColor.isEmpty()) {
-			return false;
-		}
-		DyeColor dyeColor = optionalDyeColor.get();
-		
-		BlockState newBlockState = BlockVariantHelper.getCursedBlockColorVariant(context.getLevel(), context.getClickedPos(), dyeColor);
-		if (newBlockState.isAir()) {
+		@Nullable BlockState newBlockState = VariantHelper.getColoredBlockState(context.getLevel(), context.getClickedPos(), inkColor);
+		if (newBlockState == null) {
 			return false;
 		}
 		
 		if (payBlockColorCost(context.getPlayer(), inkColor)) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				world.setBlockAndUpdate(context.getClickedPos(), newBlockState);
 				world.playSound(null, context.getClickedPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundSource.BLOCKS, 1.0F, 1.0F);
 			}
 			return true;
 		} else {
-			if (world.isClientSide) {
-				context.getPlayer().playSound(SpectrumSoundEvents.USE_FAIL, 1.0F, 1.0F);
-			}
+            if (world.isClientSide()) {
+                context.getPlayer().playSound(SpectrumSoundEvents.USE_FAIL, 1.0F, 1.0F);
+            }
 		}
 		return false;
 	}
 	
-	private boolean payBlockColorCost(Player player, InkColor inkColor) {
+	private boolean payBlockColorCost(@Nullable Player player, InkColor inkColor) {
 		if (player == null) {
 			return false;
 		}
@@ -190,7 +183,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 		if (dyeColor.isEmpty()) {
 			return false;
 		}
-		return InventoryHelper.removeFromInventoryWithRemainders(player, PigmentItem.byColor(inkColor).getDefaultInstance());
+		return InventoryHelper.decrementInPlayerInventory(player, PigmentItem.byColor(inkColor).getDefaultInstance());
 	}
 	
 	@Override
@@ -210,7 +203,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 				if (user.isCreative() || InkPowered.tryDrainEnergy(user, inkColor, INK_SLING_COST)) {
 					user.getCooldowns().addCooldown(this, COOLDOWN_DURATION_TICKS);
 					
-					if (!world.isClientSide) {
+					if (!world.isClientSide()) {
 						InkProjectileEntity.shoot(world, user, inkColor);
 					}
 					// cause the slightest bit of knockback (more if Red)
@@ -223,9 +216,9 @@ public class PaintbrushItem extends Item implements SignApplicator {
 					}
 					return InteractionResultHolder.success(user.getItemInHand(hand));
 				} else {
-					if (world.isClientSide) {
-						user.playSound(SpectrumSoundEvents.USE_FAIL, 1.0F, 1.0F);
-					}
+                    if (world.isClientSide()) {
+                        user.playSound(SpectrumSoundEvents.USE_FAIL, 1.0F, 1.0F);
+                    }
 				}
 				
 				return InteractionResultHolder.pass(user.getItemInHand(hand));
@@ -252,7 +245,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 					&& EntityColorProcessorRegistry.colorEntity(entity, color.get().getDyeColor(), entity instanceof Player player ? player : null)) {
 				
 				entity.level().playSound(null, entity, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
-				return InteractionResult.sidedSuccess(world.isClientSide);
+				return InteractionResult.sidedSuccess(world.isClientSide());
 			}
 			
 		}

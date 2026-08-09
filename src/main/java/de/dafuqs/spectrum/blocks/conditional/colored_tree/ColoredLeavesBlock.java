@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.registries.client.*;
 import it.unimi.dsi.fastutil.objects.*;
@@ -12,6 +12,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -84,8 +85,8 @@ public class ColoredLeavesBlock extends FlammableLeavesBlock implements Revelati
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredLeavesBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredLeavesBlock byColor(InkColor color) {
 		return LEAVES.get(color);
 	}
 	

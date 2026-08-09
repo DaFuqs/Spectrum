@@ -11,7 +11,6 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -36,7 +35,7 @@ public class PrimordialFireBurningCategory extends GatedDisplayCategory<Primordi
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull PrimordialFireBurningDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, PrimordialFireBurningDisplay display) {
 		widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 81, startPoint.y + 9)));
 		widgets.add(new AnimatedTexturedWidget(FIRE_TEXTURE, new Rectangle(startPoint.x + 18, startPoint.y + 20, 0, 0), 16, 176).animationDurationMS(1000));
 		widgets.add(Widgets.createArrow(new Point(startPoint.x + 41, startPoint.y + 8)));

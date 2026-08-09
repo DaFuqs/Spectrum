@@ -13,7 +13,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3 pos, ParticleOptions effect, int amount, Vec3 randomOffset, Vec3 randomVelocity) implements CustomPacketPayload {
 	
@@ -34,7 +33,7 @@ public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3 pos, ParticleO
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithRandomOffsetAndVelocity(ServerLevel world, Vec3 position, @NotNull ParticleOptions particleEffect, int amount, Vec3 randomOffset, Vec3 randomVelocity) {
+	public static void playParticleWithRandomOffsetAndVelocity(ServerLevel world, Vec3 position, ParticleOptions particleEffect, int amount, Vec3 randomOffset, Vec3 randomVelocity) {
 		PacketDistributor.sendToPlayersTrackingChunk(
 				world, new ChunkPos(BlockPos.containing(position)),
 				new PlayParticleWithRandomOffsetAndVelocityPayload(position, particleEffect, amount, randomOffset, randomVelocity)
@@ -67,7 +66,7 @@ public record PlayParticleWithRandomOffsetAndVelocityPayload(Vec3 pos, ParticleO
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

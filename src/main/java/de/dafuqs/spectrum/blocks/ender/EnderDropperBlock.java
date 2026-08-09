@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public class EnderDropperBlock extends DispenserBlock {
 	
@@ -68,7 +68,7 @@ public class EnderDropperBlock extends DispenserBlock {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -100,11 +100,11 @@ public class EnderDropperBlock extends DispenserBlock {
 		}
 		
 		BlockSource blockPointer = new BlockSource(world, pos, state, enderDropperBlockEntity);
-		int i = enderDropperBlockEntity.getRandomSlot(world.random);
+		int i = enderDropperBlockEntity.getRandomSlot(world.getRandom());
 		if (i < 0) {
 			world.levelEvent(LevelEvent.SOUND_DISPENSER_FAIL, pos, 0); // no items in inv
 		} else {
-			ItemStack itemStack = enderDropperBlockEntity.getItem(i);
+			ItemStack itemStack = enderDropperBlockEntity.getItem(i); // empty if owner not online
 			if (!itemStack.isEmpty()) {
 				Direction direction = world.getBlockState(pos).getValue(FACING);
 				if (world.getBlockState(pos.relative(direction)).isAir()) {
@@ -116,7 +116,11 @@ public class EnderDropperBlock extends DispenserBlock {
 						ItemStack moved = ItemHandlerHelper.insertItemStacked(target, itemStack.copyWithCount(1), false);
 						// return without triggering fail event if successfully moved
 						if (moved.isEmpty()) {
-							enderDropperBlockEntity.getOwnerIfOnline(world).getEnderChestInventory().setChanged();
+							itemStack.shrink(1);
+							Player owner = enderDropperBlockEntity.getOwnerIfOnline(world);
+							if(owner != null) {
+								owner.getEnderChestInventory().setChanged();
+							}
 							return;
 						}
 					}

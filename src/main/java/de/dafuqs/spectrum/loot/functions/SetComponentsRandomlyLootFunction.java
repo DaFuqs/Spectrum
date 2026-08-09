@@ -8,7 +8,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -26,12 +25,12 @@ public class SetComponentsRandomlyLootFunction extends LootItemConditionalFuncti
 	}
 	
 	@Override
-	public @NotNull LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
+	public LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
 		return SpectrumLootFunctionTypes.SET_COMPONENTS_RANDOMLY;
 	}
 	
 	@Override
-	public @NotNull ItemStack run(@NotNull ItemStack stack, @NotNull LootContext context) {
+	public ItemStack run(ItemStack stack, LootContext context) {
 		if (options.isEmpty()) return stack;
 		
 		var changes = options.get(context.getRandom().nextInt(options.size()));
@@ -48,7 +47,7 @@ public class SetComponentsRandomlyLootFunction extends LootItemConditionalFuncti
 		private final List<DataComponentPatch> options = new ArrayList<>();
 		
 		@Override
-		protected SetComponentsRandomlyLootFunction.@NotNull Builder getThis() {
+		protected SetComponentsRandomlyLootFunction.Builder getThis() {
 			return this;
 		}
 		
@@ -58,7 +57,7 @@ public class SetComponentsRandomlyLootFunction extends LootItemConditionalFuncti
 		}
 		
 		@Override
-		public @NotNull LootItemFunction build() {
+		public LootItemFunction build() {
 			return new SetComponentsRandomlyLootFunction(this.getConditions(), options);
 		}
 	}

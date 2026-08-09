@@ -9,6 +9,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
+import org.jspecify.annotations.*;
 
 import java.util.function.*;
 
@@ -20,9 +21,9 @@ public class StrippingLootPillarBlock extends FlammableLogBlock implements Strip
 		super(settings, strippedBlock);
 		this.strippingLootTableKey = strippingLootTableKey;
 	}
-	
+
 	@Override
-	public MapCodec<? extends StrippingLootPillarBlock> codec() {
+	public @Nullable MapCodec<? extends StrippingLootPillarBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

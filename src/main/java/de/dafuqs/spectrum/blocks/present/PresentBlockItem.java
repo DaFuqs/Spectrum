@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import com.mojang.authlib.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
@@ -20,7 +20,7 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -151,6 +151,11 @@ public class PresentBlockItem extends BlockItem {
 		return InteractionResultHolder.pass(itemStack);
 	}
 	
+	@Override
+	public int getMaxStackSize(ItemStack stack) {
+		return stack.has(SpectrumDataComponentTypes.WRAPPED_PRESENT) || !isEmpty(stack) ? 1 : super.getMaxStackSize(stack);
+	}
+	
 	// CraftingInventory does not recalculate the recipe after inputting / retrieving stacks from the present.
 	// The recipes output will still hold the original present data from when it was put into the crafting grid
 	// If the player then puts / receives items from the present they are able to duplicate items
@@ -159,7 +164,7 @@ public class PresentBlockItem extends BlockItem {
 	}
 	
 	@Override
-	public void onCraftedBy(@NotNull ItemStack stack, @NotNull Level world, @NotNull Player player) {
+	public void onCraftedBy(ItemStack stack, Level world, Player player) {
 		super.onCraftedBy(stack, world, player);
 		setOwner(stack, player);
 	}
@@ -173,8 +178,15 @@ public class PresentBlockItem extends BlockItem {
 		return stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).itemCopyStream();
 	}
 	
-	public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
-		return !stack.has(DataComponents.HIDE_TOOLTIP) && !stack.has(DataComponents.HIDE_ADDITIONAL_TOOLTIP) && !isWrapped(stack) ? Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(BundleTooltip::new) : Optional.empty();
+	@Override
+	public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+		if(isWrapped(stack)) {
+			return Optional.empty();
+		}
+		
+		return !stack.has(DataComponents.HIDE_TOOLTIP) && !stack.has(DataComponents.HIDE_ADDITIONAL_TOOLTIP)
+				? Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(BundleTooltip::new)
+				: Optional.empty();
 	}
 	
 	@Override

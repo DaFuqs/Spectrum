@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
@@ -22,5 +23,9 @@ public class BedrockShearsItem extends ShearsItem implements Preenchanted {
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
-	
+
+	@Override
+	public int getEnchantmentValue(ItemStack stack) {
+		return SpectrumToolTiers.BEDROCK.getEnchantmentValue();
+	}
 }

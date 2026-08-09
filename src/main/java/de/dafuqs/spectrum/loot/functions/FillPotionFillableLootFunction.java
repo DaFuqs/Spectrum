@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.loot.functions;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.loot.*;
@@ -15,7 +15,6 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -61,12 +60,12 @@ public class FillPotionFillableLootFunction extends LootItemConditionalFunction 
 	}
 	
 	@Override
-	public @NotNull LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
+	public LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
 		return SpectrumLootFunctionTypes.FILL_POTION_FILLABLE;
 	}
 	
 	@Override
-	public @NotNull ItemStack run(@NotNull ItemStack stack, @NotNull LootContext context) {
+	public ItemStack run(ItemStack stack, LootContext context) {
 		if (!(stack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable))
 			return stack;
 		

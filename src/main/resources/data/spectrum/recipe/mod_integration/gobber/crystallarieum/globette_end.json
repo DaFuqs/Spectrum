@@ -6,7 +6,7 @@
   "ink_color": "spectrum:gray",
   "ink_cost_tier": 4,
   "seconds_per_growth_stage": 60,
-  "fluid_medium": {
+  "fluid": {
     "fluid": "minecraft:water"
   },
   "additional_recipe_manager_results": [
@@ -15,7 +15,7 @@
       "id": "spectrum:pure_globette_end"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "ingredient": {
         "item": "gobber2:gobber2_foo"

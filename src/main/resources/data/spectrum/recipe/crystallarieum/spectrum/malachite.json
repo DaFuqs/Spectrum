@@ -1,6 +1,6 @@
 {
   "type": "spectrum:crystallarieum_growing",
-  "fluid_medium": {
+  "fluid": {
     "fluid": "spectrum:liquid_crystal"
   },
   "additional_recipe_manager_results": [
@@ -9,13 +9,13 @@
       "id": "spectrum:pure_malachite"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
-      "consume_chance_per_second": 0.04,
-      "growth_acceleration_mod": 1.0,
       "ingredient": {
         "item": "spectrum:moonstone_powder"
       },
+      "consume_chance_per_second": 0.04,
+      "growth_acceleration_mod": 1.0,
       "ink_consumption_mod": 1.0
     }
   ],

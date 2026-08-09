@@ -7,7 +7,6 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
-import org.jetbrains.annotations.*;
 
 public class LifeDrainMobEffect extends MobEffect {
 	
@@ -18,7 +17,7 @@ public class LifeDrainMobEffect extends MobEffect {
 	}
 	
 	@Override
-	public boolean applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
+	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
 		if (entity instanceof Player player && (player.isCreative() || player.isSpectator())) {
 			return true;
 		}

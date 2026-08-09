@@ -6,7 +6,6 @@ import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.network.chat.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -24,17 +23,17 @@ public class EnchanterEnchantingCategory extends EnchanterCategory<EnchanterEnch
 	}
 	
 	@Override
-	public int getCraftingTime(@NotNull EnchanterEnchantingDisplay display) {
+	public int getCraftingTime(EnchanterEnchantingDisplay display) {
 		return display.craftingTime;
 	}
 	
 	@Override
-	public Component getDescriptionText(@NotNull EnchanterEnchantingDisplay display) {
+	public Component getDescriptionText(EnchanterEnchantingDisplay display) {
 		return getCraftingTimeText(display.craftingTime);
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull EnchanterEnchantingDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, EnchanterEnchantingDisplay display) {
 		// enchanter structure background					            destinationX	 destinationY   sourceX, sourceY, width, height
 		widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x - 8 + 12, startPoint.y - 7 + 21, 0, 0, 54, 54));
 		

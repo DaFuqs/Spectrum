@@ -17,37 +17,27 @@ public class InexorableHelper {
 		var toolAttributes = BuiltInRegistries.ATTRIBUTE.getTag(SpectrumAttributeKeys.INEXORABLE_HANDHELD_EFFECTIVE);
 		
 		if (armorInexorable && armorAttributes.isPresent()) {
-			for (Holder<Attribute> attributeRegistryEntry : armorAttributes.get()) {
-				
-				var attributeInstance = entity.getAttribute(attributeRegistryEntry);
-				
-				if (attributeInstance == null)
-					continue;
-				
-				var badMods = attributeInstance.getModifiers()
-						.stream()
-						.filter(modifier -> modifier.amount() < 0)
-						.toList();
-				
-				badMods.forEach(modifier -> attributeInstance.removeModifier(modifier.id()));
-			}
+			removeAttributes(entity, armorAttributes.get());
 		}
 		
 		if (toolInexorable && toolAttributes.isPresent()) {
-			for (Holder<Attribute> attributeRegistryEntry : toolAttributes.get()) {
-				
+			removeAttributes(entity, toolAttributes.get());
+		}
+	}
+	
+	private static void removeAttributes(LivingEntity entity, HolderSet.Named<Attribute> entries) {
+		for (Holder<Attribute> attributeRegistryEntry : entries) {
 				var attributeInstance = entity.getAttribute(attributeRegistryEntry);
 				
-				if (attributeInstance == null)
-					continue;
-				
-				var badMods = attributeInstance.getModifiers()
-						.stream()
-						.filter(modifier -> modifier.amount() < 0)
-						.toList();
-				
-				badMods.forEach(modifier -> attributeInstance.removeModifier(modifier.id()));
-			}
+			if (attributeInstance == null)
+				return;
+			
+			var badMods = attributeInstance.getModifiers()
+					.stream()
+					.filter(modifier -> modifier.amount() < 0)
+					.toList();
+			
+			badMods.forEach(modifier -> attributeInstance.removeModifier(modifier.id()));
 		}
 	}
 	

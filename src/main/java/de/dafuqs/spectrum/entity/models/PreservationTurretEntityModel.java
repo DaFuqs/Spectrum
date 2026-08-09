@@ -7,7 +7,6 @@ import net.minecraft.client.model.geom.*;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
 
 
 public class PreservationTurretEntityModel<T extends PreservationTurretEntity> extends ListModel<T> {
@@ -53,7 +52,7 @@ public class PreservationTurretEntityModel<T extends PreservationTurretEntity> e
 	}
 	
 	@Override
-	public @NotNull Iterable<ModelPart> parts() {
+	public Iterable<ModelPart> parts() {
 		return ImmutableList.of(this.body);
 	}
 	

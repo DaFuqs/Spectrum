@@ -13,7 +13,7 @@ public class RenderHelper {
 	 * Draws a filled triangle
 	 * Attention: The points specified have to be ordered in counter-clockwise order, or will now show up at all
 	 */
-	public static void fillTriangle(PoseStack matrices, int p1x, int p1y, int p2x, int p2y, int p3x, int p3y, Vector3f color) {
+	public static void fillTriangle(PoseStack matrices, float p1x, float p1y, float p2x, float p2y, float p3x, float p3y, Vector3f color) {
 		Matrix4f matrix = matrices.last().pose();
 		float red = color.x();
 		float green = color.y();

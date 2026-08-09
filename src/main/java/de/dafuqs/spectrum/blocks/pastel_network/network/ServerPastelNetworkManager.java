@@ -7,7 +7,6 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.saveddata.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -87,7 +86,7 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 		return manager;
 	}
 	
-	private static @NotNull HashMap<PastelTransmission, Integer> fromTag(CompoundTag tag, ServerPastelNetwork network) {
+	private static HashMap<PastelTransmission, Integer> fromTag(CompoundTag tag, ServerPastelNetwork network) {
 		var transmissions = tag.getList("transmissions", Tag.TAG_COMPOUND);
 		var timers = tag.getIntArray("timers");
 		var map = new HashMap<PastelTransmission, Integer>();
@@ -98,12 +97,9 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 			if (result.isEmpty())
 				continue;
 			
-			var trans = result.get().getFirst();
-			trans.setNetwork(network);
-			map.put(
-					trans,
-					timers[i]
-			);
+			PastelTransmission transmission = result.get().getFirst();
+			transmission.setNetwork(network);
+			map.put(transmission, timers[i]);
 		}
 		return map;
 	}
@@ -144,6 +140,7 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 			}
 		}
 		if (foundNetwork != null) {
+			foundNetwork.abortAllTransmissions();
 			this.networks.remove(foundNetwork);
 			PastelNetworkRemovedPayload.send(foundNetwork);
 		}
@@ -154,7 +151,7 @@ public class ServerPastelNetworkManager extends SavedData implements PastelNetwo
 		if (optional.isPresent()) {
 			ServerPastelNetwork network = optional.get();
 			
-			if (network.size() == 1) {
+			if (network.size() <= 1) {
 				this.removeNetwork(network.getUUID());
 			} else {
 				network.removeNode(node, reason);

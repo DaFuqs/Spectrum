@@ -11,7 +11,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -55,7 +55,7 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 	}
 	
 	@Override
-	public boolean matches(@NotNull RecipeInput inv, Level world) {
+	public boolean matches(RecipeInput inv, Level world) {
 		if (inv.size() > 4 && inv.getItem(0).is(SpectrumItems.MERMAIDS_GEM) && isValidBaseIngredient(inv.getItem(1))) {
 			
 			if (usesReagents()) {
@@ -71,7 +71,7 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 		}
 	}
 	
-	private boolean areStacksInReagentSlotsAllReagents(@NotNull RecipeInput inv) {
+	private boolean areStacksInReagentSlotsAllReagents(RecipeInput inv) {
 		for (int i : PotionWorkshopBlockEntity.REAGENT_SLOTS) {
 			ItemStack itemStack = inv.getItem(i);
 			if (!itemStack.isEmpty() && !PotionWorkshopReactingRecipe.isReagent(itemStack)) {
@@ -81,7 +81,7 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 		return true;
 	}
 	
-	private boolean areReagentSlotsEmpty(@NotNull RecipeInput inv) {
+	private boolean areReagentSlotsEmpty(RecipeInput inv) {
 		for (int i : PotionWorkshopBlockEntity.REAGENT_SLOTS) {
 			if (!inv.getItem(i).isEmpty()) {
 				return false;

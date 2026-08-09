@@ -22,11 +22,21 @@
   },
   "criteria": {
     "filled_ink_container": {
-      "trigger": "spectrum:ink_container_interaction",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "change_amount": {
-          "min": 1
-        }
+        "items": [
+          {
+            "items": "#spectrum:ink_containers",
+            "predicates": {
+              "spectrum:ink": {
+                "total": {
+                  "min": 1
+                },
+                "colors": {}
+              }
+            }
+          }
+        ]
       }
     },
     "gotten_previous": {

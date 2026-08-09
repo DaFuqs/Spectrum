@@ -11,12 +11,13 @@
   },
   "experience": 2.0,
   "pattern": [
-    "QRQ",
-    "RQR",
-    "RRR"
+    "Q Q",
+    "LQL",
+    "RLR"
   ],
   "key": {
     "Q": "spectrum:quitoxic_powder",
+    "L": "minecraft:leather",
     "R": "minecraft:rabbit_hide"
   },
   "result": {

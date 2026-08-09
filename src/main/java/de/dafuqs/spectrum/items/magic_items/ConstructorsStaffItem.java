@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
+import org.jspecify.annotations.*;
 import oshi.util.tuples.*;
 
 import java.util.*;
@@ -37,7 +38,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 	// but not useless at the end
 	// this way the player does not need to craft 5 tiers
 	// of staffs that each do basically feel the same
-	public static int getRange(Player playerEntity) {
+	public static int getRange(@Nullable Player playerEntity) {
 		if (playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
 		} else {
@@ -101,7 +102,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 					return InteractionResult.FAIL;
 				}
 				
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					placeBlocksAndDecrementInventory(player, world, blockToPlace, itemToConsume, side, targetPositions);
 				}
 				
@@ -139,7 +140,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		}
 		
 		if (!player.isCreative()) {
-			InventoryHelper.removeFromInventoryWithRemainders(player, new ItemStack(itemToConsume, placedBlocks));
+			InventoryHelper.decrementInPlayerInventory(player, new ItemStack(itemToConsume, placedBlocks));
 			InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * ConstructorsStaffItem.INK_COST_PER_BLOCK);
 		}
 	}

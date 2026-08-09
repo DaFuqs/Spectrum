@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -29,7 +28,7 @@ public class TakeOffBeltJumpCriterion extends SimpleCriterionTrigger<TakeOffBelt
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

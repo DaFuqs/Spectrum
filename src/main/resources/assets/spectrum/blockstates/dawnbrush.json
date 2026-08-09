@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "spectrum:block/dawnbrush",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "spectrum:block/dawnbrush",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "spectrum:block/dawnbrush",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "spectrum:block/dawnbrush"
+    }
+  }
+}

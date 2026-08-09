@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.component.*;
@@ -18,7 +17,7 @@ import net.minecraft.world.item.component.*;
 import java.util.*;
 import java.util.function.*;
 
-public class ConcealingOilsItem extends DrinkItem implements InkPoweredPotionFillable {
+public class ConcealingOilsItem extends Item implements InkPoweredPotionFillable {
 	
 	public static final int POISONED_COLOUR = 0x3d1125;
 	

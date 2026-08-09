@@ -12,7 +12,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -49,7 +48,7 @@ public record FabricationChestStatusUpdatePayload(BlockPos pos, boolean isFull, 
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

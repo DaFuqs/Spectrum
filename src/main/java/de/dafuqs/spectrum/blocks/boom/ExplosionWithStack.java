@@ -11,7 +11,6 @@ import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
@@ -19,14 +18,13 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
-import java.util.function.*;
 
 public class ExplosionWithStack extends Explosion {
 	
-	public static final int BASE_EXPLOSION_LEVEL = 3;
+	public static final int BASE_EXPLOSION_LEVEL = 4;
 	
 	private final ItemStack stack;
 	
@@ -81,7 +79,7 @@ public class ExplosionWithStack extends Explosion {
 		
 	}
 	
-	public static void explode(ServerLevel level, @Nullable Entity source, @NotNull ItemStack stack, Vec3 pos, boolean preserveBlockAtExplosionCenter) {
+	public static void explode(ServerLevel level, @Nullable Entity source, ItemStack stack, Vec3 pos, boolean preserveBlockAtExplosionCenter) {
 		// boolean primodialFireDamage = false; // stack.getEnchantmentLevel(level.registryAccess().registry(Registries.ENCHANTMENT).get().getHolderOrThrow(SpectrumEnchantments.RESONANCE)) > 0;
 		// @Nullable DamageSource damageSource = primodialFireDamage ? SpectrumDamageTypes.incandescence(level, source) : Explosion.getDefaultDamageSource(level, source);
 		
@@ -91,8 +89,8 @@ public class ExplosionWithStack extends Explosion {
 		boolean damagesEntities = SpectrumEnchantmentHelper.hasEnchantment(enchantmentLookup, EnchantmentTags.DAMAGE_EXCLUSIVE, stack);
 		boolean causesFire = enchantments.getLevel(enchantmentLookup.getOrThrow(Enchantments.FLAME)) > 0;
 		
-		@Nullable DamageSource damageSource = Explosion.getDefaultDamageSource(level, source);
-		@Nullable ExplosionDamageCalculator damageCalculator = new EnhancedExplosionDamageCalculator(level, damageSource, stack, powerLevel > 0, damagesEntities, Optional.empty(), Optional.empty(), preserveBlockAtExplosionCenter ? Optional.of(BlockPos.containing(pos)) : Optional.empty());
+		DamageSource damageSource = Explosion.getDefaultDamageSource(level, source);
+		ExplosionDamageCalculator damageCalculator = new EnhancedExplosionDamageCalculator(level, damageSource, stack, powerLevel > 0, damagesEntities, Optional.empty(), Optional.empty(), preserveBlockAtExplosionCenter ? Optional.of(BlockPos.containing(pos)) : Optional.empty());
 		
 		int explosionRadius = BASE_EXPLOSION_LEVEL + powerLevel;
 		

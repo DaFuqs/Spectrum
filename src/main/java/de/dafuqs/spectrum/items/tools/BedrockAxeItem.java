@@ -22,5 +22,4 @@ public class BedrockAxeItem extends AxeItem implements Preenchanted {
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
-	
 }

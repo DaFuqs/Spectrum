@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 
 public enum BuiltinGemstoneColor implements GemstoneColor, StringRepresentable {
 	CYAN("cyan", InkColors.CYAN_COLOR),
@@ -51,7 +50,7 @@ public enum BuiltinGemstoneColor implements GemstoneColor, StringRepresentable {
 	}
 	
 	@Override
-	public @NotNull String getSerializedName() {
+	public String getSerializedName() {
 		return name();
 	}
 }

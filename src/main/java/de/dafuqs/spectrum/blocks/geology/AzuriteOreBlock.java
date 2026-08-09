@@ -43,7 +43,7 @@ public class AzuriteOreBlock extends CloakedOreBlock implements AzureAuraEmittin
 	@Override
 	public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
 		super.stepOn(world, pos, state, entity);
-		if (world.isClientSide() && !entity.isSteppingCarefully() && world.random.nextInt(3) == 0 && entity instanceof Player player && this.isVisibleTo(player)) {
+		if (world.isClientSide() && !entity.isSteppingCarefully() && world.getRandom().nextInt(3) == 0 && entity instanceof Player player && this.isVisibleTo(player)) {
 			ParticleHelper.playParticleAroundBlockSides(world, SpectrumParticleTypes.AZURE_MOTE_SMALL, pos, new Direction[]{Direction.UP}, 1, Vec3.ZERO);
 		}
 	}

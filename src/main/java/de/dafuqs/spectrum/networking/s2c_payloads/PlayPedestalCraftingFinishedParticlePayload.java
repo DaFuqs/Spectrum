@@ -12,7 +12,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 public record PlayPedestalCraftingFinishedParticlePayload(BlockPos pedestalPos, ItemStack craftedStack) implements CustomPacketPayload {
 	
@@ -30,7 +29,7 @@ public record PlayPedestalCraftingFinishedParticlePayload(BlockPos pedestalPos, 
 	@SuppressWarnings("resource")
 	public static void execute(PlayPedestalCraftingFinishedParticlePayload payload, IPayloadContext context) {
 		Level level = context.player().level();
-		RandomSource random = level.random;
+        RandomSource random = level.getRandom();
 		
 		for (int i = 0; i < 10; i++) {
 			level.addParticle(
@@ -42,7 +41,7 @@ public record PlayPedestalCraftingFinishedParticlePayload(BlockPos pedestalPos, 
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

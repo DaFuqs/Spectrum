@@ -4,7 +4,6 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -17,7 +16,7 @@ public class AzureDikeChargeCriterion extends SimpleCriterionTrigger<AzureDikeCh
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

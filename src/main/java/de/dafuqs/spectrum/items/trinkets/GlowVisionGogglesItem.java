@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.network.chat.*;
@@ -30,7 +30,7 @@ public class GlowVisionGogglesItem extends SpectrumCurioItem implements InkPower
 		super.curioTick(slotContext, stack);
 		
 		Level level = slotContext.entity().level();
-		if (!level.isClientSide && level.getGameTime() % 20 == 0) {
+		if (!level.isClientSide() && level.getGameTime() % 20 == 0) {
 			if (slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
 				giveEffect(level, stack, serverPlayerEntity);
 			}
@@ -42,7 +42,7 @@ public class GlowVisionGogglesItem extends SpectrumCurioItem implements InkPower
 		super.onEquip(slotContext, prevStack, stack);
 		
 		Level level = slotContext.entity().level();
-		if (!level.isClientSide && slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
+		if (!level.isClientSide() && slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
 			giveEffect(level, stack, serverPlayerEntity);
 		}
 	}

@@ -38,7 +38,7 @@ public class PedestalScreen extends AbstractContainerScreen<PedestalScreenHandle
 	}
 	
 	@Contract(pure = true)
-	public static ResourceLocation getBackgroundTextureForTier(@NotNull PedestalRecipeTier recipeTier) {
+	public static ResourceLocation getBackgroundTextureForTier(PedestalRecipeTier recipeTier) {
 		switch (recipeTier) {
 			case COMPLEX -> {
 				return BACKGROUND4;

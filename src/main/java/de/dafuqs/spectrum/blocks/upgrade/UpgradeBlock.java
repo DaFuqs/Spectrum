@@ -4,9 +4,12 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.*;
 import net.minecraft.core.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
@@ -15,25 +18,29 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
+
+import java.util.*;
 
 public class UpgradeBlock extends BaseEntityBlock {
 	
 	protected static final VoxelShape SHAPE_UP = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 	
+	private final String tooltipString;
 	private final Upgradeable.UpgradeType upgradeType;
 	private final int upgradeMod;
 	private final int effectColor;
 	
-	public UpgradeBlock(Properties settings, Upgradeable.UpgradeType upgradeType, int upgradeMod, int effectColor) {
+	public UpgradeBlock(Properties settings, Upgradeable.UpgradeType upgradeType, int upgradeMod, int effectColor, String tooltipString) {
 		super(settings);
 		this.upgradeType = upgradeType;
 		this.upgradeMod = upgradeMod;
 		this.effectColor = effectColor;
+		this.tooltipString = tooltipString;
 	}
 
 	@Override
-	public MapCodec<? extends UpgradeBlock> codec() {
+	public @Nullable MapCodec<? extends UpgradeBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -51,7 +58,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 	@Override
 	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onPlace(state, world, pos, oldState, notify);
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			updateConnectedUpgradeBlock((ServerLevel) world, pos);
 		}
 	}
@@ -59,7 +66,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 	@Override
 	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
 		super.onRemove(state, world, pos, newState, moved);
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			updateConnectedUpgradeBlock((ServerLevel) world, pos);
 		}
 	}
@@ -68,7 +75,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 	 * When placed or removed the upgrade block searches for a valid Upgradeable block
 	 * and triggers it to update its upgrades
 	 */
-	private void updateConnectedUpgradeBlock(@NotNull ServerLevel world, @NotNull BlockPos pos) {
+	private void updateConnectedUpgradeBlock(ServerLevel world, BlockPos pos) {
 		for (Vec3i possibleUpgradeBlockOffset : Upgradeable.POSSIBLE_UPGRADE_POS_OFFSETS) {
 			BlockPos currentPos = pos.offset(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);
@@ -79,7 +86,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 		}
 	}
 	
-	private void playConnectedParticles(@NotNull ServerLevel world, @NotNull BlockPos pos, BlockPos currentPos) {
+	private void playConnectedParticles(ServerLevel world, BlockPos pos, BlockPos currentPos) {
 		int particleColor = getEffectColor();
 		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, SpectrumSoundEvents.CRAFTING_DING, SoundSource.BLOCKS, 1.0F, 1.0F);
 		
@@ -113,11 +120,16 @@ public class UpgradeBlock extends BaseEntityBlock {
 	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new UpgradeBlockEntity(pos, state);
+	}
+	
+	@Override
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+		super.appendHoverText(stack, context, tooltip, type);
+		tooltip.add(Component.translatable("item.spectrum." + this.tooltipString + ".tooltip").withStyle(ChatFormatting.GRAY));
 	}
 	
 }

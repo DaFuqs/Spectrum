@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -71,12 +72,12 @@ public class BloodOrchidBlock extends FlowerBlock implements BonemealableBlock, 
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		int age = state.getValue(AGE);
 		if (age > 0) {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return InteractionResult.SUCCESS;
 			} else {
 				world.setBlockAndUpdate(pos, state.setValue(AGE, age - 1));
 				player.getInventory().placeItemBackInInventory(SpectrumItems.BLOOD_ORCHID_PETAL.get().getDefaultInstance());
-				world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
+				world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 				if (player instanceof ServerPlayer serverPlayerEntity) {
 					SpectrumAdvancementCriteria.BLOOD_ORCHID_PLUCKING.trigger(serverPlayerEntity);
 				}
@@ -99,9 +100,9 @@ public class BloodOrchidBlock extends FlowerBlock implements BonemealableBlock, 
 		}
 		return map;
 	}
-	
+
 	@Override
-	public Tuple<Item, Item> getItemCloak() {
+	public @Nullable Tuple<Item, Item> getItemCloak() {
 		return null; // does not exist in item form
 	}
 	

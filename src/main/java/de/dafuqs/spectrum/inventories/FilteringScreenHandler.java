@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.*;
 
 import java.util.function.*;
 
@@ -21,11 +22,11 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
 	
 	// clientside
 	public FilteringScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
-		this(syncId, playerInventory, FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.decode(buf));
+		this(syncId, playerInventory, FilterConfigurable.ExtendedDataWithPos.STREAM_CODEC.decode(buf));
 	}
 	
 	public FilteringScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data) {
-		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, data,
+		this(SpectrumMenuTypes.FILTERING, syncId, playerInventory, data,
 				(handler) -> new Tuple<>(FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, data.data().filterItems(), handler), new Integer[]{
 						data.data().rows(),
 						data.data().slotsPerRow(),
@@ -88,8 +89,8 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
 	public ItemStack quickMoveStack(Player player, int index) {
 		return ItemStack.EMPTY;
 	}
-	
-	public Container getInventory() {
+
+	public @Nullable Container getInventory() {
 		return null;
 	}
 	

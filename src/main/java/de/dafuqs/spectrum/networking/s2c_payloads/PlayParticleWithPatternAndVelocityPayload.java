@@ -15,7 +15,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public record PlayParticleWithPatternAndVelocityPayload(Vec3 pos, ParticleOptions effect, VectorPattern pattern, double velocity) implements CustomPacketPayload {
 	
@@ -35,7 +35,7 @@ public record PlayParticleWithPatternAndVelocityPayload(Vec3 pos, ParticleOption
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithPatternAndVelocity(@Nullable Player notThisPlayerEntity, ServerLevel level, @NotNull Vec3 position, @NotNull ParticleOptions particleEffect, @NotNull VectorPattern pattern, double velocity) {
+	public static void playParticleWithPatternAndVelocity(@Nullable Player notThisPlayerEntity, ServerLevel level, Vec3 position, ParticleOptions particleEffect, VectorPattern pattern, double velocity) {
 		Packet<?> packet = new ClientboundCustomPayloadPacket(new PlayParticleWithPatternAndVelocityPayload(position, particleEffect, pattern, velocity));
 		
 		for (ServerPlayer player : level.getChunkSource().chunkMap.getPlayers(
@@ -48,7 +48,7 @@ public record PlayParticleWithPatternAndVelocityPayload(Vec3 pos, ParticleOption
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

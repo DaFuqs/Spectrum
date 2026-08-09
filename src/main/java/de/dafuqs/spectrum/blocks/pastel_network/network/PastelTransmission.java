@@ -3,13 +3,14 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -39,7 +40,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
 		this.vertexTime = vertexTime;
 	}
 	
-	public void setNetwork(@NotNull ServerPastelNetwork network) {
+	public void setNetwork(ServerPastelNetwork network) {
 		this.network = network;
 	}
 	
@@ -77,10 +78,9 @@ public class PastelTransmission implements SchedulerMap.Callback {
 			return;
 		}
 		
-		@NotNull BlockPos destinationPos = nodePositions.get(nodePositions.size() - 1);
-		@Nullable PastelNodeBlockEntity destinationNode = this.network.getLoadedNodeAt(destinationPos);
+		BlockPos destinationPos = nodePositions.getLast();
+		PastelNodeBlockEntity destinationNode = this.network.getLoadedNodeAt(destinationPos);
 		Level level = this.network.getLevel();
-		
 		payload.arriveAtDestination(level, destinationPos, destinationNode);
 	}
 	

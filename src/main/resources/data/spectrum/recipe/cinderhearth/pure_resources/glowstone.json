@@ -3,16 +3,11 @@
   "ingredient": "spectrum:pure_glowstone",
   "results": [
     {
-      "result": {
-        "id": "minecraft:glowstone_dust",
-        "count": 4
-      }
+      "id": "minecraft:glowstone_dust",
+      "count": 4
     },
     {
-      "result": {
-        "id": "minecraft:glowstone_dust",
-        "count": 1
-      },
+      "id": "minecraft:glowstone_dust",
       "chance": 0.5
     }
   ],

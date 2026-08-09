@@ -13,7 +13,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 // MaxDurationTicks of <1 means "stop playing"
 public record PlayBlockBoundSoundInstancePayload(SoundEvent soundEvent, BlockPos pos, Holder<Block> block, int maxDurationTicks) implements CustomPacketPayload {
@@ -27,11 +26,11 @@ public record PlayBlockBoundSoundInstancePayload(SoundEvent soundEvent, BlockPos
 			PlayBlockBoundSoundInstancePayload::new
 	);
 	
-	public static void sendPlayBlockBoundSoundInstance(SoundEvent soundEvent, @NotNull ServerLevel world, BlockPos pos, int maxDurationTicks) {
+	public static void sendPlayBlockBoundSoundInstance(SoundEvent soundEvent, ServerLevel world, BlockPos pos, int maxDurationTicks) {
 		PacketDistributor.sendToPlayersTrackingChunk(world, new ChunkPos(pos), new PlayBlockBoundSoundInstancePayload(soundEvent, pos, world.getBlockState(pos).getBlock().builtInRegistryHolder(), maxDurationTicks));
 	}
 	
-	public static void sendCancelBlockBoundSoundInstance(@NotNull ServerLevel world, BlockPos pos) {
+	public static void sendCancelBlockBoundSoundInstance(ServerLevel world, BlockPos pos) {
 		PacketDistributor.sendToPlayersTrackingChunk(world, new ChunkPos(pos), new PlayBlockBoundSoundInstancePayload(SoundEvents.EMPTY, pos, world.getBlockState(pos).getBlock().builtInRegistryHolder(), -1));
 	}
 	
@@ -44,7 +43,7 @@ public record PlayBlockBoundSoundInstancePayload(SoundEvent soundEvent, BlockPos
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

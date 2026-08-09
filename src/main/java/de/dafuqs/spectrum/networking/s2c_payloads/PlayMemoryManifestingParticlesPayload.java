@@ -15,7 +15,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
 
 public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1, int eggColor2, int amount) implements CustomPacketPayload {
@@ -29,7 +28,7 @@ public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1,
 			PlayMemoryManifestingParticlesPayload::new
 	);
 	
-	public static void playMemoryManifestingParticles(ServerLevel serverWorld, @NotNull BlockPos pos, EntityType<?> entityType, int amount) {
+	public static void playMemoryManifestingParticles(ServerLevel serverWorld, BlockPos pos, EntityType<?> entityType, int amount) {
 		Tuple<Integer, Integer> eggColors = MemoryBlockEntity.getEggColorsForEntity(entityType);
 		PacketDistributor.sendToPlayersTrackingChunk(
 				serverWorld, new ChunkPos(pos),
@@ -40,7 +39,7 @@ public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1,
 	@SuppressWarnings("resource")
 	public static void execute(PlayMemoryManifestingParticlesPayload payload, IPayloadContext context) {
 		ClientLevel level = (ClientLevel) context.player().level();
-		RandomSource random = level.random;
+        RandomSource random = level.getRandom();
 		
 		Vector3f colorVec1 = SpectrumColorHelper.colorIntToVec(payload.eggColor1);
 		Vector3f colorVec2 = SpectrumColorHelper.colorIntToVec(payload.eggColor2);
@@ -64,7 +63,7 @@ public record PlayMemoryManifestingParticlesPayload(BlockPos pos, int eggColor1,
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

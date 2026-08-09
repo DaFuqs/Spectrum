@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -18,9 +18,9 @@ public class SilverfishInsertingIdolBlock extends IdolBlock {
 	public SilverfishInsertingIdolBlock(Properties settings, ParticleOptions particleEffect) {
 		super(settings, particleEffect);
 	}
-	
+
 	@Override
-	public MapCodec<? extends SilverfishInsertingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends SilverfishInsertingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -33,7 +33,7 @@ public class SilverfishInsertingIdolBlock extends IdolBlock {
 	
 	@Override
 	public boolean trigger(ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		int startDirection = world.random.nextInt(4);
+		int startDirection = world.getRandom().nextInt(4);
 		for (int i = 0; i < 4; i++) {
 			Direction currentDirection = Direction.from2DDataValue(startDirection + i);
 			BlockPos offsetPos = blockPos.relative(currentDirection);

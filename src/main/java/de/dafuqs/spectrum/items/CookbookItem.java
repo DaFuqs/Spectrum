@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items;
 
 import com.klikli_dev.modonomicon.client.gui.book.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
@@ -10,7 +9,6 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -30,17 +28,13 @@ public class CookbookItem extends Item {
 	}
 	
 	@Override
-	public @NotNull InteractionResultHolder<ItemStack> use(Level world, @NotNull Player user, @NotNull InteractionHand hand) {
-		if (!world.isClientSide) {
+	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+		if (!world.isClientSide()) {
 			user.awardStat(Stats.ITEM_USED.get(this));
 			
 			return InteractionResultHolder.success(user.getItemInHand(hand));
 		} else {
-			try {
-				openGuidebookPage(this.bookAddress);
-			} catch (NullPointerException e) {
-				SpectrumCommon.logError(user.getName().getString() + " used a CookbookItem to open the guidebook page " + this.bookAddress + " but it does not exist");
-			}
+			openGuidebookPage(this.bookAddress);
 		}
 		
 		return InteractionResultHolder.consume(user.getItemInHand(hand));

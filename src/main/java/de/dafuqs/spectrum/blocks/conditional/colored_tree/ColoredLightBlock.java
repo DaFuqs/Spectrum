@@ -1,12 +1,13 @@
 package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -30,8 +31,8 @@ public class ColoredLightBlock extends RedstoneLampBlock {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredLightBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredLightBlock byColor(InkColor color) {
 		return LIGHTS.get(color);
 	}
 	

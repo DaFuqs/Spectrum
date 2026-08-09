@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.map;
 
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
@@ -22,9 +21,8 @@ import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.saveddata.maps.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -303,8 +301,8 @@ public class ArtisansAtlasItem extends MapItem {
 	}
 	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
-		if (!world.isClientSide) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+		if (!world.isClientSide()) {
 			MapItemSavedData state = getSavedData(stack, world);
 			if (state instanceof ArtisansAtlasState atlasState) {
 				atlasState.updateDimension(world.dimension());

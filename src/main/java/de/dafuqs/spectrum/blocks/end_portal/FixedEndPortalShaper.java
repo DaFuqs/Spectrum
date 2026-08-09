@@ -20,9 +20,9 @@ class FixedEndPortalShaper implements EndPortalShaper {
 			// fixed directions we can estimate the
 			// portal position based on some simple checks instead
 			BlockPos portalTopLeft = result.getFrontTopLeft().offset(-3, 0, -3);
-			if (world.getBlockState(portalTopLeft.offset(7, 0, 0)).getBlock().equals(SpectrumBlocks.CRACKED_END_PORTAL_FRAME)) {
+			if (world.getBlockState(portalTopLeft.offset(7, 0, 0)).getBlock().equals(SpectrumBlocks.CRACKED_END_PORTAL_FRAME.get())) {
 				portalTopLeft = portalTopLeft.offset(4, 0, 0);
-			} else if (world.getBlockState(portalTopLeft.offset(0, 0, 7)).getBlock().equals(SpectrumBlocks.CRACKED_END_PORTAL_FRAME)) {
+			} else if (world.getBlockState(portalTopLeft.offset(0, 0, 7)).getBlock().equals(SpectrumBlocks.CRACKED_END_PORTAL_FRAME.get())) {
 				portalTopLeft = portalTopLeft.offset(0, 0, 4);
 			}
 			
@@ -45,9 +45,9 @@ class FixedEndPortalShaper implements EndPortalShaper {
 			BlockPos portalTopLeft = result.getFrontTopLeft().offset(-3, 0, -3);
 			Block b1 = world.getBlockState(portalTopLeft.offset(7, 0, 0)).getBlock();
 			Block b2 = world.getBlockState(portalTopLeft.offset(0, 0, 7)).getBlock();
-			if (b1.equals(SpectrumBlocks.CRACKED_END_PORTAL_FRAME) || b1.equals(Blocks.END_PORTAL_FRAME)) {
+			if (b1.equals(SpectrumBlocks.CRACKED_END_PORTAL_FRAME.get()) || b1.equals(Blocks.END_PORTAL_FRAME)) {
 				portalTopLeft = portalTopLeft.offset(4, 0, 0);
-			} else if (b2.equals(SpectrumBlocks.CRACKED_END_PORTAL_FRAME) || b2.equals(Blocks.END_PORTAL_FRAME)) {
+			} else if (b2.equals(SpectrumBlocks.CRACKED_END_PORTAL_FRAME.get()) || b2.equals(Blocks.END_PORTAL_FRAME)) {
 				portalTopLeft = portalTopLeft.offset(0, 0, 4);
 			}
 			

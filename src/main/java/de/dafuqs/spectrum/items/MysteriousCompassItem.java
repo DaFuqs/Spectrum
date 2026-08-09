@@ -8,7 +8,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public class MysteriousCompassItem extends StructureCompassItem implements SlotBackgroundEffectProvider {
 	
@@ -17,8 +17,8 @@ public class MysteriousCompassItem extends StructureCompassItem implements SlotB
 	}
 	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, Entity entity, int slot, boolean selected) {
-		if (!world.isClientSide && world.getGameTime() % 200 == 0 && entity instanceof Player player)
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+		if (!world.isClientSide() && world.getGameTime() % 200 == 0 && entity instanceof Player player)
 			if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.MYSTERIOUS_LOCKET_SOCKETING)) {
 				locateStructure(stack, world, entity);
 			} else {

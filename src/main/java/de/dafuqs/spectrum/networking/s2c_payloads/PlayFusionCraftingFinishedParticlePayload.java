@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.networking.s2c_payloads;
 
 import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -15,7 +15,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
 
 public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor color) implements CustomPacketPayload {
@@ -28,7 +27,7 @@ public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor c
 	);
 	
 	public static void sendPlayFusionCraftingFinishedParticles(
-			Level world, BlockPos pos, @NotNull ItemStack itemStack) {
+			Level world, BlockPos pos, ItemStack itemStack) {
 		InkColor inkColor = ColorRegistry.ITEM_COLORS.getInkColor(itemStack.getItem(), InkColors.LIGHT_GRAY);
 		PacketDistributor.sendToPlayersTrackingChunk(
 				(ServerLevel) world, new ChunkPos(pos), new PlayFusionCraftingFinishedParticlePayload(pos, inkColor));
@@ -51,7 +50,7 @@ public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor c
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

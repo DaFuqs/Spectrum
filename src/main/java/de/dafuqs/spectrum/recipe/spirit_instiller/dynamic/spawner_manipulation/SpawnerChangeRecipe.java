@@ -22,13 +22,13 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 	public SpawnerChangeRecipe(IngredientStack ingredient, IngredientStack ingredient2, Optional<ResourceLocation> requiredAdvancementIdentifier) {
 		super("spawner_manipulation", false, requiredAdvancementIdentifier,
 				IngredientStack.ofItems(Items.SPAWNER), ingredient, ingredient2,
-				Items.SPAWNER.getDefaultInstance(), 200, 0, true);
+				Items.SPAWNER.getDefaultInstance(), 200, 0, true, false);
 	}
 	
 	public SpawnerChangeRecipe(IngredientStack ingredient) {
 		super("spawner_manipulation", false, Optional.of(SpectrumAdvancements.SPAWNER_MANIPULATION),
 				IngredientStack.ofItems(Items.SPAWNER), ingredient, IngredientStack.ofItems(SpectrumItems.VEGETAL.get(), 4),
-				Items.SPAWNER.getDefaultInstance(), 200, 0, true);
+				Items.SPAWNER.getDefaultInstance(), 200, 0, true, false);
 	}
 	
 	@Override

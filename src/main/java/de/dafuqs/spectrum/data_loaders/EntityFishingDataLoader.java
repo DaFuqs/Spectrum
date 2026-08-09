@@ -17,7 +17,6 @@ import net.minecraft.util.random.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.material.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -76,7 +75,7 @@ public class EntityFishingDataLoader extends SimpleJsonResourceReloadListener {
 	}
 	
 	@Override
-	protected void apply(Map<ResourceLocation, JsonElement> prepared, @NotNull ResourceManager manager, @NotNull ProfilerFiller profiler) {
+	protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
 		ENTITY_FISHING_ENTRIES.clear();
 		ENTITY_FISHING_ENTRIES_WITH_DIMENSION.clear();
 		
@@ -98,7 +97,7 @@ public class EntityFishingDataLoader extends SimpleJsonResourceReloadListener {
 	
 	public static Optional<EntityFishingEntity> tryCatchEntity(ServerLevel world, BlockPos pos, int bigCatchLevel) {
 		Fluid fluid = world.getFluidState(pos).getType();
-		RandomSource randomSource = world.random;
+		RandomSource randomSource = world.getRandom();
 		
 		// we test entries with a dimension set first
 		// to make sure those are selected over the more generic "just the fluid" ones

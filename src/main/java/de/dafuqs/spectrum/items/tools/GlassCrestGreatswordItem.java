@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.magic.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
-import de.dafuqs.spectrum.magic.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
@@ -25,7 +25,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -50,7 +50,7 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
 		if (getGroundSlamStrength(world.registryAccess(), user.getItemInHand(hand)) > 0 && InkPowered.tryDrainEnergy(user, GROUND_SLAM_COST)) {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				startSoundInstance(user);
 			}
 			return ItemUtils.startUsingInstantly(world, user, hand);
@@ -71,8 +71,8 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	@Override
 	public void onUseTick(Level world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		super.onUseTick(world, user, stack, remainingUseTicks);
-		if (world.isClientSide) {
-			RandomSource random = world.random;
+		if (world.isClientSide()) {
+			RandomSource random = world.getRandom();
 			for (int i = 0; i < (GROUND_SLAM_CHARGE_TICKS - remainingUseTicks) / 8; i++) {
 				world.addParticle(ParticleTypes.INSTANT_EFFECT,
 						user.getRandomX(1.0), user.getY(), user.getRandomZ(1.0),
@@ -83,7 +83,7 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			int groundSlamStrength = getGroundSlamStrength(world.registryAccess(), stack);
 			if (groundSlamStrength > 0) {
 				performGroundSlam(world, user.position(), user, groundSlamStrength);
@@ -148,7 +148,7 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	}
 	
 	@Override
-	public BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		if (player == null || !player.isUsingItem())
 			return ExtendedItemBarProvider.PASS;
 		

@@ -36,6 +36,12 @@
       "title": "container.spectrum.rei.pedestal_recipe",
       "recipe_id": "spectrum:pedestal/tier3/bottle_of_failing",
       "text": "book.spectrum.guidebook.failing.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/bottle_of_failing_essence",
+      "text": "book.spectrum.guidebook.failing.essence_recipe.text"
     }
   ]
 }

@@ -6,9 +6,9 @@
   "colors": {},
   "experience": 0.0,
   "ingredients": [
-    "spectrum:azurite_block",
-    "spectrum:malachite_block",
-    "spectrum:bloodstone_block"
+    "spectrum:pure_azurite_block",
+    "spectrum:pure_malachite_block",
+    "spectrum:pure_bloodstone_block"
   ],
   "result": {
     "id": "spectrum:mixed_refined_crystal_bricks",

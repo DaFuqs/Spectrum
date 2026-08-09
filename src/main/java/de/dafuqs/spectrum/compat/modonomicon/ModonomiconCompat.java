@@ -12,7 +12,7 @@ import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.compat.modonomicon.unlock_conditions.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
-import de.dafuqs.spectrum.recipe.color_picker.InkConvertingRecipe;
+import de.dafuqs.spectrum.recipe.color_picker.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
@@ -25,6 +25,8 @@ import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.crafting.*;
+import net.neoforged.bus.api.*;
+import net.neoforged.fml.event.lifecycle.*;
 
 public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
@@ -43,7 +45,6 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 	public static final ResourceLocation LIQUID_CRYSTAL_CONVERTING_PAGE = SpectrumCommon.locate("liquid_crystal_converting");
 	public static final ResourceLocation MIDNIGHT_SOLUTION_CONVERTING_PAGE = SpectrumCommon.locate("midnight_solution_converting");
 	public static final ResourceLocation DRAGONROT_CONVERTING_PAGE = SpectrumCommon.locate("dragonrot_converting");
-	public static final ResourceLocation SLUDGE_CONVERTING_PAGE = SpectrumCommon.locate("sludge_converting");
 	public static final ResourceLocation CRYSTALLARIEUM_GROWING_PAGE = SpectrumCommon.locate("crystallarieum_growing");
 	public static final ResourceLocation CINDERHEARTH_SMELTING_PAGE = SpectrumCommon.locate("cinderhearth_smelting");
 	public static final ResourceLocation TITRATION_BARREL_FERMENTING_PAGE = SpectrumCommon.locate("titration_barrel_fermenting");
@@ -60,10 +61,9 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 	// Unlock Conditions
 	public static final ResourceLocation ENCHANTMENT_REGISTERED = SpectrumCommon.locate("enchantment_registered");
 	public static final ResourceLocation RECIPE_LOADED_AND_UNLOCKED = SpectrumCommon.locate("recipe_loaded_and_unlocked");
-	public static final ResourceLocation NOT = SpectrumCommon.locate("not");
 	
 	@Override
-	public void register() {
+	public void register(IEventBus modBus) {
 		registerPageTypes();
 		registerPages();
 		registerUnlockConditions();
@@ -85,7 +85,6 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 		registerGatedRecipePage(LIQUID_CRYSTAL_CONVERTING_PAGE, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, false);
 		registerGatedRecipePage(MIDNIGHT_SOLUTION_CONVERTING_PAGE, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, false);
 		registerGatedRecipePage(DRAGONROT_CONVERTING_PAGE, SpectrumRecipeTypes.DRAGONROT_CONVERTING, false);
-		registerGatedRecipePage(SLUDGE_CONVERTING_PAGE, SpectrumRecipeTypes.SLUDGE_CONVERTING, false);
 		registerGatedRecipePage(CRYSTALLARIEUM_GROWING_PAGE, SpectrumRecipeTypes.CRYSTALLARIEUM, false);
 		registerGatedRecipePage(CINDERHEARTH_SMELTING_PAGE, SpectrumRecipeTypes.CINDERHEARTH, false);
 		registerGatedRecipePage(TITRATION_BARREL_FERMENTING_PAGE, SpectrumRecipeTypes.TITRATION_BARREL, true);
@@ -110,12 +109,11 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 	private void registerUnlockConditions() {
 		LoaderRegistry.registerConditionLoader(ENCHANTMENT_REGISTERED, (BookConditionJsonLoader<?>) EnchantmentRegisteredCondition::fromJson, EnchantmentRegisteredCondition::fromNetwork);
 		LoaderRegistry.registerConditionLoader(RECIPE_LOADED_AND_UNLOCKED, (BookConditionJsonLoader<?>) RecipesLoadedAndUnlockedCondition::fromJson, RecipesLoadedAndUnlockedCondition::fromNetwork);
-		LoaderRegistry.registerConditionLoader(NOT, (BookConditionJsonLoader<?>) NotCondition::fromJson, NotCondition::fromNetwork);
 	}
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public void registerClient() {
+	public void registerClient(FMLClientSetupEvent event) {
 		PageRendererRegistry.registerPageRenderer(ANVIL_CRUSHING_PAGE, p -> new BookAnvilCrushingPageRenderer((BookGatedRecipePage<AnvilCrushingRecipe>) p));
 		PageRendererRegistry.registerPageRenderer(PEDESTAL_CRAFTING_PAGE, p -> new BookPedestalCraftingPageRenderer((BookGatedRecipePage<PedestalRecipe>) p));
 		PageRendererRegistry.registerPageRenderer(FUSION_SHRINE_CRAFTING_PAGE, p -> new BookFusionShrineCraftingPageRenderer((BookGatedRecipePage<FusionShrineRecipe>) p));
@@ -156,13 +154,6 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 			@Override
 			public ResourceLocation getBackgroundTexture() {
 				return SpectrumCommon.locate("textures/gui/guidebook/dragonrot.png");
-			}
-		});
-		
-		PageRendererRegistry.registerPageRenderer(SLUDGE_CONVERTING_PAGE, p -> new BookFluidConvertingPageRenderer<>((BookGatedRecipePage<SludgeConvertingRecipe>) p) {
-			@Override
-			public ResourceLocation getBackgroundTexture() {
-				return SpectrumCommon.locate("textures/gui/guidebook/sludge.png");
 			}
 		});
 	}

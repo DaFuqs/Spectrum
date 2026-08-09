@@ -5,7 +5,6 @@ import com.mojang.serialization.codecs.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -18,7 +17,7 @@ public class LootFunctionTriggerCriterion extends SimpleCriterionTrigger<LootFun
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

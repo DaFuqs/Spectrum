@@ -13,7 +13,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 import java.util.function.*;
 
@@ -33,7 +32,7 @@ public record PlayParticleAroundBlockSidesPayload(BlockPos pos, int quantity, Ve
 		Packet<?> packet = new ClientboundCustomPayloadPacket(new PlayParticleAroundBlockSidesPayload(pos, quantity, velocity, particleEffect, sides));
 		
 		for (ServerPlayer player : level.getChunkSource().chunkMap.getPlayers(new ChunkPos(pos), false)) {
-			if (sendCheck.test(player))
+			if (!sendCheck.test(player))
 				continue;
 			
 			player.connection.send(packet);
@@ -45,7 +44,7 @@ public record PlayParticleAroundBlockSidesPayload(BlockPos pos, int quantity, Ve
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

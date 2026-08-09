@@ -17,12 +17,6 @@ public class PastelNetwork<W extends Level> {
 	protected final UUID uuid;
 	protected final int color;
 	
-	public enum NodePriority {
-		GENERIC,
-		MODERATE,
-		HIGH
-	}
-	
 	public PastelNetwork(W level, UUID uuid, int color) {
 		this.level = level;
 		this.uuid = uuid;
@@ -85,6 +79,11 @@ public class PastelNetwork<W extends Level> {
 			return this.uuid.equals(p.uuid);
 		}
 		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.uuid.hashCode();
 	}
 	
 	public CompoundTag graphToNbt() {

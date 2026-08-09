@@ -10,7 +10,7 @@ import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -23,7 +23,7 @@ public record KindlingPredicate(Optional<Boolean> clipped, Optional<Boolean> ang
 	).apply(instance, KindlingPredicate::new));
 	
 	@Override
-	public boolean matches(@NotNull Entity entity, @NotNull ServerLevel world, @Nullable Vec3 pos) {
+	public boolean matches(Entity entity, ServerLevel world, @Nullable Vec3 pos) {
 		if (!(entity instanceof KindlingEntity kindling)) {
 			return false;
 		} else {
@@ -34,7 +34,7 @@ public record KindlingPredicate(Optional<Boolean> clipped, Optional<Boolean> ang
 	}
 	
 	@Override
-	public @NotNull MapCodec<KindlingPredicate> codec() {
+	public MapCodec<KindlingPredicate> codec() {
 		return SpectrumEntitySubPredicateTypes.KINDLING.get();
 	}
 	

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.api.interaction;
 
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

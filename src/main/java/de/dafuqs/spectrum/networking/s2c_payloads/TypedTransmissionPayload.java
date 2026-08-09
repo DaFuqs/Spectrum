@@ -11,7 +11,6 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 public record TypedTransmissionPayload(TypedTransmission transmission) implements CustomPacketPayload {
 	
@@ -21,7 +20,7 @@ public record TypedTransmissionPayload(TypedTransmission transmission) implement
 			TypedTransmissionPayload::new
 	);
 	
-	public static void playTransmissionParticle(ServerLevel world, @NotNull TypedTransmission transmission) {
+	public static void playTransmissionParticle(ServerLevel world, TypedTransmission transmission) {
 		PacketDistributor.sendToPlayersTrackingChunk(
 				world, new ChunkPos(BlockPos.containing(transmission.getOrigin())),
 				new TypedTransmissionPayload(transmission)
@@ -57,7 +56,7 @@ public record TypedTransmissionPayload(TypedTransmission transmission) implement
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.*;
@@ -27,6 +27,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -155,7 +156,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				}
 			}
 			
-			this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+			this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.getRandom().nextFloat() * 0.2F + 0.9F));
 			this.discard();
 		} else {
 			this.setDeltaMovement(this.getDeltaMovement().scale(-0.1D));
@@ -175,7 +176,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		this.setDeltaMovement(vec3d);
 		Vec3 vec3d2 = vec3d.normalize().scale(0.05);
 		this.setPosRaw(this.getX() - vec3d2.x, this.getY() - vec3d2.y, this.getZ() - vec3d2.z);
-		this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+		this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.getRandom().nextFloat() * 0.2F + 0.9F));
 		
 		InkColor inkColor = this.getInkColor();
 		for (BlockPos blockPos : BlockPos.withinManhattan(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
@@ -188,8 +189,8 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				continue;
 			}
 			if (dyeColor.isPresent()) {
-				BlockState coloredBlockState = BlockVariantHelper.getCursedBlockColorVariant(this.level(), blockPos, dyeColor.get());
-				if (!coloredBlockState.isAir()) {
+				@Nullable BlockState coloredBlockState = VariantHelper.getColoredBlockState(this.level(), blockPos, inkColor);
+				if (coloredBlockState != null) {
 					this.level().setBlockAndUpdate(blockPos, coloredBlockState);
 				}
 			}

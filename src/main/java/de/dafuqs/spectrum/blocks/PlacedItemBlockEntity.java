@@ -8,7 +8,6 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -59,7 +58,7 @@ public class PlacedItemBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	@Override
-	public void setOwner(@NotNull Player playerEntity) {
+	public void setOwner(Player playerEntity) {
 		this.ownerUUID = playerEntity.getUUID();
 		setChanged();
 	}

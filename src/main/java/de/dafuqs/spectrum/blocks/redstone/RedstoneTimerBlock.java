@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.ticks.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public class RedstoneTimerBlock extends DiodeBlock {
 	
@@ -46,16 +46,16 @@ public class RedstoneTimerBlock extends DiodeBlock {
 	}
 	
 	@Override
-	public InteractionResult useWithoutItem(BlockState state, @NotNull Level world, BlockPos pos, @NotNull Player player, BlockHitResult hit) {
+	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		if (!player.getAbilities().mayBuild) {
 			return InteractionResult.PASS;
 		} else {
-			if (world.isClientSide) {
-				return InteractionResult.SUCCESS;
-			} else {
-				stepTiming((ServerLevel) world, pos, (ServerPlayer) player);
-				return InteractionResult.CONSUME;
-			}
+            if (world.isClientSide()) {
+                return InteractionResult.SUCCESS;
+            } else {
+                stepTiming((ServerLevel) world, pos, (ServerPlayer) player);
+                return InteractionResult.CONSUME;
+            }
 		}
 	}
 	
@@ -102,7 +102,7 @@ public class RedstoneTimerBlock extends DiodeBlock {
 		}
 	}
 	
-	public void stepTiming(ServerLevel world, BlockPos pos, ServerPlayer serverPlayerEntity) {
+	public void stepTiming(ServerLevel world, BlockPos pos, @Nullable ServerPlayer serverPlayerEntity) {
 		if (serverPlayerEntity != null) {
 			BlockState blockState = world.getBlockState(pos);
 			if (serverPlayerEntity.isShiftKeyDown()) {

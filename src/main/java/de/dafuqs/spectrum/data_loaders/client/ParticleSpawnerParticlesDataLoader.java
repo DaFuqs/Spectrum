@@ -10,7 +10,7 @@ import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.util.profiling.*;
 import net.minecraft.world.entity.player.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -36,7 +36,7 @@ public class ParticleSpawnerParticlesDataLoader extends SimpleJsonResourceReload
 	}
 	
 	@Override
-	protected void apply(Map<ResourceLocation, JsonElement> prepared, @NotNull ResourceManager manager, @NotNull ProfilerFiller profiler) {
+	protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
 		PARTICLES.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();

@@ -6,14 +6,16 @@ import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
-import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.util.valueproviders.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.level.storage.loot.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -26,7 +28,6 @@ public class CloakedOreBlock extends DropExperienceBlock implements RevelationAw
 			BlockState.CODEC.fieldOf("cloak").forGetter(b -> b.getBlockStateCloaks().get(b.defaultBlockState()))
 	).apply(instance, CloakedOreBlock::new));
 	
-	protected static boolean dropXP;
 	protected final ResourceLocation cloakAdvancementIdentifier;
 	protected final BlockState cloakBlockState;
 	
@@ -57,19 +58,11 @@ public class CloakedOreBlock extends DropExperienceBlock implements RevelationAw
 		return new Tuple<>(this.asItem(), cloakBlockState.getBlock().asItem());
 	}
 	
-	@Override
-	public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
-		// workaround: since onStacksDropped() has no way of checking if it was
-		// triggered by a player we have to cache that information here
-		Player lootPlayerEntity = RevelationAware.getLootPlayerEntity(builder);
-		dropXP = lootPlayerEntity != null && isVisibleTo(lootPlayerEntity);
-		
-		return super.getDrops(state, builder);
-	}
-	
-	@Override
-	public void spawnAfterBreak(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack, boolean dropExperience) {
-		super.spawnAfterBreak(state, world, pos, stack, dropExperience && dropXP);
+	public int getExpDrop(BlockState state, LevelAccessor level, BlockPos pos, @Nullable BlockEntity blockEntity, @Nullable Entity breaker, ItemStack tool) {
+		if(breaker instanceof Player player && isVisibleTo(player)) {
+			return super.getExpDrop(state, level, pos, blockEntity, breaker, tool);
+		}
+		return 0;
 	}
 	
 }

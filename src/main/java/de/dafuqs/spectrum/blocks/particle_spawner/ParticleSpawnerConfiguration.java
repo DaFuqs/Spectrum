@@ -12,7 +12,6 @@ import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
 
 public record ParticleSpawnerConfiguration(
@@ -74,15 +73,15 @@ public record ParticleSpawnerConfiguration(
 		return new Vector3f(r, g, b);
 	}
 	
-	public void spawnParticles(Level world, @NotNull BlockPos pos) {
+	public void spawnParticles(Level world, BlockPos pos) {
 		float particlesToSpawn = particlesPerSecond / 20F;
-		while (particlesToSpawn >= 1 || world.random.nextFloat() < particlesToSpawn) {
-			spawnParticle(world, pos, world.random);
+		while (particlesToSpawn >= 1 || world.getRandom().nextFloat() < particlesToSpawn) {
+			spawnParticle(world, pos, world.getRandom());
 			particlesToSpawn--;
 		}
 	}
 	
-	private void spawnParticle(Level world, @NotNull BlockPos pos, RandomSource random) {
+	private void spawnParticle(Level world, BlockPos pos, RandomSource random) {
 		float randomScale = scaleVariance == 0 ? scale : (float) (scale + scaleVariance - random.nextDouble() * scaleVariance * 2.0D);
 		int randomLifetime = lifetimeVariance == 0 ? lifetimeTicks : (int) (lifetimeTicks + lifetimeVariance - random.nextDouble() * lifetimeVariance * 2.0D);
 		

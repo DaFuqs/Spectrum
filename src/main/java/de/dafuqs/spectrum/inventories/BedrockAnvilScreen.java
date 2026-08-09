@@ -15,7 +15,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
 import org.lwjgl.glfw.*;
 
@@ -39,10 +38,7 @@ public class BedrockAnvilScreen extends ItemCombinerScreen<BedrockAnvilScreenHan
 	
 	@Override
 	protected void subInit() {
-		int i = (this.width - this.imageWidth) / 2;
-		int j = (this.height - this.imageHeight) / 2;
-		
-		this.nameField = new EditBox(this.font, i + 62, j + 24, 98, 12, Component.translatable("container.spectrum.bedrock_anvil"));
+		this.nameField = new EditBox(this.font, getGuiLeft() + 62, getGuiTop() + 24, 98, 12, Component.translatable("container.spectrum.bedrock_anvil"));
 		this.nameField.setTextColor(-1);
 		this.nameField.setTextColorUneditable(-1);
 		this.nameField.setBordered(false);
@@ -52,7 +48,7 @@ public class BedrockAnvilScreen extends ItemCombinerScreen<BedrockAnvilScreenHan
 		this.addWidget(this.nameField);
 		this.nameField.setEditable((this.menu).getSlot(0).hasItem());
 		
-		this.loreField = new EditBox(this.font, i + 45, j + 76, 116, 12, Component.translatable("container.spectrum.bedrock_anvil.lore"));
+		this.loreField = new EditBox(this.font, getGuiLeft() + 45, getGuiTop() + 76, 116, 12, Component.translatable("container.spectrum.bedrock_anvil.lore"));
 		this.loreField.setTextColor(-1);
 		this.loreField.setTextColorUneditable(-1);
 		this.loreField.setBordered(false);

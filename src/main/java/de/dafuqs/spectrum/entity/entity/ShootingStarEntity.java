@@ -27,7 +27,6 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -45,24 +44,24 @@ public class ShootingStarEntity extends Entity {
 	public ShootingStarEntity(EntityType<? extends ShootingStarEntity> entityType, Level world) {
 		super(entityType, world);
 		this.hoverHeight = (float) (Math.random() * Math.PI * 2.0D);
-		this.availableHits = 5 + world.random.nextInt(3);
+		this.availableHits = 5 + world.getRandom().nextInt(3);
 		this.lastCollisionCount = 0;
 	}
 	
 	public ShootingStarEntity(Level world, double x, double y, double z, ShootingStar.Variant type, boolean playerPlaced, int availableHits, boolean hardened) {
 		this(SpectrumEntityTypes.SHOOTING_STAR.get(), world);
 		this.setPos(x, y, z);
-		this.setYRot(this.random.nextFloat() * 360.0F);
+		this.setYRot(this.getRandom().nextFloat() * 360.0F);
 		this.setShootingStarType(type, playerPlaced, availableHits, hardened);
 		this.lastCollisionCount = 0;
 	}
 	
-	public static boolean canCollide(Entity entity, @NotNull Entity other) {
+	public static boolean canCollide(Entity entity, Entity other) {
 		return (other.canBeCollidedWith() || other.isPushable()) && !entity.isPassengerOfSameVehicle(other);
 	}
 	
 	public static void playHitParticles(Level world, double x, double y, double z, ShootingStar.Variant type, int amount) {
-		RandomSource random = world.random;
+		RandomSource random = world.getRandom();
 		// Everything in this lambda is running on the render thread
 		
 		for (int i = 0; i < amount; i++) {
@@ -111,7 +110,7 @@ public class ShootingStarEntity extends Entity {
 		double previousZVelocity = this.getDeltaMovement().z();
 		
 		Level world = this.level();
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			this.noPhysics = false;
 		} else {
 			this.noPhysics = !this.level().noCollision(this, this.getBoundingBox().deflate(1.0E-7D));
@@ -165,14 +164,14 @@ public class ShootingStarEntity extends Entity {
 			}
 		});
 		
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			if (!playerPlaced && !hardened) {
 				if (this.onGround()) {
-					if (world.random.nextInt(10) == 0) {
+					if (world.getRandom().nextInt(10) == 0) {
 						playGroundParticles();
 					}
 				} else {
-					if (world.random.nextBoolean()) {
+					if (world.getRandom().nextBoolean()) {
 						playFallingParticles();
 					}
 				}
@@ -276,7 +275,7 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	public void playFallingParticles() {
-		float randomScale = this.random.nextFloat() * 0.4F + 0.7F;
+		float randomScale = this.getRandom().nextFloat() * 0.4F + 0.7F;
 		ParticleOptions particleEffect = new DynamicParticleEffect((float) ((random.nextDouble() - 0.5F) * 0.05F - 0.125F), getShootingStarType().getRandomParticleColor(random), randomScale, 120, false, true, true);
 		this.level().addParticle(particleEffect, this.getX(), this.getEyeY(), this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.1, 0.2 - random.nextFloat() * 0.4);
 	}
@@ -287,7 +286,7 @@ public class ShootingStarEntity extends Entity {
 	
 	public void doPlayerHitEffectsAndLoot(ServerLevel serverWorld, ServerPlayer serverPlayerEntity) {
 		// Spawn loot
-		@NotNull ResourceKey<LootTable> lootTableKey = ShootingStar.Variant.getLootTable(entityData.get(SHOOTING_STAR_TYPE));
+		ResourceKey<LootTable> lootTableKey = ShootingStar.Variant.getLootTable(entityData.get(SHOOTING_STAR_TYPE));
 		List<ItemStack> loot = getLoot(serverWorld, serverPlayerEntity, lootTableKey);
 		
 		for (ItemStack itemStack : loot) {
@@ -377,7 +376,7 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	@Override
-	public boolean isInvulnerableTo(@NotNull DamageSource damageSource) {
+	public boolean isInvulnerableTo(DamageSource damageSource) {
 		if (damageSource.is(DamageTypes.FALLING_ANVIL) || damageSource.is(SpectrumDamageTypes.FLOATBLOCK)) {
 			return false;
 		} else {
@@ -405,7 +404,7 @@ public class ShootingStarEntity extends Entity {
 		return ShootingStar.Variant.getType(this.getEntityData().get(SHOOTING_STAR_TYPE));
 	}
 	
-	private void setShootingStarType(@NotNull ShootingStar.Variant type, boolean playerPlaced, int availableHits, boolean hardened) {
+	private void setShootingStarType(ShootingStar.Variant type, boolean playerPlaced, int availableHits, boolean hardened) {
 		this.getEntityData().set(SHOOTING_STAR_TYPE, type.ordinal());
 		this.getEntityData().set(PLAYER_PLACED, playerPlaced);
 		this.getEntityData().set(HARDENED, hardened);
@@ -413,7 +412,7 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	@Override
-	public void addAdditionalSaveData(@NotNull CompoundTag tag) {
+	public void addAdditionalSaveData(CompoundTag tag) {
 		tag.putLong("Age", (short) this.age);
 		tag.putString("Variant", this.getShootingStarType().getName());
 		tag.putInt("LastCollisionCount", this.lastCollisionCount);
@@ -423,7 +422,7 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	@Override
-	public void readAdditionalSaveData(@NotNull CompoundTag tag) {
+	public void readAdditionalSaveData(CompoundTag tag) {
 		this.age = tag.getLong("Age");
 		if (tag.contains("LastCollisionCount", Tag.TAG_ANY_NUMERIC)) {
 			this.lastCollisionCount = tag.getInt("LastCollisionCount");

@@ -9,54 +9,6 @@ import net.minecraft.core.particles.*;
 
 public class SpectrumBlockLeakParticles {
 	
-	public static class LandingSludgeFactory implements ParticleProvider<SimpleParticleType> {
-		protected final SpriteSet spriteProvider;
-		
-		public LandingSludgeFactory(SpriteSet spriteProvider) {
-			this.spriteProvider = spriteProvider;
-		}
-		
-		@Override
-		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.DripLandParticle(clientWorld, d, e, f, SpectrumFluids.SLUDGE.get());
-			blockLeakParticle.setColor(SpectrumFluids.SLUDGE_COLOR_VEC.x(), SpectrumFluids.SLUDGE_COLOR_VEC.y(), SpectrumFluids.SLUDGE_COLOR_VEC.z());
-			blockLeakParticle.pickSprite(this.spriteProvider);
-			return blockLeakParticle;
-		}
-	}
-	
-	public static class FallingSludgeFactory implements ParticleProvider<SimpleParticleType> {
-		protected final SpriteSet spriteProvider;
-		
-		public FallingSludgeFactory(SpriteSet spriteProvider) {
-			this.spriteProvider = spriteProvider;
-		}
-		
-		@Override
-		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.FallAndLandParticle(clientWorld, d, e, f, SpectrumFluids.SLUDGE.get(), SpectrumParticleTypes.LANDING_SLUDGE);
-			blockLeakParticle.setColor(SpectrumFluids.SLUDGE_COLOR_VEC.x(), SpectrumFluids.SLUDGE_COLOR_VEC.y(), SpectrumFluids.SLUDGE_COLOR_VEC.z());
-			blockLeakParticle.pickSprite(this.spriteProvider);
-			return blockLeakParticle;
-		}
-	}
-	
-	public static class DrippingSludgeFactory implements ParticleProvider<SimpleParticleType> {
-		protected final SpriteSet spriteProvider;
-		
-		public DrippingSludgeFactory(SpriteSet spriteProvider) {
-			this.spriteProvider = spriteProvider;
-		}
-		
-		@Override
-		public Particle createParticle(SimpleParticleType defaultParticleType, ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-			DripParticle blockLeakParticle = new DripParticle.DripHangParticle(clientWorld, d, e, f, SpectrumFluids.SLUDGE.get(), SpectrumParticleTypes.FALLING_SLUDGE);
-			blockLeakParticle.setColor(SpectrumFluids.SLUDGE_COLOR_VEC.x(), SpectrumFluids.SLUDGE_COLOR_VEC.y(), SpectrumFluids.SLUDGE_COLOR_VEC.z());
-			blockLeakParticle.pickSprite(this.spriteProvider);
-			return blockLeakParticle;
-		}
-	}
-	
 	public static class LandingLiquidCrystalFactory implements ParticleProvider<SimpleParticleType> {
 		protected final SpriteSet spriteProvider;
 		

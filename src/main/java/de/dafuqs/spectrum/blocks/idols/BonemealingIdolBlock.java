@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -18,9 +18,9 @@ public class BonemealingIdolBlock extends IdolBlock {
 	public BonemealingIdolBlock(Properties settings, ParticleOptions particleEffect) {
 		super(settings, particleEffect);
 	}
-	
+
 	@Override
-	public MapCodec<? extends BonemealingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends BonemealingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -33,13 +33,13 @@ public class BonemealingIdolBlock extends IdolBlock {
 	
 	@Override
 	public boolean trigger(ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
-		int startDirection = world.random.nextInt(4);
+		int startDirection = world.getRandom().nextInt(4);
 		for (int i = 0; i < 4; i++) {
 			Direction currentDirection = Direction.from2DDataValue(startDirection + i);
 			BlockPos offsetPos = blockPos.relative(currentDirection);
 			BlockState offsetState = world.getBlockState(offsetPos);
 			if (offsetState.getBlock() instanceof BonemealableBlock fertilizable) {
-				if (fertilizable.isValidBonemealTarget(world, offsetPos, offsetState) && fertilizable.isBonemealSuccess(world, world.random, offsetPos, offsetState)) {
+				if (fertilizable.isValidBonemealTarget(world, offsetPos, offsetState) && fertilizable.isBonemealSuccess(world, world.getRandom(), offsetPos, offsetState)) {
 					fertilizable.performBonemeal(world, world.getRandom(), offsetPos, offsetState);
 					world.levelEvent(LevelEvent.PARTICLES_AND_SOUND_PLANT_GROWTH, offsetPos, 0); // particles
 					return true;

@@ -9,15 +9,16 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
+import org.jspecify.annotations.*;
 
 public class AzuriteBlock extends SpectrumFacingBlock implements AzureAuraEmitting {
 	
 	public AzuriteBlock(Properties properties) {
 		super(properties);
 	}
-	
+
 	@Override
-	public MapCodec<? extends AzuriteBlock> codec() {
+	public @Nullable MapCodec<? extends AzuriteBlock> codec() {
 		return null;
 	}
 	

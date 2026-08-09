@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.inventories.slots;
 
-import de.dafuqs.spectrum.recipe.color_picker.InkConvertingRecipe;
+import de.dafuqs.spectrum.recipe.color_picker.*;
 import net.minecraft.world.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
+import org.jetbrains.annotations.*;
 
 public class ColorPickerInputSlot extends Slot {
 	
@@ -12,7 +13,7 @@ public class ColorPickerInputSlot extends Slot {
 	}
 	
 	@Override
-	public boolean mayPlace(ItemStack stack) {
+	public boolean mayPlace(@NotNull ItemStack stack) {
 		return super.mayPlace(stack) && InkConvertingRecipe.isInput(stack.getItem());
 	}
 	

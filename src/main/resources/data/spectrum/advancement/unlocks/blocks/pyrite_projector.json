@@ -1,0 +1,31 @@
+{
+  "criteria": {
+    "collected_pyrite": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pyrite"
+      }
+    },
+    "collected_moonstone_core": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_moonstone_core"
+      }
+    },
+    "has_pyrite_projector_in_undergrowth_manor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": {
+          "location": {
+            "structures": "spectrum:undergrowth_manor"
+          }
+        },
+        "items": [
+          {
+            "items": "spectrum:pyrite_projector"
+          }
+        ]
+      }
+    }
+  }
+}

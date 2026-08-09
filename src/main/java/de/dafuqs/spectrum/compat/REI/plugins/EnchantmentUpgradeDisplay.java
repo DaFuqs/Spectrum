@@ -2,37 +2,32 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.compat.REI.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.magic_items.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
-import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	
 	protected final Holder<Enchantment> enchantment;
-	
-	final int enchantMaxLevel;
-	final int recipeMaxLevel;
-	
-	final Component transKey;
-	final RecipeScaling.ScalingData itemScaling;
-	final RecipeScaling.ScalingData xpScaling;
+	protected final int enchantMaxLevel;
+	protected final int recipeMaxLevel;
+	protected final Component transKey;
+	protected final List<EnchantmentUpgradeRecipe.LevelData> levelData;
 	
 	int index = 0;
 	
-	public EnchantmentUpgradeDisplay(@NotNull RecipeHolder<EnchantmentUpgradeRecipe> recipeEntry) {
+	public EnchantmentUpgradeDisplay(RecipeHolder<EnchantmentUpgradeRecipe> recipeEntry) {
 		super(recipeEntry, buildIngredients(recipeEntry.value()), buildOutputs(recipeEntry.value()));
 		
 		var recipe = recipeEntry.value();
@@ -40,9 +35,7 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 		
 		enchantMaxLevel = enchantment.value().getMaxLevel();
 		recipeMaxLevel = recipe.getLevelCap();
-		
-		itemScaling = recipe.getItemScaling();
-		xpScaling = recipe.getXPScaling();
+		levelData = recipe.getLevelData();
 		transKey = enchantment.value().description().copy().withStyle(s -> {
 			s.withItalic(true);
 			s.withColor(EnchantmentUpgradeCategory.NORMAL_COLOR);
@@ -51,25 +44,23 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	}
 	
 	private static List<EntryIngredient> buildIngredients(EnchantmentUpgradeRecipe recipe) {
-		List<EntryIngredient> inputs = new ArrayList<>();
+		Holder<Enchantment> enchant = recipe.getEnchantment();
+		int levelCap = recipe.getLevelCap();
 		
-		var enchant = recipe.getEnchantment();
-		var levelCap = recipe.getLevelCap();
+		List<EntryIngredient> inputs = new ArrayList<>();
 		
 		var knowledgeGem = new ArrayList<ItemStack>();
 		var enchantedBooks = new ArrayList<ItemStack>();
-		
-		for (int i = 0; i < 8; i++) {
-			inputs.add(EntryIngredients.of(recipe.getBulkItem(), 1));
-		}
-		
+		var bowlIngredients = new ArrayList<Ingredient>();
 		for (int level = 1; level < levelCap; level++) {
-			knowledgeGem.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getXPScaling().apply(level), true));
-			enchantedBooks.add(getEnchantedBookStackWith(enchant, level));
+			knowledgeGem.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredXPForSourceLevel(level), true));
+			enchantedBooks.add(SpectrumEnchantmentHelper.getEnchantedBookStackWith(enchant, level));
+			bowlIngredients.add(recipe.getLevelData().get(level-1).ingredient());
 		}
-		
 		inputs.add(EntryIngredients.ofItemStacks(knowledgeGem));
 		inputs.add(EntryIngredients.ofItemStacks(enchantedBooks));
+		inputs.addAll(EntryIngredients.ofIngredients(bowlIngredients));
+		
 		return inputs;
 	}
 	
@@ -78,18 +69,10 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 		var levelCap = recipe.getLevelCap();
 		
 		for (int level = 1; level < levelCap; level++) {
-			stacks.add(getEnchantedBookStackWith(recipe.getEnchantment(), level + 1));
+			stacks.add(SpectrumEnchantmentHelper.getEnchantedBookStackWith(recipe.getEnchantment(), level + 1));
 		}
 		
 		return Collections.singletonList(EntryIngredients.ofItemStacks(stacks));
-	}
-	
-	private static ItemStack getEnchantedBookStackWith(Holder<Enchantment> enchant, int level) {
-		var enchStack = new ItemStack(Items.ENCHANTED_BOOK);
-		var builder = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
-		builder.set(enchant, level);
-		enchStack.set(DataComponents.STORED_ENCHANTMENTS, builder.toImmutable());
-		return enchStack;
 	}
 	
 	@Override

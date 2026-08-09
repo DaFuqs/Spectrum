@@ -13,31 +13,30 @@ import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
 
 public class SpectrumLootConditionTypes {
 	
 	public static final DeferredRegister<LootItemConditionType> REGISTRAR = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, SpectrumCommon.MOD_ID);
 	
-	public record SleepersNearbyLootCondition(int rangeBlocks, float base, float max, float bonus_per_sleeping_entity) implements LootItemCondition {
+	public record SleepersNearbyLootCondition(int rangeBlocks, float min, float max, float sleepingEntityCountForMax) implements LootItemCondition {
 		
 		public static final MapCodec<SleepersNearbyLootCondition> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 				Codec.INT.fieldOf("range_blocks").forGetter(SleepersNearbyLootCondition::rangeBlocks),
-				Codec.FLOAT.fieldOf("lerp_base").forGetter(SleepersNearbyLootCondition::base),
-				Codec.FLOAT.fieldOf("lerp_max").forGetter(SleepersNearbyLootCondition::bonus_per_sleeping_entity),
-				Codec.FLOAT.fieldOf("delta_per_sleeping_entity_by_range").forGetter(SleepersNearbyLootCondition::bonus_per_sleeping_entity)
+				Codec.FLOAT.fieldOf("lerp_min").forGetter(SleepersNearbyLootCondition::min),
+				Codec.FLOAT.fieldOf("lerp_max").forGetter(SleepersNearbyLootCondition::max),
+				Codec.FLOAT.fieldOf("sleeping_entity_count_for_max").forGetter(SleepersNearbyLootCondition::sleepingEntityCountForMax)
 		).apply(instance, SleepersNearbyLootCondition::new));
 		
 		@Override
-		public @NotNull LootItemConditionType getType() {
+		public LootItemConditionType getType() {
 			return SLEEPERS_NEARBY.get();
 		}
 		
 		@Override
 		public boolean test(LootContext lootContext) {
 			Vec3 pos = lootContext.getParam(LootContextParams.ORIGIN);
-			float sleepingEntitiesDelta = Math.min((float) lootContext.getLevel().getEntitiesOfClass(LivingEntity.class, new AABB(BlockPos.containing(pos)).inflate(rangeBlocks), LivingEntity::isSleeping).size() / rangeBlocks, 1F);
-			var dropChance = Mth.clampedLerp(base, max, sleepingEntitiesDelta);
+			float sleepingEntitiesDelta = Math.min((float) lootContext.getLevel().getEntitiesOfClass(LivingEntity.class, new AABB(BlockPos.containing(pos)).inflate(rangeBlocks), LivingEntity::isSleeping).size() / sleepingEntityCountForMax, 1F);
+			var dropChance = Mth.clampedLerp(min, max, sleepingEntitiesDelta);
 			
 			return lootContext.getRandom().nextFloat() < dropChance;
 		}

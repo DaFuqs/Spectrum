@@ -13,7 +13,6 @@ import net.minecraft.world.entity.animal.axolotl.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;
@@ -53,7 +52,7 @@ public class WeepingCircletItem extends SpectrumCurioItem {
 	
 	private void doEffects(LivingEntity entity, boolean always) {
 		Level world = entity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			long time = entity.level().getGameTime();
 			if (entity.getEyeInFluidType().canSwim(entity)) {
 				if (always || time % TRIGGER_EVERY_X_TICKS == 0) {
@@ -68,13 +67,13 @@ public class WeepingCircletItem extends SpectrumCurioItem {
 		}
 	}
 	
-	private void healLovingAxolotls(@NotNull ServerPlayer entity) {
+	private void healLovingAxolotls(ServerPlayer entity) {
 		Level world = entity.level();
 		List<Axolotl> nearbyAxolotls = entity.level().getEntities(EntityType.AXOLOTL, AABB.ofSize(entity.position(), MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE), LivingEntity::isAlive);
 		for (Axolotl axolotlEntity : nearbyAxolotls) {
 			if (axolotlEntity.getHealth() < axolotlEntity.getMaxHealth() && axolotlEntity.getLoveCause() != null && axolotlEntity.getLoveCause().equals(entity)) {
 				axolotlEntity.heal(AXOLOTL_HEALING);
-				entity.playSound(SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
+				entity.playSound(SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) axolotlEntity.level(), axolotlEntity.position(), ParticleTypes.WAX_OFF, 10, new Vec3(0.5, 0.5, 0.5), new Vec3(0, 0, 0));
 			}
 		}

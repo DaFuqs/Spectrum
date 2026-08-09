@@ -18,7 +18,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;
@@ -57,7 +56,7 @@ public class TakeOffBeltItem extends SpectrumCurioItem {
 		
 		LivingEntity entity = slotContext.entity();
 		Level world = entity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (entity.isShiftKeyDown() && entity.onGround()) {
 				if (sneakingTimes.containsKey(entity)) {
 					long sneakTicks = world.getGameTime() - sneakingTimes.get(entity);
@@ -103,12 +102,12 @@ public class TakeOffBeltItem extends SpectrumCurioItem {
 	}
 	
 	@Override
-	public int getEnchantmentValue(@NotNull ItemStack stack) {
+	public int getEnchantmentValue(ItemStack stack) {
 		return 8;
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.POWER) || enchantment.is(Enchantments.FEATHER_FALLING);
 	}
 	

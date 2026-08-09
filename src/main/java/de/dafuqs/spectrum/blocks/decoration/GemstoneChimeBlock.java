@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jspecify.annotations.*;
 
 public class GemstoneChimeBlock extends Block {
 	
@@ -26,9 +27,9 @@ public class GemstoneChimeBlock extends Block {
 		this.soundEvent = soundEvent;
 		this.particleEffect = particleEffect;
 	}
-	
+
 	@Override
-	public MapCodec<? extends GemstoneChimeBlock> codec() {
+	public @Nullable MapCodec<? extends GemstoneChimeBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

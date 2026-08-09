@@ -20,7 +20,7 @@ import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -35,10 +35,10 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 		if (isPrimed(user.getItemInHand(hand))) {
 			return super.use(world, user, hand);
 		}
-		
-		if (world.isClientSide) {
-			startSoundInstance(user);
-		}
+
+        if (world.isClientSide()) {
+            startSoundInstance(user);
+        }
 		return ItemUtils.startUsingInstantly(world, user, hand);
 	}
 	
@@ -59,7 +59,7 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 	}
 	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		if (world instanceof ServerLevel serverWorld) {
 			if (isPrimeTimeElapsed(world, stack)) {
 				explode(stack, serverWorld, entity.position(), entity);
@@ -92,8 +92,8 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 			target.hurt(SpectrumDamageTypes.incandescence(world, owner instanceof LivingEntity living ? living : null), 200F);
 		world.explode(null, SpectrumDamageTypes.incandescence(world), new ExplosionDamageCalculator(), pos.x(), pos.y(), pos.z(), 7.5F, true, Level.ExplosionInteraction.NONE);
 	}
-	
-	public Entity tryGetOwner(ItemStack stack, ServerLevel world) {
+
+	public @Nullable Entity tryGetOwner(ItemStack stack, ServerLevel world) {
 		var profile = stack.get(DataComponents.PROFILE);
 		if (profile == null || profile.id().isEmpty())
 			return null;

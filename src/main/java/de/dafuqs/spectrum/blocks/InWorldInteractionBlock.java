@@ -44,7 +44,7 @@ public abstract class InWorldInteractionBlock extends BaseEntityBlock {
 	
 	@Override
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if (!world.isClientSide && entity instanceof ItemEntity itemEntity) {
+		if (!world.isClientSide() && entity instanceof ItemEntity itemEntity) {
 			ItemStack remainingStack = inputStack(world, pos, itemEntity.getItem());
 			if (remainingStack.isEmpty()) {
 				itemEntity.remove(Entity.RemovalReason.DISCARDED);
@@ -72,11 +72,11 @@ public abstract class InWorldInteractionBlock extends BaseEntityBlock {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof InWorldInteractionBlockEntity inWorldInteractionBlockEntity) {
 			int previousCount = itemStack.getCount();
-			ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, inWorldInteractionBlockEntity, null);
+			ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, inWorldInteractionBlockEntity, Direction.DOWN);
 			
 			if (remainingStack.getCount() != previousCount) {
 				inWorldInteractionBlockEntity.inventoryChanged();
-				world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+				world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.6F);
 			}
 			return remainingStack;
 		}
@@ -121,7 +121,7 @@ public abstract class InWorldInteractionBlock extends BaseEntityBlock {
 		
 		if (itemsChanged) {
 			blockEntity.inventoryChanged();
-			world.playSound(null, player.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+			world.playSound(null, player.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.6F);
 		}
 		return itemsChanged;
 	}
@@ -137,7 +137,7 @@ public abstract class InWorldInteractionBlock extends BaseEntityBlock {
 			player.getInventory().placeItemBackInInventory(retrievedStack);
 		}
 		blockEntity.inventoryChanged();
-		world.playSound(null, player.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+		world.playSound(null, player.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.6F);
 		return true;
 	}
 	
@@ -155,7 +155,7 @@ public abstract class InWorldInteractionBlock extends BaseEntityBlock {
 		ItemStack remainingStack = InventoryHelper.smartAddToInventory(handStack, blockEntity, null);
 		if (remainingStack.getCount() != previousCount) {
 			player.setItemInHand(hand, remainingStack);
-			world.playSound(null, player.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+			world.playSound(null, player.blockPosition(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.6F);
 			blockEntity.inventoryChanged();
 			return true;
 		}

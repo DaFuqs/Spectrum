@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -46,7 +46,7 @@ public abstract class IdolBlock extends Block {
 	
 	@Override
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (!hasCooldown(state) && trigger((ServerLevel) world, pos, state, player, hit.getDirection())) {
 				playTriggerParticles((ServerLevel) world, pos);
 				playTriggerSound(world, pos);
@@ -59,6 +59,14 @@ public abstract class IdolBlock extends Block {
 	}
 	
 	@Override
+	protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+		super.onPlace(state, level, pos, oldState, movedByPiston);
+		if (!state.is(oldState.getBlock()) && !level.isClientSide() && state.getValue(COOLDOWN) && !level.getBlockTicks().hasScheduledTick(pos, this)) {
+			triggerCooldown(level, pos);
+		}
+	}
+	
+	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.tick(state, world, pos, random);
 		world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(COOLDOWN, false));
@@ -67,7 +75,7 @@ public abstract class IdolBlock extends Block {
 	@Override
 	public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
 		super.stepOn(world, pos, state, entity);
-		if (!world.isClientSide && !hasCooldown(state)) {
+		if (!world.isClientSide() && !hasCooldown(state)) {
 			if (trigger((ServerLevel) world, pos, state, entity, Direction.UP)) {
 				playTriggerParticles((ServerLevel) world, pos);
 				playTriggerSound(world, pos);
@@ -78,7 +86,7 @@ public abstract class IdolBlock extends Block {
 	
 	@Override
 	public void onProjectileHit(Level world, BlockState state, BlockHitResult hit, Projectile projectile) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			BlockPos hitPos = hit.getBlockPos();
 			if (!hasCooldown(state) && trigger((ServerLevel) world, hitPos, state, projectile.getOwner(), hit.getDirection())) {
 				playTriggerParticles((ServerLevel) world, hit.getBlockPos());

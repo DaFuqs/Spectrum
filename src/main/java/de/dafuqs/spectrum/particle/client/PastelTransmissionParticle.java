@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.particle.client;
 
 import com.mojang.blaze3d.vertex.*;
-import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.render.*;
@@ -9,12 +9,10 @@ import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
-import net.minecraft.client.renderer.texture.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 
@@ -43,7 +41,7 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
 		
 		// spawning sound & particles
 		Vec3 startPos = this.travelPositions.get(0);
-		world.playLocalSound(startPos.x(), startPos.y() + 0.25, startPos.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.15F * SpectrumConfig.CONFIG.BlockSoundVolume.get() + world.random.nextFloat() / 10F, 0.8F + world.random.nextFloat() * 0.3F, true);
+		world.playLocalSound(startPos.x(), startPos.y() + 0.25, startPos.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.15F * SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() + world.getRandom().nextFloat() / 10F, 0.8F + world.getRandom().nextFloat() * 0.3F, true);
 		world.addParticle(ParticleTypes.BUBBLE_POP, startPos.x(), startPos.y() + 0.25, startPos.z(), 0, 0, 0);
 	}
 	
@@ -55,7 +53,7 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
 		float travelPercent = (float) this.age / this.lifetime;
 		if (travelPercent >= 1.0F) {
 			Vec3 destination = this.travelPositions.get(vertexCount);
-			level.playLocalSound(destination.x(), destination.y() + 0.25, destination.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.1F * SpectrumConfig.CONFIG.BlockSoundVolume.get() + random.nextFloat() / 10F, 0.6F + level.random.nextFloat() * 0.3F, true);
+			level.playLocalSound(destination.x(), destination.y() + 0.25, destination.z(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.1F * SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() + random.nextFloat() / 10F, 0.6F + level.getRandom().nextFloat() * 0.3F, true);
 			level.addParticle(ParticleTypes.BUBBLE_POP, destination.x(), destination.y() + 0.25, destination.z(), 0, 0, 0);
 			this.remove();
 			return;
@@ -75,28 +73,24 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
 		this.y = Mth.lerp(nodeProgress, source.y, destination.y);
 		this.z = Mth.lerp(nodeProgress, source.z, destination.z);
 		
+		payload.tick(level, this);
+		
 		if (SpectrumConfig.CONFIG.PastelNetworkParticles.get() && this.age % 2 == 0) {
 			level.addParticle(particleEffect, x + random.nextDouble() * 0.4 - 0.2, y + random.nextDouble() * 0.4 - 0.2, z + random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2, random.nextDouble() * 0.4 - 0.2);
 		}
 	}
 	
 	@Override
-	public void renderAsEntity(final PoseStack poseStack, final MultiBufferSource vertexConsumers, final Camera camera, final float tickDelta) {
-		final Vec3 cameraPos = camera.getPosition();
-		final float x = (float) (Mth.lerp(tickDelta, xo, this.x));
-		final float y = (float) (Mth.lerp(tickDelta, yo, this.y));
-		final float z = (float) (Mth.lerp(tickDelta, zo, this.z));
-		
-		poseStack.pushPose();
-		
-		poseStack.translate(x - cameraPos.x, y - cameraPos.y, z - cameraPos.z);
-		final int light = getLightColor(tickDelta);
-		poseStack.mulPose(camera.rotation());
-		poseStack.scale(0.65F, 0.65F, 0.65F);
-		poseStack.translate(0, -0.15, 0);
-		payload.render(this, level, poseStack, vertexConsumers, light);
-		
-		poseStack.popPose();
+	public void renderAfterEntities(final PoseStack poseStack, final MultiBufferSource vertexConsumers, final Camera camera, final float tickDelta) {
+		payload.renderAfterEntities(this, level, poseStack, vertexConsumers, camera, tickDelta);
+	}
+	
+	public int getLightColor(float partialTick) {
+		return super.getLightColor(partialTick);
+	}
+	
+	public Vec3 getPos(float partialTick) {
+		return new Vec3(Mth.lerp(partialTick, xo, this.x), Mth.lerp(partialTick, yo, this.y), Mth.lerp(partialTick, zo, this.z));
 	}
 	
 }

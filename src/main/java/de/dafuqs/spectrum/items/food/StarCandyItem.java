@@ -2,10 +2,8 @@ package de.dafuqs.spectrum.items.food;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
-import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
@@ -43,18 +41,18 @@ public class StarCandyItem extends Item {
 		
 		switch(this.rarity) {
 			case GLEAMING ->  {
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					MobEffectHelper.clearRandomEffect(user, instance -> instance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL);
 				}
 			}
 			case ENCHANTED ->  {
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					MobEffectHelper.clearEffects(user, instance -> instance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL);
 				}
 			}
 			case MAGNIFICENT -> {
 				user.heal(user.getMaxHealth());
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					MobEffectHelper.clearEffects(user, instance -> instance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL);
 				}
 				if (user instanceof Player player) {

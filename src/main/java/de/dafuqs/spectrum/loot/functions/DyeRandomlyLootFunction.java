@@ -12,7 +12,6 @@ import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -33,12 +32,12 @@ public class DyeRandomlyLootFunction extends LootItemConditionalFunction {
 	}
 	
 	@Override
-	public @NotNull LootItemFunctionType<DyeRandomlyLootFunction> getType() {
+	public LootItemFunctionType<DyeRandomlyLootFunction> getType() {
 		return SpectrumLootFunctionTypes.DYE_RANDOMLY;
 	}
 	
 	@Override
-	public @NotNull ItemStack run(ItemStack stack, @NotNull LootContext context) {
+	public ItemStack run(ItemStack stack, LootContext context) {
 		if (stack.is(ItemTags.DYEABLE)) {
 			RandomSource random = context.getRandom();
 			int color = this.colors.isEmpty() ? SpectrumColorHelper.getRandomColor(random.nextInt()) : this.colors.get(random.nextInt(this.colors.size()));

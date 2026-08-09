@@ -17,20 +17,15 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public abstract class SpectrumFluid extends FlowingFluid {
 	
 	@Override
-	public boolean isSame(@NotNull Fluid fluid) {
+	public boolean isSame(Fluid fluid) {
 		return fluid == getSource() || fluid == getFlowing();
-	}
-	
-	@Override
-	protected boolean canConvertToSource(@NotNull Level world) {
-		return false;
 	}
 	
 	/**
@@ -95,9 +90,9 @@ public abstract class SpectrumFluid extends FlowingFluid {
 	public abstract ParticleOptions getSplashParticle();
 	
 	public void onEntityCollision(BlockState state, Level world, BlockPos pos, Entity entity) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (entity instanceof ItemEntity itemEntity && !itemEntity.hasPickUpDelay() && !itemEntity.isRemoved()) {
-				if (world.random.nextInt(40) == 0) {
+				if (world.getRandom().nextInt(40) == 0) {
 					ItemStack itemStack = itemEntity.getItem();
 					FluidConvertingRecipe recipe = getConversionRecipeFor(getDippingRecipeType(), world, itemStack);
 					if (recipe != null && !recipe.getResultItem(world.registryAccess()).is(itemStack.getItem())) { // do not try to convert items into itself for performance reasons
@@ -120,8 +115,8 @@ public abstract class SpectrumFluid extends FlowingFluid {
 	}
 	
 	public abstract RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType();
-	
-	public @Nullable <R extends FluidConvertingRecipe> R getConversionRecipeFor(RecipeType<R> recipeType, @NotNull Level world, ItemStack itemStack) {
+
+	public @Nullable <R extends FluidConvertingRecipe> R getConversionRecipeFor(RecipeType<R> recipeType, Level world, ItemStack itemStack) {
 		RecipeHolder<R> entry = world.getRecipeManager().getRecipeFor(recipeType, new SingleRecipeInput(itemStack), world).orElse(null);
 		return entry == null ? null : entry.value();
 	}

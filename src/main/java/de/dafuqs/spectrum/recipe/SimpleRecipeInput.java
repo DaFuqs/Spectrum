@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.recipe;
 
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -14,7 +13,7 @@ public class SimpleRecipeInput implements RecipeInput {
 	}
 	
 	@Override
-	public @NotNull ItemStack getItem(int slot) {
+	public ItemStack getItem(int slot) {
 		return stacks.get(slot);
 	}
 	

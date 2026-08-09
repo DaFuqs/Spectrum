@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.api.item;
 
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
-import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 
 public interface ExperienceStorageItem {

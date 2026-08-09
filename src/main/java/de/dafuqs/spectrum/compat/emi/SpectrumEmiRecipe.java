@@ -9,7 +9,7 @@ import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -17,12 +17,12 @@ public abstract class SpectrumEmiRecipe implements EmiRecipe {
 	public static final Component HIDDEN_LINE_1 = Component.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1");
 	public static final Component HIDDEN_LINE_2 = Component.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2");
 	public final EmiRecipeCategory category;
-	public final ResourceLocation recipeTypeUnlockIdentifier, recipeIdentifier;
+	public final @Nullable ResourceLocation recipeTypeUnlockIdentifier, recipeIdentifier;
 	public final int width, height;
 	public List<EmiIngredient> inputs = List.of();
 	public List<EmiStack> outputs = List.of();
 	
-	public SpectrumEmiRecipe(EmiRecipeCategory category, ResourceLocation recipeTypeUnlockIdentifier, ResourceLocation recipeIdentifier, int width, int height) {
+	public SpectrumEmiRecipe(EmiRecipeCategory category, @Nullable ResourceLocation recipeTypeUnlockIdentifier, @Nullable ResourceLocation recipeIdentifier, int width, int height) {
 		this.category = category;
 		this.recipeTypeUnlockIdentifier = recipeTypeUnlockIdentifier;
 		this.recipeIdentifier = recipeIdentifier;
@@ -38,7 +38,7 @@ public abstract class SpectrumEmiRecipe implements EmiRecipe {
 		return recipeTypeUnlockIdentifier == null || hasAdvancement(recipeTypeUnlockIdentifier);
 	}
 	
-	public boolean hasAdvancement(ResourceLocation advancement) {
+	public boolean hasAdvancement(@Nullable ResourceLocation advancement) {
 		Minecraft client = Minecraft.getInstance();
 		return AdvancementHelper.hasAdvancement(client.player, advancement);
 	}

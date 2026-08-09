@@ -12,7 +12,6 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -53,7 +52,7 @@ public class HardcoreDeathAttachmentType {
 		}
 		
 		@Override
-		public @NotNull Type<? extends CustomPacketPayload> type() {
+		public Type<? extends CustomPacketPayload> type() {
 			return TYPE;
 		}
 	}

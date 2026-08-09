@@ -4,8 +4,8 @@ import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
+import org.jspecify.annotations.*;
 
 
 public class ColoredCraftingParticle extends TextureSheetParticle {
@@ -57,9 +57,9 @@ public class ColoredCraftingParticle extends TextureSheetParticle {
 		
 		@Override
 		public @Nullable Particle createParticle(ColoredCraftingParticleEffect parameters, ClientLevel world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-			Vector3f color = parameters.getColor();
+			Vector3f color = parameters.color();
 			ColoredCraftingParticle coloredCraftingParticle = new ColoredCraftingParticle(world, x, y, z, velocityX, velocityY, velocityZ, color.x, color.y, color.z);
-			coloredCraftingParticle.setLifetime((int) (8.0D / (world.random.nextDouble() * 0.8D + 0.2D)));
+			coloredCraftingParticle.setLifetime((int) (8.0D / (world.getRandom().nextDouble() * 0.8D + 0.2D)));
 			coloredCraftingParticle.pickSprite(this.spriteProvider);
 			return coloredCraftingParticle;
 		}

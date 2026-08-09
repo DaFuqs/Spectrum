@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 import com.google.gson.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.core.*;
@@ -14,7 +14,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public record PotionRecipeEffect(
 		boolean applicableToPotions,
@@ -70,7 +70,7 @@ public record PotionRecipeEffect(
 		return PACKET_CODEC.decode(buf);
 	}
 	
-	public @Nullable InkPoweredStatusEffectInstance getStatusEffectInstance(@NotNull PotionMod potionMod, RandomSource random) {
+	public @Nullable InkPoweredStatusEffectInstance getStatusEffectInstance(PotionMod potionMod, RandomSource random) {
 		float potency = potionMod.flatPotencyBonus();
 		int durationTicks = baseDurationTicks() + potionMod.flatDurationBonusTicks();
 		switch (statusEffect().value().getCategory()) {

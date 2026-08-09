@@ -13,6 +13,7 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.crafting.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -22,7 +23,7 @@ public class RecipesLoadedAndUnlockedCondition extends BookCondition {
 	
 	protected List<ResourceLocation> recipeIDs;
 	
-	public RecipesLoadedAndUnlockedCondition(Component tooltip, List<ResourceLocation> recipeIDs) {
+	public RecipesLoadedAndUnlockedCondition(@Nullable Component tooltip, List<ResourceLocation> recipeIDs) {
 		super(tooltip);
 		this.recipeIDs = recipeIDs;
 	}

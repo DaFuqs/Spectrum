@@ -21,13 +21,10 @@ import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.*;
-import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
-
-import java.util.function.*;
 
 public class SpectrumRecipeSerializers {
 	
@@ -64,7 +61,6 @@ public class SpectrumRecipeSerializers {
 	public static final RecipeSerializer<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING_SERIALIZER = register("potion_workshop_reacting", new PotionWorkshopReactingRecipe.Serializer());
 	
 	// Fluid converting
-	public static final FluidConvertingRecipe.Serializer<SludgeConvertingRecipe> SLUDGE_CONVERTING_SERIALIZER = register("sludge_converting", new FluidConvertingRecipe.Serializer<>(SludgeConvertingRecipe::new));
 	public static final FluidConvertingRecipe.Serializer<LiquidCrystalConvertingRecipe> LIQUID_CRYSTAL_CONVERTING_SERIALIZER = register("liquid_crystal_converting", new FluidConvertingRecipe.Serializer<>(LiquidCrystalConvertingRecipe::new));
 	public static final FluidConvertingRecipe.Serializer<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER = register("midnight_solution_converting", new FluidConvertingRecipe.Serializer<>(MidnightSolutionConvertingRecipe::new));
 	public static final FluidConvertingRecipe.Serializer<DragonrotConvertingRecipe> DRAGONROT_CONVERTING_SERIALIZER = register("dragonrot_converting", new FluidConvertingRecipe.Serializer<>(DragonrotConvertingRecipe::new));

@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "ingredient": [
     {
-      "item": "spectrum:azurite_block"
+      "item": "spectrum:pure_azurite_block"
     }
   ],
   "result": {

@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -86,16 +86,16 @@ public class PyriteRipperBlock extends SpectrumFacingBlock {
 	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
 		return !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : state;
 	}
-	
+
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @Nullable VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return state.getValue(MIRRORED) ? SHAPES_MIRRORED.get(state.getValue(FACING)) : SHAPES.get(state.getValue(FACING));
 	}
 	
 	@Override
 	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
 		if (entity instanceof LivingEntity && !entity.getType().is(SpectrumEntityTypeTags.POKING_DAMAGE_IMMUNE)) {
-			if (!world.isClientSide && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
+			if (!world.isClientSide() && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
 				double difX = Math.abs(entity.getX() - entity.xOld);
 				double difZ = Math.abs(entity.getZ() - entity.zOld);
 				if (difX >= 0.003 || difZ >= 0.003) {

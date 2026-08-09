@@ -30,8 +30,8 @@ public class SpectrumArmorMaterials {
 			}),
 			15,
 			BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.AMETHYST_BLOCK_CHIME),
-			SpectrumConfig.CONFIG.GemstoneArmorToughness.get(),
-			SpectrumConfig.CONFIG.GemstoneArmorKnockbackResistance.get(),
+			SpectrumConfig.CONFIG.GemstoneArmorToughness.get().floatValue(),
+			SpectrumConfig.CONFIG.GemstoneArmorKnockbackResistance.get().floatValue(),
 			() -> Ingredient.of(SpectrumItemTags.GEMSTONE_SHARDS));
 	
 	public static Holder<ArmorMaterial> BEDROCK = register("bedrock",
@@ -43,8 +43,8 @@ public class SpectrumArmorMaterials {
 			}),
 			5,
 			SoundEvents.ARMOR_EQUIP_NETHERITE,
-			SpectrumConfig.CONFIG.BedrockArmorToughness.get(),
-			SpectrumConfig.CONFIG.BedrockArmorKnockbackResistance.get(),
+			SpectrumConfig.CONFIG.BedrockArmorToughness.get().floatValue(),
+			SpectrumConfig.CONFIG.BedrockArmorKnockbackResistance.get().floatValue(),
 			() -> Ingredient.of(SpectrumItems.BEDROCK_DUST));
 	
 	public static void register(IEventBus eventBus) {

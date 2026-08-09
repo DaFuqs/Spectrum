@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -14,7 +13,7 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -54,7 +53,7 @@ public class InkDrainCurioItem extends SpectrumCurioItem implements InkStorageIt
 	}
 	
 	@Override
-	public boolean isFoil(@NotNull ItemStack stack) {
+	public boolean isFoil(ItemStack stack) {
 		return isMaxedOut(stack);
 	}
 	
@@ -64,13 +63,13 @@ public class InkDrainCurioItem extends SpectrumCurioItem implements InkStorageIt
 	
 	// Omitting this would crash outside the dev env o.O
 	@Override
-	public @NotNull ItemStack getDefaultInstance() {
+	public ItemStack getDefaultInstance() {
 		return super.getDefaultInstance();
 	}
 	
 	@Override
-	public Drainability getDrainability() {
-		return Drainability.NEVER;
+	public boolean canDrain(boolean player) {
+		return false;
 	}
 	
 	@Override
@@ -104,7 +103,7 @@ public class InkDrainCurioItem extends SpectrumCurioItem implements InkStorageIt
 	}
 	
 	@Override
-	public BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		var inkTank = getEnergyStorage(stack);
 		var progress = (int) Math.round(Mth.clampedLerp(0, 14, Math.log(inkTank.getEnergy(inkColor) / 100.0f) / Math.log(8) / 5.0F));
 		

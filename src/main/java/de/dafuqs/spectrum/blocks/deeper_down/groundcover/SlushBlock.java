@@ -11,7 +11,8 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import net.neoforged.neoforge.common.util.*;
+import org.jspecify.annotations.*;
 
 public class SlushBlock extends RotatedPillarBlock implements BonemealableBlock {
 	
@@ -61,6 +62,14 @@ public class SlushBlock extends RotatedPillarBlock implements BonemealableBlock 
 			return SpectrumBlocks.TILLED_SLUSH.get().defaultBlockState();
 		}
 		return null;
+	}
+	
+	@Override
+	public TriState canSustainPlant(BlockState state, BlockGetter level, BlockPos soilPosition, Direction facing, BlockState plant) {
+		if(plant.getBlock() instanceof SugarCaneBlock) {
+			return TriState.TRUE;
+		}
+		return super.canSustainPlant(state, level, soilPosition, facing, plant);
 	}
 	
 }

@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -110,9 +111,9 @@ public class StuckStormStoneBlock extends HorizontalDirectionalBlock implements 
 		}
 		return map;
 	}
-	
+
 	@Override
-	public Tuple<Item, Item> getItemCloak() {
+	public @Nullable Tuple<Item, Item> getItemCloak() {
 		return null;
 	}
 	

@@ -2,17 +2,29 @@ package de.dafuqs.spectrum.render;
 
 import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.*;
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.attachment_types.*;
+import de.dafuqs.spectrum.inventories.widgets.ink.*;
+import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.multiplayer.*;
+import net.minecraft.client.renderer.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.client.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.*;
-import org.jetbrains.annotations.*;
+import org.joml.*;
+import org.jspecify.annotations.*;
+
+import java.lang.Math;
+import java.util.function.*;
 
 
 public class HudRenderers {
@@ -20,19 +32,49 @@ public class HudRenderers {
 	private static final Component MISSING_INK_TEXT = Component.translatable("item.spectrum.constructors_staff.tooltip.missing_ink");
 	private static final Component NONE_TEXT = Component.translatable("item.spectrum.constructors_staff.tooltip.none_in_inventory");
 	
-	private static ItemStack itemStackToRender;
+	// AZURE DIKE
+	public static final ResourceLocation AZURE_DIKE_OVERLAY_ID = SpectrumCommon.locate("azure_dike");
+	
+	// BUILDING STAFFS
+	public static final ResourceLocation STAFF_OVERLAY_ID = SpectrumCommon.locate("staff_overlay");
+	private static @Nullable ItemStack itemStackToRender;
 	private static int amount;
 	private static boolean missingInk;
 	
-	public static final ResourceLocation AZURE_DIKE_OVERLAY_ID = SpectrumCommon.locate("azure_dike");
+	// PAINTBRUSH INFO
+	public static final ResourceLocation PAINTBRUSH_INFO_OVERLAY_ID = SpectrumCommon.locate("paintbrush_info");
+	public static @Nullable InkCapability hoveredCapability = null;
+	
 	
 	public static void register(RegisterGuiLayersEvent event) {
 		event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, AZURE_DIKE_OVERLAY_ID, new AzureDikeLayer());
+		event.registerAbove(VanillaGuiLayers.CROSSHAIR, PAINTBRUSH_INFO_OVERLAY_ID, new PaintbrushInfoLayer());
+		event.registerAbove(VanillaGuiLayers.CROSSHAIR, STAFF_OVERLAY_ID, new StaffInfoLayer());
 	}
 	
-	public static void registerPost(RenderGuiLayerEvent.Post event) {
-		if (event.getName().equals(VanillaGuiLayers.CROSSHAIR)) {
-			renderSelectedStaffStack(event.getGuiGraphics());
+	private static class PaintbrushInfoLayer implements LayeredDraw.Layer {
+		
+		protected static final ResourceLocation SPLASH_SPRITE = SpectrumCommon.locate("splash");
+	
+		@Override
+		public void render(GuiGraphics drawContext, DeltaTracker deltaTracker) {
+			if(hoveredCapability != null) {
+				float partialTick = deltaTracker.getGameTimeDeltaPartialTick(true);
+				Minecraft client = Minecraft.getInstance();
+				GuiGraphics guiGraphics = new GuiGraphics(client, drawContext.bufferSource());
+				PoseStack poseStack = guiGraphics.pose();
+				
+				poseStack.pushPose();
+				int x = drawContext.guiWidth() / 2;
+				int y = drawContext.guiHeight() / 2;
+				poseStack.translate(x, y, 0);
+				guiGraphics.blitSprite(SPLASH_SPRITE, 8, -50, 100, 100);
+				InkPieWidget inkPieWidget = new InkPieWidget(30, -21, () -> hoveredCapability).setThickOutline();
+				inkPieWidget.render(guiGraphics, 0, 0, partialTick);
+				StackedInkBarWidget stackedInkBarWidget = new StackedInkBarWidget(80, -21, () -> hoveredCapability).setThickOutline();
+				stackedInkBarWidget.render(guiGraphics, 0, 0, partialTick);
+				poseStack.popPose();
+			}
 		}
 	}
 	
@@ -42,16 +84,16 @@ public class HudRenderers {
 	private static class AzureDikeLayer implements LayeredDraw.Layer {
 		
 		@Override
-		public void render(@NotNull GuiGraphics drawContext, @NotNull DeltaTracker deltaTracker) {
+		public void render(GuiGraphics drawContext, DeltaTracker deltaTracker) {
 			var minecraft = Minecraft.getInstance();
+			Player cameraPlayer = minecraft.player;
 			
-			if (minecraft.options.hideGui || minecraft.gameMode == null || !minecraft.gameMode.canHurtPlayer()) {
+			if (minecraft.options.hideGui || minecraft.gameMode == null || !minecraft.gameMode.canHurtPlayer() || cameraPlayer == null) {
 				return;
 			}
 			
-			Player cameraPlayer = Minecraft.getInstance().player;
 			int x = drawContext.guiWidth() / 2 - 91;
-			int y = drawContext.guiHeight() - Minecraft.getInstance().gui.leftHeight;
+			int y = drawContext.guiHeight() - minecraft.gui.leftHeight;
 			
 			AzureDikeAttachmentType azureDikeAttachment = cameraPlayer.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
 			int maxCharges = (int) Math.ceil(azureDikeAttachment.getMaxCharges());
@@ -123,30 +165,34 @@ public class HudRenderers {
 		}
 	}
 	
-	private static void renderSelectedStaffStack(GuiGraphics drawContext) {
-		Minecraft client = Minecraft.getInstance();
-		if (amount > -1 && itemStackToRender != null) {
-			// Render the item stack next to the cursor
-			Window window = Minecraft.getInstance().getWindow();
-			int x = window.getGuiScaledWidth() / 2 + 3;
-			int y = window.getGuiScaledHeight() / 2 + 3;
-			
-			var poseStack = drawContext.pose();
-			poseStack.pushPose();
-			poseStack.scale(0.5F, 0.5F, 1F);
-			
-			var textRenderer = client.font;
-			drawContext.renderItem(itemStackToRender, (x + 8) * 2, (y + 8) * 2); // TODO: make this render 2x the size, so it spans all 2 rows of text
-			poseStack.scale(2F, 2F, 1F);
-			drawContext.drawString(textRenderer, itemStackToRender.getHoverName(), x + 18, y + 8, 0xFFFFFF, false);
-			if (amount == 0) {
-				drawContext.drawString(textRenderer, NONE_TEXT, x + 18, y + 19, 0xDDDDDD, false);
-			} else if (missingInk) {
-				drawContext.drawString(textRenderer, MISSING_INK_TEXT, x + 18, y + 19, 0xDDDDDD, false);
-			} else {
-				drawContext.drawString(textRenderer, amount + "x", x + 18, y + 19, 0xDDDDDD, false);
+	private static class StaffInfoLayer implements LayeredDraw.Layer {
+		
+		@Override
+		public void render(GuiGraphics drawContext, DeltaTracker deltaTracker) {
+			Minecraft client = Minecraft.getInstance();
+			if (amount > -1 && itemStackToRender != null) {
+				// Render the item stack next to the cursor
+				Window window = Minecraft.getInstance().getWindow();
+				int x = window.getGuiScaledWidth() / 2 + 3;
+				int y = window.getGuiScaledHeight() / 2 + 3;
+				
+				var poseStack = drawContext.pose();
+				poseStack.pushPose();
+				poseStack.scale(0.5F, 0.5F, 1F);
+				
+				var textRenderer = client.font;
+				drawContext.renderItem(itemStackToRender, (x + 8) * 2, (y + 8) * 2); // TODO: make this render 2x the size, so it spans all 2 rows of text
+				poseStack.scale(2F, 2F, 1F);
+				drawContext.drawString(textRenderer, itemStackToRender.getHoverName(), x + 18, y + 8, 0xFFFFFF, false);
+				if (amount == 0) {
+					drawContext.drawString(textRenderer, NONE_TEXT, x + 18, y + 19, 0xDDDDDD, false);
+				} else if (missingInk) {
+					drawContext.drawString(textRenderer, MISSING_INK_TEXT, x + 18, y + 19, 0xDDDDDD, false);
+				} else {
+					drawContext.drawString(textRenderer, amount + "x", x + 18, y + 19, 0xDDDDDD, false);
+				}
+				poseStack.popPose();
 			}
-			poseStack.popPose();
 		}
 	}
 	

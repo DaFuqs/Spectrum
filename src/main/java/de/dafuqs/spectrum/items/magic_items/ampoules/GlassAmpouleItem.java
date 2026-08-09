@@ -6,7 +6,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public abstract class GlassAmpouleItem extends Item {
 	
@@ -31,17 +31,17 @@ public abstract class GlassAmpouleItem extends Item {
 	public InteractionResult interactLivingEntity(ItemStack stack, Player user, LivingEntity entity, InteractionHand hand) {
 		Level world = user.level();
 		if (trigger(user.level(), stack, user, entity, user.getEyePosition())) {
-			if (!user.level().isClientSide) {
+			if (!user.level().isClientSide()) {
 				if (!(user.isCreative())) {
 					stack.shrink(1);
 				}
 			}
-			return InteractionResult.sidedSuccess(world.isClientSide);
+			return InteractionResult.sidedSuccess(world.isClientSide());
 		}
 		
 		return world.isClientSide() ? InteractionResult.FAIL : InteractionResult.PASS;
 	}
 	
-	public abstract boolean trigger(Level world, ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target, Vec3 position);
+	public abstract boolean trigger(Level world, ItemStack stack, @Nullable LivingEntity attacker, @Nullable LivingEntity target, Vec3 position);
 	
 }

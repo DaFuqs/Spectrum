@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -10,11 +9,10 @@ import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.level.*;
 
 import java.util.*;
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public class MobEffectHelper {
 	
@@ -28,7 +26,7 @@ public class MobEffectHelper {
 		return (int) (originalDuration * (1 + ADDITIONAL_EFFECT_DURATION_MODIFIER_PER_LEVEL * (1 + prolongingAmplifier)));
 	}
 
-    public static void clearRandomEffect(@NotNull LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
+    public static void clearRandomEffect(LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
         Collection<MobEffectInstance> currentEffects = entity.getActiveEffects();
         List<MobEffectInstance> toRemove = new ArrayList<>();
         for (MobEffectInstance instance : currentEffects) {
@@ -42,11 +40,11 @@ public class MobEffectHelper {
         }
         
         Level world = entity.level();
-        int randomIndex = world.random.nextInt(toRemove.size());
+        int randomIndex = world.getRandom().nextInt(toRemove.size());
         entity.removeEffect(toRemove.get(randomIndex).getEffect());
     }
 
-    public static void clearEffects(@NotNull LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
+    public static void clearEffects(LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
         Set<Holder<MobEffect>> effectsToRemove = new HashSet<>();
         for (MobEffectInstance instance : entity.getActiveEffects()) {
             if (effectPredicate.test(instance)) {
@@ -59,7 +57,7 @@ public class MobEffectHelper {
         }
     }
 
-    public static void shortenEffects(@NotNull LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
+    public static void shortenEffects(LivingEntity entity, Predicate<MobEffectInstance> effectPredicate) {
         for (MobEffectInstance instance : entity.getActiveEffects()) {
             if (effectPredicate.test(instance)) {
 				shortenEffect(entity, instance);
@@ -107,9 +105,9 @@ public class MobEffectHelper {
 	private static final StatusEffectBackground NIGHT_ALCHEMY = new StatusEffectBackground("night_alchemy");
 	
 	public static ResourceLocation getTextureLocation(ResourceLocation original, MobEffectInstance effect, RenderType renderType) {
-		var type = effect.getEffect();
+		Holder<MobEffect> type = effect.getEffect();
 		
-		if (type == SpectrumMobEffects.DIVINITY)
+		if (type.is(SpectrumMobEffects.DIVINITY))
 			return DIVINITY.get(renderType);
 		
 		if (type.is(SpectrumMobEffectTags.NIGHT_ALCHEMY))

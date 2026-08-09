@@ -1,7 +1,11 @@
 {
   "type": "minecraft:blasting",
   "group": "iron_ingot",
-  "ingredient": [{"item": "spectrum:blackslag_iron_ore"}],
+  "ingredient": [
+    {
+      "item": "spectrum:blackslag_iron_ore"
+    }
+  ],
   "result": {
     "id": "minecraft:iron_ingot"
   },

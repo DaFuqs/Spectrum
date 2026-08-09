@@ -12,7 +12,6 @@ import net.minecraft.world.entity.decoration.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 public class PhantomFrameEntity extends ItemFrame {
 	
@@ -34,7 +33,7 @@ public class PhantomFrameEntity extends ItemFrame {
 	}
 	
 	@Override
-	protected @NotNull ItemStack getFrameItemStack() {
+	protected ItemStack getFrameItemStack() {
 		return new ItemStack(SpectrumItems.PHANTOM_FRAME.get());
 	}
 	

@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_pastel_network": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/pastel_network/base"
+      }
+    },
+    "collected_mermaids_gem": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_mermaids_gem"
+      }
+    }
+  }
+}

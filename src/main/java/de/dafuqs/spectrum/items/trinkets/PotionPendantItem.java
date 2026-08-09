@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
@@ -54,7 +54,7 @@ public class PotionPendantItem extends SpectrumCurioItem implements InkPoweredPo
 	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
 		Level world = slotContext.entity().level();
 		super.onEquip(slotContext, prevStack, stack);
-		if (!world.isClientSide && slotContext.entity() instanceof Player player) {
+		if (!world.isClientSide() && slotContext.entity() instanceof Player player) {
 			grantEffects(stack, player);
 		}
 	}
@@ -64,7 +64,7 @@ public class PotionPendantItem extends SpectrumCurioItem implements InkPoweredPo
 		LivingEntity entity = slotContext.entity();
 		Level world = entity.level();
 		super.curioTick(slotContext, stack);
-		if (!world.isClientSide && entity.level().getGameTime() % TRIGGER_EVERY_X_TICKS == 0 && entity instanceof Player player) {
+		if (!world.isClientSide() && entity.level().getGameTime() % TRIGGER_EVERY_X_TICKS == 0 && entity instanceof Player player) {
 			grantEffects(stack, player);
 		}
 	}

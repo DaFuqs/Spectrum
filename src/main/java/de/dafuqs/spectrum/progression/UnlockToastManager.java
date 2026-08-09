@@ -13,7 +13,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -36,7 +35,7 @@ public class UnlockToastManager {
 		put(SpectrumAdvancements.VIVISECT_KINDLING, new Tuple<>(() -> SpectrumItems.DIVINATION_HEART.get().getDefaultInstance(), "vivisect_kindling"));
 		put(SpectrumAdvancements.PAINTBRUSH_COLORING, new Tuple<>(() -> SpectrumItems.PAINTBRUSH.get().getDefaultInstance(), "block_coloring_unlocked"));
 		put(SpectrumAdvancements.PAINTBRUSH_INK_SLINGING, new Tuple<>(() -> SpectrumItems.PAINTBRUSH.get().getDefaultInstance(), "ink_slinging_unlocked"));
-		put(SpectrumAdvancements.PASTEL_NODE_COLORING, new Tuple<>(() -> SpectrumBlocks.SENDER_NODE.asItem().getDefaultInstance(), "pastel_node_coloring"));
+		put(SpectrumAdvancements.PASTEL_NODE_COLORING, new Tuple<>(() -> SpectrumBlocks.ITEM_SENDER_NODE.asItem().getDefaultInstance(), "pastel_node_coloring"));
 	}};
 	
 	public static void clear() {
@@ -204,7 +203,7 @@ public class UnlockToastManager {
 	 *
 	 * @param pedestalRecipeTier The new pedestal recipe tier the player unlocked
 	 */
-	private static @NotNull List<PedestalRecipe> getRecipesForTierWithAllConditionsMet(PedestalRecipeTier pedestalRecipeTier, List<GatedRecipe<?>> pedestalRecipes) {
+	private static List<PedestalRecipe> getRecipesForTierWithAllConditionsMet(PedestalRecipeTier pedestalRecipeTier, List<GatedRecipe<?>> pedestalRecipes) {
 		Minecraft client = Minecraft.getInstance();
 		Player player = client.player;
 		

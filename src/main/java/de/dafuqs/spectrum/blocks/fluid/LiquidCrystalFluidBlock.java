@@ -11,11 +11,9 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
-	
-	public static final int LUMINANCE = 11;
 	
 	public LiquidCrystalFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Properties settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
@@ -51,13 +49,11 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	@Override
-	public @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState, Direction direction) {
+	public @Nullable BlockState handleFluidCollision(Level world, FluidState state, FluidState otherState, Direction direction) {
 		if (otherState.is(FluidTags.WATER)) {
-			return state.isSource() ? SpectrumBlocks.FROSTBITE_CRYSTAL.get().defaultBlockState() : Blocks.CALCITE.defaultBlockState();
+			return state.isSource() && direction != Direction.DOWN ? SpectrumBlocks.FROSTBITE_CRYSTAL.get().defaultBlockState() : Blocks.CALCITE.defaultBlockState();
 		} else if (otherState.is(FluidTags.LAVA)) {
-			return state.isSource() ? SpectrumBlocks.BLAZING_CRYSTAL.get().defaultBlockState() : Blocks.COBBLED_DEEPSLATE.defaultBlockState();
-		} else if (otherState.is(SpectrumFluidTags.SLUDGE)) {
-			return Blocks.CLAY.defaultBlockState();
+			return state.isSource() && direction != Direction.DOWN ? SpectrumBlocks.BLAZING_CRYSTAL.get().defaultBlockState() : Blocks.COBBLED_DEEPSLATE.defaultBlockState();
 		}
 		return null;
 	}

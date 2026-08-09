@@ -1,6 +1,6 @@
 {
   "type": "spectrum:crystallarieum_growing",
-  "fluid_medium": {
+  "fluid": {
     "fluid": "spectrum:liquid_crystal"
   },
   "additional_recipe_manager_results": [
@@ -9,7 +9,7 @@
       "id": "spectrum:pure_redstone"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "consume_chance_per_second": 0.01,
       "growth_acceleration_mod": 8.0,

@@ -11,7 +11,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -37,18 +37,18 @@ public class FreezingIdolBlock extends IdolBlock {
 	public FreezingIdolBlock(Properties settings, ParticleOptions particleEffect) {
 		super(settings, particleEffect);
 	}
-	
+
 	@Override
-	public MapCodec<? extends FreezingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends FreezingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 	
-	public static void freeze(@NotNull ServerLevel world, BlockPos blockPos) {
+	public static void freeze(ServerLevel world, BlockPos blockPos) {
 		BlockState sourceState = world.getBlockState(blockPos);
 		if (FREEZING_MAP.containsKey(sourceState.getBlock())) {
 			Tuple<BlockState, Float> recipe = FREEZING_MAP.get(sourceState.getBlock());
-			if (recipe.getB() >= 1.0F || world.random.nextFloat() < recipe.getB()) {
+			if (recipe.getB() >= 1.0F || world.getRandom().nextFloat() < recipe.getB()) {
 				// freeze
 				world.setBlockAndUpdate(blockPos, recipe.getA());
 				world.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, blockPos, Block.getId(recipe.getA())); // processed in WorldRenderer processGlobalEvent()
@@ -57,7 +57,7 @@ public class FreezingIdolBlock extends IdolBlock {
 		}
 		if (FREEZING_STATE_MAP.containsKey(sourceState)) {
 			Tuple<BlockState, Float> recipe = FREEZING_STATE_MAP.get(sourceState);
-			if (recipe.getB() >= 1.0F || world.random.nextFloat() < recipe.getB()) {
+			if (recipe.getB() >= 1.0F || world.getRandom().nextFloat() < recipe.getB()) {
 				// freeze
 				world.setBlockAndUpdate(blockPos, recipe.getA());
 				world.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, blockPos, Block.getId(recipe.getA())); // processed in WorldRenderer processGlobalEvent()

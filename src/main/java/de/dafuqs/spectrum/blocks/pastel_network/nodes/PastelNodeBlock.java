@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
 import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
@@ -27,16 +27,17 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock, ColorableBlock {
 	
-	public static final MapCodec<PastelNodeBlock> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+	/*public static final MapCodec<PastelNodeBlock> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 			propertiesCodec(),
 			StringRepresentable.fromEnum(PastelNodeType::values).fieldOf("node_type").forGetter(b -> b.pastelNodeType)
-	).apply(i, PastelNodeBlock::new));
+	).apply(i, PastelNodeBlock::new));*/
 	
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final BooleanProperty REDSTONE_EMITTING = BlockStateProperties.POWERED;
@@ -51,20 +52,27 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	}};
 	
 	protected final PastelNodeType pastelNodeType;
+	protected final PastelNodeBases.PastelNodeBase base;
+	protected final Set<Supplier<? extends PastelPayloadType>> supportedPayloads;
+	protected final List<Component> tooltips;
 	
-	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType) {
+	public PastelNodeBlock(Properties settings, PastelNodeType pastelNodeType, PastelNodeBases.PastelNodeBase base, Set<Supplier<? extends PastelPayloadType>> supportedPayloads, List<Component> tooltips) {
 		super(settings.lightLevel(s -> s.getValue(LIT) ? 13 : 0));
 		this.pastelNodeType = pastelNodeType;
+		this.base = base;
+		this.supportedPayloads = supportedPayloads;
+		this.tooltips = tooltips;
 		registerDefaultState(defaultBlockState().setValue(LIT, false).setValue(REDSTONE_EMITTING, false));
 	}
-	
+
 	@Override
-	public MapCodec<? extends PastelNodeBlock> codec() {
-		return CODEC;
+	public @Nullable MapCodec<? extends PastelNodeBlock> codec() {
+		// TODO: make the CODEC
+		return null;
 	}
 	
 	@Override
-	public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 	
@@ -95,10 +103,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		BlockState blockState = ctx.getLevel().getBlockState(ctx.getClickedPos().relative(direction.getOpposite()));
 		return blockState.is(this) && blockState.getValue(FACING) == direction ? this.defaultBlockState().setValue(FACING, direction.getOpposite()) : this.defaultBlockState().setValue(FACING, direction);
 	}
-	
-	@Nullable
+
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return ((w, p, s, b) -> PastelNodeBlockEntity.tick(w, p, s, (PastelNodeBlockEntity) b));
 	}
 	
@@ -115,7 +122,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
-		tooltip.addAll(this.pastelNodeType.getTooltips());
+		tooltip.addAll(this.tooltips);
 		tooltip.add(Component.translatable("block.spectrum.pastel_network_nodes.tooltip.range", PastelNodeBlockEntity.RANGE).withStyle(ChatFormatting.GRAY));
 	}
 	
@@ -139,7 +146,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		
 		if (player.isShiftKeyDown() && stack.isEmpty()) {
 			if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_UPGRADING)) {
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					var removed = blockEntity.tryRemoveUpgrade();
 					if (!removed.isEmpty()) {
 						if (!player.getAbilities().instabuild) {
@@ -171,7 +178,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		} else if (tryColorUsingStackInHand(stack, world, pos, player, hand)) {
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
 		} else if (this.pastelNodeType.usesFilters()) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				player.openMenu(blockEntity);
 			}
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
@@ -197,8 +204,8 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	
 	private static void sendDebugMessage(Level world, BlockPos pos, Player player, PastelNodeBlockEntity blockEntity) {
 		if (blockEntity != null) {
-			Optional<? extends PastelNetwork<?>> network = blockEntity.networkUUID.isPresent() ? Pastel.getInstance(world.isClientSide).getNetwork(blockEntity.networkUUID.get()) : Optional.empty();
-			String prefix = world.isClientSide ? "C (" : "S (";
+			Optional<? extends PastelNetwork<?>> network = blockEntity.networkUUID.isPresent() ? Pastel.getInstance(world.isClientSide()).getNetwork(blockEntity.networkUUID.get()) : Optional.empty();
+			String prefix = world.isClientSide() ? "C (" : "S (";
 			Optional<DyeColor> color = blockEntity.getColor();
 			String colorString = color.isEmpty() ? "<uncolored>" : color.get().toString();
 			if (network.isEmpty()) {
@@ -208,9 +215,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 			}
 		}
 	}
-	
+
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @Nullable VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPES.get(state.getValue(FACING));
 	}
 	
@@ -221,10 +228,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 		}
 		return null;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new PastelNodeBlockEntity(pos, state);
 	}
 	

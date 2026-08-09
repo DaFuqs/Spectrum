@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.api.block;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
@@ -18,13 +17,22 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import org.apache.commons.lang3.*;
 import net.neoforged.neoforge.network.*;
-import org.jetbrains.annotations.*;
+import org.apache.commons.lang3.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public interface FilterConfigurable {
+	
+	// 'effectively' private
+	class Cache {
+		private static final Map<ResourceLocation, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
+	}
+	
+	static void invalidateCache() {
+		Cache.CACHED_ITEM_TAG_MAP.clear();
+	}
 	
 	default Object2BooleanMap<TagKey<Item>> getFilteredTags() {
 		return Object2BooleanMaps.emptyMap();
@@ -38,7 +46,7 @@ public interface FilterConfigurable {
 	}
 	
 	default boolean acceptsItem(Item item) {
-		if (item == null || item.equals(Items.AIR)) {
+		if (item.equals(Items.AIR)) {
 			return false;
 		}
 		
@@ -96,7 +104,7 @@ public interface FilterConfigurable {
 		}
 		
 		// Copied from PastelNodeBlockEntity. This entire section could potentially be a candidate to move into its own function.
-		TagKey<Item> tag = SpectrumCommon.CACHED_ITEM_TAG_MAP.computeIfAbsent(identifier, tagId -> BuiltInRegistries.ITEM.getTagNames()
+		TagKey<Item> tag = Cache.CACHED_ITEM_TAG_MAP.computeIfAbsent(identifier, tagId -> BuiltInRegistries.ITEM.getTagNames()
 				.filter(t -> t.location().equals(tagId))
 				.findFirst()
 				.orElse(null));
@@ -156,7 +164,7 @@ public interface FilterConfigurable {
 		return inventory;
 	}
 	
-	static Container getFilterInventoryFromExtendedData(int syncId, @NotNull Inventory playerInventory, ExtendedData data, @NotNull AbstractContainerMenu handler) {
+	static Container getFilterInventoryFromExtendedData(int syncId, Inventory playerInventory, ExtendedData data, AbstractContainerMenu handler) {
 		final var clicker = new ShadowSlotClicker.FromHandler(handler, playerInventory.player, syncId);
 		return getFilterInventoryFromDataClicker(data, clicker);
 	}
@@ -169,7 +177,7 @@ public interface FilterConfigurable {
 		return inventory;
 	}
 	
-	static Container getFilterInventoryFromItemsHandler(int syncId, @NotNull Inventory playerInventory, List<ItemStack> items, @NotNull AbstractContainerMenu thisHandler) {
+	static Container getFilterInventoryFromItemsHandler(int syncId, Inventory playerInventory, List<ItemStack> items, AbstractContainerMenu thisHandler) {
 		final var clicker = new ShadowSlotClicker.FromHandler(thisHandler, playerInventory.player, syncId);
 		return getFilterInventoryFromItemsClicker(items, clicker);
 	}
@@ -183,16 +191,7 @@ public interface FilterConfigurable {
 		
 		void clickShadowSlot(int syncId, int id, ItemStack shadowStack);
 		
-		class FromHandler implements ShadowSlotClicker {
-			public final @NotNull AbstractContainerMenu handler;
-			public final @NotNull Player player;
-			public final int syncId;
-			
-			public FromHandler(@NotNull AbstractContainerMenu screenHandler, @NotNull Player player, int syncId) {
-				this.handler = screenHandler;
-				this.player = player;
-				this.syncId = syncId;
-			}
+		record FromHandler(AbstractContainerMenu handler, Player player, int syncId) implements ShadowSlotClicker {
 			
 			@Override
 			public void clickShadowSlot(int syncId, @Nullable Slot slot, ItemStack shadowStack) {
@@ -214,14 +213,14 @@ public interface FilterConfigurable {
 	
 	// Contains the slot clicker.
 	class FilterInventory extends SimpleContainer {
-		private final @NotNull FilterConfigurable.ShadowSlotClicker clicker;
+		private final FilterConfigurable.ShadowSlotClicker clicker;
 		
-		public FilterInventory(@NotNull FilterConfigurable.ShadowSlotClicker slotClicker, int size) {
+		public FilterInventory(FilterConfigurable.ShadowSlotClicker slotClicker, int size) {
 			super(size);
 			this.clicker = slotClicker;
 		}
 		
-		public @NotNull FilterConfigurable.ShadowSlotClicker getClicker() {
+		public FilterConfigurable.ShadowSlotClicker getClicker() {
 			return clicker;
 		}
 	}
@@ -232,7 +231,7 @@ public interface FilterConfigurable {
 	
 	record ExtendedData(List<ItemStack> filterItems, int rows, int slotsPerRow, int drawnSlots) {
 		
-		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedData> PACKET_CODEC = StreamCodec.composite(
+		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedData> STREAM_CODEC = StreamCodec.composite(
 				ItemStack.OPTIONAL_STREAM_CODEC.apply(ByteBufCodecs.list()), ExtendedData::filterItems,
 				ByteBufCodecs.VAR_INT, ExtendedData::rows,
 				ByteBufCodecs.VAR_INT, ExtendedData::slotsPerRow,
@@ -248,9 +247,9 @@ public interface FilterConfigurable {
 			this(pos, new ExtendedData(configurable.getItemFilters(), configurable.getFilterRows(), configurable.getSlotsPerRow(), configurable.getDrawnSlots()));
 		}
 		
-		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedDataWithPos> PACKET_CODEC = StreamCodec.composite(
+		public static final StreamCodec<RegistryFriendlyByteBuf, ExtendedDataWithPos> STREAM_CODEC = StreamCodec.composite(
 				BlockPos.STREAM_CODEC, c -> c.pos,
-				ExtendedData.PACKET_CODEC, c -> c.data,
+				ExtendedData.STREAM_CODEC, c -> c.data,
 				ExtendedDataWithPos::new
 		);
 		

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.entity.predicates;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
@@ -11,7 +11,7 @@ import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -24,7 +24,7 @@ public record LizardPredicate(Optional<InkColor> color, Optional<Holder<LizardFr
 	).apply(instance, LizardPredicate::new));
 	
 	@Override
-	public boolean matches(@NotNull Entity entity, @NotNull ServerLevel world, @Nullable Vec3 pos) {
+	public boolean matches(Entity entity, ServerLevel world, @Nullable Vec3 pos) {
 		if (!(entity instanceof LizardEntity lizard)) {
 			return false;
 		} else {
@@ -35,7 +35,7 @@ public record LizardPredicate(Optional<InkColor> color, Optional<Holder<LizardFr
 	}
 	
 	@Override
-	public @NotNull MapCodec<LizardPredicate> codec() {
+	public MapCodec<LizardPredicate> codec() {
 		return SpectrumEntitySubPredicateTypes.LIZARD.get();
 	}
 	

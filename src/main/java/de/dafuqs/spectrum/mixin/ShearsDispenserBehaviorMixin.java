@@ -32,7 +32,7 @@ public class ShearsDispenserBehaviorMixin {
 				BlockState newState = blockState.setValue(SawbladeHollyBushBlock.AGE, age - 1);
 				world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
 				world.gameEvent(null, GameEvent.SHEAR, pos);
-				world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+				world.playSound(null, pos, SoundEvents.BEEHIVE_SHEAR, SoundSource.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 				
 				cir.setReturnValue(true);
 			}

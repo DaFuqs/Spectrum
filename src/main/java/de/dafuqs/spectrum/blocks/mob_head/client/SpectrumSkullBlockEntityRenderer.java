@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.mob_head.client;
 import com.google.common.collect.*;
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.render.*;
@@ -17,7 +17,7 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -203,7 +203,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		
 	}
 	
-	public static void renderModels(float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light, SpectrumSkullType skullType, Direction direction, float yaw) {
+	public static void renderModels(float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light, SpectrumSkullType skullType, @Nullable Direction direction, float yaw) {
 		List<Tuple<SpectrumSkullModel, ResourceLocation>> model = MODELS.get(skullType);
 		for (Tuple<SpectrumSkullModel, ResourceLocation> entry : model) {
 			RenderType renderLayer = RenderType.entityCutoutNoCullZOffset(entry.getB());

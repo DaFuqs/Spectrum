@@ -14,7 +14,7 @@ import net.minecraft.client.resources.model.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -35,23 +35,9 @@ public abstract class ItemRendererMixin {
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/ItemRenderer;getModel(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)Lnet/minecraft/client/resources/model/BakedModel;"))
 	private BakedModel spectrum$handleOversizedItemModels(BakedModel original, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) @Nullable Level world, @Local(argsOnly = true) @Nullable LivingEntity entity) {
 		if (world instanceof ClientLevel clientWorld) {
-			return original.getOverrides().resolve(original, stack, clientWorld, entity, SpectrumModelPredicateProviders.MAGICAL_OVERSIZED_SEED);
+			return original.getOverrides().resolve(original, stack, clientWorld, entity, SpectrumModelPredicateProviders.MAGIC_OVERSIZED_SEED);
 		}
 		return original;
-	}
-	
-	@Inject(at = @At("HEAD"), method = "render", cancellable = true)
-	private void spectrum$dynRender(ItemStack stack, ItemDisplayContext renderMode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
-		// if model is a dynamic one, check the renderers
-		if (model instanceof DynamicRenderModel dm) {
-			DynamicItemRenderer renderer = DynamicItemRenderer.RENDERERS.get(stack.getItem());
-			// shouldn't happen normally but check anyway
-			if (renderer != null) {
-				// unwrap the model here so that the custom renderer doesn't have to do it
-				renderer.render((ItemRenderer) (Object) this, stack, renderMode, leftHanded, matrices, vertexConsumers, light, overlay, dm.getWrappedModel());
-				ci.cancel();
-			}
-		}
 	}
 	
 }

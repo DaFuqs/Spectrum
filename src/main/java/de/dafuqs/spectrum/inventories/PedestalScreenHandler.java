@@ -45,7 +45,7 @@ public class PedestalScreenHandler extends RecipeBookMenu<RecipeInput, Recipe<Re
 	
 	// serverside
 	public PedestalScreenHandler(int syncId, Inventory playerInventory, PedestalBlockEntity blockEntity, ContainerData propertyDelegate, PedestalRecipeTier pedestalRecipeTier, PedestalRecipeTier maxRecipeTier) {
-		super(SpectrumScreenHandlerTypes.PEDESTAL, syncId);
+		super(SpectrumMenuTypes.PEDESTAL, syncId);
 		this.category = RecipeBookType.CRAFTING;
 		this.propertyDelegate = propertyDelegate;
 		this.world = playerInventory.player.level();
@@ -126,7 +126,7 @@ public class PedestalScreenHandler extends RecipeBookMenu<RecipeInput, Recipe<Re
 	
 	@Override
 	public boolean recipeMatches(RecipeHolder<Recipe<RecipeInput>> recipe) {
-		return blockEntity != null && recipe.value().matches(blockEntity.createRecipeInput(), world);
+		return recipe.value().matches(blockEntity.createRecipeInput(), world);
 	}
 	
 	@Override

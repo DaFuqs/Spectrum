@@ -13,7 +13,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -34,7 +33,7 @@ public class EnchantedBookUnsoulingRecipe extends PrimordialFireBurningRecipe {
 	}
 	
 	@Override
-	public @NotNull ItemStack assemble(RecipeInput inv, HolderLookup.Provider drm) {
+	public ItemStack assemble(RecipeInput inv, HolderLookup.Provider drm) {
 		ItemStack stack = inv.getItem(0);
 		
 		Holder.Reference<Enchantment> soulSpeed = drm.asGetterLookup().get(Registries.ENCHANTMENT, Enchantments.SOUL_SPEED).orElseThrow();
@@ -47,7 +46,7 @@ public class EnchantedBookUnsoulingRecipe extends PrimordialFireBurningRecipe {
 	}
 	
 	@Override
-	public @NotNull RecipeSerializer<?> getSerializer() {
+	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.ENCHANTED_BOOK_UNSOULING;
 	}
 	public static class Serializer implements RecipeSerializer<EnchantedBookUnsoulingRecipe> {
@@ -62,12 +61,12 @@ public class EnchantedBookUnsoulingRecipe extends PrimordialFireBurningRecipe {
 		);
 		
 		@Override
-		public @NotNull MapCodec<EnchantedBookUnsoulingRecipe> codec() {
+		public MapCodec<EnchantedBookUnsoulingRecipe> codec() {
 			return CODEC;
 		}
 		
 		@Override
-		public @NotNull StreamCodec<RegistryFriendlyByteBuf, EnchantedBookUnsoulingRecipe> streamCodec() {
+		public StreamCodec<RegistryFriendlyByteBuf, EnchantedBookUnsoulingRecipe> streamCodec() {
 			return PACKET_CODEC;
 		}
 		

@@ -1,8 +1,0 @@
-{
-  "parent": "spectrum:improved_vanilla/door_bottom_right",
-  "textures": {
-    "bottom": "spectrum:block/ivory_noxwood_door_bottom",
-    "top": "spectrum:block/ivory_noxwood_door_top",
-    "side": "spectrum:block/ivory_noxwood_door_side"
-  }
-}

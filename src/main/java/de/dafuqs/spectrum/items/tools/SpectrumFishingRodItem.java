@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
@@ -31,7 +30,7 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 		ItemStack itemStack = user.getItemInHand(hand);
 		
 		if (user.fishing != null) {
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				int damage = user.fishing.retrieve(itemStack);
 				itemStack.hurtAndBreak(damage, user, LivingEntity.getSlotForHand(hand));
 			}

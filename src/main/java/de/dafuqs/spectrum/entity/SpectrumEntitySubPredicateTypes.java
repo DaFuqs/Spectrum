@@ -4,7 +4,6 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.predicates.*;
 import net.minecraft.advancements.critereon.*;
-import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;

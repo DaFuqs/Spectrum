@@ -40,7 +40,7 @@ public class Orientation {
 	}
 
 	/**
-	 * <a href="http://www.vias.org/comp_geometry/math_coord_sphere.htm">Phi my phucking phnuts</a>
+	 * Reference: http://www.vias.org/comp_geometry/math_coord_sphere.htm
 	 */
 	public static Orientation getVectorOrientation(Vec3 vector) {
 		var r = vector.length();

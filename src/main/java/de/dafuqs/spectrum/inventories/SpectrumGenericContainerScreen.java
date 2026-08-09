@@ -51,14 +51,14 @@ public class SpectrumGenericContainerScreen extends AbstractContainerScreen<Gene
 	
 	@Override
 	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
-		int i = (this.width - this.imageWidth) / 2;
-		int j = (this.height - this.imageHeight) / 2;
+		int i = getGuiLeft();
+		int j = getGuiTop();
 		drawContext.blit(backgroundTexture, i, j, 0, 0, this.imageWidth, this.rows * 18 + 17);
 		drawContext.blit(backgroundTexture, i, j + this.rows * 18 + 17, 0, 126, this.imageWidth, 96);
 	}
 	
 	@Contract(pure = true)
-	private ResourceLocation getBackground(int rows, @NotNull ScreenBackgroundVariant tier) {
+	private ResourceLocation getBackground(int rows, ScreenBackgroundVariant tier) {
 		switch (tier) {
 			case EARLYGAME -> {
 				return TIER_1_TEXTURE_6x9;

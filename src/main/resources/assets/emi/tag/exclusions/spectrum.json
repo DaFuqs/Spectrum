@@ -1,7 +1,6 @@
 {
   "exclusions": [
     "spectrum:coming_soon_tooltip",
-    "spectrum:indestructible_blacklisted",
     "spectrum:no_cinderhearth_doubling",
     "things:hardening_catalyst_blacklist"
   ]

@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.mob_effect.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
@@ -13,7 +14,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public class NectarLanceItem extends LightGreatswordItem implements SlotBackgroundEffectProvider {
 	
@@ -92,13 +93,14 @@ public class NectarLanceItem extends LightGreatswordItem implements SlotBackgrou
 			var takenDuration = (int) Math.ceil(duration / Math.log10(duration + 1));
 			var takenAmp = 0;
 			
-			if (attacker.hasEffect(effect.getEffect()))
-				takenAmp += attacker.getEffect(effect.getEffect()).getAmplifier();
+			Holder<MobEffect> effectHolder = effect.getEffect();
+			if (attacker.hasEffect(effectHolder))
+				takenAmp += attacker.getEffect(effectHolder).getAmplifier();
 			
-			attacker.addEffect(new MobEffectInstance(effect.getEffect(), takenDuration, takenAmp));
+			attacker.addEffect(new MobEffectInstance(effectHolder, takenDuration, takenAmp));
 			
 			if (amp > 0)
-				target.addEffect(new MobEffectInstance(effect.getEffect(), duration, amp - 1, effect.isAmbient(), effect.isVisible(), effect.showIcon()));
+				target.addEffect(new MobEffectInstance(effectHolder, duration, amp - 1, effect.isAmbient(), effect.isVisible(), effect.showIcon()));
 			
 			target.playSound(SpectrumSoundEvents.SOFT_HUM, 0.275F, 0.8F + target.getRandom().nextFloat() * 0.4F);
 		}

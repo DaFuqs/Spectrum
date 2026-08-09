@@ -17,6 +17,7 @@ import net.minecraft.world.level.*;
 public class BookEnchanterCraftingPageRenderer extends BookGatedRecipePageRenderer<EnchanterRecipe, BookGatedRecipePage<EnchanterRecipe>> {
 	
 	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/enchanter_crafting.png");
+	private static final ItemStack ENCHANTER = SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance();
 	
 	public BookEnchanterCraftingPageRenderer(BookGatedRecipePage<EnchanterRecipe> page) {
 		super(page);
@@ -41,25 +42,23 @@ public class BookEnchanterCraftingPageRenderer extends BookGatedRecipePageRender
 		// the ingredients
 		NonNullList<Ingredient> ingredients = recipe.getIngredients();
 		
-		int ingredientX = recipeX - 3;
-		
 		// surrounding input slots
-		parentScreen.renderIngredient(drawContext, ingredientX + 16, recipeY, mouseX, mouseY, ingredients.get(1));
-		parentScreen.renderIngredient(drawContext, ingredientX + 40, recipeY, mouseX, mouseY, ingredients.get(2));
-		parentScreen.renderIngredient(drawContext, ingredientX + 56, recipeY + 16, mouseX, mouseY, ingredients.get(3));
-		parentScreen.renderIngredient(drawContext, ingredientX + 56, recipeY + 40, mouseX, mouseY, ingredients.get(4));
-		parentScreen.renderIngredient(drawContext, ingredientX + 40, recipeY + 56, mouseX, mouseY, ingredients.get(5));
-		parentScreen.renderIngredient(drawContext, ingredientX + 16, recipeY + 56, mouseX, mouseY, ingredients.get(6));
-		parentScreen.renderIngredient(drawContext, ingredientX, recipeY + 40, mouseX, mouseY, ingredients.get(7));
-		parentScreen.renderIngredient(drawContext, ingredientX, recipeY + 16, mouseX, mouseY, ingredients.get(8));
+		parentScreen.renderIngredient(drawContext, recipeX + 13, recipeY, mouseX, mouseY, ingredients.get(1));
+		parentScreen.renderIngredient(drawContext, recipeX + 37, recipeY, mouseX, mouseY, ingredients.get(2));
+		parentScreen.renderIngredient(drawContext, recipeX + 53, recipeY + 16, mouseX, mouseY, ingredients.get(3));
+		parentScreen.renderIngredient(drawContext, recipeX + 53, recipeY + 40, mouseX, mouseY, ingredients.get(4));
+		parentScreen.renderIngredient(drawContext, recipeX + 37, recipeY + 56, mouseX, mouseY, ingredients.get(5));
+		parentScreen.renderIngredient(drawContext, recipeX + 13, recipeY + 56, mouseX, mouseY, ingredients.get(6));
+		parentScreen.renderIngredient(drawContext, recipeX - 3, recipeY + 40, mouseX, mouseY, ingredients.get(7));
+		parentScreen.renderIngredient(drawContext, recipeX - 3, recipeY + 16, mouseX, mouseY, ingredients.get(8));
 		
 		// center input slot
-		parentScreen.renderIngredient(drawContext, ingredientX + 28, recipeY + 28, mouseX, mouseY, ingredients.get(0));
+		parentScreen.renderIngredient(drawContext, recipeX + 25, recipeY + 28, mouseX, mouseY, ingredients.get(0));
 		
 		// Knowledge Gem and Enchanter
 		ItemStack knowledgeDropStackWithXP = KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience(), true);
 		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 9, mouseX, mouseY, knowledgeDropStackWithXP);
-		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 46, mouseX, mouseY, SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance());
+		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 46, mouseX, mouseY, ENCHANTER);
 		
 		// the output
 		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 31, mouseX, mouseY, recipe.getResultItem(world.registryAccess()));

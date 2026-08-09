@@ -1,13 +1,14 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -24,7 +25,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -99,7 +99,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.RADIANCE_STAFF_CHARGING, SoundSource.PLAYERS, 1.0F, 1.0F);
 		}
 		return ItemUtils.startUsingInstantly(world, user, hand);
@@ -119,9 +119,9 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	}
 	
 	@Override
-	public @NotNull InteractionResult useOn(UseOnContext context) {
+	public InteractionResult useOn(UseOnContext context) {
 		Level world = context.getLevel();
-		if (world.isClientSide) {
+		if (world.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		}
 		
@@ -146,7 +146,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 			// try placing a light
 			BlockPos targetPos = pos.relative(direction);
 			if (placeLight(world, targetPos, (ServerPlayer) player, context.getItemInHand())) {
-				RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayer) player, world.random.nextInt(5), world.random.nextInt(5));
+				RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayer) player, world.getRandom().nextInt(5), world.getRandom().nextInt(5));
 			} else {
 				RadianceStaffItem.playDenySound(world, player);
 			}
@@ -189,14 +189,19 @@ public class RadianceStaffItem extends Item implements InkPowered {
 			}
 		}
 	}
+
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getMaxStackSize() == 1;
+	}
 	
 	@Override
-	public int getEnchantmentValue(@NotNull ItemStack stack) {
+	public int getEnchantmentValue(ItemStack stack) {
 		return 8;
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.EFFICIENCY);
 	}
 	

@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.crystallarieum.*;
+import de.dafuqs.spectrum.blocks.ink.sink.*;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.neoforge.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
-import dev.emi.emi.platform.neoforge.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -45,7 +45,11 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 		
 		widgets.addFillingArrow(40, 9, recipe.getSecondsPerGrowthStage() * 1000);
 		
-		List<EmiStack> states = recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).toList();
+		// Yes, there was a request for the Crystallarieum to grow fluids
+		List<EmiStack> states = recipe.getGrowthStages().stream().map(state -> {
+			Block block = state.getBlock();
+			return block instanceof LiquidBlock liquidBlock ? EmiStack.of(liquidBlock.fluid) : EmiStack.of(block);
+		}).toList();
 		Iterator<EmiStack> it = states.iterator();
 		widgets.addSlot(it.next(), 20, 0);
 		int x = 66;
@@ -54,29 +58,29 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 			x += 20;
 		}
 		
-		// catalysts
-		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.catalyst"), 0, 43, 0x3f3f3f, false);
+		// additives
+		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.additive"), 0, 43, 0x3f3f3f, false);
 		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.speed"), 0, 49 + LINE_HEIGHT, 0x3f3f3f, false);
 		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.ink_drain"), 0, 49 + LINE_HEIGHT * 2, 0x3f3f3f, false);
 		widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.depletion"), 0, 49 + LINE_HEIGHT * 3, 0x3f3f3f, false);
 		
-		List<CrystallarieumCatalyst> catalysts = recipe.getCatalysts();
-		for (int i = 0; i < catalysts.size(); i++) {
-			CrystallarieumCatalyst catalyst = catalysts.get(i);
+		List<CrystallarieumAdditive> additives = recipe.getAdditives();
+		for (int i = 0; i < additives.size(); i++) {
+			CrystallarieumAdditive additive = additives.get(i);
 			int xOff = 46 + 18 * i;
-			widgets.addSlot(EmiIngredient.of(catalyst.ingredient()), xOff, 38);
-			int offsetU = CrystallarieumRecipe.growthSpeedOffsetU(catalyst);
+			widgets.addSlot(EmiIngredient.of(additive.ingredient()), xOff, 38);
+			int offsetU = CrystallarieumRecipe.growthSpeedOffsetU(additive);
 			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 59, 7, 7, offsetU, CrystallarieumRecipe.GROWTH_SPEED_V, 7, 7, 128, 128);
 			
-			offsetU = CrystallarieumRecipe.consumptionOffsetU(catalyst, offsetU);
+			offsetU = CrystallarieumRecipe.consumptionOffsetU(additive, offsetU);
 			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 69, 7, 7, offsetU, CrystallarieumRecipe.CONSUMPTION_V, 7, 7, 128, 128);
 			
-			offsetU = CrystallarieumRecipe.consumeChanceOffsetU(catalyst, offsetU);
+			offsetU = CrystallarieumRecipe.consumeChanceOffsetU(additive, offsetU);
 			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 79, 7, 7, offsetU, CrystallarieumRecipe.CONSUME_CHANCE_V, 7, 7, 128, 128);
 		}
 		
-		if (recipe.growsWithoutCatalyst()) {
-			widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional", recipe.getSecondsPerGrowthStage()), 0, 90, 0x3f3f3f, false);
+		if (recipe.growsWithoutAdditive()) {
+			widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_additive_optional", recipe.getSecondsPerGrowthStage()), 0, 90, 0x3f3f3f, false);
 		} else {
 			widgets.addText(Component.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", recipe.getSecondsPerGrowthStage()), 0, 90, 0x3f3f3f, false);
 		}

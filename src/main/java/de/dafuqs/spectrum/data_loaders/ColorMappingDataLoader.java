@@ -1,22 +1,15 @@
 package de.dafuqs.spectrum.data_loaders;
 
 import com.google.gson.*;
-import com.mojang.datafixers.util.*;
-import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.packs.resources.*;
-import net.minecraft.util.*;
 import net.minecraft.util.profiling.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
 
 public class ColorMappingDataLoader<T> extends SimpleJsonResourceReloadListener {
 	
@@ -33,7 +26,7 @@ public class ColorMappingDataLoader<T> extends SimpleJsonResourceReloadListener 
 	}
 	
 	@Override
-	protected void apply(Map<ResourceLocation, JsonElement> prepared, @NotNull ResourceManager manager, @NotNull ProfilerFiller profiler) {
+	protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
 		mappings.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			
@@ -60,15 +53,15 @@ public class ColorMappingDataLoader<T> extends SimpleJsonResourceReloadListener 
 		});
 	}
 	
-	protected @NotNull String getFileStringForLocation(ResourceLocation identifier) {
+	protected String getFileStringForLocation(ResourceLocation identifier) {
 		return identifier.getNamespace() + ":" + this.directory + "/" + identifier.getPath() + ".json";
 	}
 	
-	public @NotNull Optional<InkColor> getInkColor(T value) {
+	public Optional<InkColor> getInkColor(T value) {
 		return Optional.ofNullable(mappings.get(value));
 	}
 	
-	public @NotNull InkColor getInkColor(T value, InkColor fallback) {
+	public InkColor getInkColor(T value, InkColor fallback) {
 		return mappings.getOrDefault(value, fallback);
 	}
 	

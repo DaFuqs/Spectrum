@@ -29,10 +29,10 @@ public class Spectrum3x3ContainerScreen extends AbstractContainerScreen<Spectrum
 	}
 	
 	@Override
-	public void render(GuiGraphics drawContext, int mouseX, int mouseY, float delta) {
-		this.renderBackground(drawContext, mouseX, mouseY, delta);
-		super.render(drawContext, mouseX, mouseY, delta);
-		this.renderTooltip(drawContext, mouseX, mouseY);
+	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+		this.renderBackground(guiGraphics, mouseX, mouseY, delta);
+		super.render(guiGraphics, mouseX, mouseY, delta);
+		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}
 	
 	/**
@@ -40,13 +40,11 @@ public class Spectrum3x3ContainerScreen extends AbstractContainerScreen<Spectrum
 	 */
 	@Override
 	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
-		int i = (this.width - this.imageWidth) / 2;
-		int j = (this.height - this.imageHeight) / 2;
-		drawContext.blit(backgroundTexture, i, j, 0, 0, this.imageWidth, this.imageHeight);
+		drawContext.blit(backgroundTexture, getGuiLeft(), getGuiTop(), 0, 0, this.imageWidth, this.imageHeight);
 	}
 	
 	@Contract(pure = true)
-	private ResourceLocation getBackground(@NotNull ScreenBackgroundVariant tier) {
+	private ResourceLocation getBackground(ScreenBackgroundVariant tier) {
 		switch (tier) {
 			case EARLYGAME -> {
 				return TIER_1_TEXTURE_3x3;

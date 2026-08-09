@@ -3,63 +3,83 @@ package de.dafuqs.spectrum.registries;
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.particle.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
+import net.minecraft.sounds.*;
 import net.minecraft.world.level.material.*;
+import net.minecraft.world.level.pathfinder.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.client.extensions.common.*;
+import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
 
 import java.util.function.*;
 
 public class SpectrumFluids {
 	
-	// TODO: add sensible FluidType.Properties for each fluid type
 	private static final DeferredRegister<FluidType> FLUID_TYPE_REGISTRAR = DeferredRegister.create(NeoForgeRegistries.FLUID_TYPES, SpectrumCommon.MOD_ID);
 	private static final DeferredRegister<Fluid> FLUID_REGISTRAR = DeferredRegister.create(Registries.FLUID, SpectrumCommon.MOD_ID);
 	
 	// LIQUID CRYSTAL
-	public static final DeferredHolder<FluidType, FluidType> LIQUID_CRYSTAL_TYPE = registerFluidType("liquid_crystal", () ->
-			new FluidType(FluidType.Properties.create().canExtinguish(true).supportsBoating(true).canHydrate(true)));
+	public static final int LIQUID_CRYSTAL_LIGHT_LEVEL = 11;
+	public static final DeferredHolder<FluidType, FluidType> LIQUID_CRYSTAL_TYPE = registerFluidType("liquid_crystal", () -> new SpectrumFluidType(true, SpectrumGameRules.RULE_LIQUID_CRYSTAL_SOURCE_CONVERSION, FluidType.Properties.create()
+			.descriptionId("block.spectrum.liquid_crystal")
+			.fallDistanceModifier(0F)
+			.canDrown(true).canExtinguish(true).supportsBoating(true).canHydrate(true).lightLevel(LIQUID_CRYSTAL_LIGHT_LEVEL)
+			.pathType(PathType.WATER).adjacentPathType(PathType.WATER_BORDER)
+			.density(800).viscosity(1000).temperature(200)
+			.sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL).sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+			.addDripstoneDripping(SpectrumConfig.CONFIG.LiquidCrystalDripstoneDripChance.get().floatValue(), SpectrumParticleTypes.DRIPPING_LIQUID_CRYSTAL, SpectrumBlocks.LIQUID_CRYSTAL_CAULDRON.get(), SoundEvents.POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON)) {
+	});
 	public static final DeferredHolder<Fluid, SpectrumFluid> LIQUID_CRYSTAL = registerFluid("liquid_crystal", LiquidCrystalFluid.Still::new);
 	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_LIQUID_CRYSTAL = registerFluid("flowing_liquid_crystal", LiquidCrystalFluid.Flowing::new);
-	public static final int LIQUID_CRYSTAL_TINT = 0xFFcbbbcb;
-	public static final Vector3f LIQUID_CRYSTAL_COLOR_VEC = SpectrumColorHelper.colorIntToVec(LIQUID_CRYSTAL_TINT);
+	public static final int LIQUID_CRYSTAL_COLOR = 0xFFcbbbcb;
+	public static final Vector3f LIQUID_CRYSTAL_COLOR_VEC = SpectrumColorHelper.colorIntToVec(LIQUID_CRYSTAL_COLOR);
 	public static final float LIQUID_CRYSTAL_OVERLAY_ALPHA = 0.6F;
 	
-	// SLUDGE
-	public static final DeferredHolder<FluidType, FluidType> SLUDGE_TYPE = registerFluidType("sludge", () -> new FluidType(FluidType.Properties.create()));
-	public static final DeferredHolder<Fluid, SpectrumFluid> SLUDGE = registerFluid("sludge", SludgeFluid.StillSludge::new);
-	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_SLUDGE = registerFluid("flowing_sludge", SludgeFluid.FlowingSludge::new);
-	public static final int SLUDGE_TINT = 0xFF4e2e0a;
-	public static final Vector3f SLUDGE_COLOR_VEC = SpectrumColorHelper.colorIntToVec(SLUDGE_TINT);
-	public static final float SLUDGE_OVERLAY_ALPHA = 0.995F;
-	
 	// MIDNIGHT SOLUTION
-	public static final DeferredHolder<FluidType, FluidType> MIDNIGHT_SOLUTION_TYPE = registerFluidType("midnight_solution", () -> new FluidType(FluidType.Properties.create()));
+	public static final int MIDNIGHT_SOLUTION_LIGHT_LEVEL = 0;
+	public static final DeferredHolder<FluidType, FluidType> MIDNIGHT_SOLUTION_TYPE = registerFluidType("midnight_solution", () -> new SpectrumFluidType(true, SpectrumGameRules.RULE_MIDNIGHT_SOLUTION_SOURCE_CONVERSION,
+			FluidType.Properties.create()
+			.descriptionId("block.spectrum.midnight_solution")
+			.fallDistanceModifier(0F)
+			.canDrown(true).canExtinguish(true).supportsBoating(true).canHydrate(false).lightLevel(MIDNIGHT_SOLUTION_LIGHT_LEVEL)
+			.pathType(PathType.LAVA).adjacentPathType(null)
+			.density(1500).viscosity(2000).temperature(-100)
+			.sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL).sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+			.addDripstoneDripping(SpectrumConfig.CONFIG.MidnightSolutionDripstoneDripChance.get().floatValue(), SpectrumParticleTypes.DRIPPING_MIDNIGHT_SOLUTION, SpectrumBlocks.MIDNIGHT_SOLUTION_CAULDRON.get(), SoundEvents.POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON)) {
+	});
 	public static final DeferredHolder<Fluid, SpectrumFluid> MIDNIGHT_SOLUTION = registerFluid("midnight_solution", MidnightSolutionFluid.Still::new);
 	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_MIDNIGHT_SOLUTION = registerFluid("flowing_midnight_solution", MidnightSolutionFluid.Flowing::new);
-	public static final int MIDNIGHT_SOLUTION_TINT = 0xFF11183b;
-	public static final Vector3f MIDNIGHT_SOLUTION_COLOR_VEC = SpectrumColorHelper.colorIntToVec(MIDNIGHT_SOLUTION_TINT);
-	public static final float MIDNIGHT_SOLUTION_OVERLAY_ALPHA = 0.995F;
+	public static final int MIDNIGHT_SOLUTION_COLOR = 0xFF11183b;
+	public static final Vector3f MIDNIGHT_SOLUTION_COLOR_VEC = SpectrumColorHelper.colorIntToVec(MIDNIGHT_SOLUTION_COLOR);
+	public static final float MIDNIGHT_SOLUTION_OVERLAY_ALPHA = 1.0F;
 	
 	// DRAGONROT
-	public static final DeferredHolder<FluidType, FluidType> DRAGONROT_TYPE = registerFluidType("dragonrot", () -> new FluidType(FluidType.Properties.create()));
+	public static final int DRAGONROT_LIGHT_LEVEL = 15;
+	public static final DeferredHolder<FluidType, FluidType> DRAGONROT_TYPE = registerFluidType("dragonrot", () -> new SpectrumFluidType(false, SpectrumGameRules.RULE_DRAGONROT_SOURCE_CONVERSION, FluidType.Properties.create()
+			.descriptionId("block.spectrum.dragonrot")
+			.fallDistanceModifier(0F)
+			.canDrown(true).canExtinguish(true).supportsBoating(true).canHydrate(false).lightLevel(DRAGONROT_LIGHT_LEVEL)
+			.pathType(PathType.LAVA).adjacentPathType(null)
+			.density(2000).viscosity(3000).temperature(650)
+			.sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL).sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+			.addDripstoneDripping(SpectrumConfig.CONFIG.DragonrotDripstoneDripChance.get().floatValue(), SpectrumParticleTypes.DRIPPING_DRAGONROT, SpectrumBlocks.DRAGONROT_CAULDRON.get(), SoundEvents.POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON)) {
+	});
 	public static final DeferredHolder<Fluid, SpectrumFluid> DRAGONROT = registerFluid("dragonrot", DragonrotFluid.Still::new);
 	public static final DeferredHolder<Fluid, SpectrumFluid> FLOWING_DRAGONROT = registerFluid("flowing_dragonrot", DragonrotFluid.Flowing::new);
-	public static final int DRAGONROT_TINT = 0xFFe3772f;
-	public static final Vector3f DRAGONROT_COLOR_VEC = SpectrumColorHelper.colorIntToVec(DRAGONROT_TINT);
-	public static final float DRAGONROT_OVERLAY_ALPHA = 0.98F;
+	public static final int DRAGONROT_COLOR = 0xFFe3772f;
+	public static final Vector3f DRAGONROT_COLOR_VEC = SpectrumColorHelper.colorIntToVec(DRAGONROT_COLOR);
+	public static final float DRAGONROT_OVERLAY_ALPHA = 1.0F;
 	
 	public static void register(IEventBus eventBus) {
 		FLUID_REGISTRAR.register(eventBus);
@@ -75,16 +95,15 @@ public class SpectrumFluids {
 	}
 	
 	public static void registerClient(RegisterClientExtensionsEvent event) {
-		setupFluidRendering(event, LIQUID_CRYSTAL_TYPE.get(), "liquid_crystal", LIQUID_CRYSTAL_TINT, LIQUID_CRYSTAL_OVERLAY_ALPHA);
-		setupFluidRendering(event, SLUDGE_TYPE.get(), "sludge", SLUDGE_TINT, SLUDGE_OVERLAY_ALPHA);
-		setupFluidRendering(event, MIDNIGHT_SOLUTION_TYPE.get(), "midnight_solution", MIDNIGHT_SOLUTION_TINT, MIDNIGHT_SOLUTION_OVERLAY_ALPHA);
-		setupFluidRendering(event, DRAGONROT_TYPE.get(), "dragonrot", DRAGONROT_TINT, DRAGONROT_OVERLAY_ALPHA);
+		setupFluidRendering(event, LIQUID_CRYSTAL_TYPE.get(), "liquid_crystal", LIQUID_CRYSTAL_OVERLAY_ALPHA);
+		setupFluidRendering(event, MIDNIGHT_SOLUTION_TYPE.get(), "midnight_solution", MIDNIGHT_SOLUTION_OVERLAY_ALPHA);
+		setupFluidRendering(event, DRAGONROT_TYPE.get(), "dragonrot", DRAGONROT_OVERLAY_ALPHA);
 		
 		ItemBlockRenderTypes.setRenderLayer(LIQUID_CRYSTAL.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(FLOWING_LIQUID_CRYSTAL.get(), RenderType.translucent());
 	}
 	
-	private static void setupFluidRendering(RegisterClientExtensionsEvent event, final FluidType fluidType, final String name, int tint, float overlayAlpha) {
+	private static void setupFluidRendering(RegisterClientExtensionsEvent event, final FluidType fluidType, final String name, float overlayAlpha) {
 		ResourceLocation overlay = SpectrumCommon.locate("textures/misc/" + name + "_overlay.png");
 		ResourceLocation still = SpectrumCommon.locate("block/" + name + "_still");
 		ResourceLocation flowing = SpectrumCommon.locate("block/" + name + "_flow");
@@ -92,23 +111,23 @@ public class SpectrumFluids {
 		
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			@Override
-			public @NotNull ResourceLocation getStillTexture() {
+			public ResourceLocation getStillTexture() {
 				return still;
 			}
 			
 			@Override
-			public @NotNull ResourceLocation getFlowingTexture() {
+			public ResourceLocation getFlowingTexture() {
 				return flowing;
 			}
 			
 			@Override
-			public void renderOverlay(@NotNull Minecraft mc, @NotNull PoseStack stack) {
+			public void renderOverlay(Minecraft mc, PoseStack stack) {
 				renderFluidOverlay(mc, stack, overlay, overlayAlpha);
 			}
 			
 			@Override
 			public int getTintColor() {
-				return tint;
+				return -1;
 			}
 		}, fluidType);
 	}

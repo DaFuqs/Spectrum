@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
@@ -9,7 +9,7 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -34,7 +34,7 @@ public class WrapPresentRecipe extends CustomRecipe {
 	}
 	
 	@Override
-	public boolean matches(@NotNull CraftingInput input, Level world) {
+	public boolean matches(CraftingInput input, Level world) {
 		boolean presentItemFound = false;
 		boolean wrappingItemFound = false;
 		
@@ -58,7 +58,7 @@ public class WrapPresentRecipe extends CustomRecipe {
 	}
 	
 	@Override
-	public ItemStack assemble(@NotNull CraftingInput input, HolderLookup.Provider registryLookup) {
+	public ItemStack assemble(CraftingInput input, HolderLookup.Provider registryLookup) {
 		ItemStack presentStack = ItemStack.EMPTY;
 		PresentBlock.WrappingPaper wrappingPaper = PresentBlock.WrappingPaper.RED;
 		Map<InkColor, Integer> colors = new HashMap<>();
@@ -66,7 +66,7 @@ public class WrapPresentRecipe extends CustomRecipe {
 		for (int j = 0; j < input.size(); ++j) {
 			ItemStack stack = input.getItem(j);
 			if (stack.getItem() instanceof PresentBlockItem) {
-				presentStack = stack.copy();
+				presentStack = stack.copyWithCount(1);
 			} else if (stack.getItem() instanceof PigmentItem pigmentItem) {
 				InkColor color = pigmentItem.getInkColor();
 				if (colors.containsKey(color)) {
@@ -87,7 +87,7 @@ public class WrapPresentRecipe extends CustomRecipe {
 		return presentStack;
 	}
 	
-	public @Nullable PresentBlock.WrappingPaper getPresentVariantForStack(@NotNull ItemStack stack) {
+	public PresentBlock.@Nullable WrappingPaper getPresentVariantForStack(ItemStack stack) {
 		Item item = stack.getItem();
 		if (item == Items.RED_DYE) {
 			return PresentBlock.WrappingPaper.RED;
@@ -101,14 +101,14 @@ public class WrapPresentRecipe extends CustomRecipe {
 			return PresentBlock.WrappingPaper.PURPLE;
 		} else if (item == Items.CAKE) {
 			return PresentBlock.WrappingPaper.CAKE;
-		} else if (stack.is(ItemTags.FLOWERS)) {
-			return PresentBlock.WrappingPaper.STRIPED;
+		} else if (item == Items.SPORE_BLOSSOM) {
+			return PresentBlock.WrappingPaper.PRIDE;
 		} else if (item == Items.FIREWORK_STAR) {
 			return PresentBlock.WrappingPaper.STARRY;
 		} else if (item == Items.SNOWBALL) {
 			return PresentBlock.WrappingPaper.WINTER;
-		} else if (item == Items.SPORE_BLOSSOM) {
-			return PresentBlock.WrappingPaper.PRIDE;
+		} else if (stack.is(ItemTags.FLOWERS)) {
+			return PresentBlock.WrappingPaper.STRIPED;
 		}
 		return null;
 	}

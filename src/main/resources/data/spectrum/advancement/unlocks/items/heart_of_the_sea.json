@@ -3,7 +3,7 @@
     "harvested_moonstruck_nectar": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/harvest_moonstruck_nectar,"
+        "advancement_identifier": "spectrum:midgame/harvest_moonstruck_nectar"
       }
     },
     "collected_mermaids_gem": {

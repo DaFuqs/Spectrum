@@ -30,8 +30,9 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 			return true;
 		}
 		CompoundTag nbt = spawnerBlockEntityNbt.getUnsafe();
-		return (!nbt.contains("MinSpawnDelay") || nbt.getShort("MinSpawnDelay") > MIN_MIN_DELAY)
-				&& (!nbt.contains("MaxSpawnDelay") || nbt.getShort("MaxSpawnDelay") > MIN_MAX_DELAY);
+		boolean canLowerMinSpawnDelay = !nbt.contains("MinSpawnDelay") || nbt.getShort("MinSpawnDelay") > MIN_MIN_DELAY;
+		boolean canLowerMaxSpawnDelay = !nbt.contains("MaxSpawnDelay") || nbt.getShort("MaxSpawnDelay") > MIN_MAX_DELAY;
+		return canLowerMinSpawnDelay || canLowerMaxSpawnDelay;
 	}
 	
 	@Override
@@ -59,7 +60,7 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 		   }
 		 */
 		
-		// 800 => 700 => 614 => 540 => 476 => 421 => 373 => 331 => ... => MIN_DELAY
+		// 800 => 700 => 614 => 540 => 476 => ... => DEFAULT_MIN_DELAY
 		short minSpawnDelay = DEFAULT_MIN_DELAY;
 		if (nbt.contains("MinSpawnDelay", Tag.TAG_SHORT)) {
 			minSpawnDelay = nbt.getShort("MinSpawnDelay");

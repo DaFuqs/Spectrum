@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.particle.*;
@@ -18,7 +17,6 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.api.distmarker.*;
-import org.jetbrains.annotations.*;
 
 public class PersistentLightBlock extends LightBlock {
 	
@@ -40,9 +38,9 @@ public class PersistentLightBlock extends LightBlock {
 		return Shapes.empty();
 	}
 	
-	private boolean holdsRadianceStaff(@NotNull Entity entity) {
+	private boolean holdsRadianceStaff(Entity entity) {
 		if (entity instanceof LivingEntity livingEntity) {
-			// context.isHolding() only checks the main hand, so we use our own implementation
+			// context.isHoldingItem() only checks the main hand, so we use our own implementation
 			for (ItemStack stack : livingEntity.getHandSlots()) {
 				if (stack.getItem() instanceof RadianceStaffItem) {
 					return true;
@@ -60,7 +58,7 @@ public class PersistentLightBlock extends LightBlock {
 	@Override
 	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		super.animateTick(state, world, pos, random);
-		if (world.isClientSide && (SpectrumConfig.CONFIG.AlwaysSpawnLightBlockParticles.get() || holdsRadianceStaffClient())) {
+		if (world.isClientSide() && (SpectrumConfig.CONFIG.AlwaysSpawnLightBlockParticles.get() || holdsRadianceStaffClient())) {
 			world.addAlwaysVisibleParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
 		}
 	}

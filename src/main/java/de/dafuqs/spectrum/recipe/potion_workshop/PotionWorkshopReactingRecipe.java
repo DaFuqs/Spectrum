@@ -17,7 +17,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -39,7 +38,7 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 	}
 	
 	@Override
-	public boolean matches(@NotNull RecipeInput inv, Level world) {
+	public boolean matches(RecipeInput inv, Level world) {
 		for (int i : PotionWorkshopBlockEntity.REAGENT_SLOTS) {
 			ItemStack itemStack = inv.getItem(i);
 			if (!itemStack.isEmpty() && itemStack.getItem() == item) {

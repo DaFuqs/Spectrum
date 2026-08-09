@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.entity.entity.*;
@@ -16,7 +16,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -40,7 +40,7 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem implements SlotBackgr
 			ItemStack stack = user.getItemInHand(hand);
 			if (canShoot(stack) && InkPowered.tryDrainEnergy(user, PROJECTILE_COST)) {
 				user.getCooldowns().addCooldown(this, COOLDOWN_DURATION_TICKS);
-				if (!world.isClientSide) {
+				if (!world.isClientSide()) {
 					user.playNotifySound(SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundSource.PLAYERS, 0.5F, 0.75F + user.getRandom().nextFloat());
 					MiningProjectileEntity.shoot(world, user, user.getItemInHand(hand));
 				}

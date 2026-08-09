@@ -2,22 +2,13 @@ package de.dafuqs.spectrum.helpers;
 
 import com.mojang.authlib.*;
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.blocks.redstone.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.core.*;
-import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.*;
-import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.common.util.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
-import java.util.function.*;
 
 public class FakePlayerHelper {
 	

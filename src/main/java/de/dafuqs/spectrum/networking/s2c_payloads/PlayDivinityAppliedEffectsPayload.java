@@ -13,10 +13,8 @@ import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
-import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 public record PlayDivinityAppliedEffectsPayload() implements CustomPacketPayload {
 	
@@ -44,7 +42,7 @@ public record PlayDivinityAppliedEffectsPayload() implements CustomPacketPayload
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

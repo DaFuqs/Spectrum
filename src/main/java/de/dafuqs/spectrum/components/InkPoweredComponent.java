@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.components;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 

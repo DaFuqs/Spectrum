@@ -1,0 +1,7 @@
+{
+  "selector": "#spectrum:unbreakable",
+
+  "properties": {
+    "sable:mass": 1000.0
+  }
+}

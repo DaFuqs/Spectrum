@@ -2,6 +2,20 @@
   "values": [
     "#spectrum:bidents",
 
-    "spectrum:ender_splice"
+    "spectrum:ender_splice",
+    "spectrum:malachite_crossbow",
+    "spectrum:glass_crest_crossbow"
+  ],
+  "remove": [
+    "spectrum:bedrock_pickaxe",
+    "spectrum:bedrock_axe",
+    "spectrum:bedrock_sword",
+    "spectrum:bedrock_hoe",
+    "spectrum:bedrock_shears",
+    "spectrum:bedrock_fishing_rod",
+    "spectrum:bedrock_helmet",
+    "spectrum:bedrock_chestplate",
+    "spectrum:bedrock_leggings",
+    "spectrum:bedrock_boots"
   ]
 }

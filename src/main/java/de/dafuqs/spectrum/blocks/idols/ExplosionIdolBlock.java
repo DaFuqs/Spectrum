@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -25,9 +25,9 @@ public class ExplosionIdolBlock extends IdolBlock {
 		this.createFire = createFire;
 		this.destructionType = destructionType;
 	}
-	
+
 	@Override
-	public MapCodec<? extends ExplosionIdolBlock> codec() {
+	public @Nullable MapCodec<? extends ExplosionIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

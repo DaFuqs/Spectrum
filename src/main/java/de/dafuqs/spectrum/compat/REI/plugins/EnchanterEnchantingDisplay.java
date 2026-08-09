@@ -10,7 +10,6 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -21,7 +20,7 @@ public class EnchanterEnchantingDisplay extends EnchanterDisplay {
 	protected final int craftingTime;
 	
 	// first input is the center, all others around clockwise
-	public EnchanterEnchantingDisplay(@NotNull RecipeHolder<EnchanterRecipe> recipe) {
+	public EnchanterEnchantingDisplay(RecipeHolder<EnchanterRecipe> recipe) {
 		super(recipe, buildIngredients(recipe.value()), Collections.singletonList(EntryIngredients.of(recipe.value().getResultItem(BasicDisplay.registryAccess()))));
 		this.requiredExperience = recipe.value().getRequiredExperience();
 		this.craftingTime = recipe.value().getCraftingTime();

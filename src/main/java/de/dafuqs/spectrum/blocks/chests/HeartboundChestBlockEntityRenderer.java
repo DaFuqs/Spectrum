@@ -13,7 +13,6 @@ import net.minecraft.core.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
 
 
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
@@ -49,7 +48,7 @@ public class HeartboundChestBlockEntityRenderer implements BlockEntityRenderer<H
 	}
 	
 	@Override
-	public void render(HeartboundChestBlockEntity chest, float tickDelta, PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light, int overlay) {
+	public void render(HeartboundChestBlockEntity chest, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay) {
 		matrices.pushPose();
 		var vertexConsumer = SPRITE.buffer(vertexConsumers, RenderType::entitySolid);
 		

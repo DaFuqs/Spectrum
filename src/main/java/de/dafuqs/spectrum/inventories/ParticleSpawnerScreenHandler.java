@@ -20,7 +20,7 @@ public class ParticleSpawnerScreenHandler extends AbstractContainerMenu {
 	
 	// serverside
 	public ParticleSpawnerScreenHandler(int syncId, Inventory playerInventory, ParticleSpawnerBlockEntity blockEntity) {
-		super(SpectrumScreenHandlerTypes.PARTICLE_SPAWNER, syncId);
+		super(SpectrumMenuTypes.PARTICLE_SPAWNER, syncId);
 		
 		this.player = playerInventory.player;
 		this.blockEntity = blockEntity;
@@ -37,7 +37,7 @@ public class ParticleSpawnerScreenHandler extends AbstractContainerMenu {
 	
 	@Override
 	public boolean stillValid(Player player) {
-		return this.blockEntity != null && !this.blockEntity.isRemoved();
+		return !this.blockEntity.isRemoved();
 	}
 	
 }

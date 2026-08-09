@@ -8,7 +8,6 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.block.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -167,7 +166,7 @@ public enum SpectrumSkullType implements SkullBlock.Type {
 	}
 	
 	@Override
-	public @NotNull String getSerializedName() {
+	public String getSerializedName() {
 		return name().toLowerCase(Locale.ROOT);
 	}
 	

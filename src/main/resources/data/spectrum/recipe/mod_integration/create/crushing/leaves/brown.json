@@ -12,12 +12,12 @@
       "chance": 1.0
     },
     {
-        "id": "spectrum:brown_sapling",
+      "id": "spectrum:brown_sapling",
       "count": 1,
       "chance": 0.02
     }
   ],
-  "processingTime": 450,
+  "processing_time": 450,
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",

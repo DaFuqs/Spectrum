@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.component.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 
 public record BottomlessStackPredicate(ItemPredicate template, LongRange count) implements SingleComponentItemPredicate<BottomlessComponent> {
 	
@@ -18,12 +17,12 @@ public record BottomlessStackPredicate(ItemPredicate template, LongRange count) 
 	).apply(i, BottomlessStackPredicate::new));
 	
 	@Override
-	public @NotNull DataComponentType<BottomlessComponent> componentType() {
+	public DataComponentType<BottomlessComponent> componentType() {
 		return SpectrumDataComponentTypes.BOTTOMLESS_STACK.get();
 	}
 	
 	@Override
-	public boolean matches(@NotNull ItemStack stack, BottomlessComponent component) {
+	public boolean matches(ItemStack stack, BottomlessComponent component) {
 		return template.test(component.handler().variant()) && count.test(component.handler().count());
 	}
 	

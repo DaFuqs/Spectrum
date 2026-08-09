@@ -9,7 +9,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -42,7 +41,7 @@ public class EverpromiseRibbonAttachmentType {
 		}
 		
 		@Override
-		public @NotNull Type<? extends CustomPacketPayload> type() {
+		public Type<? extends CustomPacketPayload> type() {
 			return TYPE;
 		}
 	}

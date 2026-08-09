@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -98,28 +98,28 @@ public class PrimordialFireBlock extends BaseFireBlock {
 	
 	@Override
 	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
-		return this.canSurvive(state, world, pos) ? getStateForPosition(world, pos) : Blocks.AIR.defaultBlockState();
+		return this.canSurvive(state, world, pos) ? getStateForPosition(world, pos, direction) : Blocks.AIR.defaultBlockState();
 	}
-	
+
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public @Nullable VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return this.shapesByState.get(state);
 	}
 	
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-		return this.getStateForPosition(ctx.getLevel(), ctx.getClickedPos());
+		return this.getStateForPosition(ctx.getLevel(), ctx.getClickedPos(), ctx.getClickedFace());
 	}
 	
-	public BlockState getStateForPosition(BlockGetter world, BlockPos pos) {
+	public BlockState getStateForPosition(BlockGetter world, BlockPos pos, Direction direction) {
 		BlockPos blockPos = pos.below();
 		BlockState blockState = world.getBlockState(blockPos);
-		if (!this.canBurn(blockState) && !blockState.isFaceSturdy(world, blockPos, Direction.UP)) {
+		if (!this.canBurn(blockState, world, pos, direction) && !blockState.isFaceSturdy(world, blockPos, Direction.UP)) {
 			BlockState blockState2 = this.defaultBlockState();
-			for (Direction direction : Direction.values()) {
-				BooleanProperty booleanProperty = DIRECTION_PROPERTIES.get(direction);
+			for (Direction dir : Direction.values()) {
+				BooleanProperty booleanProperty = DIRECTION_PROPERTIES.get(dir);
 				if (booleanProperty != null) {
-					blockState2 = blockState2.setValue(booleanProperty, this.canBurn(world.getBlockState(pos.relative(direction))));
+					blockState2 = blockState2.setValue(booleanProperty, this.canBurn(world.getBlockState(pos.relative(dir)), world, pos, dir));
 				}
 			}
 			
@@ -133,7 +133,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 		BlockState state = world.getBlockState(pos);
 		
 		if (PrimordialFireBlock.canBePlacedAt(world, pos, direction)) {
-			if (world.setBlockAndUpdate(pos, SpectrumBlocks.PRIMORDIAL_FIRE.get().getStateForPosition(world, pos))) {
+			if (world.setBlockAndUpdate(pos, SpectrumBlocks.PRIMORDIAL_FIRE.get().getStateForPosition(world, pos, direction))) {
 				world.gameEvent(null, GameEvent.BLOCK_PLACE, pos);
 				return true;
 			}
@@ -171,10 +171,10 @@ public class PrimordialFireBlock extends BaseFireBlock {
 	
 	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, net.minecraft.util.RandomSource random) {
-		world.scheduleTick(pos, this, getFireTickDelay(world.random));
+		world.scheduleTick(pos, this, getFireTickDelay(world.getRandom()));
 		
 		if (world.getGameRules().getBoolean(GameRules.RULE_DOFIRETICK)) {
-			if (!state.canSurvive(world, pos)) {
+			if (world.getGameRules().getBoolean(SpectrumGameRules.RULE_EXTINGUISHPRIMORDIALFIRE) || !state.canSurvive(world, pos)) {
 				world.removeBlock(pos, false);
 			}
 			
@@ -189,7 +189,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 						if (!world.getBlockState(blockPos).isFaceSturdy(world, blockPos, Direction.UP)) {
 							world.removeBlock(pos, false);
 						}
-						if (random.nextInt(10) == 0 && !this.canBurn(world.getBlockState(pos.below()))) {
+						if (random.nextInt(10) == 0 && !this.canBurn(world.getBlockState(pos.below()), world, pos.below(), Direction.UP)) {
 							world.removeBlock(pos, false);
 							return;
 						}
@@ -219,7 +219,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 								if (burnChance > 0) {
 									int q = (burnChance + 40 + world.getDifficulty().getId() * 7) / 30;
 									if (q > 0 && random.nextInt(o) <= q) {
-										world.setBlock(mutable, getStateForPosition(world, mutable), 3);
+										world.setBlock(mutable, getStateForPosition(world, mutable, Direction.DOWN), 3);
 									}
 								}
 							}
@@ -244,7 +244,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 				}
 				
 				// replace the current block with fire
-				world.setBlock(pos, getStateForPosition(world, pos), 3);
+				world.setBlock(pos, getStateForPosition(world, pos, direction), 3);
 			}
 			
 			if (currentState.getBlock() instanceof TntBlock) {
@@ -255,7 +255,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 	
 	private boolean areBlocksAroundFlammable(BlockGetter world, BlockPos pos) {
 		for (Direction direction : Direction.values()) {
-			if (this.canBurn(world.getBlockState(pos.relative(direction)))) {
+			if (this.canBurn(world.getBlockState(pos.relative(direction)), world, pos.relative(direction), direction.getOpposite())) {
 				return true;
 			}
 		}
@@ -276,14 +276,19 @@ public class PrimordialFireBlock extends BaseFireBlock {
 	}
 	
 	@Override
+	@Deprecated
 	protected boolean canBurn(BlockState state) {
 		return ((FireBlock) Blocks.FIRE).getIgniteOdds(state) > 0;
+	}
+	
+	protected boolean canBurn(BlockState state, BlockGetter level, BlockPos pos, Direction face) {
+		return state.getFireSpreadSpeed(level, pos, face) > 0;
 	}
 	
 	@Override
 	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onPlace(state, world, pos, oldState, notify);
-		world.scheduleTick(pos, this, getFireTickDelay(world.random));
+		world.scheduleTick(pos, this, getFireTickDelay(world.getRandom()));
 	}
 	
 	private static int getFireTickDelay(RandomSource random) {
@@ -303,7 +308,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 		double f;
 		
 		if (blockState.isFaceSturdy(world, blockPos, Direction.UP)) {
-			var particle = this.canBurn(blockState) ? SpectrumParticleTypes.PRIMORDIAL_SIGNAL_SMOKE : SpectrumParticleTypes.PRIMORDIAL_COSY_SMOKE;
+			var particle = this.canBurn(blockState, world, pos, Direction.UP) ? SpectrumParticleTypes.PRIMORDIAL_SIGNAL_SMOKE : SpectrumParticleTypes.PRIMORDIAL_COSY_SMOKE;
 			for (i = 0; i < 2; ++i) {
 				d = (double) pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double) (random.nextBoolean() ? 1 : -1);
 				e = (double) pos.getY() + 0.15;
@@ -312,8 +317,8 @@ public class PrimordialFireBlock extends BaseFireBlock {
 			}
 		}
 		
-		if (!this.canBurn(blockState) && !blockState.isFaceSturdy(world, blockPos, Direction.UP)) {
-			if (this.canBurn(world.getBlockState(pos.west()))) {
+		if (!this.canBurn(blockState, world, blockPos, Direction.UP) && !blockState.isFaceSturdy(world, blockPos, Direction.UP)) {
+			if (this.canBurn(world.getBlockState(pos.west()), world, pos.west(), Direction.WEST)) {
 				for (i = 0; i < 2; ++i) {
 					d = (double) pos.getX() + random.nextDouble() * 0.10000000149011612;
 					e = (double) pos.getY() + random.nextDouble();
@@ -322,7 +327,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 				}
 			}
 			
-			if (this.canBurn(world.getBlockState(pos.east()))) {
+			if (this.canBurn(world.getBlockState(pos.east()), world, pos.east(), Direction.EAST)) {
 				for (i = 0; i < 2; ++i) {
 					d = (double) (pos.getX() + 1) - random.nextDouble() * 0.10000000149011612;
 					e = (double) pos.getY() + random.nextDouble();
@@ -331,7 +336,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 				}
 			}
 			
-			if (this.canBurn(world.getBlockState(pos.north()))) {
+			if (this.canBurn(world.getBlockState(pos.north()), world, pos.north(), Direction.NORTH)) {
 				for (i = 0; i < 2; ++i) {
 					d = (double) pos.getX() + random.nextDouble();
 					e = (double) pos.getY() + random.nextDouble();
@@ -340,7 +345,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 				}
 			}
 			
-			if (this.canBurn(world.getBlockState(pos.south()))) {
+			if (this.canBurn(world.getBlockState(pos.south()), world, pos.south(), Direction.SOUTH)) {
 				for (i = 0; i < 2; ++i) {
 					d = (double) pos.getX() + random.nextDouble();
 					e = (double) pos.getY() + random.nextDouble();
@@ -349,7 +354,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 				}
 			}
 			
-			if (this.canBurn(world.getBlockState(pos.above()))) {
+			if (this.canBurn(world.getBlockState(pos.above()), world, pos.above(), Direction.UP)) {
 				for (i = 0; i < 2; ++i) {
 					d = (double) pos.getX() + random.nextDouble();
 					e = (double) (pos.getY() + 1) - random.nextDouble() * 0.10000000149011612;

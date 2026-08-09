@@ -1,4 +1,4 @@
-#version 440
+#version 150
 
 uniform sampler2D DiffuseSampler;
 uniform float Intensity;

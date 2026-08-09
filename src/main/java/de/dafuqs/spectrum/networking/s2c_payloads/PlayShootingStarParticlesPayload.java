@@ -12,7 +12,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 public record PlayShootingStarParticlesPayload(Vec3 shootingStarPos, ShootingStar.Variant variant) implements CustomPacketPayload {
 	
@@ -23,7 +22,7 @@ public record PlayShootingStarParticlesPayload(Vec3 shootingStarPos, ShootingSta
 			PlayShootingStarParticlesPayload::new
 	);
 	
-	public static void sendPlayShootingStarParticles(@NotNull ShootingStarEntity shootingStarEntity) {
+	public static void sendPlayShootingStarParticles(ShootingStarEntity shootingStarEntity) {
 		PacketDistributor.sendToPlayersTrackingChunk(
 				(ServerLevel) shootingStarEntity.level(), new ChunkPos(shootingStarEntity.blockPosition()),
 				new PlayShootingStarParticlesPayload(
@@ -40,7 +39,7 @@ public record PlayShootingStarParticlesPayload(Vec3 shootingStarPos, ShootingSta
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

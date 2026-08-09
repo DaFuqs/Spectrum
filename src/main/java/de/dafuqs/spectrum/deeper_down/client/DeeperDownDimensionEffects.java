@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.deeper_down.client;
 
 import net.minecraft.client.renderer.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 
 public class DeeperDownDimensionEffects extends DimensionSpecialEffects {
@@ -12,12 +12,12 @@ public class DeeperDownDimensionEffects extends DimensionSpecialEffects {
 	}
 	
 	@Override
-	public float @Nullable [] getSunriseColor(float skyAngle, float tickDelta) {
+	public @Nullable float[] getSunriseColor(float skyAngle, float tickDelta) {
 		return null;
 	}
 	
 	@Override
-	public @NotNull Vec3 getBrightnessDependentFogColor(@NotNull Vec3 color, float sunHeight) {
+	public Vec3 getBrightnessDependentFogColor(Vec3 color, float sunHeight) {
 		return color;
 	}
 	

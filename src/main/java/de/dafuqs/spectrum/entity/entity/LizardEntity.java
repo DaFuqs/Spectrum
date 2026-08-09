@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.entity.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.registries.*;
@@ -25,7 +25,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -145,7 +145,7 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 		super.readAdditionalSaveData(nbt);
 		
 		InkColor color = SpectrumRegistries.INK_COLOR.get(ResourceLocation.tryParse(nbt.getString("color")));
-		this.setColor(color == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLOR, InkColorTags.ELEMENTAL_COLORS, this.random, InkColors.CYAN) : color);
+		this.setColor(color == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLOR, InkColorTags.ELEMENTAL_COLORS, this.getRandom(), InkColors.CYAN) : color);
 		
 		Optional.ofNullable(ResourceLocation.tryParse(nbt.getString("frills")))
 				.map((resourceLocation) -> ResourceKey.create(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, resourceLocation))
@@ -164,7 +164,7 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 	public void aiStep() {
 		Level world = this.level();
 		super.aiStep();
-		if (!world.isClientSide && this.ticksLeftToFindPOI > 0) {
+		if (!world.isClientSide() && this.ticksLeftToFindPOI > 0) {
 			--this.ticksLeftToFindPOI;
 		}
 	}
@@ -175,7 +175,7 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 		ItemStack itemStack = player.getItemInHand(hand);
 		if (this.isFood(itemStack)) {
 			int i = this.getAge();
-			if (!world.isClientSide && i == 0 && this.canFallInLove() && this.random.nextInt(5) == 0) {
+			if (!world.isClientSide() && i == 0 && this.canFallInLove() && this.getRandom().nextInt(5) == 0) {
 				// yes, this also overrides the existing owner
 				// there is no god besides the new god
 				this.usePlayerItem(player, hand, itemStack);
@@ -187,10 +187,10 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 			if (this.isBaby()) {
 				this.usePlayerItem(player, hand, itemStack);
 				this.ageUp(getSpeedUpSecondsWhenFeeding(-i), true);
-				return InteractionResult.sidedSuccess(world.isClientSide);
+				return InteractionResult.sidedSuccess(world.isClientSide());
 			}
 			
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return InteractionResult.CONSUME;
 			}
 		}
@@ -269,17 +269,17 @@ public class LizardEntity extends TamableAnimal implements PackEntity<LizardEnti
 		InkColor color1 = firstParent.getColor();
 		InkColor color2 = secondParent.getColor();
 		
-		return InkColorMixes.getRandomMixedColor(color1, color2, world.random);
+		return InkColorMixes.getRandomMixedColor(color1, color2, world.getRandom());
 	}
 	
 	private Holder<LizardFrillVariant> getChildFrills(LizardEntity firstParent, LizardEntity secondParent) {
 		Level world = this.level();
-		return world.random.nextBoolean() ? firstParent.getFrills() : secondParent.getFrills();
+		return world.getRandom().nextBoolean() ? firstParent.getFrills() : secondParent.getFrills();
 	}
 	
 	private Holder<LizardHornVariant> getChildHorns(LizardEntity firstParent, LizardEntity secondParent) {
 		Level world = this.level();
-		return world.random.nextBoolean() ? firstParent.getHorns() : secondParent.getHorns();
+		return world.getRandom().nextBoolean() ? firstParent.getHorns() : secondParent.getHorns();
 	}
 	
 	// PackEntity

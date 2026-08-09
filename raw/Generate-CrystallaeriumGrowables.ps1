@@ -463,7 +463,7 @@ foreach($entry in $entries.GetEnumerator()) {
     New-Item -Path ".\crystallarieum\$name`.json" -ItemType File -Force -Value @"
 {
   "type": "spectrum:crystallarieum_growing",
-  "fluid_medium": {
+  "fluid": {
     "fluid": "$Fluid"
   },
   "ingredient": {
@@ -478,7 +478,7 @@ foreach($entry in $entries.GetEnumerator()) {
       "id": "spectrum:pure_$name"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "consume_chance_per_second": x.x,
       "growth_acceleration_mod": x.x,

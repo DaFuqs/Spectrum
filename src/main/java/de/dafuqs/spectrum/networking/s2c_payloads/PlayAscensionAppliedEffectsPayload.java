@@ -10,13 +10,10 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
-
-import java.util.logging.*;
 
 public record PlayAscensionAppliedEffectsPayload() implements CustomPacketPayload {
 	
@@ -42,7 +39,7 @@ public record PlayAscensionAppliedEffectsPayload() implements CustomPacketPayloa
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

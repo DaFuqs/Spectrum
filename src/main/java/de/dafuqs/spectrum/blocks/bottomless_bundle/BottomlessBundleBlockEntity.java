@@ -6,7 +6,6 @@ import net.minecraft.nbt.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
 
 /**
  * Forge-native replacement for the Fabric SingleVariantStorage-based block entity.
@@ -34,19 +33,19 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 	}
 	
 	@Override
-	protected void saveAdditional(@NotNull CompoundTag nbt, HolderLookup.@NotNull Provider registryLookup) {
+	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(nbt, registryLookup);
 		syncBundleWithStorage();
 		nbt.put("Bundle", this.bottomlessBundleStack.saveOptional(registryLookup));
 	}
 	
 	@Override
-	public void loadAdditional(@NotNull CompoundTag nbt, HolderLookup.@NotNull Provider registryLookup) {
+	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(nbt, registryLookup);
 		this.setBundle(ItemStack.parse(registryLookup, nbt.getCompound("Bundle")).orElse(SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem().getDefaultInstance()), registryLookup);
 	}
 	
-	public void setBundle(@NotNull ItemStack itemStack, HolderLookup.@NotNull Provider registryLookup) {
+	public void setBundle(ItemStack itemStack, HolderLookup.Provider registryLookup) {
 		this.bottomlessBundleStack = itemStack;
 		BottomlessComponent component = BottomlessComponent.get(this.bottomlessBundleStack,registryLookup, true);
 		this.itemHandler = component.handler();

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -19,7 +19,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -51,7 +51,7 @@ public class NightfallsBladeItem extends TieredItem implements InkPoweredPotionF
 	}
 	
 	@Override
-	public long adjustFinalCostFor(@NotNull InkPoweredStatusEffectInstance instance) {
+	public long adjustFinalCostFor(InkPoweredStatusEffectInstance instance) {
 		return Math.round(Math.pow(instance.getInkCost().amount(), 1.75 + instance.getStatusEffectInstance().getAmplifier()));
 	}
 	
@@ -63,10 +63,10 @@ public class NightfallsBladeItem extends TieredItem implements InkPoweredPotionF
 				for (InkPoweredStatusEffectInstance instance : effects) {
 					if (InkPowered.tryDrainEnergy(player, instance.getInkCost().color(), instance.getInkCost().amount())) {
 						Level world = attacker.level();
-						if (world.isClientSide) {
+						if (world.isClientSide()) {
 							world.addParticle(new DynamicParticleEffect(ParticleTypes.EFFECT, 0.1F, SpectrumColorHelper.colorIntToVec(instance.getStatusEffectInstance().getEffect().value().getColor()), 0.5F, 120, true, true),
 									target.getRandomX(0.5D), target.getY(0.5D), target.getRandomZ(0.5D),
-									world.random.nextFloat() - 0.5, world.random.nextFloat() - 0.5, world.random.nextFloat() - 0.5
+									world.getRandom().nextFloat() - 0.5, world.getRandom().nextFloat() - 0.5, world.getRandom().nextFloat() - 0.5
 							);
 						} else {
 							target.addEffect(instance.getStatusEffectInstance(), attacker);

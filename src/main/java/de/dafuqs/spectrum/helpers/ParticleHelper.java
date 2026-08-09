@@ -6,19 +6,18 @@ import net.minecraft.core.particles.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class ParticleHelper {
 	
-	public static void playParticleWithPatternAndVelocityClient(Level world, Vec3 position, ParticleOptions particleEffect, @NotNull VectorPattern pattern, double velocity) {
+	public static void playParticleWithPatternAndVelocityClient(Level world, Vec3 position, ParticleOptions particleEffect, VectorPattern pattern, double velocity) {
 		for (Vec3 vec3d : pattern.getVectors()) {
 			world.addParticle(particleEffect, position.x(), position.y(), position.z(), vec3d.x * velocity, vec3d.y * velocity, vec3d.z * velocity);
 		}
 	}
 	
-	public static void playParticleWithRotation(Level world, Vec3 position, double longitude, double latitude, ParticleOptions particleEffect, @NotNull VectorPattern pattern, double velocity) {
+	public static void playParticleWithRotation(Level world, Vec3 position, double longitude, double latitude, ParticleOptions particleEffect, VectorPattern pattern, double velocity) {
 		for (Vec3 vec3d : pattern.getVectors()) {
 			var length = vec3d.length();
 			var orientation = Orientation.getVectorOrientation(vec3d).add(longitude, latitude);
@@ -43,7 +42,7 @@ public class ParticleHelper {
 				f = random.triangle(0, scale.z);
 			} else {
 				d = random.nextDouble() * 2 * scale.x - scale.x;
-				e = random.nextDouble() * 2 * scale.y - scale.y + -bonusYOffset;
+				e = random.nextDouble() * 2 * scale.y - scale.y - bonusYOffset;
 				f = random.nextDouble() * 2 * scale.z - scale.z;
 			}
 			

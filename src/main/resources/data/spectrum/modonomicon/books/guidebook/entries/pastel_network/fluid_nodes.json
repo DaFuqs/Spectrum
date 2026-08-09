@@ -1,0 +1,64 @@
+{
+  "name": "book.spectrum.guidebook.fluid_nodes.name",
+  "icon": {
+    "item": "minecraft:water_bucket"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/pastel_network/fluid"
+  },
+  "category": "spectrum:pastel_network",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -3,
+  "y": -1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.fluid_nodes.name",
+      "text": "book.spectrum.guidebook.fluid_nodes.about.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.sender_node.name",
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_provider_node"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pure_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_provider_node_refined"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.storage_node.name",
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_storage_node"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pure_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_storage_node_refined"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.sender_node.name",
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_sender_node"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pure_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_sender_node_refined"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.gather_node.name",
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_gather_node"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pure_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/fluid_gather_node_refined"
+    }
+  ]
+}

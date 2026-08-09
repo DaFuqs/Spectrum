@@ -6,7 +6,6 @@ import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -19,7 +18,7 @@ public class FusionShrineCraftingCriterion extends SimpleCriterionTrigger<Fusion
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

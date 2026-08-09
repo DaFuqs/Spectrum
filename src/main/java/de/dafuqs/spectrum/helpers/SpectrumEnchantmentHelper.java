@@ -14,7 +14,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
@@ -82,7 +82,7 @@ public class SpectrumEnchantmentHelper {
 	 * @param stack The stack to check
 	 * @return true if it is a book that can be turned into an enchanted book by enchanting
 	 */
-	public static boolean isEnchantableBook(@NotNull ItemStack stack) {
+	public static boolean isEnchantableBook(ItemStack stack) {
 		return stack.is(SpectrumItemTags.ENCHANTABLE_BOOKS) || stack.getItem() instanceof BookItem;
 	}
 	
@@ -105,7 +105,7 @@ public class SpectrumEnchantmentHelper {
 	}
 	
 	@SafeVarargs
-	public static Tuple<ItemStack, Integer> removeEnchantments(HolderLookup.Provider registryLookup, @NotNull ItemStack itemStack, ResourceKey<Enchantment>... enchantmentKeys) {
+	public static Tuple<ItemStack, Integer> removeEnchantments(HolderLookup.Provider registryLookup, ItemStack itemStack, ResourceKey<Enchantment>... enchantmentKeys) {
 		if (!EnchantmentHelper.hasAnyEnchantments(itemStack)) {
 			return new Tuple<>(itemStack, 0);
 		}
@@ -122,7 +122,7 @@ public class SpectrumEnchantmentHelper {
 	}
 	
 	@SafeVarargs
-	public static Tuple<ItemStack, Integer> removeEnchantments(@NotNull ItemStack itemStack, Holder<Enchantment>... enchantments) {
+	public static Tuple<ItemStack, Integer> removeEnchantments(ItemStack itemStack, Holder<Enchantment>... enchantments) {
 		return removeEnchantments(itemStack, Arrays.stream(enchantments).toList());
 	}
 	
@@ -133,7 +133,7 @@ public class SpectrumEnchantmentHelper {
 	 * @param enchantments the enchantments to remove
 	 * @return The resulting stack & the count of enchants that were removed
 	 */
-	public static <T extends Holder<Enchantment>> Tuple<ItemStack, Integer> removeEnchantments(@NotNull ItemStack itemStack, List<T> enchantments) {
+	public static <T extends Holder<Enchantment>> Tuple<ItemStack, Integer> removeEnchantments(ItemStack itemStack, List<T> enchantments) {
 		var removals = new AtomicInteger(0);
 		var builder = new ItemEnchantments.Mutable(EnchantmentHelper.getEnchantmentsForCrafting(itemStack));
 		enchantments.forEach(enchantment -> {
@@ -168,10 +168,13 @@ public class SpectrumEnchantmentHelper {
 	public static int getLevel(HolderLookup.Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
 		HolderLookup.RegistryLookup<Enchantment> lookup = provider.lookup(Registries.ENCHANTMENT).get();
 		Optional<Holder.Reference<Enchantment>> ench = lookup.get(enchantment);
-		if(ench.isEmpty()) {
-			return 0;
-		}
-		return stack.getEnchantmentLevel(ench.get());
+		return ench.isEmpty() ? 0 : stack.getEnchantmentLevel(ench.get());
+	}
+	
+	public static int getTagLevel(HolderLookup.Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+		HolderLookup.RegistryLookup<Enchantment> lookup = provider.lookup(Registries.ENCHANTMENT).get();
+		Optional<Holder.Reference<Enchantment>> ench = lookup.get(enchantment);
+		return ench.isEmpty() ? 0 : stack.getTagEnchantments().getLevel(ench.get());
 	}
 	
 	public static boolean hasEnchantment(HolderLookup.Provider registryLookup, ResourceKey<Enchantment> enchantment, ItemStack stack) {
@@ -200,7 +203,7 @@ public class SpectrumEnchantmentHelper {
 		return getEntry(lookup, key).map(e -> EnchantmentHelper.getEnchantmentLevel(e, entity)).orElse(0);
 	}
 	
-	public static boolean canEntityUse(Entity entity, String idAsString) {
+	public static boolean canEntityUse(@Nullable Entity entity, String idAsString) {
 		if (entity instanceof Player playerEntity) {
 			if (idAsString.contains("razing") || idAsString.contains("resonance") || idAsString.contains("voiding")) {
 				idAsString += "_usage";
@@ -209,6 +212,14 @@ public class SpectrumEnchantmentHelper {
 		} else {
 			return false;
 		}
+	}
+	
+	public static ItemStack getEnchantedBookStackWith(Holder<Enchantment> enchant, int level) {
+		var enchStack = new ItemStack(Items.ENCHANTED_BOOK);
+		var builder = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+		builder.set(enchant, level);
+		enchStack.set(DataComponents.STORED_ENCHANTMENTS, builder.toImmutable());
+		return enchStack;
 	}
 	
 }

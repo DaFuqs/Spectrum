@@ -13,7 +13,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -31,9 +31,9 @@ public abstract class ProjectileIdolBlock extends IdolBlock {
 		this.speed = speed;
 		this.divergence = divergence;
 	}
-	
+
 	@Override
-	public MapCodec<? extends ProjectileIdolBlock> codec() {
+	public @Nullable MapCodec<? extends ProjectileIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -45,7 +45,7 @@ public abstract class ProjectileIdolBlock extends IdolBlock {
 	}
 	
 	@Override
-	public boolean trigger(@NotNull ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
+	public boolean trigger(ServerLevel world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		side = side.getOpposite(); // shoot out the other side of the block
 		
 		BlockPos outputBlockPos = blockPos.relative(side);

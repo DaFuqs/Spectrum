@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.events.*;
@@ -10,7 +9,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.multiplayer.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
@@ -21,7 +19,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -40,12 +37,12 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 	}
 	
 	@SuppressWarnings("unused")
-	public static void clientTick(@NotNull Level world, BlockPos blockPos, BlockState blockState, ItemBowlBlockEntity itemBowlBlockEntity) {
+	public static void clientTick(Level world, BlockPos blockPos, BlockState blockState, ItemBowlBlockEntity itemBowlBlockEntity) {
 		ItemStack storedStack = itemBowlBlockEntity.getItem(0);
 		if (!storedStack.isEmpty()) {
 			Optional<InkColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getInkColor(storedStack.getItem());
 			if (optionalItemColor.isPresent()) {
-				int particleCount = Support.getIntFromDecimalWithChance(Math.max(0.1, (float) storedStack.getCount() / (storedStack.getMaxStackSize() * 2)), world.random);
+				int particleCount = Support.getIntFromDecimalWithChance(Math.max(0.1, (float) storedStack.getCount() / (storedStack.getMaxStackSize() * 2)), world.getRandom());
 				spawnRisingParticles(world, blockPos, storedStack, particleCount);
 			}
 		}
@@ -58,8 +55,8 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 				ParticleOptions particleEffect = ColoredSparkleRisingParticleEffect.of(optionalItemColor.get().getColorInt());
 				
 				for (int i = 0; i < amount; i++) {
-					float randomX = 0.1F + world.random.nextFloat() * 0.8F;
-					float randomZ = 0.1F + world.random.nextFloat() * 0.8F;
+					float randomX = 0.1F + world.getRandom().nextFloat() * 0.8F;
+					float randomZ = 0.1F + world.getRandom().nextFloat() * 0.8F;
 					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 0.75, blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
 				}
 			}
@@ -115,12 +112,12 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 				ColorTransmissionPayload.playColorTransmissionParticle(serverWorld, new ColoredTransmission(new Vec3(this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 1.0D, this.worldPosition.getZ() + 0.5D), new ExactPositionSource(orbTargetPos), 20, itemColor.getColorInt()));
 			} else if (this.getLevel().isClientSide()) {
 				for (int i = 0; i < 50; i++) {
-					float randomOffsetX = worldPosition.getX() + 0.3F + level.random.nextFloat() * 0.6F;
-					float randomOffsetY = worldPosition.getY() + 0.3F + level.random.nextFloat() * 0.6F;
-					float randomOffsetZ = worldPosition.getZ() + 0.3F + level.random.nextFloat() * 0.6F;
-					float randomVelocityX = 0.03F - level.random.nextFloat() * 0.06F;
-					float randomVelocityY = level.random.nextFloat() * 0.16F;
-					float randomVelocityZ = 0.03F - level.random.nextFloat() * 0.06F;
+					float randomOffsetX = worldPosition.getX() + 0.3F + level.getRandom().nextFloat() * 0.6F;
+					float randomOffsetY = worldPosition.getY() + 0.3F + level.getRandom().nextFloat() * 0.6F;
+					float randomOffsetZ = worldPosition.getZ() + 0.3F + level.getRandom().nextFloat() * 0.6F;
+					float randomVelocityX = 0.03F - level.getRandom().nextFloat() * 0.06F;
+					float randomVelocityY = level.getRandom().nextFloat() * 0.16F;
+					float randomVelocityZ = 0.03F - level.getRandom().nextFloat() * 0.06F;
 					
 					this.getLevel().addParticle(sparkleRisingParticleEffect,
 							randomOffsetX, randomOffsetY, randomOffsetZ,
@@ -131,7 +128,15 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 				this.getLevel().addParticle(sphereParticleEffect, this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 1.0D, this.worldPosition.getZ() + 0.5D, (orbTargetPos.x() - this.worldPosition.getX()) * 0.045, 0, (orbTargetPos.z() - this.worldPosition.getZ()) * 0.045);
 			}
 			
-			level.playSound(null, this.worldPosition, SpectrumSoundEvents.CRAFTING_DING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get(), 0.7F + level.random.nextFloat() * 0.6F);
+			level.playSound(null, this.worldPosition, SpectrumSoundEvents.CRAFTING_DING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue(), 0.7F + level.getRandom().nextFloat() * 0.6F);
+		}
+	}
+	
+	@Override
+	public void inventoryChanged() {
+		super.inventoryChanged();
+		if(this.level != null) {
+			ItemBowlBlock.updateConnectedMultiBlocks(this.level, this.worldPosition);
 		}
 	}
 	

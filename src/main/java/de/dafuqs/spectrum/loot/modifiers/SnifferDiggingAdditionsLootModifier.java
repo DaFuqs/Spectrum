@@ -11,7 +11,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.neoforged.neoforge.common.loot.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -40,7 +39,7 @@ public class SnifferDiggingAdditionsLootModifier extends LootModifier {
 	}
 	
 	@Override
-	protected @NotNull ObjectArrayList<ItemStack> doApply(@NotNull ObjectArrayList<ItemStack> original, LootContext lootContext) {
+	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> original, LootContext lootContext) {
 		ResourceLocation id = lootContext.getQueriedLootTableId();
 		RandomSource random = lootContext.getRandom();
 		Item item = random.nextFloat() < 0.25F ? SpectrumBlocks.WEEPING_GALA_SPRIG.asItem() : SpectrumItems.NIGHTDEW_SPROUT.get();
@@ -57,7 +56,7 @@ public class SnifferDiggingAdditionsLootModifier extends LootModifier {
 	}
 	
 	@Override
-	public @NotNull MapCodec<? extends IGlobalLootModifier> codec() {
+	public MapCodec<? extends IGlobalLootModifier> codec() {
 		return CODEC;
 	}
 	

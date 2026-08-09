@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.blocks.decoration;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;

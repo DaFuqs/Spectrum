@@ -5,7 +5,6 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.*;
-import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -43,14 +42,15 @@ public abstract class PlayerInventoryMixin {
 				continue;
 			}
 			
-			@Nullable IItemHandler itemHandler = inventoryStack.getCapability(Capabilities.ItemHandler.ITEM);
+			IItemHandler itemHandler = inventoryStack.getCapability(Capabilities.ItemHandler.ITEM);
 			if(itemHandler != null) {
-				if(!ItemStack.isSameItemSameComponents(stackToAdd, itemHandler.getStackInSlot(0))) {
+				// This is a very Bottomless Bundle specific check
+				// but that is the only item with the 'stores items' tag
+				ItemStack firstStack = itemHandler.getStackInSlot(0);
+				if(firstStack.isEmpty() || !ItemStack.isSameItemSameComponents(firstStack, stackToAdd)) {
 					continue;
 				}
-				if(!itemHandler.isItemValid(0, stackToAdd)) {
-					continue;
-				}
+				
 				ItemStack remainder = itemHandler.insertItem(i, stackToAdd, false);
 				stackToAdd.setCount(remainder.getCount());
 				if (remainder.isEmpty()) {

@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import org.jetbrains.annotations.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 public record InkColorPredicate(Optional<InkColor> color) {
@@ -15,7 +15,7 @@ public record InkColorPredicate(Optional<InkColor> color) {
 	
 	public static final InkColorPredicate ANY = new InkColorPredicate(Optional.empty());
 	
-	public boolean test(InkColor color) {
+	public boolean test(@Nullable InkColor color) {
 		if (this == ANY || color == null) {
 			return true;
 		}

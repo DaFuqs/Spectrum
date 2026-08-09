@@ -2,21 +2,18 @@ package de.dafuqs.spectrum.registries;
 
 import com.klikli_dev.modonomicon.registry.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
-import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.conditional.*;
-import de.dafuqs.spectrum.items.conditional.CloakedItem;
-import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
-import de.dafuqs.spectrum.items.food.beverages.*;
+import de.dafuqs.spectrum.items.ink.*;
 import de.dafuqs.spectrum.items.item_frame.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
@@ -25,10 +22,6 @@ import de.dafuqs.spectrum.items.misc.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.effect.*;
-import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.spectrum.registries.client.*;
-import net.minecraft.*;
-import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -80,11 +73,11 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> MOONSTONE_SHARD = register("moonstone_shard", () -> new CloakedItem(IS.of(), SpectrumAdvancements.BREAK_DECAYED_BEDROCK, WHITE_DYE));
 	public static final DeferredItem<Item> SPECTRAL_SHARD = register("spectral_shard", () -> new Item(IS.of(Rarity.RARE)));
 	
-	public static final DeferredItem<Item> TOPAZ_POWDER = register("topaz_powder", () -> new GemstonePowderItem(IS.of(), SpectrumAdvancements.COLLECT_TOPAZ, BuiltinGemstoneColor.CYAN, CYAN_DYE));
-	public static final DeferredItem<Item> AMETHYST_POWDER = register("amethyst_powder", () -> new GemstonePowderItem(IS.of(), SpectrumAdvancements.COLLECT_AMETHYST, BuiltinGemstoneColor.MAGENTA, MAGENTA_DYE));
-	public static final DeferredItem<Item> CITRINE_POWDER = register("citrine_powder", () -> new GemstonePowderItem(IS.of(), SpectrumAdvancements.COLLECT_CITRINE, BuiltinGemstoneColor.YELLOW, YELLOW_DYE));
-	public static final DeferredItem<Item> ONYX_POWDER = register("onyx_powder", () -> new GemstonePowderItem(IS.of(), SpectrumAdvancements.CREATE_ONYX, BuiltinGemstoneColor.BLACK, BLACK_DYE));
-	public static final DeferredItem<Item> MOONSTONE_POWDER = register("moonstone_powder", () -> new GemstonePowderItem(IS.of(), SpectrumAdvancements.COLLECT_MOONSTONE, BuiltinGemstoneColor.WHITE, WHITE_DYE));
+	public static final DeferredItem<Item> TOPAZ_POWDER = register("topaz_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.COLLECT_TOPAZ, CYAN_DYE));
+	public static final DeferredItem<Item> AMETHYST_POWDER = register("amethyst_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.COLLECT_AMETHYST, MAGENTA_DYE));
+	public static final DeferredItem<Item> CITRINE_POWDER = register("citrine_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.COLLECT_CITRINE, YELLOW_DYE));
+	public static final DeferredItem<Item> ONYX_POWDER = register("onyx_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.CREATE_ONYX, BLACK_DYE));
+	public static final DeferredItem<Item> MOONSTONE_POWDER = register("moonstone_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.COLLECT_MOONSTONE, WHITE_DYE));
 	
 	// Pigment
 	public static final DeferredItem<Item> WHITE_PIGMENT = register("white_pigment", () -> new PigmentItem(IS.of(), InkColors.WHITE, WHITE_DYE));
@@ -106,21 +99,21 @@ public class SpectrumItems {
 	
 	// Preenchanted tools
 	public static final DeferredItem<PreenchantedMultiToolItem> MULTITOOL = register("multitool", () -> new PreenchantedMultiToolItem(Tiers.IRON, 2, -2.4F, IS.of(Rarity.UNCOMMON).durability(Tiers.IRON.getUses())));
-	public static final DeferredItem<GlintlessPickaxe> TENDER_PICKAXE = register("tender_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.LOW_HEALTH, 1, -2.8F))) {
+	public static final DeferredItem<GlintlessPickaxe> TENDER_PICKAXE = register("tender_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.GEMSTONE, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.GEMSTONE.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.GEMSTONE, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.SILK_TOUCH, 1);
 		}
 	});
-	public static final DeferredItem<GlintlessPickaxe> LUCKY_PICKAXE = register("lucky_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.LOW_HEALTH, 1, -2.8F))) {
+	public static final DeferredItem<GlintlessPickaxe> LUCKY_PICKAXE = register("lucky_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.GEMSTONE, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.GEMSTONE.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.GEMSTONE, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.FORTUNE, 3);
 		}
 	});
-	public static final DeferredItem<RazorFalchionItem> RAZOR_FALCHION = register("razor_falchion", () -> new RazorFalchionItem(SpectrumToolTiers.LOW_HEALTH, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(SwordItem.createAttributes(SpectrumToolTiers.LOW_HEALTH, 4, -2.2F))));
-	public static final DeferredItem<OblivionPickaxeItem> OBLIVION_PICKAXE = register("oblivion_pickaxe", () -> new OblivionPickaxeItem(SpectrumToolTiers.VOIDING, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.VOIDING.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.VOIDING, 1, -2.8F))));
-	public static final DeferredItem<GlintlessPickaxe> RESONANT_PICKAXE = register("resonant_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.LOW_HEALTH_MINING_LEVEL_4, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.LOW_HEALTH.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.LOW_HEALTH_MINING_LEVEL_4, 1, -2.8F))) {
+	public static final DeferredItem<RazorFalchionItem> RAZOR_FALCHION = register("razor_falchion", () -> new RazorFalchionItem(SpectrumToolTiers.GEMSTONE, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.GEMSTONE.getUses()).attributes(SwordItem.createAttributes(SpectrumToolTiers.GEMSTONE, 4, -2.2F))));
+	public static final DeferredItem<OblivionPickaxeItem> OBLIVION_PICKAXE = register("oblivion_pickaxe", () -> new OblivionPickaxeItem(SpectrumToolTiers.OBLIVION, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.OBLIVION.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.OBLIVION, 1, -2.8F))));
+	public static final DeferredItem<GlintlessPickaxe> RESONANT_PICKAXE = register("resonant_pickaxe", () -> new GlintlessPickaxe(SpectrumToolTiers.GEMSTONE_MINING_LEVEL_4, IS.of(Rarity.UNCOMMON).durability(SpectrumToolTiers.GEMSTONE.getUses()).attributes(PickaxeItem.createAttributes(SpectrumToolTiers.GEMSTONE_MINING_LEVEL_4, 1, -2.8F))) {
 		@Override
 		public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 			return Map.of(SpectrumEnchantmentKeys.RESONANCE, 1);
@@ -179,11 +172,11 @@ public class SpectrumItems {
 	// Special tools
 	// TODO: set attribute modifiers similarly to how vanilla swords do it
 	public static final DeferredItem<DreamflayerItem> DREAMFLAYER = register("dreamflayer", () -> new DreamflayerItem(SpectrumToolTiers.DREAMFLAYER, 3, -1.8F, IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<NightfallsBladeItem> NIGHTFALLS_BLADE = register("nightfalls_blade", () -> new NightfallsBladeItem(Tiers.DIAMOND, 3, -2.4F, IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<DraconicTwinswordItem> DRACONIC_TWINSWORD = register("draconic_twinsword", () -> new DraconicTwinswordItem(SpectrumToolTiers.DRACONIC, 6, -3.0F, IS.of(1, Rarity.RARE)));
+	public static final DeferredItem<NightfallsBladeItem> NIGHTFALLS_BLADE = register("nightfalls_blade", () -> new NightfallsBladeItem(SpectrumToolTiers.NIGHTFALLS_BLADE, 3, -2.4F, IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<DraconicTwinswordItem> DRACONIC_TWINSWORD = register("draconic_twinsword", () -> new DraconicTwinswordItem(SpectrumToolTiers.DRACONIC, IS.of(1, Rarity.RARE).attributes(DraconicTwinswordItem.createAttributes())));
 	public static final DeferredItem<DragonTalonItem> DRAGON_TALON = register("dragon_talon", () -> new DragonTalonItem(SpectrumToolTiers.DRACONIC, -3.0, -1.0, IS.of(1, Rarity.RARE).durability(SpectrumToolTiers.DRACONIC.getUses())));
-	public static final DeferredItem<LightGreatswordItem> KNOTTED_SWORD = register("knotted_sword", () -> new LightGreatswordItem(SpectrumToolTiers.VERDIGRIS, 3, -2.4F, 0.25F, 0.5F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.VERDIGRIS.getUses())));
-	public static final DeferredItem<NectarLanceItem> NECTAR_LANCE = register("nectar_lance", () -> new NectarLanceItem(SpectrumToolTiers.NECTAR, 0, -2.4F, 0.5F, 1.5F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).durability(SpectrumToolTiers.NECTAR.getUses())));
+	public static final DeferredItem<LightGreatswordItem> KNOTTED_SWORD = register("knotted_sword", () -> new LightGreatswordItem(SpectrumToolTiers.KNOTTED_SWORD, 3, -2.4F, 0.25F, 0.5F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.KNOTTED_SWORD.getUses())));
+	public static final DeferredItem<NectarLanceItem> NECTAR_LANCE = register("nectar_lance", () -> new NectarLanceItem(SpectrumToolTiers.NECTAR_LANCE, 0, -2.4F, 0.5F, 1.5F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).durability(SpectrumToolTiers.NECTAR_LANCE.getUses())));
 	
 	// Bedrock Armor
 	public static final DeferredItem<BedrockArmorItem> BEDROCK_HELMET = register("bedrock_helmet", () -> new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.HELMET, IS.of(Rarity.UNCOMMON).fireResistant().durability(70 * 13).component(DataComponents.UNBREAKABLE, new Unbreakable(false))) {
@@ -232,7 +225,6 @@ public class SpectrumItems {
 	
 	// Fluid Buckets
 	public static final DeferredItem<Item> LIQUID_CRYSTAL_BUCKET = register("liquid_crystal_bucket", () -> new BucketItem(SpectrumFluids.LIQUID_CRYSTAL.get(), IS.of(1).craftRemainder(BUCKET)));
-	public static final DeferredItem<Item> SLUDGE_BUCKET = register("sludge_bucket", () -> new BucketItem(SpectrumFluids.SLUDGE.get(), IS.of(1).craftRemainder(BUCKET)));
 	public static final DeferredItem<Item> MIDNIGHT_SOLUTION_BUCKET = register("midnight_solution_bucket", () -> new BucketItem(SpectrumFluids.MIDNIGHT_SOLUTION.get(), IS.of(1).craftRemainder(BUCKET)));
 	public static final DeferredItem<Item> DRAGONROT_BUCKET = register("dragonrot_bucket", () -> new BucketItem(SpectrumFluids.DRAGONROT.get(), IS.of(1).craftRemainder(BUCKET)));
 	
@@ -263,7 +255,7 @@ public class SpectrumItems {
 	
 	public static final DeferredItem<Item> QUITOXIC_POWDER = register("quitoxic_powder", () -> new CloakedItem(IS.of(), SpectrumAdvancements.REVEAL_QUITOXIC_REEDS, PURPLE_DYE));
 	public static final DeferredItem<Item> STORM_STONE = register("storm_stone", () -> new StormStoneItem(IS.of(), SpectrumAdvancements.REVEAL_STORM_STONES, YELLOW_DYE));
-	public static final DeferredItem<Item> MERMAIDS_GEM = register("mermaids_gem", () -> new MermaidsGemItem(SpectrumBlocks.MERMAIDS_BRUSH.get(), IS.of().component(SpectrumDataComponentTypes.FLUID_CONTENT, SimpleFluidContent.copyOf(new FluidStack(Fluids.WATER, 1000)))));
+	public static final DeferredItem<Item> MERMAIDS_GEM = register("mermaids_gem", () -> new MermaidsGemItem(SpectrumBlocks.MERMAIDS_BRUSH.get(), IS.of().component(SpectrumDataComponentTypes.FLUID_CONTENT, SimpleFluidContent.copyOf(new FluidStack(Fluids.WATER, FluidType.BUCKET_VOLUME)))));
 	public static final DeferredItem<CloakedItem> STAR_FRAGMENT = register("star_fragment", () -> new CloakedItem(IS.of(16), SpectrumAdvancements.UNLOCK_SHOOTING_STARS, PURPLE_DYE));
 	public static final DeferredItem<Item> STARDUST = register("stardust", () -> new CloakedItemWithLoomPattern(IS.of(), SpectrumAdvancements.UNLOCK_SHOOTING_STARS, PURPLE_DYE, SpectrumBannerPatternKeys.SHIMMER));
 	public static final DeferredItem<Item> ASH_FLAKES = register("ash_flakes", () -> new AshItem(IS.of()));
@@ -291,21 +283,21 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> BLOODBOIL_SYRUP = register("bloodboil_syrup", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.BLOODBOIL_SYRUP).craftRemainder(GLASS_BOTTLE)));
 	public static final DeferredItem<Item> MILKY_RESIN = register("milky_resin", () -> new Item(IS.of(Rarity.UNCOMMON)));
 	
-	// Food & drinks*/
+	// Food & drinks
 	public static final DeferredItem<Item> SCONE = register("scone", () -> new Item(IS.of().food(SpectrumFoodComponents.SCONE)));
-	public static final DeferredItem<Item> MOONSTRUCK_NECTAR = register("moonstruck_nectar", () -> new MoonstruckNectarItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> MOONSTRUCK_NECTAR = register("moonstruck_nectar", () -> new DrinkItem(IS.of(Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).craftRemainder(GLASS_BOTTLE), Component.translatable("item.spectrum.moonstruck_nectar.tooltip").append("\n").append(Component.translatable("item.spectrum.moonstruck_nectar.tooltip2"))));
 	public static final DeferredItem<Item> JADE_JELLY = register("jade_jelly", () -> new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.JADE_JELLY), "item.spectrum.jade_jelly.tooltip"));
 	public static final DeferredItem<Item> GLASS_PEACH = register("glass_peach", () -> new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.GLASS_PEACH), "item.spectrum.glass_peach.tooltip"));
 	public static final DeferredItem<Item> FISSURE_PLUM = register("fissure_plum", () -> new AliasedTooltipItem(SpectrumBlocks.ABYSSAL_VINES.get(), IS.of().food(SpectrumFoodComponents.FISSURE_PLUM), "item.spectrum.fissure_plum.tooltip"));
 	public static final DeferredItem<Item> NIGHTDEW_SPROUT = register("nightdew_sprout", () -> new AliasedTooltipItem(SpectrumBlocks.NIGHTDEW.get(), IS.of().food(SpectrumFoodComponents.NIGHTDEW_SPROUT), "item.spectrum.nightdew_sprout.tooltip"));
 	public static final DeferredItem<Item> NECTARDEW_BURGEON = register("nectardew_burgeon", () -> new NectardewBurgeonItem(IS.of().food(SpectrumFoodComponents.NECTARDEW_BURGEON), "item.spectrum.nectardew_burgeon.tooltip", SpectrumAdvancements.COLLECT_NECTARDEW, SpectrumItems.NIGHTDEW_SPROUT.get()));
-	public static final DeferredItem<Item> RESTORATION_TEA = register("restoration_tea", () -> new RestorationTeaItem(IS.of().food(SpectrumFoodComponents.RESTORATION_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.RESTORATION_TEA_SCONE_BONUS))));
-	public static final DeferredItem<Item> KIMCHI = register("kimchi", () -> new KimchiItem(IS.of().food(SpectrumFoodComponents.KIMCHI)));
+	public static final DeferredItem<Item> RESTORATION_TEA = register("restoration_tea", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.RESTORATION_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.RESTORATION_TEA_SCONE_BONUS)), Component.translatable("item.spectrum.restoration_tea.tooltip").append("\n").append(Component.translatable("item.spectrum.restoration_tea.tooltip2"))));
+	public static final DeferredItem<Item> KIMCHI = register("kimchi", () -> new Item(IS.of().food(SpectrumFoodComponents.KIMCHI)));
 	public static final DeferredItem<Item> CLOTTED_CREAM = register("clotted_cream", () -> new ClottedCreamItem(IS.of().food(SpectrumFoodComponents.CLOTTED_CREAM), new String[]{"item.spectrum.clotted_cream.tooltip", "item.spectrum.clotted_cream.tooltip2"}));
 	public static final DeferredItem<Item> FRESH_CHOCOLATE = register("fresh_chocolate", () -> new Item(IS.of().food(SpectrumFoodComponents.FRESH_CHOCOLATE)));
 	public static final DeferredItem<Item> HOT_CHOCOLATE = register("hot_chocolate", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.HOT_CHOCOLATE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.HOT_CHOCOLATE_SCONE_BONUS))));
 	public static final DeferredItem<Item> KARAK_CHAI = register("karak_chai", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.KARAK_CHAI).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.KARAK_CHAI_SCONE_BONUS))));
-	public static final DeferredItem<Item> AZALEA_TEA = register("azalea_tea", () -> new AzaleaTeaItem(IS.of().food(SpectrumFoodComponents.AZALEA_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.AZALEA_TEA_SCONE_BONUS))));
+	public static final DeferredItem<Item> AZALEA_TEA = register("azalea_tea", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.AZALEA_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.AZALEA_TEA_SCONE_BONUS)), "item.spectrum.azalea_tea.tooltip"));
 	public static final DeferredItem<Item> BODACIOUS_BERRY_BAR = register("bodacious_berry_bar", () -> new Item(IS.of().food(SpectrumFoodComponents.BODACIOUS_BERRY_BAR)));
 	public static final DeferredItem<Item> DEMON_TEA = register("demon_tea", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.DEMON_TEA).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS))));
 	
@@ -325,7 +317,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> LUCKY_ROLL = register("lucky_roll", () -> new Item(IS.of().food(SpectrumFoodComponents.LUCKY_ROLL)));
 	public static final DeferredItem<Item> TRIPLE_MEAT_POT_PIE = register("triple_meat_pot_pie", () -> new Item(IS.of().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_PIE)));
 	public static final DeferredItem<Item> GLISTERING_JELLY_TEA = register("glistering_jelly_tea", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).craftRemainder(GLASS_BOTTLE).component(SpectrumDataComponentTypes.PAIRED_FOOD_COMPONENT, teaSconeBonus(SpectrumFoodComponents.GLISTERING_JELLY_TEA_SCONE_BONUS))));
-	public static final DeferredItem<Item> FREIGEIST = register("freigeist", () -> new FreigeistItem(IS.of().food(SpectrumFoodComponents.FREIGEIST).craftRemainder(GLASS_BOTTLE)));
+	public static final DeferredItem<Item> FREIGEIST = register("freigeist", () -> new DrinkItem(IS.of().food(SpectrumFoodComponents.FREIGEIST).craftRemainder(GLASS_BOTTLE), "item.spectrum.freigeist.tooltip"));
 	public static final DeferredItem<Item> DIVINATION_HEART = register("divination_heart", () -> new Item(IS.of().food(SpectrumFoodComponents.DIVINATION_HEART)));
 	
 	public static final DeferredItem<Item> SUGARY_STAR_CANDY = register("sugary_star_candy", () -> new StarCandyItem(IS.of(Rarity.COMMON).food(SpectrumFoodComponents.SUGARY_STAR_CANDY), StarCandyItem.Rarity.SUGARY));
@@ -356,8 +348,8 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> ALOE_LEAF = register("aloe_leaf", () -> new ItemNameBlockItem(SpectrumBlocks.ALOE.get(), IS.of().food(SpectrumFoodComponents.ALOE_LEAF)));
 	public static final DeferredItem<Item> SAWBLADE_HOLLY_BERRY = register("sawblade_holly_berry", () -> new ItemNameBlockItem(SpectrumBlocks.SAWBLADE_HOLLY_BUSH.get(), IS.of().food(Foods.SWEET_BERRIES)));
 	public static final DeferredItem<Item> PRICKLY_BAYLEAF = register("prickly_bayleaf", () -> new Item(IS.of().food(SpectrumFoodComponents.PRICKLY_BAYLEAF)));
-	public static final DeferredItem<Item> TRIPLE_MEAT_POT_STEW = register("triple_meat_pot_stew", () -> new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW)));
-	public static final DeferredItem<Item> DRAGONBONE_BROTH = register("dragonbone_broth", () -> new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.DRAGONBONE_BROTH)));
+	public static final DeferredItem<Item> TRIPLE_MEAT_POT_STEW = register("triple_meat_pot_stew", () -> new Item(IS.of(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW)));
+	public static final DeferredItem<Item> DRAGONBONE_BROTH = register("dragonbone_broth", () -> new Item(IS.of(8).food(SpectrumFoodComponents.DRAGONBONE_BROTH)));
 	public static final DeferredItem<Item> DOOMBLOOM_SEED = register("doombloom_seed", () -> new ItemNameBlockItem(SpectrumBlocks.DOOMBLOOM.get(), IS.of().fireResistant().fireResistant().component(SpectrumDataComponentTypes.DAMAGE_IMMUNE, List.of(DamageTypeTags.IS_FIRE, DamageTypeTags.IS_EXPLOSION))));
 	
 	public static final DeferredItem<Item> GLISTERING_MELON_SEEDS = register("glistering_melon_seeds", () -> new ItemNameBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM.get(), IS.of()));
@@ -439,8 +431,8 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> CONCEALING_OILS = register("concealing_oils", () -> new ConcealingOilsItem(IS.of(16)));
 	public static final DeferredItem<Item> BITTER_OILS = register("bitter_oils", () -> new DrinkItem(IS.of(16).food(SpectrumFoodComponents.BITTER_OILS).craftRemainder(GLASS_BOTTLE)));
 	
-	public static final DeferredItem<Item> INCANDESCENT_ESSENCE = register("incandescent_essence", () -> new CloakedItem(IS.of().fireResistant(), SpectrumAdvancements.MIDGAME, ORANGE_DYE));
-	public static final DeferredItem<Item> FROSTBITE_ESSENCE = register("frostbite_essence", () -> new CloakedItem(IS.of(), SpectrumAdvancements.MIDGAME, LIGHT_BLUE_DYE));
+	public static final DeferredItem<Item> INCANDESCENT_ESSENCE = register("incandescent_essence", () -> new CloakedItem(IS.of().fireResistant(), SpectrumAdvancements.REVEAL_INCANDESCENT_RESOURCES, ORANGE_DYE));
+	public static final DeferredItem<Item> FROSTBITE_ESSENCE = register("frostbite_essence", () -> new CloakedItem(IS.of(), SpectrumAdvancements.REVEAL_FROSTBITE_RESOURCES, LIGHT_BLUE_DYE));
 	public static final DeferredItem<Item> MOONSTONE_CORE = register("moonstone_core", () -> new CloakedItem(IS.of(Rarity.RARE), SpectrumAdvancements.FIND_FORGOTTEN_CITY, WHITE_DYE));
 	
 	// Music discs
@@ -455,7 +447,7 @@ public class SpectrumItems {
 	// Specialty Magical Tools
 	public static final DeferredItem<KnowledgeGemItem> KNOWLEDGE_GEM = register("knowledge_gem", () -> new KnowledgeGemItem(IS.of(1, Rarity.UNCOMMON), 10000));
 	public static final DeferredItem<Item> CELESTIAL_POCKETWATCH = register("celestial_pocketwatch", () -> new CelestialPocketWatchItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<Item> ARTISANS_ATLAS = register("artisans_atlas", () -> new ArtisansAtlasItem(IS.of(Rarity.UNCOMMON)));
+	public static final DeferredItem<Item> ARTISANS_ATLAS = register("artisans_atlas", () -> new ArtisansAtlasItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> GILDED_BOOK = register("gilded_book", () -> new GildedBookItem(IS.of(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> ENCHANTMENT_CANVAS = register("enchantment_canvas", () -> new EnchantmentCanvasItem(IS.of(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> EVERPROMISE_RIBBON = register("everpromise_ribbon", () -> new EverpromiseRibbonItem(IS.of()));
@@ -473,7 +465,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> FANCIFUL_BISMUTH_RING = register("fanciful_bismuth_ring", () -> new Item(IS.of(16, Rarity.UNCOMMON)));
 	
 	public static final DeferredItem<Item> GLOW_VISION_GOGGLES = register("glow_vision_goggles", () -> new GlowVisionGogglesItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<Item> JEOPARDANT = register("jeopardant", () -> new AttackRingItem(IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<Item> JEOPARDANT = register("jeopardant", () -> new JeopardantItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<SevenLeagueBootsItem> SEVEN_LEAGUE_BOOTS = register("seven_league_boots", () -> new SevenLeagueBootsItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> COTTON_CLOUD_BOOTS = register("cotton_cloud_boots", () -> new CottonCloudBootsItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> RADIANCE_PIN = register("radiance_pin", () -> new RadiancePinItem(IS.of(1, Rarity.UNCOMMON)));

@@ -13,6 +13,7 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> AMARANTH_PLANTABLE = spectrum("amaranth_plantable");
 	public static final TagKey<Block> MERMAIDS_BRUSH_PLANTABLE = spectrum("mermaids_brush_plantable");
 	public static final TagKey<Block> QUITOXIC_REEDS_PLANTABLE = spectrum("quitoxic_reeds_plantable");
+	public static final TagKey<Block> QUITOXIC_REEDS_CONSUMABLE = spectrum("quitoxic_reeds_consumable");
 	public static final TagKey<Block> SAWBLADE_HOLLY_PLANTABLE = spectrum("sawblade_holly_plantable");
 	public static final TagKey<Block> DOOMBLOOM_PLANTABLE = spectrum("doombloom_plantable");
 	public static final TagKey<Block> SNAPPING_IVY_PLANTABLE = spectrum("snapping_ivy_plantable");
@@ -60,7 +61,7 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> BUILDING_STAFFS_BLACKLISTED = spectrum("building_staffs_blacklisted");
 	public static final TagKey<Block> CRYSTAL_APOTHECARY_HARVESTABLE = spectrum("crystal_apothecary_harvestable");
 	public static final TagKey<Block> UNBREAKABLE_STRUCTURE_BLOCKS = spectrum("unbreakable_structure_blocks");
-	public static final TagKey<Block> INK_EFFECT_BLACKLISTED = spectrum("ink_effect_blacklisted"); // blacklisting form block coloring, repairing, ...
+	public static final TagKey<Block> COLORING_BLACKLISTED = spectrum("coloring_blacklisted");
 	public static final TagKey<Block> SPREADS_TO_BLACKSLAG = spectrum("spreads_to_blackslag");
 	public static final TagKey<Block> OVERGROWN = spectrum("overgrown");
 	public static final TagKey<Block> ASH = spectrum("ash");

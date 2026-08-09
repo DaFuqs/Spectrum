@@ -17,13 +17,13 @@ import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class MermaidsGemItem extends ItemNameBlockItem implements RevelationAware {
 	
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
+	public static final int ITEM_INTERACTION_WATER_FILL_MILLIBUCKETS = FluidType.BUCKET_VOLUME;
 	
 	public MermaidsGemItem(Block block, Properties settings) {
 		super(block, settings);
@@ -55,28 +55,36 @@ public class MermaidsGemItem extends ItemNameBlockItem implements RevelationAwar
 				level.setBlockAndUpdate(pos, Blocks.WATER_CAULDRON.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, LayeredCauldronBlock.MAX_FILL_LEVEL));
 				context.getItemInHand().shrink(1);
 			}
-			return InteractionResult.sidedSuccess(level.isClientSide);
+			return InteractionResult.sidedSuccess(level.isClientSide());
 		}
 		
 		return super.useOn(context);
 	}
 	
 	@Override
-	public boolean overrideStackedOnOther(@NotNull ItemStack gemStack, @NotNull Slot slot, @NotNull ClickAction clickType, @NotNull Player player) {
-		if (clickType != ClickAction.SECONDARY) {
-			return false;
-		}
+	public boolean overrideStackedOnOther(ItemStack gemStack, Slot slot, ClickAction clickType, Player player) {
+
 		
 		ItemStack slotStack = slot.getItem();
 		IFluidHandlerItem fluidHandler = slotStack.getCapability(Capabilities.FluidHandler.ITEM);
 		if (fluidHandler != null) {
-			if(fluidHandler.fill(new FluidStack(Fluids.WATER, 1000), IFluidHandler.FluidAction.EXECUTE) > 0) {
+			
+			int maxUsedMermaidsGems = 1; // single item when right-clicking
+			if (clickType == ClickAction.PRIMARY) {
+				// whole stack when left-clicking
+				maxUsedMermaidsGems = gemStack.getCount();
+			}
+			
+			int maxFluidAmount = ITEM_INTERACTION_WATER_FILL_MILLIBUCKETS * maxUsedMermaidsGems;
+			int filledAmount = fluidHandler.fill(new FluidStack(Fluids.WATER, maxFluidAmount), IFluidHandler.FluidAction.EXECUTE);
+			if(filledAmount > 0) {
 				slot.set(fluidHandler.getContainer());
-				gemStack.shrink(1);
+				gemStack.shrink((int) Math.ceil((float) filledAmount / ITEM_INTERACTION_WATER_FILL_MILLIBUCKETS));
+				return true;
 			}
 		}
 		
-		return true;
+		return false;
 	}
 	
 }

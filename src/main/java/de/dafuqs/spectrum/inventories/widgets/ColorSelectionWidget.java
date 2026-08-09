@@ -1,14 +1,13 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.blocks.energy.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
-import net.minecraft.client.gui.screens.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
@@ -22,27 +21,25 @@ import static de.dafuqs.spectrum.helpers.RenderHelper.*;
 
 public class ColorSelectionWidget extends AbstractWidget {
 	
-	protected final ColorPickerBlockEntity colorPicker;
+	protected final BaseInkBlockEntity<?> blockEntity;
 	
 	@Nullable
 	private Consumer<Optional<Holder<InkColor>>> changedListener;
-	protected final Screen screen;
 	
 	final List<Tuple<InkColor, Boolean>> usableColors = new ArrayList<>(); // stores if a certain color should be displayed
 	
-	final int selectedDotX;
-	final int selectedDotY;
+	final int selectedIndexX;
+	final int selectedIndexY;
 	
-	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, Screen screen, ColorPickerBlockEntity colorPicker) {
-		this(x, y, selectedDotX, selectedDotY, screen, colorPicker, InkColors.BUILTIN_COLORS);
+	public ColorSelectionWidget(int x, int y, int selectedIndexX, int selectedIndexY, BaseInkBlockEntity<?> blockEntity) {
+		this(x, y, selectedIndexX, selectedIndexY, blockEntity, blockEntity.getInkStorage().acceptedColors());
 	}
 	
-	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, Screen screen, ColorPickerBlockEntity colorPicker, List<InkColor> availableColors) {
+	public ColorSelectionWidget(int x, int y, int selectedIndexX, int selectedIndexY, BaseInkBlockEntity<?> blockEntity, Iterable<InkColor> availableColors) {
 		super(x, y, 56, 14, Component.literal(""));
-		this.colorPicker = colorPicker;
-		this.selectedDotX = selectedDotX;
-		this.selectedDotY = selectedDotY;
-		this.screen = screen;
+		this.blockEntity = blockEntity;
+		this.selectedIndexX = selectedIndexX;
+		this.selectedIndexY = selectedIndexY;
 		
 		for (InkColor inkColor : availableColors) {
 			usableColors.add(new Tuple<>(inkColor, AdvancementHelper.hasAdvancementClient(inkColor.getRequiredAdvancement())));
@@ -57,6 +54,11 @@ public class ColorSelectionWidget extends AbstractWidget {
 		if (this.changedListener != null) {
 			this.changedListener.accept(newColor);
 		}
+	}
+	
+	@Override
+	public boolean isMouseOver(double mouseX, double mouseY) {
+		return super.isMouseOver(mouseX, mouseY) || (this.active && this.visible && isUnselection(mouseX, mouseY));
 	}
 	
 	@Override
@@ -77,8 +79,7 @@ public class ColorSelectionWidget extends AbstractWidget {
 			}
 		}
 		
-		// draw currently selected icon
-		this.colorPicker.getSelectedColor().ifPresent(inkColor -> fillQuad(context.pose(), selectedDotX, selectedDotY, 4, 4, inkColor.value().getColorVec()));
+		this.blockEntity.getSelectedColor().ifPresent(inkColor -> fillQuad(context.pose(), selectedIndexX, selectedIndexY, 4, 4, inkColor.value().getColorVec()));
 	}
 	
 	@Override
@@ -119,17 +120,12 @@ public class ColorSelectionWidget extends AbstractWidget {
 	protected void updateWidgetNarration(@NotNull NarrationElementOutput builder) { }
 	
 	private boolean isUnselection(double mouseX, double mouseY) {
-		return mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
-	}
-	
-	public boolean isMouseOver(double mouseX, double mouseY) {
-		return super.isMouseOver(mouseX, mouseY) || (this.active && this.visible && isUnselection(mouseX, mouseY));
+		return mouseX >= (double) selectedIndexX && mouseX < (double) (selectedIndexX + 4) && mouseY >= (double) selectedIndexY && mouseY < (double) (selectedIndexY + 4);
 	}
 	
 	public void drawMouseoverTooltip(GuiGraphics drawContext, int mouseX, int mouseY) {
 		Minecraft client = Minecraft.getInstance();
-		boolean overUnselection = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
-		if (overUnselection) {
+		if (isUnselection(mouseX, mouseY)) {
 			drawContext.renderTooltip(client.font, List.of(Component.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 		} else {
 			int xOffset = Mth.floor(mouseX) - this.getX();
@@ -139,6 +135,10 @@ public class ColorSelectionWidget extends AbstractWidget {
 			int verticalColorOffset = yOffset / 7;
 			int newColorIndex = horizontalColorOffset + verticalColorOffset * 8;
 			
+			if(newColorIndex < 0 || newColorIndex >= usableColors.size()) {
+				return;
+			}
+			
 			var hoveredColor = usableColors.get(newColorIndex);
 			if (hoveredColor.getB()) {
 				drawContext.renderTooltip(client.font, List.of(hoveredColor.getA().getName()), Optional.empty(), getX(), getY());
@@ -147,4 +147,5 @@ public class ColorSelectionWidget extends AbstractWidget {
 			}
 		}
 	}
+	
 }

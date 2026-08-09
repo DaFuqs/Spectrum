@@ -1,17 +1,19 @@
 package de.dafuqs.spectrum.blocks.shooting_star;
 
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.storage.loot.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
+
+import java.util.*;
 
 public interface ShootingStar {
 	
@@ -33,7 +35,7 @@ public interface ShootingStar {
 			this.lootTable = lootTable;
 		}
 		
-		public static Variant getWeightedRandomType(@NotNull RandomSource random) {
+		public static Variant getWeightedRandomType(RandomSource random) {
 			int r = random.nextInt(8);
 			if (r == 0) {
 				return FIERY;
@@ -70,11 +72,11 @@ public interface ShootingStar {
 		}
 		
 		@Contract("_ -> new")
-		public static @NotNull ResourceKey<LootTable> getLootTable(int index) {
+		public static ResourceKey<LootTable> getLootTable(int index) {
 			return values()[index].getLootTable();
 		}
 		
-		public @NotNull ResourceKey<LootTable> getLootTable() {
+		public ResourceKey<LootTable> getLootTable() {
 			return this.lootTable;
 		}
 		
@@ -102,53 +104,55 @@ public interface ShootingStar {
 			}
 		}
 		
-		public @NotNull Vector3f getRandomParticleColor(RandomSource random) {
+		public Vector3f getRandomParticleColor(RandomSource random) {
 			switch (this) {
 				case GLISTERING -> {
 					int r = random.nextInt(5);
 					if (r == 0) {
-						return SpectrumColorHelper.getRGBVec(DyeColor.YELLOW);
+						return InkColors.YELLOW.getColorVec();
 					} else if (r == 1) {
-						return SpectrumColorHelper.getRGBVec(DyeColor.WHITE);
+						return InkColors.WHITE.getColorVec();
 					} else if (r == 2) {
-						return SpectrumColorHelper.getRGBVec(DyeColor.ORANGE);
+						return InkColors.ORANGE.getColorVec();
 					} else if (r == 3) {
-						return SpectrumColorHelper.getRGBVec(DyeColor.LIME);
+						return InkColors.LIME.getColorVec();
 					} else {
-						return SpectrumColorHelper.getRGBVec(DyeColor.BLUE);
+						return InkColors.BLUE.getColorVec();
 					}
 				}
 				case COLORFUL -> {
-					return SpectrumColorHelper.getRGBVec(SpectrumColorHelper.VANILLA_DYE_COLORS.get(random.nextInt(SpectrumColorHelper.VANILLA_DYE_COLORS.size())));
+					List<InkColor> target = new ArrayList<>();
+					InkColors.all().iterator().forEachRemaining(target::add);
+					return target.getFirst().getColorVec();
 				}
 				case FIERY -> {
 					int r = random.nextInt(2);
 					if (r == 0) {
-						return SpectrumColorHelper.getRGBVec(DyeColor.ORANGE);
+						return InkColors.ORANGE.getColorVec();
 					} else {
-						return SpectrumColorHelper.getRGBVec(DyeColor.RED);
+						return InkColors.RED.getColorVec();
 					}
 				}
 				case PRISTINE -> {
 					int r = random.nextInt(3);
 					if (r == 0) {
-						return SpectrumColorHelper.getRGBVec(DyeColor.BLUE);
+						return InkColors.BLUE.getColorVec();
 					} else if (r == 1) {
-						return SpectrumColorHelper.getRGBVec(DyeColor.LIGHT_BLUE);
+						return InkColors.LIGHT_BLUE.getColorVec();
 					} else {
-						return SpectrumColorHelper.getRGBVec(DyeColor.CYAN);
+						return InkColors.CYAN.getColorVec();
 					}
 				}
 				default -> {
 					int r = random.nextInt(4);
 					if (r == 0) {
-						return SpectrumColorHelper.getRGBVec(DyeColor.CYAN);
+						return InkColors.CYAN.getColorVec();
 					} else if (r == 1) {
-						return SpectrumColorHelper.getRGBVec(DyeColor.MAGENTA);
+						return InkColors.MAGENTA.getColorVec();
 					} else if (r == 2) {
-						return SpectrumColorHelper.getRGBVec(DyeColor.WHITE);
+						return InkColors.WHITE.getColorVec();
 					} else {
-						return SpectrumColorHelper.getRGBVec(DyeColor.YELLOW);
+						return InkColors.YELLOW.getColorVec();
 					}
 				}
 			}

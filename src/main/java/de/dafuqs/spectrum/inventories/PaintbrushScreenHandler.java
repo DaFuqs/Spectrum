@@ -2,12 +2,13 @@ package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -22,7 +23,7 @@ public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler im
 	}
 	
 	public PaintbrushScreenHandler(int syncId, Inventory playerInventory, ItemStack paintBrushStack) {
-		super(SpectrumScreenHandlerTypes.PAINTBRUSH, syncId);
+		super(SpectrumMenuTypes.PAINTBRUSH, syncId);
 		this.player = playerInventory.player;
 		this.paintBrushStack = paintBrushStack;
 		this.hasAccessToWhites = AdvancementHelper.hasAdvancement(playerInventory.player, InkColors.WHITE.getRequiredAdvancement());
@@ -49,7 +50,7 @@ public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler im
 	}
 	
 	@Override
-	public BlockEntity getBlockEntity() {
+	public @Nullable BlockEntity getBlockEntity() {
 		return null;
 	}
 	

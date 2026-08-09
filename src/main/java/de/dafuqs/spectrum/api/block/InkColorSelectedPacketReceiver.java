@@ -1,8 +1,9 @@
 package de.dafuqs.spectrum.api.block;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.entity.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -10,6 +11,7 @@ public interface InkColorSelectedPacketReceiver {
 	
 	void onInkColorSelectedPacket(Optional<Holder<InkColor>> inkColor);
 	
+	@Nullable
 	BlockEntity getBlockEntity();
 	
 }

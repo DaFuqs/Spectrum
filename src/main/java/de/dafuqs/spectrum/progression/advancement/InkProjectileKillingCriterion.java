@@ -8,7 +8,6 @@ import net.minecraft.advancements.critereon.MinMaxBounds.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.storage.loot.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -17,7 +16,7 @@ public class InkProjectileKillingCriterion extends SimpleCriterionTrigger<InkPro
 	public static final String NAME = "ink_projectile_killing";
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

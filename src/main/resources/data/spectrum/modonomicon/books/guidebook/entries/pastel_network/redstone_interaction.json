@@ -5,7 +5,7 @@
   },
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:unlocks/blocks/pastel_network"
+    "advancement_id": "spectrum:unlocks/pastel_network/base"
   },
   "category": "spectrum:pastel_network",
   "hide_while_locked": true,

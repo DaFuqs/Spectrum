@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.tools;
 
 import com.mojang.blaze3d.vertex.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.registries.*;
@@ -22,7 +22,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -111,32 +111,6 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 		addInkPoweredTooltip(tooltip);
 	}
 	
-	public static class Renderer implements DynamicItemRenderer {
-		public Renderer() {
-		}
-		
-		@Override
-		public void render(ItemRenderer renderer, ItemStack stack, ItemDisplayContext mode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model) {
-			renderer.render(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
-			Minecraft client = Minecraft.getInstance();
-			if (mode != ItemDisplayContext.GUI || client.level == null) return;
-			
-			Optional<ItemStack> optionalStack = getFirstStack(client.level.registryAccess(), stack);
-			if (optionalStack.isEmpty()) {
-				return;
-			}
-			ItemStack bundledStack = optionalStack.get();
-			
-			BakedModel bundledModel = renderer.getModel(bundledStack, client.level, client.player, 0);
-			
-			matrices.pushPose();
-			matrices.scale(0.5F, 0.5F, 0.5F);
-			matrices.translate(0.5F, 0.5F, 0.5F);
-			renderer.render(bundledStack, mode, leftHanded, matrices, vertexConsumers, light, overlay, bundledModel);
-			matrices.popPose();
-		}
-	}
-	
 	@Override
 	public SlotEffect backgroundType(@Nullable Player player, ItemStack stack) {
 		var usable = InkPowered.hasAvailableInk(player, COST);
@@ -145,7 +119,7 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	
 	@Override
 	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
-		return 0xFFFFFF;
+		return InkColors.YELLOW_COLOR;
 	}
 	
 	@Override
@@ -162,7 +136,7 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	}
 	
 	@Override
-	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		if (player == null || !player.isUsingItem())
 			return ExtendedItemBarProvider.PASS;
 		
@@ -171,6 +145,6 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 			return ExtendedItemBarProvider.PASS;
 		
 		var progress = Math.round(Mth.clampedLerp(0, 13, ((float) player.getTicksUsingItem() / CHARGE_TIME)));
-		return new ExtendedItemBarProvider.BarSignature(2, 13, 13, progress, 1, 0xFFFFFFFF, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
+		return new ExtendedItemBarProvider.BarSignature(2, 13, 13, progress, 1, InkColors.YELLOW_COLOR, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
 }

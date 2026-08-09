@@ -5,7 +5,7 @@
   },
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:unlocks/blocks/pastel_network"
+    "advancement_id": "spectrum:unlocks/pastel_network/item"
   },
   "category": "spectrum:pastel_network",
   "hide_while_locked": true,
@@ -28,12 +28,8 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id": "spectrum:pedestal/tier3/pastel_network/provider_node"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title": "container.spectrum.rei.pure_recipe",
-      "recipe_id": "spectrum:pedestal/tier3/pastel_network/provider_node_refined"
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/item_provider_node",
+      "text": "book.spectrum.guidebook.provider_node.recipe.text"
     }
   ]
 }

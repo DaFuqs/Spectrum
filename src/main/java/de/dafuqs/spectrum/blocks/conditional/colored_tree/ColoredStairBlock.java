@@ -2,10 +2,11 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.flammable.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -34,8 +35,8 @@ public class ColoredStairBlock extends FlammableStairBlock {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredStairBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredStairBlock byColor(InkColor color) {
 		return BLOCKS.get(color);
 	}
 	

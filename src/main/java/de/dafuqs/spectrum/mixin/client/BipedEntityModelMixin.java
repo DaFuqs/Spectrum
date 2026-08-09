@@ -26,7 +26,7 @@ public class BipedEntityModelMixin {
 	public ModelPart leftLeg;
 	
 	@Inject(method = {"setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V"}, at = @At("TAIL"), cancellable = true)
-	public void poseArms(LivingEntity livingEntity, float f, float g, float h, float i, float j, CallbackInfo ci) {
+	public void spectrum$tpose(LivingEntity livingEntity, float f, float g, float h, float i, float j, CallbackInfo ci) {
 		if (SpectrumCurioItem.hasEquipped(livingEntity, SpectrumItems.NEAT_RING.get())) {
 			this.rightLeg.xRot = 0;
 			this.rightLeg.yRot = 0;

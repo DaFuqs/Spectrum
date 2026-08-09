@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
-import de.dafuqs.spectrum.data_loaders.client.ParticleSpawnerParticlesDataLoader;
+import de.dafuqs.spectrum.data_loaders.client.*;
 import de.dafuqs.spectrum.mixin.client.accessors.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import net.minecraft.*;
@@ -18,7 +18,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.*;
-import org.jetbrains.annotations.*;
 import org.lwjgl.glfw.*;
 
 import java.util.*;
@@ -164,8 +163,8 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 	
 	@Override
 	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
-		int x = (this.width - this.imageWidth) / 2;
-		int y = (this.height - this.imageHeight) / 2;
+		int x = getGuiLeft();
+		int y = getGuiTop();
 		
 		// the background
 		drawContext.blit(GUI_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
@@ -204,8 +203,8 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 	}
 	
 	protected void setupInputFields(ParticleSpawnerBlockEntity blockEntity) {
-		int startX = (this.width - this.imageWidth) / 2 + 3;
-		int startY = (this.height - this.imageHeight) / 2 + 3;
+		int startX = getGuiLeft() + 3;
+		int startY = getGuiTop() + 3;
 		
 		ParticleSpawnerConfiguration configuration = blockEntity.getConfiguration();
 		cyanField = addTextFieldWidget(startX + 16, startY + 51, Component.literal("Cyan"), String.valueOf(configuration.cmyColor().getX()), this::isPositiveDecimalNumber100);
@@ -320,7 +319,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		}
 	}
 	
-	private @NotNull EditBox addTextFieldWidget(int x, int y, Component text, String defaultText, Predicate<String> textPredicate) {
+	private EditBox addTextFieldWidget(int x, int y, Component text, String defaultText, Predicate<String> textPredicate) {
 		EditBox textFieldWidget = new EditBox(this.font, x, y, 31, 16, text);
 		
 		textFieldWidget.setFilter(textPredicate);
@@ -337,7 +336,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		return textFieldWidget;
 	}
 	
-	private @NotNull Button addParticleButton(int x, int y) {
+	private Button addParticleButton(int x, int y) {
 		Button button = Button.builder(Component.translatable("gui.spectrum.button.particles"), this::particleButtonPressed)
 				.size(20, 20)
 				.pos(x, y)
@@ -388,7 +387,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		this.onValuesChanged();
 	}
 	
-	private void onTextBoxValueChanged(@NotNull String newValue) {
+	private void onTextBoxValueChanged(String newValue) {
 		onValuesChanged();
 	}
 	
@@ -425,7 +424,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		}
 	}
 	
-	protected boolean isPositiveWholeNumberUnderThousand(@NotNull String text) {
+	protected boolean isPositiveWholeNumberUnderThousand(String text) {
 		try {
 			return Integer.parseInt(text) < 1000;
 		} catch (NumberFormatException e) {
@@ -433,7 +432,7 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 		}
 	}
 	
-	protected boolean isBetweenZeroAndOne(@NotNull String text) {
+	protected boolean isBetweenZeroAndOne(String text) {
 		try {
 			float f = Float.parseFloat(text);
 			return f >= 0 && f <= 1;

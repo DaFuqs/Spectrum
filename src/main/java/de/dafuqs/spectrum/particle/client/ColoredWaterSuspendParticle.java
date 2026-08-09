@@ -33,7 +33,7 @@ public class ColoredWaterSuspendParticle extends SuspendedParticle {
 					return Optional.of(ParticleGroup.SPORE_BLOSSOM);
 				}
 			};
-			particle.setLifetime(Mth.randomBetweenInclusive(world.random, 500, 1000));
+			particle.setLifetime(Mth.randomBetweenInclusive(world.getRandom(), 500, 1000));
 			particle.gravity = 0.01F;
 			particle.setColor(color.x, color.y, color.z);
 			return particle;

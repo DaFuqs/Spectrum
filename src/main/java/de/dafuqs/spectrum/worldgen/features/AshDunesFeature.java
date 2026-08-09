@@ -96,7 +96,7 @@ public class AshDunesFeature extends Feature<AshDunesFeatureConfig> {
 	private void placeAsh(WorldGenLevel world, BlockPos.MutableBlockPos pos, int height) {
 		var state = world.getBlockState(pos);
 		if (state.is(SpectrumBlocks.ASH_PILE)) {
-			var layers = state.getValue(LAYERS);
+			int layers = state.getValue(LAYERS);
 			var layerDif = 8 - layers;
 			
 			if (height >= layerDif) {

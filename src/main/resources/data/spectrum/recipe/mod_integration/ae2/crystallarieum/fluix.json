@@ -1,6 +1,6 @@
 {
   "type": "spectrum:crystallarieum_growing",
-  "fluid_medium": {
+  "fluid": {
     "fluid": "spectrum:liquid_crystal"
   },
   "ingredient": {
@@ -15,7 +15,7 @@
       "id": "spectrum:pure_fluix"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "ingredient": [
         {

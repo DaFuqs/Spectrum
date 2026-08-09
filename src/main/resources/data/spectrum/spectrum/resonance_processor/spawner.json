@@ -11,6 +11,8 @@
     "SpawnRange",
     "RequiredPlayerRange",
     "SpawnPotentials",
-    "MaxNearbyEntities"
+    "MaxNearbyEntities",
+
+    "stats"
   ]
 }

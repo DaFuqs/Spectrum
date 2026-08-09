@@ -9,7 +9,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.block.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -20,7 +19,7 @@ public class ThreatConfluxItem extends BlockItem implements Preenchanted {
 	}
 	
 	@Override
-	public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, List<Component> tooltip, @NotNull TooltipFlag type) {
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		tooltip.add(Component.translatable("block.spectrum.threat_conflux.tooltip").withStyle(ChatFormatting.GRAY));
 		tooltip.add(Component.translatable("block.spectrum.threat_conflux.tooltip2").withStyle(ChatFormatting.GRAY).append(SpectrumItems.MIDNIGHT_CHIP.get().getDefaultInstance().getDisplayName()));
 		super.appendHoverText(stack, context, tooltip, type);
@@ -32,12 +31,12 @@ public class ThreatConfluxItem extends BlockItem implements Preenchanted {
 	}
 	
 	@Override
-	public int getEnchantmentValue(@NotNull ItemStack stack) {
+	public int getEnchantmentValue(ItemStack stack) {
 		return 12;
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(SpectrumEnchantmentTags.ON_ARCANE_CHARGES);
 	}
 	

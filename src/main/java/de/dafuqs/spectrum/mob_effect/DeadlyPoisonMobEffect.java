@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -31,7 +30,7 @@ public class DeadlyPoisonMobEffect extends MobEffect {
 	}
 	
 	@Override
-	public void fillEffectCures(@NotNull Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+	public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
 		super.fillEffectCures(cures, effectInstance);
 		
 		cures.add(EffectCures.HONEY);

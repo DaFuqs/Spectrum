@@ -19,7 +19,7 @@ public class MysteriousLocketItem extends Item {
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			ItemStack handStack = user.getItemInHand(hand);
 			if (handStack.has(SpectrumDataComponentTypes.SOCKETED)) {
 				handStack.shrink(1);

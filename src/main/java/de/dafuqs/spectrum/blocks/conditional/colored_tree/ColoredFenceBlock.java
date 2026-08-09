@@ -1,8 +1,9 @@
 package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.flammable.*;
 import it.unimi.dsi.fastutil.objects.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -26,8 +27,8 @@ public class ColoredFenceBlock extends FlammableFenceBlock {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static ColoredFenceBlock byColor(InkColor color) {
+
+	public static @Nullable ColoredFenceBlock byColor(InkColor color) {
 		return BLOCKS.get(color);
 	}
 	

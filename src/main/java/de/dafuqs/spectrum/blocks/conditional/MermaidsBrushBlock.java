@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -29,13 +29,18 @@ public class MermaidsBrushBlock extends BushBlock implements BonemealableBlock, 
 	public static final MapCodec<MermaidsBrushBlock> CODEC = simpleCodec(MermaidsBrushBlock::new);
 	private static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
 	
-	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_EXCLUDING_NONE;
+	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.WATER_LIQUID_CRYSTAL;
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
 	
 	public MermaidsBrushBlock(Properties settings) {
 		super(settings);
 		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(LOGGED, FluidLogging.State.WATER));
 		RevelationAware.register(this);
+	}
+	
+	@Override
+	public EnumProperty<FluidLogging.State> getFillableFluids() {
+		return LOGGED;
 	}
 	
 	@Override
@@ -74,15 +79,14 @@ public class MermaidsBrushBlock extends BushBlock implements BonemealableBlock, 
 		}
 		return map;
 	}
-	
+
 	@Override
-	public Tuple<Item, Item> getItemCloak() {
+	public @Nullable Tuple<Item, Item> getItemCloak() {
 		return null;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
 		if (fluidState.getType() == SpectrumFluids.LIQUID_CRYSTAL.get()) {
 			return super.getStateForPlacement(ctx).setValue(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);

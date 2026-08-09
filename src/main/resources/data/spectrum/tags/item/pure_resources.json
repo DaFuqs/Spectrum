@@ -1,5 +1,9 @@
 {
   "values": [
+    "spectrum:pure_azurite",
+    "spectrum:pure_malachite",
+    "spectrum:pure_bloodstone",
+
     "spectrum:pure_coal",
     "spectrum:pure_iron",
     "spectrum:pure_gold",

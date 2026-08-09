@@ -8,10 +8,10 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
+import org.jspecify.annotations.*;
 
 public class SpectrumBuddingBlock extends SpectrumGemstoneBlock {
 	
-	private static final Direction[] DIRECTIONS = Direction.values();
 	private final Block smallBlock;
 	private final Block mediumBlock;
 	private final Block largeBlock;
@@ -25,9 +25,9 @@ public class SpectrumBuddingBlock extends SpectrumGemstoneBlock {
 		this.largeBlock = largeBlock;
 		this.clusterBlock = clusterBlock;
 	}
-	
+
 	@Override
-	public MapCodec<? extends SpectrumBuddingBlock> codec() {
+	public @Nullable MapCodec<? extends SpectrumBuddingBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

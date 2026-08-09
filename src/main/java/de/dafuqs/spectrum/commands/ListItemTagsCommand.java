@@ -9,7 +9,9 @@ import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
+
+import java.util.*;
 
 public class ListItemTagsCommand {
 	
@@ -26,7 +28,7 @@ public class ListItemTagsCommand {
 	}
 	
 	private static int execute(CommandSourceStack source, @Nullable ItemInput itemInput) {
-		@Nullable ServerPlayer player = source.getPlayer();
+		ServerPlayer player = source.getPlayer();
 		
 		Item item;
 		if (itemInput != null) {
@@ -43,14 +45,21 @@ public class ListItemTagsCommand {
 		
 		source.sendSuccess(() -> Component.translatable("commands.spectrum.list_item_tags.list", item.getDefaultInstance().getDisplayName()), true);
 		Registry<Item> registry = source.getLevel().registryAccess().registry(Registries.ITEM).get();
+		
+		List<TagKey<Item>> tags = new ArrayList<>();
 		registry.getTags().forEach(tagKeyNamedPair -> {
 			TagKey<Item> tag = tagKeyNamedPair.getSecond().key();
 			boolean contained = tagKeyNamedPair.getSecond().contains(registry.wrapAsHolder(item));
 			
 			if (contained) {
-				source.sendSuccess(() -> Component.literal(tag.location().toString()), true);
+				tags.add(tag);
 			}
 		});
+		
+		tags.sort((o1, o2) -> o1.location().compareTo(o2.location()));
+		for(TagKey<Item> tag : tags) {
+			source.sendSuccess(() -> Component.literal(tag.location().toString()), true);
+		}
 		
 		return 0;
 	}

@@ -4,7 +4,6 @@ import com.mojang.serialization.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 
 public class SpiritInstillerCraftingCriterion extends SimpleCriterionTrigger<FusionShrineCraftingCriterion.Conditions> {
 	
@@ -15,7 +14,7 @@ public class SpiritInstillerCraftingCriterion extends SimpleCriterionTrigger<Fus
 	}
 	
 	@Override
-	public @NotNull Codec<FusionShrineCraftingCriterion.Conditions> codec() {
+	public Codec<FusionShrineCraftingCriterion.Conditions> codec() {
 		return FusionShrineCraftingCriterion.Conditions.CODEC;
 	}
 }

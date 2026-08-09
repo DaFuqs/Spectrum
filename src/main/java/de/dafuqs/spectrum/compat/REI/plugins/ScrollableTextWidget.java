@@ -9,6 +9,7 @@ import me.shedaniel.rei.api.client.gui.widgets.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.events.*;
 import net.minecraft.util.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -38,8 +39,8 @@ public class ScrollableTextWidget extends WidgetWithBounds {
 		}
 	};
 	
-	public ScrollableTextWidget(Rectangle bounds, List<FormattedCharSequence> texts) {
-		this.bounds = Objects.requireNonNull(bounds);
+	public ScrollableTextWidget(@NonNull Rectangle bounds, List<FormattedCharSequence> texts) {
+		this.bounds = bounds;
 		this.texts = texts;
 	}
 	

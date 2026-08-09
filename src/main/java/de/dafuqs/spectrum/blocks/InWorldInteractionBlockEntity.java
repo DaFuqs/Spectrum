@@ -10,10 +10,11 @@ import net.minecraft.server.level.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public abstract class InWorldInteractionBlockEntity extends BlockEntity implements RandomizableContainer, ImplementedInventory {
 	
@@ -29,8 +30,9 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	
 	// interaction methods
 	public void updateInClientWorld() {
-		if (level instanceof ServerLevel serverWorld)
-			serverWorld.getChunkSource().blockChanged(worldPosition);
+		if (level != null) {
+			level.sendBlockUpdated(worldPosition, level.getBlockState(worldPosition), level.getBlockState(worldPosition), Block.UPDATE_INVISIBLE);
+		}
 	}
 	
 	// Called when the chunk is first loaded to initialize this be
@@ -65,12 +67,10 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 			lootTableSeed = level.getRandom().nextLong();
 		}
 		RandomizableContainer.super.unpackLootTable(player);
-		this.setChanged();
 	}
-	
-	@Nullable
+
 	@Override
-	public Packet<ClientGamePacketListener> getUpdatePacket() {
+	public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
 		return ClientboundBlockEntityDataPacket.create(this);
 	}
 	
@@ -78,7 +78,6 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	public NonNullList<ItemStack> getItems() {
 		return items;
 	}
-	
 	
 	@Override
 	public void inventoryChanged() {
@@ -88,8 +87,8 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	@Override
 	public void setChanged() {
 		super.setChanged();
-		if(this.level != null && !this.level.isClientSide()) {
-			updateInClientWorld();
+		if (level instanceof ServerLevel serverWorld) {
+			serverWorld.getChunkSource().blockChanged(worldPosition);
 		}
 	}
 	

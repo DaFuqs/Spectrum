@@ -1,10 +1,15 @@
 package de.dafuqs.spectrum.recipe;
 
 import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.helpers.*;
+import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.core.*;
+import net.minecraft.core.component.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
+import net.minecraft.world.item.enchantment.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -21,7 +26,7 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 	}
 	
 	@Override
-	public @NotNull String getGroup() {
+	public String getGroup() {
 		return this.group;
 	}
 	
@@ -41,7 +46,7 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 	}
 	
 	@Override
-	public ResourceLocation getRecipeTypeUnlockIdentifier() {
+	public @Nullable ResourceLocation getRecipeTypeUnlockIdentifier() {
 		return null;
 	}
 	
@@ -54,6 +59,21 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 		ItemStack stack = item.getDefaultInstance();
 		stack.setCount(count);
 		return stack;
+	}
+	
+	protected static ItemStack copyComponents(ItemStack recipeOutput, ItemStack stackToCopyComponentsFrom) {
+		ItemEnchantments recipeOutputEnchantments = recipeOutput.getTagEnchantments();
+		ItemEnchantments stackToCopyComponentsFromEnchantments = stackToCopyComponentsFrom.getTagEnchantments();
+		
+		ItemStack newOutput = stackToCopyComponentsFrom.transmuteCopy(recipeOutput.getItem(), recipeOutput.getCount());
+		if(!recipeOutputEnchantments.isEmpty()) {
+			EnchantmentHelper.setEnchantments(newOutput, recipeOutputEnchantments);
+		}
+		for (Object2IntMap.Entry<Holder<Enchantment>> entry : stackToCopyComponentsFromEnchantments.entrySet()) {
+			SpectrumEnchantmentHelper.addOrUpgradeEnchantment(newOutput, entry.getKey(), entry.getIntValue(), false, false);
+		}
+		
+		return newOutput;
 	}
 	
 }

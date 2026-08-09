@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.render.animation;
 
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.lang.reflect.*;
 import java.util.*;
@@ -27,13 +27,12 @@ public final class DataSignature<N extends Number> {
 		this.initialValue = initialValue;
 		this.stateHolder = Collections.unmodifiableMap(holderData);
 		this.defaultKeyFrame = Objects.requireNonNullElseGet(defaultKeyFrame, () -> KeyFrame.simple(initialValue));
-		
 	}
 	
 	FlowData<N> instantiate() {
-		var data = handler.createData(this);
-		for (FlowState flowState : stateHolder.keySet()) {
-			data.addStateListener(flowState, stateHolder.get(flowState));
+		FlowData<N> data = handler.createData(this);
+		for (Map.Entry<FlowState, KeyFrame<N>> flowState : stateHolder.entrySet()) {
+			data.addStateListener(flowState.getKey(), flowState.getValue());
 		}
 		return data;
 	}

@@ -12,12 +12,12 @@
       "chance": 1.0
     },
     {
-        "id": "spectrum:cyan_pigment",
+      "id": "spectrum:cyan_pigment",
       "count": 1,
       "chance": 0.5
     }
   ],
-  "processingTime": 450,
+  "processing_time": 450,
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",

@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.registries;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.api.recipe.*;
-import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
+import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
@@ -25,9 +25,9 @@ public class SpectrumRegistries {
 	public static final Registry<GlassArrowVariant> GLASS_ARROW_VARIANT = register(SpectrumRegistryKeys.GLASS_ARROW_VARIANT, true);
 	public static final Registry<InkColor> INK_COLOR = register(SpectrumRegistryKeys.INK_COLOR, true);
 	public static final Registry<PastelUpgradeSignature> PASTEL_UPGRADE = register(SpectrumRegistryKeys.PASTEL_UPGRADE, false);
-	public static final Registry<RecipeScaling> RECIPE_SCALING = register(SpectrumRegistryKeys.RECIPE_SCALING, true);
 	public static final Registry<MapCodec<? extends ResonanceProcessor>> RESONANCE_PROCESSOR_TYPE = register(SpectrumRegistryKeys.RESONANCE_PROCESSOR_TYPE, false);
-	public static final Registry<MapCodec<? extends PastelPayload>> PASTEL_PAYLOAD_TYPE = register(SpectrumRegistryKeys.PASTEL_PAYLOAD_TYPE, false); // TODO: sync?
+	public static final Registry<PastelPayloadType> PASTEL_PAYLOAD_TYPE = register(SpectrumRegistryKeys.PASTEL_PAYLOAD_TYPE, false);
+	public static final Registry<MapCodec<? extends PastelPayload>> PASTEL_PAYLOAD = register(SpectrumRegistryKeys.PASTEL_PAYLOAD, false);
 	
 	private static <T> Registry<T> register(ResourceKey<? extends Registry<T>> key, boolean synced) {
 		return new RegistryBuilder<>(key).sync(synced).create();
@@ -39,9 +39,9 @@ public class SpectrumRegistries {
 		event.register(GLASS_ARROW_VARIANT);
 		event.register(INK_COLOR);
 		event.register(PASTEL_UPGRADE);
-		event.register(RECIPE_SCALING);
 		event.register(RESONANCE_PROCESSOR_TYPE);
 		event.register(PASTEL_PAYLOAD_TYPE);
+		event.register(PASTEL_PAYLOAD);
 	}
 
 	public static void registerDynamicRegistries(DataPackRegistryEvent.NewRegistry event) {
@@ -49,6 +49,7 @@ public class SpectrumRegistries {
 		event.dataPackRegistry(SpectrumRegistryKeys.KINDLING_VARIANT, KindlingVariant.DIRECT_CODEC, KindlingVariant.DIRECT_CODEC);
 		event.dataPackRegistry(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, LizardFrillVariant.DIRECT_CODEC, LizardFrillVariant.DIRECT_CODEC);
 		event.dataPackRegistry(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, LizardHornVariant.DIRECT_CODEC, LizardHornVariant.DIRECT_CODEC);
+		event.dataPackRegistry(SpectrumRegistryKeys.GEODE_ORES, GeodeOreDefinition.CODEC, GeodeOreDefinition.CODEC);
 	}
 	
 	public static <T> T getRandomTagEntry(Registry<T> registry, TagKey<T> tag, RandomSource random, T fallback) {

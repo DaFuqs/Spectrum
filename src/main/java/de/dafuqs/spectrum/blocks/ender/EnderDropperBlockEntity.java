@@ -14,7 +14,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -164,15 +164,13 @@ public class EnderDropperBlockEntity extends DispenserBlockEntity implements Pla
 	public int getContainerSize() {
 		return getInventory().map(SimpleContainer::getContainerSize).orElse(0);
 	}
-	
-	@Nullable
-	public ResourceKey<LootTable> getLootTable() {
+
+	public @Nullable ResourceKey<LootTable> getLootTable() {
 		return null;
 	}
-	
+
 	@Override
-	@Nullable
-	public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
+	public @Nullable AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
 		return null;
 	}
 	

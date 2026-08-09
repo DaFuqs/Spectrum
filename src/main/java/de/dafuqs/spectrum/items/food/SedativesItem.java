@@ -2,7 +2,9 @@ package de.dafuqs.spectrum.items.food;
 
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.world.effect.*;
+import net.minecraft.advancements.*;
+import net.minecraft.server.level.*;
+import net.minecraft.stats.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -14,24 +16,18 @@ public class SedativesItem extends ItemWithTooltip {
 	}
 	
 	@Override
-	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
-		if (!world.isClientSide) { // TODO: do we need this? Frenzy is self-stacking; this also removed all hidden status effects that are not max potency! // Dafuqs: Mildly concerning indeed
-			var frenzy = user.getEffect(SpectrumMobEffects.FRENZY);
-			
-			if (frenzy != null) {
-				var level = frenzy.getAmplifier();
-				var duration = frenzy.getDuration();
-				
-				if (world.getRandom().nextInt((int) (frenzy.getAmplifier() + Math.round(duration / 30.0) + 1)) == 0) {
-					user.removeEffectsCuredBy(SpectrumEffectCures.SEDATIVES);
-					if (frenzy.getAmplifier() > 0) {
-						user.addEffect(new MobEffectInstance(SpectrumMobEffects.FRENZY, duration, level - 1, frenzy.isAmbient(), frenzy.isVisible(), frenzy.showIcon()));
-					}
-				}
-			}
+	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
+		if (user instanceof ServerPlayer serverplayer) {
+			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, stack);
+			serverplayer.awardStat(Stats.ITEM_USED.get(this));
 		}
 		
-		return super.finishUsingItem(stack, world, user);
+		if (!level.isClientSide) {
+			user.removeEffectsCuredBy(SpectrumEffectCures.SEDATIVES);
+		}
+		
+		stack.consume(1, user);
+		return stack;
 	}
 	
 }

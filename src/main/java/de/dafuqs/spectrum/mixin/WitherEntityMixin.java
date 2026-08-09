@@ -25,7 +25,7 @@ public abstract class WitherEntityMixin extends LivingEntity {
 		if (attackerEntity instanceof LivingEntity livingAttacker) {
 			int cloversFavorLevel = SpectrumEnchantmentHelper.getLevel(world.registryAccess(), SpectrumEnchantmentKeys.CLOVERS_FAVOR, livingAttacker.getMainHandItem());
 			if (cloversFavorLevel > 0) {
-				int additionalCount = (int) (cloversFavorLevel / 2.0F + world.random.nextFloat() * cloversFavorLevel);
+				int additionalCount = (int) (cloversFavorLevel / 2.0F + world.getRandom().nextFloat() * cloversFavorLevel);
 				itemEntity.getItem().setCount(itemEntity.getItem().getCount() + additionalCount);
 			}
 		}

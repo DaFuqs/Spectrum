@@ -9,7 +9,7 @@ import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> implements PageWithTextRenderer {
 	
@@ -46,10 +46,9 @@ public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> i
 		if (style != null)
 			this.parentScreen.renderComponentHoverEffect(drawContext, style, mouseX, mouseY);
 	}
-	
-	@Nullable
+
 	@Override
-	public Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
+	public @Nullable Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
 		if (pMouseX > 0 && pMouseY > 0) {
 			if (page.hasTitle()) {
 				var titleStyle = getClickedComponentStyleAtForTitle(page.getTitle(), BookEntryScreen.PAGE_WIDTH / 2, 0, pMouseX, pMouseY);
@@ -65,10 +64,9 @@ public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> i
 		}
 		return super.getClickedComponentStyleAt(pMouseX, pMouseY);
 	}
-	
-	@Nullable
+
 	@Override
-	protected Style getClickedComponentStyleAtForTextHolder(BookTextHolder text, int x, int y, int width, int height, double pMouseX, double pMouseY) {
+	protected @Nullable Style getClickedComponentStyleAtForTextHolder(BookTextHolder text, int x, int y, int width, int height, double pMouseX, double pMouseY) {
 		if (text.hasComponent()) {
 			for (FormattedCharSequence formattedCharSequence : font.split(text.getComponent(), width)) {
 				if (pMouseY > y && pMouseY < y + font.lineHeight) {

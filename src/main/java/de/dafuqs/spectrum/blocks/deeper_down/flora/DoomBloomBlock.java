@@ -25,7 +25,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.function.*;
 
@@ -134,7 +134,7 @@ public class DoomBloomBlock extends FlowerBlock implements BonemealableBlock {
 	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
 		if (!world.isClientSide()) {
 			var velocity = entity.getDeltaMovement().length();
-			if (velocity > 0.235 && world.random.nextInt(20) <= velocity * 20 || entity.isOnFire()) {
+			if (velocity > 0.235 && world.getRandom().nextInt(20) <= velocity * 20 || entity.isOnFire()) {
 				explode(world, pos, state);
 			}
 		}
@@ -149,7 +149,7 @@ public class DoomBloomBlock extends FlowerBlock implements BonemealableBlock {
 	@Override
 	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		super.neighborChanged(state, world, pos, block, fromPos, notify);
-		if (world.random.nextInt(10) == 0) {
+		if (world.getRandom().nextInt(10) == 0) {
 			explode(world, pos, state);
 		}
 	}
@@ -168,8 +168,8 @@ public class DoomBloomBlock extends FlowerBlock implements BonemealableBlock {
 		if (state.getValue(AGE) == AGE_MAX) {
 			world.removeBlock(pos, false);
 			world.explode(null, SpectrumDamageTypes.incandescence(world), new ExplosionDamageCalculator(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3.0F, true, Level.ExplosionInteraction.BLOCK);
-			if (!world.isClientSide) {
-				popResource(world, pos, new ItemStack(SpectrumItems.DOOMBLOOM_SEED.get(), world.random.nextIntBetweenInclusive(3, 7)));
+			if (!world.isClientSide()) {
+				popResource(world, pos, new ItemStack(SpectrumItems.DOOMBLOOM_SEED.get(), world.getRandom().nextIntBetweenInclusive(3, 7)));
 			}
 		}
 	}
@@ -178,13 +178,13 @@ public class DoomBloomBlock extends FlowerBlock implements BonemealableBlock {
 	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		int age = state.getValue(AGE);
 		if (age == AGE_MAX) {
-			if (world.isClientSide) {
+			if (world.isClientSide()) {
 				return InteractionResult.SUCCESS;
 			} else {
 				world.setBlockAndUpdate(pos, state.setValue(AGE, 0));
-				int randomCount = world.random.nextIntBetweenInclusive(2, 3);
+				int randomCount = world.getRandom().nextIntBetweenInclusive(2, 3);
 				player.getInventory().placeItemBackInInventory(new ItemStack(Items.GUNPOWDER, randomCount));
-				world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
+				world.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 				return InteractionResult.CONSUME;
 			}
 		}

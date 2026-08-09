@@ -17,11 +17,11 @@ public class PotionWorkshopScreenHandler extends AbstractContainerMenu {
 	private final ContainerData propertyDelegate;
 	
 	public PotionWorkshopScreenHandler(int syncId, Inventory playerInventory) {
-		this(SpectrumScreenHandlerTypes.POTION_WORKSHOP, syncId, playerInventory);
+		this(SpectrumMenuTypes.POTION_WORKSHOP, syncId, playerInventory);
 	}
 	
 	public PotionWorkshopScreenHandler(int syncId, Inventory playerInventory, PotionWorkshopBlockEntity potionWorkshopBlockEntity, ContainerData propertyDelegate) {
-		this(SpectrumScreenHandlerTypes.POTION_WORKSHOP, syncId, playerInventory, potionWorkshopBlockEntity, propertyDelegate);
+		this(SpectrumMenuTypes.POTION_WORKSHOP, syncId, playerInventory, potionWorkshopBlockEntity, propertyDelegate);
 	}
 	
 	public PotionWorkshopScreenHandler(MenuType<?> type, int i, Inventory playerInventory) {

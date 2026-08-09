@@ -15,15 +15,14 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 import top.theillusivec4.curios.api.*;
 
-import javax.annotation.*;
 import java.util.*;
 import java.util.function.*;
 
 @MethodsReturnNonnullByDefault
-@ParametersAreNonnullByDefault
+@NullMarked
 public class WhispyCircletItem extends SpectrumCurioItem {
 	
 	public static final ResourceLocation ATTRIBUTE_ID = SpectrumCommon.locate("whispy_circlet_mental_presence");
@@ -56,7 +55,7 @@ public class WhispyCircletItem extends SpectrumCurioItem {
 		LivingEntity entity = slotContext.entity();
 		
 		Level world = entity.level();
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			long time = entity.level().getGameTime();
 			if (time % TRIGGER_EVERY_X_TICKS == 0) {
 				MobEffectHelper.shortenEffects(entity, EFFECT_CLEAR_PREDICATE);

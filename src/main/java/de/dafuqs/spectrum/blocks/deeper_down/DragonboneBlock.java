@@ -14,7 +14,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -42,8 +42,8 @@ public class DragonboneBlock extends RotatedPillarBlock implements RevelationAwa
 		BlockState state = world.getBlockState(pos);
 		if (state.getBlock() instanceof DragonboneBlock) {
 			world.setBlockAndUpdate(pos, SpectrumBlocks.CRACKED_DRAGONBONE.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS)));
-			if (world.isClientSide) {
-				world.playSound(null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.random, 0.8F, 1.2F));
+			if (world.isClientSide()) {
+				world.playSound(null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 1.0F, Mth.randomBetween(world.getRandom(), 0.8F, 1.2F));
 			}
 		}
 	}

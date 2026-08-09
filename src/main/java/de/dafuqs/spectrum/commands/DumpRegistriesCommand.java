@@ -5,8 +5,10 @@ import net.minecraft.commands.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.neoforged.fml.loading.*;
+import org.apache.commons.io.output.*;
 
 import java.io.*;
+import java.nio.charset.*;
 
 
 public class DumpRegistriesCommand {
@@ -27,7 +29,7 @@ public class DumpRegistriesCommand {
 			file.getParentFile().mkdirs();
 			try {
 				file.createNewFile();
-				FileWriter writer = new FileWriter(file);
+				FileWriterWithEncoding writer = new FileWriterWithEncoding.Builder().setCharset(StandardCharsets.UTF_8).get();
 				for (ResourceKey<?> e : registry.value().registryKeySet()) {
 					writer.write(e.location().toString());
 					writer.write(System.lineSeparator());

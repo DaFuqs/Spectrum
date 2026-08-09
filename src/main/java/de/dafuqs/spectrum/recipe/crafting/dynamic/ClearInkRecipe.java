@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;

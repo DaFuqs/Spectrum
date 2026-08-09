@@ -7,7 +7,6 @@ import net.minecraft.core.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -20,7 +19,7 @@ public class NaturesStaffConversionCriterion extends SimpleCriterionTrigger<Natu
 	}
 	
 	@Override
-	public @NotNull Codec<Conditions> codec() {
+	public Codec<Conditions> codec() {
 		return Conditions.CODEC;
 	}
 	

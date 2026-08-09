@@ -7,7 +7,6 @@ import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 public record AddLoreBedrockAnvilPayload(String lore) implements CustomPacketPayload {
 	
@@ -15,7 +14,7 @@ public record AddLoreBedrockAnvilPayload(String lore) implements CustomPacketPay
 	public static final StreamCodec<FriendlyByteBuf, AddLoreBedrockAnvilPayload> CODEC = StreamCodec.composite(ByteBufCodecs.STRING_UTF8, AddLoreBedrockAnvilPayload::lore, AddLoreBedrockAnvilPayload::new);
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

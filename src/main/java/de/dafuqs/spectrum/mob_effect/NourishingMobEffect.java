@@ -5,7 +5,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 public class NourishingMobEffect extends MobEffect {
 	
@@ -16,7 +15,7 @@ public class NourishingMobEffect extends MobEffect {
 	@Override
 	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
 		Level world = entity.level();
-		if (!world.isClientSide && entity instanceof Player playerEntity) {
+		if (!world.isClientSide() && entity instanceof Player playerEntity) {
 			FoodData foodData = playerEntity.getFoodData();
 			if(foodData.needsFood() || foodData.getSaturationLevel() < 20.0F) {
 				foodData.eat(1, 0.25F);

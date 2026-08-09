@@ -1,223 +1,65 @@
 {
-  "parent": "minecraft:block/block",
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
 	"textures": {
 		"2": "spectrum:block/storage_node_crystal",
 		"3": "spectrum:block/pastel_node_inner_ring_blank",
 		"4": "spectrum:block/pastel_node_redstone_ring_blank",
 		"5": "spectrum:block/pastel_node_outer_ring_blank",
-		"particle": "spectrum:block/pastel_pedestal"
+		"particle": "spectrum:block/pastel_node_base"
 	},
 	"elements": [
-    {
-      "name": "base",
-      "from": [
-        7,
-        2,
-        7
-      ],
-      "to": [
-        9,
-        2,
-        9
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "y",
-        "origin": [
-          7,
-          0,
-          7
-        ]
-      },
-      "faces": {
-        "up": {
-          "uv": [
-            10,
-            2,
-            8,
-            0
-          ],
-          "texture": "#particle"
-        },
-        "down": {
-          "uv": [
-            12,
-            0,
-            10,
-            2
-          ],
-          "texture": "#particle"
-        }
-      }
-    },
-    {
-      "name": "leaf1",
-      "from": [
-        6,
-        2,
-        8
-      ],
-      "to": [
-        10,
-        2,
-        12
-      ],
-      "rotation": {
-        "angle": -22.5,
-        "axis": "x",
-        "origin": [
-          8,
-          2,
-          9
-        ]
-      },
-      "faces": {
-        "up": {
-          "uv": [
-            4,
-            12,
-            0,
-            8
-          ],
-          "texture": "#particle"
-        },
-        "down": {
-          "uv": [
-            8,
-            8,
-            4,
-            12
-          ],
-          "texture": "#particle"
-        }
-      }
-    },
-    {
-      "name": "leaf2",
-      "from": [
-        6,
-        2,
-        4
-      ],
-      "to": [
-        10,
-        2,
-        8
-      ],
-      "rotation": {
-        "angle": 22.5,
-        "axis": "x",
-        "origin": [
-          8,
-          2,
-          7
-        ]
-      },
-      "faces": {
-        "up": {
-          "uv": [
-            4,
-            4,
-            0,
-            0
-          ],
-          "texture": "#particle"
-        },
-        "down": {
-          "uv": [
-            8,
-            0,
-            4,
-            4
-          ],
-          "texture": "#particle"
-        }
-      }
-    },
-    {
-      "name": "leaf3",
-      "from": [
-        4,
-        2,
-        6
-      ],
-      "to": [
-        8,
-        2,
-        10
-      ],
-      "rotation": {
-        "angle": -22.5,
-        "axis": "z",
-        "origin": [
-          7,
-          2,
-          8
-        ]
-      },
-      "faces": {
-        "up": {
-          "uv": [
-            4,
-            8,
-            0,
-            4
-          ],
-          "texture": "#particle"
-        },
-        "down": {
-          "uv": [
-            8,
-            4,
-            4,
-            8
-          ],
-          "texture": "#particle"
-        }
-      }
-    },
-    {
-      "name": "leaf4",
-      "from": [
-        8,
-        2,
-        6
-      ],
-      "to": [
-        12,
-        2,
-        10
-      ],
-      "rotation": {
-        "angle": 22.5,
-        "axis": "z",
-        "origin": [
-          9,
-          2,
-          8
-        ]
-      },
-      "faces": {
-        "up": {
-          "uv": [
-            4,
-            16,
-            0,
-            12
-          ],
-          "texture": "#particle"
-        },
-        "down": {
-          "uv": [
-            8,
-            12,
-            4,
-            16
-          ],
-          "texture": "#particle"
-        }
-      }
-    },
+		{
+			"name": "base",
+			"from": [7, 2, 7],
+			"to": [9, 2, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 7]},
+			"faces": {
+				"up": {"uv": [10, 2, 8, 0], "texture": "#particle"},
+				"down": {"uv": [12, 0, 10, 2], "texture": "#particle"}
+			}
+		},
+		{
+			"name": "leaf1",
+			"from": [6, 2, 8],
+			"to": [10, 2, 12],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 2, 9]},
+			"faces": {
+				"up": {"uv": [4, 12, 0, 8], "texture": "#particle"},
+				"down": {"uv": [8, 8, 4, 12], "texture": "#particle"}
+			}
+		},
+		{
+			"name": "leaf2",
+			"from": [6, 2, 4],
+			"to": [10, 2, 8],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 2, 7]},
+			"faces": {
+				"up": {"uv": [4, 4, 0, 0], "texture": "#particle"},
+				"down": {"uv": [8, 0, 4, 4], "texture": "#particle"}
+			}
+		},
+		{
+			"name": "leaf3",
+			"from": [4, 2, 6],
+			"to": [8, 2, 10],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [7, 2, 8]},
+			"faces": {
+				"up": {"uv": [4, 8, 0, 4], "texture": "#particle"},
+				"down": {"uv": [8, 4, 4, 8], "texture": "#particle"}
+			}
+		},
+		{
+			"name": "leaf4",
+			"from": [8, 2, 6],
+			"to": [12, 2, 10],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [9, 2, 8]},
+			"faces": {
+				"up": {"uv": [4, 16, 0, 12], "texture": "#particle"},
+				"down": {"uv": [8, 12, 4, 16], "texture": "#particle"}
+			}
+		},
 		{
 			"name": "lower crystal",
 			"from": [5.5, 7.5, 5.5],
@@ -321,35 +163,23 @@
 		{
 			"name": "infloration",
 			"origin": [0, 0, 0],
+			"scope": 0,
 			"color": 0,
-      "children": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ]
+			"children": [0, 1, 2, 3, 4]
 		},
 		{
 			"name": "crystal",
 			"origin": [8, 3.5, 8],
+			"scope": 0,
 			"color": 0,
-      "children": [
-        5,
-        6,
-        7,
-        8
-      ]
+			"children": [5, 6, 7, 8]
 		},
 		{
 			"name": "rings",
 			"origin": [7.5, 5, 6.5],
+			"scope": 0,
 			"color": 0,
-      "children": [
-        9,
-        10,
-        11
-      ]
+			"children": [9, 10, 11]
 		}
 	]
 }

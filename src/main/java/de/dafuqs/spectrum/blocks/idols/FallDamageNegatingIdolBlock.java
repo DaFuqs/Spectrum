@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -18,9 +18,9 @@ public class FallDamageNegatingIdolBlock extends IdolBlock {
 	public FallDamageNegatingIdolBlock(Properties settings, ParticleOptions particleEffect) {
 		super(settings, particleEffect);
 	}
-	
+
 	@Override
-	public MapCodec<? extends FallDamageNegatingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends FallDamageNegatingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -48,7 +48,7 @@ public class FallDamageNegatingIdolBlock extends IdolBlock {
 	public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		if (!hasCooldown(state) && fallDistance > 3F) {
 			entity.causeFallDamage(fallDistance, 0.0F, world.damageSources().fall());
-			if (!world.isClientSide) {
+			if (!world.isClientSide()) {
 				playTriggerParticles((ServerLevel) world, pos);
 				playTriggerSound(world, pos);
 				triggerCooldown(world, pos);

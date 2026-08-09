@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.server.level.*;
@@ -8,30 +7,29 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(EnderMan.class)
 public abstract class EndermanEntityMixin {
-	
+
 	@Shadow
-	@Nullable
-	public abstract BlockState getCarriedBlock();
+	public abstract @Nullable BlockState getCarriedBlock();
 	
 	@Inject(at = @At("TAIL"), method = "<init>")
 	private void init(CallbackInfo info) {
 		EnderMan endermanEntity = ((EnderMan) (Object) this);
 		Level world = endermanEntity.getCommandSenderWorld();
 		if (world instanceof ServerLevel) {
-			RandomSource random = world.random;
+			RandomSource random = world.getRandom();
 			
 			float chance;
 			if (world.dimension().equals(Level.END)) {
-				chance = SpectrumConfig.CONFIG.EndermanHoldingTreasureInEndChance.get();
+				chance = SpectrumConfig.CONFIG.EndermanHoldingTreasureInEndChance.get().floatValue();
 			} else {
-				chance = SpectrumConfig.CONFIG.EndermanHoldingTreasureChance.get();
+				chance = SpectrumConfig.CONFIG.EndermanHoldingTreasureChance.get().floatValue();
 			}
 			
 			if (random.nextFloat() < chance) {

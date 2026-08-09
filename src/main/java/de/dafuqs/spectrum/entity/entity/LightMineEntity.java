@@ -15,7 +15,7 @@ import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -32,7 +32,7 @@ public class LightMineEntity extends LightShardBaseEntity {
 		super(entityType, world);
 	}
 	
-	public LightMineEntity(Level world, LivingEntity owner, float detectionRange, float damage, float lifeSpanTicks) {
+	public LightMineEntity(Level world, @Nullable LivingEntity owner, float detectionRange, float damage, float lifeSpanTicks) {
 		super(SpectrumEntityTypes.LIGHT_MINE.get(), world, owner, detectionRange, damage, lifeSpanTicks);
 	}
 	

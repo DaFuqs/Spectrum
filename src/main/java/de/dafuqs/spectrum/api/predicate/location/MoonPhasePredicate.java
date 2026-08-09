@@ -6,7 +6,6 @@ import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
 
 public enum MoonPhasePredicate implements StringRepresentable {
 	FULL_MOON,
@@ -26,7 +25,7 @@ public enum MoonPhasePredicate implements StringRepresentable {
 	}
 	
 	@Override
-	public @NotNull String getSerializedName() {
+	public String getSerializedName() {
 		return name().toLowerCase();
 	}
 	

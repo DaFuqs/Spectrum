@@ -6,7 +6,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -22,7 +21,7 @@ public class BedrockCrossbowItem extends CrossbowItem implements Preenchanted, A
 	}
 	
 	@Override
-	public boolean isEnchantable(@NotNull ItemStack stack) {
+	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
 	
@@ -40,5 +39,4 @@ public class BedrockCrossbowItem extends CrossbowItem implements Preenchanted, A
 	public float getDivergenceMod(ItemStack stack, LivingEntity shooter) {
 		return 0.8F;
 	}
-	
 }

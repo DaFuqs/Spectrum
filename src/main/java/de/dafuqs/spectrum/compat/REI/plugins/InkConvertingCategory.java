@@ -8,7 +8,6 @@ import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -31,7 +30,7 @@ public class InkConvertingCategory extends GatedDisplayCategory<InkConvertingDis
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull InkConvertingDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, InkConvertingDisplay display) {
 		// input slot
 		widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 2)).markInput().entries(display.getInputEntries().get(0)));
 		

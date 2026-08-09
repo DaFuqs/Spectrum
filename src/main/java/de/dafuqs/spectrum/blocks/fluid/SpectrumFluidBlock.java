@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public abstract class SpectrumFluidBlock extends LiquidBlock {
 	
@@ -46,7 +46,7 @@ public abstract class SpectrumFluidBlock extends LiquidBlock {
 			int x = pos.getX();
 			int y = pos.getY();
 			int z = pos.getZ();
-			world.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
+			world.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.8F);
 			
 			for (int l = 0; l < 8; ++l) {
 				world.addParticle(ParticleTypes.LARGE_SMOKE, (double) x + Math.random(), (double) y + Math.random(), (double) z + Math.random(), 0.0, 0.0, 0.0);
@@ -69,7 +69,7 @@ public abstract class SpectrumFluidBlock extends LiquidBlock {
 	 * @return BlockState to be placed at the collision position. [null means no collision]
 	 * @implNote Triggers the extinguish sound if result is not null.
 	 */
-	public abstract @Nullable BlockState handleFluidCollision(Level world, @NotNull FluidState state, @NotNull FluidState otherState, Direction direction);
+	public abstract @Nullable BlockState handleFluidCollision(Level world, FluidState state, FluidState otherState, Direction direction);
 	
 	public void fireExtinguishEvent(LevelAccessor world, BlockPos pos) {
 		world.levelEvent(LevelEvent.LAVA_FIZZ, pos, 0);

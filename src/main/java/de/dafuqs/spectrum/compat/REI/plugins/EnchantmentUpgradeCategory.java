@@ -11,7 +11,6 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -32,53 +31,51 @@ public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpg
 	}
 	
 	@Override
-	public int getCraftingTime(@NotNull EnchantmentUpgradeDisplay display) {
+	public int getCraftingTime(EnchantmentUpgradeDisplay display) {
 		return 0;
 	}
 	
 	@Override
-	public Component getDescriptionText(@NotNull EnchantmentUpgradeDisplay display) {
+	public Component getDescriptionText(EnchantmentUpgradeDisplay display) {
 		return Component.translatable("container.spectrum.rei.enchantment_upgrade.required_item_count", 0);
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull EnchantmentUpgradeDisplay display) {
-		boolean overUnlocked = AdvancementHelper.hasAdvancement(Minecraft.getInstance().player, SpectrumAdvancements.OVERENCHANTING);
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, EnchantmentUpgradeDisplay display) {
+		boolean overchantingUnlocked = AdvancementHelper.hasAdvancement(Minecraft.getInstance().player, SpectrumAdvancements.OVERENCHANTING);
 		List<EntryIngredient> inputs = display.getInputEntries();
 		
 		// enchanter structure background					            destinationX	 destinationY   sourceX, sourceY, width, height
 		widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x - 8 + 12, startPoint.y - 7 + 21, 0, 0, 54, 54));
 		
 		// Overchanting Star
-		if (overUnlocked && display.recipeMaxLevel > display.enchantMaxLevel)
+		if (overchantingUnlocked && display.recipeMaxLevel > display.enchantMaxLevel)
 			widgets.add(Widgets.withTooltip(
 					Widgets.withBounds(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x - 10, startPoint.y + 2, 64, 0, 16, 16), new Rectangle(startPoint.x - 10, startPoint.y + 2, 16, 16)),
 					Component.translatable(EnchanterBlockEntity.OVERCHANTING_TOOLTIP).withStyle(s -> s.withColor(OVERCHANT_COLOR))));
 		
-		var maxIndex = (overUnlocked ? display.recipeMaxLevel : display.enchantMaxLevel) - 1;
+		int maxIndex = (overchantingUnlocked ? display.recipeMaxLevel : display.enchantMaxLevel) - 1;
 		widgets.add(Widgets.createButton(new Rectangle(startPoint.x - 8 + 84, startPoint.y + 20, 8, 8), Component.literal("-"))
 				.onClick(b -> display.index = Math.clamp(display.index - 1, 0, maxIndex))); // decrement
 		widgets.add(Widgets.createButton(new Rectangle(startPoint.x - 8 + 94, startPoint.y + 20, 8, 8), Component.literal("+"))
 				.onClick(b -> display.index = Math.clamp(display.index + 1, 0, maxIndex))); // increment
 		
 		// surrounding input slots
-		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8 + 18, startPoint.y - 7 + 9)).markInput().entries(inputs.get(0)));
-		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8 + 44, startPoint.y - 7 + 9)).markInput().entries(inputs.get(1)));
-		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8 + 62, startPoint.y - 7 + 27)).markInput().entries(inputs.get(2)));
-		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8 + 62, startPoint.y - 7 + 53)).markInput().entries(inputs.get(3)));
-		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8 + 44, startPoint.y - 7 + 71)).markInput().entries(inputs.get(4)));
-		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8 + 18, startPoint.y - 7 + 71)).markInput().entries(inputs.get(5)));
-		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8, startPoint.y - 7 + 53)).markInput().entries(inputs.get(6)));
-		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8, startPoint.y - 7 + 27)).markInput().entries(inputs.get(7)));
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 18, startPoint.y - 7 + 9), inputs, () -> display.index + 3).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 44, startPoint.y - 7 + 9), inputs, () -> display.index + 3).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 62, startPoint.y - 7 + 27), inputs, () -> display.index + 3).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 62, startPoint.y - 7 + 53), inputs, () -> display.index + 3).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 44, startPoint.y - 7 + 71), inputs, () -> display.index + 3).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 18, startPoint.y - 7 + 71), inputs, () -> display.index + 3).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8, startPoint.y - 7 + 53), inputs, () -> display.index + 3).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8, startPoint.y - 7 + 27), inputs, () -> display.index + 3).markInput());
 		
 		// Knowledge Gem and Enchanter
-		widgets.add(new IndexedEntryWidget(new Point(startPoint.x - 8 + 111, startPoint.y - 7 + 14), () -> display.index).markInput()
-				.entries(inputs.get(8)));
+		widgets.add(new IndexedEntryWidget(new Point(startPoint.x - 8 + 111, startPoint.y - 7 + 14), () -> display.index).markInput().entries(inputs.get(0)));
 		widgets.add(Widgets.createSlot(new Point(startPoint.x - 8 + 111, startPoint.y - 7 + 60)).entries(ENCHANTER).disableBackground());
 		
 		// center input slot
-		widgets.add(new IndexedEntryWidget(new Point(startPoint.x - 8 + 31, startPoint.y - 7 + 40), () -> display.index).markInput()
-				.entries(inputs.get(9)));
+		widgets.add(new IndexedEntryWidget(new Point(startPoint.x - 8 + 31, startPoint.y - 7 + 40), () -> display.index).markInput().entries(inputs.get(1)));
 		
 		// output arrow
 		widgets.add(Widgets.createArrow(new Point(startPoint.x - 8 + 80, startPoint.y - 7 + 40)).animationDurationTicks(getCraftingTime(display)));
@@ -103,9 +100,7 @@ public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpg
 		
 		var costLabel = Widgets.createLabel(new Point(startPoint.x - 11 + 70, startPoint.y - 11 + 85), getDescriptionText(display)).leftAligned().color(NORMAL_COLOR).noShadow();
 		costLabel.setOnRender((drawContext, label) -> {
-			var level = display.index + 1;
-			
-			label.setMessage(Component.translatable(EnchanterBlockEntity.ITEM_TRANS, display.itemScaling.apply(level)));
+			label.setMessage(Component.translatable(EnchanterBlockEntity.ITEM_TRANS, display.levelData.get(display.index).countPerBowl() * 8));
 		});
 		
 		widgets.add(levelLabel);

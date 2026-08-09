@@ -10,7 +10,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -81,8 +81,8 @@ public interface OmniAcceleratorProjectile {
 		).scale(speed);
 		projectile.setDeltaMovement(vec3d);
 		double d = vec3d.horizontalDistance();
-		projectile.setYRot((float) (Mth.atan2(vec3d.x, vec3d.z) * 57.2957763671875));
-		projectile.setXRot((float) (Mth.atan2(vec3d.y, d) * 57.2957763671875));
+		projectile.setYRot((float) (Mth.atan2(vec3d.x, vec3d.z) * 180F / Math.PI));
+		projectile.setXRot((float) (Mth.atan2(vec3d.y, d) * 180F / Math.PI));
 		projectile.yRotO = projectile.getYRot();
 		projectile.xRotO = projectile.getXRot();
 	}

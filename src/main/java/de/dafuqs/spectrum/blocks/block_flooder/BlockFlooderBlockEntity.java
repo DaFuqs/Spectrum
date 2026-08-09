@@ -8,22 +8,23 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public class BlockFlooderBlockEntity extends BlockEntity {
 	
-	private Entity owner;
-	private UUID ownerUUID;
+	private @Nullable Entity owner;
+	private @Nullable UUID ownerUUID;
 	
-	private BlockPos sourcePos;
+	private @Nullable BlockPos sourcePos;
 	private BlockState targetBlockState = Blocks.AIR.defaultBlockState();
 	
 	public BlockFlooderBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.BLOCK_FLOODER.get(), pos, state);
 	}
 	
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return ownerUUID;
 	}
 	
@@ -31,7 +32,7 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 		this.ownerUUID = ownerUUID;
 	}
 	
-	public Entity getOwner() {
+	public @Nullable Entity getOwner() {
 		if (this.owner == null) {
 			this.owner = PlayerOwned.getPlayerIfOnline(this.level, this.ownerUUID);
 		}
@@ -72,7 +73,7 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 		this.sourcePos = sourcePos;
 	}
 	
-	public BlockState getTargetBlockState() {
+	public @Nullable BlockState getTargetBlockState() {
 		return targetBlockState;
 	}
 	

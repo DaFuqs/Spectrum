@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.blocks.flammable.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 
 public class CushionedCarpetBlock extends FlammableCarpetBlock {

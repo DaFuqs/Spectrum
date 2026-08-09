@@ -13,13 +13,12 @@ import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
-import org.jetbrains.annotations.*;
 import org.jgrapht.alg.connectivity.*;
 import org.jgrapht.graph.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.stream.*;
 
 public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 	
@@ -31,8 +30,6 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 	).apply(i, ServerPastelNetwork::new));
 	
 	protected final Map<PastelNodeType, Set<PastelNodeBlockEntity>> loadedNodes = new ConcurrentHashMap<>();
-	protected final Set<PastelNodeBlockEntity> priorityNodes = new HashSet<>();
-	protected final Set<PastelNodeBlockEntity> highPriorityNodes = new HashSet<>();
 	
 	// new transfers are checked for every 10 ticks
 	private final TickLooper transferLooper;
@@ -70,35 +67,17 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 		var type = this.loadedNodes.get(node.getNodeType());
 		if (!type.contains(node)) {
 			type.add(node);
-			addPriorityNode(node);
 		}
-	}
-	
-	private void addPriorityNode(PastelNodeBlockEntity node) {
-		switch (node.getPriority()) {
-			case MODERATE -> priorityNodes.add(node);
-			case HIGH -> highPriorityNodes.add(node);
-		}
-	}
-	
-	public void updateNodePriority(PastelNodeBlockEntity node, NodePriority oldPriority) {
-		removePriorityNode(node, oldPriority);
-		addPriorityNode(node);
 	}
 	
 	@Override
 	public String getNodeDebugText() {
 		return super.getNodeDebugText() +
-				" - Prov: " +
-				getLoadedNodes(PastelNodeType.PROVIDER).size() +
-				" - Send: " +
-				getLoadedNodes(PastelNodeType.SENDER).size() +
-				" - Gath: " +
-				getLoadedNodes(PastelNodeType.GATHER).size() +
-				" - Stor: " +
-				getLoadedNodes(PastelNodeType.STORAGE).size() +
-				" - Conn: " +
-				getLoadedNodes(PastelNodeType.CONNECTION).size();
+				" - Prov: " + getLoadedNodes(PastelNodeType.PROVIDER).size() +
+				" - Send: " + getLoadedNodes(PastelNodeType.SENDER).size() +
+				" - Gath: " + getLoadedNodes(PastelNodeType.GATHER).size() +
+				" - Stor: " + getLoadedNodes(PastelNodeType.STORAGE).size() +
+				" - Conn: " + getLoadedNodes(PastelNodeType.CONNECTION).size();
 	}
 	
 	@Override
@@ -107,6 +86,8 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 		for (PastelNodeType type : PastelNodeType.values()) {
 			builder.append("-").append(getLoadedNodes(type).size());
 		}
+		builder.append(": ").append(transmissions.size()).append(" active transmission(s)");
+		
 		return builder.toString();
 	}
 	
@@ -125,29 +106,8 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 		return null;
 	}
 	
-	private void removePriorityNode(PastelNodeBlockEntity node, NodePriority priority) {
-		switch (priority) {
-			case MODERATE -> priorityNodes.remove(node);
-			case HIGH -> highPriorityNodes.remove(node);
-		}
-	}
-	
 	public Set<PastelNodeBlockEntity> getLoadedNodes(PastelNodeType type) {
-		return getLoadedNodes(type, NodePriority.GENERIC);
-	}
-	
-	public Set<PastelNodeBlockEntity> getLoadedNodes(PastelNodeType type, NodePriority priority) {
-		var nodeType = this.loadedNodes.get(type);
-		
-		if (priority == NodePriority.MODERATE) {
-			return nodeType.stream().filter(priorityNodes::contains).collect(Collectors.toSet());
-		}
-		
-		if (priority == NodePriority.HIGH) {
-			return nodeType.stream().filter(highPriorityNodes::contains).collect(Collectors.toSet());
-		}
-		
-		return nodeType;
+		return this.loadedNodes.get(type);
 	}
 	
 	protected void addNode(PastelNodeBlockEntity node) {
@@ -156,12 +116,11 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 			loadedNodes.get(node.getNodeType()).add(node);
 			
 		} else {
-			if (addLoadedNode(node))
+			if (addLoadedNode(node)) {
 				return;
-			
+			}
 			this.graph.addVertex(node.getBlockPos());
 		}
-		addPriorityNode(node);
 		node.setNetworkUUID(this.getUUID());
 	}
 	
@@ -239,12 +198,10 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 			// this part of the network has at least 2 nodes
 			// => collect all nodes and pick a network UUID
 			PastelNodeBlockEntity initialNode = null;
-			Set<PastelNodeBlockEntity> blockEntities = new ObjectArraySet<>();
 			for (BlockPos pos : smallerSet) {
 				Optional<PastelNodeBlockEntity> blockEntity = level.getBlockEntity(pos, SpectrumBlockEntities.PASTEL_NODE.get());
 				if (blockEntity.isPresent()) {
 					disconnectedBEs.add(blockEntity.get());
-					blockEntities.add(blockEntity.get());
 					if (initialNode == null) {
 						initialNode = blockEntity.get();
 					}
@@ -308,7 +265,6 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 			graph.removeVertex(node.getBlockPos());
 		
 		this.loadedNodes.get(node.getNodeType()).remove(node);
-		removePriorityNode(node, node.getPriority());
 		
 		if (reason.checksForNetworkSplit) {
 			checkForNetworkSplit(node.getBlockPos());
@@ -353,25 +309,16 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 	
 	protected void tick() {
 		this.transmissions.tick();
-		var priority = NodePriority.GENERIC;
-		
-		if (transferLooper.getTick() % 5 == 0) {
-			priority = NodePriority.MODERATE;
-		} else if (transferLooper.getTick() % 2 == 0) {
-			priority = NodePriority.HIGH;
-		}
-		
+
 		this.transferLooper.tick();
 		var cap = transferLooper.reachedCap();
-		if (cap || priority != NodePriority.GENERIC) {
-			if (cap) {
-				this.transferLooper.reset();
-			}
-			try {
-				this.transmissionLogic.tick(priority);
-			} catch (Exception e) {
-				// hmmmmmm. Block getting unloaded / new one placed while logic is running?
-			}
+		if (cap) {
+			this.transferLooper.reset();
+		}
+		try {
+			this.transmissionLogic.tick(cap);
+		} catch (Exception e) {
+			// hmmmmmm. Block getting unloaded / new one placed while logic is running?
 		}
 		tickNodeEffects();
 	}
@@ -382,7 +329,6 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 	
 	private void tickNodeEffects() {
 		List<PastelNodeBlockEntity> nodeSync = new ArrayList<>();
-		
 		
 		for (Map.Entry<PastelTransmission, Integer> transPair : transmissions) {
 			PastelTransmission transmission = transPair.getKey();
@@ -415,6 +361,12 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 	public void addTransmission(PastelTransmission transmission, int travelTime) {
 		transmission.setNetwork(this);
 		this.transmissions.put(transmission, travelTime);
+	}
+	
+	public void abortAllTransmissions() {
+		this.transmissions.map().keySet()
+				.forEach(pastelTransmission -> pastelTransmission.getPayload()
+						.arriveAtDestination(level, pastelTransmission.getStartPos(), null));
 	}
 	
 }

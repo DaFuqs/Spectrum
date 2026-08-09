@@ -15,7 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -60,7 +60,7 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 	@Override
 	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onPlace(state, world, pos, oldState, notify);
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			world.scheduleTick(pos, state.getBlock(), 4);
 		}
 	}
@@ -69,10 +69,9 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
 	}
-	
-	@Nullable
+
 	@Override
-	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new BlockFlooderBlockEntity(pos, state);
 	}
 	
@@ -164,7 +163,7 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.tick(state, world, pos, random);
 		
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			if (world.getBlockEntity(pos) instanceof BlockFlooderBlockEntity blockFlooderBlockEntity) {
 				BlockState targetState = blockFlooderBlockEntity.getTargetBlockState();
 				if (targetState == null || targetState.isAir()) {
@@ -173,10 +172,14 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 						world.scheduleTick(pos, state.getBlock(), 2 + random.nextInt(5));
 					}
 				} else {
-					world.setBlock(pos, targetState, 3);
 					Player owner = PlayerOwned.getPlayerIfOnline(world, blockFlooderBlockEntity.getOwnerUUID());
+					if(owner == null) {
+						return;
+					}
+					
+					world.setBlock(pos, targetState, 3);
 					if (!owner.isCreative()) {
-						List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(new ItemStack(targetState.getBlock().asItem()), owner.getInventory());
+						List<ItemStack> remainders = InventoryHelper.decrementInInventoryAndReturnRemainders(new ItemStack(targetState.getBlock().asItem()), owner.getInventory());
 						for (ItemStack remainder : remainders) {
 							owner.getInventory().placeItemBackInInventory(remainder);
 						}

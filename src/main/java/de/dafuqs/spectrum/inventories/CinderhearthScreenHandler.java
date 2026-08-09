@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.blocks.cinderhearth.*;
+import de.dafuqs.spectrum.blocks.ink.sink.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.*;
 
 public class CinderhearthScreenHandler extends AbstractContainerMenu {
 	
@@ -21,7 +22,7 @@ public class CinderhearthScreenHandler extends AbstractContainerMenu {
 	private final CinderhearthBlockEntity blockEntity;
 	private final ContainerData propertyDelegate;
 	
-	public final ServerPlayer player;
+	public final @Nullable ServerPlayer player;
 	
 	// clientside
 	public CinderhearthScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
@@ -30,7 +31,7 @@ public class CinderhearthScreenHandler extends AbstractContainerMenu {
 	
 	// serverside
 	public CinderhearthScreenHandler(int syncId, Inventory playerInventory, CinderhearthBlockEntity blockEntity, ContainerData propertyDelegate) {
-		super(SpectrumScreenHandlerTypes.CINDERHEARTH, syncId);
+		super(SpectrumMenuTypes.CINDERHEARTH, syncId);
 		
 		this.player = playerInventory.player instanceof ServerPlayer serverPlayerEntity ? serverPlayerEntity : null;
 		this.world = playerInventory.player.level();
@@ -64,7 +65,7 @@ public class CinderhearthScreenHandler extends AbstractContainerMenu {
 		}
 		
 		if (this.player != null) {
-			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), this.blockEntity.getEnergyStorage(), player);
+			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), this.blockEntity.getInkStorage(), player);
 		}
 		
 		this.addDataSlots(propertyDelegate);
@@ -123,7 +124,7 @@ public class CinderhearthScreenHandler extends AbstractContainerMenu {
 		super.broadcastChanges();
 		
 		if (this.player != null && this.blockEntity.getInkDirty()) {
-			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), blockEntity.getEnergyStorage(), player);
+			UpdateBlockEntityInkPayload.updateBlockEntityInk(blockEntity.getBlockPos(), blockEntity.getInkStorage(), player);
 		}
 	}
 	

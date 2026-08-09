@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.mixin.client;
 import com.llamalad7.mixinextras.injector.*;
 import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.mob_effect.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
@@ -22,14 +22,6 @@ public abstract class InGameHudMixin {
 	
 	@Shadow
 	public abstract void render(GuiGraphics context, DeltaTracker tickerCounter);
-	
-	@ModifyVariable(method = "renderHearts", at = @At("STORE"), ordinal = 7)
-	private int spectrum$showDivinityHardcoreHearts(int i, GuiGraphics context, Player player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking) {
-		if (player.hasEffect(SpectrumMobEffects.DIVINITY)) {
-			return 9 * 5;
-		}
-		return i;
-	}
 	
 	@ModifyExpressionValue(method = "renderCameraOverlays", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;useFancyGraphics()Z"))
 	private boolean spectrum$disableVignetteInDimension(boolean original) {

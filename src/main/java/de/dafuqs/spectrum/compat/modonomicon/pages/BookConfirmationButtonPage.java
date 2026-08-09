@@ -37,7 +37,7 @@ public class BookConfirmationButtonPage extends BookTextPage {
 		var condition = json.has("condition")
 				? BookCondition.fromJson(entryId, json.getAsJsonObject("condition"), provider)
 				: new BookNoneCondition();
-		var checkedAdvancement = ResourceLocation.tryParse(GsonHelper.getAsString(json, "checked_advancement"));
+		var checkedAdvancement = ResourceLocation.parse(GsonHelper.getAsString(json, "checked_advancement"));
 		var buttonText = BookGsonHelper.getAsBookTextHolder(json, "button_text", BookTextHolder.EMPTY, provider);
 		var confirmedButtonText = BookGsonHelper.getAsBookTextHolder(json, "button_text_confirmed", BookTextHolder.EMPTY, provider);
 		var confirmationString = GsonHelper.getAsString(json, "confirmation", "");

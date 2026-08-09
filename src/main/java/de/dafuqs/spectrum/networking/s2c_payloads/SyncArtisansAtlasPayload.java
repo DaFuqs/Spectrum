@@ -14,7 +14,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.level.saveddata.maps.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -55,7 +54,7 @@ public record SyncArtisansAtlasPayload(Optional<ResourceLocation> targetId, Clie
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

@@ -1,19 +1,17 @@
 package de.dafuqs.spectrum.helpers;
 
 import net.minecraft.server.level.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class InWorldInteractionHelper {
 	
-	public static boolean findAndDecreaseClosestItemEntityOfItem(@NotNull ServerLevel world, Vec3 pos, Item item, int range) {
+	public static boolean findAndDecreaseClosestItemEntityOfItem(ServerLevel world, Vec3 pos, Item item, int range) {
 		List<ItemEntity> itemEntities = world.getEntitiesOfClass(ItemEntity.class, AABB.ofSize(pos, range, range, range));
 		for (ItemEntity itemEntity : itemEntities) {
 			if (itemEntity.getItem().is(item)) {

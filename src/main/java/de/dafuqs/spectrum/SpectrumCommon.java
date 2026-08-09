@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
-import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.capabilities.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.config.*;
@@ -16,13 +16,12 @@ import de.dafuqs.spectrum.loot.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.bus.api.*;
@@ -36,7 +35,7 @@ import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
 import net.neoforged.neoforge.network.event.*;
 import net.neoforged.neoforge.network.registration.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 import org.slf4j.*;
 
 import java.util.*;
@@ -48,9 +47,7 @@ public class SpectrumCommon {
 	public static final String MOD_ID = "spectrum";
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
-	// Todo: move to filter classes
-	public static final Map<ResourceLocation, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
-
+	
 	public static void logInfo(String message) {
 		LOGGER.info("{}", message);
 	}
@@ -98,6 +95,7 @@ public class SpectrumCommon {
 		SpectrumEntityAttributes.register(modBus);
 		
 		// Register ALL the stuff
+		SpectrumGameRules.register();
 		logInfo("Registering Status Effects...");
 		SpectrumMobEffects.register(modBus);
 		logInfo("Registering Advancement Criteria...");
@@ -122,7 +120,8 @@ public class SpectrumCommon {
 		SpectrumItemGroups.register(modBus);
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register(modBus);
-		PastelPayload.register(modBus);
+		SpectrumPastelPayloadTypes.register(modBus);
+		SpectrumPastelPayloads.register(modBus);
 		modBus.addListener(SpectrumBlockEntities::addBlockEntityTypeBlocks);
 		SpectrumPastelUpgradeSignatures.register(modBus);
 		
@@ -138,7 +137,6 @@ public class SpectrumCommon {
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");
-		SpectrumRecipeScalings.init();
 		SpectrumFusionShrineWorldEffects.register(modBus);
 		SpectrumRecipeTypes.register(modBus);
 		SpectrumRecipeSerializers.register(modBus);
@@ -151,7 +149,7 @@ public class SpectrumCommon {
 		
 		// GUI
 		logInfo("Registering Screen Handler Types...");
-		SpectrumScreenHandlerTypes.register(modBus);
+		SpectrumMenuTypes.register(modBus);
 		
 		logInfo("Registering Enchantment Drops...");
 		SpectrumGlobalLootModifierSerializers.register(modBus);
@@ -166,7 +164,6 @@ public class SpectrumCommon {
 		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
 		SpectrumOmniAcceleratorProjectiles.register();
 		SpectrumItemProjectileBehaviors.register();
-
 		SpectrumEntityColorProcessors.register();
 		
 		logInfo("Registering Commands...");
@@ -186,6 +183,7 @@ public class SpectrumCommon {
 			event.addListener(EntityFishingDataLoader.INSTANCE);
 			event.addListener(CrystalApothecarySimulationsDataLoader.INSTANCE);
 			ColorRegistry.registerColorRegistries(event);
+			PotionWorkshopBrewingRecipe.clearMemorizedRecipes();
 		});
 		
 		NeoForge.EVENT_BUS.addListener((Consumer<ServerStartingEvent>) event -> {
@@ -209,6 +207,7 @@ public class SpectrumCommon {
 
 		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
 		modBus.addListener((Consumer<FMLCommonSetupEvent>) event -> event.enqueueWork(() -> {
+			SpectrumCauldronInteractions.register();
 			SpectrumDispenserBehaviors.register();
 			SpectrumPresentUnpackBehaviors.register();
 			SpectrumItemGroups.registerSubTabs();

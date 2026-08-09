@@ -12,7 +12,11 @@
     "spectrum:pure_bloodstone"
   ],
   "result": {
-    "id": "minecraft:raw_copper"
+    "id": "minecraft:raw_copper",
+    "components": {
+      "minecraft:enchantment_glint_override": true,
+      "minecraft:rarity": "epic"
+    }
   },
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [

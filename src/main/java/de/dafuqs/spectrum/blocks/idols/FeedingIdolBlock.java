@@ -13,7 +13,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -26,9 +26,9 @@ public class FeedingIdolBlock extends IdolBlock {
 		super(settings, particleEffect);
 		this.range = range;
 	}
-	
+
 	@Override
-	public MapCodec<? extends FeedingIdolBlock> codec() {
+	public @Nullable MapCodec<? extends FeedingIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
@@ -70,8 +70,7 @@ public class FeedingIdolBlock extends IdolBlock {
 					ItemStack stack = itemEntity.getItem();
 					if (animalEntity.isFood(stack)) {
 						InWorldInteractionHelper.decrementAndSpawnRemainder(itemEntity, 1);
-						
-						animalEntity.ageUp((int) ((float) (-animalEntity.getAge() / 20) * 0.1F), true);
+						animalEntity.ageUp(AgeableMob.getSpeedUpSecondsWhenFeeding(-animalEntity.getAge()), true);
 						animalEntity.gameEvent(GameEvent.ENTITY_INTERACT);
 					}
 				}

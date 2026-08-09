@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
@@ -70,7 +69,7 @@ public abstract class ItemEntityMixin {
 	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		ItemEntity thisItemEntity = (ItemEntity) (Object) this;
 		if (DamageImmunityHelper.isImmuneTo(thisItemEntity.getItem(), source)) {
-			cir.setReturnValue(true);
+			cir.setReturnValue(false);
 		} else if (source.is(SpectrumDamageTypes.PRIMORDIAL_FIRE)) {
 			if (PrimordialFireBurningRecipe.processItemEntity(thisItemEntity.level(), thisItemEntity)) {
 				cir.setReturnValue(true);

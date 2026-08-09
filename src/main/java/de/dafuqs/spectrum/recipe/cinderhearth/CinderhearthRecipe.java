@@ -25,9 +25,9 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInp
 	protected final IngredientStack ingredient;
 	protected final int time;
 	protected final float experience;
-	protected final List<Tuple<ItemStack, Float>> resultsWithChance;
+	protected final List<StackWithChance> resultsWithChance;
 	
-	public CinderhearthRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, IngredientStack ingredient, int time, float experience, List<Tuple<ItemStack, Float>> resultsWithChance) {
+	public CinderhearthRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, IngredientStack ingredient, int time, float experience, List<StackWithChance> resultsWithChance) {
 		super(group, secret, requiredAdvancementIdentifier);
 		
 		this.ingredient = ingredient;
@@ -56,7 +56,7 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInp
 	
 	@Override
 	public ItemStack getResultItem(HolderLookup.Provider registryLookup) {
-		return resultsWithChance.getFirst().getA();
+		return resultsWithChance.getFirst().stack();
 	}
 	
 	@Override
@@ -99,10 +99,10 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInp
 	
 	public List<ItemStack> getRolledOutputs(RandomSource random, float yieldMod) {
 		List<ItemStack> output = new ArrayList<>();
-		for (Tuple<ItemStack, Float> possibleOutput : resultsWithChance) {
-			float chance = possibleOutput.getB();
+		for (StackWithChance possibleOutput : resultsWithChance) {
+			float chance = possibleOutput.chance();
 			if (chance >= 1.0 || random.nextFloat() < chance * yieldMod) {
-				ItemStack currentOutputStack = possibleOutput.getA();
+				ItemStack currentOutputStack = possibleOutput.stack();
 				if (yieldMod > 1) {
 					int totalCount = Support.getIntFromDecimalWithChance(currentOutputStack.getCount() * yieldMod, random);
 					while (totalCount > 0) { // if the rolled count exceeds the max stack size we need to split them (unstackable items, counts > 64, ...)
@@ -122,13 +122,13 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInp
 	
 	public List<ItemStack> getPossibleOutputs() {
 		List<ItemStack> outputs = new ArrayList<>();
-		for (Tuple<ItemStack, Float> pair : resultsWithChance) {
-			outputs.add(pair.getA());
+		for (StackWithChance pair : resultsWithChance) {
+			outputs.add(pair.stack());
 		}
 		return outputs;
 	}
 	
-	public List<Tuple<ItemStack, Float>> getResultsWithChance() {
+	public List<StackWithChance> getResultsWithChance() {
 		return resultsWithChance;
 	}
 	
@@ -141,13 +141,7 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInp
 				IngredientStack.CODEC.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
 				Codec.INT.fieldOf("time").forGetter(recipe -> recipe.time),
 				Codec.FLOAT.optionalFieldOf("experience", 0f).forGetter(recipe -> recipe.experience),
-				Codec.withAlternative(
-						ItemStack.CODEC.xmap(stack -> new Tuple<>(stack, 1.0f), Tuple::getA),
-						CodecHelper.mapPair(
-								ItemStack.CODEC.fieldOf("result"),
-								Codec.FLOAT.optionalFieldOf("chance", 1.0f)
-						).codec()
-				).listOf().fieldOf("results").forGetter(recipe -> recipe.resultsWithChance)
+				StackWithChance.CODEC.listOf().fieldOf("results").forGetter(recipe -> recipe.resultsWithChance)
 		).apply(i, CinderhearthRecipe::new));
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, CinderhearthRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
@@ -157,7 +151,7 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInp
 				IngredientStack.STREAM_CODEC, recipe -> recipe.ingredient,
 				ByteBufCodecs.VAR_INT, recipe -> recipe.time,
 				ByteBufCodecs.FLOAT, recipe -> recipe.experience,
-				PacketCodecHelper.pair(ItemStack.STREAM_CODEC, ByteBufCodecs.FLOAT).apply(ByteBufCodecs.list()), recipe -> recipe.resultsWithChance,
+				StackWithChance.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.resultsWithChance,
 				CinderhearthRecipe::new
 		);
 		

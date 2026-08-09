@@ -2,9 +2,10 @@ package de.dafuqs.spectrum.blocks.decoration;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.world.level.block.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -32,8 +33,8 @@ public class PigmentBlock extends Block {
 	public InkColor getColor() {
 		return this.color;
 	}
-	
-	public static PigmentBlock byColor(InkColor color) {
+
+	public static @Nullable PigmentBlock byColor(InkColor color) {
 		return BLOCKS.get(color);
 	}
 	

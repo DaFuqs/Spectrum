@@ -10,7 +10,7 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public class ShaleClayBlock extends Block implements Weathering {
 	
@@ -20,9 +20,9 @@ public class ShaleClayBlock extends Block implements Weathering {
 		super(settings);
 		this.weatheringLevel = weatheringLevel;
 	}
-	
+
 	@Override
-	public MapCodec<? extends ShaleClayBlock> codec() {
+	public @Nullable MapCodec<? extends ShaleClayBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}

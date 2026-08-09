@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.mob_effect.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.*;

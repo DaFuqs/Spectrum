@@ -13,7 +13,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.dimension.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 public record StartSkyLerpingPayload(long startTime, long endTime) implements CustomPacketPayload {
 	
@@ -24,7 +23,7 @@ public record StartSkyLerpingPayload(long startTime, long endTime) implements Cu
 			StartSkyLerpingPayload::new
 	);
 	
-	public static void startSkyLerping(@NotNull ServerLevel serverWorld, int additionalTime) {
+	public static void startSkyLerping(ServerLevel serverWorld, int additionalTime) {
 		long timeOfDay = serverWorld.getDayTime();
 		PacketDistributor.sendToPlayersInDimension(serverWorld, new StartSkyLerpingPayload(timeOfDay, timeOfDay + additionalTime));
 	}
@@ -42,7 +41,7 @@ public record StartSkyLerpingPayload(long startTime, long endTime) implements Cu
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

@@ -8,13 +8,13 @@ import de.dafuqs.revelationary.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
-import de.dafuqs.spectrum.blocks.pedestal.BuiltinGemstoneColor;
+import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.recipe.*;
@@ -23,8 +23,8 @@ import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.*;
-import net.minecraft.commands.Commands;
 import net.minecraft.commands.*;
+import net.minecraft.commands.Commands;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.locale.*;
@@ -45,7 +45,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
 import org.apache.commons.lang3.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -269,6 +269,31 @@ public class SanityCommand {
 		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, "Enchantment Upgrade", recipeManager, registryManager);
 		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.SPIRIT_INSTILLING, "Spirit Instiller", recipeManager, registryManager);
 		
+		// Items that are meant to be enchantable but not really
+		for (Map.Entry<ResourceKey<Item>, Item> item : BuiltInRegistries.ITEM.entrySet()) {
+			if (!item.getKey().location().getNamespace().equals(modId)) {
+				continue;
+			}
+			
+			Item i = item.getValue();
+			
+			ItemStack defaultStack = i.getDefaultInstance();
+			boolean isEnchantable = i.isEnchantable(defaultStack);
+			int enchantmentValue = i.getEnchantmentValue(defaultStack);
+			if(isEnchantable) {
+				if(enchantmentValue <= 0) {
+					SpectrumCommon.logWarning("[SANITY: Enchantability] " + item.getValue().getDescriptionId() + " is enchantable, but has an enchantment value of " + enchantmentValue);
+				}
+			}
+			if(enchantmentValue > 0) {
+				if(!isEnchantable) {
+					if(i == SpectrumItems.GILDED_BOOK.get()) {
+						continue;
+					}
+					SpectrumCommon.logWarning("[SANITY: Enchantability] " + item.getValue().getDescriptionId() + " is has a positive enchantment value, but its default instance is not enchantable");
+				}
+			}
+		}
 		
 		// Impossible to unlock block cloaks
 		for (Map.Entry<ResourceLocation, List<BlockState>> cloaks : RevelationRegistry.getBlockStateEntries().entrySet()) {
@@ -407,8 +432,13 @@ public class SanityCommand {
 			ItemStack output = recipe.getResultItem(source.registryAccess());
 			if (output.getItem() == Items.ENCHANTED_BOOK) {
 				ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(output);
-				if (!enchantments.isEmpty() && recipe.getBulkItem() instanceof PigmentItem pigmentItem) {
-					upgradeColors.put(enchantments.keySet().stream().toList().getFirst(), pigmentItem.getInkColor());
+				if (!enchantments.isEmpty()) {
+					for(ItemStack stack : recipe.getForSourceLevel(1).ingredient().getItems()) {
+						 if(stack.getItem() instanceof PigmentItem pigmentItem) {
+							 upgradeColors.put(enchantments.keySet().stream().toList().getFirst(), pigmentItem.getInkColor());
+							 break;
+						 }
+					}
 				}
 			}
 		}

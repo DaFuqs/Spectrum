@@ -38,11 +38,6 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "block.spectrum.sludge",
-      "recipe_id": "spectrum:potion_workshop_crafting/sludge_bucket"
-    },
-    {
-      "type": "spectrum:potion_workshop_crafting",
       "title": "block.spectrum.liquid_crystal",
       "recipe_id": "spectrum:potion_workshop_crafting/liquid_crystal_bucket"
     },

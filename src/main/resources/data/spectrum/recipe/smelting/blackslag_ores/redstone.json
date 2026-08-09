@@ -1,7 +1,11 @@
 {
   "type": "minecraft:smelting",
   "group": "redstone",
-  "ingredient": [{"item": "spectrum:blackslag_redstone_ore"}],
+  "ingredient": [
+    {
+      "item": "spectrum:blackslag_redstone_ore"
+    }
+  ],
   "result": {
     "id": "minecraft:redstone"
   },

@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
@@ -17,7 +17,7 @@ import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.bundles.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
-import de.dafuqs.spectrum.items.energy.*;
+import de.dafuqs.spectrum.items.ink.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
 import de.dafuqs.spectrum.items.item_frame.*;
@@ -45,7 +45,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
+import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -232,7 +232,6 @@ public class SpectrumItems {
 	
 	// Fluid Buckets
 	public static final DeferredItem<Item> LIQUID_CRYSTAL_BUCKET = register(simple(item("liquid_crystal_bucket", () -> new BucketItem(SpectrumFluids.LIQUID_CRYSTAL.get(), IS.of(1).craftRemainder(BUCKET)), InkColors.LIGHT_GRAY)));
-	public static final DeferredItem<Item> SLUDGE_BUCKET = register(simple(item("sludge_bucket", () -> new BucketItem(SpectrumFluids.SLUDGE.get(), IS.of(1).craftRemainder(BUCKET)), InkColors.BROWN)));
 	public static final DeferredItem<Item> MIDNIGHT_SOLUTION_BUCKET = register(simple(item("midnight_solution_bucket", () -> new BucketItem(SpectrumFluids.MIDNIGHT_SOLUTION.get(), IS.of(1).craftRemainder(BUCKET)), InkColors.GRAY)));
 	public static final DeferredItem<Item> DRAGONROT_BUCKET = register(simple(item("dragonrot_bucket", () -> new BucketItem(SpectrumFluids.DRAGONROT.get(), IS.of(1).craftRemainder(BUCKET)), InkColors.LIGHT_GRAY)));
 	

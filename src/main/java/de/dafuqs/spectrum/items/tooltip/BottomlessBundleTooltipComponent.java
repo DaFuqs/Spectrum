@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -43,12 +42,12 @@ public class BottomlessBundleTooltipComponent implements SpectrumTooltipComponen
 	}
 	
 	@Override
-	public int getWidth(@NotNull Font textRenderer) {
+	public int getWidth(Font textRenderer) {
 		return displayedSlotCount * 20 + 2 + 4;
 	}
 	
 	@Override
-	public void renderImage(@NotNull Font textRenderer, int x, int y, @NotNull GuiGraphics context) {
+	public void renderImage(Font textRenderer, int x, int y, GuiGraphics context) {
 		int n = x + 1;
 		int o = y + 1;
 		

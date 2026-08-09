@@ -12,7 +12,6 @@ import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -21,7 +20,7 @@ public class SpiritInstillingDisplay extends GatedSpectrumDisplay {
 	protected final float experience;
 	protected final int craftingTime;
 	
-	public SpiritInstillingDisplay(@NotNull RecipeHolder<SpiritInstillerRecipe> recipe) {
+	public SpiritInstillingDisplay(RecipeHolder<SpiritInstillerRecipe> recipe) {
 		super(recipe, REIHelper.toEntryIngredients(recipe.value().getIngredientStacks()), Collections.singletonList(buildOutput(recipe.value())));
 		this.experience = recipe.value().getExperience();
 		this.craftingTime = recipe.value().getCraftingTime();

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.progression;
 
 import net.minecraft.client.color.item.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.event.*;
 
 public class ToggleableItemColorProvider implements ItemColor {

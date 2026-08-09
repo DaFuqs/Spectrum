@@ -23,7 +23,6 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import net.neoforged.neoforge.fluids.crafting.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -67,7 +66,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	}
 	
 	@Override
-	public boolean matches(FluidRecipeInput<FluidTank> recipeInput, @NotNull Level world) {
+	public boolean matches(FluidRecipeInput<FluidTank> recipeInput, Level world) {
 		FluidTank fluidStorage = recipeInput.getTank();
 		if (!this.fluid.test(fluidStorage.getFluid())) {
 			return false;
@@ -102,7 +101,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	
 	@Override
 	@Deprecated
-	public @NotNull ItemStack assemble(@NotNull FluidRecipeInput<FluidTank> inventory, HolderLookup.@NotNull Provider drm) {
+	public ItemStack assemble(FluidRecipeInput<FluidTank> inventory, HolderLookup.Provider drm) {
 		return getDefaultTap(1).copy();
 	}
 	
@@ -118,7 +117,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	}
 	
 	@Override
-	public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider registryManager) {
+	public ItemStack getResultItem(HolderLookup.Provider registryManager) {
 		return getDefaultTap(1);
 	}
 	
@@ -205,7 +204,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	}
 	
 	@Override
-	public @NotNull RecipeSerializer<?> getSerializer() {
+	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.TITRATION_BARREL;
 	}
 	

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.blocks.FloatBlock;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.registries.*;
@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jspecify.annotations.*;
 
 import java.util.function.*;
 
@@ -42,20 +43,19 @@ public class FloatBlockEntity extends Entity {
 	private static final EntityDataAccessor<Long> LAUNCH_TIME = SynchedEntityData.defineId(FloatBlockEntity.class, EntityDataSerializers.LONG);
 	private static final EntityDataAccessor<Float> GRAVITY_MODIFIER = SynchedEntityData.defineId(FloatBlockEntity.class, EntityDataSerializers.FLOAT);
 	
-	public int moveTime;
-	protected CompoundTag blockEntityData;
+	protected int moveTime;
+	protected @Nullable CompoundTag blockEntityData;
 	protected BlockState blockState = Blocks.STONE.defaultBlockState();
 	protected boolean canSetBlock = true;
 	protected boolean collides;
 	
-	public FloatBlockEntity(EntityType<? extends FloatBlockEntity> entityType, Level world) {
-		super(entityType, world);
-		this.moveTime = 0;
+	public FloatBlockEntity(Level world, BlockPos pos, BlockState blockState) {
+		this(SpectrumEntityTypes.FLOAT_BLOCK.get(), world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, blockState);
 	}
 	
 	public FloatBlockEntity(EntityType<? extends FloatBlockEntity> entityType, Level world, double x, double y, double z, BlockState blockState) {
 		this(entityType, world);
-		this.blockState = blockState;
+		this.setBlockState(blockState);
 		this.blocksBuilding = true;
 		this.setPos(x, y, z);
 		this.setDeltaMovement(Vec3.ZERO);
@@ -69,9 +69,14 @@ public class FloatBlockEntity extends Entity {
 			setGravity(floatBlock.getGravityMod());
 		}
 	}
+	public FloatBlockEntity(EntityType<? extends FloatBlockEntity> entityType, Level world) {
+		super(entityType, world);
+		this.moveTime = 0;
+	}
 	
-	public FloatBlockEntity(Level world, BlockPos pos, BlockState blockState) {
-		this(SpectrumEntityTypes.FLOAT_BLOCK.get(), world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, blockState);
+	public void setBlockState(BlockState blockState) {
+		this.blockState = blockState;
+		makeBoundingBox();
 	}
 	
 	/**
@@ -84,11 +89,10 @@ public class FloatBlockEntity extends Entity {
 	 */
 	@Override
 	protected AABB makeBoundingBox() {
-		if (this.entityData == null || this.blockState == null) {
-			return super.makeBoundingBox();
-		}
 		BlockPos origin = this.entityData.get(ORIGIN);
-		VoxelShape shape = this.blockState.getCollisionShape(level(), origin);
+		// Sable Compat: this method may run before the constructor is finished, hence the null check
+		BlockState state = this.blockState == null ? Blocks.STONE.defaultBlockState() : this.blockState;
+		VoxelShape shape = state.getCollisionShape(level(), origin);
 		if (shape.isEmpty()) {
 			this.collides = false;
 			shape = this.blockState.getShape(level(), origin);
@@ -101,7 +105,6 @@ public class FloatBlockEntity extends Entity {
 		AABB box = shape.bounds();
 		return box.move(position().subtract(new Vec3(0.5, 0, 0.5)));
 	}
-	
 	
 	@Override
 	public void tick() {
@@ -117,6 +120,8 @@ public class FloatBlockEntity extends Entity {
 			Block block = this.blockState.getBlock();
 			if (this.level().getBlockState(blockPos).is(block)) {
 				this.level().removeBlock(blockPos, false);
+			} else {
+				this.discard();
 			}
 		}
 		
@@ -128,7 +133,7 @@ public class FloatBlockEntity extends Entity {
 			this.setDeltaMovement(this.getDeltaMovement().scale(0.98D));
 			
 			// recalculate fall damage
-			if (!level().isClientSide) {
+			if (!level().isClientSide()) {
 				this.dealDamage();
 			}
 		}
@@ -136,7 +141,7 @@ public class FloatBlockEntity extends Entity {
 		this.moveEntities();
 		this.move(MoverType.SELF, this.getDeltaMovement());
 		
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			if (this.verticalCollision) {
 				trySetBlock();
 			} else if (this.tickCount > 100 && this.level().isOutsideBuildHeight(this.blockPosition())) {
@@ -167,7 +172,7 @@ public class FloatBlockEntity extends Entity {
 				return InteractionResult.SUCCESS;
 			} else {
 				Item item = this.blockState.getBlock().asItem();
-				if (item != null) {
+				if (item != Items.AIR) {
 					player.getInventory().placeItemBackInInventory(item.getDefaultInstance());
 				}
 				this.discard();
@@ -252,6 +257,7 @@ public class FloatBlockEntity extends Entity {
 		boolean canPlace = this.blockState.canSurvive(this.level(), blockPos);
 		
 		if (!this.canSetBlock || !canPlace || !canReplace) {
+			this.dropAsItem();
 			return;
 		}
 		
@@ -294,7 +300,7 @@ public class FloatBlockEntity extends Entity {
 				
 				ItemStack collisionStack = SpectrumBlocks.HOVER_BLOCK.asItem().getDefaultInstance();
 				ItemEntity itemEntity = new ItemEntity(world, this.getX(), this.getY(), this.getZ(), collisionStack);
-				itemEntity.push(0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2);
+				itemEntity.push(0.1 - world.getRandom().nextFloat() * 0.2, 0.1 - world.getRandom().nextFloat() * 0.2, 0.1 - world.getRandom().nextFloat() * 0.2);
 				world.addFreshEntity(itemEntity);
 				
 				this.discard();

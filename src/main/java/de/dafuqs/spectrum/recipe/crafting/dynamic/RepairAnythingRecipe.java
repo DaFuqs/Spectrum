@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -27,7 +26,7 @@ public class RepairAnythingRecipe extends CustomRecipe {
 						return false;
 					}
 					nectarFound = true;
-				} else if (itemStack.isDamageableItem() && itemStack.isDamaged() && !itemStack.is(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED)) {
+				} else if (itemStack.isDamageableItem() && itemStack.isDamaged()) {
 					if (itemFound) {
 						return false;
 					}
@@ -49,7 +48,7 @@ public class RepairAnythingRecipe extends CustomRecipe {
 			}
 		}
 		
-		if (itemStack.isDamageableItem() && itemStack.isDamaged() && !itemStack.is(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED)) {
+		if (itemStack.isDamageableItem() && itemStack.isDamaged()) {
 			ItemStack returnStack = itemStack.copy();
 			int damage = returnStack.getDamageValue();
 			int maxDamage = returnStack.getMaxDamage();

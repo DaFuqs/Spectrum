@@ -8,7 +8,6 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 public record GuidebookConfirmationButtonPressedPayload(String confirmationString) implements CustomPacketPayload {
 	
@@ -19,7 +18,7 @@ public record GuidebookConfirmationButtonPressedPayload(String confirmationStrin
 	);
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 	

@@ -7,6 +7,7 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.events.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -19,12 +20,12 @@ public class AnimatedTexturedWidget extends BurningFire {
     private final int textureHeight;
     private double animationDurationMS = -1;
 	
-	public AnimatedTexturedWidget(ResourceLocation texture, Rectangle bounds, int textureWidth, int textureHeight) {
+	public AnimatedTexturedWidget(ResourceLocation texture, @NonNull Rectangle bounds, int textureWidth, int textureHeight) {
         this.texture = texture;
         this.animationCount = textureHeight / textureWidth;
         this.textureWidth = textureWidth;
         this.textureHeight = textureHeight;
-        this.bounds = new Rectangle(Objects.requireNonNull(bounds));
+        this.bounds = new Rectangle(bounds);
     }
     
     @Override

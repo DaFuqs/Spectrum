@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_pastel_network": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/pastel_network/base"
+      }
+    },
+    "unlocked_ink_use": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_ink_use"
+      }
+    }
+  }
+}

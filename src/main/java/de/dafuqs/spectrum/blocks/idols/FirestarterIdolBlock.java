@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -41,14 +41,14 @@ public class FirestarterIdolBlock extends IdolBlock {
 	public FirestarterIdolBlock(Properties settings, ParticleOptions particleEffect) {
 		super(settings, particleEffect);
 	}
-	
+
 	@Override
-	public MapCodec<? extends FirestarterIdolBlock> codec() {
+	public @Nullable MapCodec<? extends FirestarterIdolBlock> codec() {
 		//TODO: Make the codec
 		return null;
 	}
 	
-	public static void addBlockSmeltingRecipes(@NotNull MinecraftServer server) {
+	public static void addBlockSmeltingRecipes(MinecraftServer server) {
 		RegistryAccess manager = server.registryAccess();
 		for (var recipe : server.getRecipeManager().getAllRecipesFor(RecipeType.SMELTING)) {
 			ItemStack outputStack = recipe.value().getResultItem(manager);
@@ -66,7 +66,7 @@ public class FirestarterIdolBlock extends IdolBlock {
 		}
 	}
 	
-	public static boolean causeFire(@NotNull ServerLevel world, BlockPos blockPos, Direction side) {
+	public static boolean causeFire(ServerLevel world, BlockPos blockPos, Direction side) {
 		BlockState blockState = world.getBlockState(blockPos);
 		if (CampfireBlock.canLight(blockState) || CandleBlock.canLight(blockState) || CandleCakeBlock.canLight(blockState)) {
 			// light lightable blocks
@@ -79,7 +79,7 @@ public class FirestarterIdolBlock extends IdolBlock {
 			return true;
 		} else if (BURNING_MAP.containsKey(blockState.getBlock())) {
 			Tuple<BlockState, Float> dest = BURNING_MAP.get(blockState.getBlock());
-			if (dest.getB() >= 1.0F || world.random.nextFloat() < dest.getB()) {
+			if (dest.getB() >= 1.0F || world.getRandom().nextFloat() < dest.getB()) {
 				// convert netherrack to magma blocks
 				world.setBlock(blockPos, dest.getA(), 11);
 				world.gameEvent(null, GameEvent.BLOCK_PLACE, blockPos);

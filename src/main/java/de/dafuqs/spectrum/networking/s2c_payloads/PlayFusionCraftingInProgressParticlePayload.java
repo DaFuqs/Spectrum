@@ -11,7 +11,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import org.jetbrains.annotations.*;
 
 public record PlayFusionCraftingInProgressParticlePayload(BlockPos pos) implements CustomPacketPayload {
 	
@@ -32,7 +31,7 @@ public record PlayFusionCraftingInProgressParticlePayload(BlockPos pos) implemen
 	}
 	
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 }

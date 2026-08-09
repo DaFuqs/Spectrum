@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.entity.entity.*;
@@ -21,7 +21,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -53,20 +53,20 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	
 	@Override
 	protected void throwBident(ItemStack stack, ServerLevel world, Player playerEntity) {
-		var needleEntity = new DragonTalonEntity(world);
-		needleEntity.setPickupItemStack(stack);
-		needleEntity.setOwner(playerEntity);
-		needleEntity.absMoveTo(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
-		needleEntity.shootFromRotation(playerEntity, playerEntity.getXRot(), playerEntity.getYRot(), 0.0F, getThrowSpeed(stack), 1.0F);
-		needleEntity.hasImpulse = true;
-		needleEntity.hurtMarked = true;
-		needleEntity.pickup = AbstractArrow.Pickup.ALLOWED;
+		DragonTalonEntity dragonTalon = new DragonTalonEntity(world);
+		dragonTalon.setPickupItemStack(stack);
+		dragonTalon.setOwner(playerEntity);
+		dragonTalon.absMoveTo(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
+		dragonTalon.shootFromRotation(playerEntity, playerEntity.getXRot(), playerEntity.getYRot(), 0.0F, getThrowSpeed(stack), 1.0F);
+		dragonTalon.hasImpulse = true;
+		dragonTalon.hurtMarked = true;
+		dragonTalon.pickup = AbstractArrow.Pickup.ALLOWED;
 		
-		world.addFreshEntity(needleEntity);
+		world.addFreshEntity(dragonTalon);
 		SoundEvent soundEvent = SoundEvents.TRIDENT_THROW.value();
 		
-		world.playSound(null, needleEntity, soundEvent, SoundSource.PLAYERS, 1.0F, 1.0F);
-		SlotReservingItem.reserve(stack, needleEntity.getUUID());
+		world.playSound(null, dragonTalon, soundEvent, SoundSource.PLAYERS, 1.0F, 1.0F);
+		SlotReservingItem.reserve(stack, dragonTalon.getUUID());
 	}
 	
 	@Override
@@ -101,16 +101,16 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 			return;
 		}
 		
-		var reserver = SlotReservingItem.getReserver(stack);
+		UUID reserver = SlotReservingItem.getReserver(stack);
 		if (world instanceof ServerLevel serverWorld && reserver != null) {
-			if (serverWorld.getEntity(reserver) instanceof DragonTalonEntity needle) {
-				needle.recall();
+			if (serverWorld.getEntity(reserver) instanceof DragonTalonEntity dragonTalonEntity) {
+				dragonTalonEntity.recall();
 			}
 		}
 	}
 	
 	@Override
-	public boolean isFoil(@NotNull ItemStack stack) {
+	public boolean isFoil(ItemStack stack) {
 		return super.isFoil(stack) && !SlotReservingItem.isReservingSlot(stack);
 	}
 	
@@ -145,7 +145,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	}
 	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
 		if (entity instanceof Player player) {
 			if (player.getCooldowns().isOnCooldown(stack.getItem()) || SlotReservingItem.isReservingSlot(stack)) {
 				stack.remove(DataComponents.ATTRIBUTE_MODIFIERS);
@@ -187,7 +187,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.CHANNELING) || enchantment.is(Enchantments.PIERCING);
 	}
 }

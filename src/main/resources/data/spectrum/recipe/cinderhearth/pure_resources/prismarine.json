@@ -7,10 +7,8 @@
       "count": 4
     },
     {
-      "result": {
-        "id": "minecraft:prismarine_crystals",
-        "count": 2
-      },
+      "id": "minecraft:prismarine_crystals",
+      "count": 2,
       "chance": 0.5
     }
   ],

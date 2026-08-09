@@ -10,7 +10,6 @@ import net.minecraft.client.resources.model.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
-import org.jetbrains.annotations.*;
 
 
 public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends BlockEntity> implements BlockEntityRenderer<PedestalUpgradeBlockEntity> {
@@ -47,7 +46,7 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 	}
 	
 	// TODO: Use a different model for each upgrade type
-	public @NotNull LayerDefinition getTexturedModelData(Upgradeable.@NotNull UpgradeType upgradeType) {
+	public LayerDefinition getTexturedModelData(Upgradeable.UpgradeType upgradeType) {
 		MeshDefinition modelData = new MeshDefinition();
 		PartDefinition modelPartData = modelData.getRoot();
 		

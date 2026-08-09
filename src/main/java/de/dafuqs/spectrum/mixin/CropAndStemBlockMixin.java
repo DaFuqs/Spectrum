@@ -35,11 +35,4 @@ public abstract class CropAndStemBlockMixin {
 		}
 	}
 	
-	@Inject(at = @At("HEAD"), method = "randomTick", cancellable = true)
-	public void spectrum$isFertilizable(BlockState state, ServerLevel world, BlockPos pos, RandomSource random, CallbackInfo ci) {
-		if (world.getBlockState(pos.below()).is(SpectrumBlocks.TILLED_SHALE_CLAY)) {
-			ci.cancel();
-		}
-	}
-	
 }

@@ -10,7 +10,6 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -33,7 +32,7 @@ public class TitrationBarrelCategory extends GatedDisplayCategory<TitrationBarre
 	}
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull TitrationBarrelDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, TitrationBarrelDisplay display) {
 		List<EntryIngredient> inputs = display.getInputEntries();
 		
 		// input slots

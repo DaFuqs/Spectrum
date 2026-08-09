@@ -2,10 +2,10 @@ package de.dafuqs.spectrum.blocks.structure;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;

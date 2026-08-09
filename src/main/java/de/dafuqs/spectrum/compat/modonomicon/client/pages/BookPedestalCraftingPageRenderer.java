@@ -63,7 +63,7 @@ public class BookPedestalCraftingPageRenderer extends BookGatedRecipePageRendere
 	}
 	
 	@Contract(pure = true)
-	private ResourceLocation getBackgroundTextureForTier(@NotNull PedestalRecipeTier pedestalRecipeTier) {
+	private ResourceLocation getBackgroundTextureForTier(PedestalRecipeTier pedestalRecipeTier) {
 		return switch (pedestalRecipeTier) {
 			case BASIC -> BACKGROUND_TEXTURE1;
 			case SIMPLE -> BACKGROUND_TEXTURE2;
@@ -72,7 +72,7 @@ public class BookPedestalCraftingPageRenderer extends BookGatedRecipePageRendere
 		};
 	}
 	
-	private void drawGemstonePowderSlots(GuiGraphics drawContext, PedestalRecipe recipe, GemstoneColor @NotNull [] colors, int startX, int recipeX, int recipeY, int mouseX, int mouseY) {
+	private void drawGemstonePowderSlots(GuiGraphics drawContext, PedestalRecipe recipe, GemstoneColor [] colors, int startX, int recipeX, int recipeY, int mouseX, int mouseY) {
 		int h = 0;
 		for (GemstoneColor color : colors) {
 			int amount = recipe.getPowderInputs().getOrDefault(color, 0);

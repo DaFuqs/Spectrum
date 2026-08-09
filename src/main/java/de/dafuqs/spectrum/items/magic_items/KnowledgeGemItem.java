@@ -17,7 +17,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -37,7 +36,9 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 	public static ItemStack getKnowledgeDropStackWithXP(int experience, boolean noStoreTooltip) {
 		ItemStack stack = new ItemStack(SpectrumItems.KNOWLEDGE_GEM.get());
 		stack.set(SpectrumDataComponentTypes.STORED_EXPERIENCE, experience);
-		if (noStoreTooltip) stack.set(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP, Unit.INSTANCE);
+		if (noStoreTooltip) {
+			stack.set(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP, Unit.INSTANCE);
+		}
 		return stack;
 	}
 	
@@ -120,17 +121,13 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 		} else {
 			tooltip.add(Component.literal(storedExperience + " ").withStyle(ChatFormatting.GREEN).append(Component.translatable("item.spectrum.knowledge_gem.tooltip.stored_experience", maxExperience).withStyle(ChatFormatting.GRAY)));
 		}
-		if (shouldDisplayUsageTooltip(stack)) {
+		if (!stack.has(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP)) {
 			tooltip.add(Component.translatable("item.spectrum.knowledge_gem.tooltip.use", getTransferableExperiencePerTick(lookup, stack)).withStyle(ChatFormatting.GRAY));
 			addBannerPatternProviderTooltip(tooltip);
 		}
 	}
 	
-	public boolean shouldDisplayUsageTooltip(ItemStack itemStack) {
-		return itemStack.has(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP);
-	}
-	
-	public boolean removePlayerExperience(@NotNull Player playerEntity, int experience) {
+	public boolean removePlayerExperience(Player playerEntity, int experience) {
 		if (playerEntity.isCreative()) {
 			return true;
 		} else if (getActualPlayerExperience(playerEntity) < experience) {
@@ -165,12 +162,12 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 	}
 	
 	@Override
-	public int getEnchantmentValue(@NotNull ItemStack stack) {
+	public int getEnchantmentValue(ItemStack stack) {
 		return 5;
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.EFFICIENCY) || enchantment.is(Enchantments.QUICK_CHARGE);
 	}
 	

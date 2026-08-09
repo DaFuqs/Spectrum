@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.mob_effect.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.mob_effect.*;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
@@ -40,7 +40,7 @@ public class CircletOfArroganceItem extends SpectrumCurioItem {
 		super.curioTick(slotContext, stack);
 		
 		Level level = slotContext.entity().level();
-		if (!level.isClientSide && level.getGameTime() % TRIGGER_EVERY_X_TICKS == 0) {
+		if (!level.isClientSide() && level.getGameTime() % TRIGGER_EVERY_X_TICKS == 0) {
 			giveEffect(slotContext.entity());
 		}
 	}

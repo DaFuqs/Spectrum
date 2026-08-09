@@ -19,7 +19,6 @@ import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -42,21 +41,21 @@ public class FermentRandomlyLootFunction extends LootItemConditionalFunction {
 		this.thickness = thickness;
 	}
 	
-	public FermentRandomlyLootFunction(List<LootItemCondition> conditions, @NotNull ResourceLocation fermentationRecipeIdentifier, NumberProvider daysFermented, NumberProvider thickness) {
+	public FermentRandomlyLootFunction(List<LootItemCondition> conditions, ResourceLocation fermentationRecipeIdentifier, NumberProvider daysFermented, NumberProvider thickness) {
 		this(conditions, Either.left(fermentationRecipeIdentifier), daysFermented, thickness);
 	}
 	
-	public FermentRandomlyLootFunction(List<LootItemCondition> conditions, @NotNull FermentationData fermentationData, NumberProvider daysFermented, NumberProvider thickness) {
+	public FermentRandomlyLootFunction(List<LootItemCondition> conditions, FermentationData fermentationData, NumberProvider daysFermented, NumberProvider thickness) {
 		this(conditions, Either.right(fermentationData), daysFermented, thickness);
 	}
 	
 	@Override
-	public @NotNull LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
+	public LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
 		return SpectrumLootFunctionTypes.FERMENT_RANDOMLY;
 	}
 	
 	@Override
-	public @NotNull ItemStack run(@NotNull ItemStack stack, @NotNull LootContext context) {
+	public ItemStack run(ItemStack stack, LootContext context) {
 		Optional<FermentationData> fermentationData = this.fermentation.map(
 				id -> {
 					Optional<RecipeHolder<?>> recipe = context.getLevel().getRecipeManager().byKey(id);

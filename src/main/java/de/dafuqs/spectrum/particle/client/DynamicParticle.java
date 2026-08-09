@@ -8,7 +8,6 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.core.registries.*;
-import org.jetbrains.annotations.*;
 
 
 public class DynamicParticle extends TextureSheetParticle {
@@ -38,7 +37,7 @@ public class DynamicParticle extends TextureSheetParticle {
 		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 	
-	public void apply(@NotNull DynamicParticleEffect effect) {
+	public void apply(DynamicParticleEffect effect) {
 		this.setSprite(sprite);
 		this.setLifetime(effect.lifetimeTicks());
 		this.scale(effect.scale());
@@ -46,6 +45,7 @@ public class DynamicParticle extends TextureSheetParticle {
 		this.gravity = effect.gravity();
 		this.hasPhysics = effect.collisions();
 		this.glowInTheDark = effect.glowing();
+		this.friction = 1.0F;
 	}
 	
 	public static class Factory<P extends DynamicParticleEffect> implements ParticleProvider<P> {

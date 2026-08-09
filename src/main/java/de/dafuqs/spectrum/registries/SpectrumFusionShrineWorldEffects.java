@@ -37,46 +37,46 @@ public class SpectrumFusionShrineWorldEffects {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
-			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.random, 12000, 18000));
+			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.getRandom(), 12000, 18000));
 			serverWorldProperties.setRaining(true);
 			serverWorldProperties.setThunderTime(0);
 			serverWorldProperties.setThundering(false);
 			
-			world.playSound(null, pos.above(), SoundEvents.WEATHER_RAIN, SoundSource.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
+			world.playSound(null, pos.above(), SoundEvents.WEATHER_RAIN, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
 	});
 	public static FusionShrineRecipeWorldEffect WEATHER_THUNDER = FusionShrineRecipeWorldEffect.register("weather_thunder", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
-			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.random, 12000, 24000));
+			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.getRandom(), 12000, 24000));
 			serverWorldProperties.setRaining(true);
-			serverWorldProperties.setThunderTime(Mth.randomBetweenInclusive(world.random, 3600, 15600));
+			serverWorldProperties.setThunderTime(Mth.randomBetweenInclusive(world.getRandom(), 3600, 15600));
 			serverWorldProperties.setThundering(true);
-			world.playSound(null, pos.above(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
+			world.playSound(null, pos.above(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
 	});
 	public static FusionShrineRecipeWorldEffect WEATHER_RAIN_SHORT = FusionShrineRecipeWorldEffect.register("weather_rain_short", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
-			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.random, 4000, 6000));
+			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.getRandom(), 4000, 6000));
 			serverWorldProperties.setRaining(true);
 			serverWorldProperties.setThunderTime(0);
 			serverWorldProperties.setThundering(false);
 			
-			world.playSound(null, pos.above(), SoundEvents.WEATHER_RAIN, SoundSource.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
+			world.playSound(null, pos.above(), SoundEvents.WEATHER_RAIN, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
 	});
 	public static FusionShrineRecipeWorldEffect WEATHER_THUNDER_SHORT = FusionShrineRecipeWorldEffect.register("weather_thunder_short", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
-			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.random, 4000, 6000));
+			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.getRandom(), 4000, 6000));
 			serverWorldProperties.setRaining(true);
-			serverWorldProperties.setThunderTime(Mth.randomBetweenInclusive(world.random, 3000, 4000));
+			serverWorldProperties.setThunderTime(Mth.randomBetweenInclusive(world.getRandom(), 3000, 4000));
 			serverWorldProperties.setThundering(true);
-			world.playSound(null, pos.above(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
+			world.playSound(null, pos.above(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
 	});
 	public static FusionShrineRecipeWorldEffect LIGHTNING_ON_SHRINE = FusionShrineRecipeWorldEffect.register("lightning_on_shrine", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
@@ -111,7 +111,7 @@ public class SpectrumFusionShrineWorldEffects {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			if (world.getRandom().nextFloat() < 0.1) {
-				world.playSound(null, pos.above(), SoundEvents.GENERIC_EXPLODE.value(), SoundSource.BLOCKS, 0.5F, 0.8F + world.random.nextFloat() * 0.4F);
+				world.playSound(null, pos.above(), SoundEvents.GENERIC_EXPLODE.value(), SoundSource.BLOCKS, 0.5F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 				PlayParticleWithExactVelocityPayload.playParticles(world, pos.above(), ParticleTypes.EXPLOSION, 1);
 			}
 		}
@@ -119,7 +119,7 @@ public class SpectrumFusionShrineWorldEffects {
 	public static FusionShrineRecipeWorldEffect SINGLE_VISUAL_EXPLOSION_ON_SHRINE = FusionShrineRecipeWorldEffect.register("single_visual_explosion_on_shrine", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
-			world.playSound(null, pos.above(), SoundEvents.GENERIC_EXPLODE.value(), SoundSource.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F);
+			world.playSound(null, pos.above(), SoundEvents.GENERIC_EXPLODE.value(), SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 			PlayParticleWithExactVelocityPayload.playParticles(world, pos, ParticleTypes.EXPLOSION, 1);
 		}
 	});
@@ -204,7 +204,7 @@ public class SpectrumFusionShrineWorldEffects {
 	public static FusionShrineRecipeWorldEffect RIDICULOUSLY_SQUEAKY_FART = FusionShrineRecipeWorldEffect.register("ridiculously_squeaky_fart", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
-			world.playSound(null, pos.above(), SpectrumSoundEvents.SQUEAKER, SoundSource.BLOCKS, 1.4F, 1.2F + world.random.nextFloat() * 0.4F);
+			world.playSound(null, pos.above(), SpectrumSoundEvents.SQUEAKER, SoundSource.BLOCKS, 1.4F, 1.2F + world.getRandom().nextFloat() * 0.4F);
 		}
 	});
 	

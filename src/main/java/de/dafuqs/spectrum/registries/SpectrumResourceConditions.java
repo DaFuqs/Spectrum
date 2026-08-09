@@ -4,14 +4,9 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.*;
-import net.minecraft.core.registries.*;
-import net.minecraft.resources.*;
-import net.minecraft.world.item.enchantment.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.common.conditions.*;
 import net.neoforged.neoforge.registries.*;
-
-import java.util.*;
 
 public class SpectrumResourceConditions {
 	
@@ -49,12 +44,12 @@ public class SpectrumResourceConditions {
 				.apply(instance, Registered::new));
 		
 		@Override
-		public boolean test(@NotNull IContext context) {
+		public boolean test(IContext context) {
 			return registryEntryRegistered(context, this.registry(), this.value());
 		}
 		
 		@Override
-		public @NotNull MapCodec<? extends ICondition> codec() {
+		public MapCodec<? extends ICondition> codec() {
 			return Registered.CODEC;
 		}
 		

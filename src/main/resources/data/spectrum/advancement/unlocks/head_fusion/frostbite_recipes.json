@@ -6,10 +6,10 @@
         "advancement_identifier": "spectrum:unlocks/head_fusion/basic_recipes"
       }
     },
-    "collected_frostbite_crystal": {
+    "collected_frostbite_resource": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_frostbite_crystal"
+        "advancement_identifier": "spectrum:hidden/collect_frostbite_resource"
       }
     }
   }

@@ -8,7 +8,6 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
 
 /**
  * Since Sucking chests can react to both spawned items and experience
@@ -26,7 +25,7 @@ public class ItemAndExperienceEventQueue implements GameEventListener {
 	}
 	
 	@Override
-	public @NotNull PositionSource getListenerSource() {
+	public PositionSource getListenerSource() {
 		return this.itemListener.eventQueue.getListenerSource();
 	}
 	

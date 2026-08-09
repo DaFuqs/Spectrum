@@ -769,16 +769,6 @@
       "spectrum:ender_splice_bound"
     ]
   },
-  "sludge_ambient": {
-    "subtitle": "spectrum.subtitles.block.sludge.ambient",
-    "sounds": [
-      "spectrum:sludge_ambient",
-      "spectrum:sludge_ambient2",
-      "spectrum:sludge_ambient3",
-      "spectrum:sludge_ambient4",
-      "spectrum:sludge_ambient5"
-    ]
-  },
   "liquid_crystal_ambient": {
     "subtitle": "spectrum.subtitles.block.liquid_crystal.ambient",
     "sounds": [

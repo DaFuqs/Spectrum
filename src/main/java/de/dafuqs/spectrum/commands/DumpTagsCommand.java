@@ -6,8 +6,10 @@ import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.neoforged.fml.loading.*;
+import org.apache.commons.io.output.*;
 
 import java.io.*;
+import java.nio.charset.*;
 
 
 public class DumpTagsCommand {
@@ -35,7 +37,7 @@ public class DumpTagsCommand {
 					tagFile.getParentFile().mkdirs();
 					tagFile.createNewFile();
 					
-					FileWriter writer = new FileWriter(tagFile);
+					FileWriterWithEncoding writer = new FileWriterWithEncoding.Builder().setCharset(StandardCharsets.UTF_8).get();
 					for (Holder<?> entry : pair.getSecond()) {
 						writer.write(entry.unwrapKey().get().location().toString());
 						writer.write(System.lineSeparator());

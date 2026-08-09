@@ -12,7 +12,7 @@ import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.crafting.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -48,8 +48,8 @@ public class IngredientStack implements ICustomIngredient {
 	private final int count;
 	
 	// These are from the codec, to handle encoding
-	private Item item = null;
-	private TagKey<Item> tag = null;
+	private @Nullable Item item = null;
+	private @Nullable TagKey<Item> tag = null;
 	
 	public static final IngredientStack EMPTY = new IngredientStack(Ingredient.EMPTY, DataComponentPredicate.EMPTY, DataComponentPatch.EMPTY, 0);
 	
@@ -76,6 +76,14 @@ public class IngredientStack implements ICustomIngredient {
 		return new IngredientStack(ingredient);
 	}
 	
+	public static IngredientStack of(ItemStack stack) {
+		return new IngredientStack(Ingredient.of(stack));
+	}
+	
+	public static IngredientStack of(Ingredient ingredient, int count) {
+		return new IngredientStack(ingredient, DataComponentPredicate.EMPTY, DataComponentPatch.EMPTY, count);
+	}
+	
 	public static IngredientStack ofItems(Item item) {
 		return new IngredientStack(Ingredient.of(item));
 	}
@@ -97,14 +105,14 @@ public class IngredientStack implements ICustomIngredient {
 	}
 	
 	@Override
-	public boolean test(@NotNull ItemStack stack) {
+	public boolean test(ItemStack stack) {
 		return this.ingredient.test(stack)
 				&& this.count <= stack.getCount()
 				&& this.componentPredicate.test(stack.getComponents());
 	}
 	
 	@Override
-	public @NotNull Stream<ItemStack> getItems() {
+	public Stream<ItemStack> getItems() {
 		return Arrays.stream(this.ingredient.getItems()).map(stack -> {
 			ItemStack itemStack = new ItemStack(stack.getItem(), count);
 			itemStack.applyComponentsAndValidate(previewComponents);
@@ -118,7 +126,7 @@ public class IngredientStack implements ICustomIngredient {
 	}
 	
 	@Override
-	public @NotNull IngredientType<?> getType() {
+	public IngredientType<?> getType() {
 		return SpectrumIngredientTypes.INGREDIENT_STACK;
 	}
 	

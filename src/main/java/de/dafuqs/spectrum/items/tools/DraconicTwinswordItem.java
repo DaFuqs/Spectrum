@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.entity.entity.*;
@@ -16,24 +17,30 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public class DraconicTwinswordItem extends SwordItem implements SplittableItem, SlotReservingItem, Preenchanted, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 	
 	public static final float MAX_CHARGE_TIME = 60;
-	private final ItemAttributeModifiers modifiers;
 	
-	public DraconicTwinswordItem(Tier toolMaterial, int attackDamage, float attackSpeed, Properties settings) {
+	public DraconicTwinswordItem(Tier toolMaterial, Properties settings) {
 		super(toolMaterial, settings);
-		this.modifiers = createAttributes(toolMaterial, attackDamage, attackSpeed);
+	}
+	
+	public static ItemAttributeModifiers createAttributes() {
+		return ItemAttributeModifiers.builder()
+				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 6, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+				.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -3.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+				.build();
 	}
 	
 	@Override
@@ -56,7 +63,6 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 		super.releaseUsing(stack, world, user, remainingUseTicks);
 	}
 	
-	@NotNull
 	private static DraconicTwinswordEntity initiateTwinswordEntity(ItemStack stack, Level world, LivingEntity user, float strength) {
 		var twinsword = new DraconicTwinswordEntity(world);
 		twinsword.setOwner(user);
@@ -100,14 +106,24 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 		tooltip.add(Component.translatable("item.spectrum.draconic_twinsword.tooltip3").withStyle(ChatFormatting.GRAY));
 	}
 	
+	ResourceLocation COOLDOWN_ATTRIBUTE_ID = SpectrumCommon.locate("cooldown");
+	
 	@Override
-	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
+	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
+		// TODO: this is fired EVERY tick
 		if (entity instanceof Player player) {
 			if (player.getCooldowns().isOnCooldown(stack.getItem()) || SlotReservingItem.isReservingSlot(stack)) {
-				stack.remove(DataComponents.ATTRIBUTE_MODIFIERS);
+				stack.set(DataComponents.ATTRIBUTE_MODIFIERS, stack.getAttributeModifiers().withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(COOLDOWN_ATTRIBUTE_ID, 0.0D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.ANY));
 			} else {
-				// TODO: this is fired EVERY tick
-				stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
+				stack.update(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY, comp -> {
+					ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
+					for (ItemAttributeModifiers.Entry entry : comp.modifiers()) {
+						if (!entry.modifier().is(COOLDOWN_ATTRIBUTE_ID)) {
+							builder.add(entry.attribute(), entry.modifier(), entry.slot());
+						}
+					}
+					return builder.build();
+				});
 			}
 		}
 	}
@@ -152,17 +168,6 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 		player.playNotifySound(SpectrumSoundEvents.METALLIC_UNSHEATHE, SoundSource.PLAYERS, 0.5F, 0.8F + player.getRandom().nextFloat() * 0.4F);
 	}
 	
-	public static ItemStack findThrownStack(Player player, UUID id) {
-		var inventory = player.getInventory();
-		for (int i = 0; i < inventory.getContainerSize(); i++) {
-			var stack = inventory.getItem(i);
-			if (SlotReservingItem.isReserver(stack, id)) {
-				return stack;
-			}
-		}
-		return ItemStack.EMPTY;
-	}
-	
 	@Override
 	public Map<ResourceKey<Enchantment>, Integer> getDefaultEnchantments() {
 		return Map.of(Enchantments.SWEEPING_EDGE, 5);
@@ -182,7 +187,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	}
 	
 	@Override
-	public BarSignature getSignature(@Nullable Player player, @NotNull ItemStack stack, int index) {
+	public BarSignature getSignature(@Nullable Player player, ItemStack stack, int index) {
 		if (player == null || SlotReservingItem.isReservingSlot(stack) || !player.isUsingItem())
 			return ExtendedItemBarProvider.PASS;
 		
@@ -205,7 +210,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	}
 	
 	@Override
-	public boolean supportsEnchantment(@NotNull ItemStack stack, @NotNull Holder<Enchantment> enchantment) {
+	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.CHANNELING) || enchantment.is(Enchantments.PIERCING);
 	}
 }

@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.storage.*;
-import de.dafuqs.spectrum.api.entity.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.components.*;
@@ -103,9 +102,6 @@ public class SpectrumModelPredicateProviders {
 				entity != null && CrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
 		
 		ItemProperties.register(crossbowItem, ResourceLocation.parse("projectile"), (stack, world, entity, seed) -> {
-			if (stack == null) {
-				return 0F;
-			}
 			ItemStack projectile = MalachiteCrossbowItem.getFirstProjectile(stack);
 			if (projectile.isEmpty()) {
 				return 0F;
@@ -193,11 +189,17 @@ public class SpectrumModelPredicateProviders {
 				SlotReservingItem.isReservingSlot(stack) ? 1.0F : 0.0F);
 	}
 	
-	public static final int MAGICAL_OVERSIZED_SEED = 817210941;
+	public static int MAGIC_OVERSIZED_SEED = -567877769;
 	
 	private static void registerOversizedItemPredicate(Item item) {
 		ItemProperties.register(item, ResourceLocation.parse("oversized"), (stack, world, entity, seed) ->
-				seed == MAGICAL_OVERSIZED_SEED ? 1.0F : 0.0F);
+				seed == MAGIC_OVERSIZED_SEED ? 1.0F : 0.0F
+		);
+	}
+	
+	private static void registerBlockingPredicate(Item item) {
+		ItemProperties.register(item, ResourceLocation.parse("blocking"), (stack, world, entity, seed) ->
+				entity != null && entity.isBlocking() ? 1.0F : 0.0F);
 	}
 	
 	private static void registerBowPredicates(Item bowItem) {

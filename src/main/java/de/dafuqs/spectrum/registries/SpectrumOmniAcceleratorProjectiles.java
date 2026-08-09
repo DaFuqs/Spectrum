@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
-import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
@@ -16,8 +15,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-
-import java.util.function.*;
+import org.jspecify.annotations.*;
 
 public class SpectrumOmniAcceleratorProjectiles {
 	
@@ -72,7 +70,7 @@ public class SpectrumOmniAcceleratorProjectiles {
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+			public @Nullable Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
 				if (stack.getItem() instanceof ArrowItem arrowItem) {
 					AbstractArrow arrowEntity = arrowItem.createArrow(world, stack, shooter, shotFrom);
 					arrowEntity.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0.0F, 2.5F, 1.0F);
@@ -122,7 +120,7 @@ public class SpectrumOmniAcceleratorProjectiles {
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+			public @Nullable Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
 				Vec3 pos = shooter.getEyePosition();
 				PrimedTnt tntEntity = new PrimedTnt(world, pos.x() + 0.5, pos.y(), pos.z() + 0.5, shooter);
 				OmniAcceleratorProjectile.setVelocity(tntEntity, shooter, shooter.getXRot(), shooter.getYRot(), 0.0F, 2.5F, 1.0F);
@@ -209,7 +207,7 @@ public class SpectrumOmniAcceleratorProjectiles {
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+			public @Nullable Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
 				Vec3 pos = shooter.getEyePosition();
 				
 				if (stack.getItem() instanceof BlockItem blockItem) {
@@ -231,7 +229,7 @@ public class SpectrumOmniAcceleratorProjectiles {
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
-			public Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
+			public @Nullable Entity createProjectile(ItemStack stack, LivingEntity shooter, Level world, ItemStack shotFrom) {
 				if (shooter instanceof Player player) {
 					WindCharge windChargeEntity = new WindCharge(player, world, shooter.position().x(), shooter.getEyePosition().y(), shooter.position().z());
 					windChargeEntity.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot(), 0, 2.5F, 0F);

@@ -1,0 +1,13 @@
+{
+  "type": "spectrum:primordial_fire_burning",
+  "ingredient": [
+    {
+      "tag": "spectrum:blue_logs"
+    }
+  ],
+  "result": {
+    "id": "spectrum:blue_pigment",
+    "count": 3
+  },
+  "required_advancement": "spectrum:hidden/collect_pigment/blue"
+}

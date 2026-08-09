@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.resources.sounds.*;
-import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import org.lwjgl.openal.*;
 
@@ -43,8 +42,8 @@ public class DimensionReverb {
 				return;
 			}
 			
-			float reverbTime = SpectrumConfig.CONFIG.DimensionReverbDecayTime.get();
-			float reverbDensity = SpectrumConfig.CONFIG.DimensionReverbDensity.get();
+			float reverbTime = SpectrumConfig.CONFIG.DimensionReverbDecayTime.get().floatValue();
+			float reverbDensity = SpectrumConfig.CONFIG.DimensionReverbDensity.get().floatValue();
 			if (!(reverbTime > 0) && !(reverbDensity > 0)) {
 				return;
 			}

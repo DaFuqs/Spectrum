@@ -6,7 +6,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.levelgen.feature.*;
-import org.jetbrains.annotations.*;
 
 // a version of BasaltPillarFeature with configurable block state
 public class PillarFeature extends Feature<BlockStateFeatureConfig> {
@@ -79,13 +78,13 @@ public class PillarFeature extends Feature<BlockStateFeatureConfig> {
 		}
 	}
 	
-	private void tryPlace(LevelAccessor world, @NotNull RandomSource random, BlockPos pos, BlockState blockState) {
+	private void tryPlace(LevelAccessor world, RandomSource random, BlockPos pos, BlockState blockState) {
 		if (random.nextBoolean()) {
 			world.setBlock(pos, blockState, 2);
 		}
 	}
 	
-	private boolean stopOrPlace(LevelAccessor world, @NotNull RandomSource random, BlockPos pos, BlockState blockState) {
+	private boolean stopOrPlace(LevelAccessor world, RandomSource random, BlockPos pos, BlockState blockState) {
 		if (random.nextInt(10) != 0) {
 			world.setBlock(pos, blockState, 2);
 			return true;

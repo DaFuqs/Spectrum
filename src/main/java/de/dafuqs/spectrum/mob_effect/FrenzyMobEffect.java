@@ -6,7 +6,6 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.neoforged.neoforge.common.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -61,7 +60,7 @@ public class FrenzyMobEffect extends MobEffect {
 		updateAttributes(livingEntity, amplifier, 1);
 	}
 	
-	public void updateAttributes(@NotNull LivingEntity entity, int amplifier, int increase) {
+	public void updateAttributes(LivingEntity entity, int amplifier, int increase) {
 		AttributeMap attributes = entity.getAttributes();
 		createModifiers(amplifier, (entry, modifier) -> {
 			AttributeInstance entityInstance = attributes.getInstance(entry);
@@ -84,7 +83,7 @@ public class FrenzyMobEffect extends MobEffect {
 	}
 	
 	@Override
-	public void fillEffectCures(Set<EffectCure> cures, @NotNull MobEffectInstance effectInstance) {
+	public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
 		cures.add(SpectrumEffectCures.SEDATIVES);
 	}
 	

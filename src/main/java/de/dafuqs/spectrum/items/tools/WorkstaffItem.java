@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -140,7 +140,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	private static void enchantAndRemoveOthers(Player player, ItemStack stack, Component message, ResourceKey<Enchantment> enchantment) {
 		var registryLookup = player.level().registryAccess();
 		
-		int existingLevel = SpectrumEnchantmentHelper.getLevel(registryLookup, enchantment, stack);
+		int existingLevel = SpectrumEnchantmentHelper.getTagLevel(registryLookup, enchantment, stack);
 		if (existingLevel > 0) {
 			player.displayClientMessage(Component.translatable("item.spectrum.workstaff.message.already_has_the_enchantment"), true);
 			return;

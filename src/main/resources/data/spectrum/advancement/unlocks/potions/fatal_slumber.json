@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "unlocked_complex_reagents": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_complex_reagents"
+      }
+    },
+    "found_poisoners_handbook": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_cookbooks/poisoners_handbook"
+      }
+    },
+    "collected_moonstone": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_moonstone"
+      }
+    },
+    "eat_burgeon": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:nectardew_burgeon"
+          ]
+        }
+      }
+    }
+  }
+}

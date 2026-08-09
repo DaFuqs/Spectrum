@@ -1,6 +1,6 @@
 {
   "type": "spectrum:crystallarieum_growing",
-  "fluid_medium": {
+  "fluid": {
     "fluid": "spectrum:liquid_crystal"
   },
   "additional_recipe_manager_results": [
@@ -9,30 +9,30 @@
       "id": "spectrum:pure_azurite"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
-      "consume_chance_per_second": 0.05,
-      "growth_acceleration_mod": 7.5,
       "ingredient": {
         "item": "minecraft:raw_copper"
       },
-      "ink_consumption_mod": 10.0
+      "consume_chance_per_second": 0.1,
+      "growth_acceleration_mod": 1.0,
+      "ink_consumption_mod": 1.0
     },
     {
-      "consume_chance_per_second": 0.15,
-      "growth_acceleration_mod": 1.0,
       "ingredient": {
         "item": "minecraft:copper_ingot"
       },
-      "ink_consumption_mod": 0.5
+      "consume_chance_per_second": 0.05,
+      "growth_acceleration_mod": 0.75,
+      "ink_consumption_mod": 0.75
     },
     {
-      "consume_chance_per_second": 0.01,
-      "growth_acceleration_mod": 1.708,
       "ingredient": {
         "item": "spectrum:pure_copper"
       },
-      "ink_consumption_mod": 0.707
+      "consume_chance_per_second": 0.01,
+      "growth_acceleration_mod": 0.5,
+      "ink_consumption_mod": 0.5
     }
   ],
   "growth_stage_states": [

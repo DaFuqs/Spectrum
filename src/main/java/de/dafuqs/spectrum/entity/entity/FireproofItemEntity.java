@@ -26,7 +26,7 @@ public class FireproofItemEntity extends ItemEntity {
 	}
 	
 	private FireproofItemEntity(ItemEntity entity) {
-		super(SpectrumEntityTypes.FIREPROOF_ITEM.get(), entity.level());
+		this(entity.level(), entity.getX(), entity.getY(), entity.getZ(), entity.getItem());
 	}
 	
 	@Override
@@ -39,16 +39,16 @@ public class FireproofItemEntity extends ItemEntity {
 	}
 	
 	public static void scatter(Level world, double x, double y, double z, ItemStack stack) {
-		double d = EntityType.ITEM.getWidth();
+		double d = SpectrumEntityTypes.FIREPROOF_ITEM.get().getWidth();
 		double e = 1.0 - d;
 		double f = d / 2.0;
-		double g = Math.floor(x) + world.random.nextDouble() * e + f;
-		double h = Math.floor(y) + world.random.nextDouble() * e;
-		double i = Math.floor(z) + world.random.nextDouble() * e + f;
+		double g = Math.floor(x) + world.getRandom().nextDouble() * e + f;
+		double h = Math.floor(y) + world.getRandom().nextDouble() * e;
+		double i = Math.floor(z) + world.getRandom().nextDouble() * e + f;
 		
 		while (!stack.isEmpty()) {
-			FireproofItemEntity itemEntity = new FireproofItemEntity(world, g, h, i, stack.split(world.random.nextInt(21) + 10));
-			itemEntity.setDeltaMovement(world.random.triangle(0.0, 0.11485000171139836), world.random.triangle(0.2, 0.11485000171139836), world.random.triangle(0.0, 0.11485000171139836));
+			FireproofItemEntity itemEntity = new FireproofItemEntity(world, g, h, i, stack.split(world.getRandom().nextInt(21) + 10));
+			itemEntity.setDeltaMovement(world.getRandom().triangle(0.0, 0.11485000171139836), world.getRandom().triangle(0.2, 0.11485000171139836), world.getRandom().triangle(0.0, 0.11485000171139836));
 			world.addFreshEntity(itemEntity);
 		}
 		

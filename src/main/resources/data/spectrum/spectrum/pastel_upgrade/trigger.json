@@ -1,0 +1,6 @@
+{
+  "name": "trigger",
+  "category": "redstone",
+  "item": "spectrum:pure_quartz",
+  "trigger": true
+}

@@ -123,7 +123,6 @@ public class SpectrumCommon {
 		SpectrumPastelPayloadTypes.register(modBus);
 		SpectrumPastelPayloads.register(modBus);
 		modBus.addListener(SpectrumBlockEntities::addBlockEntityTypeBlocks);
-		SpectrumPastelUpgradeSignatures.register(modBus);
 		
 		// Worldgen
 		logInfo("Registering Features...");

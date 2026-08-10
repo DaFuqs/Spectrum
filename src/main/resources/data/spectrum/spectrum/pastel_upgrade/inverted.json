@@ -1,0 +1,6 @@
+{
+  "name": "inverted",
+  "category": "redstone",
+  "item": "spectrum:pure_coal",
+  "redstone": "inverted"
+}

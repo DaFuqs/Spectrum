@@ -1,0 +1,7 @@
+{
+  "name": "strong_speed",
+  "category": "simple",
+  "item": "spectrum:pure_malachite",
+  "speed_mod": -10,
+  "speed_multi": 0.5
+}

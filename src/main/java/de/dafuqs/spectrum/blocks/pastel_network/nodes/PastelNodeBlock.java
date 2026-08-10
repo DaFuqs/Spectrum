@@ -89,9 +89,9 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 			PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
 			if (blockEntity != null) {
 				blockEntity.onBroken();
-				blockEntity.getOuterRing().ifPresent(r -> popResource(world, pos, r.upgradeItem.getDefaultInstance()));
-				blockEntity.getInnerRing().ifPresent(r -> popResource(world, pos, r.upgradeItem.getDefaultInstance()));
-				blockEntity.getRedstoneRing().ifPresent(r -> popResource(world, pos, r.upgradeItem.getDefaultInstance()));
+				blockEntity.getOuterRing().ifPresent(r -> popResource(world, pos, r.upgradeItem.value().getDefaultInstance()));
+				blockEntity.getInnerRing().ifPresent(r -> popResource(world, pos, r.upgradeItem.value().getDefaultInstance()));
+				blockEntity.getRedstoneRing().ifPresent(r -> popResource(world, pos, r.upgradeItem.value().getDefaultInstance()));
 			}
 		}
 		super.onRemove(state, world, pos, newState, moved);
@@ -139,7 +139,7 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		@Nullable PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
+		PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
 		if (blockEntity == null) {
 			return super.useItemOn(stack, state, world, pos, player, hand, hit);
 		}

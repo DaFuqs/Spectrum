@@ -1,0 +1,6 @@
+{
+  "name": "rate",
+  "category": "non_compounding",
+  "item": "spectrum:resonance_shard",
+  "transfer_rate_mod": 0.5
+}

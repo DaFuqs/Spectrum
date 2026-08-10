@@ -24,7 +24,6 @@ public class SpectrumRegistries {
 	public static final Registry<GemstoneColor> GEMSTONE_COLOR = register(SpectrumRegistryKeys.GEMSTONE_COLOR, true);
 	public static final Registry<GlassArrowVariant> GLASS_ARROW_VARIANT = register(SpectrumRegistryKeys.GLASS_ARROW_VARIANT, true);
 	public static final Registry<InkColor> INK_COLOR = register(SpectrumRegistryKeys.INK_COLOR, true);
-	public static final Registry<PastelUpgradeSignature> PASTEL_UPGRADE = register(SpectrumRegistryKeys.PASTEL_UPGRADE, false);
 	public static final Registry<MapCodec<? extends ResonanceProcessor>> RESONANCE_PROCESSOR_TYPE = register(SpectrumRegistryKeys.RESONANCE_PROCESSOR_TYPE, false);
 	public static final Registry<PastelPayloadType> PASTEL_PAYLOAD_TYPE = register(SpectrumRegistryKeys.PASTEL_PAYLOAD_TYPE, false);
 	public static final Registry<MapCodec<? extends PastelPayload>> PASTEL_PAYLOAD = register(SpectrumRegistryKeys.PASTEL_PAYLOAD, false);
@@ -38,7 +37,6 @@ public class SpectrumRegistries {
 		event.register(GEMSTONE_COLOR);
 		event.register(GLASS_ARROW_VARIANT);
 		event.register(INK_COLOR);
-		event.register(PASTEL_UPGRADE);
 		event.register(RESONANCE_PROCESSOR_TYPE);
 		event.register(PASTEL_PAYLOAD_TYPE);
 		event.register(PASTEL_PAYLOAD);
@@ -50,6 +48,7 @@ public class SpectrumRegistries {
 		event.dataPackRegistry(SpectrumRegistryKeys.LIZARD_FRILL_VARIANT, LizardFrillVariant.DIRECT_CODEC, LizardFrillVariant.DIRECT_CODEC);
 		event.dataPackRegistry(SpectrumRegistryKeys.LIZARD_HORN_VARIANT, LizardHornVariant.DIRECT_CODEC, LizardHornVariant.DIRECT_CODEC);
 		event.dataPackRegistry(SpectrumRegistryKeys.GEODE_ORES, GeodeOreDefinition.CODEC, GeodeOreDefinition.CODEC);
+		event.dataPackRegistry(SpectrumRegistryKeys.PASTEL_UPGRADE, PastelUpgradeSignature.CODEC, PastelUpgradeSignature.CODEC);
 	}
 	
 	public static <T> T getRandomTagEntry(Registry<T> registry, TagKey<T> tag, RandomSource random, T fallback) {

@@ -14,10 +14,7 @@ public abstract class RandomChanceLootConditionMixin {
 	
 	@ModifyVariable(method = "test(Lnet/minecraft/world/level/storage/loot/LootContext;)Z", at = @At("STORE"))
 	public float spectrum$applyRareLootEnchantment(float originalChance, LootContext context) {
-		Entity entity = context.hasParam(LootContextParams.ATTACKING_ENTITY)
-			? context.getParamOrNull(LootContextParams.ATTACKING_ENTITY) // when attacking
-			: context.getParamOrNull(LootContextParams.THIS_ENTITY); // when breaking blooks, fishing, ...
-		return SpectrumEntityAttributes.modifyLootChance(originalChance, entity);
+		return SpectrumEntityAttributes.modifyLootChance(originalChance, context.getParamOrNull(LootContextParams.ATTACKING_ENTITY));
 	}
 	
 }

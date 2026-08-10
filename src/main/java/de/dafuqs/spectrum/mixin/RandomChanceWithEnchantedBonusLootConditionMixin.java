@@ -16,10 +16,7 @@ public abstract class RandomChanceWithEnchantedBonusLootConditionMixin {
 		if(original <= 0) {
 			return original;
 		}
-		Entity entity = context.hasParam(LootContextParams.ATTACKING_ENTITY)
-				? context.getParamOrNull(LootContextParams.ATTACKING_ENTITY) // when attacking
-				: context.getParamOrNull(LootContextParams.THIS_ENTITY); // when breaking blooks, fishing, ...
-		return SpectrumEntityAttributes.modifyLootChance(original, entity);
+		return SpectrumEntityAttributes.modifyLootChance(original, context.getParamOrNull(LootContextParams.ATTACKING_ENTITY));
 	}
 	
 }

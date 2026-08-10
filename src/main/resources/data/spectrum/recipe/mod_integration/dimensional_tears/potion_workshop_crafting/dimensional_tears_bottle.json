@@ -1,19 +1,20 @@
 {
   "type": "spectrum:potion_workshop_crafting",
-  "base_ingredient": "minecraft:bucket",
+  "base_ingredient": "minecraft:glass_bottle",
   "use_up_base_ingredient": true,
   "color": 2884203,
   "ingredient1": "spectrum:radiating_ender",
   "ingredient2": "spectrum:neolith",
   "ingredient3": "minecraft:popped_chorus_fruit",
   "result": {
-    "id": "spelunkery:portal_fluid_bucket"
+    "id": "dimensional_tears:dimensional_tears_bottle",
+    "count": 3
   },
   "required_advancement": "spectrum:unlocks/items/ender_splice",
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "spelunkery"
+      "modid": "dimensional_tears"
     }
   ]
 }

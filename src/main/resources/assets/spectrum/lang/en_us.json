@@ -3418,6 +3418,9 @@
   "book.spectrum.guidebook.mod_integration.waystones.name": "Waystones",
   "book.spectrum.guidebook.mod_integration.waystones.page0.text": "Sharing is caring... so then why do these get made without a pair?\\\n\\\nWith what I know, replacing the central warp core with some Radiating Ender should be pretty simple. Now I can create tons of these monoliths, with no hassle at all!",
   "book.spectrum.guidebook.mod_integration.waystones.sharestones_recipe.text": "Works with *almost* any Pigment",
+  "book.spectrum.guidebook.mod_integration.dimensional_tears.name": "Dimensional Tears",
+  "book.spectrum.guidebook.mod_integration.dimensional_tears.about.text": "*The Endermen did it again!*",
+
   "book.spectrum.guidebook.arcane_charges.name": "Arcane Charges",
   "book.spectrum.guidebook.arcane_charges.about.text": "While tinkering with these designs I’ve blown myself up more times than I care to admit. Failure is success in progress (I tell myself), so I found out: explosions get much more interesting when you let enchantments meddle with them.\\\n\\\n\\\n*magical mood swings wrapped in a fuse*",
   "book.spectrum.guidebook.arcane_charges.enchanting.title": "Enchanting",

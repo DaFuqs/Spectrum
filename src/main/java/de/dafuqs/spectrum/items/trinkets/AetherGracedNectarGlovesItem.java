@@ -21,7 +21,6 @@ import java.util.*;
 public class AetherGracedNectarGlovesItem extends AzureDikeCurioItem implements SlotBackgroundEffectProvider {
 	
 	public static final int HARMFUL_EFFECT_COST = 7;
-	public static ResourceLocation MENTAL_PRESENCE_ATTRIBUTE_ID = SpectrumCommon.locate("nectar_gloves_sleep");
 	
 	public AetherGracedNectarGlovesItem(Properties settings, ResourceLocation unlockIdentifier) {
 		super(settings, unlockIdentifier);
@@ -37,13 +36,6 @@ public class AetherGracedNectarGlovesItem extends AzureDikeCurioItem implements 
 		super.appendHoverText(stack, context, tooltip, type);
 		tooltip.add(Component.translatable("item.spectrum.aether_graced_nectar_gloves.tooltip"));
 		tooltip.add(Component.translatable("item.spectrum.aether_graced_nectar_gloves.tooltip2"));
-	}
-	
-	@Override
-	public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation id, ItemStack stack) {
-		Multimap<Holder<Attribute>, AttributeModifier> modifiers = super.getAttributeModifiers(slotContext, id, stack);
-		modifiers.put(SpectrumEntityAttributes.MENTAL_PRESENCE, new AttributeModifier(MENTAL_PRESENCE_ATTRIBUTE_ID, -1F, AttributeModifier.Operation.ADD_VALUE));
-		return modifiers;
 	}
 	
 	public static boolean testEffectFor(LivingEntity entity, Holder<MobEffect> effect) {

@@ -29,7 +29,6 @@ public class LaurelsOfSerenityItem extends InkDrainCurioItem {
 	}
 	
 	public static ResourceLocation DETECTION_RANGE_ATTRIBUTE_ID = SpectrumCommon.locate("laurels_of_serenity_detection_range");
-	public static ResourceLocation MENTAL_PRESENCE_ATTRIBUTE_ID = SpectrumCommon.locate("laurels_of_serenity_mental_presence");
 	
 	@Override
 	public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation id, ItemStack stack) {
@@ -44,23 +43,10 @@ public class LaurelsOfSerenityItem extends InkDrainCurioItem {
 			// so it shows up red in tooltips. Hmmmm
 			modifiers.put(AdditionalEntityAttributes.MOB_DETECTION_RANGE, new AttributeModifier(DETECTION_RANGE_ATTRIBUTE_ID, -detectionRangeMod, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 		}
-		double sleepResistanceMod = getInducedSleepResistanceMod(storedInk);
-		if (sleepResistanceMod != 0) {
-			modifiers.put(SpectrumEntityAttributes.MENTAL_PRESENCE, new AttributeModifier(MENTAL_PRESENCE_ATTRIBUTE_ID, sleepResistanceMod, AttributeModifier.Operation.ADD_VALUE));
-		}
-		
 		return modifiers;
 	}
 	
 	public float getDetectionRangeMultiplier(long storedInk) {
-		if (storedInk < 100) {
-			return 0;
-		} else {
-			return 0.15F * (int) (Math.log(storedInk / 100.0f) / Math.log(8)); //TODO: reduce once the ink trinket cap is set back to 1.6 billion
-		}
-	}
-	
-	public float getInducedSleepResistanceMod(long storedInk) {
 		if (storedInk < 100) {
 			return 0;
 		} else {

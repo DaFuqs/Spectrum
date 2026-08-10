@@ -13,8 +13,8 @@ public class InexorableHelper {
 		var armorInexorable = isArmorActive(entity);
 		var toolInexorable = SpectrumEnchantmentHelper.hasEnchantment(entity.level().registryAccess(), SpectrumEnchantmentKeys.INEXORABLE, entity.getItemInHand(entity.getUsedItemHand()));
 		
-		var armorAttributes = BuiltInRegistries.ATTRIBUTE.getTag(SpectrumAttributeKeys.INEXORABLE_ARMOR_EFFECTIVE);
-		var toolAttributes = BuiltInRegistries.ATTRIBUTE.getTag(SpectrumAttributeKeys.INEXORABLE_HANDHELD_EFFECTIVE);
+		var armorAttributes = BuiltInRegistries.ATTRIBUTE.getTag(SpectrumEntityAttributeKeys.INEXORABLE_ARMOR_EFFECTIVE);
+		var toolAttributes = BuiltInRegistries.ATTRIBUTE.getTag(SpectrumEntityAttributeKeys.INEXORABLE_HANDHELD_EFFECTIVE);
 		
 		if (armorInexorable && armorAttributes.isPresent()) {
 			removeAttributes(entity, armorAttributes.get());

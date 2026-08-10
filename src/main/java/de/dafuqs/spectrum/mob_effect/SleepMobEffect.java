@@ -22,20 +22,13 @@ public class SleepMobEffect extends MobEffect {
 	}
 	
 	// oh my god
-	// TODO: can the tag check be implemented into the entities base attribute modifier somehow?
 	public static float getSleepResistance(@Nullable MobEffectInstance sleepEffect, LivingEntity entity) {
 		var type = entity.getType();
 		
 		if (sleepEffect == null || type.is(SpectrumEntityTypeTags.SOULLESS))
 			return Float.MAX_VALUE;
 		
-		float scaling;
-		if (entity instanceof Player player && player.level().isClientSide()) {
-			scaling = (float) MiscPlayerDataAttachmentType.get(player).getLastSyncedSleepPotency();
-		} else {
-			scaling = (float) entity.getAttributeValue(SpectrumEntityAttributes.MENTAL_PRESENCE);
-		}
-		
+		float scaling = 1.0F;
 		if (type.is(SpectrumEntityTypeTags.SLEEP_WEAK)) {
 			scaling /= 3F;
 		} else if (type.is(SpectrumEntityTypeTags.SLEEP_RESISTANT)) {
@@ -47,7 +40,6 @@ public class SleepMobEffect extends MobEffect {
 		return scaling;
 	}
 	
-	// TODO: can the tag check be implemented into the entities base attribute modifier somehow?
 	public static boolean isImmuneish(LivingEntity entity) {
 		if (entity.hasEffect(SpectrumMobEffects.FRENZY))
 			return true;

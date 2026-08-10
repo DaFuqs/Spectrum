@@ -839,7 +839,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.POLISHED_BLACKSLAG_PRESSURE_PLATE);
 					entries.accept(SpectrumBlocks.INFESTED_BLACKSLAG);
 					entries.accept(SpectrumBlocks.SHALE_CLAY);
-					entries.accept(SpectrumBlocks.TILLED_SHALE_CLAY);
 					entries.accept(SpectrumBlocks.POLISHED_SHALE_CLAY);
 					entries.accept(SpectrumBlocks.EXPOSED_POLISHED_SHALE_CLAY);
 					entries.accept(SpectrumBlocks.WEATHERED_POLISHED_SHALE_CLAY);
@@ -884,7 +883,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.BLACK_MATERIA);
 					entries.accept(SpectrumBlocks.SLUSH);
 					entries.accept(SpectrumBlocks.OVERGROWN_SLUSH);
-					entries.accept(SpectrumBlocks.TILLED_SLUSH);
 					entries.accept(SpectrumBlocks.BLACK_SLUDGE);
 					
 					entries.accept(SpectrumItems.ASH_FLAKES);

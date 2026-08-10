@@ -25,8 +25,7 @@ public class SpectrumMobEffects {
 	 * Clears negative effects on the entity
 	 * and makes it immune against new ones
 	 */
-	public static final Holder<MobEffect> IMMUNITY = register("immunity", () -> new ImmunityMobEffect(MobEffectCategory.NEUTRAL, 0x4bbed5)
-			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, locate("effect.immunity"), 1.0, AttributeModifier.Operation.ADD_VALUE));
+	public static final Holder<MobEffect> IMMUNITY = register("immunity", () -> new ImmunityMobEffect(MobEffectCategory.NEUTRAL, 0x4bbed5));
 	
 	/**
 	 * Like Saturation, but not OP
@@ -113,8 +112,7 @@ public class SpectrumMobEffects {
 			.addAttributeModifier(Attributes.ATTACK_KNOCKBACK, locate("effect.divinity.attack_knockback"), 1.0D, AttributeModifier.Operation.ADD_VALUE)
 			.addAttributeModifier(Attributes.ARMOR, locate("effect.divinity.armor"), 2.0D, AttributeModifier.Operation.ADD_VALUE)
 			.addAttributeModifier(Attributes.ARMOR_TOUGHNESS, locate("effect.divinity.armor_toughness"), 2.0D, AttributeModifier.Operation.ADD_VALUE)
-			.addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, locate("effect.divinity.knockback_resistance"), 1.0D, AttributeModifier.Operation.ADD_VALUE)
-			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, locate("effect.divinity.mental_presence"), 0.25, AttributeModifier.Operation.ADD_VALUE));
+			.addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, locate("effect.divinity.knockback_resistance"), 1.0D, AttributeModifier.Operation.ADD_VALUE));
 	
 	/**
 	 * Damage, attack speed, speed & knockback resistance are buffed the more the player kills.
@@ -125,8 +123,7 @@ public class SpectrumMobEffects {
 			.addAttributeModifier(Attributes.ATTACK_SPEED, locate("effect.frenzy.attack_speed"), 0.1D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
 			.addAttributeModifier(Attributes.ATTACK_DAMAGE, locate("effect.frenzy.attack_damage"), 0.5D, AttributeModifier.Operation.ADD_VALUE)
 			.addAttributeModifier(Attributes.MOVEMENT_SPEED, locate("effect.frenzy.movement_speed"), 0.1D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-			.addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, locate("effect.frenzy.knockback_resistance"), 0.25D, AttributeModifier.Operation.ADD_VALUE)
-			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, locate("effect.frenzy.mental_presence"), 5, AttributeModifier.Operation.ADD_VALUE));
+			.addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, locate("effect.frenzy.knockback_resistance"), 0.25D, AttributeModifier.Operation.ADD_VALUE));
 	
 	/**
 	 * Increases speed and visibility in lava
@@ -139,27 +136,23 @@ public class SpectrumMobEffects {
 	 * Reduces detection range and enemy spawn rates
 	 */
 	public static final Holder<MobEffect> CALMING = register("calming", () -> new SleepMobEffect(MobEffectCategory.BENEFICIAL, 0x5fd7b3, true)
-			.addAttributeModifier(AdditionalEntityAttributes.MOB_DETECTION_RANGE, locate("effect.calming.mob_detection_range"), -0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, locate("effect.calming.mental_presence"), -0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+			.addAttributeModifier(AdditionalEntityAttributes.MOB_DETECTION_RANGE, locate("effect.calming.mob_detection_range"), -0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 	
 	/**
 	 * Slows down enemy AI and causes them to forget their target at times.
 	 * ON PLAYER: removes UI elements and reduces acceleration
 	 */
-	public static final Holder<MobEffect> SOMNOLENCE = register("somnolence", () -> new SleepMobEffect(MobEffectCategory.NEUTRAL, 0xae7bec, true)
-			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, locate("effect.somnolence"), -0.5, AttributeModifier.Operation.ADD_VALUE));
+	public static final Holder<MobEffect> SOMNOLENCE = register("somnolence", () -> new SleepMobEffect(MobEffectCategory.NEUTRAL, 0xae7bec, true));
 	
 	/**
 	 * Like somnolence, but stronger and does not naturally end most of the time.
 	 */
-	public static final Holder<MobEffect> ETERNAL_SLUMBER = register("eternal_slumber", () -> new SleepMobEffect(MobEffectCategory.HARMFUL, ETERNAL_SLUMBER_COLOR, false)
-			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, locate("effect.eternal_slumber"), -2.0, AttributeModifier.Operation.ADD_VALUE));
+	public static final Holder<MobEffect> ETERNAL_SLUMBER = register("eternal_slumber", () -> new SleepMobEffect(MobEffectCategory.HARMFUL, ETERNAL_SLUMBER_COLOR, false));
 	
 	/**
 	 * Kills you if it runs out naturally.
 	 */
-	public static final Holder<MobEffect> FATAL_SLUMBER = register("fatal_slumber", () -> new SleepMobEffect(MobEffectCategory.HARMFUL, 0x8136c2, false)
-			.addAttributeModifier(SpectrumEntityAttributes.MENTAL_PRESENCE, locate("effect.fatal_slumber"), -2.0, AttributeModifier.Operation.ADD_VALUE));
+	public static final Holder<MobEffect> FATAL_SLUMBER = register("fatal_slumber", () -> new SleepMobEffect(MobEffectCategory.HARMFUL, 0x8136c2, false));
 	
 	/**
 	 * % Chance to protect from projectiles per level

@@ -83,7 +83,7 @@ public class TreasureHunterLootModifier extends LootModifier {
 		RandomSource random = lootContext.getRandom();
 		for(Entry e : this.entries) {
 			if(e.predicate.matches(serverLevel, pos, killed)) {
-				if(random.nextFloat() > e.chance() * treasureHunterLevel) {
+				if(random.nextFloat() > SpectrumEntityAttributes.modifyLootChance(e.chance(), player) * treasureHunterLevel) {
 					continue;
 				}
 				

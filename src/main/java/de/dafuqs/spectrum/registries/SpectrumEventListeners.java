@@ -344,7 +344,7 @@ public class SpectrumEventListeners {
 		var oldInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantmentKeys.INEXORABLE, oldEquipment);
 		var newInexorable = SpectrumEnchantmentHelper.getLevel(livingEntity.level().registryAccess(), SpectrumEnchantmentKeys.INEXORABLE, newEquipment);
 		
-		var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumAttributeKeys.INEXORABLE_ARMOR_EFFECTIVE : SpectrumAttributeKeys.INEXORABLE_HANDHELD_EFFECTIVE;
+		var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumEntityAttributeKeys.INEXORABLE_ARMOR_EFFECTIVE : SpectrumEntityAttributeKeys.INEXORABLE_HANDHELD_EFFECTIVE;
 		
 		//TODO make inexorable use enchantment effects or something
 		//TODO also move the enchantment cloaking logic from LivingEntityMixin into here
@@ -1067,7 +1067,7 @@ public class SpectrumEventListeners {
 	@SubscribeEvent
 	private static void onEntityAttributeModification(EntityAttributeModificationEvent event) {
 		for(EntityType<? extends LivingEntity> et : event.getTypes()) {
-			event.add(et, SpectrumEntityAttributes.MENTAL_PRESENCE);
+			event.add(et, SpectrumEntityAttributes.LOOT_CHANCE_MULTIPLIER);
 		}
 	}
 	

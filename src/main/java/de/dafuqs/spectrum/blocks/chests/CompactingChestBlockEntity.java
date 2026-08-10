@@ -221,7 +221,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 				boolean doneStuff = false;
 				if (additionStack.getCount() > 0) {
 					if (currentStack.isEmpty() && (test || !tryStackExisting)) {
-						int maxStackCount = currentStack.getMaxStackSize();
+						int maxStackCount = additionStack.getMaxStackSize();
 						int maxAcceptCount = Math.min(additionStack.getCount(), maxStackCount);
 						
 						if (!test) {
@@ -233,7 +233,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 						doneStuff = true;
 					} else if (ItemStack.isSameItemSameComponents(currentStack, additionStack)) {
 						// add to stack;
-						int maxStackCount = currentStack.getMaxStackSize();
+						int maxStackCount = additionStack.getMaxStackSize();
 						int canAcceptCount = maxStackCount - currentStack.getCount();
 						
 						if (canAcceptCount > 0) {

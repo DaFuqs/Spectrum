@@ -19,7 +19,7 @@
       "ink_consumption_mod": 0.5
     },
     {
-      "consume_chance_per_second": 2.0E-4,
+      "consume_chance_per_second": 0.001,
       "growth_acceleration_mod": 1.0,
       "ingredient": {
         "item": "minecraft:wet_sponge"

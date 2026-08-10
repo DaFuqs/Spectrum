@@ -1171,7 +1171,7 @@ public class SpectrumEventListeners {
 		
 		// if falling very slowly => reset fall distance / damage
 		if (appliedGravityThisTick > 0 && entity.getDeltaMovement().y > -0.4) {
-			entity.fallDistance = 0;
+			entity.fallDistance /= 2;
 		}
 		
 		return appliedGravityThisTick;

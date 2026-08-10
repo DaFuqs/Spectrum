@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import de.dafuqs.spectrum.recipe.color_picker.*;
+import de.dafuqs.spectrum.recipe.crafting.*;
 import de.dafuqs.spectrum.recipe.crafting.dynamic.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
@@ -31,6 +32,9 @@ public class SpectrumRecipeSerializers {
 	private static final DeferredRegister<RecipeSerializer<?>> REGISTRAR = DeferredRegister.create(Registries.RECIPE_SERIALIZER, SpectrumCommon.MOD_ID);
 	
 	// VANILLA
+	public static final RecipeSerializer<ShapedGatedCraftingRecipe> GATED_SHAPED_CRAFTING_RECIPE_SERIALIZER = register("gated_crafting_shaped", new ShapedGatedCraftingRecipe.Serializer());
+	public static final RecipeSerializer<ShapelessGatedCraftingRecipe> GATED_SHAPELESS_CRAFTING_RECIPE_SERIALIZER = register("gated_crafting_shapeless", new ShapelessGatedCraftingRecipe.Serializer());
+	
 	public static final RecipeSerializer<RepairAnythingRecipe> REPAIR_ANYTHING_SERIALIZER = register("repair_anything", new EmptyRecipeSerializer<>(RepairAnythingRecipe::new));
 	public static final RecipeSerializer<ClearInkRecipe> CLEAR_INK_SERIALIZER = register("clear_ink", new EmptyRecipeSerializer<>(ClearInkRecipe::new));
 	public static final RecipeSerializer<ClearEnderSpliceRecipe> CLEAR_ENDER_SPLICE_SERIALIZER = register("clear_ender_splice", new EmptyRecipeSerializer<>(ClearEnderSpliceRecipe::new));

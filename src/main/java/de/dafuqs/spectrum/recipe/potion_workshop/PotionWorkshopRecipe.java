@@ -107,11 +107,6 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe<Reci
 	}
 	
 	@Override
-	public RecipeSerializer<?> getSerializer() {
-		return SpectrumRecipeSerializers.ANVIL_CRUSHING_RECIPE_SERIALIZER;
-	}
-	
-	@Override
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.ANVIL_CRUSHING;
 	}

@@ -4175,6 +4175,7 @@
   "container.spectrum.rei.titration_barrel.time_days": "%d real-life days",
   "container.spectrum.rei.titration_barrel.time_hour": "1 real-life hour",
   "container.spectrum.rei.titration_barrel.time_hours": "%d real-life hours",
+  "container.spectrum.rei.gated_crafting.title": "Gated Crafting",
 
   "death.attack.ripping": "%1$s got ripped!",
   "death.attack.spectrum_bristle_sprouts": "%1$s was pricked to death",

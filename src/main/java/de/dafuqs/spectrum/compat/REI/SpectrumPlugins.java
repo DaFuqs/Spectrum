@@ -6,6 +6,7 @@ import me.shedaniel.rei.api.common.category.*;
 
 public class SpectrumPlugins {
 	
+	public static final CategoryIdentifier<GatedCraftingDisplay> GATED_CRAFTING = CategoryIdentifier.of(SpectrumCommon.locate("gated_crafting"));
 	public static final CategoryIdentifier<PedestalCraftingDisplay> PEDESTAL_CRAFTING = CategoryIdentifier.of(SpectrumCommon.locate("pedestal_crafting"));
 	public static final CategoryIdentifier<AnvilCrushingDisplay> ANVIL_CRUSHING = CategoryIdentifier.of(SpectrumCommon.locate("anvil_crushing"));
 	public static final CategoryIdentifier<FusionShrineDisplay> FUSION_SHRINE = CategoryIdentifier.of(SpectrumCommon.locate("fusion_shrine"));

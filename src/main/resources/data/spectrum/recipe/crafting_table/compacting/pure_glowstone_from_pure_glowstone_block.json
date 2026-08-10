@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:pure_glowstone_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:pure_glowstone",
+    "count": 9
+  },
+  "required_advancement": "spectrum:lategame/collect_pure_resource"
+}

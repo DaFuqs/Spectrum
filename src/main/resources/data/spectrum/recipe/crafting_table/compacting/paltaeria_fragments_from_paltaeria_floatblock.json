@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:paltaeria_floatblock"
+    }
+  ],
+  "result": {
+    "id": "spectrum:paltaeria_fragments",
+    "count": 9
+  },
+  "required_advancement": "spectrum:lategame/carry_too_many_low_gravity_blocks"
+}

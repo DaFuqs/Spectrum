@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:gated_crafting_shaped",
+  "group": "compacting",
+  "pattern": [
+    "GGG",
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "spectrum:pure_zinc"
+    }
+  },
+  "result": {
+    "id": "spectrum:pure_zinc_block",
+    "count": 1
+  },
+  "required_advancement": "spectrum:lategame/collect_pure_resource",
+  "neoforge:conditions": [
+    {
+      "type": "spectrum:integration_pack_active",
+      "integration_pack": "create"
+    }
+  ]
+}

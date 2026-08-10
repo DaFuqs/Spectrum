@@ -222,7 +222,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 	
 	private static boolean isRecipeValid(Recipe<?> recipe) {
-		return recipe instanceof ShapelessRecipe || recipe instanceof ShapedRecipe;
+		return recipe instanceof CraftingRecipe;
 	}
 	
 	private boolean isRecipeCraftable(Recipe<?> recipe) {

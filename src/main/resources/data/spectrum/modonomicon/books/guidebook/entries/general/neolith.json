@@ -28,15 +28,15 @@
       "text": "book.spectrum.guidebook.neolith.page0.text"
     },
     {
-      "type": "spectrum:pedestal_crafting",
+      "type": "modonomicon:crafting_recipe",
       "title": "Compression",
-      "recipe_id": "spectrum:pedestal/tier1/compacting/neolith_block",
+      "recipe_id_1": "spectrum:crafting_table/compacting/neolith_block",
       "text": ""
     },
     {
-      "type": "spectrum:pedestal_crafting",
+      "type": "modonomicon:crafting_recipe",
       "title": "Decompression",
-      "recipe_id": "spectrum:pedestal/tier1/compacting/neolith_from_neolith_block",
+      "recipe_id_1": "spectrum:crafting_table/compacting/neolith_from_neolith_block",
       "text": ""
     }
   ]

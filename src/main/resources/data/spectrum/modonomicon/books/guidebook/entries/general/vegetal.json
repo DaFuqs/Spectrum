@@ -28,15 +28,15 @@
       "text": "book.spectrum.guidebook.vegetal.page0.text"
     },
     {
-      "type": "spectrum:pedestal_crafting",
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "spectrum:crafting_table/compacting/vegetal_block",
       "title": "Compression",
-      "recipe_id": "spectrum:pedestal/tier1/compacting/vegetal_block",
       "text": ""
     },
     {
-      "type": "spectrum:pedestal_crafting",
+      "type": "modonomicon:crafting_recipe",
       "title": "Decompression",
-      "recipe_id": "spectrum:pedestal/tier1/compacting/vegetal_from_vegetal_block",
+      "recipe_id_1": "spectrum:crafting_table/compacting/vegetal_from_vegetal_block",
       "text": ""
     }
   ]

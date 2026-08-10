@@ -8,9 +8,8 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
 import net.minecraft.network.chat.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
-import javax.annotation.Nullable;
 import java.util.function.*;
 
 public class InkListWidget extends AbstractWidget {
@@ -35,12 +34,12 @@ public class InkListWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void updateWidgetNarration(@NotNull NarrationElementOutput narrationElementOutput) {
+	protected void updateWidgetNarration(NarrationElementOutput narrationElementOutput) {
 
 	}
 	
 	@Override
-	protected void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+	protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 		InkStorage inkStorage = inkCapability.get().getStorage();
 		
 		int startHeight = getY() + getHeight() + padding;

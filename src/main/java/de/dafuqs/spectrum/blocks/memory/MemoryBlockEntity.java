@@ -24,8 +24,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import org.jetbrains.annotations.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -42,7 +41,6 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		super(SpectrumBlockEntities.MEMORY.get(), pos, state);
 	}
 	
-	@Contract("_ -> new")
 	public static Tuple<Integer, Integer> getEggColorsForEntity(EntityType<?> entityType) {
 		SpawnEggItem spawnEggItem = SpawnEggItem.byId(entityType);
 		if (spawnEggItem != null) {

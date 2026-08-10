@@ -8,12 +8,11 @@ import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.alg.interfaces.*;
 import org.jgrapht.alg.shortestpath.*;
 import org.jgrapht.graph.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -96,7 +95,7 @@ public class PastelTransmissionLogic {
 		return this.network.getLoadedNodes(type);
 	}
 	
-	public Set<PastelNodeBlockEntity> getLoadedNodes(@NotNull DeferredHolder<PastelPayloadType, ?> payloadType, @Nullable PastelNodeType nodeType) {
+	public Set<PastelNodeBlockEntity> getLoadedNodes(DeferredHolder<PastelPayloadType, ?> payloadType, @Nullable PastelNodeType nodeType) {
 		Set<PastelNodeBlockEntity> nodes = new HashSet<>();
 		var loaded = this.getLoadedNodes(nodeType);
 		for(PastelNodeBlockEntity entity : loaded) {

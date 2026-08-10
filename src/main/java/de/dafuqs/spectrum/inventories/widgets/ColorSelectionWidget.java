@@ -11,7 +11,7 @@ import net.minecraft.client.gui.narration.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -62,7 +62,7 @@ public class ColorSelectionWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void renderWidget(@NotNull GuiGraphics context, int mouseX, int mouseY, float delta) {
+	protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
 		// draw selection icons
 		int i = -1;
 		int currentX = this.getX() + 1;
@@ -117,7 +117,7 @@ public class ColorSelectionWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void updateWidgetNarration(@NotNull NarrationElementOutput builder) { }
+	protected void updateWidgetNarration(NarrationElementOutput builder) { }
 	
 	private boolean isUnselection(double mouseX, double mouseY) {
 		return mouseX >= (double) selectedIndexX && mouseX < (double) (selectedIndexX + 4) && mouseY >= (double) selectedIndexY && mouseY < (double) (selectedIndexY + 4);

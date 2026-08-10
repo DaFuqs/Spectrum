@@ -36,8 +36,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -244,7 +243,6 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 	}
 	
-	@Contract(pure = true)
 	public static PedestalVariant getVariant(PedestalBlockEntity pedestalBlockEntity) {
 		return pedestalBlockEntity.pedestalVariant;
 	}

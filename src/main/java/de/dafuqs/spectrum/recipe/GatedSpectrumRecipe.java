@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
-import net.minecraft.core.component.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;

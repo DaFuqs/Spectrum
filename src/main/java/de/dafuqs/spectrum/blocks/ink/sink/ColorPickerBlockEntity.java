@@ -2,18 +2,14 @@ package de.dafuqs.spectrum.blocks.ink.sink;
 
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
-import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.blocks.ink.gen.*;
-import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.recipe.color_picker.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
-import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
@@ -26,7 +22,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

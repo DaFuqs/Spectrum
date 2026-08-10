@@ -3,21 +3,13 @@ package de.dafuqs.spectrum.api.pastel_network;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.predicate.block.*;
-import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
-import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.levelgen.feature.configurations.*;
-
-import java.util.*;
-import java.util.function.*;
 
 public final class PastelUpgradeSignature {
 	

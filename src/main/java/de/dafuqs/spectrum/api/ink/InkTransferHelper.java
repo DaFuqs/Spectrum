@@ -1,15 +1,10 @@
 package de.dafuqs.spectrum.api.ink;
 
-import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
-import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.server.level.*;
-import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
 
 import javax.annotation.*;
 import java.util.*;

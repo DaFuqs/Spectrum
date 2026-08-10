@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.ink.sink;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.ink.color.*;
-import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;

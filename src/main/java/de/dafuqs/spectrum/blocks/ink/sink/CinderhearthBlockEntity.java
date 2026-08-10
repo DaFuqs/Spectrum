@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import de.dafuqs.spectrum.capabilities.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;

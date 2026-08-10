@@ -11,8 +11,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 
-import java.util.function.*;
-
 public class CinderhearthScreen extends AbstractContainerScreen<CinderhearthScreenHandler> {
 	
 	protected final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/cinderhearth.png");

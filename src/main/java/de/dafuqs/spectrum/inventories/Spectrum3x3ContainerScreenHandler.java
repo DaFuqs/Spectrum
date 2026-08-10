@@ -5,7 +5,6 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import org.jetbrains.annotations.*;
 
 public class Spectrum3x3ContainerScreenHandler extends AbstractContainerMenu {
 	
@@ -42,33 +41,27 @@ public class Spectrum3x3ContainerScreenHandler extends AbstractContainerMenu {
 		}
 	}
 	
-	@Contract("_, _ -> new")
-	public static @NotNull Spectrum3x3ContainerScreenHandler createTier1(int syncId, Inventory playerInventory) {
+	public static Spectrum3x3ContainerScreenHandler createTier1(int syncId, Inventory playerInventory) {
 		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ScreenBackgroundVariant.EARLYGAME);
 	}
 	
-	@Contract("_, _, _ -> new")
-	public static @NotNull AbstractContainerMenu createTier1(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
+	public static AbstractContainerMenu createTier1(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
 		return new Spectrum3x3ContainerScreenHandler(SpectrumMenuTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.EARLYGAME);
 	}
 	
-	@Contract("_, _ -> new")
-	public static @NotNull Spectrum3x3ContainerScreenHandler createTier2(int syncId, Inventory playerInventory) {
+	public static Spectrum3x3ContainerScreenHandler createTier2(int syncId, Inventory playerInventory) {
 		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ScreenBackgroundVariant.MIDGAME);
 	}
 	
-	@Contract("_, _, _ -> new")
-	public static @NotNull AbstractContainerMenu createTier2(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
+	public static AbstractContainerMenu createTier2(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
 		return new Spectrum3x3ContainerScreenHandler(SpectrumMenuTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.MIDGAME);
 	}
 	
-	@Contract("_, _ -> new")
-	public static @NotNull Spectrum3x3ContainerScreenHandler createTier3(int syncId, Inventory playerInventory) {
+	public static Spectrum3x3ContainerScreenHandler createTier3(int syncId, Inventory playerInventory) {
 		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ScreenBackgroundVariant.LATEGAME);
 	}
 	
-	@Contract("_, _, _ -> new")
-	public static @NotNull AbstractContainerMenu createTier3(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
+	public static AbstractContainerMenu createTier3(int syncId, Inventory playerInventory, BlockPlacerBlockEntity blockEntity) {
 		return new Spectrum3x3ContainerScreenHandler(SpectrumMenuTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.LATEGAME);
 	}
 	

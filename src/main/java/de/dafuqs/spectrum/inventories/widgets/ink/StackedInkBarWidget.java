@@ -10,9 +10,8 @@ import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
-import javax.annotation.Nullable;
 import java.util.function.*;
 
 
@@ -35,7 +34,7 @@ public class StackedInkBarWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+	protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
 		if(thickOutline) {
 			guiGraphics.blitSprite(BACKGROUND_SPRITE_THICK, this.getX() - 1, this.getY() - 1, 8, 44);
 		} else {
@@ -64,7 +63,7 @@ public class StackedInkBarWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void updateWidgetNarration(@NotNull NarrationElementOutput narrationElementOutput) {
+	protected void updateWidgetNarration(NarrationElementOutput narrationElementOutput) {
 	
 	}
 	

@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public abstract class InkGeneratorBlock extends BaseInkBlock {
 	

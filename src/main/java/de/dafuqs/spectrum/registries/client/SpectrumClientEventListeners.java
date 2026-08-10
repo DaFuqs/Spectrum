@@ -1,9 +1,6 @@
 package de.dafuqs.spectrum.registries.client;
 
-import com.mojang.authlib.minecraft.client.*;
-import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.shaders.*;
-import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.*;
@@ -16,7 +13,6 @@ import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.client.*;
 import de.dafuqs.spectrum.deeper_down.client.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.inventories.widgets.ink.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -53,15 +49,12 @@ import net.minecraft.world.phys.shapes.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
-import net.neoforged.neoforge.client.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.event.entity.player.*;
-import org.joml.*;
 import org.jspecify.annotations.*;
 import oshi.util.tuples.*;
 
-import java.lang.Math;
 import java.util.*;
 
 @EventBusSubscriber(modid = SpectrumCommon.MOD_ID, value = Dist.CLIENT)

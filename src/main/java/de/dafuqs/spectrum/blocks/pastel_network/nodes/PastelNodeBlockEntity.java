@@ -33,7 +33,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.Optional;

@@ -1,15 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
-import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.client.resources.model.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;

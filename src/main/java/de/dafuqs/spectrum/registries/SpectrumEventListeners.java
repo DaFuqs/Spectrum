@@ -207,22 +207,6 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public static void handleInertia(BlockEvent.BreakEvent event) {
-		Player player = event.getPlayer();
-		BlockPos pos = event.getPos();
-		Level level = event.getPlayer().level();
-		BlockState state = event.getState();
-		if (player instanceof ServerPlayer serverPlayerEntity) {
-			ItemStack handStack = player.getItemInHand(serverPlayerEntity.getUsedItemHand());
-			if (SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantmentKeys.INERTIA, handStack)) {
-				InertiaComponent.onInertiaBlockBreak(level, pos, state, serverPlayerEntity, handStack);
-			}
-			
-			SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
-		}
-	}
-	
-	@SubscribeEvent
 	private static void entityTick(EntityTickEvent.Post event) {
 		var entity = event.getEntity();
 		
@@ -1025,14 +1009,22 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	private static void onBlockBreak(BlockEvent.BreakEvent event) {
-		if(!event.isCanceled()) {
-			event.getLevel().gameEvent(SpectrumGameEvents.BLOCK_CHANGED, event.getPos(), GameEvent.Context.of(event.getState()));
-			
-			Player player = event.getPlayer();
-			ItemStack miningStack =  player.getMainHandItem();
-			if(miningStack.getItem() instanceof AoEBreakingTool aoeBreakingTool) {
-				aoeBreakingTool.afterBreakingBlock(event.getLevel(), event.getPos(), player, miningStack);
+		Player player = event.getPlayer();
+		BlockPos pos = event.getPos();
+		Level level = event.getPlayer().level();
+		BlockState state = event.getState();
+		if (player instanceof ServerPlayer serverPlayerEntity) {
+			ItemStack handStack = player.getItemInHand(serverPlayerEntity.getUsedItemHand());
+			if (SpectrumEnchantmentHelper.hasEnchantment(player.level().registryAccess(), SpectrumEnchantmentKeys.INERTIA, handStack)) {
+				InertiaComponent.onInertiaBlockBreak(level, pos, state, serverPlayerEntity, handStack);
 			}
+			
+			SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
+		}
+		
+		ItemStack miningStack =  player.getMainHandItem();
+		if(miningStack.getItem() instanceof AoEBreakingTool aoeBreakingTool) {
+			aoeBreakingTool.afterBreakingBlock(event.getLevel(), event.getPos(), player, miningStack);
 		}
 	}
 	

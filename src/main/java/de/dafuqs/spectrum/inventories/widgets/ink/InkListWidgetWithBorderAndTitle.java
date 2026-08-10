@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -24,7 +23,7 @@ public class InkListWidgetWithBorderAndTitle extends InkListWidget {
 	}
 	
 	@Override
-	protected void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+	protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 		// We first collect the colors we need to draw
 		// this widget does skip ink colors that the player has no access to yet
 		InkStorage inkStorage = inkCapability.get().getStorage();

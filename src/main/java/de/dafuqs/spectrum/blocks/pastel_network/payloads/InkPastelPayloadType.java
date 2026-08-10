@@ -8,7 +8,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

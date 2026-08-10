@@ -9,9 +9,9 @@ import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
+import org.jspecify.annotations.*;
 
 import java.util.function.*;
 

@@ -16,7 +16,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

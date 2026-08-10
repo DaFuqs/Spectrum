@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.api.pastel_network;
 
 import org.jspecify.annotations.*;
 
-import java.util.*;
-
 public interface PastelUpgradeable {
 
 	default void apply(PastelUpgradeSignature upgrade, @Nullable PastelUpgradeSignature previous) {

@@ -5,7 +5,6 @@ import net.minecraft.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 

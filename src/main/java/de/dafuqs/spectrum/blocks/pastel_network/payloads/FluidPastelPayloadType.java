@@ -9,9 +9,9 @@ import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
+import org.jspecify.annotations.*;
 
 public class FluidPastelPayloadType extends PastelPayloadType {
 	

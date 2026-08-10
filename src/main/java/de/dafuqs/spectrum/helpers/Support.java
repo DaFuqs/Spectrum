@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 import org.jspecify.annotations.Nullable;
 
 import java.math.*;
@@ -220,7 +221,6 @@ public class Support {
 		}
 	}
 	
-	@Contract(pure = true)
 	public static Rotation rotationFromDirection(Direction direction) {
 		switch (direction) {
 			case EAST -> {

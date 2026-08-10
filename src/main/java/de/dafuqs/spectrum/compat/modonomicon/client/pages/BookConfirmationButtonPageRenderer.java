@@ -34,8 +34,8 @@ public class BookConfirmationButtonPageRenderer extends BookTextPageRenderer {
 				: confirmationPage.getButtonText();
 		
 		Button button = Button.builder(buttonText.getComponent(), this::confirmationButtonClicked)
+				.pos(2, BookEntryScreen.PAGE_HEIGHT - Button.DEFAULT_HEIGHT - 2)
 				.size(BookEntryScreen.PAGE_WIDTH - 12, Button.DEFAULT_HEIGHT)
-				.pos(2, BookEntryScreen.PAGE_HEIGHT - 3)
 				.build();
 		
 		button.active = !completed;
@@ -46,7 +46,7 @@ public class BookConfirmationButtonPageRenderer extends BookTextPageRenderer {
 		if (!(page instanceof BookConfirmationButtonPage confirmationPage)) return;
 		PacketDistributor.sendToServer(new GuidebookConfirmationButtonPressedPayload(confirmationPage.getConfirmationString()));
 		button.setMessage(confirmationPage.getConfirmedButtonText().getComponent());
-		BookGuiManager.get().openEntry(page.getBook().getId(), page.getParentEntry().getId(), page.getPageNumber());
+		button.active = false;
 	}
 	
 }

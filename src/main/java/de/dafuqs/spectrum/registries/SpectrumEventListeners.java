@@ -5,6 +5,7 @@ import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.idols.*;
@@ -54,6 +55,7 @@ import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.context.*;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
@@ -1005,6 +1007,14 @@ public class SpectrumEventListeners {
 	@SubscribeEvent
 	private static void onEntityJoinLevel(EntityJoinLevelEvent event) {
 		event.getEntity().gameEvent(SpectrumGameEvents.ENTITY_SPAWNED);
+	}
+	
+	@SubscribeEvent
+	private static void onBlockDrops(BlockDropsEvent event) {
+		if(ResonanceProcessor.preventNextXPDrop && EnchantmentHelper.hasTag(event.getTool(), SpectrumEnchantmentTags.RESONANT_BLOCK_DROPS)) {
+			ResonanceProcessor.preventNextXPDrop = false;
+			event.setDroppedExperience(0);
+		}
 	}
 	
 	@SubscribeEvent

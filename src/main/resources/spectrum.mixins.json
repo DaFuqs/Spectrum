@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_21",
   "plugin": "de.dafuqs.spectrum.mixin.compat.Plugin",
   "mixins": [
-    "AbstractBlockStateMixin",
     "AbstractFireBlockMixin",
     "AllowCopyBlockEntityDataMixin",
     "AnimalEntityMixin",

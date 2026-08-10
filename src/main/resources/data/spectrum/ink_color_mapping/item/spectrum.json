@@ -751,7 +751,6 @@
   "spectrum:brown": [
     "spectrum:crystallarieum",
     "spectrum:shale_clay",
-    "spectrum:tilled_shale_clay",
     "spectrum:polished_shale_clay",
     "spectrum:polished_shale_clay_stairs",
     "spectrum:polished_shale_clay_slab",
@@ -801,7 +800,6 @@
     "spectrum:splinterspawn_infested_shale_clay",
     "spectrum:slush",
     "spectrum:overgrown_slush",
-    "spectrum:tilled_slush",
     "spectrum:smooth_basalt_stairs",
     "spectrum:smooth_basalt_slab",
     "spectrum:smooth_basalt_wall",

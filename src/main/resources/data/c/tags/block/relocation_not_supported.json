@@ -2,5 +2,8 @@
   "values": [
     "#spectrum:unbreakable",
     "spectrum:ruin"
+  ],
+  "remove": [
+    "spectrum:tinted_preservation_glass"
   ]
 }

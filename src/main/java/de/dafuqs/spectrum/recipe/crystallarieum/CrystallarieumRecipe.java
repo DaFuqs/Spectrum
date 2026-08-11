@@ -62,7 +62,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 		return STATE_CACHE.computeIfAbsent(state, s -> {
 			var recipes = world.getRecipeManager().getAllRecipesFor(SpectrumRecipeTypes.CRYSTALLARIEUM);
 			for (var recipe : recipes) {
-				if (recipe.value().growthStages.contains(s))
+				if (recipe.value().growthStages.contains(s) && !recipe.value().growthStages.getLast().equals(s))
 					return recipe;
 			}
 			return null;

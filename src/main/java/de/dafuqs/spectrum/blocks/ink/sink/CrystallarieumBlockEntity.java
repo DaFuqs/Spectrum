@@ -181,6 +181,8 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (this.currentRecipe == null || level == null) {
 			this.currentAdditive = CrystallarieumAdditive.EMPTY;
 			this.canWork = false;
+			this.currentGrowthStageTicks = 0;
+			this.tickLooper.reset();
 		} else {
 			this.currentAdditive = this.currentRecipe.value().getAdditive(getItem(ADDITIVE_SLOT_ID));
 			BlockState topState = this.level.getBlockState(this.worldPosition.above());

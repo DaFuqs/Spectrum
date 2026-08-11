@@ -120,6 +120,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	 */
 	private static void tickRecipe(Level level, BlockPos pos, CrystallarieumBlockEntity crystallarieum, RecipeHolder<CrystallarieumRecipe> recipe) {
 		if (crystallarieum.currentAdditive == CrystallarieumAdditive.EMPTY && !recipe.value().growsWithoutAdditive()) {
+			crystallarieum.canWork = false;
 			return;
 		}
 		

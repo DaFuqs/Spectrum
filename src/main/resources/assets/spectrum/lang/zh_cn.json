@@ -3304,8 +3304,8 @@
 
   "message.spectrum.needs_item_to_harvest": "收割需要 ",
 
-  "attribute.name.spectrum.mental_presence": "精神稳定性",
-  "attribute.name.spectrum.mental_presence.desc": "精神相关效果的强度",
+  "attribute.name.spectrum.loot_chance_multiplier": "战利品概率倍率",
+  "attribute.name.spectrum.loot_chance_multiplier.desc": "提升非必定战利品的掉落概率",
 
   "tag.c.dusts.ashes": "灰烬",
   "tag.c.plums": "李子",
@@ -3725,7 +3725,7 @@
   "book.spectrum.guidebook.black_hole_chest.page2.text": "在黑洞箱中放置[知识宝石](entry://enchanting/knowledge_gem)就能让它吸收经验球，将经验转移到宝石中。",
 
   "book.spectrum.guidebook.black_langast.page0.text": "这里到处都是[午夜溶液](entry://general/midnight_solution)。",
-  "book.spectrum.guidebook.black_langast.page1.text": "这里到底发生了什么，才会让整片大地变成这片死寂的废土?肯定是一场可怕的灾难。无论造成这一切的是何物——或是何人...它的经历或许和我有些相似，只是结局要悲惨得多。\\\n\\\n在这里生长的那些*东西*——称它们为植物都是对[#](bb00bb)枯萎的灌木[#]()的侮辱——怎么看都透着一股诡异。",
+  "book.spectrum.guidebook.black_langast.page1.text": "这里到底发生了什么，才会让整片大地变成这片死寂的废土?想必是一场可怕的灾难。造成这一切的事物——或是某人，或许有着一段[与我相似的遭遇](entry://general/midnight_aberration)……只是结局要悲惨得多。\\\n\\\n在此地生长的那些*东西*——称它们为植物，都是对[#](bb00bb)枯萎的灌木[#]()的侮辱——没有半点生机可言。",
 
   "book.spectrum.guidebook.blackslag.page0.text": "一种常见的深色坚硬石材，构成了深域的底层地形。",
   "book.spectrum.guidebook.blackslag.page1.text": "[高炉](item://minecraft:blast_furnace)熔炼这种石头的速度比普通熔炉更快。",
@@ -3741,8 +3741,8 @@
   "book.spectrum.guidebook.block_flooder.page0.text": "以前我总像个野人一样到处跑，要么照亮洞穴，要么堵住难看的洞口。为了减少负担，我从[褪解微生物](entry://general/fading)的增殖特性中获得灵感，借此发明了方块填充器。\\\n只要把它扔进洞口、水池或者峡谷，它就会自动用方块填满——而且只用原来5%%的时间，效果居然还看得过去！",
   "book.spectrum.guidebook.block_flooder.page1.text": "会直接从我的物品栏里取出对应方块来填补空缺。如果没有对应方块，就会自动使用[圆石](item://minecraft:cobblestone)来代替。",
 
-  "book.spectrum.guidebook.block_placer.page0.text": "自动破坏方块，称重，分类或是存入箱子，这些都很简单。但有一件事是我之前所有机器都做不到的: 放置方块。现在这已经成为过去了。\\\n[托帕石](entry://general/shards@topaz)具有与物质的亲和力，使其能从物品栏中将方块实体化。",
-  "book.spectrum.guidebook.block_placer.page1.text": "它真的做到了！",
+  "book.spectrum.guidebook.block_placer.page0.text": "自动破坏方块，称重，分类或是存入箱子，这些都很简单。但有一件事是我之前所有机器都做不到的，放置方块。现在这个难题已经成为过去了。\\\n[托帕石](entry://general/shards@topaz)拥有亲和物质的特性，能让它从自身储物空间中生成方块。",
+  "book.spectrum.guidebook.block_placer.page1.text": "*它真的能做到！*",
 
   "book.spectrum.guidebook.block_variants.name": "玄武岩与方解石",
   "book.spectrum.guidebook.block_variants.page0.text": "还记得晶洞外层的那圈岩石吗?兴许那些保护晶洞不受外界影响的岩石也吸收了点晶洞的灵气?\\\n谁知道呢。它们看起来确实很漂亮，是很好的建筑材料。",
@@ -3853,9 +3853,7 @@
   "book.spectrum.guidebook.budding_onyx.page0.text": "[缟玛瑙](entry://general/onyx_shards)的制作步骤实在相当繁琐。合成还要看月相，尽管有[月相时钟](entry://equipment/crescent_clock)，我也经常错过这个短暂的窗口期。\\\n如果能让缟玛瑙像其他宝石一样可以培育，岂不是能省下我大把时间?\\\n\\\n*奇怪的是，同样的方法对其他宝石似乎并不管用?*",
   "book.spectrum.guidebook.budding_onyx.page1.text": "最好一次性合成足量的[午夜像差](entry://general/midnight_aberration)，因为这些东西在我手上衰变得很快。",
 
-  "book.spectrum.guidebook.calming.page0.text": "喝下这个[#](449900)似乎能减少怪物的生成和攻击性，[#]()效果随等级提升。大多数生物甚至能容忍我靠得更近。",
-  "book.spectrum.guidebook.calming.page1.text": "这东西的镇静效果似乎让我变得特别容易犯困，哈。",
-  "book.spectrum.guidebook.calming.page1.title": "催眠效应（易受影响）",
+  "book.spectrum.guidebook.calming.page0.text": "喝下这个[#](449900)似乎能减少敌对生物的生成数量和攻击性[#]()，效果随等级提升。大多数生物甚至能容忍我靠得更近。",
 
   "book.spectrum.guidebook.celestial_pocketwatch.page0.text": "合成[缟玛瑙碎片](entry://general/onyx_shards)对天象的要求还是太严苛了，新月可不是天天见的。每当我掐着表等待午夜的时候，一个不小心已经超出两分钟了。\\\n\\\n是时候拿出杀手锏了: 品红色对时间的亲和力！",
   "book.spectrum.guidebook.celestial_pocketwatch.page1.text": "*我这主意也太妙了。*",
@@ -3939,8 +3937,6 @@
   "book.spectrum.guidebook.connection_node.recipe.text": "和所有节点一样，连接节点的范围为 12 格。",
   "book.spectrum.guidebook.gather_node.name": "收集节点",
   "book.spectrum.guidebook.gather_node.about.text": "收集节点会主动向其他节点请求物品，并将物品存入相连的容器当中。\\\n\\\n你可以在它的[#](449900)过滤器[#]()里设置需要收集的物品。\\\n\\\n收集优先级:\n1. [发送节点](entry://pastel_network/sender_node)\n2. [供给节点](entry://pastel_network/provider_node)\n3. [存储节点](entry://pastel_network/storage_node)",
-  "book.spectrum.guidebook.gather_node.about.text": "收集节点会主动向其他节点请求物品，并将其放入与之相连的容器中。\\\n\\\n打开[#](449900)过滤器[#]()可以指定要收集的物品。",
-  "book.spectrum.guidebook.gather_node.page1.text": "收集顺序:\n1. [发送节点](entry://pastel_network/sender_node)\n2. [提供节点](entry://pastel_network/provider_node)\n3. [存储节点](entry://pastel_network/storage_node)",
   "book.spectrum.guidebook.provider_node.name": "提供节点",
   "book.spectrum.guidebook.provider_node.page0.text": "让相连容器内的物品可以在[绘彩网络](entry://pastel_network/pastel_network)中被调用。\\\n\\\n它不会主动推送物品，但[收集节点](entry://pastel_network/gather_node)可以向它索取物品。",
   "book.spectrum.guidebook.sender_node.name": "发送节点",
@@ -3959,9 +3955,6 @@
   "book.spectrum.guidebook.ink_nodes.about.text": "墨水的性质十分特殊！\\\n这些节点不只是简单把[墨水](entry://ink/ink)从一处搬运到另一处，更像是搭建了一条通道。网络内所有装置会共享墨水。\\\n\\\n墨水会从储量充足的地方流向储量不足的地方。",
   "book.spectrum.guidebook.omni_nodes.name": "全能节点",
   "book.spectrum.guidebook.omni_nodes.about.text": "这类万能节点可以同时实现[物品传输](entry://pastel_network/item_nodes)、[流体传输](entry://pastel_network/fluid_nodes)以及[墨水传输](entry://pastel_network/ink_nodes)！\\\n\\\n有了其他节点的研究基础，把这些功能整合到一起并不算难事，毕竟它们底层原理本就相通。",
-  "book.spectrum.guidebook.sender_node.about.text": "发送节点会主动尝试清空相连的容器。\\\n\\\n推送顺序:\n1. [收集节点](entry://pastel_network/gather_node)\n2. [存储节点](entry://pastel_network/storage_node)",
-  "book.spectrum.guidebook.storage_node.name": "存储节点",
-  "book.spectrum.guidebook.storage_node.about.text": "存储节点与[发送节点](entry://pastel_network/sender_node)（推送物品）和[收集节点](entry://pastel_network/gather_node)（提供物品）配合时效果最佳。\\\n\\\n其[#](449900)过滤器[#]()可指定接收与提供的物品。过滤器为空时，相连容器会作为通用储物仓库，接收所有类型物品。",
   "book.spectrum.guidebook.pastel_upgrades.name": "绘彩节点升级",
   "book.spectrum.guidebook.pastel_upgrades.about.text": "唉，太残酷了，实在太残酷了——我的创造竟然 *还不够完美！* 这简直有辱我之名，这绝不能容忍。\\\n\\\n想了一会儿，答案显而易见。我可以利用环绕节点的光环来强化它们（这当然也是我设计好的一部分），现在所需的只是合适的材料...",
   "book.spectrum.guidebook.pastel_upgrades.enhancing.title": "节点强化",
@@ -4232,7 +4225,7 @@
   "book.spectrum.guidebook.failing.essence_recipe.text": "这个是辣的。",
 
   "book.spectrum.guidebook.fatal_slumber.page0.text": "[#](449900)如果让效果任其持续下去会直接致死。[#]()就在我濒临死亡的那一刻，我看见了一些东西; 一片无底之海，一场无尽之梦; 微弱的光线在黑暗中闪烁——宛如一缕银线，引诱我不断深入...我深知不可跟随。",
-  "book.spectrum.guidebook.fatal_slumber.page1.text": "这是夜幕炼金术的杰作，潜藏着最本源的丝绒魔法。因此它会受精神强度与睡眠抗性影响。\\\n\\\n不过，只有拥有极强力量的存在，才能抵挡这片平静的水域。",
+  "book.spectrum.guidebook.fatal_slumber.page1.text": "这是夜幕炼金术的杰出成果，潜藏着最本源的[丝绒魔法](entry://brewing/sleep)[#]()。因此药效会受生物精神抗性影响。\\\n\\\n不过，唯有力量极为强大的存在，才能抵御这份静谧的安眠。",
 
   "book.spectrum.guidebook.first_strike.page0.text": "俗语有云:先发制人，后面忘了。\\\n\\\n随便了。\\\n顺带一提，我研发了这个名为“先发制人”的附魔。我相信这会非常有用，尤其是对付大量弱小敌人的时候。",
   "book.spectrum.guidebook.first_strike.page1.text": "大幅增加对满血敌人的伤害。\\\n\\\n最大等级: 2\\\n适用于近战武器。",
@@ -4581,8 +4574,8 @@
   "book.spectrum.guidebook.the_art_of_brewing.page1.text": "-时间: 桶内的物质需要时间慢慢酝酿。大多数饮品如果陈放得比必要时间更久，效果会变得更强烈，甚至会出现额外效果。\\\n\\\n-温度: 环境温度越高，珍贵的液体会随着时间的推移蒸发的越多。这被称为天使的那一份。",
   "book.spectrum.guidebook.the_art_of_brewing.page1.title": "外部影响因素",
   "book.spectrum.guidebook.the_art_of_brewing.page2.text": "-湿度: 空气湿度越高，水分蒸发比例会高于酒精，从而让饮品度数更高。\\\n\\\n-水份比例: 原料与水的比例需要精细平衡，但也可以大胆尝试。浓度越高，发酵速度越快，但代价是效果持续时间更短",
-  "book.spectrum.guidebook.the_art_of_brewing.drinking_age.title": "安全提示",
-  "book.spectrum.guidebook.the_art_of_brewing.drinking_age.text": "[发酵桶](entry://cuisine/titration_barrel)可以酿造含酒精的饮品。如果您已达到所在国家/地区的法定饮酒年龄，并且想要了解涉及酒精的配方，您可以按下方的按钮来解锁这些配方。\\\n如果未满年龄也无需担心——您不会错过任何核心内容。",
+  "book.spectrum.guidebook.the_art_of_brewing.drinking_age.title": "酒类饮品",
+  "book.spectrum.guidebook.the_art_of_brewing.drinking_age.text": "[发酵桶](entry://cuisine/titration_barrel)可以酿造含酒精的饮品。如果你想要体验和酒类相关的配方与效果，点击下方按钮解锁相关配方。\\\n如果你对此不感兴趣也无需担心，不会错过任何关键内容。",
   "book.spectrum.guidebook.the_art_of_brewing.drinking_age.button_text": "我确认",
   "book.spectrum.guidebook.the_art_of_brewing.drinking_age.button_text_confirmed": "已确认 ✔",
 
@@ -5350,7 +5343,7 @@
   "book.spectrum.guidebook.sleep.page1.text": "随着我对这门炼金术的了解加深，我开始感到不安;仿佛沉睡的浪潮随时会将我彻底吞没。一开始觉得多种效果同出一源很奇怪，但我没太在意。现在我不这么确定了。这些嫩芽和花蕾，还有[致命沉眠](entry://brewing/effects/fatal_slumber)及其淡淡的光痕...这一切都透着一股气息，令人不安地联想到[神性](entry://brewing/effects/divinity)。",
 
   "book.spectrum.guidebook.soporific": "催眠 （抗性）",
-  "book.spectrum.guidebook.sleep_resistance": "这种药水是夜幕元素炼金术的产物，依靠丝绒魔法起效。因此它会受目标的精神体质影响，对我自己而言，则会受到睡眠抗性的减免。",
+  "book.spectrum.guidebook.sleep_resistance": "这份药剂是元素夜幕炼金术的产物，依靠[丝绒魔法](entry://brewing/sleep)[#]()起效。因此药效会受到生物精神抗性的影响。",
 
   "book.spectrum.guidebook.slush.page0.text": "质地异常松软湿润的泥土，闻起来有蚯蚓的味道。",
   "book.spectrum.guidebook.slush.page1.text": "永远保持湿润且富含营养的农田。植物在其上茁壮成长的更快。",

@@ -1167,6 +1167,10 @@ public class SpectrumEventListeners {
 			}
 		}
 		
+		// Limit the max push per tick
+		// that limit is still mighty high
+		appliedGravityThisTick = Math.clamp(appliedGravityThisTick, -0.18F, 0.18F);
+		
 		if(appliedGravityThisTick != 0) {
 			entity.push(0, appliedGravityThisTick, 0);
 		}

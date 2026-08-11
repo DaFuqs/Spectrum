@@ -7,10 +7,6 @@
       "required": false
     },
     {
-      "id": "malum:blighted_soil",
-      "required": false
-    },
-    {
       "id": "malum:blighted_earth",
       "required": false
     },

@@ -400,6 +400,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		ItemStack currentRemainder = currentStack.getCraftingRemainingItem();
 		currentStack.shrink(amount);
 		if (!currentRemainder.isEmpty()) {
+			currentRemainder.setCount(amount);
 			addToInventoryOrSpawn(potionWorkshopBlockEntity, currentRemainder);
 		}
 	}

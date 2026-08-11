@@ -63,11 +63,11 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 		
 		BlockState state = getBlockState();
 		BarrelState barrelState = state.getValue(BARREL_STATE);
-		boolean empty = isEmpty();
+		boolean empty = isEmpty() && tank.getFluidAmount() == 0;
 		if(barrelState == BarrelState.EMPTY && !empty) {
-			level.setBlock(getBlockPos(), state.setValue(BARREL_STATE, BarrelState.FILLED), 3);
+			level.setBlockAndUpdate(getBlockPos(), state.setValue(BARREL_STATE, BarrelState.FILLED));
 		} else if(barrelState == BarrelState.FILLED && empty) {
-			level.setBlock(getBlockPos(), state.setValue(BARREL_STATE, BarrelState.EMPTY), 3);
+			level.setBlockAndUpdate(getBlockPos(), state.setValue(BARREL_STATE, BarrelState.EMPTY));
 		}
 		
 		this.setChanged();
@@ -237,6 +237,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity implements Implement
 		for (ItemStack stack : this.getItems()) {
 			ItemStack remainder = stack.getCraftingRemainingItem();
 			if (!remainder.isEmpty()) {
+				remainder.setCount(stack.getCount());
 				if (player == null) {
 					popResource(level, this.getBlockPos(), remainder);
 				} else {

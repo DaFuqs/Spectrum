@@ -413,6 +413,7 @@ public class CinderhearthBlockEntity extends BaseContainerBlockEntity implements
 		boolean couldAdd = InventoryHelper.addToInventory(cinderhearth, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID + 1);
 		if (couldAdd) {
 			ItemStack remainder = inputStack.getCraftingRemainingItem();
+			remainder.setCount(inputStack.getCount());
 			
 			// use up input ingredient
 			ItemStack inputStackCopy = inputStack.copy();

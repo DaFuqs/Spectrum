@@ -5141,6 +5141,7 @@
   "recipe.spectrum.spawner.lore.increased_max_nearby_entities": "Less sensitive to creatures in proximity",
   "recipe.spectrum.spawner.lore.increased_required_player_range": "Longer active when the player is farther away.",
   "recipe.spectrum.spawner.lore.increased_spawn_count": "Increased count of spawned creatures",
+  "recipe.spectrum.memory_to_head.lore": "Any memory of a creature will do, resulting in the corresponding head",
   "recipe.spectrum.spirit_instiller.secret.germinated_jade_vine_crossbreeding.hint": "Crossbreed two plants",
   "recipe.spectrum.spirit_instiller.secret.chorus_flower.hint": "Echo and resonance",
 

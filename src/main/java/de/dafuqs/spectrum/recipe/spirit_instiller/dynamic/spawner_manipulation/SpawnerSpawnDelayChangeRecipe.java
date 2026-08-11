@@ -9,6 +9,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.crafting.*;
+import org.jspecify.annotations.*;
 
 public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	
@@ -25,7 +26,7 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
+	public boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, @Nullable CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
 		if (spawnerBlockEntityNbt == null) {
 			return true;
 		}

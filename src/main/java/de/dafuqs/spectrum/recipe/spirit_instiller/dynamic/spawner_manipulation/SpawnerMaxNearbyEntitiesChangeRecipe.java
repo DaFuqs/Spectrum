@@ -10,6 +10,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.crafting.*;
+import org.jspecify.annotations.*;
 
 public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 	protected static final int DEFAULT_MAX_ENTITIES = 6;
@@ -20,7 +21,7 @@ public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
+	public boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, @Nullable CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
 		if (spawnerBlockEntityNbt == null) {
 			return true;
 		}

@@ -14,6 +14,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.block.entity.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -65,7 +66,7 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 		return canCraftWithBlockEntityTag(inventory, blockEntityComponent, inventory.getItem(1), inventory.getItem(2));
 	}
 	
-	public abstract boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack);
+	public abstract boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, @Nullable CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack);
 	
 	public abstract CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack, InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput);
 	

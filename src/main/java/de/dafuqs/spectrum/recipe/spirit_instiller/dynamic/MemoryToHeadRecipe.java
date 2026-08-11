@@ -10,6 +10,8 @@ import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
@@ -26,8 +28,19 @@ public class MemoryToHeadRecipe extends SpiritInstillerRecipe {
 	
 	public MemoryToHeadRecipe() {
 		super("", false, Optional.of(SpectrumCommon.locate("unlocks/memory_to_head")),
-				IngredientStack.ofItems(SpectrumBlocks.MEMORY.asItem()), IngredientStack.ofItems(SpectrumItems.VEGETAL.get(), 4), IngredientStack.ofItems(SpectrumItems.QUITOXIC_POWDER.get(), 4),
+				getMemoryStack(), IngredientStack.ofItems(SpectrumItems.VEGETAL.get(), 4), IngredientStack.ofItems(SpectrumItems.QUITOXIC_POWDER.get(), 4),
 				new ItemStack(Blocks.ZOMBIE_HEAD), 200, 1, true, false);
+	}
+	
+	private static IngredientStack getMemoryStack() {
+		CompoundTag nbt = new CompoundTag();
+		nbt.putString("id", "minecraft:zombie");
+		
+		DataComponentPatch previewPatch = DataComponentPatch.builder()
+				.set(DataComponents.LORE, new ItemLore(List.of(Component.translatable("recipe.spectrum.memory_to_head.lore"))))
+				.set(DataComponents.ENTITY_DATA, CustomData.of(nbt)).build();
+		
+		return new IngredientStack(Ingredient.of(SpectrumBlocks.MEMORY), DataComponentPredicate.EMPTY, previewPatch, 1);
 	}
 	
 	@Override

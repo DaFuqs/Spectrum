@@ -395,7 +395,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			
 			for (Tuple<Float, Float> mods : SPLIT_EFFECT_POTENCY_AND_DURATION) {
 				int newDuration = (int) (instance.getDuration() * mods.getB());
-				int newAmplifier = Support.getIntFromDecimalWithChance(instance.getAmplifier() * mods.getA(), random);
+				int newAmplifier = Support.getIntFromDecimalWithChance((1 + instance.getAmplifier()) * mods.getA(), random) - 1;
 				if (newAmplifier >= 0) {
 					splitInstances.add(new InkPoweredStatusEffectInstance(new MobEffectInstance(instance.getEffect(), newDuration, newAmplifier, instance.isAmbient(), instance.isVisible()), poweredInstance.getInkCost(), poweredInstance.getColor(), poweredInstance.isUnidentifiable()));
 				}

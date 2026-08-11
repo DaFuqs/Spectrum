@@ -5,6 +5,7 @@ import com.google.common.collect.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.components.*;
@@ -242,9 +243,10 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		for (InkPoweredStatusEffectInstance e : effects) {
 			instances.add(e.getStatusEffectInstance());
 		}
-		OptionalInt potionColor = PotionContents.getColorOptional(instances);
 		
-		PotionContents potionComponent = new PotionContents(Optional.of(SpectrumPotions.PIGMENT_POTION), Optional.of(potionColor.orElse(0)), instances);
+		int potionColor = potionMod.flags().unidentifiable() ? InkColors.BLACK_COLOR : PotionContents.getColorOptional(instances).orElse(0);
+		
+		PotionContents potionComponent = new PotionContents(Optional.of(SpectrumPotions.PIGMENT_POTION), Optional.of(potionColor), instances);
 		stack.set(DataComponents.POTION_CONTENTS, potionComponent);
 		
 		if (potionMod.flags().unidentifiable() || potionMod.additionalDrinkDurationTicks() != 0) {

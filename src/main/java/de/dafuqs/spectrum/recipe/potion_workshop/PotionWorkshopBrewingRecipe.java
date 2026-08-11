@@ -57,8 +57,6 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		HARMFUL_TO_BENEFICIAL_EFFECT.put(SpectrumMobEffects.DENSITY, SpectrumMobEffects.LIGHTWEIGHT);
 	}
 	
-	;
-	
 	public static @Nullable PotionWorkshopBrewingRecipe getInverseRecipe(Holder<MobEffect> statusEffect, MobEffectCategory sourceCategory, BiMap<Holder<MobEffect>, Holder<MobEffect>> map) {
 		if (statusEffect.value().getCategory() == sourceCategory) {
 			Holder<MobEffect> beneficialEffect = map.getOrDefault(statusEffect, null);

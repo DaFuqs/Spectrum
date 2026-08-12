@@ -20,14 +20,11 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 	
 	private static final long REAL_DAY_LENGTH = 86400 * 20;
 	
-	private record Crystal(ModelResourceLocation crystal, boolean hasOuterRing) {
-	}
-	
-	private static final Crystal CRYSTAL_CONNECTION = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/connection_node_crystal")), false);
-	private static final Crystal CRYSTAL_PROVIDER = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/provider_node_crystal")), true);
-	private static final Crystal CRYSTAL_SENDER = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/sender_node_crystal")), true);
-	private static final Crystal CRYSTAL_STORAGE = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/storage_node_crystal")), true);
-	private static final Crystal CRYSTAL_GATHER = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/gather_node_crystal")), false);
+	public static final ModelResourceLocation CRYSTAL_CONNECTION = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/connection_node_crystal"));
+	public static final ModelResourceLocation CRYSTAL_PROVIDER = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/provider_node_crystal"));
+	public static final ModelResourceLocation CRYSTAL_SENDER = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/sender_node_crystal"));
+	public static final ModelResourceLocation CRYSTAL_STORAGE = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/storage_node_crystal"));
+	public static final ModelResourceLocation CRYSTAL_GATHER = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/gather_node_crystal"));
 	
 	private static final ResourceLocation INNER_RING = SpectrumCommon.locate("textures/block/pastel_node_inner_ring_blank.png");
 	private static final ResourceLocation OUTER_RING = SpectrumCommon.locate("textures/block/pastel_node_outer_ring_blank.png");
@@ -48,14 +45,6 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 			return;
 		
 		var time = (world.getGameTime() + node.getCreationStamp()) % REAL_DAY_LENGTH + tickDelta;
-		
-		Crystal crystal = switch (node.getNodeType()) {
-			case CONNECTION -> CRYSTAL_CONNECTION;
-			case STORAGE -> CRYSTAL_STORAGE;
-			case PROVIDER -> CRYSTAL_PROVIDER;
-			case SENDER -> CRYSTAL_SENDER;
-			case GATHER -> CRYSTAL_GATHER;
-		};
 		
 		var heightMod = 0.5F;
 		
@@ -136,7 +125,8 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 			RenderHelper.renderFlatTransWithZYOffsetAndColor(matrices, redstoneRing, true, 5F + ringHeight, 15F, node.ringAlpha * node.getRedstoneAlphaMult(), 1F, overlay, color.x, color.y, color.z);
 		}
 		
-		if (crystal.hasOuterRing()) {
+		PastelNodeType nodeType = node.getNodeType();
+		if (nodeType.hasOuterRing()) {
 			var outerRing = vertexConsumers.getBuffer(RenderType.entityTranslucent(node.getOuterRing().map(PastelUpgradeSignature::outerRing).orElse(OUTER_RING)));
 			if (node.getOuterRing().isPresent()) {
 				RenderHelper.renderFlatTransWithZYOffset(matrices, outerRing, true, 5.75F + ringHeight * 2, 11F, node.ringAlpha, 1F, overlay);
@@ -147,7 +137,14 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 		
 		// CRYSTAL
 		matrices.translate(0.0, node.crystalHeight, 0.0);
-		blockRenderManager.getModelRenderer().renderModel(matrices.last(), vertexConsumers.getBuffer(Sheets.translucentCullBlockSheet()), null, blockRenderManager.getBlockModelShaper().getModelManager().getModel(crystal.crystal), 1.0F, 1.0F, 1.0F, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
+		ModelResourceLocation crystalLocation = switch (nodeType) {
+			case CONNECTION -> CRYSTAL_CONNECTION;
+			case STORAGE -> CRYSTAL_STORAGE;
+			case PROVIDER -> CRYSTAL_PROVIDER;
+			case SENDER -> CRYSTAL_SENDER;
+			case GATHER -> CRYSTAL_GATHER;
+		};
+		blockRenderManager.getModelRenderer().renderModel(matrices.last(), vertexConsumers.getBuffer(Sheets.translucentCullBlockSheet()), null, blockRenderManager.getBlockModelShaper().getModelManager().getModel(crystalLocation), 1.0F, 1.0F, 1.0F, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
 		matrices.popPose();
 	}
 	

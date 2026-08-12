@@ -1,7 +1,5 @@
 {
   "name": "weak_speed",
-  "category": "simple",
   "item": "spectrum:raw_malachite",
-  "speed_mod": -5,
-  "speed_multi": 0.8
+  "transfer_duration_multiplier": 0.75
 }

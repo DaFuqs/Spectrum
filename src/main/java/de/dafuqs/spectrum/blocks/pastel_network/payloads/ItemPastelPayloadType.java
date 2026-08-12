@@ -60,7 +60,7 @@ public class ItemPastelPayloadType extends PastelPayloadType {
 	private boolean transferBetween(PastelTransmissionLogic logic, PastelNodeBlockEntity sourceNode, IItemHandler sourceStorage, PastelNodeBlockEntity destinationNode, IItemHandler destinationStorage, PastelTransmissionLogic.TransferMode transferMode) {
 		long underwayCount = destinationNode.getUnderway(getPayloadType().getKey());
 		Predicate<ItemStack> filter = sourceNode.getTransferFilterTo(destinationNode);
-		int transferLimit = Math.max(sourceNode.getMaxTransferredAmount(), destinationNode.getMaxTransferredAmount());
+		int transferLimit = Math.max(sourceNode.transferMultiplier(), destinationNode.transferMultiplier());
 		for (int slotId = 0; slotId < sourceStorage.getSlots(); slotId++) {
 			ItemStack stack = sourceStorage.extractItem(slotId, transferLimit, true);
 			
@@ -97,7 +97,7 @@ public class ItemPastelPayloadType extends PastelPayloadType {
 			
 			// Send the items
 			PastelPayload payload = new ItemPastelPayload(stack.copyWithCount(extracted));
-			PastelTransmission transmission = new PastelTransmission(graphPath.getVertexList(), payload, sourceNode.getTransferTime());
+			PastelTransmission transmission = new PastelTransmission(graphPath.getVertexList(), payload, sourceNode.getTransferDurationTicks());
 			logic.addTransmission(sourceNode, destinationNode, transferMode, transmission);
 			destinationNode.addUnderway(getPayloadType().getKey(), extracted);
 			return true;

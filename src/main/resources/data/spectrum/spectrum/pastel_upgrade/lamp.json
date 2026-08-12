@@ -1,6 +1,5 @@
 {
   "name": "lamp",
-  "category": "redstone",
   "item": "spectrum:pure_glowstone",
   "lamp": true
 }

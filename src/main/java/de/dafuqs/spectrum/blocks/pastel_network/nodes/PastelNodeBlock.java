@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
@@ -138,15 +139,15 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 	}
 	
 	@Override
-	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		PastelNodeBlockEntity blockEntity = getBlockEntity(level, pos);
 		if (blockEntity == null) {
-			return super.useItemOn(stack, state, world, pos, player, hand, hit);
+			return super.useItemOn(stack, state, level, pos, player, hand, hit);
 		}
 		
 		if (player.isShiftKeyDown() && stack.isEmpty()) {
 			if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_UPGRADING)) {
-				if (!world.isClientSide()) {
+				if (!level.isClientSide()) {
 					var removed = blockEntity.tryRemoveUpgrade();
 					if (!removed.isEmpty()) {
 						if (!player.getAbilities().instabuild) {
@@ -157,14 +158,19 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 						blockEntity.updateInClientWorld();
 					}
 				}
-				return ItemInteractionResult.sidedSuccess(world.isClientSide());
+				return ItemInteractionResult.sidedSuccess(level.isClientSide());
 			}
 			return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-		} else if (player.isCreative() && stack.is(SpectrumItems.PAINTBRUSH)) {
-			sendDebugMessage(world, pos, player, blockEntity);
-			return ItemInteractionResult.sidedSuccess(world.isClientSide());
-		} else if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_UPGRADING) && stack.is(SpectrumItemTags.PASTEL_NODE_UPGRADES)) {
-			if (!world.isClientSide() && blockEntity.tryInteractRings(stack, pastelNodeType)) {
+		}
+		
+		if (player.isCreative() && stack.is(SpectrumItems.PAINTBRUSH)) {
+			sendDebugMessage(level, pos, player, blockEntity);
+			return ItemInteractionResult.sidedSuccess(level.isClientSide());
+		}
+		
+		Holder.@Nullable Reference<PastelUpgradeSignature> upgradeSignature = PastelUpgradeSignature.of(level, stack.getItem());
+		if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_UPGRADING) && upgradeSignature != null) {
+			if (!level.isClientSide() && blockEntity.applyUpgrade(upgradeSignature)) {
 				SpectrumAdvancementCriteria.PASTEL_NODE_UPGRADING.trigger((ServerPlayer) player, stack);
 				if (!player.getAbilities().instabuild)
 					stack.shrink(1);
@@ -173,18 +179,22 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock,
 				blockEntity.updateInClientWorld();
 			}
 			
-			world.playLocalSound(pos, SpectrumSoundEvents.MEDIUM_CRYSTAL_RING, SoundSource.BLOCKS, 0.25F, 0.9F + world.getRandom().nextFloat() * 0.2F, true);
-			return ItemInteractionResult.sidedSuccess(world.isClientSide());
-		} else if (tryColorUsingStackInHand(stack, world, pos, player, hand)) {
-			return ItemInteractionResult.sidedSuccess(world.isClientSide());
-		} else if (this.pastelNodeType.usesFilters()) {
-			if (!world.isClientSide()) {
-				player.openMenu(blockEntity);
-			}
-			return ItemInteractionResult.sidedSuccess(world.isClientSide());
+			level.playLocalSound(pos, SpectrumSoundEvents.MEDIUM_CRYSTAL_RING, SoundSource.BLOCKS, 0.25F, 0.9F + level.getRandom().nextFloat() * 0.2F, true);
+			return ItemInteractionResult.sidedSuccess(level.isClientSide());
 		}
 		
-		return super.useItemOn(stack, state, world, pos, player, hand, hit);
+		if (tryColorUsingStackInHand(stack, level, pos, player, hand)) {
+			return ItemInteractionResult.sidedSuccess(level.isClientSide());
+		}
+		
+		if (this.pastelNodeType.usesFilters()) {
+			if (!level.isClientSide()) {
+				player.openMenu(blockEntity);
+			}
+			return ItemInteractionResult.sidedSuccess(level.isClientSide());
+		}
+		
+		return super.useItemOn(stack, state, level, pos, player, hand, hit);
 	}
 	
 	@Override

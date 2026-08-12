@@ -25,7 +25,6 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> KINDLING_FOOD = spectrum("kindling_food");
 	public static final TagKey<Item> REQUIRES_OMNI_ACCELERATOR_PVP_ENABLED = spectrum("requires_omni_accelerator_pvp_enabled");
 	public static final TagKey<Item> EMISSIVE = spectrum("emissive");
-	public static final TagKey<Item> PASTEL_NODE_UPGRADES = spectrum("pastel_node_upgrades");
 	public static final TagKey<Item> TAG_FILTERING_ITEMS = spectrum("tag_filtering_items");
 	public static final TagKey<Item> PLAYER_ATTRIBUTED_PLACEMENT = spectrum("player_attributed_placement");
 	public static final TagKey<Item> NATURES_STAFF_CONSUMABLE = spectrum("consumable/natures_staff");

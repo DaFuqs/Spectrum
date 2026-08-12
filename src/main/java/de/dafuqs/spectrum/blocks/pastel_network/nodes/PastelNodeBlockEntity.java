@@ -59,9 +59,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	
 	// upgrade impl stuff
 	protected boolean lit, triggerTransfer, triggered, waiting, lamp, sensor, upgradesInitialized;
-	protected int transferCount = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT;
-	protected int transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
-	protected int transferRate = PastelTransmissionLogic.DEFAULT_TRANSFER_RATE;
+	protected int transferCountMultiplier = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_COUNT_MULTIPLIER;
+	protected int transferDurationTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
+	protected int transferCooldownTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_COOLDOWN_TICKS;
 	protected int filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 
 	protected boolean networkInitialized = false;
@@ -155,10 +155,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	// outer goes first, then inner, then redstone
-	public boolean tryInteractRings(ItemStack item, PastelNodeType type) {
-		var upgrade = PastelUpgradeSignature.of(getLevel(), item.getItem());
-		
-		if (upgrade.value().category.isRedstone()) {
+	// we do not allow duplicate upgrades
+	public boolean applyUpgrade(Holder.Reference<PastelUpgradeSignature> upgrade) {
+		if (upgrade.value().goesToRedstoneRing()) {
 			if (redstoneRing.isEmpty()) {
 				redstoneRing = Optional.of(upgrade);
 				return true;
@@ -167,10 +166,18 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			return false;
 		}
 		
-		if (outerRing.isEmpty() && type.hasOuterRing()) {
+		if (outerRing.isEmpty() && getNodeType().hasOuterRing()) {
+			if(innerRing.isPresent() && innerRing.get().equals(upgrade)) {
+				return false;
+			}
+			
 			outerRing = Optional.of(upgrade);
 			return true;
 		} else if (innerRing.isEmpty()) {
+			if(outerRing.isPresent() && outerRing.get().equals(upgrade)) {
+				return false;
+			}
+			
 			innerRing = Optional.of(upgrade);
 			return true;
 		}
@@ -201,23 +208,23 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public void updateUpgrades() {
-		transferCount = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT;
-		transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
-		var oldFilterSlotCount = filterSlotRows;
+		transferCountMultiplier = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_COUNT_MULTIPLIER;
+		transferDurationTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
+		transferCooldownTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_COOLDOWN_TICKS;
+		var oldFilterSlotRows = filterSlotRows;
 		filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 		triggerTransfer = false;
 		lit = false;
 		lamp = false;
 		sensor = false;
 		
-		//First one processed can't compound because it has nothing to compound on
 		outerRing.ifPresent(r -> apply(r.value(), null));
-		innerRing.ifPresent(r -> apply(r.value(), outerRing.get().value()));
+		innerRing.ifPresent(r -> apply(r.value(), outerRing.map(Holder.Reference::value).orElse(null)));
 		redstoneRing.ifPresent(r -> apply(r.value(), null));
 		
 		// Sanity
-		transferCount = Math.max(transferCount, 1);
-		transferTime = Mth.clamp(transferTime, 2, 100);
+		transferCountMultiplier = Math.max(transferCountMultiplier, 1);
+		transferDurationTicks = Mth.clamp(transferDurationTicks, 2, 100);
 		filterSlotRows = Mth.clamp(filterSlotRows, 1, 5);
 		
 		if (lit && lamp) {
@@ -228,7 +235,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			level.setBlockAndUpdate(worldPosition, getBlockState().setValue(BlockStateProperties.LIT, lit));
 		}
 		
-		if (filterSlotRows < oldFilterSlotCount) {
+		if (filterSlotRows < oldFilterSlotRows) {
 			for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
 				updateTagFilteringItems();
 				filterItems.set(i, ItemStack.EMPTY);
@@ -247,16 +254,16 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 	}
 	
-	public int getMaxTransferredAmount() {
-		return transferCount;
+	public int transferMultiplier() {
+		return transferCountMultiplier;
 	}
 	
-	public int getTransferTime() {
-		return transferTime;
+	public int getTransferDurationTicks() {
+		return transferDurationTicks;
 	}
 	
-	public int getTransferRate() {
-		return transferRate;
+	public int getTransferCooldownTicks() {
+		return transferCooldownTicks;
 	}
 	
 	public float getRedstoneAlphaMult() {
@@ -299,8 +306,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public boolean cooldownExceededTo(PastelNodeBlockEntity otherNode) {
-		long thisNextTransferTime = this.lastTransferTick + this.getTransferRate();
-		long otherNextTransferTime = otherNode.lastTransferTick + otherNode.getTransferRate();
+		long thisNextTransferTime = this.lastTransferTick + this.getTransferCooldownTicks();
+		long otherNextTransferTime = otherNode.lastTransferTick + otherNode.getTransferCooldownTicks();
 		long time = this.getLevel().getGameTime();
 		
 		return time >= thisNextTransferTime && time >= otherNextTransferTime;
@@ -744,22 +751,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	@Override
-	public void applySlotUpgrade(PastelUpgradeSignature upgrade) {
-		filterSlotRows += getNodeType().hasOuterRing() ? upgrade.slotRows : upgrade.slotRows * 2;
-	}
-	
-	@Override
-	public void applySimple(PastelUpgradeSignature upgrade) {
-		transferCount += upgrade.stack;
-		transferTime += upgrade.speed;
-		transferRate *= upgrade.transferRateMult;
-	}
-	
-	@Override
-	public void applyCompounding(PastelUpgradeSignature upgrade) {
-		transferCount = Math.round(transferCount * upgrade.stackMult);
-		transferTime = Math.round(transferTime * upgrade.speedMult);
-		transferRate = Math.round(transferRate * upgrade.transferRateMult);
+	public void applySignature(PastelUpgradeSignature upgrade) {
+		filterSlotRows += getNodeType().hasOuterRing() ? upgrade.additionalFilterRows : upgrade.additionalFilterRows * 2;
+		transferCountMultiplier = Math.round(transferCountMultiplier * upgrade.transferCountMultiplier);
+		transferDurationTicks = Math.round(transferDurationTicks * upgrade.transferDurationMultiplier);
+		transferCooldownTicks = Math.round(transferCooldownTicks * upgrade.transferCooldownMultiplier);
 	}
 	
 	@Override

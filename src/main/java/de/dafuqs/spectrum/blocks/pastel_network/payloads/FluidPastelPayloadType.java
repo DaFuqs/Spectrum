@@ -63,7 +63,7 @@ public class FluidPastelPayloadType extends PastelPayloadType {
 				continue;
 			}
 			
-			int transferLimit = Math.max(sourceNode.getMaxTransferredAmount(), destinationNode.getMaxTransferredAmount()) * 50;
+			int transferLimit = Math.max(sourceNode.transferMultiplier(), destinationNode.transferMultiplier()) * 50;
 			FluidStack proposedStack = new FluidStack(sourceFluid.getFluid(), transferLimit + (int) underwayCount);
 			int fluidSpace = destinationHandler.fill(proposedStack, IFluidHandler.FluidAction.SIMULATE);
 			int amountToSend = Math.min(transferLimit, fluidSpace);
@@ -80,7 +80,7 @@ public class FluidPastelPayloadType extends PastelPayloadType {
 			
 			FluidStack drainedAmount = sourceHandler.drain(sourceFluid.copyWithAmount(amountToSend), IFluidHandler.FluidAction.EXECUTE);
 			PastelPayload payload = new FluidPastelPayload(drainedAmount);
-			PastelTransmission transmission = new PastelTransmission(graphPath.getVertexList(), payload, sourceNode.getTransferTime());
+			PastelTransmission transmission = new PastelTransmission(graphPath.getVertexList(), payload, sourceNode.getTransferDurationTicks());
 			logic.addTransmission(sourceNode, destinationNode, transferMode, transmission);
 			destinationNode.addUnderway(getPayloadType().getKey(), drainedAmount.getAmount());
 			

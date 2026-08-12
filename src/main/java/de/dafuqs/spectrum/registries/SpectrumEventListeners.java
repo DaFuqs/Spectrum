@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.spawners.*;
@@ -91,20 +92,6 @@ public class SpectrumEventListeners {
 	@SubscribeEvent
 	public static void modifyComponents(ModifyDefaultComponentsEvent event) {
 		event.modify(Items.NETHER_STAR, builder -> builder.set(SpectrumDataComponentTypes.DAMAGE_IMMUNE.get(), List.of(DamageTypeTags.IS_EXPLOSION, DamageTypeTags.IS_FIRE)));
-	}
-	
-	@SubscribeEvent
-	public static void registerAdditional(ModelEvent.RegisterAdditional event) {
-		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/connection_node_crystal")));
-		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/provider_node_crystal")));
-		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/sender_node_crystal")));
-		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/storage_node_crystal")));
-		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/gather_node_crystal")));
-		
-		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_item_base")));
-		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_ink_base")));
-		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_fluid_base")));
-		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_omni_base")));
 	}
 	
 	@SubscribeEvent

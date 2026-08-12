@@ -1,6 +1,5 @@
 {
   "name": "light",
-  "category": "non_compounding",
   "item": "spectrum:shimmerstone_gem",
   "light": true
 }

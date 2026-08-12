@@ -1,6 +1,5 @@
 {
   "name": "always_inactive",
-  "category": "redstone",
   "item": "spectrum:pure_lapis",
   "redstone": "always_inactive"
 }

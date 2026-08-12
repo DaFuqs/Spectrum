@@ -10,14 +10,15 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.*;
 
 public final class PastelUpgradeSignature {
 	
-	public static Holder.Reference<PastelUpgradeSignature> of(Level level, Item item) {
+	public static Holder.@Nullable Reference<PastelUpgradeSignature> of(Level level, Item item) {
 		return level.registryAccess().registry(SpectrumRegistryKeys.PASTEL_UPGRADE).get().holders()
 				.filter(pastelUpgradeSignature -> pastelUpgradeSignature.value().upgradeItem.value().equals(item))
 				.findFirst()
-				.orElseThrow(() -> new IllegalArgumentException("Attempted to fetch an upgrade that does not exist"));
+				.orElse(null);
 	}
 	
 	public enum RedstoneBehavior implements StringRepresentable {
@@ -45,18 +46,15 @@ public final class PastelUpgradeSignature {
 	public static final Codec<PastelUpgradeSignature> CODEC = RecordCodecBuilder.create((i -> i.group(
 			ItemStack.ITEM_NON_AIR_CODEC.fieldOf("item").forGetter(c -> c.upgradeItem),
 			Codec.STRING.fieldOf("name").forGetter(c -> c.name),
-			Codec.INT.optionalFieldOf("stack_mod", 0).forGetter(c -> c.stack),
-			Codec.INT.optionalFieldOf("speed_mod", 0).forGetter(c -> c.speed),
-			Codec.INT.optionalFieldOf("filter_row_mod", 0).forGetter(c -> c.slotRows),
-			Codec.FLOAT.optionalFieldOf("stack_multi", 1.0F).forGetter(c -> c.stackMult),
-			Codec.FLOAT.optionalFieldOf("speed_multi", 1.0F).forGetter(c -> c.speedMult),
-			Codec.FLOAT.optionalFieldOf("transfer_rate_mod", 1.0F).forGetter(c -> c.transferRateMult),
+			Codec.INT.optionalFieldOf("additional_filter_rows", 0).forGetter(c -> c.additionalFilterRows),
+			Codec.FLOAT.optionalFieldOf("transfer_count_multiplier", 1.0F).forGetter(c -> c.transferCountMultiplier),
+			Codec.FLOAT.optionalFieldOf("transfer_duration_multiplier", 1.0F).forGetter(c -> c.transferDurationMultiplier),
+			Codec.FLOAT.optionalFieldOf("transfer_cooldown_multiplier", 1.0F).forGetter(c -> c.transferCooldownMultiplier),
 			Codec.BOOL.optionalFieldOf("light", false).forGetter(c -> c.light),
 			Codec.BOOL.optionalFieldOf("trigger", false).forGetter(c -> c.triggerTransfer),
 			Codec.BOOL.optionalFieldOf("lamp", false).forGetter(c -> c.lamp),
 			Codec.BOOL.optionalFieldOf("sensor", false).forGetter(c -> c.sensor),
-			Category.CODEC.fieldOf("category").forGetter(c -> c.category),
-			RedstoneBehavior.CODEC.optionalFieldOf("redstone", RedstoneBehavior.NONE).forGetter(c -> c.redstone)
+			RedstoneBehavior.CODEC.optionalFieldOf("redstone", RedstoneBehavior.NONE).forGetter(c -> c.redstoneBehavior)
 	).apply(i, PastelUpgradeSignature::new)));
 	
 	public static final String INNER_RING_BASE_PATH = "textures/block/pastel_node_inner_ring_";
@@ -66,44 +64,40 @@ public final class PastelUpgradeSignature {
 	public final Holder<Item> upgradeItem;
 	public final String name;
 	public final ResourceLocation outerRing, innerRing;
-	public final int stack, speed, slotRows;
-	public final float stackMult, speedMult, transferRateMult;
+	public final int additionalFilterRows;
+	public final float transferCountMultiplier, transferDurationMultiplier, transferCooldownMultiplier;
 	public final boolean light, triggerTransfer, lamp, sensor;
-	public final Category category;
-	public final RedstoneBehavior redstone;
+	public final RedstoneBehavior redstoneBehavior;
 	public final RedstoneStateModifier preProcessor;
 	public final RedstoneStateModifier postProcessor;
 	
-	private PastelUpgradeSignature(Holder<Item> upgradeItem, String name, int stack, int speed, int slotRows, float stackMult, float speedMult, float transferRateMult, boolean light, boolean triggerTransfer, boolean lamp, boolean sensor, Category category, RedstoneBehavior redstone) {
-		this(upgradeItem, name, stack, speed, slotRows, stackMult, speedMult, transferRateMult, light, category == Category.REDSTONE || triggerTransfer, lamp, sensor, category, redstone, switch (redstone) {
+	private PastelUpgradeSignature(Holder<Item> upgradeItem, String name, int additionalFilterRows, float transferCountMultiplier, float transferDurationMultiplier, float transferCooldownMultiplier, boolean light, boolean triggerTransfer, boolean lamp, boolean sensor, RedstoneBehavior redstoneBehavior) {
+		this(upgradeItem, name, additionalFilterRows, transferCountMultiplier, transferDurationMultiplier, transferCooldownMultiplier, light, redstoneBehavior != RedstoneBehavior.NONE || triggerTransfer, lamp, sensor, redstoneBehavior, switch (redstoneBehavior) {
 			case ALWAYS_ACTIVE -> (RedstoneStateModifier) context -> InteractionResult.SUCCESS;
 			case ALWAYS_INACTIVE -> (RedstoneStateModifier) context -> InteractionResult.FAIL;
 			default -> RedstoneStateModifier.PASS;
-		}, switch (redstone) {
+		}, switch (redstoneBehavior) {
 			case INVERTED -> (RedstoneStateModifier) context -> context.active() ? InteractionResult.FAIL : InteractionResult.SUCCESS;
 			default -> RedstoneStateModifier.PASS;
 		});
 	}
 	
-	private PastelUpgradeSignature(Holder<Item> upgradeItem, String name, int stack, int speed, int slotRows, float stackMult, float speedMult, float transferRateMult, boolean light, boolean triggerTransfer, boolean lamp, boolean sensor, Category category, RedstoneBehavior redstone, RedstoneStateModifier preProcessor, RedstoneStateModifier postProcessor) {
+	private PastelUpgradeSignature(Holder<Item> upgradeItem, String name, int additionalFilterRows, float transferCountMultiplier, float transferDurationMultiplier, float transferCooldownMultiplier, boolean light, boolean triggerTransfer, boolean lamp, boolean sensor, RedstoneBehavior redstoneBehavior, RedstoneStateModifier preProcessor, RedstoneStateModifier postProcessor) {
 		this.upgradeItem = upgradeItem;
 		this.name = name;
 		this.innerRing = SpectrumCommon.locate(INNER_RING_BASE_PATH + name + ".png");
-		this.outerRing = category == Category.REDSTONE ? SpectrumCommon.locate(REDSTONE_RING_BASE_PATH + name + ".png") : SpectrumCommon.locate(OUTER_RING_BASE_PATH + name + ".png");
-		this.stack = stack;
-		this.speed = speed;
-		this.slotRows = slotRows;
-		this.stackMult = stackMult;
-		this.speedMult = speedMult;
-		this.transferRateMult = transferRateMult;
+		this.outerRing = redstoneBehavior != RedstoneBehavior.NONE ? SpectrumCommon.locate(REDSTONE_RING_BASE_PATH + name + ".png") : SpectrumCommon.locate(OUTER_RING_BASE_PATH + name + ".png");
+		this.additionalFilterRows = additionalFilterRows;
+		this.transferCountMultiplier = transferCountMultiplier;
+		this.transferDurationMultiplier = transferDurationMultiplier;
+		this.transferCooldownMultiplier = transferCooldownMultiplier;
 		this.light = light;
 		this.triggerTransfer = triggerTransfer;
 		this.lamp = lamp;
-		this.category = category;
 		this.preProcessor = preProcessor;
 		this.postProcessor = postProcessor;
 		this.sensor = sensor;
-		this.redstone = redstone;
+		this.redstoneBehavior = redstoneBehavior;
 	}
 	
 	public ResourceLocation outerRing() {
@@ -112,6 +106,10 @@ public final class PastelUpgradeSignature {
 	
 	public ResourceLocation innerRing() {
 		return innerRing;
+	}
+	
+	public boolean goesToRedstoneRing() {
+		return redstoneBehavior != RedstoneBehavior.NONE;
 	}
 	
 	/**
@@ -129,34 +127,4 @@ public final class PastelUpgradeSignature {
 	public record RedstoneContext(PastelUpgradeable upgradeable, Level world, BlockPos pos, boolean active) {
 	}
 	
-	public enum Category implements StringRepresentable {
-		SIMPLE("simple", false, false),
-		NON_COMPOUNDING("non_compounding", true, false),
-		REDSTONE("redstone", true, true);
-		
-		public static final Codec<Category> CODEC = StringRepresentable.fromEnum(Category::values);
-		
-		private final String name;
-		private final boolean nonCompounding;
-		private final boolean isRedstone;
-		
-		Category(String name, boolean nonCompounding, boolean isRedstone) {
-			this.name = name;
-			this.nonCompounding = nonCompounding;
-			this.isRedstone = isRedstone;
-		}
-		
-		public boolean compoundsWith(Category other) {
-			return nonCompounding ? false : other == this;
-		}
-		
-		public boolean isRedstone() {
-			return isRedstone;
-		}
-		
-		@Override
-		public String getSerializedName() {
-			return name;
-		}
-	}
 }

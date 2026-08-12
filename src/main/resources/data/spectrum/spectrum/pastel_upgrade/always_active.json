@@ -1,6 +1,5 @@
 {
   "name": "always_active",
-  "category": "redstone",
   "item": "spectrum:pure_redstone",
   "redstone": "always_active"
 }

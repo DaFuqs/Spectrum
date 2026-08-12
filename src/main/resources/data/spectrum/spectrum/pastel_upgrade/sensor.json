@@ -1,6 +1,5 @@
 {
   "name": "sensor",
-  "category": "redstone",
   "item": "spectrum:pure_echo",
   "sensor": true
 }

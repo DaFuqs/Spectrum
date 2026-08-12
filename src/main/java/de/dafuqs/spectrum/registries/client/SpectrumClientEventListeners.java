@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.client.*;
 import de.dafuqs.spectrum.deeper_down.client.*;
@@ -30,11 +31,13 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.renderer.*;
+import net.minecraft.client.resources.model.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -65,18 +68,24 @@ public class SpectrumClientEventListeners {
 	private static boolean lookingAtUniverseSpyholeInitialEffectPlayed = false;
 	
 	public static void register(IEventBus modBus) {
-		/* TODO: port
-		//DynamicItemRenderer.registerDynamicItemRenderer(SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), BottomlessBundleItem.Renderer::new);
-		//DynamicItemRenderer.registerDynamicItemRenderer(SpectrumItems.OMNI_ACCELERATOR.asItem(), OmniAcceleratorItem.Renderer::new);
-		/*ModelLoadingPlugin.register((ctx) -> {
-			ctx.modifyModelAfterBake().register((orig, c) -> {
-				ModelResourceLocation id = c.topLevelId();
-				if (id instanceof ModelResourceLocation mid && CUSTOM_ITEM_MODELS.contains(mid)) {
-					return new DynamicRenderModel(orig);
-				}
-				return orig;
-			});
-		});*/
+
+	}
+	
+	@SubscribeEvent
+	public static void registerAdditional(ModelEvent.RegisterAdditional event) {
+		event.register(PastelNodeBlockEntityRenderer.CRYSTAL_CONNECTION);
+		event.register(PastelNodeBlockEntityRenderer.CRYSTAL_PROVIDER);
+		event.register(PastelNodeBlockEntityRenderer.CRYSTAL_SENDER);
+		event.register(PastelNodeBlockEntityRenderer.CRYSTAL_STORAGE);
+		event.register(PastelNodeBlockEntityRenderer.CRYSTAL_GATHER);
+		
+		event.register(ModelResourceLocation.standalone(PastelNodeBases.BASE_LOCATION));
+		event.register(ModelResourceLocation.standalone(PastelNodeBases.FLUID_LOCATION));
+		event.register(ModelResourceLocation.standalone(PastelNodeBases.INK_LOCATION));
+		event.register(ModelResourceLocation.standalone(PastelNodeBases.OMNI_LOCATION));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_ink_base")));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_fluid_base")));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_omni_base")));
 	}
 	
 	@SubscribeEvent

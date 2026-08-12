@@ -18,23 +18,13 @@ public interface PastelUpgradeable {
 		if (upgrade.sensor)
 			markSensor();
 
-		if (upgrade.category.isRedstone())
+		if (upgrade.goesToRedstoneRing())
 			return;
-
-		if (previous != null && previous.category.compoundsWith(upgrade.category)) {
-			applyCompounding(upgrade);
-		} else {
-			applySimple(upgrade);
-		}
-
-		applySlotUpgrade(upgrade);
+		
+		applySignature(upgrade);
 	}
-
-	void applyCompounding(PastelUpgradeSignature upgrade);
-
-	void applySimple(PastelUpgradeSignature upgrade);
-
-	void applySlotUpgrade(PastelUpgradeSignature upgrade);
+	
+	void applySignature(PastelUpgradeSignature upgrade);
 
 	void markLit();
 

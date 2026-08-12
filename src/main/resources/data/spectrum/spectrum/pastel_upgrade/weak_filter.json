@@ -1,6 +1,5 @@
 {
   "name": "weak_filter",
-  "category": "simple",
   "item": "spectrum:raw_azurite",
-  "filter_row_mod": 1
+  "additional_filter_rows": 1
 }

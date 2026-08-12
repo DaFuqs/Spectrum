@@ -17,7 +17,6 @@ import org.jspecify.annotations.*;
 import java.util.*;
 import java.util.function.*;
 
-@SuppressWarnings("UnstableApiUsage")
 public class PastelTransmissionLogic {
 	
 	public enum TransferMode {
@@ -26,9 +25,9 @@ public class PastelTransmissionLogic {
 		PUSH_PULL
 	}
 	
-	public static final int DEFAULT_MAX_TRANSFER_AMOUNT = 1;
+	public static final int DEFAULT_MAX_TRANSFER_COUNT_MULTIPLIER = 1;
 	public static final int DEFAULT_TRANSFER_TICKS_PER_NODE = 30;
-	public static final int DEFAULT_TRANSFER_RATE = 20;
+	public static final int DEFAULT_TRANSFER_COOLDOWN_TICKS = 20;
 	
 	private final ServerPastelNetwork network;
 	

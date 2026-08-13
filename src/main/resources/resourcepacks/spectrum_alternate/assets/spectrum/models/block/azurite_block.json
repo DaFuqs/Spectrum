@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "spectrum:block/azurite_block_side",
+    "north": "spectrum:block/azurite_block_side",
+    "south": "spectrum:block/azurite_block_side",
+    "east": "spectrum:block/azurite_block_side",
+    "west": "spectrum:block/azurite_block_side",
+    "up": "spectrum:block/azurite_block_top",
+    "down": "spectrum:block/azurite_block_bottom"
+  }
+}

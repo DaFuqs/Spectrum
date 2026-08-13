@@ -1227,12 +1227,21 @@ public class SpectrumEventListeners {
 			
 			event.addRepositorySource(packConsumer -> {
 				packConsumer.accept(
-						Pack.readMetaAndCreate(
-								new PackLocationInfo("spectrum_programmer_art", Component.literal("Spectrum Programmer Art"), PackSource.BUILT_IN, Optional.empty()),
-								new PathPackResources.PathResourcesSupplier(modFile.findResource("resourcepacks", "spectrum_programmer_art")),
-								PackType.CLIENT_RESOURCES,
-								new PackSelectionConfig(false, Pack.Position.TOP, false)
-						)
+					Pack.readMetaAndCreate(
+						new PackLocationInfo("spectrum_alternate", Component.literal("Alternate Spectrum Textures"), PackSource.BUILT_IN, Optional.empty()),
+						new PathPackResources.PathResourcesSupplier(modFile.findResource("resourcepacks", "spectrum_alternate")),
+						PackType.CLIENT_RESOURCES,
+						new PackSelectionConfig(false, Pack.Position.TOP, false)
+					)
+				);
+				
+				packConsumer.accept(
+					Pack.readMetaAndCreate(
+						new PackLocationInfo("spectrum_programmer_art", Component.literal("Spectrum Programmer Art"), PackSource.BUILT_IN, Optional.empty()),
+						new PathPackResources.PathResourcesSupplier(modFile.findResource("resourcepacks", "spectrum_programmer_art")),
+						PackType.CLIENT_RESOURCES,
+						new PackSelectionConfig(false, Pack.Position.TOP, false)
+					)
 				);
 			});
 		}

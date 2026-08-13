@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:templates/shooting_star",
+  "textures": {
+    "side": "spectrum:block/colorful_shooting_star_side",
+    "core": "spectrum:block/colorful_shooting_star"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/notched_polished_calcite_top",
+    "side": "spectrum:block/notched_polished_calcite_side"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "spectrum:block/ender_dropper_top",
+    "front": "spectrum:block/ender_dropper_front",
+    "side": "spectrum:block/ender_dropper_side"
+  }
+}

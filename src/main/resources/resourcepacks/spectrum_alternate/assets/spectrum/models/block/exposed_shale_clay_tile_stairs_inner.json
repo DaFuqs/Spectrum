@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "spectrum:block/exposed_shale_clay_tiles",
+    "top": "spectrum:block/exposed_shale_clay_tiles",
+    "side": "spectrum:block/exposed_shale_clay_tiles"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "spectrum:block/bone_ash_bricks"
+  }
+}

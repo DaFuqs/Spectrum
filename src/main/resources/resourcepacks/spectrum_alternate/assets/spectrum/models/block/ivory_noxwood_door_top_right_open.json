@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right_open",
+  "textures": {
+    "bottom": "spectrum:block/ivory_noxwood_door_bottom",
+    "top": "spectrum:block/ivory_noxwood_door_top"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "spectrum:templates/base_bowl",
+  "textures": {
+    "top": "spectrum:block/calcite_bowl_top",
+    "side": "spectrum:block/calcite_bowl_side",
+    "inner": "spectrum:block/calcite_bowl_inner",
+    "bottom": "spectrum:block/calcite_bowl_bottom"
+  }
+}

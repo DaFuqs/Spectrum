@@ -37,6 +37,8 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
+import net.minecraft.server.packs.*;
+import net.minecraft.server.packs.repository.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
@@ -64,6 +66,7 @@ import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
+import net.neoforged.fml.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.fml.loading.*;
 import net.neoforged.neoforge.client.event.*;
@@ -79,6 +82,7 @@ import net.neoforged.neoforge.event.tick.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.items.*;
 import net.neoforged.neoforge.items.wrapper.*;
+import net.neoforged.neoforgespi.locating.*;
 import org.jspecify.annotations.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
@@ -1114,7 +1118,7 @@ public class SpectrumEventListeners {
 		
 		if(entity instanceof AbstractChestedHorse horse && horse.hasChest()) {
 			float appliedGravity = applyGravityBasedOnInventory(horse, new InvWrapper(horse.getInventory()));
-				
+			
 			// when the animal is sent flying trigger a hidden advancement
 			if (appliedGravity > 0.081 && level.getGameTime() % 20 == 0) {
 				Player owner = PlayerOwned.getPlayerIfOnline(level, horse.getOwnerUUID());
@@ -1213,6 +1217,24 @@ public class SpectrumEventListeners {
 			} else {
 				event.setNewSpeed(event.getNewSpeed() / 4);
 			}
+		}
+	}
+	
+	@SubscribeEvent
+	private static void addPackFinders(AddPackFindersEvent event) {
+		if (event.getPackType() == PackType.CLIENT_RESOURCES) {
+			IModFile modFile = ModList.get().getModFileById(SpectrumCommon.MOD_ID).getFile();
+			
+			event.addRepositorySource(packConsumer -> {
+				packConsumer.accept(
+						Pack.readMetaAndCreate(
+								new PackLocationInfo("spectrum_programmer_art", Component.literal("Spectrum Programmer Art"), PackSource.BUILT_IN, Optional.empty()),
+								new PathPackResources.PathResourcesSupplier(modFile.findResource("resourcepacks", "spectrum_programmer_art")),
+								PackType.CLIENT_RESOURCES,
+								new PackSelectionConfig(false, Pack.Position.TOP, false)
+						)
+				);
+			});
 		}
 	}
 	

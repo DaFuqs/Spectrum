@@ -2,11 +2,16 @@
   "criteria": {
     "broken_black_materia": {
       "trigger": "spectrum:block_broken",
-      "conditions": {
-        "block": {
-          "blocks": "spectrum:black_materia"
+      "location": [
+        {
+          "condition": "minecraft:location_check",
+          "predicate": {
+            "block": {
+              "blocks": "spectrum:black_materia"
+            }
+          }
         }
-      }
+      ]
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",

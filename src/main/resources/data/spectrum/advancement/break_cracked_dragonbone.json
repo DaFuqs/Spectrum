@@ -15,11 +15,16 @@
   "criteria": {
     "broken_cracked_dragonbone": {
       "trigger": "spectrum:block_broken",
-      "conditions": {
-        "block": {
-          "blocks": "spectrum:cracked_dragonbone"
+      "location": [
+        {
+          "condition": "minecraft:location_check",
+          "predicate": {
+            "block": {
+              "blocks": "spectrum:cracked_dragonbone"
+            }
+          }
         }
-      }
+      ]
     },
     "has_dragonbone": {
       "trigger": "minecraft:inventory_changed",

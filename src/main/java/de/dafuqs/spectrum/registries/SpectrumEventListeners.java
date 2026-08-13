@@ -1018,7 +1018,7 @@ public class SpectrumEventListeners {
 				InertiaComponent.onInertiaBlockBreak(level, pos, state, serverPlayerEntity, handStack);
 			}
 			
-			SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
+			SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, pos, player.getMainHandItem());
 		}
 		
 		ItemStack miningStack =  player.getMainHandItem();

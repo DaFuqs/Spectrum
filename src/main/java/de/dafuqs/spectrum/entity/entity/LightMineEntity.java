@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.entity.entity;
 
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.api.interaction.*;
-import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.world.*;

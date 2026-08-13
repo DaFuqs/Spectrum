@@ -21,7 +21,6 @@
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
     "EntityMixin",
-    "EntityTypeMixin",
     "ExplosionMixin",
     "FallingBlockEntityMixin",
     "FireBlockMixin",

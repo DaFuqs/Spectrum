@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;

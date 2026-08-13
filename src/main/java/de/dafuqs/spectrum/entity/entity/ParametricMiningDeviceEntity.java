@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.blocks.boom.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;

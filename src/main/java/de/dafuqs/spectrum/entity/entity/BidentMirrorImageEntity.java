@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.magic.*;
 import de.dafuqs.spectrum.particle.*;

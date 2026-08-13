@@ -124,7 +124,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			return;
 		}
 		
-		if (crystallarieum.canWork && (!recipe.value().getFluidIngredient().test(crystallarieum.tank.getFluid()) || crystallarieum.inkStorage.getEnergy(recipe.value().getInkColor()) == 0)) {
+		if (!recipe.value().getFluidIngredient().test(crystallarieum.tank.getFluid())) {
 			crystallarieum.canWork = false;
 			return;
 		}
@@ -133,24 +133,24 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		int inkCostBase = recipe.value().getInkCost();
 		if(inkCostBase > 0) {
 			float consumedInkFloat = inkCostBase * crystallarieum.currentAdditive.growthAccelerationMod() * crystallarieum.currentAdditive.inkConsumptionMod();
-			int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, level.getRandom());
-			if (crystallarieum.inkStorage.drainEnergy(recipe.value().getInkColor(), consumedInt) < consumedInt) {
+			int inkToConsume = Support.getIntFromDecimalWithChance(consumedInkFloat, level.getRandom());
+			if (crystallarieum.inkStorage.drainEnergy(recipe.value().getInkColor(), inkToConsume) < inkToConsume) {
 				crystallarieum.canWork = false;
 				crystallarieum.setInkDirty();
 				crystallarieum.updateInClientWorld();
 				return;
 			}
+			crystallarieum.setInkDirty();
 		}
 		
-		crystallarieum.setInkDirty();
 		crystallarieum.currentGrowthStageTicks += (int) (SECOND * crystallarieum.currentAdditive.growthAccelerationMod());
 		
 		// check if a catalyst should get used up
 		if (level.getRandom().nextFloat() < crystallarieum.currentAdditive.consumeChancePerSecond()) {
-			ItemStack catalystStack = crystallarieum.getItem(ADDITIVE_SLOT_ID);
-			catalystStack.shrink(1);
+			ItemStack additive = crystallarieum.getItem(ADDITIVE_SLOT_ID);
+			additive.shrink(1);
 			crystallarieum.updateInClientWorld();
-			if (catalystStack.isEmpty()) {
+			if (additive.isEmpty()) {
 				crystallarieum.currentAdditive = CrystallarieumAdditive.EMPTY;
 				if (!recipe.value().growsWithoutAdditive()) {
 					crystallarieum.canWork = false;

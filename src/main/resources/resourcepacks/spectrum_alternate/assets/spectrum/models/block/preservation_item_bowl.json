@@ -1,0 +1,9 @@
+{
+  "parent": "spectrum:templates/base_bowl",
+  "textures": {
+    "top": "spectrum:block/enlightenment_preservation_bowl_top",
+    "side": "spectrum:block/enlightenment_preservation_bowl_side",
+    "inner": "spectrum:block/preservation_bowl_inner",
+    "bottom": "spectrum:block/preservation_bowl_bottom"
+  }
+}

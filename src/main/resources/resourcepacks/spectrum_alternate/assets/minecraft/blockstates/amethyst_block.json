@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "minecraft:block/amethyst_block"
+      },
+      {
+        "model": "minecraft:block/amethyst_block_mirrored"
+      }
+    ]
+  }
+}

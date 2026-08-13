@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.api.item;
 
 import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.components.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
@@ -15,18 +17,18 @@ public interface InkPoweredPotionFillable {
 	// used for calculating the items amount to apply a certain effect
 	// calculated once and then stored in the items nbt for quick lookup and nicer modifiability
 	// via commands or special loot (so ones found in dungeon chests can be cheaper!)
-	default long adjustFinalCostFor(InkPoweredStatusEffectInstance instance) {
+	default long adjustFinalCostFor(InkPoweredMobEffectInstance instance) {
 		return (long) Math.pow(instance.getInkCost().amount(), 1 + instance.getStatusEffectInstance().getAmplifier());
 	}
 	
 	// saving
-	default void addOrUpgradeEffects(ItemStack potionFillableStack, List<InkPoweredStatusEffectInstance> newEffects) {
+	default void addOrUpgradeEffects(ItemStack potionFillableStack, List<InkPoweredMobEffectInstance> newEffects, Optional<Integer> color, boolean unidentifiable) {
 		if (!isFull(potionFillableStack)) {
 			// by default, values are immutable, so we need to copy the values to an arraylist to be able to add stuff to it
-			List<InkPoweredStatusEffectInstance> existingEffects = new ArrayList<>(InkPoweredStatusEffectInstance.getEffects(potionFillableStack));
+			List<InkPoweredMobEffectInstance> existingEffects = new ArrayList<>(InkPoweredPotionContentsComponent.getEffects(potionFillableStack));
 			int maxCount = maxEffectCount();
 			int maxAmplifier = maxEffectAmplifier();
-			for (InkPoweredStatusEffectInstance newEffect : newEffects) {
+			for (InkPoweredMobEffectInstance newEffect : newEffects) {
 				MobEffectInstance statusEffectInstance = newEffect.getStatusEffectInstance();
 				if (statusEffectInstance.getAmplifier() > maxAmplifier) {
 					statusEffectInstance = new MobEffectInstance(statusEffectInstance.getEffect(), statusEffectInstance.getDuration(), maxAmplifier, statusEffectInstance.isAmbient(), statusEffectInstance.isVisible());
@@ -37,38 +39,25 @@ public interface InkPoweredPotionFillable {
 				
 				// calculate the final amount of this effect and add it
 				InkAmount adjustedCost = new InkAmount(newEffect.getInkCost().color(), adjustFinalCostFor(newEffect));
-				InkPoweredStatusEffectInstance modifiedInstance = new InkPoweredStatusEffectInstance(statusEffectInstance, adjustedCost, newEffect.getColor(), newEffect.isUnidentifiable());
+				InkPoweredMobEffectInstance modifiedInstance = new InkPoweredMobEffectInstance(statusEffectInstance, adjustedCost, color, unidentifiable);
 				existingEffects.add(modifiedInstance);
 			}
 			
-			InkPoweredStatusEffectInstance.setEffects(potionFillableStack, existingEffects);
+			InkPoweredPotionContentsComponent.setEffects(potionFillableStack, existingEffects);
 		}
 	}
 	
-	static List<InkPoweredStatusEffectInstance> getEffects(ItemStack stack) {
-		return InkPoweredStatusEffectInstance.getEffects(stack);
-	}
-	
-	@Deprecated
-	default List<MobEffectInstance> getVanillaEffects(ItemStack stack) {
-		return InkPoweredStatusEffectInstance.getEffects(stack).stream().map(InkPoweredStatusEffectInstance::getStatusEffectInstance).toList();
-	}
-	
 	default boolean isFull(ItemStack itemStack) {
-		return InkPoweredStatusEffectInstance.getEffects(itemStack).size() >= maxEffectCount();
+		return InkPoweredPotionContentsComponent.getEffects(itemStack).size() >= maxEffectCount();
 	}
 	
 	default boolean isAtLeastPartiallyFilled(ItemStack itemStack) {
-		return !InkPoweredStatusEffectInstance.getEffects(itemStack).isEmpty();
-	}
-	
-	default void clearEffects(ItemStack itemStack) {
-		InkPoweredStatusEffectInstance.setEffects(itemStack, List.of());
+		return !InkPoweredPotionContentsComponent.getEffects(itemStack).isEmpty();
 	}
 	
 	default void appendPotionFillableTooltip(ItemStack stack, List<Component> tooltip, MutableComponent attributeModifierText, boolean showDuration, float tickRate) {
-		List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
-		InkPoweredStatusEffectInstance.buildTooltip(tooltip, effects, attributeModifierText, showDuration, tickRate);
+		List<InkPoweredMobEffectInstance> effects = InkPoweredPotionContentsComponent.getEffects(stack);
+		InkPoweredMobEffectInstance.buildTooltip(tooltip, effects, attributeModifierText, showDuration, tickRate);
 		
 		int maxEffectCount = maxEffectCount();
 		if (effects.size() < maxEffectCount) {

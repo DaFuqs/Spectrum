@@ -74,9 +74,13 @@ public class SpectrumColorProviders {
 		
 		event.register((stack, tintIndex) -> {
 			if (tintIndex > 0) {
-				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
-				if (effects.size() > tintIndex - 1) {
-					return FastColor.ARGB32.opaque(effects.get(tintIndex - 1).getColor());
+				InkPoweredPotionContentsComponent component = stack.get(SpectrumDataComponentTypes.INK_POWERED_POTION_CONTENTS);
+				if(component != null) {
+					int effectIndex = tintIndex - 1;
+					List<InkPoweredMobEffectInstance> effects = component.effects();
+					if (effects.size() > effectIndex) {
+						return FastColor.ARGB32.opaque(effects.get(effectIndex).getColor());
+					}
 				}
 			}
 			return -1;
@@ -84,9 +88,9 @@ public class SpectrumColorProviders {
 		
 		event.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
-				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
-				if (!effects.isEmpty()) {
-					return FastColor.ARGB32.opaque(effects.getFirst().getColor());
+				InkPoweredPotionContentsComponent component = stack.get(SpectrumDataComponentTypes.INK_POWERED_POTION_CONTENTS);
+				if(component != null) {
+					return FastColor.ARGB32.opaque(component.effects().getFirst().getColor());
 				}
 			}
 			return -1;

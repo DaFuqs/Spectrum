@@ -4,7 +4,9 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
+import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
@@ -28,8 +30,9 @@ public class PotionWorkshopBrewingCriterion extends SimpleCriterionTrigger<Potio
 		
 		this.trigger(player, conditions -> {
 			List<MobEffectInstance> effects;
-			if (itemStack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
-				effects = inkPoweredPotionFillable.getVanillaEffects(itemStack);
+			InkPoweredPotionContentsComponent inkPoweredComponent = itemStack.get(SpectrumDataComponentTypes.INK_POWERED_POTION_CONTENTS);
+			if (inkPoweredComponent != null) {
+				effects = inkPoweredComponent.getVanillaEffects();
 			} else {
 				PotionContents potionComponent = itemStack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
 				effects = potionComponent.customEffects();

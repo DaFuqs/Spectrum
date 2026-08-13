@@ -19,34 +19,22 @@ import net.minecraft.world.item.component.*;
 
 import java.util.*;
 
-public class InkPoweredStatusEffectInstance {
+public record InkPoweredMobEffectInstance(MobEffectInstance statusEffectInstance, InkAmount cost, Optional<Integer> customColor, boolean unidentifiable) {
 	
-	public static final Codec<InkPoweredStatusEffectInstance> CODEC = RecordCodecBuilder.create(i -> i.group(
+	public static final Codec<InkPoweredMobEffectInstance> CODEC = RecordCodecBuilder.create(i -> i.group(
 			MobEffectInstance.CODEC.fieldOf("effect").forGetter(c -> c.statusEffectInstance),
 			InkAmount.CODEC.fieldOf("ink_cost").forGetter(c -> c.cost),
-			Codec.INT.optionalFieldOf("custom_color", -1).forGetter(c -> c.customColor),
+			Codec.INT.optionalFieldOf("custom_color").forGetter(c -> c.customColor),
 			Codec.BOOL.optionalFieldOf("unidentifiable", false).forGetter(c -> c.unidentifiable)
-	).apply(i, InkPoweredStatusEffectInstance::new));
+	).apply(i, InkPoweredMobEffectInstance::new));
 	
-	public static final StreamCodec<RegistryFriendlyByteBuf, InkPoweredStatusEffectInstance> PACKET_CODEC = StreamCodec.composite(
+	public static final StreamCodec<RegistryFriendlyByteBuf, InkPoweredMobEffectInstance> PACKET_CODEC = StreamCodec.composite(
 			MobEffectInstance.STREAM_CODEC, c -> c.statusEffectInstance,
 			InkAmount.STREAM_CODEC, c -> c.cost,
-			ByteBufCodecs.VAR_INT, c -> c.customColor,
+			ByteBufCodecs.optional(ByteBufCodecs.VAR_INT), c -> c.customColor,
 			ByteBufCodecs.BOOL, c -> c.unidentifiable,
-			InkPoweredStatusEffectInstance::new
+			InkPoweredMobEffectInstance::new
 	);
-	
-	private final MobEffectInstance statusEffectInstance;
-	private final InkAmount cost;
-	private final int customColor; // -1: use effect default
-	private final boolean unidentifiable;
-	
-	public InkPoweredStatusEffectInstance(MobEffectInstance statusEffectInstance, InkAmount cost, int customColor, boolean unidentifiable) {
-		this.statusEffectInstance = statusEffectInstance;
-		this.cost = cost;
-		this.customColor = customColor;
-		this.unidentifiable = unidentifiable;
-	}
 	
 	public MobEffectInstance getStatusEffectInstance() {
 		return statusEffectInstance;
@@ -56,28 +44,18 @@ public class InkPoweredStatusEffectInstance {
 		return cost;
 	}
 	
-	public static List<InkPoweredStatusEffectInstance> getEffects(ItemStack stack) {
-		return stack.getOrDefault(SpectrumDataComponentTypes.INK_POWERED, InkPoweredComponent.DEFAULT).effects();
+	public int getColor() {
+		if(this.customColor.isPresent()) {
+			return this.customColor.get();
+		}
+		return statusEffectInstance.getEffect().value().getColor();
 	}
 	
-	public static void setEffects(ItemStack stack, List<InkPoweredStatusEffectInstance> effects) {
-		stack.set(SpectrumDataComponentTypes.INK_POWERED, new InkPoweredComponent(effects));
-	}
-	
-	public static void buildTooltip(List<Component> tooltip, List<InkPoweredStatusEffectInstance> effects, MutableComponent attributeModifierText, boolean showDuration, float tickRate) {
+	public static void buildTooltip(List<Component> tooltip, List<InkPoweredMobEffectInstance> effects, MutableComponent attributeModifierText, boolean showDuration, float tickRate) {
 		if (!effects.isEmpty()) {
 			List<Tuple<Holder<Attribute>, AttributeModifier>> attributeModifiers = Lists.newArrayList();
-			for (InkPoweredStatusEffectInstance entry : effects) {
-				if (entry.isUnidentifiable()) {
-					tooltip.add(Component.translatable("item.spectrum.potion.tooltip.unidentifiable"));
-					continue;
-				}
-				
+			for (InkPoweredMobEffectInstance entry : effects) {
 				MobEffectInstance effect = entry.getStatusEffectInstance();
-				if (effect == null) { // serialization error or removed effect
-					continue;
-				}
-				
 				InkAmount cost = entry.getInkCost();
 				
 				MutableComponent mutableText = Component.translatable(effect.getDescriptionId());
@@ -92,7 +70,7 @@ public class InkPoweredStatusEffectInstance {
 				tooltip.add(mutableText);
 				
 				effect.getEffect().value().createModifiers(effect.getAmplifier(), (attribute, modifier) ->
-						attributeModifiers.add(new Tuple<>(attribute, modifier))
+					attributeModifiers.add(new Tuple<>(attribute, modifier))
 				);
 			}
 			
@@ -123,14 +101,4 @@ public class InkPoweredStatusEffectInstance {
 		}
 	}
 	
-	public int getColor() {
-		if (this.customColor == -1) {
-			return statusEffectInstance.getEffect().value().getColor();
-		}
-		return this.customColor;
-	}
-	
-	public boolean isUnidentifiable() {
-		return this.unidentifiable;
-	}
 }

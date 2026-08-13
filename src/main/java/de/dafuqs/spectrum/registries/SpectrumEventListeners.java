@@ -420,7 +420,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void onIncomingDamage(PlayerInteractEvent.RightClickBlock event) {
+	private static void onRightClickBlock(UseItemOnBlockEvent event) {
 		ItemStack handStack = event.getItemStack();
 		if(!handStack.is(Items.GLASS_BOTTLE)) {
 			return;
@@ -428,25 +428,20 @@ public class SpectrumEventListeners {
 		
 		Level level = event.getLevel();
 		BlockPos blockPos = event.getPos();
-		Player user = event.getEntity();
+		Player user = event.getPlayer();
 		BlockState blockState = level.getBlockState(blockPos);
 		
 		if (blockState.is(SpectrumBlocks.FADING) && SpectrumConfig.CONFIG.CanBottleUpFading.get() && AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_FADING)) {
-			bottleUpDecay(level, user, handStack, blockPos, blockState, SpectrumItems.BOTTLE_OF_FADING.get());
-			event.setCanceled(true);
+			event.cancelWithResult(bottleUpDecay(level, user, handStack, blockPos, blockState, SpectrumItems.BOTTLE_OF_FADING.get()));
 		} else if (blockState.is(SpectrumBlocks.FAILING) && SpectrumConfig.CONFIG.CanBottleUpFailing.get() && AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_FAILING)) {
-			bottleUpDecay(level, user, handStack, blockPos, blockState, SpectrumItems.BOTTLE_OF_FAILING.get());
-			event.setCanceled(true);
+			event.cancelWithResult(bottleUpDecay(level, user, handStack, blockPos, blockState, SpectrumItems.BOTTLE_OF_FAILING.get()));
 		} else if (blockState.is(SpectrumBlocks.RUIN) && SpectrumConfig.CONFIG.CanBottleUpRuin.get() && AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_RUIN)) {
-			bottleUpDecay(level, user, handStack, blockPos, blockState, SpectrumItems.BOTTLE_OF_RUIN.get());
-			event.setCanceled(true);
+			event.cancelWithResult(bottleUpDecay(level, user, handStack, blockPos, blockState, SpectrumItems.BOTTLE_OF_RUIN.get()));
 		} else if (blockState.is(SpectrumBlocks.FORFEITURE) && SpectrumConfig.CONFIG.CanBottleUpForfeiture.get() && AdvancementHelper.hasAdvancement(user, SpectrumAdvancements.UNLOCK_BOTTLE_OF_FORFEITURE)) {
-			bottleUpDecay(level, user, handStack, blockPos, blockState, SpectrumItems.BOTTLE_OF_FORFEITURE.get());
-			event.setCanceled(true);
 		}
 	}
 	
-	private static void bottleUpDecay(Level world, Player user, @Local ItemStack handStack, @Local BlockPos blockPos, BlockState blockState, Item item) {
+	private static ItemInteractionResult bottleUpDecay(Level world, Player user, @Local ItemStack handStack, @Local BlockPos blockPos, BlockState blockState, Item item) {
 		if(!world.isClientSide) {
 			blockState.getBlock().playerWillDestroy(world, blockPos, blockState, user);
 			world.setBlockAndUpdate(blockPos, Blocks.AIR.defaultBlockState());
@@ -454,7 +449,14 @@ public class SpectrumEventListeners {
 		}
 		world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.BOTTLE_FILL_DRAGONBREATH, SoundSource.NEUTRAL, 1.0F, 1.0F);
 		user.awardStat(Stats.ITEM_USED.get(handStack.getItem()));
-		ItemUtils.createFilledResult(handStack, user, item.getDefaultInstance(), world.isClientSide());
+		ItemStack result = item.getDefaultInstance();
+		
+		handStack.consume(1, user);
+		if (!user.getInventory().add(result)) {
+			user.drop(result, false);
+		}
+		
+		return ItemInteractionResult.sidedSuccess(world.isClientSide);
 	}
 	
 	@SubscribeEvent

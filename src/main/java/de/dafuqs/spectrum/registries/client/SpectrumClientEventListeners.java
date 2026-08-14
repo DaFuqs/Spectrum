@@ -90,7 +90,6 @@ public class SpectrumClientEventListeners {
 	
 	@SubscribeEvent
 	public static void register(RegisterClientExtensionsEvent event) {
-		// TODO: maybe the Circlet of arrogance can be moved here and use IClientItemExtensions.setupModelAnimations()?
 		event.registerItem(new IClientItemExtensions() {
 			private final Map<EquipmentSlot, HumanoidModel<LivingEntity>> MODELS = new Object2ObjectArrayMap<>();
 			

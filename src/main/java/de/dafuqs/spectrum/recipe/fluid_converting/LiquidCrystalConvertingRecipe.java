@@ -18,10 +18,6 @@ public class LiquidCrystalConvertingRecipe extends FluidConvertingRecipe {
 		outputItems.add(outputItemStack.getItem());
 	}
 	
-	public static boolean isExistingOutputItem(ItemStack itemStack) {
-		return outputItems.contains(itemStack.getItem());
-	}
-	
 	@Override
 	public ItemStack getToastSymbol() {
 		return new ItemStack(SpectrumItems.LIQUID_CRYSTAL_BUCKET.get());

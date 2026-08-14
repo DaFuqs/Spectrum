@@ -60,8 +60,8 @@ public abstract class FluidConvertingRecipe extends GatedSpectrumRecipe<RecipeIn
 		public Serializer(Function6<String, Optional<ResourceLocation>, Optional<ResourceLocation>, List<ItemStack>, Ingredient, ItemStack, T> factory) {
 			codec = RecordCodecBuilder.mapCodec(i -> i.group(
 					Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-					ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
 					ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+					ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
 					ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 					Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(recipe -> recipe.input),
 					ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.output)

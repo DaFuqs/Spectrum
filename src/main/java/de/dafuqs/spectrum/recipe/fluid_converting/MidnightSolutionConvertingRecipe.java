@@ -18,10 +18,6 @@ public class MidnightSolutionConvertingRecipe extends FluidConvertingRecipe {
 		outputItems.add(outputItemStack.getItem());
 	}
 	
-	public static boolean isExistingOutputItem(ItemStack itemStack) {
-		return outputItems.contains(itemStack.getItem());
-	}
-	
 	@Override
 	public ItemStack getToastSymbol() {
 		return new ItemStack(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET.get());

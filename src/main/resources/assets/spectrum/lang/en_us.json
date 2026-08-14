@@ -5128,7 +5128,7 @@
   "multiblock.spectrum.alloy_forgery.pyrite_alloy_forge": "Pyrite Alloy Forge",
   "multiblock.spectrum.alloy_forgery.shale_clay_alloy_forge": "Shale Clay Alloy Forge",
 
-  "recipe.spectrum.liquid_crystal.liquid_crystal_converting.hint": "",
+  "recipe.spectrum.liquid_crystal_converting.resonant_lily.hint": "Chromatic Bloomrise",
   "recipe.spectrum.pedestal.tier1.food.salted_jaramel_tart.hint": "A very salty tart",
   "recipe.spectrum.pedestal.tier1.food.salted_jaramel_trifle.hint": "A very salty trifle",
   "recipe.spectrum.potion_workshop_crafting.azalea_tea_milk.hint": "Be a Tea Philistine",
@@ -5136,6 +5136,7 @@
   "recipe.spectrum.potion_workshop_crafting.glistering_jelly_tea_milk.hint": "Be a Tea Philistine",
   "recipe.spectrum.potion_workshop_crafting.golden_bristle_tea_milk.hint": "Be a Tea Philistine",
   "recipe.spectrum.potion_workshop_crafting.restoration_tea_milk.hint": "Be a Tea Philistine",
+
   "recipe.spectrum.spawner.lore.changed_creature": "Changes the creature to that of the head",
   "recipe.spectrum.spawner.lore.decreased_spawn_delay": "Decreased spawn delay",
   "recipe.spectrum.spawner.lore.increased_max_nearby_entities": "Less sensitive to creatures in proximity",

@@ -33,7 +33,7 @@ import org.jspecify.annotations.*;
 import java.util.*;
 import java.util.function.*;
 
-public class PastelNodeBlock extends SpectrumFacingBlock implements EntityBlock, ColorableBlock {
+public class PastelNodeBlock extends SpectrumDirectionalBlock implements EntityBlock, ColorableBlock {
 	
 	/*public static final MapCodec<PastelNodeBlock> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 			propertiesCodec(),

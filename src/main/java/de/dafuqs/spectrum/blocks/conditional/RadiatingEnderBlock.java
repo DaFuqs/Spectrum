@@ -16,7 +16,7 @@ import net.minecraft.world.level.storage.loot.parameters.*;
 
 import java.util.*;
 
-public class RadiatingEnderBlock extends SpectrumFacingBlock implements RevelationAware {
+public class RadiatingEnderBlock extends SpectrumDirectionalBlock implements RevelationAware {
 	
 	public static final MapCodec<RadiatingEnderBlock> CODEC = simpleCodec(RadiatingEnderBlock::new);
 	

@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
 
-public class JadeiteLotusFlowerBlock extends SpectrumFacingBlock {
+public class JadeiteLotusFlowerBlock extends SpectrumDirectionalBlock {
 	
 	protected static final VoxelShape SHAPE_UP = Block.box(0, 0, 0, 16, 8, 16);
 	protected static final VoxelShape SHAPE_DOWN = Block.box(0, 8, 0, 16, 16, 16);

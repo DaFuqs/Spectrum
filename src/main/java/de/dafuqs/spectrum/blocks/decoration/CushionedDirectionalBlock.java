@@ -6,16 +6,16 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 
-public class CushionedFacingBlock extends SpectrumFacingBlock {
+public class CushionedDirectionalBlock extends SpectrumDirectionalBlock {
 	
-	public static final MapCodec<CushionedFacingBlock> CODEC = simpleCodec(CushionedFacingBlock::new);
+	public static final MapCodec<CushionedDirectionalBlock> CODEC = simpleCodec(CushionedDirectionalBlock::new);
 	
-	public CushionedFacingBlock(Properties settings) {
+	public CushionedDirectionalBlock(Properties settings) {
 		super(settings);
 	}
 	
 	@Override
-	public MapCodec<? extends CushionedFacingBlock> codec() {
+	public MapCodec<? extends CushionedDirectionalBlock> codec() {
 		return CODEC;
 	}
 	

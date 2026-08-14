@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
 import org.jspecify.annotations.*;
 
-public class AzuriteBlock extends SpectrumFacingBlock implements AzureAuraEmitting {
+public class AzuriteBlock extends SpectrumDirectionalBlock implements AzureAuraEmitting {
 	
 	public AzuriteBlock(Properties properties) {
 		super(properties);

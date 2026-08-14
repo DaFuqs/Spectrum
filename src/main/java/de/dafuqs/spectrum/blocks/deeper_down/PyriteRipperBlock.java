@@ -16,7 +16,7 @@ import org.jspecify.annotations.*;
 
 import java.util.*;
 
-public class PyriteRipperBlock extends SpectrumFacingBlock {
+public class PyriteRipperBlock extends SpectrumDirectionalBlock {
 	
 	public static final MapCodec<PyriteRipperBlock> CODEC = simpleCodec(PyriteRipperBlock::new);
 	

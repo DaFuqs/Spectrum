@@ -136,7 +136,7 @@ public class SpectrumCommon {
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");
-		SpectrumFusionShrineWorldEffects.register(modBus);
+		SpectrumWorldEffects.register(modBus);
 		SpectrumRecipeTypes.register(modBus);
 		SpectrumRecipeSerializers.register(modBus);
 		

@@ -86,7 +86,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (currentRecipe == null) {
 			animator.swapState(FlowStates.INACTIVE);
 		} else {
-			if (currentRecipe.value().getFluidIngredient().test(tank.getFluid()) && inkStorage.getEnergy(currentRecipe.value().getInkColor()) > 0) {
+			if (currentRecipe.value().getFluid().test(tank.getFluid()) && inkStorage.getEnergy(currentRecipe.value().getInkColor()) > 0) {
 				animator.swapState(FlowStates.ACTIVE);
 			} else {
 				animator.swapState(FlowStates.IDLE);
@@ -124,7 +124,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			return;
 		}
 		
-		if (!recipe.value().getFluidIngredient().test(crystallarieum.tank.getFluid())) {
+		if (!recipe.value().getFluid().test(crystallarieum.tank.getFluid())) {
 			crystallarieum.canWork = false;
 			return;
 		}

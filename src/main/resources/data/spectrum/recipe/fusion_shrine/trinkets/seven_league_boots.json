@@ -17,8 +17,5 @@
   "result": {
     "id": "spectrum:seven_league_boots"
   },
-  "required_advancement": "spectrum:unlocks/trinkets/seven_league_boots",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+  "required_advancement": "spectrum:unlocks/trinkets/seven_league_boots"
 }

@@ -1,7 +1,7 @@
 {
   "name": "Artist's Palette",
   "advancement": "spectrum:unlocks/trinkets/artists_palette",
-  "secret": true,
+  "reveal_secret_advancement": "spectrum:TODO",
   "icon": "spectrum:artists_palette",
   "category": "spectrum:ink",
   "extra_recipe_mappings": {

@@ -44,13 +44,14 @@ public class LoreHelper {
 		}
 	}
 	
-	public static void setLore(ItemStack stack, @Nullable Component lore) {
+	public static ItemStack setLore(ItemStack stack, @Nullable Component lore) {
 		if (lore == null) {
 			stack.remove(DataComponents.LORE);
 		} else {
 			ItemLore component = new ItemLore(List.of(lore));
 			stack.set(DataComponents.LORE, component);
 		}
+		return stack;
 	}
 	
 	public static void removeLore(ItemStack itemStack) {

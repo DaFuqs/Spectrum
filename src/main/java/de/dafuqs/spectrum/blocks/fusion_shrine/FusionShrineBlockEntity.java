@@ -157,7 +157,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
 		
 		// craft when enough ticks have passed
-		FusionShrineRecipeWorldEffect effect = recipe.value().getWorldEffectForTick(fusionShrineBlockEntity.craftingTime, fusionShrineBlockEntity.craftingTimeTotal);
+		WorldEffect effect = recipe.value().getWorldEffectForTick(fusionShrineBlockEntity.craftingTime, fusionShrineBlockEntity.craftingTimeTotal);
 		if (fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
 			craft(world, blockPos, fusionShrineBlockEntity, recipe);
 			fusionShrineBlockEntity.inventoryChanged();

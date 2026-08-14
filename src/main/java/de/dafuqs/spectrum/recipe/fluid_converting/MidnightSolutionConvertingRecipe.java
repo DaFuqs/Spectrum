@@ -13,8 +13,8 @@ public class MidnightSolutionConvertingRecipe extends FluidConvertingRecipe {
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/create_midnight_aberration");
 	private static final Set<Item> outputItems = new HashSet<>();
 	
-	public MidnightSolutionConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Ingredient inputIngredient, ItemStack outputItemStack) {
-		super(group, secret, requiredAdvancementIdentifier, inputIngredient, outputItemStack);
+	public MidnightSolutionConvertingRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults, Ingredient inputIngredient, ItemStack outputItemStack) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults, inputIngredient, outputItemStack);
 		outputItems.add(outputItemStack.getItem());
 	}
 	

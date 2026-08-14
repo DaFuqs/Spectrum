@@ -22,7 +22,7 @@ import java.util.*;
 public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	
 	public HardcorePlayerRevivalRecipe() {
-		super("", false, Optional.empty(),
+		super("", Optional.empty(), Optional.empty(), List.of(),
 				IngredientStack.ofItems(Blocks.PLAYER_HEAD.asItem()), IngredientStack.ofItems(Items.TOTEM_OF_UNDYING), IngredientStack.ofItems(Items.ENCHANTED_GOLDEN_APPLE),
 				ItemStack.EMPTY, 1200, 100, true, false);
 	}

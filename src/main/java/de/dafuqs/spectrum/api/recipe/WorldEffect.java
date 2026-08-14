@@ -2,46 +2,70 @@ package de.dafuqs.spectrum.api.recipe;
 
 import com.google.gson.*;
 import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import io.netty.buffer.*;
 import net.minecraft.commands.*;
 import net.minecraft.core.*;
+import net.minecraft.network.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
 
+import java.util.*;
+
 /**
- * Effects that are played when crafting with the fusion shrine
+ * Effects that are played when crafting with the fusion shrine or similar
  */
-public interface FusionShrineRecipeWorldEffect {
+public interface WorldEffect {
 	
-	Codec<FusionShrineRecipeWorldEffect> CODEC = Codec.STRING.xmap(
-			FusionShrineRecipeWorldEffect::fromString,
+	record CraftingWorldEffects(WorldEffect start, List<WorldEffect> during, WorldEffect finish) {
+		
+		public static final CraftingWorldEffects EMPTY = new CraftingWorldEffects(WorldEffect.NOTHING, List.of(), WorldEffect.NOTHING);
+		public static final CraftingWorldEffects FUSION_SHRINE_DEFAULT = new CraftingWorldEffects(WorldEffect.NOTHING, List.of(), SpectrumWorldEffects.SINGLE_VISUAL_EXPLOSION_ON_SHRINE);
+		
+		public static final Codec<CraftingWorldEffects> CODEC = RecordCodecBuilder.create(i -> i.group(
+				WorldEffect.CODEC.fieldOf("start").forGetter(recipe -> recipe.start),
+				WorldEffect.CODEC.listOf().optionalFieldOf("during", List.of()).forGetter(recipe -> recipe.during),
+				WorldEffect.CODEC.fieldOf("finish").forGetter(recipe -> recipe.finish)
+		).apply(i, CraftingWorldEffects::new));
+		
+		public static final StreamCodec<RegistryFriendlyByteBuf, CraftingWorldEffects> STREAM_CODEC = PacketCodecHelper.tuple(
+				WorldEffect.STREAM_CODEC, recipe -> recipe.start,
+				WorldEffect.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.during,
+				WorldEffect.STREAM_CODEC, recipe -> recipe.finish,
+				CraftingWorldEffects::new
+		);
+	}
+	
+	Codec<WorldEffect> CODEC = Codec.STRING.xmap(
+			WorldEffect::fromString,
 			effect -> effect instanceof CommandRecipeWorldEffect command
 					? command.command
 					: String.valueOf(SpectrumRegistries.WORLD_EFFECT.getKey(effect)));
 	
-	StreamCodec<ByteBuf, FusionShrineRecipeWorldEffect> PACKET_CODEC = ByteBufCodecs.STRING_UTF8.map(
-			FusionShrineRecipeWorldEffect::fromString,
+	StreamCodec<ByteBuf, WorldEffect> STREAM_CODEC = ByteBufCodecs.STRING_UTF8.map(
+			WorldEffect::fromString,
 			effect -> effect instanceof CommandRecipeWorldEffect command
 					? command.command
 					: String.valueOf(SpectrumRegistries.WORLD_EFFECT.getKey(effect)));
 	
-	FusionShrineRecipeWorldEffect NOTHING = register("nothing", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+	WorldEffect NOTHING = register("nothing", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 		}
 	});
 	
-	static FusionShrineRecipeWorldEffect register(String id, FusionShrineRecipeWorldEffect effect) {
+	static WorldEffect register(String id, WorldEffect effect) {
 		Registry.register(SpectrumRegistries.WORLD_EFFECT, SpectrumCommon.locate(id), effect);
 		return effect;
 	}
 	
-	static FusionShrineRecipeWorldEffect fromString(String string) {
+	static WorldEffect fromString(String string) {
 		if (string.isBlank()) {
 			return NOTHING;
 		}
@@ -49,9 +73,9 @@ public interface FusionShrineRecipeWorldEffect {
 			return new CommandRecipeWorldEffect(string);
 		}
 		
-		FusionShrineRecipeWorldEffect effect = SpectrumRegistries.WORLD_EFFECT.get(SpectrumCommon.ofSpectrumDefaulted(string));
+		WorldEffect effect = SpectrumRegistries.WORLD_EFFECT.get(SpectrumCommon.ofSpectrumDefaulted(string));
 		if (effect == null) {
-			SpectrumCommon.logError("Unknown fusion shrine world effect '" + string + "'. Will be ignored.");
+			SpectrumCommon.logError("Unknown world effect '" + string + "'. Will be ignored.");
 			return NOTHING;
 		}
 		return effect;
@@ -65,7 +89,7 @@ public interface FusionShrineRecipeWorldEffect {
 	
 	void trigger(ServerLevel world, BlockPos pos);
 	
-	abstract class EveryTickRecipeWorldEffect implements FusionShrineRecipeWorldEffect {
+	abstract class EveryTickRecipeWorldEffect implements WorldEffect {
 		
 		public EveryTickRecipeWorldEffect() {
 		}
@@ -77,7 +101,7 @@ public interface FusionShrineRecipeWorldEffect {
 		
 	}
 	
-	abstract class SingleTimeRecipeWorldEffect implements FusionShrineRecipeWorldEffect {
+	abstract class SingleTimeRecipeWorldEffect implements WorldEffect {
 		
 		public SingleTimeRecipeWorldEffect() {
 		}
@@ -89,7 +113,7 @@ public interface FusionShrineRecipeWorldEffect {
 		
 	}
 	
-	class CommandRecipeWorldEffect implements FusionShrineRecipeWorldEffect, CommandSource {
+	class CommandRecipeWorldEffect implements WorldEffect, CommandSource {
 		
 		protected final String command;
 		
@@ -109,7 +133,7 @@ public interface FusionShrineRecipeWorldEffect {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			MinecraftServer minecraftServer = world.getServer();
-			CommandSourceStack serverCommandSource = new CommandSourceStack(this, Vec3.atCenterOf(pos), Vec2.ZERO, world, 2, "FusionShrine", world.getBlockState(pos).getBlock().getName(), minecraftServer, null);
+			CommandSourceStack serverCommandSource = new CommandSourceStack(this, Vec3.atCenterOf(pos), Vec2.ZERO, world, 2, "WorldEffect", world.getBlockState(pos).getBlock().getName(), minecraftServer, null);
 			minecraftServer.getCommands().performPrefixedCommand(serverCommandSource, command);
 		}
 		

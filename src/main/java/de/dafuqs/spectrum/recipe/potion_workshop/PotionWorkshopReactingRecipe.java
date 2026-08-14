@@ -27,8 +27,8 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 	protected final Item item;
 	protected final List<PotionMod> modifiers;
 	
-	public PotionWorkshopReactingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Item item, List<PotionMod> modifiers) {
-		super(group, secret, requiredAdvancementIdentifier);
+	public PotionWorkshopReactingRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults, Item item, List<PotionMod> modifiers) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		this.item = item;
 		this.modifiers = modifiers;
 		
@@ -121,17 +121,19 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe<RecipeInpu
 	public static class Serializer implements RecipeSerializer<PotionWorkshopReactingRecipe> {
 		
 		public static final MapCodec<PotionWorkshopReactingRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-				Codec.STRING.optionalFieldOf("group", "").forGetter(c -> c.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(c -> c.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(c -> c.requiredAdvancementIdentifier),
+				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(c -> c.item),
 				CodecHelper.singleOrList(PotionMod.CODEC).fieldOf("modifiers").forGetter(c -> c.modifiers)
 		).apply(i, PotionWorkshopReactingRecipe::new));
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, PotionWorkshopReactingRecipe> PACKET_CODEC = StreamCodec.composite(
-				ByteBufCodecs.STRING_UTF8, c -> c.group,
-				ByteBufCodecs.BOOL, c -> c.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
+				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				ByteBufCodecs.registry(Registries.ITEM), c -> c.item,
 				PotionMod.PACKET_CODEC.apply(ByteBufCodecs.list()), c -> c.modifiers,
 				PotionWorkshopReactingRecipe::new

@@ -14,12 +14,14 @@
     "id": "minecraft:netherite_ingot"
   },
   "required_advancement": "spectrum:unlocks/resources/netherite_ingot",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [
-    "nothing",
-    "visual_explosions_on_shrine"
-  ],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine",
+  "effects": {
+    "start": "nothing",
+    "during": [
+      "nothing",
+      "visual_explosions_on_shrine"
+    ],
+    "finish": "single_visual_explosion_on_shrine"
+  },
   "description": {
     "type": "translatable",
     "translate": "spectrum.recipe.fusion_shrine.explanation.netherite_ingot"

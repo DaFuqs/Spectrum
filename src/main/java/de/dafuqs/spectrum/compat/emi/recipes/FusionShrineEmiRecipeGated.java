@@ -27,7 +27,6 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 		inputs = new ArrayList<>();
 		inputs.add(NeoForgeEmiIngredient.of(recipe.getFluid()));
 		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList());
-		outputs = List.of(EmiStack.of(recipe.getResultItem(getRegistryManager())));
 	}
 	
 	@Override

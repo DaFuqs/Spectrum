@@ -11,8 +11,8 @@ import java.util.*;
 
 public abstract class GatedStackSpectrumRecipe<C extends RecipeInput> extends GatedSpectrumRecipe<C> {
 	
-	protected GatedStackSpectrumRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier) {
-		super(group, secret, requiredAdvancementIdentifier);
+	protected GatedStackSpectrumRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 	}
 	
 	public abstract List<IngredientStack> getIngredientStacks();

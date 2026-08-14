@@ -3,7 +3,7 @@
   "group": "restoration_tea",
   "base_ingredient": "minecraft:glass_bottle",
   "use_up_base_ingredient": true,
-  "secret": true,
+  "reveal_secret_advancement": "spectrum:midgame/drink_tea_with_milk",
   "color": 5807774,
   "ingredient1": "spectrum:jade_vine_petals",
   "ingredient2": "minecraft:cocoa_beans",

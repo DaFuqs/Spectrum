@@ -17,7 +17,7 @@ import java.util.*;
 public class StarCandyRecipe extends ShapelessPedestalRecipe {
 	
 	public StarCandyRecipe() {
-		super("", false, Optional.of(StarCandyItem.UNLOCK_IDENTIFIER), PedestalRecipeTier.BASIC,
+		super("", Optional.of(StarCandyItem.UNLOCK_IDENTIFIER), Optional.empty(), List.of(), PedestalRecipeTier.BASIC,
 				List.of(IngredientStack.ofItems(Items.SUGAR), IngredientStack.ofItems(SpectrumItems.STARDUST.get()), IngredientStack.ofItems(SpectrumItems.AMARANTH_GRAINS.get()), IngredientStack.ofItems(SpectrumItems.AMARANTH_GRAINS.get())),
 				Map.of(BuiltinGemstoneColor.YELLOW, 1), SpectrumItems.MELLOW_STAR_CANDY.get().getDefaultInstance(), 1.0F, 40, false, false);
 	}

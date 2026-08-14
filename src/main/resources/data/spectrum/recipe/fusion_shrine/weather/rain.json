@@ -12,9 +12,11 @@
   "world_conditions": {
     "weather": "clear_sky"
   },
-  "start_crafting_effect": "single_visual_explosion_on_shrine",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "weather_rain",
+  "effects": {
+    "start": "single_visual_explosion_on_shrine",
+    "during": [],
+    "finish": "weather_rain"
+  },
   "description": {
     "type": "translatable",
     "translate": "spectrum.recipe.fusion_shrine.explanation.weather_rain"

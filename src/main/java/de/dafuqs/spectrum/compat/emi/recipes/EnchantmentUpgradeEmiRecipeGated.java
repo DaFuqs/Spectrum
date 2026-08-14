@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.compat.emi.widgets.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.recipe.*;
@@ -59,6 +60,7 @@ public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<Enc
 			inputs.add(EmiStack.of(SpectrumEnchantmentHelper.getEnchantedBookStackWith(enchant, i)));
 			outputs.add(EmiStack.of(SpectrumEnchantmentHelper.getEnchantedBookStackWith(enchant, i+1)));
 		}
+		outputs.addAll(recipe.getAdditionalResults().stream().map(EmiStack::of).toList());
 	}
 	
 	@Override

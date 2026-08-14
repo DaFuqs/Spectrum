@@ -21,9 +21,9 @@ import net.neoforged.neoforge.registries.*;
 import java.util.*;
 
 @SuppressWarnings("unused")
-public class SpectrumFusionShrineWorldEffects {
+public class SpectrumWorldEffects {
 	
-	public static FusionShrineRecipeWorldEffect WEATHER_CLEAR = FusionShrineRecipeWorldEffect.register("weather_clear", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+	public static WorldEffect WEATHER_CLEAR = WorldEffect.register("weather_clear", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
@@ -33,7 +33,7 @@ public class SpectrumFusionShrineWorldEffects {
 			serverWorldProperties.setThundering(false);
 		}
 	});
-	public static FusionShrineRecipeWorldEffect WEATHER_RAIN = FusionShrineRecipeWorldEffect.register("weather_rain", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+	public static WorldEffect WEATHER_RAIN = WorldEffect.register("weather_rain", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
@@ -45,7 +45,7 @@ public class SpectrumFusionShrineWorldEffects {
 			world.playSound(null, pos.above(), SoundEvents.WEATHER_RAIN, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
 	});
-	public static FusionShrineRecipeWorldEffect WEATHER_THUNDER = FusionShrineRecipeWorldEffect.register("weather_thunder", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+	public static WorldEffect WEATHER_THUNDER = WorldEffect.register("weather_thunder", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
@@ -56,7 +56,7 @@ public class SpectrumFusionShrineWorldEffects {
 			world.playSound(null, pos.above(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
 	});
-	public static FusionShrineRecipeWorldEffect WEATHER_RAIN_SHORT = FusionShrineRecipeWorldEffect.register("weather_rain_short", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+	public static WorldEffect WEATHER_RAIN_SHORT = WorldEffect.register("weather_rain_short", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
@@ -68,7 +68,7 @@ public class SpectrumFusionShrineWorldEffects {
 			world.playSound(null, pos.above(), SoundEvents.WEATHER_RAIN, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
 	});
-	public static FusionShrineRecipeWorldEffect WEATHER_THUNDER_SHORT = FusionShrineRecipeWorldEffect.register("weather_thunder_short", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+	public static WorldEffect WEATHER_THUNDER_SHORT = WorldEffect.register("weather_thunder_short", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
@@ -79,7 +79,7 @@ public class SpectrumFusionShrineWorldEffects {
 			world.playSound(null, pos.above(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
 	});
-	public static FusionShrineRecipeWorldEffect LIGHTNING_ON_SHRINE = FusionShrineRecipeWorldEffect.register("lightning_on_shrine", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+	public static WorldEffect LIGHTNING_ON_SHRINE = WorldEffect.register("lightning_on_shrine", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			LightningBolt lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
@@ -90,7 +90,7 @@ public class SpectrumFusionShrineWorldEffects {
 			}
 		}
 	});
-	public static FusionShrineRecipeWorldEffect LIGHTNING_AROUND_SHRINE = FusionShrineRecipeWorldEffect.register("lightning_around_shrine", new FusionShrineRecipeWorldEffect.EveryTickRecipeWorldEffect() {
+	public static WorldEffect LIGHTNING_AROUND_SHRINE = WorldEffect.register("lightning_around_shrine", new WorldEffect.EveryTickRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			if (world.getRandom().nextFloat() < 0.05F) {
@@ -107,7 +107,7 @@ public class SpectrumFusionShrineWorldEffects {
 			}
 		}
 	});
-	public static FusionShrineRecipeWorldEffect VISUAL_EXPLOSIONS_ON_SHRINE = FusionShrineRecipeWorldEffect.register("visual_explosions_on_shrine", new FusionShrineRecipeWorldEffect.EveryTickRecipeWorldEffect() {
+	public static WorldEffect VISUAL_EXPLOSIONS_ON_SHRINE = WorldEffect.register("visual_explosions_on_shrine", new WorldEffect.EveryTickRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			if (world.getRandom().nextFloat() < 0.1) {
@@ -116,14 +116,14 @@ public class SpectrumFusionShrineWorldEffects {
 			}
 		}
 	});
-	public static FusionShrineRecipeWorldEffect SINGLE_VISUAL_EXPLOSION_ON_SHRINE = FusionShrineRecipeWorldEffect.register("single_visual_explosion_on_shrine", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+	public static WorldEffect SINGLE_VISUAL_EXPLOSION_ON_SHRINE = WorldEffect.register("single_visual_explosion_on_shrine", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			world.playSound(null, pos.above(), SoundEvents.GENERIC_EXPLODE.value(), SoundSource.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 			PlayParticleWithExactVelocityPayload.playParticles(world, pos, ParticleTypes.EXPLOSION, 1);
 		}
 	});
-	public static FusionShrineRecipeWorldEffect MAYBE_PLACE_MIDNIGHT_SOLUTION = FusionShrineRecipeWorldEffect.register("maybe_place_midnight_solution", new FusionShrineRecipeWorldEffect.EveryTickRecipeWorldEffect() {
+	public static WorldEffect MAYBE_PLACE_MIDNIGHT_SOLUTION = WorldEffect.register("maybe_place_midnight_solution", new WorldEffect.EveryTickRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			if (world.getRandom().nextFloat() < 0.05F) {
@@ -139,7 +139,7 @@ public class SpectrumFusionShrineWorldEffects {
 			}
 		}
 	});
-	public static FusionShrineRecipeWorldEffect PLACE_MIDNIGHT_SOLUTION = FusionShrineRecipeWorldEffect.register("place_midnight_solution", new FusionShrineRecipeWorldEffect.EveryTickRecipeWorldEffect() {
+	public static WorldEffect PLACE_MIDNIGHT_SOLUTION = WorldEffect.register("place_midnight_solution", new WorldEffect.EveryTickRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			Optional<BlockPos> targetPos = Support.getNexReplaceableBlockPosUpDown(world, pos.offset(5 - world.getRandom().nextInt(10), 1, 5 - world.getRandom().nextInt(10)), 5);
@@ -153,7 +153,7 @@ public class SpectrumFusionShrineWorldEffects {
 			}
 		}
 	});
-	public static FusionShrineRecipeWorldEffect EXPLOSIONS_AROUND_SHRINE = FusionShrineRecipeWorldEffect.register("explosions_around_shrine", new FusionShrineRecipeWorldEffect.EveryTickRecipeWorldEffect() {
+	public static WorldEffect EXPLOSIONS_AROUND_SHRINE = WorldEffect.register("explosions_around_shrine", new WorldEffect.EveryTickRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			if (world.getRandom().nextFloat() < 0.1) {
@@ -164,7 +164,7 @@ public class SpectrumFusionShrineWorldEffects {
 			}
 		}
 	});
-	public static FusionShrineRecipeWorldEffect EXPLOSIONS_AND_LIGHTNING_AROUND_SHRINE = FusionShrineRecipeWorldEffect.register("explosions_and_lightning_around_shrine", new FusionShrineRecipeWorldEffect.EveryTickRecipeWorldEffect() {
+	public static WorldEffect EXPLOSIONS_AND_LIGHTNING_AROUND_SHRINE = WorldEffect.register("explosions_and_lightning_around_shrine", new WorldEffect.EveryTickRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			if (world.getRandom().nextFloat() < 0.1) {
@@ -187,28 +187,28 @@ public class SpectrumFusionShrineWorldEffects {
 			}
 		}
 	});
-	public static FusionShrineRecipeWorldEffect PLAY_GLASS_BREAKING_SOUND = FusionShrineRecipeWorldEffect.register("play_glass_breaking_sound", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+	public static WorldEffect PLAY_GLASS_BREAKING_SOUND = WorldEffect.register("play_glass_breaking_sound", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			world.playSound(null, pos.above(), SoundEvents.GLASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
 		}
 	});
 	
-	public static FusionShrineRecipeWorldEffect LEGENDARY_TOOL_CRAFT = FusionShrineRecipeWorldEffect.register("legendary_tool_craft", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+	public static WorldEffect LEGENDARY_TOOL_CRAFT = WorldEffect.register("legendary_tool_craft", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			world.playSound(null, pos.above(), SpectrumSoundEvents.LEGENDARY_WEAPON_CRAFT, SoundSource.BLOCKS, 1.5F, 1F);
 		}
 	});
 	
-	public static FusionShrineRecipeWorldEffect RIDICULOUSLY_SQUEAKY_FART = FusionShrineRecipeWorldEffect.register("ridiculously_squeaky_fart", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+	public static WorldEffect RIDICULOUSLY_SQUEAKY_FART = WorldEffect.register("ridiculously_squeaky_fart", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
 			world.playSound(null, pos.above(), SpectrumSoundEvents.SQUEAKER, SoundSource.BLOCKS, 1.4F, 1.2F + world.getRandom().nextFloat() * 0.4F);
 		}
 	});
 	
-	public static final DeferredRegister<FusionShrineRecipeWorldEffect> REGISTRAR = DeferredRegister.create(SpectrumRegistryKeys.WORLD_EFFECT, SpectrumCommon.MOD_ID);
+	public static final DeferredRegister<WorldEffect> REGISTRAR = DeferredRegister.create(SpectrumRegistryKeys.WORLD_EFFECT, SpectrumCommon.MOD_ID);
 	
 	public static void register(IEventBus bus) {
 		REGISTRAR.register(bus);

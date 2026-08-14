@@ -13,17 +13,20 @@ import java.util.*;
 // Our Fallback: EMI hardcodes CustomRecipe to not register its default recipe display.
 public abstract class GatedCraftingRecipe extends CustomRecipe implements GatedRecipe<CraftingInput> {
 	
+	public final String group;
+	public final Optional<ResourceLocation> requiredAdvancement;
+	public final Optional<ResourceLocation> revealSecretAdvancement;
+	protected final List<ItemStack> additionalResults; // these aren't actual results, but recipe managers will treat it as such, showing this recipe as a way to get them. Use for drops of the growth blocks, for example
+	
 	protected final ItemStack result;
-	protected final String group;
-	protected final boolean secret;
-	protected final Optional<ResourceLocation> requiredAdvancementIdentifier;
 
-	public GatedCraftingRecipe(String group, CraftingBookCategory category, ItemStack result, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier) {
+	public GatedCraftingRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults, CraftingBookCategory category, ItemStack result) {
 		super(category);
-		this.result = result;
 		this.group = group;
-		this.secret = secret;
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
+		this.requiredAdvancement = requiredAdvancement;
+		this.revealSecretAdvancement = revealSecretAdvancement;
+		this.additionalResults = additionalResults;
+		this.result = result;
 	}
 	
 	@Override
@@ -32,13 +35,13 @@ public abstract class GatedCraftingRecipe extends CustomRecipe implements GatedR
 	}
 
 	@Override
-	public boolean isSecret() {
-		return this.secret;
+	public Optional<ResourceLocation> getRevealSecretAdvancement() {
+		return this.revealSecretAdvancement;
 	}
 
 	@Override
-	public Optional<ResourceLocation> getRequiredAdvancementIdentifier() {
-		return this.requiredAdvancementIdentifier;
+	public Optional<ResourceLocation> getRequiredAdvancement() {
+		return this.requiredAdvancement;
 	}
 
 	@Override
@@ -58,6 +61,10 @@ public abstract class GatedCraftingRecipe extends CustomRecipe implements GatedR
 	
 	protected ItemStack getResult() {
 		return this.result;
+	}
+	
+	public List<ItemStack> getAdditionalResults() {
+		return additionalResults;
 	}
 	
 	@Override

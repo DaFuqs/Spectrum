@@ -44,32 +44,20 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 	protected final boolean playCraftingFinishedEffects;
 	
 	protected final List<WorldConditionsPredicate> worldConditionsPredicates;
-	protected final FusionShrineRecipeWorldEffect startWorldEffect;
-	protected final List<FusionShrineRecipeWorldEffect> duringWorldEffects;
-	protected final FusionShrineRecipeWorldEffect finishWorldEffect;
-	protected @Nullable final Component description;
+	protected final WorldEffect.CraftingWorldEffects effects;
+	protected final Component description;
 	// copy all components from the first stack in the ingredients to the output stack
 	protected final boolean copyComponents;
 	
 	public FusionShrineRecipe(
-			String group,
-			boolean secret,
-			Optional<ResourceLocation> requiredAdvancementIdentifier,
-			List<IngredientStack> craftingInputs,
-			FluidIngredient fluid,
-			ItemStack output,
-			float experience,
-			int craftingTime,
-			boolean noBenefitsFromYieldAndEfficiencyUpgrades,
-			boolean playCraftingFinishedEffects,
-			boolean copyComponents,
+			String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
+			List<IngredientStack> craftingInputs, FluidIngredient fluid, ItemStack output,
+			float experience, int craftingTime,
+			boolean noBenefitsFromYieldAndEfficiencyUpgrades, boolean playCraftingFinishedEffects, boolean copyComponents,
 			List<WorldConditionsPredicate> worldConditionsPredicates,
-			FusionShrineRecipeWorldEffect startWorldEffect,
-			List<FusionShrineRecipeWorldEffect> duringWorldEffects,
-			FusionShrineRecipeWorldEffect finishWorldEffect,
-			@Nullable Component description
+			WorldEffect.CraftingWorldEffects effects, @Nullable Component description
 	) {
-		super(group, secret, requiredAdvancementIdentifier);
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		
 		this.craftingInputs = craftingInputs;
 		this.fluid = fluid;
@@ -80,9 +68,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 		this.playCraftingFinishedEffects = playCraftingFinishedEffects;
 		
 		this.worldConditionsPredicates = worldConditionsPredicates;
-		this.startWorldEffect = startWorldEffect;
-		this.duringWorldEffects = duringWorldEffects;
-		this.finishWorldEffect = finishWorldEffect;
+		this.effects = effects;
 		this.description = description;
 		this.copyComponents = copyComponents;
 		
@@ -168,24 +154,24 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 	 * @param tick The crafting tick if the fusion shrine recipe
 	 * @return The effect that should be played for the given recipe tick
 	 */
-	public @Nullable FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick, int totalTicks) {
+	public @Nullable WorldEffect getWorldEffectForTick(int tick, int totalTicks) {
 		if (tick == 1) {
-			return this.startWorldEffect;
+			return this.effects.start();
 		}
 		if (tick == totalTicks) {
-			return this.finishWorldEffect;
+			return this.effects.finish();
 		}
-		if (this.duringWorldEffects.isEmpty()) {
+		if (this.effects.during().isEmpty()) {
 			return null;
 		}
-		if (this.duringWorldEffects.size() == 1) {
-			return this.duringWorldEffects.getFirst();
+		if (this.effects.during().size() == 1) {
+			return this.effects.during().getFirst();
 		}
 		
 		// we really have to calculate the current effect, huh?
-		float parts = (float) totalTicks / this.duringWorldEffects.size();
+		float parts = (float) totalTicks / this.effects.during().size();
 		int index = (int) (tick / (parts));
-		FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
+		WorldEffect effect = this.effects.during().get(index);
 		if (effect.isOneTimeEffect() && index != (int) parts) {
 			return null;
 		}
@@ -316,8 +302,9 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 		
 		public static final MapCodec<FusionShrineRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				IngredientStack.CODEC.listOf(0, 7).fieldOf("ingredients").forGetter(recipe -> recipe.craftingInputs),
 				FluidIngredient.CODEC.optionalFieldOf("fluid", FluidIngredient.empty()).forGetter(recipe -> recipe.fluid),
 				ItemStack.CODEC.optionalFieldOf("result", ItemStack.EMPTY).forGetter(recipe -> recipe.output),
@@ -327,16 +314,15 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 				Codec.BOOL.optionalFieldOf("play_crafting_finished_effects", true).forGetter(recipe -> recipe.playCraftingFinishedEffects),
 				Codec.BOOL.optionalFieldOf("copy_components", false).forGetter(recipe -> recipe.copyComponents),
 				CodecHelper.singleOrList(WorldConditionsPredicate.CODEC).optionalFieldOf("world_conditions", List.of()).forGetter(recipe -> recipe.worldConditionsPredicates),
-				FusionShrineRecipeWorldEffect.CODEC.fieldOf("start_crafting_effect").forGetter(recipe -> recipe.startWorldEffect),
-				FusionShrineRecipeWorldEffect.CODEC.listOf().optionalFieldOf("during_crafting_effects", List.of()).forGetter(recipe -> recipe.duringWorldEffects),
-				FusionShrineRecipeWorldEffect.CODEC.fieldOf("finish_crafting_effect").forGetter(recipe -> recipe.finishWorldEffect),
+				WorldEffect.CraftingWorldEffects.CODEC.optionalFieldOf("effects", WorldEffect.CraftingWorldEffects.FUSION_SHRINE_DEFAULT).forGetter(recipe -> recipe.effects),
 				ComponentSerialization.CODEC.optionalFieldOf("description", Component.empty()).forGetter(recipe -> recipe.description)
 		).apply(i, FusionShrineRecipe::new));
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, FusionShrineRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
 				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
-				ByteBufCodecs.BOOL, recipe -> recipe.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				IngredientStack.STREAM_CODEC.apply(ByteBufCodecs.list(7)), recipe -> recipe.craftingInputs,
 				FluidIngredient.STREAM_CODEC, recipe -> recipe.fluid,
 				ItemStack.OPTIONAL_STREAM_CODEC, recipe -> recipe.output,
@@ -346,9 +332,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe<FluidRecipeInpu
 				ByteBufCodecs.BOOL, recipe -> recipe.playCraftingFinishedEffects,
 				ByteBufCodecs.BOOL, recipe -> recipe.copyComponents,
 				WorldConditionsPredicate.PACKET_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.worldConditionsPredicates,
-				FusionShrineRecipeWorldEffect.PACKET_CODEC, recipe -> recipe.startWorldEffect,
-				FusionShrineRecipeWorldEffect.PACKET_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.duringWorldEffects,
-				FusionShrineRecipeWorldEffect.PACKET_CODEC, recipe -> recipe.finishWorldEffect,
+				WorldEffect.CraftingWorldEffects.STREAM_CODEC, recipe -> recipe.effects,
 				ComponentSerialization.TRUSTED_CONTEXT_FREE_STREAM_CODEC, recipe -> recipe.description,
 				FusionShrineRecipe::new
 		);

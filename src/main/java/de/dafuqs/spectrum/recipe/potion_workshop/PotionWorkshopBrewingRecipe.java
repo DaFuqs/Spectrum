@@ -5,7 +5,6 @@ import com.google.common.collect.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.ink.*;
-import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.components.*;
@@ -86,12 +85,13 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	public PotionWorkshopBrewingRecipe(
-			String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, int craftingTime,
+			String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
+			int craftingTime,
 			IngredientStack ingredient1, IngredientStack ingredient2, IngredientStack ingredient3,
 			PotionRecipeEffect recipeData
 	) {
 		
-		super(group, secret, requiredAdvancementIdentifier, craftingTime, recipeData.statusEffect().value().getColor(), ingredient1, ingredient2, ingredient3);
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults, craftingTime, recipeData.statusEffect().value().getColor(), ingredient1, ingredient2, ingredient3);
 		this.recipeData = recipeData;
 		
 		registerInToastManager(getType(), this);
@@ -414,9 +414,10 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	public static class Serializer implements RecipeSerializer<PotionWorkshopBrewingRecipe> {
 		
 		public static final MapCodec<PotionWorkshopBrewingRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-				Codec.STRING.optionalFieldOf("group", "").forGetter(c -> c.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(c -> c.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(c -> c.requiredAdvancementIdentifier),
+				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				Codec.INT.optionalFieldOf("time", 200).forGetter(c -> c.craftingTime),
 				IngredientStack.CODEC.fieldOf("ingredient1").forGetter(c -> c.ingredient1),
 				IngredientStack.CODEC.optionalFieldOf("ingredient2", IngredientStack.EMPTY).forGetter(c -> c.ingredient2),
@@ -425,9 +426,10 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		).apply(i, PotionWorkshopBrewingRecipe::new));
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, PotionWorkshopBrewingRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
-				ByteBufCodecs.STRING_UTF8, c -> c.group,
-				ByteBufCodecs.BOOL, c -> c.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
+				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				ByteBufCodecs.VAR_INT, c -> c.craftingTime,
 				IngredientStack.STREAM_CODEC, c -> c.ingredient1,
 				IngredientStack.STREAM_CODEC, c -> c.ingredient2,

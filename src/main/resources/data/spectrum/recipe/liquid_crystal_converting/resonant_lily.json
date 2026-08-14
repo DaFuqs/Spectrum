@@ -1,7 +1,7 @@
 {
   "type": "spectrum:liquid_crystal_converting",
   "required_advancement": "spectrum:midgame/collect_resonant_lily",
-  "secret": true,
+  "reveal_secret_advancement": "",
   "ingredient": [
     {
       "tag": "minecraft:flowers"

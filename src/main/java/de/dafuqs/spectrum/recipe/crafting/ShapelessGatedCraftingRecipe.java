@@ -24,8 +24,9 @@ public class ShapelessGatedCraftingRecipe extends GatedCraftingRecipe {
 	protected final NonNullList<Ingredient> ingredients;
 	protected final boolean isSimple;
 
-	public ShapelessGatedCraftingRecipe(String group, CraftingBookCategory category, ItemStack result, NonNullList<Ingredient> ingredients, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier) {
-		super(group, category, result, secret, requiredAdvancementIdentifier);
+	public ShapelessGatedCraftingRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
+	                                    CraftingBookCategory category, ItemStack result, NonNullList<Ingredient> ingredients) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults, category, result);
 		this.ingredients = ingredients;
 		this.isSimple = ingredients.stream().allMatch(Ingredient::isSimple);
 	}
@@ -63,8 +64,11 @@ public class ShapelessGatedCraftingRecipe extends GatedCraftingRecipe {
 	
 	public static class Serializer implements RecipeSerializer<ShapelessGatedCraftingRecipe> {
 		public static final MapCodec<ShapelessGatedCraftingRecipe> CODEC = RecordCodecBuilder.mapCodec(
-				recipe -> recipe.group(
-								Codec.STRING.optionalFieldOf("group", "").forGetter(r -> r.group),
+				instance -> instance.group(
+								Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
+								ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+								ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+								ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 								CraftingBookCategory.CODEC.optionalFieldOf("category", CraftingBookCategory.MISC).forGetter(CustomRecipe::category),
 								ItemStack.STRICT_CODEC.fieldOf("result").forGetter(r -> r.result),
 								Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients").flatXmap(
@@ -80,20 +84,19 @@ public class ShapelessGatedCraftingRecipe extends GatedCraftingRecipe {
 												},
 												DataResult::success
 										)
-										.forGetter(p_300975_ -> p_300975_.ingredients),
-								Codec.BOOL.optionalFieldOf("secret", false).forGetter(r -> r.secret),
-								ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(r -> r.requiredAdvancementIdentifier)
+										.forGetter(p_300975_ -> p_300975_.ingredients)
 						)
-						.apply(recipe, ShapelessGatedCraftingRecipe::new)
+						.apply(instance, ShapelessGatedCraftingRecipe::new)
 		);
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, ShapelessGatedCraftingRecipe> STREAM_CODEC = PacketCodecHelper.tuple(
-				ByteBufCodecs.STRING_UTF8, ShapelessGatedCraftingRecipe::getGroup,
+				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				CraftingBookCategory.STREAM_CODEC, ShapelessGatedCraftingRecipe::category,
 				ItemStack.STREAM_CODEC, ShapelessGatedCraftingRecipe::getResult,
 				Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.collection(NonNullList::createWithCapacity)), ShapelessGatedCraftingRecipe::getIngredients,
-				ByteBufCodecs.BOOL, ShapelessGatedCraftingRecipe::isSecret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), r -> r.requiredAdvancementIdentifier,
 				ShapelessGatedCraftingRecipe::new
 		);
 		

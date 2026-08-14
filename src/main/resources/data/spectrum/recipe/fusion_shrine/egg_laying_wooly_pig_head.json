@@ -19,13 +19,15 @@
     "id": "spectrum:egg_laying_wooly_pig_head"
   },
   "required_advancement": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head",
-  "start_crafting_effect": "single_visual_explosion_on_shrine",
-  "during_crafting_effects": [
-    "nothing",
-    "visual_explosions_on_shrine",
-    "nothing"
-  ],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine",
+  "effects": {
+    "start": "single_visual_explosion_on_shrine",
+    "during": [
+      "nothing",
+      "visual_explosions_on_shrine",
+      "nothing"
+    ],
+    "finish": "single_visual_explosion_on_shrine"
+  },
   "description": {
     "type": "translatable",
     "translate": "spectrum.recipe.fusion_shrine.explanation.egg_laying_wooly_pig_head"

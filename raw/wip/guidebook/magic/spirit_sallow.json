@@ -1,7 +1,7 @@
 {
   "name": "Spirit Sallow",
   "advancement": "spectrum:unlocks/blocks/ominous_sapling",
-  "secret": true,
+  "reveal_secret_advancement": "spectrum:TODO",
   "icon": "spectrum:ominous_sapling",
   "category": "spectrum:ink",
   "priority": true,

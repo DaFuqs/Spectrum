@@ -19,8 +19,8 @@ public abstract class FluidConvertingRecipe extends GatedSpectrumRecipe<RecipeIn
 	protected final Ingredient input;
 	protected final ItemStack output;
 	
-	public FluidConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Ingredient input, ItemStack output) {
-		super(group, secret, requiredAdvancementIdentifier);
+	public FluidConvertingRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults, Ingredient input, ItemStack output) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		this.input = input;
 		this.output = output;
 	}
@@ -57,19 +57,21 @@ public abstract class FluidConvertingRecipe extends GatedSpectrumRecipe<RecipeIn
 		private final MapCodec<T> codec;
 		private final StreamCodec<RegistryFriendlyByteBuf, T> packetCodec;
 		
-		public Serializer(Function5<String, Boolean, Optional<ResourceLocation>, Ingredient, ItemStack, T> factory) {
+		public Serializer(Function6<String, Optional<ResourceLocation>, Optional<ResourceLocation>, List<ItemStack>, Ingredient, ItemStack, T> factory) {
 			codec = RecordCodecBuilder.mapCodec(i -> i.group(
 					Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-					Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-					ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+					ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+					ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+					ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 					Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(recipe -> recipe.input),
 					ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.output)
 			).apply(i, factory));
 			
 			packetCodec = StreamCodec.composite(
 					ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
-					ByteBufCodecs.BOOL, recipe -> recipe.secret,
-					ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
+					ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+					ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+					ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 					Ingredient.CONTENTS_STREAM_CODEC, recipe -> recipe.input,
 					ItemStack.STREAM_CODEC, recipe -> recipe.output,
 					factory

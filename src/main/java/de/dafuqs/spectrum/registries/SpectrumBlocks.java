@@ -207,6 +207,7 @@ public class SpectrumBlocks {
 	
 	public static final DeferredBlock<Block> VEGETAL_BLOCK = register(singleton(blockWithItem("vegetal_block", () -> new FlammableBlock(settings(MapColor.GRASS, SoundType.FUNGUS, 2.0F).noOcclusion())), TexturedModel.createDefault(TextureMapping::defaultTexture, SpectrumModelTemplates.TRANSLUCENT_OUTER1)));
 	public static final DeferredBlock<Block> NEOLITH_BLOCK = register(simple(blockWithItem("neolith_block", () -> new Block(settings(MapColor.COLOR_PURPLE, SoundType.COPPER, 6.0F).requiresCorrectToolForDrops().instrument(NoteBlockInstrument.BASEDRUM).lightLevel(state -> 13).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always)))));
+	// TODO: rename to shattered_bedrock_block
 	public static final DeferredBlock<Block> BEDROCK_DUST_BLOCK = register(simple(blockWithItem("bedrock_dust_block", () -> new BlockWithTooltip(settings(MapColor.STONE, SoundType.STONE, 100.0F, 3600.0F).pushReaction(PushReaction.BLOCK).requiresCorrectToolForDrops().instrument(NoteBlockInstrument.BASEDRUM), Component.translatable("spectrum.tooltip.dragon_and_wither_immune")), () -> IS.of(Rarity.UNCOMMON))));
 	
 	public static final DeferredBlock<SpectrumClusterBlock> BISMUTH_CLUSTER = register(cluster(blockWithItem("bismuth_cluster", () -> new SpectrumClusterBlock(gemstone(MapColor.WARPED_STEM, SoundType.CHAIN, 8), SpectrumClusterBlock.GrowthStage.CLUSTER), () -> IS.of(Rarity.UNCOMMON)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));

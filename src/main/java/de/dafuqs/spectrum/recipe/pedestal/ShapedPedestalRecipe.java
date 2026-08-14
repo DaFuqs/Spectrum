@@ -25,19 +25,11 @@ public class ShapedPedestalRecipe extends PedestalRecipe {
 	protected final RawShapedPedestalRecipe rawShapedRecipe;
 	
 	public ShapedPedestalRecipe(
-			String group,
-			boolean secret,
-			Optional<ResourceLocation> requiredAdvancementIdentifier,
-			PedestalRecipeTier tier,
-			RawShapedPedestalRecipe rawShapedRecipe,
-			Map<GemstoneColor, Integer> gemstonePowderInputs,
-			ItemStack output,
-			float experience,
-			int craftingTime,
-			boolean skipRecipeRemainders,
-			boolean noBenefitsFromYieldUpgrades
+			String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
+			PedestalRecipeTier tier, RawShapedPedestalRecipe rawShapedRecipe, Map<GemstoneColor, Integer> gemstonePowderInputs, ItemStack output,
+			float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades
 	) {
-		super(group, secret, requiredAdvancementIdentifier, tier, rawShapedRecipe.getIngredients(), gemstonePowderInputs, output, experience, craftingTime, skipRecipeRemainders, noBenefitsFromYieldUpgrades);
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults, tier, rawShapedRecipe.getIngredients(), gemstonePowderInputs, output, experience, craftingTime, skipRecipeRemainders, noBenefitsFromYieldUpgrades);
 		
 		this.rawShapedRecipe = rawShapedRecipe;
 		this.width = rawShapedRecipe.getWidth();
@@ -98,8 +90,9 @@ public class ShapedPedestalRecipe extends PedestalRecipe {
 		
 		public static final MapCodec<ShapedPedestalRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				PedestalRecipeTier.CODEC.optionalFieldOf("tier", PedestalRecipeTier.BASIC).forGetter(recipe -> recipe.tier),
 				RawShapedPedestalRecipe.CODEC.forGetter(recipe -> recipe.rawShapedRecipe),
 				CodecHelper.registryMap(SpectrumRegistries.GEMSTONE_COLOR, Codec.INT).fieldOf("colors").forGetter(recipe -> recipe.powderInputs),
@@ -112,8 +105,9 @@ public class ShapedPedestalRecipe extends PedestalRecipe {
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, ShapedPedestalRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
 				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
-				ByteBufCodecs.BOOL, recipe -> recipe.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				PedestalRecipeTier.PACKET_CODEC, recipe -> recipe.tier,
 				RawShapedPedestalRecipe.PACKET_CODEC, recipe -> recipe.rawShapedRecipe,
 				ByteBufCodecs.map(HashMap::new, ByteBufCodecs.registry(SpectrumRegistries.GEMSTONE_COLOR.key()), ByteBufCodecs.VAR_INT), recipe -> recipe.powderInputs,

@@ -38,11 +38,11 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 	protected final int inkCost;
 	protected final boolean growsWithoutAdditive;
 	protected final List<CrystallarieumAdditive> additives;
-	protected final FluidIngredient medium;
-	protected final List<ItemStack> additionalResults; // these aren't actual results, but recipe managers will treat it as such, showing this recipe as a way to get them. Use for drops of the growth blocks, for example
+	protected final FluidIngredient fluid;
 	
-	public CrystallarieumRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Ingredient ingredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkCostTier, boolean growsWithoutAdditive, List<CrystallarieumAdditive> additives, FluidIngredient medium, List<ItemStack> additionalResults) {
-		super(group, secret, requiredAdvancementIdentifier);
+	public CrystallarieumRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
+								Ingredient ingredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkCostTier, boolean growsWithoutAdditive, List<CrystallarieumAdditive> additives, FluidIngredient fluid) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		
 		this.ingredient = ingredient;
 		this.growthStages = growthStages;
@@ -52,8 +52,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 		this.inkCost = inkCostTier * inkCostTier;
 		this.growsWithoutAdditive = growsWithoutAdditive;
 		this.additives = additives;
-		this.medium = medium;
-		this.additionalResults = additionalResults;
+		this.fluid = fluid;
 		
 		registerInToastManager(getType(), this);
 	}
@@ -172,8 +171,8 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 		return defaultedList;
 	}
 	
-	public FluidIngredient getFluidIngredient() {
-		return medium;
+	public FluidIngredient getFluid() {
+		return fluid;
 	}
 	
 	public Ingredient getIngredientStack() {
@@ -217,10 +216,6 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 		return this.additives;
 	}
 	
-	public List<ItemStack> getAdditionalResults() {
-		return additionalResults;
-	}
-	
 	public Optional<BlockState> getNextState(RecipeHolder<CrystallarieumRecipe> recipe, BlockState currentState) {
 		for (Iterator<BlockState> it = recipe.value().getGrowthStages().iterator(); it.hasNext(); ) {
 			BlockState state = it.next();
@@ -237,8 +232,9 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 		
 		private static final MapCodec<CrystallarieumRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
 				BlockState.CODEC.listOf().fieldOf("growth_stage_states").forGetter(recipe -> recipe.growthStages),
 				Codec.INT.fieldOf("seconds_per_growth_stage").forGetter(recipe -> recipe.secondsPerGrowthStage),
@@ -246,14 +242,14 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 				Codec.INT.fieldOf("ink_cost_tier").forGetter(recipe -> recipe.inkCostTier),
 				Codec.BOOL.optionalFieldOf("grows_without_additive", false).forGetter(recipe -> recipe.growsWithoutAdditive),
 				CrystallarieumAdditive.CODEC.listOf().fieldOf("additives").forGetter(recipe -> recipe.additives),
-				FluidIngredient.CODEC.fieldOf("fluid").forGetter(recipe -> recipe.medium),
-				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_manager_results", ImmutableList.of()).forGetter(recipe -> recipe.additionalResults)
+				FluidIngredient.CODEC.fieldOf("fluid").forGetter(recipe -> recipe.fluid)
 		).apply(i, CrystallarieumRecipe::new));
 		
 		private static final StreamCodec<RegistryFriendlyByteBuf, CrystallarieumRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
 				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
-				ByteBufCodecs.BOOL, recipe -> recipe.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				Ingredient.CONTENTS_STREAM_CODEC, recipe -> recipe.ingredient,
 				PacketCodecHelper.BLOCK_STATE.apply(ByteBufCodecs.list()), recipe -> recipe.growthStages,
 				ByteBufCodecs.VAR_INT, recipe -> recipe.secondsPerGrowthStage,
@@ -261,8 +257,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe<SingleRecipeInput>
 				ByteBufCodecs.VAR_INT, recipe -> recipe.inkCostTier,
 				ByteBufCodecs.BOOL, recipe -> recipe.growsWithoutAdditive,
 				CrystallarieumAdditive.PACKET_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additives,
-				FluidIngredient.STREAM_CODEC, recipe -> recipe.medium,
-				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
+				FluidIngredient.STREAM_CODEC, recipe -> recipe.fluid,
 				CrystallarieumRecipe::new
 		);
 		

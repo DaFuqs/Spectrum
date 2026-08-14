@@ -12,7 +12,6 @@ import net.minecraft.resources.*;
 
 import java.util.*;
 
-
 public abstract class PotionWorkshopCategory<T extends PotionWorkshopRecipeDisplay> extends GatedDisplayCategory<T> {
 	
 	public final static ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/potion_workshop_3_slots.png");
@@ -21,7 +20,6 @@ public abstract class PotionWorkshopCategory<T extends PotionWorkshopRecipeDispl
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP);
 	}
-	
 	
 	@Override
 	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, T display) {

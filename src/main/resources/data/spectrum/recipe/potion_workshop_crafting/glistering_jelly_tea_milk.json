@@ -3,7 +3,7 @@
   "group": "glistering_jelly_tea",
   "base_ingredient": "minecraft:glass_bottle",
   "use_up_base_ingredient": true,
-  "secret": true,
+  "reveal_secret_advancement": "spectrum:midgame/drink_tea_with_milk",
   "color": 13803816,
   "ingredient1": "spectrum:jade_jelly",
   "ingredient2": "minecraft:glistering_melon_slice",

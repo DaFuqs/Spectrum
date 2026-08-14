@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.recipe;
 
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.*;
 import it.unimi.dsi.fastutil.objects.*;
@@ -15,13 +17,15 @@ import java.util.*;
 public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements GatedRecipe<C> {
 	
 	public final String group;
-	public final boolean secret;
-	public final Optional<ResourceLocation> requiredAdvancementIdentifier;
+	public final Optional<ResourceLocation> requiredAdvancement;
+	public final Optional<ResourceLocation> revealSecretAdvancement;
+	protected final List<ItemStack> additionalResults; // these aren't actual results, but recipe managers will treat it as such, showing this recipe as a way to get them. Use for drops of the growth blocks, for example
 	
-	protected GatedSpectrumRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier) {
+	protected GatedSpectrumRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults) {
 		this.group = group;
-		this.secret = secret;
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
+		this.revealSecretAdvancement = revealSecretAdvancement;
+		this.requiredAdvancement = requiredAdvancement;
+		this.additionalResults = additionalResults;
 	}
 	
 	@Override
@@ -30,8 +34,8 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 	}
 	
 	@Override
-	public boolean isSecret() {
-		return this.secret;
+	public Optional<ResourceLocation> getRevealSecretAdvancement() {
+		return this.revealSecretAdvancement;
 	}
 	
 	/**
@@ -40,8 +44,8 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 	 * @return The advancement identifier. A null value means the player is always able to craft this recipe
 	 */
 	@Override
-	public Optional<ResourceLocation> getRequiredAdvancementIdentifier() {
-		return this.requiredAdvancementIdentifier;
+	public Optional<ResourceLocation> getRequiredAdvancement() {
+		return this.requiredAdvancement;
 	}
 	
 	@Override
@@ -52,6 +56,10 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 	@Override
 	public boolean isSpecial() {
 		return true;
+	}
+	
+	public List<ItemStack> getAdditionalResults() {
+		return additionalResults;
 	}
 	
 	protected static ItemStack getDefaultStackWithCount(Item item, int count) {

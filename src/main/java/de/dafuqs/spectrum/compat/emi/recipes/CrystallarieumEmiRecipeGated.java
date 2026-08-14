@@ -10,6 +10,7 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
 
@@ -27,19 +28,13 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 				EmiIngredient.of(recipe.getIngredientStack()),
 				EmiStack.of(recipe.getGrowthStages().getFirst().getBlock())
 		);
-		outputs = Stream.concat(
-				Stream.concat(
-								Stream.of(recipe.getResultItem(getRegistryManager())),
-								recipe.getAdditionalResults().stream())
-						.map(EmiStack::of),
-				recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).filter(s -> !s.isEmpty())
-		).toList();
+		outputs.addAll(recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).filter(s -> !s.isEmpty()).toList());
 	}
 	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addSlot(inputs.getFirst(), 0, 0);
-		widgets.addSlot(NeoForgeEmiIngredient.of(recipe.getFluidIngredient()), 0, 18);
+		widgets.addSlot(NeoForgeEmiIngredient.of(recipe.getFluid()), 0, 18);
 		
 		widgets.addSlot(EmiStack.of(CrystallarieumBlock.withColor(SpectrumBlocks.CRYSTALLARIEUM.toStack(), recipe.getInkColor())), 20, 18).drawBack(false);
 		

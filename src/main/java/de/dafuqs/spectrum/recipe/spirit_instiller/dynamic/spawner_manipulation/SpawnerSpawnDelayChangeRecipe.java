@@ -22,7 +22,7 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	protected static final float EXPONENT = 0.98F;
 	
 	public SpawnerSpawnDelayChangeRecipe() {
-		super(IngredientStack.ofItems(SpectrumItems.MIDNIGHT_CHIP.get(), 4));
+		super(IngredientStack.ofItems(SpectrumItems.MIDNIGHT_CHIP.get(), 4), "recipe.spectrum.spawner.lore.decreased_spawn_delay");
 	}
 	
 	@Override
@@ -39,11 +39,6 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.SPIRIT_INSTILLER_SPAWNER_SPAWN_DELAY_CHANGE;
-	}
-	
-	@Override
-	public Component getOutputLoreText() {
-		return Component.translatable("recipe.spectrum.spawner.lore.decreased_spawn_delay");
 	}
 	
 	@Override

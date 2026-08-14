@@ -17,7 +17,7 @@ public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 	protected static final int MAX_MAX_ENTITIES = 40;
 	
 	public SpawnerMaxNearbyEntitiesChangeRecipe() {
-		super(IngredientStack.ofItems(SpectrumItems.MERMAIDS_GEM.get(), 4));
+		super(IngredientStack.ofItems(SpectrumItems.MERMAIDS_GEM.get(), 4), "recipe.spectrum.spawner.lore.increased_max_nearby_entities");
 	}
 	
 	@Override
@@ -35,12 +35,6 @@ public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.SPIRIT_INSTILLER_SPAWNER_MAX_NEARBY_ENTITIES_CHANGE;
 	}
-	
-	@Override
-	public Component getOutputLoreText() {
-		return Component.translatable("recipe.spectrum.spawner.lore.increased_max_nearby_entities");
-	}
-	
 	
 	@Override
 	public CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack, InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput) {

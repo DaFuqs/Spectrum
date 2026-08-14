@@ -17,7 +17,7 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	protected static final int MAX_SPAWN_COUNT = 16;
 	
 	public SpawnerSpawnCountChangeRecipe() {
-		super(IngredientStack.ofItems(SpectrumItems.NEOLITH.get(), 4));
+		super(IngredientStack.ofItems(SpectrumItems.NEOLITH.get(), 4), "recipe.spectrum.spawner.lore.increased_spawn_count");
 	}
 	
 	@Override
@@ -34,11 +34,6 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.SPIRIT_INSTILLER_SPAWNER_SPAWN_COUNT_CHANGE;
-	}
-	
-	@Override
-	public Component getOutputLoreText() {
-		return Component.translatable("recipe.spectrum.spawner.lore.increased_spawn_count");
 	}
 	
 	@Override

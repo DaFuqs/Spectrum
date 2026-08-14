@@ -65,9 +65,6 @@ public class MiscPlayerDataAttachmentType {
 	public void tick() {
 		tickSleep();
 		tickSwordMechanics();
-		
-		if (!player.level().isClientSide()) {
-		}
 	}
 	
 	private boolean isInModifiedMotionState() {
@@ -138,7 +135,6 @@ public class MiscPlayerDataAttachmentType {
 			
 			if (ticksBeforeSleep == 0) {
 				player.startSleeping(player.blockPosition());
-				((PlayerEntityAccessor) player).spectrum$setSleepTimer(0);
 				var world = player.level();
 				if (!world.isClientSide())
 					((ServerLevel) world).updateSleepingPlayerList();

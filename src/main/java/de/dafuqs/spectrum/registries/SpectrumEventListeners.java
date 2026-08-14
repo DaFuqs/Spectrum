@@ -543,6 +543,15 @@ public class SpectrumEventListeners {
 		
 		if (entity.hasEffect(SpectrumMobEffects.SOMNOLENCE) && (problem == Player.BedSleepingProblem.NOT_POSSIBLE_NOW || problem == Player.BedSleepingProblem.NOT_SAFE)) {
 			event.setContinueSleeping(true);
+			return;
+		}
+		
+		if(entity instanceof ServerPlayer serverPlayerEntity) {
+			MiscPlayerDataAttachmentType attachmentType = MiscPlayerDataAttachmentType.get(serverPlayerEntity);
+			if(attachmentType.isSleeping()) {
+				event.setContinueSleeping(true);
+				
+			}
 		}
 	}
 	

@@ -40,7 +40,7 @@ public abstract class GatedSpectrumEmiRecipe<T extends GatedRecipe<?>> extends S
 	public void addWidgets(WidgetHolder widgets) {
 		if (recipe.isSecret() && isUnlocked()) {
 			if (secretHintText == null) {
-				widgets.addText(SECRET, getDisplayWidth() / 2, getDisplayHeight() / 2, 0x3f3f3f, false).horizontalAlign(TextWidget.Alignment.CENTER);
+				widgets.addText(SECRET, getDisplayWidth() / 2, getDisplayHeight() / 2 - 4, 0x3f3f3f, false).horizontalAlign(TextWidget.Alignment.CENTER);
 			} else {
 				widgets.addText(SECRET_HINT, getDisplayWidth() / 2, getDisplayHeight() / 2 - 8, 0x3f3f3f, false).horizontalAlign(TextWidget.Alignment.CENTER);
 				widgets.addText(secretHintText, getDisplayWidth() / 2, getDisplayHeight() / 2 + 2, 0x3f3f3f, false).horizontalAlign(TextWidget.Alignment.CENTER);

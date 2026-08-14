@@ -2510,7 +2510,7 @@
   "recipeGroup.spectrum.bedrock_armor": "基岩盔甲",
   "recipeGroup.spectrum.fusion_shrines": "融合圣坛",
   "recipeGroup.spectrum.item_bowls": "物品底座",
-  "recipeGroup.spectrum.enchanter_exchanging_staff": "替换魔杖",
+  "recipeGroup.spectrum.enchanter_exchanging_staff": "替换法杖",
   "recipeGroup.spectrum.vanilla": "原版附魔",
   "recipeGroup.spectrum.vanilla_enchantment_upgrades": "原版附魔升级",
   "recipeGroup.spectrum.pastel_network": "绘彩网络",
@@ -3150,6 +3150,8 @@
   "spectrum.toast.message.pastel_node_coloring.text": "你现在可以给绘彩节点上色了。",
 
   "config.spectrum.dimension_portals": "生成传送门",
+  "config.spectrum.constructors_staff_ink_cost_per_block": "建造法杖每放置一个方块所需墨水",
+  "config.spectrum.exchanging_staff_ink_cost_per_block": "替换法杖每放置一个方块所需墨水",
   "config.spectrum.add_item_tooltips": "为刷怪笼、告示牌、幽匿尖啸体等添加高级提示信息",
   "config.spectrum.bedrock_anvil_can_exceed_max_vanilla_enchantment_level": "基岩铁砧可突破原版附魔等级上限",
   "config.spectrum.bedrock_armor_helmet_protection": "基岩头盔护甲值",
@@ -3537,7 +3539,6 @@
   "tag.spectrum.midnight_solution_converted": "转换后的午夜溶液",
   "tag.spectrum.resplendent_feathers": "龙翎",
   "tag.spectrum.emissive": "自发光材质物品",
-  "tag.spectrum.pastel_node_upgrades": "绘彩节点升级用品",
   "tag.spectrum.tag_filtering_items": "标签筛选物品",
   "tag.spectrum.unlocks_bag_of_holding": "解锁手持末影袋",
 

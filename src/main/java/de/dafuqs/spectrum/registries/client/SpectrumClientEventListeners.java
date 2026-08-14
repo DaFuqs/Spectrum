@@ -312,32 +312,26 @@ public class SpectrumClientEventListeners {
 		BlockHitResult target = event.getTarget();
 		Camera camera = event.getCamera();
 		
-		boolean shouldCancel = false;
-		
-		outer:
 		for (ItemStack handStack : client.player.getHandSlots()) {
 			switch (handStack.getItem()) {
 				case PaintbrushItem paintbrushItem:
 					InkCapability inkCapability = client.level.getCapability(InkCapabilities.BLOCK, target.getBlockPos());
 					if (inkCapability != null) {
 						HudRenderers.hoveredCapability = inkCapability;
-						break outer;
+						return;
 					}
 					break;
 				case ConstructorsStaffItem constructorsStaffItem:
-					shouldCancel = renderPlacementStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), target);
-					break outer;
+					event.setCanceled(renderPlacementStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), target));
+					return;
 				case ExchangeStaffItem exchangeStaffItem:
-					shouldCancel = renderExchangeStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), handStack, target);
-					break outer;
+					event.setCanceled(renderExchangeStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), handStack, target));
+					return;
 				default:
 					break;
 			}
 		}
-		
-		event.setCanceled(shouldCancel);
 	}
-	
 	
 	private static boolean renderPlacementStaffOutline(Minecraft client, PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, BlockHitResult hitResult) {
 		ClientLevel world = client.level;
@@ -359,7 +353,9 @@ public class SpectrumClientEventListeners {
 					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock, Integer.MAX_VALUE);
 					item = inventoryItemAndCount.getB();
 					itemCountInInventory = inventoryItemAndCount.getC();
-					inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / ConstructorsStaffItem.INK_COST_PER_BLOCK;
+					if(SpectrumConfig.CONFIG.ConstructorsStaffInkCostPerBlock.get() > 0) {
+						inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / SpectrumConfig.CONFIG.ConstructorsStaffInkCostPerBlock.get();
+					}
 				}
 				
 				boolean sneaking = player.isShiftKeyDown();
@@ -371,16 +367,7 @@ public class SpectrumClientEventListeners {
 					long usableCount = Math.min(itemCountInInventory, inkLimit);
 					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getDirection(), usableCount, ConstructorsStaffItem.getRange(player), !sneaking);
 					if (!positions.isEmpty()) {
-						for (BlockPos newPosition : positions) {
-							if (world.getWorldBorder().isWithinBounds(newPosition)) {
-								BlockPos testPos = lookingAtPos.subtract(newPosition);
-								shape = Shapes.or(shape, lookingAtState.getShape(world, lookingAtPos, CollisionContext.of(camera.getEntity())).move(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
-							}
-						}
-						
-						HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), false);
-						VertexConsumer linesBuffer = consumers.getBuffer(RenderType.lines());
-						WorldRendererAccessor.invokeRenderShape(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						renderExtendedBlockOutline(matrices, camera, d, e, f, consumers, positions, world, lookingAtPos, shape, lookingAtState, item);
 						return true;
 					}
 				}
@@ -388,6 +375,19 @@ public class SpectrumClientEventListeners {
 		}
 		
 		return false;
+	}
+	
+	private static void renderExtendedBlockOutline(PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, List<BlockPos> positions, ClientLevel world, BlockPos lookingAtPos, VoxelShape shape, BlockState lookingAtState, Item item) {
+		for (BlockPos newPosition : positions) {
+			if (world.getWorldBorder().isWithinBounds(newPosition)) {
+				BlockPos testPos = lookingAtPos.subtract(newPosition);
+				shape = Shapes.or(shape, lookingAtState.getShape(world, lookingAtPos, CollisionContext.of(camera.getEntity())).move(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
+			}
+		}
+		
+		HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), false);
+		VertexConsumer linesBuffer = consumers.getBuffer(RenderType.lines());
+		WorldRendererAccessor.invokeRenderShape(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 	}
 	
 	private static boolean renderExchangeStaffOutline(Minecraft client, PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, ItemStack exchangeStaffItemStack, BlockHitResult hitResult) {
@@ -419,7 +419,9 @@ public class SpectrumClientEventListeners {
 								itemCountInInventory += itemProvider.getItemCount(player, currentStack, exchangeBlockItem);
 							}
 						}
-						inkLimit = InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / ExchangeStaffItem.INK_COST_PER_BLOCK;
+						if(SpectrumConfig.CONFIG.ExchangingStaffInkCostPerBlock.get() > 0) {
+							inkLimit = InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / SpectrumConfig.CONFIG.ExchangingStaffInkCostPerBlock.get();
+						}
 					}
 					
 					if (itemCountInInventory == 0) {
@@ -429,16 +431,7 @@ public class SpectrumClientEventListeners {
 					} else {
 						long usableCount = Math.min(itemCountInInventory, inkLimit);
 						List<BlockPos> positions = BuildingHelper.getConnectedBlocks(world, lookingAtPos, usableCount, ExchangeStaffItem.getRange(player));
-						for (BlockPos newPosition : positions) {
-							if (world.getWorldBorder().isWithinBounds(newPosition)) {
-								BlockPos testPos = lookingAtPos.subtract(newPosition);
-								shape = Shapes.or(shape, lookingAtState.getShape(world, lookingAtPos, CollisionContext.of(camera.getEntity())).move(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
-							}
-						}
-						
-						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size(), false);
-						VertexConsumer linesBuffer = consumers.getBuffer(RenderType.lines());
-						WorldRendererAccessor.invokeRenderShape(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						renderExtendedBlockOutline(matrices, camera, d, e, f, consumers, positions, world, lookingAtPos, shape, lookingAtState, exchangeBlockItem);
 						return true;
 					}
 				}

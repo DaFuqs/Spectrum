@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.magic_items;
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.compat.claims.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;
@@ -34,7 +35,6 @@ import java.util.*;
 
 public class ExchangeStaffItem extends BuildingStaffItem {
 	
-	public static final int INK_COST_PER_BLOCK = 5;
 	public static final int CREATIVE_RANGE = 5;
 	
 	public ExchangeStaffItem(Properties settings) {
@@ -79,8 +79,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	}
 	
 	public static boolean exchange(Level world, BlockPos pos, Player player, Block targetBlock, ItemStack exchangeStaffItemStack, boolean single, Direction side) {
-		Triplet<Block, Item, Integer> replaceData = countSuitableReplacementItems(player, targetBlock, single,
-				INK_COST_PER_BLOCK);
+		Triplet<Block, Item, Integer> replaceData = countSuitableReplacementItems(player, targetBlock, single, SpectrumConfig.CONFIG.ExchangingStaffInkCostPerBlock.get());
 		
 		long blocksToReplaceCount = replaceData.getC();
 		if (blocksToReplaceCount == 0) {
@@ -135,7 +134,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 				for (ItemStack stack : stacks) {
 					player.getInventory().placeItemBackInInventory(stack);
 				}
-				InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * INK_COST_PER_BLOCK);
+				InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * SpectrumConfig.CONFIG.ExchangingStaffInkCostPerBlock.get());
 			}
 			
 		}
@@ -164,7 +163,9 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 		super.appendHoverText(stack, context, tooltip, type);
 		tooltip.add(Component.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(Minecraft.getInstance().player)).withStyle(ChatFormatting.GRAY));
 		getStoredBlock(stack).ifPresent(block -> tooltip.add(Component.translatable("item.spectrum.exchanging_staff.tooltip.target", block.getName()).withStyle(ChatFormatting.GRAY)));
-		addInkPoweredTooltip(tooltip);
+		if(SpectrumConfig.CONFIG.ExchangingStaffInkCostPerBlock.get() > 0) {
+			addInkPoweredTooltip(tooltip);
+		}
 	}
 	
 	@Override

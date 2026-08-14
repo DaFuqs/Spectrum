@@ -153,6 +153,9 @@ public class SpectrumConfig {
 	
 	public final ModConfigSpec.ConfigValue<DimensionPortalSetting> DimensionPortals;
 	
+	public final ModConfigSpec.ConfigValue<Integer> ConstructorsStaffInkCostPerBlock;
+	public final ModConfigSpec.ConfigValue<Integer> ExchangingStaffInkCostPerBlock;
+	
 	public enum DimensionPortalSetting {
 		CREATE_PORTALS,
 		PROTECT_LOWEST_OVERWORLD_LEVEL,
@@ -160,6 +163,16 @@ public class SpectrumConfig {
 	}
 	
 	private SpectrumConfig(ModConfigSpec.Builder builder) {
+		ConstructorsStaffInkCostPerBlock = builder
+				.translation("config.spectrum.constructors_staff_ink_cost_per_block")
+				.comment("Required Ink for one Block placed by the Constructor's Staff")
+				.define("constructors_staff_ink_cost_per_block", 1);
+		
+		ExchangingStaffInkCostPerBlock = builder
+				.translation("config.spectrum.exchanging_staff_ink_cost_per_block")
+				.comment("Required Ink for one Block placed by the Exchanging Staff")
+				.define("exchanging_staff_ink_cost_per_block", 5);
+		
 		DimensionPortals = builder
 				.translation("config.spectrum.dimension_portals")
 				.comment("Allow the creation of portals using Ruin")

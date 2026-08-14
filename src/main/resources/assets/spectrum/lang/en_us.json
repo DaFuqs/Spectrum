@@ -5840,6 +5840,8 @@
   "config.spectrum.repair_anything_recipe_repair_percentage": "How much an item gets repaired when crafting it with Moonstruck Nectar",
   "config.spectrum.charged_creepers_drop_spectrum_mob_heads": "Charged Creepers will drop Spectrum exclusive mob head when killing creatures",
   "config.spectrum.dimension_portals": "Create Portals",
+  "config.spectrum.constructors_staff_ink_cost_per_block": "Required Ink for one Block placed by the Constructor's Staff",
+  "config.spectrum.exchanging_staff_ink_cost_per_block": "Required Ink for one Block placed by the Exchanging Staff",
 
   "config.spectrum.gemstone_durability": "Durability of Gemstone tools",
   "config.spectrum.gemstone_mining_speed": "Mining speed of Gemstone tools",

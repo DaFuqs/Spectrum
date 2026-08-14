@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.magic_items;
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.compat.claims.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.minecraft.*;
@@ -26,7 +27,6 @@ import java.util.*;
 
 public class ConstructorsStaffItem extends BuildingStaffItem {
 	
-	public static final int INK_COST_PER_BLOCK = 1;
 	public static final int CREATIVE_RANGE = 10;
 	
 	public ConstructorsStaffItem(Properties settings) {
@@ -67,7 +67,9 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		super.appendHoverText(stack, context, tooltip, type);
 		tooltip.add(Component.translatable("item.spectrum.constructors_staff.tooltip.range", getRange(Minecraft.getInstance().player)).withStyle(ChatFormatting.GRAY));
 		tooltip.add(Component.translatable("item.spectrum.constructors_staff.tooltip.crouch").withStyle(ChatFormatting.GRAY));
-		addInkPoweredTooltip(tooltip);
+		if(SpectrumConfig.CONFIG.ConstructorsStaffInkCostPerBlock.get() > 0) {
+			addInkPoweredTooltip(tooltip);
+		}
 	}
 	
 	@Override
@@ -86,7 +88,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 				itemToConsume = blockToPlace.asItem();
 				count = Integer.MAX_VALUE;
 			} else {
-				Triplet<Block, Item, Integer> replaceData = countSuitableReplacementItems(player, blockToPlace, false, INK_COST_PER_BLOCK);
+				Triplet<Block, Item, Integer> replaceData = countSuitableReplacementItems(player, blockToPlace, false, SpectrumConfig.CONFIG.ConstructorsStaffInkCostPerBlock.get());
 				blockToPlace = replaceData.getA();
 				itemToConsume = replaceData.getB();
 				count = replaceData.getC();
@@ -141,7 +143,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		
 		if (!player.isCreative()) {
 			InventoryHelper.decrementInPlayerInventory(player, new ItemStack(itemToConsume, placedBlocks));
-			InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * ConstructorsStaffItem.INK_COST_PER_BLOCK);
+			InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * SpectrumConfig.CONFIG.ConstructorsStaffInkCostPerBlock.get());
 		}
 	}
 	

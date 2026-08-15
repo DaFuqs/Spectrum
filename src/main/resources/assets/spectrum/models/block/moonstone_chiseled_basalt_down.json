@@ -1,7 +1,0 @@
-{
-  "parent": "spectrum:templates/moonstone_chiseled_down",
-  "textures": {
-    "line": "spectrum:block/moonstone_chiseled_basalt",
-    "side": "spectrum:block/basalt_cap"
-  }
-}

@@ -105,17 +105,17 @@ public class BaseInkScreenHandler extends AbstractContainerMenu implements InkCo
 		ItemStack itemStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		if (slot.hasItem()) {
-			ItemStack itemStack2 = slot.getItem();
-			itemStack = itemStack2.copy();
+			ItemStack slotStack = slot.getItem();
+			itemStack = slotStack.copy();
 			if (index < inventorySize) {
-				if (!this.moveItemStackTo(itemStack2, inventorySize, this.slots.size(), true)) {
+				if (!this.moveItemStackTo(slotStack, inventorySize, this.slots.size(), true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.moveItemStackTo(itemStack2, 0, inventorySize, false)) {
+			} else if (!this.moveItemStackTo(slotStack, 0, inventorySize, false)) {
 				return ItemStack.EMPTY;
 			}
 			
-			if (itemStack2.isEmpty()) {
+			if (slotStack.isEmpty()) {
 				slot.setByPlayer(ItemStack.EMPTY);
 			} else {
 				slot.setChanged();

@@ -10,27 +10,35 @@ import net.minecraft.client.gui.narration.*;
 import net.minecraft.network.chat.*;
 import org.jspecify.annotations.*;
 
+import java.util.*;
 import java.util.function.*;
 
 public class InkListWidget extends AbstractWidget {
 	
-	protected final int padding;
+	protected static final int CHART_HEIGHT = 40;
 	protected final int widthPerColor;
 	protected final int spaceBetweenColors;
-	protected final Iterable<InkColor> colors;
+	protected final Collection<InkColor> colors;
 	protected final Supplier<InkCapability> inkCapability;
 	
-	public InkListWidget(int x, int y, int height, Supplier<InkCapability> inkCapability) {
-		this(x, y, height, inkCapability, 4, 2, 0);
+	public InkListWidget(int x, int y, Supplier<InkCapability> inkCapability) {
+		this(x, y, inkCapability, 4, 2);
 	}
 	
-	public InkListWidget(int x, int y, int height, Supplier<InkCapability> inkCapability, int widthPerColor, int spaceBetweenColors, int padding) {
-		super(x, y, inkCapability.get().getStorage().acceptedColors().size() * (widthPerColor + spaceBetweenColors) - spaceBetweenColors + padding + padding, height, Component.empty());
+	public InkListWidget(int x, int y, Supplier<InkCapability> inkCapability, Collection<InkColor> colors) {
+		this(x, y, inkCapability, 4, 2, colors);
+	}
+	
+	public InkListWidget(int x, int y, Supplier<InkCapability> inkCapability, int widthPerColor, int spaceBetweenColors) {
+		this(x, y, inkCapability, widthPerColor, spaceBetweenColors, inkCapability.get().getStorage().acceptedColors());
+	}
+	
+	public InkListWidget(int x, int y, Supplier<InkCapability> inkCapability, int widthPerColor, int spaceBetweenColors, Collection<InkColor> colors) {
+		super(x, y, colors.size() * (widthPerColor + spaceBetweenColors) - spaceBetweenColors, CHART_HEIGHT, Component.empty());
 		this.widthPerColor = widthPerColor;
-		this.padding = padding;
 		this.spaceBetweenColors = spaceBetweenColors;
 		this.inkCapability = inkCapability;
-		this.colors = inkCapability.get().getStorage().acceptedColors();
+		this.colors = colors;
 	}
 	
 	@Override
@@ -41,17 +49,19 @@ public class InkListWidget extends AbstractWidget {
 	@Override
 	protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 		InkStorage inkStorage = inkCapability.get().getStorage();
-		
-		int startHeight = getY() + getHeight() + padding;
-		int currentXOffset = 0;
-		long total = inkStorage.getMaxPerColor();
+		drawLines(guiGraphics, inkStorage, colors, getX(), getY());
+	}
+	
+	protected void drawLines(GuiGraphics guiGraphics, InkStorage inkStorage, Collection<InkColor> colors, int x, int y) {
+		long maxPerColor = inkStorage.getMaxPerColor();
+		int currentX = x;
 		for (InkColor color : colors) {
 			long amount = inkStorage.getEnergy(color);
 			if (amount > 0) {
-				int height = Math.max(1, Math.round(((float) amount / ((float) total / getHeight()))));
-				RenderHelper.fillQuad(guiGraphics.pose(), getX() + currentXOffset + padding, startHeight - height, height - padding - padding, widthPerColor, color.getColorVec());
+				int h = (int) Math.floor(((float) amount / ((float) maxPerColor / CHART_HEIGHT)));
+				RenderHelper.fillQuad(guiGraphics.pose(), currentX, y + h - CHART_HEIGHT, Math.max(1, h), widthPerColor, color.getColorVec());
 			}
-			currentXOffset = currentXOffset + widthPerColor + spaceBetweenColors;
+			currentX = currentX + widthPerColor + spaceBetweenColors;
 		}
 	}
 	

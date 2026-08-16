@@ -21,7 +21,7 @@ public class TintingStationScreen extends BaseInkScreen<TintingStationScreenHand
 	protected void init() {
 		super.init();
 		
-		this.inkListWidget = new InkListWidgetWithBorderAndTitle(getGuiLeft() + 140, getGuiTop() + 40, 40, () -> menu.getBlockEntity().getInkCapability());
+		this.inkListWidget = new InkListWidgetWithBorderAndTitle(getGuiLeft() + 140, getGuiTop() + 40, () -> menu.getBlockEntity().getInkCapability());
 		inkListWidget.setPosition(getGuiLeft() - this.inkListWidget.getWidth(), getGuiTop() + 40);
 		addRenderableWidget(inkListWidget);
 	}

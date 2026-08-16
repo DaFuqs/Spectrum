@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.level.levelgen.*;
 import net.neoforged.bus.api.*;
@@ -17,7 +18,7 @@ public class SpectrumEntityTypes {
 	public static final DeferredHolder<EntityType<?>, EntityType<LivingMarkerEntity>> LIVING_MARKER = register("living_marker", EntityType.Builder.of(LivingMarkerEntity::new, MobCategory.MISC).clientTrackingRange(0).updateInterval(2147483647).setShouldReceiveVelocityUpdates(false).sized(0F, 0F).fireImmune());
 	public static final DeferredHolder<EntityType<?>, EntityType<ShootingStarEntity>> SHOOTING_STAR = register("shooting_star", EntityType.Builder.of((EntityType.EntityFactory<ShootingStarEntity>) ShootingStarEntity::new, MobCategory.MISC).clientTrackingRange(15).updateInterval(20).setShouldReceiveVelocityUpdates(true).sized(0.8F, 0.8F).fireImmune());
 	public static final DeferredHolder<EntityType<?>, EntityType<SeatEntity>> SEAT = register("seat", EntityType.Builder.of((EntityType.EntityFactory<SeatEntity>) SeatEntity::new, MobCategory.MISC).clientTrackingRange(8).updateInterval(10).setShouldReceiveVelocityUpdates(false).sized(0.01F, 0.01F).fireImmune());
-	public static final DeferredHolder<EntityType<?>, EntityType<FloatBlockEntity>> FLOAT_BLOCK = register("float_block", EntityType.Builder.of((EntityType.EntityFactory<FloatBlockEntity>) FloatBlockEntity::new, MobCategory.MISC).clientTrackingRange(10).updateInterval(20).setShouldReceiveVelocityUpdates(true).sized(0.98F, 0.98F).fireImmune());
+	public static final DeferredHolder<EntityType<?>, EntityType<FloatBlockEntity>> FLOAT_BLOCK = register("float_block", EntityType.Builder.of((EntityType.EntityFactory<FloatBlockEntity>) FloatBlockEntity::new, MobCategory.MISC).clientTrackingRange(10).updateInterval(20).sized(0.98F, 0.98F).fireImmune());
 	public static final DeferredHolder<EntityType<?>, EntityType<PhantomFrameEntity>> PHANTOM_FRAME = register("phantom_frame", EntityType.Builder.of((EntityType.EntityFactory<PhantomFrameEntity>) PhantomFrameEntity::new, MobCategory.MISC).clientTrackingRange(10).updateInterval(2147483647).setShouldReceiveVelocityUpdates(false).sized(0.5F, 0.5F));
 	public static final DeferredHolder<EntityType<?>, EntityType<PhantomGlowFrameEntity>> GLOW_PHANTOM_FRAME = register("glow_phantom_frame", EntityType.Builder.of((EntityType.EntityFactory<PhantomGlowFrameEntity>) PhantomGlowFrameEntity::new, MobCategory.MISC).clientTrackingRange(10).updateInterval(2147483647).setShouldReceiveVelocityUpdates(false).sized(0.5F, 0.5F));
 	public static final DeferredHolder<EntityType<?>, EntityType<BlockFlooderProjectile>> BLOCK_FLOODER_PROJECTILE = register("block_flooder_projectile", EntityType.Builder.of((EntityType.EntityFactory<BlockFlooderProjectile>) BlockFlooderProjectile::new, MobCategory.MISC).clientTrackingRange(4).updateInterval(10).setShouldReceiveVelocityUpdates(true).sized(0.25F, 0.25F).fireImmune());

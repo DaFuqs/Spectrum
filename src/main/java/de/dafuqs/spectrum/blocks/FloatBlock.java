@@ -3,12 +3,17 @@ package de.dafuqs.spectrum.blocks;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
+import net.minecraft.world.damagesource.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
 
 public class FloatBlock extends FallingBlock {
 	
@@ -39,16 +44,10 @@ public class FloatBlock extends FallingBlock {
 	}
 	
 	@Override
-	public BlockState updateShape(BlockState state, Direction direction, BlockState facingState, LevelAccessor world, BlockPos blockPos, BlockPos facingPos) {
-		world.scheduleTick(blockPos, this, this.getDelayAfterPlace());
-		return super.updateShape(state, direction, facingState, world, blockPos, facingPos);
-	}
-	
-	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (!world.isClientSide()) {
 			if (gravityMod == 0) {
-				launch(world, pos);
+				fall(world, pos, state);
 				return;
 			}
 			
@@ -60,14 +59,24 @@ public class FloatBlock extends FallingBlock {
 			}
 			
 			if (world.isEmptyBlock(collisionBlockPos) || isFree(world.getBlockState(collisionBlockPos))) {
-				launch(world, pos);
+				fall(world, pos, state);
 			}
 		}
 	}
 	
-	private static void launch(Level world, BlockPos pos) {
-		FloatBlockEntity blockEntity = new FloatBlockEntity(world, pos, world.getBlockState(pos));
-		world.addFreshEntity(blockEntity);
+	public static FallingBlockEntity fall(Level level, BlockPos pos, BlockState blockState) {
+		FloatBlockEntity blockEntity = new FloatBlockEntity(level, pos.getX() + 0.5F, pos.getY(), pos.getZ() + 0.5F, blockState.hasProperty(BlockStateProperties.WATERLOGGED)
+						? blockState.setValue(BlockStateProperties.WATERLOGGED, false)
+						: blockState
+		);
+		level.setBlock(pos, blockState.getFluidState().createLegacyBlock(), 3);
+		level.addFreshEntity(blockEntity);
+		return blockEntity;
+	}
+	
+	@Override
+	public DamageSource getFallDamageSource(Entity entity) {
+		return SpectrumDamageTypes.floatblock(entity.level());
 	}
 	
 }

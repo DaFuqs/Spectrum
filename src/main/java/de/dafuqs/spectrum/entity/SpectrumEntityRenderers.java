@@ -10,7 +10,7 @@ import net.neoforged.fml.event.lifecycle.*;
 public class SpectrumEntityRenderers {
 	
 	public static void registerClient(FMLClientSetupEvent event) {
-		register(SpectrumEntityTypes.FLOAT_BLOCK.get(), FloatBlockEntityRenderer::new);
+		register(SpectrumEntityTypes.FLOAT_BLOCK.get(), FallingBlockRenderer::new);
 		register(SpectrumEntityTypes.SEAT.get(), SeatEntityRenderer::new);
 		register(SpectrumEntityTypes.SHOOTING_STAR.get(), ShootingStarEntityRenderer::new);
 		register(SpectrumEntityTypes.PHANTOM_FRAME.get(), PhantomFrameEntityRenderer::new);

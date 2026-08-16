@@ -204,10 +204,8 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	
 	@Override
 	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
-		var composition = new DamageComposition();
-		var source = composition.getPlayerOrEntity(attacker);
-		SpectrumDamageTypes.wrapWithStackTracking(source, stack);
-		composition.add(source, damage);
+		DamageComposition composition = new DamageComposition();
+		composition.add(composition.getPlayerOrEntity(attacker), damage);
 		return composition;
 	}
 	

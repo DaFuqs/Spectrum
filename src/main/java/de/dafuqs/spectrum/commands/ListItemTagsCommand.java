@@ -15,13 +15,13 @@ import java.util.*;
 
 public class ListItemTagsCommand {
 	
-	public static void register(LiteralCommandNode<CommandSourceStack> root, CommandBuildContext commandBuildContext) {
+	public static void register(LiteralCommandNode<CommandSourceStack> root, CommandBuildContext context) {
 		LiteralCommandNode<CommandSourceStack> node = Commands.literal("list_item_tags")
-				.executes((context) -> execute(context.getSource(), null))
+				.executes((c) -> execute(c.getSource(), null))
 				.build();
 		
-		ArgumentCommandNode<CommandSourceStack, ItemInput> targets = Commands.argument("item", ItemArgument.item(commandBuildContext))
-				.executes((context) -> execute(context.getSource(), ItemArgument.getItem(context, "item"))).build();
+		ArgumentCommandNode<CommandSourceStack, ItemInput> targets = Commands.argument("item", ItemArgument.item(context))
+				.executes((c) -> execute(c.getSource(), ItemArgument.getItem(c, "item"))).build();
 		
 		node.addChild(targets);
 		root.addChild(node);

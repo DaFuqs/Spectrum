@@ -2475,16 +2475,17 @@
   "gui.spectrum.quick_navigation.controls1": "使用移动键来移动",
   "gui.spectrum.quick_navigation.controls2": "使用丢弃/背包键进行选择",
 
-  "recipe.spectrum.liquid_crystal.liquid_crystal_converting.hint": "",
-  "recipe.spectrum.pedestal.tier1.food.salted_jaramel_tart.hint": "齁咸的蛋挞",
-  "recipe.spectrum.pedestal.tier1.food.salted_jaramel_trifle.hint": "齁咸的松糕",
-  "recipe.spectrum.potion_workshop_crafting.azalea_tea_milk.hint": "做个不懂茶的俗人",
-  "recipe.spectrum.potion_workshop_crafting.demon_tea_milk.hint": "做个不懂茶的俗人",
-  "recipe.spectrum.potion_workshop_crafting.glistering_jelly_tea_milk.hint": "做个不懂茶的俗人",
-  "recipe.spectrum.potion_workshop_crafting.golden_bristle_tea_milk.hint": "做个不懂茶的俗人",
-  "recipe.spectrum.potion_workshop_crafting.restoration_tea_milk.hint": "做个不懂茶的俗人",
-  "recipe.spectrum.spirit_instiller.secret.germinated_jade_vine_crossbreeding.hint": "杂交两种植物",
-  "recipe.spectrum.spirit_instiller.secret.chorus_flower.hint": "回响与共鸣",
+
+  "recipe.spectrum.primordial_fire_burning.primordial_torch.hint": "黑暗之中的微光",
+  "recipe.spectrum.liquid_crystal_converting.resonant_lily.hint": "虹彩盛放",
+  "recipe.spectrum.pedestal.tier1.food.salted_jaramel_tart.hint": "咸香浓郁的挞饼",
+  "recipe.spectrum.pedestal.tier1.food.salted_jaramel_trifle.hint": "咸香浓郁的松糕",
+  "recipe.spectrum.potion_workshop_crafting.azalea_tea_milk.hint": "当个不懂品茶的俗人",
+  "recipe.spectrum.potion_workshop_crafting.demon_tea_milk.hint": "当个不懂品茶的俗人",
+  "recipe.spectrum.potion_workshop_crafting.glistering_jelly_tea_milk.hint": "当个不懂品茶的俗人",
+  "recipe.spectrum.potion_workshop_crafting.golden_bristle_tea_milk.hint": "当个不懂品茶的俗人",
+  "recipe.spectrum.potion_workshop_crafting.restoration_tea_milk.hint": "当个不懂品茶的俗人",
+  "recipe.spectrum.spirit_instiller.secret.germinated_jade_vine_crossbreeding.hint": "让两株植物杂交",
 
   "recipeGroup.spectrum.gemstone_chiseled_blocks": "雕纹宝石晶方块",
   "recipeGroup.spectrum.phantom_frames": "幻影展示框",
@@ -2510,7 +2511,7 @@
   "recipeGroup.spectrum.bedrock_armor": "基岩盔甲",
   "recipeGroup.spectrum.fusion_shrines": "融合圣坛",
   "recipeGroup.spectrum.item_bowls": "物品底座",
-  "recipeGroup.spectrum.enchanter_exchanging_staff": "替换魔杖",
+  "recipeGroup.spectrum.enchanter_exchanging_staff": "替换法杖",
   "recipeGroup.spectrum.vanilla": "原版附魔",
   "recipeGroup.spectrum.vanilla_enchantment_upgrades": "原版附魔升级",
   "recipeGroup.spectrum.pastel_network": "绘彩网络",
@@ -2645,6 +2646,7 @@
   "container.spectrum.modonomicon.crystallarieum.speed": "生长速度:",
   "container.spectrum.modonomicon.crystallarieum.ink_drain": "墨水消耗:",
   "container.spectrum.modonomicon.crystallarieum.depletion": "消耗速度:",
+  "container.spectrum.rei.gated_crafting.title": "解锁式合成",
   "container.spectrum.rei.titration_barrel.time_hours": "需要现实 %d 小时",
   "container.spectrum.rei.titration_barrel.time_days": "需要现实 %d 天",
   "container.spectrum.rei.titration_barrel.time_hour": "需要 1 小时的现实时间",
@@ -2898,7 +2900,7 @@
   "spectrum.recipe.fusion_shrine.explanation.stratine_gem": "须在雷雨天进行",
   "spectrum.recipe.fusion_shrine.explanation.paltaeria_gem": "须在雷雨天进行",
   "spectrum.recipe.fusion_shrine.explanation.egg_laying_wooly_pig_head": "可在任何情况下进行",
-  "spectrum.recipe.fusion_shrine.explanation.no_rgb": "被我发现你在偷看了",
+  "spectrum.recipe.fusion_shrine.explanation.no_rgb": "愿此物永不锈蚀",
 
   "enchantment.minecraft.feather_falling": "摔落保护",
   "enchantment.minecraft.fortune": "时运",
@@ -3148,6 +3150,8 @@
   "spectrum.toast.message.pastel_node_coloring.text": "你现在可以给绘彩节点上色了。",
 
   "config.spectrum.dimension_portals": "生成传送门",
+  "config.spectrum.constructors_staff_ink_cost_per_block": "建造法杖每放置一个方块所需墨水",
+  "config.spectrum.exchanging_staff_ink_cost_per_block": "替换法杖每放置一个方块所需墨水",
   "config.spectrum.add_item_tooltips": "为刷怪笼、告示牌、幽匿尖啸体等添加高级提示信息",
   "config.spectrum.bedrock_anvil_can_exceed_max_vanilla_enchantment_level": "基岩铁砧可突破原版附魔等级上限",
   "config.spectrum.bedrock_armor_helmet_protection": "基岩头盔护甲值",
@@ -3285,6 +3289,7 @@
   "recipe.spectrum.spawner.lore.increased_required_player_range": "提升刷怪笼激活半径",
   "recipe.spectrum.spawner.lore.increased_spawn_count": "增加生成数量",
   "recipe.spectrum.spawner.lore.decreased_spawn_delay": "降低生成延迟",
+  "recipe.spectrum.memory_to_head.lore": "任意生物记忆均可使用，产出对应的生物头颅",
 
   "item.spectrum.tooltip.could_use_some_sweetener": "需要加点甜味剂",
 
@@ -4694,6 +4699,9 @@
   "book.spectrum.guidebook.kindlings.page3.title": "一个奇怪的想法",
   "book.spectrum.guidebook.kindlings.page3.text": "我发现的这种夜幕炼金术...似乎能与意志力产生奇妙的反应.如果巨龙是纯粹意志的化身，那两者相遇，一定会发生些什么。\\\n\\\n*我想，稍微让它打个盹应该伤不到它吧。不过...考虑到它们以往的表现，也许我应该在野外来做这件事，以防万一。*",
 
+  "book.spectrum.guidebook.kindlings.breeding.title": "繁衍后代",
+  "book.spectrum.guidebook.kindlings.breeding.text": "这些活泼闹腾的小捣蛋鬼要求可不少。\\\n它们得先熟悉我，才愿意在我身边繁衍后代，或是允许我给它们装上鞍具。",
+
   "book.spectrum.guidebook.knowledge_gem.page0.text": "据说杀死敌人掉落的翠绿色的球似乎有启智的功效。\\\n\\\n然而，粗心大意笨手笨脚的死亡在所难免，这些经验就这么丢失可真是可惜。把这种经验用结晶的方式存储起来塞进箱子里，总比带在身上要安全得多了。",
   "book.spectrum.guidebook.knowledge_gem.page1.text": "一个宝石最多可容纳10，000经验值。为其附上[#](449900)效率[#]()附魔可以增加这个上限，[#](449900)快速装填[#]()附魔则能加快经验的传输速率。",
   "book.spectrum.guidebook.knowledge_gem.page2.title": "经验球吸收",
@@ -5832,6 +5840,10 @@
   "book.spectrum.guidebook.mod_integration.the_bumblezone.essence_ink.text": "这些精华...它们肯定**充满了**能量。这些能量确实很有用，不过看起来它们也饱含墨能，如果我愿意牺牲它们。\\\n即使我可能会试一试，这些蜜蜂混沌的精华也难以安分守己地转为墨水。",
   "book.spectrum.guidebook.mod_integration.waystones.name": "传送石碑",
   "book.spectrum.guidebook.mod_integration.waystones.page0.text": "分享是一种关怀...但仔细一想，为什么传送石碑不是成对产出的呢?\\\n就我所知，把中间的传送核心换成末影辐光应该花不了多大力气。这样我可以不费吹灰之力地造出成堆的这些石碑了！",
+  "book.spectrum.guidebook.mod_integration.waystones.sharestones_recipe.text": "几乎可以搭配任意颜料使用",
+
+  "book.spectrum.guidebook.mod_integration.dimensional_tears.name": "Dimensional Tears",
+  "book.spectrum.guidebook.mod_integration.dimensional_tears.about.text": "*末影人又搞事了！*",
 
   "book.spectrum.guidebook.forsaken_cathedral.page0.text": "*最后的里程碑*",
   "book.spectrum.guidebook.forsaken_cathedral.page1.text": "我的旅程，暂时到此为止了。\\\n\\\n这段路有时格外艰辛，但我也学到了很多。\\\n\\\n再见了，我的*多彩的世界*。",
@@ -6019,8 +6031,6 @@
   "advancements.spectrum.create_spectral_shard.description": "合成七彩碎片",
   "advancements.spectrum.enter_liquid_crystal.title": "液体的魔法",
   "advancements.spectrum.enter_liquid_crystal.description": "当你将自己沉浸在至今所学一切的结晶之中，会发生什么?",
-  "advancements.spectrum.gift_wet_lava_sponge.title": "烫手山芋",
-  "advancements.spectrum.gift_wet_lava_sponge.description": "将一个湿熔岩海绵扔给其他玩家",
   "advancements.spectrum.get_hit_while_wearing_full_suit_of_gemstone_armor.title": "强力超载",
   "advancements.spectrum.get_hit_while_wearing_full_suit_of_gemstone_armor.description": "在穿全套宝石晶盔甲时受到攻击",
   "advancements.spectrum.collect_mob_head_using_treasure_hunter.title": "摸不着头脑",

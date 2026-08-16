@@ -58,8 +58,8 @@ public class InkListWidget extends AbstractWidget {
 		for (InkColor color : colors) {
 			long amount = inkStorage.getEnergy(color);
 			if (amount > 0) {
-				int h = (int) Math.floor(((float) amount / ((float) maxPerColor / CHART_HEIGHT)));
-				RenderHelper.fillQuad(guiGraphics.pose(), currentX, y + h - CHART_HEIGHT, Math.max(1, h), widthPerColor, color.getColorVec());
+				int h = Math.max(1, (int) Math.floor(((float) amount / ((float) maxPerColor / CHART_HEIGHT))));
+				RenderHelper.fillQuad(guiGraphics.pose(), currentX, y + CHART_HEIGHT - h, h, widthPerColor, color.getColorVec());
 			}
 			currentX = currentX + widthPerColor + spaceBetweenColors;
 		}

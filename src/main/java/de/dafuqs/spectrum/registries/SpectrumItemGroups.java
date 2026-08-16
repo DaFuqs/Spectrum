@@ -188,9 +188,9 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.STAFF_OF_REMEMBRANCE);
 					entries.accept(SpectrumItems.CONSTRUCTORS_STAFF);
 					entries.accept(SpectrumItems.EXCHANGING_STAFF);
-					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.FORTUNE, 3, false, false).ifPresent(entries::accept);
-					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.SILK_TOUCH, 1, false, false).ifPresent(entries::accept);
-					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), SpectrumEnchantmentKeys.RESONANCE, 1, false, false).ifPresent(entries::accept);
+					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.FORTUNE, 3, true, true).ifPresent(entries::accept);
+					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.SILK_TOUCH, 1, true, true).ifPresent(entries::accept);
+					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), SpectrumEnchantmentKeys.RESONANCE, 1, true, true).ifPresent(entries::accept);
 					entries.accept(SpectrumItems.BLOCK_FLOODER);
 					entries.accept(SpectrumItems.ENDER_SPLICE);
 					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.ENDER_SPLICE.get(), Map.of(SpectrumEnchantmentKeys.RESONANCE, 1, SpectrumEnchantmentKeys.INDESTRUCTIBLE, 1)));

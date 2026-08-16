@@ -22,7 +22,7 @@ public class TwillBlockEntity extends InkGeneratorBlockEntity {
 	public static final long GENERATED_INK_PER_VALID_BLOCK = (long) Math.pow(2, 2);
 	
 	public TwillBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.TWILL.get(), blockPos, blockState, 1);
+		super(SpectrumBlockEntities.TWILL.get(), blockPos, blockState, 1, 1);
 	}
 	
 	@Override
@@ -32,12 +32,12 @@ public class TwillBlockEntity extends InkGeneratorBlockEntity {
 	
 	
 	@Override
-	protected boolean tickLogic(Level level) {
+	public boolean tickLogic(Level level) {
 		RandomSource random = level.getRandom();
 		BlockPos posToTest = this.worldPosition.offset(random.nextIntBetweenInclusive(-MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL, MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL), random.nextInt(MAX_BLOCK_CHECK_DISTANCE_UP), random.nextIntBetweenInclusive(-MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL, MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL));
-		BlockState statetoTest = level.getBlockState(posToTest);
+		BlockState stateToTest = level.getBlockState(posToTest);
 		
-		if(statetoTest.getBlock() instanceof ColoredLeavesBlock coloredLeavesBlock) {
+		if(stateToTest.getBlock() instanceof ColoredLeavesBlock coloredLeavesBlock) {
 			InkColor inkColor = coloredLeavesBlock.getColor();
 			this.inkStorage.addEnergy(inkColor, GENERATED_INK_PER_VALID_BLOCK);
 			

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.ink.sink;
+package de.dafuqs.spectrum.blocks.ink.gen;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.ink.*;
@@ -39,10 +39,9 @@ public class ColorPickerBlock extends BaseInkBlock {
 		return new ColorPickerBlockEntity(pos, state);
 	}
 	
-	@Nullable
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.COLOR_PICKER.get(), ColorPickerBlockEntity::serverTick);
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+		return createInkBlockTicker(level, blockEntityType, SpectrumBlockEntities.COLOR_PICKER.get());
 	}
 	
 }

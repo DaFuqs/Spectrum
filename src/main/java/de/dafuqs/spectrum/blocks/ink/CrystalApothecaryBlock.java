@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.ink.gen;
+package de.dafuqs.spectrum.blocks.ink;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;

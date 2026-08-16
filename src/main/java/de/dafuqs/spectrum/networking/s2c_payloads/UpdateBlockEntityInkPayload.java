@@ -37,6 +37,7 @@ public record UpdateBlockEntityInkPayload(BlockPos pos, Map<InkColor, Long> stor
 		BlockEntity blockEntity = level.getBlockEntity(payload.pos);
 		if (blockEntity instanceof InkStorageBlockEntity<?> inkStorageBlockEntity) {
 			inkStorageBlockEntity.getInkStorage().setEnergy(payload.storage, payload.currentTotal);
+			inkStorageBlockEntity.setInkDirty();
 		}
 	}
 	

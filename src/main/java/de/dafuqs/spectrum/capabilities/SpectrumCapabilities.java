@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
+import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.blocks.ink.gen.*;
 import de.dafuqs.spectrum.blocks.ink.sink.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;

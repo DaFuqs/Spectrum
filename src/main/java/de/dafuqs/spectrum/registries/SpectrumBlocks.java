@@ -28,6 +28,7 @@ import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.blocks.geology.*;
 import de.dafuqs.spectrum.blocks.idols.*;
+import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.blocks.ink.gen.*;
 import de.dafuqs.spectrum.blocks.ink.sink.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;

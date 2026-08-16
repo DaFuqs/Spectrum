@@ -260,7 +260,7 @@ public class SpectrumConfig {
 		ShootingStarDimensions = builder
 				.translation("config.spectrum.shooting_star_dimensions")
 				.comment("Dimensions where shooting stars spawn for players. Shooting Stars will only spawn for players with sufficient progress in the mod")
-				.defineList("shooting_star_dimensions", List.of("minecraft:overworld", "starry_skies:overworld", "paradise_lost:paradise_lost"), () -> "mymod:my_[regex_matched_]*_dimension_id", o -> true);
+				.defineList("shooting_star_dimensions", List.of("minecraft:overworld", "starry_skies:overworld", "paradise_lost:paradise_lost", "tropicraft:tropics"), () -> "mymod:my_[regex_matched_]*_dimension_id", o -> true);
 		
 		ShootingStarSpawnChance = builder
 				.translation("config.spectrum.shooting_star_spawn_chance")
@@ -273,7 +273,7 @@ public class SpectrumConfig {
 		StormStoneDimensions = builder
 				.translation("config.spectrum.storm_stone_dimensions")
 				.comment("Dimensions where lightning strikes can spawn Storm Stones")
-				.defineList("storm_stone_dimensions", List.of("minecraft:overworld", "starry_skies:overworld", "paradise_lost:paradise_lost"), () -> "mymod:my_[regex_matched_]*_dimension_id", o -> true);
+				.defineList("storm_stone_dimensions", List.of("minecraft:overworld", "starry_skies:overworld", "paradise_lost:paradise_lost", "tropicraft:tropics"), () -> "mymod:my_[regex_matched_]*_dimension_id", o -> true);
 		
 		StormStoneSpawnChance = builder
 				.translation("config.spectrum.storm_stone_spawn_chance")

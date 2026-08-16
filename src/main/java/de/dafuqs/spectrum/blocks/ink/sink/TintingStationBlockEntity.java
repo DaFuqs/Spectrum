@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.ink.sink;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.ink.*;
+import de.dafuqs.spectrum.blocks.ink.gen.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -31,38 +32,34 @@ import net.minecraft.world.phys.*;
 
 import java.util.*;
 
-public class TintingStationBlockEntity extends BaseInkBlockEntity<IndividualCappedInkStorage> implements MenuProvider {
+public class TintingStationBlockEntity extends InkSinkBlockEntity implements MenuProvider {
 	
 	public static final int INPUT_SLOT_ID = 0;
 	public static final int OUTPUT_SLOT_ID = 1;
 	
 	public static final long TICKS_PER_CONVERSION = 5;
 	public static final long ITEM_COLORING_COST = 10;
-	public static final long STORAGE_AMOUNT = (long) Math.pow(2, 32);
 	
 	public TintingStationBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.TINTING_STATION.get(), blockPos, blockState, new IndividualCappedInkStorage(STORAGE_AMOUNT));
+		super(SpectrumBlockEntities.TINTING_STATION.get(), blockPos, blockState, 4, 2, INPUT_SLOT_ID);
 	}
 	
-	@SuppressWarnings("unused")
-	public static void serverTick(Level world, BlockPos pos, BlockState state, TintingStationBlockEntity blockEntity) {
-		blockEntity.inkDirty = false;
-		if (blockEntity.paused) {
-			return;
-		}
-		
-		blockEntity.paused = true;
-		Optional<Holder<InkColor>> inkColorHolder = blockEntity.getSelectedColor();
-		InkStorage inkStorage = blockEntity.getInkStorage();
-		
-		ItemStack input = blockEntity.getItem(INPUT_SLOT_ID);
+	public boolean shouldTickLogic(Level world) {
+		return world.getGameTime() % TICKS_PER_CONVERSION == 0;
+	}
+	
+	public boolean tickLogic(Level level) {
+		ItemStack input = this.getItem(INPUT_SLOT_ID);
 		if (!input.isEmpty()) {
-			if (inkColorHolder.isPresent() && world.getGameTime() % TICKS_PER_CONVERSION == 0) {
+			Optional<Holder<InkColor>> inkColorHolder = this.getSelectedColor();
+			InkStorage inkStorage = this.getInkStorage();
+			
+			if (inkColorHolder.isPresent()) {
 				InkColor selectedInkColor = inkColorHolder.get().value();
 				if (inkStorage.getEnergy(selectedInkColor) >= ITEM_COLORING_COST) {
-					ItemStack output = blockEntity.getItem(OUTPUT_SLOT_ID);
+					ItemStack output = this.getItem(OUTPUT_SLOT_ID);
 					if (output.getCount() < output.getMaxStackSize()) {
-						ItemStack resultStack = blockEntity.colorStack(input, selectedInkColor);
+						ItemStack resultStack = this.colorStack(input, selectedInkColor);
 						if (resultStack.isEmpty()) {
 							resultStack = tintStack(input, selectedInkColor);
 						}
@@ -73,7 +70,7 @@ public class TintingStationBlockEntity extends BaseInkBlockEntity<IndividualCapp
 						if (!resultStack.isEmpty()) {
 							if (output.isEmpty()) {
 								input.shrink(1);
-								blockEntity.setItem(OUTPUT_SLOT_ID, resultStack);
+								this.setItem(OUTPUT_SLOT_ID, resultStack);
 							} else if (ItemStack.isSameItemSameComponents(output, resultStack)) {
 								input.shrink(1);
 								output.grow(1);
@@ -82,23 +79,23 @@ public class TintingStationBlockEntity extends BaseInkBlockEntity<IndividualCapp
 							inkStorage.addEnergy(selectedInkColor, -ITEM_COLORING_COST);
 							
 							if (SpectrumConfig.CONFIG.BlockSoundVolume.get() > 0) {
-								blockEntity.getLevel().playSound(null, blockEntity.getBlockPos(), SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() / 3F, 1.0F);
+								level.playSound(null, this.getBlockPos(), SpectrumSoundEvents.COLOR_PICKER_PROCESSING, SoundSource.BLOCKS, SpectrumConfig.CONFIG.BlockSoundVolume.get().floatValue() / 3F, 1.0F);
 								
-								PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) blockEntity.getLevel(),
-										new Vec3(blockEntity.getBlockPos().getX() + 0.5, blockEntity.getBlockPos().getY() + 0.7, blockEntity.getBlockPos().getZ() + 0.5),
+								PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) this.getLevel(),
+										new Vec3(this.getBlockPos().getX() + 0.5, this.getBlockPos().getY() + 0.7, this.getBlockPos().getZ() + 0.5),
 										ColoredFluidRisingParticleEffect.of(selectedInkColor.getColorInt()),
 										5,
 										new Vec3(0.22, 0.0, 0.22),
 										new Vec3(0.0, 0.1, 0.0)
 								);
 							}
+							return true;
 						}
 					}
 				}
 			}
 		}
-		
-		blockEntity.equalizeInkContainer(OUTPUT_SLOT_ID);
+		return false;
 	}
 	
 	// Cleaned up version of net.minecraft.world.item.component.DyedItemColor
@@ -178,18 +175,6 @@ public class TintingStationBlockEntity extends BaseInkBlockEntity<IndividualCapp
 	}
 	
 	@Override
-	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
-		super.loadAdditional(nbt, registryLookup);
-		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("ink_storage")).ifPresent(storage -> this.inkStorage = new IndividualCappedInkStorage(storage.maxPerColor(), storage.storedEnergy()));
-	}
-	
-	@Override
-	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
-		super.saveAdditional(nbt, registryLookup);
-		CodecHelper.writeNbt(nbt, "ink_storage", InkStorageComponent.CODEC, new InkStorageComponent(this.inkStorage));
-	}
-	
-	@Override
 	protected Component getDefaultName() {
 		return Component.translatable("block.spectrum.tinting_station");
 	}
@@ -197,11 +182,6 @@ public class TintingStationBlockEntity extends BaseInkBlockEntity<IndividualCapp
 	@Override
 	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
 		return new TintingStationScreenHandler(syncId, playerInventory, this, this.selectedColor);
-	}
-	
-	@Override
-	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		BaseInkScreenHandler.ScreenOpeningData.STREAM_CODEC.encode(buffer, new BaseInkScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
 	@Override

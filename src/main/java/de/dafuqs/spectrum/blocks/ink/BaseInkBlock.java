@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.ink;
 
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jspecify.annotations.*;
 
 public abstract class BaseInkBlock extends HorizontalDirectionalBlock implements EntityBlock {
 	
@@ -91,6 +93,10 @@ public abstract class BaseInkBlock extends HorizontalDirectionalBlock implements
 	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
 		Containers.dropContentsOnDestroy(state, newState, world, pos);
 		super.onRemove(state, world, pos, newState, moved);
+	}
+	
+	protected static <T extends BlockEntity> @Nullable BlockEntityTicker<T> createInkBlockTicker(Level level, BlockEntityType<T> serverType, BlockEntityType<? extends BaseInkBlockEntity<?>> clientType) {
+		return level.isClientSide ? null : Support.checkType(serverType, clientType, BaseInkBlockEntity::serverTick);
 	}
 	
 }

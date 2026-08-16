@@ -33,6 +33,7 @@ public class RenderHelper {
 	
 	/**
 	 * Draws a filled square
+	 * The point at (x/y) is the bottom left
 	 */
 	public static void fillQuad(PoseStack matrices, int x, int y, int height, int width, Vector3f color) {
 		Matrix4f matrix = matrices.last().pose();

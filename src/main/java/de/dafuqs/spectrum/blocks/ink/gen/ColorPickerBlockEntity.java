@@ -1,8 +1,7 @@
-package de.dafuqs.spectrum.blocks.ink.sink;
+package de.dafuqs.spectrum.blocks.ink.gen;
 
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
-import de.dafuqs.spectrum.blocks.ink.gen.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -28,20 +27,22 @@ import java.util.*;
 
 public class ColorPickerBlockEntity extends InkGeneratorBlockEntity implements MenuProvider {
 	
+	public static final int INPUT_SLOT_ID = 1;
+	
 	public static final long TICKS_PER_CONVERSION = 5;
 	protected @Nullable RecipeHolder<InkConvertingRecipe> cachedRecipe;
 	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.COLOR_PICKER.get(), blockPos, blockState, 3);
+		super(SpectrumBlockEntities.COLOR_PICKER.get(), blockPos, blockState, 3, 2);
 	}
 	
 	@Override
-	protected boolean shouldTickLogic(Level world) {
-		return world.getGameTime() % TICKS_PER_CONVERSION == 0;
+	public boolean shouldTickLogic(Level level) {
+		return level.getGameTime() % TICKS_PER_CONVERSION == 0;
 	}
 	
 	@Override
-	protected boolean tickLogic(Level level) {
+	public boolean tickLogic(Level level) {
 		return tryConvertPigmentToEnergy((ServerLevel) level);
 	}
 	
@@ -108,10 +109,7 @@ public class ColorPickerBlockEntity extends InkGeneratorBlockEntity implements M
 		if (slot == INPUT_SLOT_ID) {
 			return InkConvertingRecipe.isInput(stack.getItem());
 		}
-		if (slot == OUTPUT_SLOT_ID) {
-			return stack.getItem() instanceof InkStorageItem<?>;
-		}
-		return true;
+		return super.canPlaceItem(slot, stack);
 	}
 	
 }

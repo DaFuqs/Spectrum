@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.ink.sink;
 
 import com.klikli_dev.modonomicon.api.multiblock.*;
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -29,7 +30,7 @@ import org.jspecify.annotations.*;
 
 import java.util.*;
 
-public class CinderhearthBlock extends BaseEntityBlock {
+public class CinderhearthBlock extends BaseInkBlock {
 	
 	public static final MapCodec<CinderhearthBlock> CODEC = simpleCodec(CinderhearthBlock::new);
 	
@@ -55,7 +56,7 @@ public class CinderhearthBlock extends BaseEntityBlock {
 	}
 	
 	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
+	protected MapCodec<? extends CinderhearthBlock> codec() {
 		return CODEC;
 	}
 
@@ -63,10 +64,10 @@ public class CinderhearthBlock extends BaseEntityBlock {
 	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new CinderhearthBlockEntity(pos, state);
 	}
-
+	
 	@Override
-	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide() ? null : createTickerHelper(type, SpectrumBlockEntities.CINDERHEARTH.get(), CinderhearthBlockEntity::serverTick);
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+		return createInkBlockTicker(level, blockEntityType, SpectrumBlockEntities.CINDERHEARTH.get());
 	}
 	
 	@Override
@@ -74,60 +75,18 @@ public class CinderhearthBlock extends BaseEntityBlock {
         if (world.isClientSide()) {
             verifyStructure(world, pos, null);
             return InteractionResult.SUCCESS;
-        } else {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
-                cinderhearthBlockEntity.setOwner(player);
-                if (verifyStructure(world, pos, (ServerPlayer) player) != CinderhearthBlockEntity.CinderHearthStructureType.NONE) {
-                    player.openMenu(cinderhearthBlockEntity);
-                }
-            }
-            return InteractionResult.CONSUME;
         }
+		
+		if (verifyStructure(world, pos, (ServerPlayer) player) == CinderhearthBlockEntity.CinderHearthStructureType.NONE) {
+			return InteractionResult.CONSUME;
+		}
+		
+		return super.useWithoutItem(state, world, pos, player, hit);
 	}
 	
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext ctx) {
 		return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
-	}
-	
-	@Override
-	public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
-			if (placer instanceof Player player) {
-				cinderhearthBlockEntity.setOwner(player);
-			}
-		}
-	}
-	
-	@Override
-	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
-		if (!state.is(newState.getBlock())) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
-				if (world instanceof ServerLevel) {
-					Containers.dropContents(world, pos, cinderhearthBlockEntity);
-				}
-				world.updateNeighbourForOutputSignal(pos, this);
-			}
-			super.onRemove(state, world, pos, newState, moved);
-		}
-	}
-	
-	@Override
-	public boolean hasAnalogOutputSignal(BlockState state) {
-		return true;
-	}
-	
-	@Override
-	public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
-		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
-	}
-	
-	@Override
-	public RenderShape getRenderShape(BlockState state) {
-		return RenderShape.MODEL;
 	}
 	
 	@Override
@@ -155,7 +114,7 @@ public class CinderhearthBlock extends BaseEntityBlock {
 			double e = pos.getY() + 0.4;
 			double f = (double) pos.getZ() + 0.5D;
 			
-			var recipe = cinderhearthBlockEntity.getCurrentRecipeHolder();
+			var recipe = cinderhearthBlockEntity.getCurrentRecipe();
 			if (recipe != null) {
 				if (random.nextDouble() < 0.1D) {
 					world.playLocalSound(d, e, f, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 0.8F, false);

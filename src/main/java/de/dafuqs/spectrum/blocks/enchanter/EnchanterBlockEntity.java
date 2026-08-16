@@ -123,110 +123,110 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}
 	
 	@SuppressWarnings("unused")
-	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, EnchanterBlockEntity enchanterBlockEntity) {
-		if (enchanterBlockEntity.upgrades == null) {
-			enchanterBlockEntity.calculateUpgrades();
+	public static void serverTick(Level level, BlockPos pos, BlockState state, EnchanterBlockEntity enchanter) {
+		if (enchanter.upgrades == null) {
+			enchanter.calculateUpgrades(level);
 		}
 		
-		if (enchanterBlockEntity.inventoryChanged) {
-			calculateCurrentRecipe(world, enchanterBlockEntity);
+		if (enchanter.inventoryChanged) {
+			calculateCurrentRecipe(level, enchanter);
 			
 			// if no default recipe found => check in-code recipe for enchanting the center item with enchanted books
-			if (enchanterBlockEntity.currentRecipe == null) {
-				if (isValidCenterEnchantingSetup(enchanterBlockEntity)) {
-					int requiredExperience = getRequiredExperienceToEnchantCenterItem(enchanterBlockEntity);
+			if (enchanter.currentRecipe == null) {
+				if (isValidCenterEnchantingSetup(enchanter)) {
+					int requiredExperience = getRequiredExperienceToEnchantCenterItem(enchanter);
 					if (requiredExperience > 0) {
-						enchanterBlockEntity.currentItemProcessingTime = requiredExperience * REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT;
+						enchanter.currentItemProcessingTime = requiredExperience * REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT;
 					} else {
-						enchanterBlockEntity.currentItemProcessingTime = -1;
+						enchanter.currentItemProcessingTime = -1;
 					}
 				} else {
-					enchanterBlockEntity.currentItemProcessingTime = -1;
+					enchanter.currentItemProcessingTime = -1;
 				}
-				enchanterBlockEntity.updateInClientWorld();
+				enchanter.updateInClientWorld();
 			}
 			
-			enchanterBlockEntity.inventoryChanged = false;
+			enchanter.inventoryChanged = false;
 		}
 		
 		boolean craftingSuccess = false;
 		
-		if (enchanterBlockEntity.currentRecipe != null || enchanterBlockEntity.currentItemProcessingTime > 1) {
-			if (enchanterBlockEntity.craftingTime % 60 == 1) {
-				if (!checkRecipeRequirements(world, blockPos, enchanterBlockEntity)) {
-					enchanterBlockEntity.craftingTime = 0;
-					PlayBlockBoundSoundInstancePayload.sendCancelBlockBoundSoundInstance((ServerLevel) enchanterBlockEntity.getLevel(), enchanterBlockEntity.worldPosition);
+		if (enchanter.currentRecipe != null || enchanter.currentItemProcessingTime > 1) {
+			if (enchanter.craftingTime % 60 == 1) {
+				if (!checkRecipeRequirements(level, pos, enchanter)) {
+					enchanter.craftingTime = 0;
+					PlayBlockBoundSoundInstancePayload.sendCancelBlockBoundSoundInstance((ServerLevel) enchanter.getLevel(), enchanter.worldPosition);
 					return;
 				}
 			}
-			if (enchanterBlockEntity.craftingTime == 1) {
-				PlayBlockBoundSoundInstancePayload.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.ENCHANTER_WORKING, (ServerLevel) enchanterBlockEntity.getLevel(), enchanterBlockEntity.worldPosition, Integer.MAX_VALUE);
+			if (enchanter.craftingTime == 1) {
+				PlayBlockBoundSoundInstancePayload.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.ENCHANTER_WORKING, (ServerLevel) enchanter.getLevel(), enchanter.worldPosition, Integer.MAX_VALUE);
 			}
 			
-			var recipe = enchanterBlockEntity.currentRecipe == null ? null : enchanterBlockEntity.currentRecipe.value();
+			var recipe = enchanter.currentRecipe == null ? null : enchanter.currentRecipe.value();
 			if (recipe instanceof EnchanterRecipe enchanterRecipe) {
-				enchanterBlockEntity.craftingTime++;
+				enchanter.craftingTime++;
 				
 				// looks cooler this way
-				if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal - 20) {
-					enchanterBlockEntity.doItemBowlOrbs(world);
-				} else if (enchanterBlockEntity.craftingTime == enchanterBlockEntity.craftingTimeTotal) {
-					playCraftingFinishedEffects(enchanterBlockEntity);
-					craftEnchanterRecipe(world, enchanterBlockEntity, enchanterRecipe);
+				if (enchanter.craftingTime == enchanter.craftingTimeTotal - 20) {
+					enchanter.doItemBowlOrbs(level);
+				} else if (enchanter.craftingTime == enchanter.craftingTimeTotal) {
+					playCraftingFinishedEffects(enchanter);
+					craftEnchanterRecipe(level, enchanter, enchanterRecipe);
 					craftingSuccess = true;
 				}
-				enchanterBlockEntity.setChanged();
+				enchanter.setChanged();
 			} else if (recipe instanceof EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
-				enchanterBlockEntity.currentItemProcessingTime++;
-				if (enchanterBlockEntity.currentItemProcessingTime == REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT) {
-					enchanterBlockEntity.currentItemProcessingTime = 0;
+				enchanter.currentItemProcessingTime++;
+				if (enchanter.currentItemProcessingTime == REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT) {
+					enchanter.currentItemProcessingTime = 0;
 					
-					int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchanterBlockEntity.craftingTimeTotal - enchanterBlockEntity.craftingTime);
+					int consumedItems = tickEnchantmentUpgradeRecipe(level, enchanter, enchanter.craftingTimeTotal - enchanter.craftingTime);
 					if (consumedItems == 0) {
-						enchanterBlockEntity.inventoryChanged();
+						enchanter.inventoryChanged();
 					} else {
-						enchanterBlockEntity.craftingTime += consumedItems;
-						if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
-							playCraftingFinishedEffects(enchanterBlockEntity);
-							enchanterBlockEntity.craftEnchantmentUpgradeRecipe(world, enchantmentUpgradeRecipe);
-							PlayBlockBoundSoundInstancePayload.sendCancelBlockBoundSoundInstance((ServerLevel) enchanterBlockEntity.getLevel(), enchanterBlockEntity.worldPosition);
+						enchanter.craftingTime += consumedItems;
+						if (enchanter.craftingTime >= enchanter.craftingTimeTotal) {
+							playCraftingFinishedEffects(enchanter);
+							enchanter.craftEnchantmentUpgradeRecipe(level, enchantmentUpgradeRecipe);
+							PlayBlockBoundSoundInstancePayload.sendCancelBlockBoundSoundInstance((ServerLevel) enchanter.getLevel(), enchanter.worldPosition);
 							
 							craftingSuccess = true;
 						}
 					}
 				}
-				enchanterBlockEntity.setChanged();
-			} else if (enchanterBlockEntity.currentItemProcessingTime > -1) {
-				int speedTicks = Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED), world.getRandom());
-				enchanterBlockEntity.craftingTime += speedTicks;
-				if (world.getGameTime() % REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT == 0) {
+				enchanter.setChanged();
+			} else if (enchanter.currentItemProcessingTime > -1) {
+				int speedTicks = Support.getIntFromDecimalWithChance(enchanter.upgrades.getEffectiveValue(UpgradeType.SPEED), level.getRandom());
+				enchanter.craftingTime += speedTicks;
+				if (level.getGameTime() % REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT == 0) {
 					// in-code recipe for item + books => enchanted item
-					boolean drained = enchanterBlockEntity.drainExperience(speedTicks);
+					boolean drained = enchanter.drainExperience(speedTicks);
 					if (!drained) {
-						enchanterBlockEntity.currentItemProcessingTime = -1;
-						enchanterBlockEntity.updateInClientWorld();
-						PlayBlockBoundSoundInstancePayload.sendCancelBlockBoundSoundInstance((ServerLevel) enchanterBlockEntity.getLevel(), enchanterBlockEntity.worldPosition);
+						enchanter.currentItemProcessingTime = -1;
+						enchanter.updateInClientWorld();
+						PlayBlockBoundSoundInstancePayload.sendCancelBlockBoundSoundInstance((ServerLevel) enchanter.getLevel(), enchanter.worldPosition);
 						
 					}
 				}
-				if (enchanterBlockEntity.currentItemProcessingTime > 0 && enchanterBlockEntity.craftingTime >= enchanterBlockEntity.currentItemProcessingTime) {
-					playCraftingFinishedEffects(enchanterBlockEntity);
-					enchantCenterItem(enchanterBlockEntity);
+				if (enchanter.currentItemProcessingTime > 0 && enchanter.craftingTime >= enchanter.currentItemProcessingTime) {
+					playCraftingFinishedEffects(enchanter);
+					enchantCenterItem(enchanter);
 					
-					enchanterBlockEntity.currentItemProcessingTime = -1;
-					enchanterBlockEntity.craftingTime = 0;
-					enchanterBlockEntity.updateInClientWorld();
-					PlayBlockBoundSoundInstancePayload.sendCancelBlockBoundSoundInstance((ServerLevel) enchanterBlockEntity.getLevel(), enchanterBlockEntity.worldPosition);
+					enchanter.currentItemProcessingTime = -1;
+					enchanter.craftingTime = 0;
+					enchanter.updateInClientWorld();
+					PlayBlockBoundSoundInstancePayload.sendCancelBlockBoundSoundInstance((ServerLevel) enchanter.getLevel(), enchanter.worldPosition);
 					
 					craftingSuccess = true;
 				}
-				enchanterBlockEntity.setChanged();
+				enchanter.setChanged();
 			}
 			
 			if (craftingSuccess) {
-				enchanterBlockEntity.currentItemProcessingTime = -1;
-				enchanterBlockEntity.craftingTime = 0;
-				enchanterBlockEntity.inventoryChanged();
+				enchanter.currentItemProcessingTime = -1;
+				enchanter.craftingTime = 0;
+				enchanter.inventoryChanged();
 			}
 		}
 	}
@@ -819,15 +819,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		setChanged();
 	}
 	
-	// UPGRADEABLE
 	@Override
-	public void resetUpgrades() {
-		this.upgrades = null;
-		this.setChanged();
-	}
-	
-	@Override
-	public void calculateUpgrades() {
+	public void calculateUpgrades(Level level) {
 		this.upgrades = Upgradeable.calculateUpgradeMods4(level, worldPosition, 3, 0, this.ownerUUID);
 		this.setChanged();
 	}

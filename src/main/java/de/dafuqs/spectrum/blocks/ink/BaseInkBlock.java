@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
@@ -54,16 +55,22 @@ public abstract class BaseInkBlock extends HorizontalDirectionalBlock implements
         if (world.isClientSide()) {
             return InteractionResult.SUCCESS;
         } else {
-            this.openScreen(world, pos, player);
-            return InteractionResult.CONSUME;
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof BaseInkBlockEntity<?> inkBlockEntity) {
+				inkBlockEntity.setOwner(player);
+				player.openMenu(inkBlockEntity);
+			}
+			return InteractionResult.CONSUME;
         }
 	}
 	
-	protected void openScreen(Level world, BlockPos pos, Player player) {
+	@Override
+	public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BaseInkBlockEntity<?> inkBlockEntity) {
-			inkBlockEntity.setOwner(player);
-			player.openMenu(inkBlockEntity);
+			if (placer instanceof Player player) {
+				inkBlockEntity.setOwner(player);
+			}
 		}
 	}
 	

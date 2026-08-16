@@ -174,9 +174,7 @@ public interface Upgradeable {
 		return new UpgradeHolder(upgradeMods);
 	}
 	
-	void resetUpgrades();
-	
-	void calculateUpgrades();
+	void calculateUpgrades(Level level);
 
 	UpgradeHolder getUpgradeHolder();
 	

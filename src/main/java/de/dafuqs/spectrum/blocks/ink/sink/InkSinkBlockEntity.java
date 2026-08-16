@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.ink.sink;
 
 import de.dafuqs.spectrum.api.ink.capability.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.components.*;
@@ -23,6 +24,10 @@ public abstract class InkSinkBlockEntity extends BaseInkBlockEntity<IndividualCa
 	
 	public InkSinkBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState, int tier, int inventorySize, int inkSlotId) {
 		super(blockEntityType, blockPos, blockState, new IndividualCappedInkStorage((long) Math.pow(256, tier)), inventorySize, inkSlotId);
+	}
+	
+	public InkSinkBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState, int tier, int inventorySize, int inkSlotId, List<InkColor> usedInkColors) {
+		super(blockEntityType, blockPos, blockState, new IndividualCappedInkStorage((long) Math.pow(256, tier), usedInkColors), inventorySize, inkSlotId);
 	}
 	
 	@Override

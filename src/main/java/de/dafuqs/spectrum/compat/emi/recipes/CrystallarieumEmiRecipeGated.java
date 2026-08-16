@@ -13,8 +13,10 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 
 import java.util.*;
+import java.util.function.*;
 import java.util.stream.*;
 
 public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<CrystallarieumRecipe> {
@@ -28,7 +30,10 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 				EmiIngredient.of(recipe.getIngredientStack()),
 				EmiStack.of(recipe.getGrowthStages().getFirst().getBlock())
 		);
-		outputs.addAll(recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).filter(s -> !s.isEmpty()).toList());
+		outputs.addAll(recipe.getGrowthStages().stream().map(state -> {
+			Block block = state.getBlock();
+			return block instanceof LiquidBlock liquidBlock ? EmiStack.of(liquidBlock.fluid) : EmiStack.of(block);
+		}).toList());
 	}
 	
 	@Override

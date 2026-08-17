@@ -2,16 +2,18 @@
   "criteria": {
     "broken_nightdew": {
       "trigger": "spectrum:block_broken",
-      "location": [
-        {
-          "condition": "minecraft:location_check",
-          "predicate": {
-            "block": {
-              "blocks": "spectrum:nightdew"
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "spectrum:nightdew"
+              }
             }
           }
-        }
-      ]
+        ]
+      }
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",

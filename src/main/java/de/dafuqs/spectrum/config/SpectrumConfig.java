@@ -259,20 +259,20 @@ public class SpectrumConfig {
 		
 		ShootingStarDimensions = builder
 				.translation("config.spectrum.shooting_star_dimensions")
-				.comment("Dimensions where shooting stars spawn for players. Shooting Stars will only spawn for players with sufficient progress in the mod")
+				.comment("Dimensions where Shooting Stars spawn for players. Shooting Stars will only spawn for players with sufficient progress in the mod.")
 				.defineList("shooting_star_dimensions", List.of("minecraft:overworld", "starry_skies:overworld", "paradise_lost:paradise_lost", "tropicraft:tropics"), () -> "mymod:my_[regex_matched_]*_dimension_id", o -> true);
 		
 		ShootingStarSpawnChance = builder
 				.translation("config.spectrum.shooting_star_spawn_chance")
 				.comment("""
-			Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 100 chances per night).
+			Shooting Star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 100 chances per night).
 			By default, there is a 0.0075 ^= 0.75 % chance at each of those check times. Making it ~1 shooting star spawn
 			per night per player that unlocked the required progression.""")
 				.define("shooting_star_spawn_chance", 0.0075D);
 		
 		StormStoneDimensions = builder
 				.translation("config.spectrum.storm_stone_dimensions")
-				.comment("Dimensions where lightning strikes can spawn Storm Stones")
+				.comment("Dimensions where lightning strikes will cause Storm Stones to spawn. Storm Stones will only be visible for players with sufficient progress in the mod.")
 				.defineList("storm_stone_dimensions", List.of("minecraft:overworld", "starry_skies:overworld", "paradise_lost:paradise_lost", "tropicraft:tropics"), () -> "mymod:my_[regex_matched_]*_dimension_id", o -> true);
 		
 		StormStoneSpawnChance = builder

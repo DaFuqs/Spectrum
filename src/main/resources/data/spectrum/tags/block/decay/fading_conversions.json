@@ -9,6 +9,31 @@
     "minecraft:mushroom_stem",
     "minecraft:brown_mushroom_block",
     "minecraft:red_mushroom_block",
-    "minecraft:honey_block"
+    "minecraft:honey_block",
+
+    {
+      "id": "tropicraft:green_plantain_bunch",
+      "required": false
+    },
+    {
+      "id": "tropicraft:yellow_plantain_bunch",
+      "required": false
+    },
+    {
+      "id": "tropicraft:eel_grass_block",
+      "required": false
+    },
+    {
+      "id": "tropicraft:fern_seagrass_block",
+      "required": false
+    },
+    {
+      "id": "tropicraft:sickle_seagrass_block",
+      "required": false
+    },
+    {
+      "id": "tropicraft:noodle_seagrass_block ",
+      "required": false
+    }
   ]
 }

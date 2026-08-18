@@ -140,7 +140,6 @@ dependencies {
 
 	// Mod Compat
 	// KNOWN INCOMPAT: Colorful Hearts completely overrides neos heart rendering, making hearts unable to be modified by divinity / deadly poison
-	// implementation("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
 	/*implementation*/ /*runtimeOnly*/ compileOnly("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
 	/*implementation*/ /*runtimeOnly*/ compileOnly("com.unascribed:ears-api:${project.ears_version}") { transitive = false }
 	/*implementation*/ /*runtimeOnly*/ compileOnly("maven.modrinth:create:${project.create_version}") { transitive = false }

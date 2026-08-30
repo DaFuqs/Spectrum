@@ -2,7 +2,6 @@ plugins {
 	id 'maven-publish'
 	id 'idea'
 	id 'net.neoforged.moddev' version '2.0.140'
-	id 'org.openrewrite.rewrite' version "latest.release"
 }
 
 version = project.mod_version
@@ -29,10 +28,6 @@ repositories {
 	}
 	// maven { url = "https://maven.kyrptonaught.dev" } // CustomPortalAPI as requirement for Starry Skies
 	mavenCentral()
-}
-
-rewrite {
-	activeRecipe "org.openrewrite.java.jspecify.JSpecifyBestPractices"
 }
 
 base {
@@ -97,8 +92,6 @@ configurations {
 }
 
 dependencies {
-	rewrite "org.openrewrite.recipe:rewrite-migrate-java:3.34.1"
-
 	// TODO: remove additionalRuntimeClasspath for MC 1.21.9+
 	// see https://github.com/neoforged/ModDevGradle?tab=readme-ov-file#external-dependencies-runs
 	// jgrapht (the graph lib we use) and its dependencies

@@ -726,6 +726,18 @@
       }
     ]
   },
+  "music.the_conservatory": {
+    "sounds": [
+      {
+        "name": "spectrum:music/proper_motions_dreamless_lullabies",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/proper_motions_in_missing_memory_of",
+        "stream": true
+      }
+    ]
+  },
   "music.le_fishe_au_chocolat": {
     "sounds": [
       {

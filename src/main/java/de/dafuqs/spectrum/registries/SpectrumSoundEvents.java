@@ -30,6 +30,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent MUSIC_DEEPER_DOWN_NOXSHROOM_FOREST = register("music.deeper_down.noxshroom_forest");
 	public static final SoundEvent MUSIC_DEEPER_DOWN_RAZOR_EDGE = register("music.deeper_down.razor_edge");
 	
+	public static final SoundEvent MUSIC_THE_CONSERVATORY = register("music.the_conservatory");
+	
 	// Sounds
 	public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");
 	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_GENERIC = register("pedestal_crafting_finished_generic");

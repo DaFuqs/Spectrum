@@ -10,7 +10,7 @@
     "minecraft:shears",
     "minecraft:ghast_tear",
     {
-      "item": "spectrum:copper_ingot",
+      "item": "minecraft:copper_ingot",
       "count": 16
     }
   ],

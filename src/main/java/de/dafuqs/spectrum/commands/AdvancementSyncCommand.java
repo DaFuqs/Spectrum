@@ -79,9 +79,9 @@ public class AdvancementSyncCommand {
 		for(ServerPlayer p : players) {
 			if(option.persistent) {
 				if(option.spectrumOnly) {
-					p.sendSystemMessage(Component.translatable("commands.spectrum.advancement_sync.added_to_party", players.size()));
-				} else {
 					p.sendSystemMessage(Component.translatable("commands.spectrum.advancement_sync.added_to_spectrum_party", players.size()));
+				} else {
+					p.sendSystemMessage(Component.translatable("commands.spectrum.advancement_sync.added_to_party", players.size()));
 				}
 			}
 		}

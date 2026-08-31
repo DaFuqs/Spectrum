@@ -10,6 +10,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.server.players.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.level.saveddata.*;
 
 import java.util.*;
@@ -21,6 +22,8 @@ public class AdvancementSyncer extends SavedData {
 		SPECTRUM_PERSISTENT("spectrum_persistent", true, true),
 		ALL_ONCE("all_once", false, false),
 		SPECTRUM_ONCE("spectrum_once", false, true);
+		
+		public static final StringRepresentable.EnumCodec<Option> CODEC = StringRepresentable.fromEnum(Option::values);
 		
 		public final String name;
 		public final boolean persistent;
@@ -35,6 +38,10 @@ public class AdvancementSyncer extends SavedData {
 		@Override
 		public String getSerializedName() {
 			return this.name;
+		}
+		
+		public static Option byName(String name) {
+			return CODEC.byName(name, ALL_PERSISTENT);
 		}
 		
 	}
@@ -54,7 +61,7 @@ public class AdvancementSyncer extends SavedData {
 			for (Tag tag : entry.getList("player_uuids", CompoundTag.TAG_INT_ARRAY)) {
 				players.add(NbtUtils.loadUUID(tag));
 			}
-			Option option = Option.valueOf(entry.getString("option"));
+			Option option = Option.byName(entry.getString("option"));
 			advancementSyncer.parties.add(new Party(players, option));
 		}
 		

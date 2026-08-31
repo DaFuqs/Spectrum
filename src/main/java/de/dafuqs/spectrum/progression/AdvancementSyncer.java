@@ -22,9 +22,9 @@ public class AdvancementSyncer extends SavedData {
 		ALL_ONCE("all_once", false, false),
 		SPECTRUM_ONCE("spectrum_once", false, true);
 		
-		private final String name;
-		private final boolean persistent;
-		private final boolean spectrumOnly;
+		public final String name;
+		public final boolean persistent;
+		public final boolean spectrumOnly;
 		
 		Option(String name, boolean persistent, boolean spectrumOnly) {
 			this.name = name;
@@ -36,18 +36,17 @@ public class AdvancementSyncer extends SavedData {
 		public String getSerializedName() {
 			return this.name;
 		}
-	}
-	
-	public record Relationship(List<UUID> players, Option option) {
 		
 	}
 	
-	protected final List<Relationship> relationships = new ArrayList<>();
+	public record Party(Collection<UUID> players, Option option) { }
+	
+	protected final Collection<Party> parties = new ArrayList<>();
 	
 	public static AdvancementSyncer load(CompoundTag compoundTag, HolderLookup.Provider lookupProvider) {
 		AdvancementSyncer advancementSyncer = new AdvancementSyncer();
 		
-		ListTag relationships = compoundTag.getList("relationships", CompoundTag.TAG_COMPOUND);
+		ListTag relationships = compoundTag.getList("parties", CompoundTag.TAG_COMPOUND);
 
 		for(int i = 0; i < relationships.size(); ++i) {
 			CompoundTag entry = relationships.getCompound(i);
@@ -56,7 +55,7 @@ public class AdvancementSyncer extends SavedData {
 				players.add(NbtUtils.loadUUID(tag));
 			}
 			Option option = Option.valueOf(entry.getString("option"));
-			advancementSyncer.relationships.add(new  Relationship(players, option));
+			advancementSyncer.parties.add(new Party(players, option));
 		}
 		
 		return advancementSyncer;
@@ -65,19 +64,19 @@ public class AdvancementSyncer extends SavedData {
 	@Override
 	public CompoundTag save(CompoundTag tag, HolderLookup.Provider lookup) {
 		ListTag relationshipsTag = new ListTag();
-		for(Relationship relationship : this.relationships) {
+		for(Party party : this.parties) {
 			CompoundTag t = new CompoundTag();
-			t.putString("option", relationship.option().getSerializedName());
+			t.putString("option", party.option().getSerializedName());
 			
 			ListTag listtag = new ListTag();
-			for (UUID uuid : relationship.players()) {
+			for (UUID uuid : party.players()) {
 				listtag.add(NbtUtils.createUUID(uuid));
 			}
 			t.put("player_uuids", listtag);
 			relationshipsTag.add(t);
 		}
 		
-		tag.put("relationships", relationshipsTag);
+		tag.put("parties", relationshipsTag);
 		return tag;
 	}
 	
@@ -85,38 +84,38 @@ public class AdvancementSyncer extends SavedData {
 		return server.overworld().getDataStorage().computeIfAbsent(new Factory<>(AdvancementSyncer::new, AdvancementSyncer::load), "advancement_syncer");
 	}
 	
-	public void sync(List<ServerPlayer> players, Option option) {
+	public void sync(Collection<ServerPlayer> players, Option option) {
 		syncAdvancements(players, option.spectrumOnly);
 		
 		if(option.persistent) {
-			this.relationships.add(new Relationship(players.stream().map(Entity::getUUID).toList(), option));
+			this.parties.add(new Party(players.stream().map(Entity::getUUID).toList(), option));
 			this.setDirty();
 		}
 	}
 	
-	public List<Relationship> getSyncs(ServerPlayer player) {
-		List<Relationship> results = new ArrayList<>();
-		for(Relationship relationship : this.relationships) {
-			if(!relationship.players().contains(player.getUUID())) {
+	public List<Party> getSyncs(ServerPlayer player) {
+		List<Party> results = new ArrayList<>();
+		for(Party party : this.parties) {
+			if(!party.players().contains(player.getUUID())) {
 				continue;
 			}
-			results.add(relationship);
+			results.add(party);
 		}
 		return results;
 	}
 	
-	public int clearSyncs(ServerPlayer player) {
+	public int clear(ServerPlayer player) {
 		int i = 0;
 		
-		for(Relationship relationship : this.relationships) {
-			if(!relationship.players().contains(player.getUUID())) {
+		for(Party party : this.parties) {
+			if(!party.players().contains(player.getUUID())) {
 				continue;
 			}
 			
-			if(relationship.players().size() <= 2) {
-				relationships.remove(relationship);
+			if(party.players().size() <= 2) {
+				parties.remove(party);
 			} else {
-				relationship.players().remove(player.getUUID());
+				party.players().remove(player.getUUID());
 			}
 			i++;
 		}
@@ -129,14 +128,14 @@ public class AdvancementSyncer extends SavedData {
 	
 	public void onAdvancementEarn(ServerPlayer player, AdvancementHolder advancement, String criterionKey) {
 		MinecraftServer server = player.getServer();
-		for(Relationship relationship : this.relationships) {
-			if(!relationship.players().contains(player.getUUID())) {
+		for(Party party : this.parties) {
+			if(!party.players().contains(player.getUUID())) {
 				continue;
 			}
 			
 			List<ServerPlayer> relationshipPlayers = new  ArrayList<>();
 			relationshipPlayers.add(player);
-			for(UUID uuid : relationship.players()) {
+			for(UUID uuid : party.players()) {
 				ServerPlayer onlinePlayer = server.getPlayerList().getPlayer(uuid);
 				if(onlinePlayer != null) {
 					onlinePlayer.getAdvancements().award(advancement, criterionKey);
@@ -152,25 +151,25 @@ public class AdvancementSyncer extends SavedData {
 			return;
 		}
 		
-		for(Relationship relationship : this.relationships) {
-			if(!relationship.players().contains(player.getUUID())) {
+		for(Party party : this.parties) {
+			if(!party.players().contains(player.getUUID())) {
 				continue;
 			}
 			
 			List<ServerPlayer> relationshipPlayers = new  ArrayList<>();
 			relationshipPlayers.add(player);
-			for(UUID uuid : relationship.players()) {
+			for(UUID uuid : party.players()) {
 				ServerPlayer onlinePlayer = playerList.getPlayer(uuid);
 				if(onlinePlayer != null) {
 					relationshipPlayers.add(onlinePlayer);
 				}
 			}
 			
-			syncAdvancements(relationshipPlayers, relationship.option.spectrumOnly);
+			syncAdvancements(relationshipPlayers, party.option.spectrumOnly);
 		}
 	}
 	
-	private void syncAdvancements(List<ServerPlayer> players, boolean spectrumOnly) {
+	private void syncAdvancements(Collection<ServerPlayer> players, boolean spectrumOnly) {
 		String namespaceToSync = spectrumOnly ? SpectrumCommon.MOD_ID : "all";
 		for(ServerPlayer source : players) {
 			for (ServerPlayer target : players) {

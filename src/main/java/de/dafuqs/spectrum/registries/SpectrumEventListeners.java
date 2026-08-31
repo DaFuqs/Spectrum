@@ -10,7 +10,6 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
-import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.spawners.*;
@@ -29,7 +28,6 @@ import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.advancements.*;
-import net.minecraft.client.resources.model.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
@@ -69,7 +67,6 @@ import net.neoforged.bus.api.*;
 import net.neoforged.fml.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.fml.loading.*;
-import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.event.entity.*;
@@ -1253,6 +1250,21 @@ public class SpectrumEventListeners {
 					)
 				);
 			});
+		}
+	}
+	
+	@SubscribeEvent
+	private static void advancementEarn(AdvancementEvent.AdvancementProgressEvent event) {
+		if(event.getProgressType() == AdvancementEvent.AdvancementProgressEvent.ProgressType.GRANT && event.getEntity() instanceof ServerPlayer serverPlayer) {
+			AdvancementSyncer.getInstance(serverPlayer.getServer()).onAdvancementEarn(serverPlayer, event.getAdvancement(), event.getCriterionName());
+		}
+		
+	}
+	
+	@SubscribeEvent
+	private static void entityJoin(EntityJoinLevelEvent event) {
+		if(event.getEntity() instanceof ServerPlayer serverPlayer) {
+			AdvancementSyncer.getInstance(serverPlayer.getServer()).onPlayerJoin(serverPlayer);
 		}
 	}
 	

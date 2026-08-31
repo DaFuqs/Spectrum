@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "built_fusion_shrine": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:build_fusion_shrine"
+      }
+    },
+    "collected_shimmerstone": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_shimmerstone"
+      }
+    },
+    "collected_four_leaf_clover": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_four_leaf_clover"
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
+import net.minecraft.server.players.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.saveddata.*;
@@ -146,6 +147,11 @@ public class AdvancementSyncer extends SavedData {
 	
 	public void onPlayerJoin(ServerPlayer player) {
 		MinecraftServer server = player.getServer();
+		PlayerList playerList = server.getPlayerList();
+		if(playerList.getPlayers().size() < 2) {
+			return;
+		}
+		
 		for(Relationship relationship : this.relationships) {
 			if(!relationship.players().contains(player.getUUID())) {
 				continue;
@@ -154,7 +160,7 @@ public class AdvancementSyncer extends SavedData {
 			List<ServerPlayer> relationshipPlayers = new  ArrayList<>();
 			relationshipPlayers.add(player);
 			for(UUID uuid : relationship.players()) {
-				ServerPlayer onlinePlayer = server.getPlayerList().getPlayer(uuid);
+				ServerPlayer onlinePlayer = playerList.getPlayer(uuid);
 				if(onlinePlayer != null) {
 					relationshipPlayers.add(onlinePlayer);
 				}

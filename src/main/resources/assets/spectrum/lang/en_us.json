@@ -5275,6 +5275,7 @@
   "spectrum.recipe.fusion_shrine.explanation.advancement_sync_all_persistent": "Keeps advancements synced",
   "spectrum.recipe.fusion_shrine.explanation.advancement_sync_spectrum_once": "Syncs Spectrum progress once",
   "spectrum.recipe.fusion_shrine.explanation.advancement_sync_spectrum_persistent": "Keeps Spectrum progress synced",
+  "spectrum.recipe.fusion_shrine.explanation.advancement_sync_clear": "Removes you from all advancement parties",
 
   "spectrum.rei.potion_workshop_reacting.botania.black_lotus": "• +1 beneficial effects\n• 50%% chance for harmful effect\n• makes the potion unidentifiable\n\nFancy a gamble?",
   "spectrum.rei.potion_workshop_reacting.botania.blacker_lotus": "• +2 beneficial effects\n• +1 harmful effect\n• makes the potion unidentifiable\n\nFancy a gamble?",

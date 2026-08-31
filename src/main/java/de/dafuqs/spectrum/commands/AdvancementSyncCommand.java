@@ -28,8 +28,8 @@ public class AdvancementSyncCommand {
 									.then(Commands.argument("option", EnumArgument.enumArgument(AdvancementSyncer.Option.class))
 											.executes((context) -> create(context.getSource(), EntityArgument.getPlayers(context, "targets"), context.getArgument("option", AdvancementSyncer.Option.class))))))
 					.then(Commands.literal("clear")
-							.then(Commands.argument("target", EntityArgument.player())
-									.executes((context) -> clear(context.getSource(), EntityArgument.getPlayer(context, "target"))))).build();
+							.then(Commands.argument("targets", EntityArgument.players())
+									.executes((context) -> clear(context.getSource(), EntityArgument.getPlayers(context, "targets"))))).build();
 		
 		root.addChild(baseNode);
 	}
@@ -88,11 +88,15 @@ public class AdvancementSyncCommand {
 		return players.size();
 	}
 	
-	private static int clear(CommandSourceStack source, ServerPlayer player) {
+	private static int clear(CommandSourceStack source, Collection<ServerPlayer> players) {
 		AdvancementSyncer advancementSyncer = AdvancementSyncer.getInstance(source.getServer());
-		int removedCount = advancementSyncer.clear(player);
-		player.sendSystemMessage(Component.translatable("commands.spectrum.advancement_sync.cleared", removedCount));
-		return removedCount;
+		int removed = 0;
+		for(ServerPlayer p : players) {
+			int removedCount = advancementSyncer.clear(p);
+			p.sendSystemMessage(Component.translatable("commands.spectrum.advancement_sync.cleared", removedCount));
+			removed += removedCount;
+		}
+		return removed;
 	}
 	
 }

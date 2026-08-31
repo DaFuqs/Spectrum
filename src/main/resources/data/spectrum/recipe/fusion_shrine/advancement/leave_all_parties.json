@@ -1,0 +1,31 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 200,
+  "experience": 0.0,
+  "fluid": {
+    "fluid": "minecraft:lava"
+  },
+  "ingredients": [
+    "spectrum:four_leaf_clover",
+    "minecraft:shears",
+    "minecraft:ghast_tear",
+    {
+      "item": "spectrum:copper_ingot",
+      "count": 16
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/advancement_syncing",
+  "effects": {
+    "start": "single_visual_explosion_on_shrine",
+    "during": [
+      "/execute as @a[distance=..8] at @s run particle minecraft:happy_villager ~ ~ ~ 0.3 0.4 0.3 0 2",
+      "visual_explosions_on_shrine",
+      "/execute as @a[distance=..8] at @s run particle minecraft:angry_villager ~ ~ ~ 0.3 0.9 0.3 0 1"
+    ],
+    "finish": "/spectrum advancement_sync clear @a[distance=..8]"
+  },
+  "description": {
+    "type": "translatable",
+    "translate": "spectrum.recipe.fusion_shrine.explanation.advancement_sync_clear"
+  }
+}

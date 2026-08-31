@@ -4109,7 +4109,6 @@
   "book.spectrum.guidebook.filtering.tag_filtering.title": "Tag Filtering",
   "book.spectrum.guidebook.filtering.tag_filtering.text": "By writing an [#](449900)Item Tag[#]() on a [](item://minecraft:name_tag), I can be even more granular, making my constructs only handle things in that tag! By prepending a tags name with a '!' I can then filter even further and exclude items with that tag.\\\n\\\nConditions are evaluated from left to right.",
 
-
   "commands.spectrum.primordial_fire.put_on.success": "Set %d entities on fire",
   "commands.spectrum.primordial_fire.put_out.success": "Extinguished %d entities",
   "commands.spectrum.progression_sanity.success": "Printed the sanity checks findings to the servers console",
@@ -4117,6 +4116,12 @@
   "commands.spectrum.list_item_tags.list": "%s is in the following item tags:",
   "commands.spectrum.force_enchant.enchantment_not_supported": "%s would not support %s",
   "commands.spectrum.force_enchant.has_incompatible_enchantments": "%s has incompatible enchantments",
+  "commands.spectrum.advancement_sync.no_parties": "%s is in no advancement parties.",
+  "commands.spectrum.advancement_sync.parties_header": "Advancement parties %s is part of:",
+  "commands.spectrum.advancement_sync.not_enough_players": "Advancement Syncing requires at least two players.",
+  "commands.spectrum.advancement_sync.added_to_party": "You were added to an advancement party of %d players.",
+  "commands.spectrum.advancement_sync.added_to_spectrum_party": "You were added to an advancement party of %d players (Spectrum only).",
+  "commands.spectrum.advancement_sync.cleared": "You left %d advancement parties.",
 
   "container.spectrum.bedrock_anvil": "Repair & Customize",
   "container.spectrum.bedrock_anvil.lore": "Lore:",

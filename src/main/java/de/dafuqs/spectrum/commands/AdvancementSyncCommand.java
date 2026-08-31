@@ -47,9 +47,9 @@ public class AdvancementSyncCommand {
 		List<AdvancementSyncer.Party> parties = advancementSyncer.getSyncs(player);
 		
 		if (parties.isEmpty()) {
-			source.sendSystemMessage(Component.literal("No relationships."));
+			source.sendSystemMessage(Component.translatable("commands.spectrum.advancement_sync.no_parties", player.getDisplayName().getString()));
 		} else {
-			source.sendSystemMessage(Component.literal("Relationships:"));
+			source.sendSystemMessage(Component.translatable("commands.spectrum.advancement_sync.parties_header", player.getDisplayName().getString()));
 			for (AdvancementSyncer.Party party : parties) {
 				StringBuilder s = new StringBuilder();
 				s.append("- ");
@@ -70,7 +70,7 @@ public class AdvancementSyncCommand {
 	
 	private static int create(CommandSourceStack source, Collection<ServerPlayer> players, AdvancementSyncer.Option option) {
 		if(players.size() < 2) {
-			source.sendSystemMessage(Component.literal("Advancement Syncing requires at least two players."));
+			source.sendSystemMessage(Component.translatable("commands.spectrum.advancement_sync.not_enough_players"));
 			return 0;
 		}
 		
@@ -79,9 +79,9 @@ public class AdvancementSyncCommand {
 		for(ServerPlayer p : players) {
 			if(option.persistent) {
 				if(option.spectrumOnly) {
-					p.sendSystemMessage(Component.literal("You were added to an advancement party of " + players.size() + " players."));
+					p.sendSystemMessage(Component.translatable("commands.spectrum.advancement_sync.added_to_party", players.size()));
 				} else {
-					p.sendSystemMessage(Component.literal("You were added to an advancement party of " + players.size() + " players (Spectrum only)."));
+					p.sendSystemMessage(Component.translatable("commands.spectrum.advancement_sync.added_to_spectrum_party", players.size()));
 				}
 			}
 		}
@@ -91,7 +91,7 @@ public class AdvancementSyncCommand {
 	private static int clear(CommandSourceStack source, ServerPlayer player) {
 		AdvancementSyncer advancementSyncer = AdvancementSyncer.getInstance(source.getServer());
 		int removedCount = advancementSyncer.clear(player);
-		player.sendSystemMessage(Component.literal("Your advancement parties were cleared: " + removedCount));
+		player.sendSystemMessage(Component.translatable("commands.spectrum.advancement_sync.cleared", removedCount));
 		return removedCount;
 	}
 	

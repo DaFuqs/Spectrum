@@ -10,10 +10,11 @@ import net.minecraft.world.level.block.state.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class PottedAmaranthBushelBlock extends FlowerPotBlock implements RevelationAware {
 	
-	public PottedAmaranthBushelBlock(Block content, Properties settings) {
+	public PottedAmaranthBushelBlock(AmaranthBushelBlock content, Properties settings) {
 		super(content, settings);
 		RevelationAware.register(this);
 	}

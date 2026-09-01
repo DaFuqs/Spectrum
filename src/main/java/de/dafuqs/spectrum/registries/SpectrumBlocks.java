@@ -813,10 +813,10 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<FungusBlock> IVORY_NOXSHROOM = registerNoxshroom("ivory_noxshroom", SpectrumConfiguredFeatureKeys.IVORY_NOXFUNGUS, MapColor.QUARTZ);
 	public static final DeferredBlock<FungusBlock> CHESTNUT_NOXSHROOM = registerNoxshroom("chestnut_noxshroom", SpectrumConfiguredFeatureKeys.CHESTNUT_NOXFUNGUS, MapColor.CRIMSON_NYLIUM);
 	
-	public static final DeferredBlock<FlowerPotBlock> POTTED_SLATE_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_slate_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, SLATE_NOXSHROOM, pottedPlant())), "_type_1"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_EBONY_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_ebony_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, EBONY_NOXSHROOM, pottedPlant())), "_type_1"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_IVORY_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_ivory_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, IVORY_NOXSHROOM, pottedPlant())), "_type_1"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_CHESTNUT_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_chestnut_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, CHESTNUT_NOXSHROOM, pottedPlant())), "_type_1"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_SLATE_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_slate_noxshroom", () -> new FlowerPotBlock(SLATE_NOXSHROOM.get(), pottedPlant())), "_type_1"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_EBONY_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_ebony_noxshroom", () -> new FlowerPotBlock(EBONY_NOXSHROOM.get(), pottedPlant())), "_type_1"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_IVORY_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_ivory_noxshroom", () -> new FlowerPotBlock(IVORY_NOXSHROOM.get(), pottedPlant())), "_type_1"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_CHESTNUT_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_chestnut_noxshroom", () -> new FlowerPotBlock(CHESTNUT_NOXSHROOM.get(), pottedPlant())), "_type_1"));
 	
 	public static BlockBehaviour.Properties noxcap(MapColor color) {
 		return settings(color, SoundType.STEM, 4.0F).instrument(NoteBlockInstrument.BASS);
@@ -934,7 +934,7 @@ public class SpectrumBlocks {
 	}
 	
 	public static final DeferredBlock<WeepingGalaSprigBlock> WEEPING_GALA_SPRIG = register(cross(blockWithItem("weeping_gala_sprig", () -> new WeepingGalaSprigBlock(copyWithMapColor(OAK_SAPLING, MapColor.WARPED_WART_BLOCK)))).withItemModel(SpectrumModelHelper::registerItemModel));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_WEEPING_GALA_SPRIG = register(pottedPlant(block("potted_weeping_gala_sprig", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, () -> WEEPING_GALA_SPRIG.get(), pottedPlant())), false));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_WEEPING_GALA_SPRIG = register(pottedPlant(block("potted_weeping_gala_sprig", () -> new FlowerPotBlock(WEEPING_GALA_SPRIG.get(), pottedPlant())), false));
 	
 	public static final DeferredBlock<Block> WEEPING_GALA_LEAVES = register(singleton(blockWithItem("weeping_gala_leaves", () -> new FlammableLeavesBlock(copyWithMapColor(OAK_LEAVES, MapColor.WARPED_WART_BLOCK))), TexturedModel.LEAVES));
 	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_WEEPING_GALA_LOG = register(log(blockWithItem("stripped_weeping_gala_log", () -> new FlammableRotatedPillarBlock(galaWood(MapColor.COLOR_BROWN)))));
@@ -1380,16 +1380,16 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<AmaranthBushelBlock> AMARANTH_BUSHEL = register(cross(blockWithItem("amaranth_bushel", () -> new AmaranthBushelBlock(SpectrumMobEffects.NOURISHING, 8, settings(MapColor.NONE, SoundType.CROP, 0.0F).noCollission()))).withItemModel(SpectrumModelHelper::registerItemModel));
 	public static final DeferredBlock<PottedAmaranthBushelBlock> POTTED_AMARANTH_BUSHEL = register(pottedPlant(block("potted_amaranth_bushel", () -> new PottedAmaranthBushelBlock(AMARANTH_BUSHEL.get(), pottedPlant())), false));
 	
-	public static final DeferredBlock<Block> RESONANT_LILY = register(simplePlant(blockWithItem("resonant_lily", () -> new ResonantLilyBlock(MobEffects.REGENERATION, 5, BlockBehaviour.Properties.ofFullCopy(POPPY).mapColor(MapColor.SNOW)))));
+	public static final DeferredBlock<ResonantLilyBlock> RESONANT_LILY = register(simplePlant(blockWithItem("resonant_lily", () -> new ResonantLilyBlock(MobEffects.REGENERATION, 5, BlockBehaviour.Properties.ofFullCopy(POPPY).mapColor(MapColor.SNOW)))));
 	public static final DeferredBlock<PottedResonantLilyBlock> POTTED_RESONANT_LILY = register(pottedPlant(block("potted_resonant_lily", () -> new PottedResonantLilyBlock(RESONANT_LILY.get(), pottedPlant())), false));
 	
 	public static final DeferredBlock<BloodOrchidBlock> BLOOD_ORCHID = register(blockWithItem("blood_orchid", () -> new BloodOrchidBlock(SpectrumMobEffects.FRENZY, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).offsetType(BlockBehaviour.OffsetType.NONE).randomTicks())).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerBlockTexturedItemModel(ctx, block, "5")).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BloodOrchidBlock.AGE).generate(stage -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModelProviders.cross(b -> b, stage.toString()).createWithSuffix(block, stage.toString(), ctx.modelOutput))))));
 	public static final DeferredBlock<Block> POTTED_BLOOD_ORCHID = register(singleton(block("potted_blood_orchid", () -> new PottedBloodOrchidBlock(BLOOD_ORCHID.get(), pottedPlant())), SpectrumTexturedModelProviders.flowerPotCross(b -> BLOOD_ORCHID.get(), "5", false)));
 	
-	public static final DeferredBlock<FlowerPotBlock> POTTED_SWEET_PEA = register(pottedPlantWithCustomTexture(block("potted_sweet_pea", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, SWEET_PEA, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_APRICOTTI = register(pottedPlantWithCustomTexture(block("potted_apricotti", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, APRICOTTI, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_VARIA_SPROUT = register(pottedPlantWithCustomTexture(block("potted_varia_sprout", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, VARIA_SPROUT, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_HUMMING_BELL = register(pottedPlant(block("potted_humming_bell", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, HUMMING_BELL, pottedPlant().lightLevel(s -> 9).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_SWEET_PEA = register(pottedPlantWithCustomTexture(block("potted_sweet_pea", () -> new FlowerPotBlock(SWEET_PEA.get(), pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_APRICOTTI = register(pottedPlantWithCustomTexture(block("potted_apricotti", () -> new FlowerPotBlock(APRICOTTI.get(), pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_VARIA_SPROUT = register(pottedPlantWithCustomTexture(block("potted_varia_sprout", () -> new FlowerPotBlock(VARIA_SPROUT.get(), pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_HUMMING_BELL = register(pottedPlant(block("potted_humming_bell", () -> new FlowerPotBlock(HUMMING_BELL.get(), pottedPlant().lightLevel(s -> 9).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
 	
 	public static DeferredBlock<ColoredSaplingBlock> registerColoredSapling(String name, InkColor color, TreeGrower generator) {
 		return register(simplePlant(blockWithItem(name, () -> new ColoredSaplingBlock(copyWithMapColor(OAK_SAPLING, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color, generator))));

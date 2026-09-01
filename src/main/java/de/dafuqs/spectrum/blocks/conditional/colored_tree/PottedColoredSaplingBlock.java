@@ -10,12 +10,13 @@ import net.minecraft.world.level.block.state.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class PottedColoredSaplingBlock extends FlowerPotBlock implements RevelationAware, ColoredTree {
 	
 	protected final InkColor color;
 	
-	public PottedColoredSaplingBlock(Block content, Properties settings, InkColor color) {
+	public PottedColoredSaplingBlock(ColoredSaplingBlock content, Properties settings, InkColor color) {
 		super(content, settings);
 		this.color = color;
 		RevelationAware.register(this);

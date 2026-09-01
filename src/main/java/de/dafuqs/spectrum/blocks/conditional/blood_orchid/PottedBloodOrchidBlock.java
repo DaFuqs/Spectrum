@@ -9,10 +9,11 @@ import net.minecraft.world.level.block.state.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class PottedBloodOrchidBlock extends FlowerPotBlock implements RevelationAware {
 	
-	public PottedBloodOrchidBlock(Block content, Properties settings) {
+	public PottedBloodOrchidBlock(BloodOrchidBlock content, Properties settings) {
 		super(content, settings);
 		RevelationAware.register(this);
 	}

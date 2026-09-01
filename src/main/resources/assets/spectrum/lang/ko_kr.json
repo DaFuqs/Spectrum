@@ -4109,7 +4109,6 @@
   "book.spectrum.guidebook.filtering.tag_filtering.title": "태그 필터링",
   "book.spectrum.guidebook.filtering.tag_filtering.text": "[](item://minecraft:name_tag)에 [#](449900)아이템 태그[#]()를 꼼꼼하게 적어 넣으면, 내 기계들이 오직 그 태그를 가진 것들만 선별적으로 다루도록 아주 정밀하게 통제할 수 있다! 태그 이름 앞에 '!'를 붙이면, 반대로 그 태그를 가지지 않은 아이템만 완벽하게 걸러낼 수도 있다.\\\n\\\n필터 조건은 왼쪽에서 오른쪽 순서로 적용된다.",
 
-
   "commands.spectrum.primordial_fire.put_on.success": "%d개의 개체에 불을 붙였습니다",
   "commands.spectrum.primordial_fire.put_out.success": "%d개의 개체의 불을 껐습니다",
   "commands.spectrum.progression_sanity.success": "서버 콘솔에 무결성 검사 결과를 출력했습니다",
@@ -4117,6 +4116,12 @@
   "commands.spectrum.list_item_tags.list": "%s(은)는 다음 아이템 태그에 포함되어 있습니다:",
   "commands.spectrum.force_enchant.enchantment_not_supported": "%s(은)는 %s(을)를 지원하지 않습니다",
   "commands.spectrum.force_enchant.has_incompatible_enchantments": "%s(은)는 지원되지 않는 마법 부여입니다",
+  "commands.spectrum.advancement_sync.no_parties": "%s(은)는 발전 과제 파티에 가입하지 않았습니다.",
+  "commands.spectrum.advancement_sync.parties_header": "발전 과제 파티 %s 구성:",
+  "commands.spectrum.advancement_sync.not_enough_players": "발전 과제 연동은 최소 두 명의 플레이어가 필요합니다.",
+  "commands.spectrum.advancement_sync.added_to_party": "%d 플레이어 구성의 발전 과제 파티에 가입되었습니다.",
+  "commands.spectrum.advancement_sync.added_to_spectrum_party": "%d 플레이어 구성의 발전 과제 파티에 가입되었습니다(스펙트럼 전용).",
+  "commands.spectrum.advancement_sync.cleared": "%d 발전 과제 파티를 탈퇴했습니다.",
 
   "container.spectrum.bedrock_anvil": "수리 & 개조",
   "container.spectrum.bedrock_anvil.lore": "설명:",
@@ -5266,6 +5271,11 @@
   "spectrum.recipe.fusion_shrine.explanation.weather_clear": "맑은 날씨 소환",
   "spectrum.recipe.fusion_shrine.explanation.weather_rain": "비 소환",
   "spectrum.recipe.fusion_shrine.explanation.weather_thunder": "뇌우 소환",
+  "spectrum.recipe.fusion_shrine.explanation.advancement_sync_all_once": "모든 발전 과제 1회성 연동",
+  "spectrum.recipe.fusion_shrine.explanation.advancement_sync_all_persistent": "발전 과제 연동 유지",
+  "spectrum.recipe.fusion_shrine.explanation.advancement_sync_spectrum_once": "스펙트럼 진행도 1회성 연동",
+  "spectrum.recipe.fusion_shrine.explanation.advancement_sync_spectrum_persistent": "스펙트럼 진행도 연동 유지",
+  "spectrum.recipe.fusion_shrine.explanation.advancement_sync_clear": "모든 발전 과제 파티에서 탈퇴",
 
   "spectrum.rei.potion_workshop_reacting.botania.black_lotus": "• +1 긍정적 효과\n• 50%% 확률로 부정적 효과 부여\n• 물약을 식별 불가능하게 만듦.\n\n도박 한 번 해볼까?",
   "spectrum.rei.potion_workshop_reacting.botania.blacker_lotus": "• +2 긍정적 효과\n• +1 부정적 효과\n• 물약을 식별 불가능하게 만듦.\n\n도박 한 번 해볼까?",

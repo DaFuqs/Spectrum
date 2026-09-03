@@ -42,7 +42,11 @@ public record InkPredicate(LongRange totalRange, Map<InkColor, LongRange> colorR
 			}
 			
 			Map<InkColor, LongRange> colorRanges = colorRanges();
-			return !colorRanges.isEmpty() && colorRanges.entrySet().stream().allMatch(entry -> {
+			if(colorRanges.isEmpty()) {
+				return true;
+			}
+			
+			return colorRanges.entrySet().stream().allMatch(entry -> {
 				LongRange required = colorRanges.get(entry.getKey());
 				Long stored = storedEnergy.getOrDefault(entry.getKey(), 0L);
 				return required.test(stored);

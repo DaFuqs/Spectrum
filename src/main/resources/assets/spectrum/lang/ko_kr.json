@@ -2746,7 +2746,7 @@
   "book.spectrum.guidebook.glass_crest_tools.page2.title": "특대검",
   "book.spectrum.guidebook.glass_crest_tools.page3.text": "화살을 장전한 후 웅크린 채로 사용하여 과충전하여, 화살의 명중률, 속도, 피해량을 무시무시하게 증가시킨다.",
   "book.spectrum.guidebook.glass_crest_tools.page4.text": "쌍지창과 휴대형 뇌우를 결합한 환장할 만한 결과물이다. 이걸 쓰면 하늘로 내 몸을 냅다 집어 던져 내 경로에 있는 모든 것을 갈가리 찢어버릴 수 있다. 심지어 비 한 방울 안 내리는 바싹 마른 사막에서조차도! ...물론 잉크가 바닥나지 않는다는 전제하에 말이다. 이 능력은 [#](449900)급류[#]() 레벨에 비례하여 강해진다. *날아오르는 게 문제가 아니다. 살아서 착지하는 게 문제지.*",
-  "book.spectrum.guidebook.glass_crest_tools.page4.title": "사나운 쌍지창",
+  "book.spectrum.guidebook.glass_crest_tools.page4.title": "퍼로셔스 쌍지창",
   "book.spectrum.guidebook.glass_crest_tools.page5.text": "[#](bb00bb)메아리 조각[#]()을 덧댄 이 쌍지창은 던졌을 때 무기 본체가 날아가는 대신, 자신과 똑 닮은 메아리의 환영을 발사하여 충돌 시 조각이 된다.\\\n\\\n*이 능력은 [#](449900)효율[#]()과 [#](449900)힘[#]() 마법 부여에 비례하여 강해지며, 생산량과 피해량이 모두 증가한다.*",
   "book.spectrum.guidebook.glass_crest_tools.page5.title": "프랙탈 쌍지창",
   "book.spectrum.guidebook.glass_panes.text": "당연히 그에 맞는 유리판도 만들 수 있다.",
@@ -5783,7 +5783,7 @@
   "curios.modifiers.palette": "팔레트에 있을 때:",
   "curios.modifiers.pin": "핀에 있을 때:",
 
-  "config.spectrum.add_item_tooltips": "스포너, 표지판, 스컬크 비명체 등 여러 아이템에 대한 고급 툴팁 추가",
+  "config.spectrum.add_item_tooltips": "생성기, 표지판, 스컬크 비명체 등 여러 아이템에 대한 고급 툴팁 추가",
   "config.spectrum.bedrock_anvil_can_exceed_max_vanilla_enchantment_level": "기반암 모루가 바닐라 최대 마법 부여 레벨을 초과할 수 있음",
   "config.spectrum.bedrock_armor_boots_protection": "기반암 부츠 방어력",
   "config.spectrum.bedrock_armor_chestplate_protection": "기반암 흉갑 방어력",

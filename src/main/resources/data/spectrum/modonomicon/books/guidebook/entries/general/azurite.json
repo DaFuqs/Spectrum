@@ -38,7 +38,8 @@
     {
       "type": "spectrum:crystallarieum_growing",
       "title": "book.spectrum.guidebook.azurite.growing.title",
-      "recipe_id": "spectrum:crystallarieum/spectrum/azurite"
+      "recipe_id": "spectrum:crystallarieum/spectrum/azurite",
+      "text": "book.spectrum.guidebook.azurite.growing.text"
     }
   ]
 }

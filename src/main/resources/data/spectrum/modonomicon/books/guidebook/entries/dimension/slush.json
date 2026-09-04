@@ -28,8 +28,10 @@
       "title": "block.spectrum.slush"
     },
     {
-      "type": "modonomicon:text",
-      "title": "block.spectrum.tilled_shale_clay",
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "spectrum:tilled_slush"
+      },
       "text": "book.spectrum.guidebook.slush.page1.text"
     }
   ]

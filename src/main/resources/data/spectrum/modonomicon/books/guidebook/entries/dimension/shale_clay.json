@@ -124,7 +124,10 @@
       "text": "book.spectrum.guidebook.turn_back_to_polished"
     },
     {
-      "type": "modonomicon:text",
+      "type": "modonomicon:spotlight",
+      "item": {
+        "id": "spectrum:tilled_shale_clay"
+      },
       "title": "block.spectrum.tilled_shale_clay",
       "text": "book.spectrum.guidebook.shale_clay.page4.text"
     }

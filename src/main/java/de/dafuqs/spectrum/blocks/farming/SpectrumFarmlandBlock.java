@@ -10,6 +10,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
+import net.neoforged.neoforge.common.*;
 import org.jspecify.annotations.*;
 
 public class SpectrumFarmlandBlock extends FarmBlock {
@@ -68,17 +69,18 @@ public class SpectrumFarmlandBlock extends FarmBlock {
 	}
 	
 	public static boolean shouldMaintainFarmland(BlockGetter world, BlockPos pos) {
-		Block block = world.getBlockState(pos.above()).getBlock();
-		return block instanceof CropBlock || block instanceof StemBlock || block instanceof AttachedStemBlock;
+		return world.getBlockState(pos.above()).is(BlockTags.MAINTAINS_FARMLAND);
 	}
 	
-	protected boolean isNearWater(LevelReader world, BlockPos pos) {
-		for (BlockPos testPos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
-			if (world.getFluidState(testPos).is(FluidTags.WATER)) {
+	protected boolean isNearWater(LevelReader level, BlockPos pos) {
+		BlockState state = level.getBlockState(pos);
+		for (BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
+			if (state.canBeHydrated(level, pos, level.getFluidState(blockpos), blockpos)) {
 				return true;
 			}
 		}
-		return false;
+		
+		return FarmlandWaterManager.hasBlockWaterTicket(level, pos);
 	}
 	
 }

@@ -137,7 +137,7 @@ public class TallCropBlock extends CropBlock {
 			BlockState belowState = world.getBlockState(belowPos);
 			return belowState.is(this) && belowState.getValue(HALF) == DoubleBlockHalf.LOWER && belowState.getValue(AGE) > this.lastSingleBlockAge;
 		}
-		return super.canSurvive(world.getBlockState(belowPos), world, belowPos);
+		return super.canSurvive(state, world, pos);
 	}
 	
 	@Override

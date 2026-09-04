@@ -132,13 +132,12 @@ public class TallCropBlock extends CropBlock {
 	
 	@Override
 	public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-		if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
-			BlockPos blockPos = pos.below();
-			return this.mayPlaceOn(world.getBlockState(blockPos), world, blockPos);
-		} else {
-			BlockState blockState = world.getBlockState(pos.below());
-			return blockState.is(this) && blockState.getValue(HALF) == DoubleBlockHalf.LOWER && blockState.getValue(AGE) > this.lastSingleBlockAge;
+		BlockPos belowPos = pos.below();
+		if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
+			BlockState belowState = world.getBlockState(belowPos);
+			return belowState.is(this) && belowState.getValue(HALF) == DoubleBlockHalf.LOWER && belowState.getValue(AGE) > this.lastSingleBlockAge;
 		}
+		return super.canSurvive(world.getBlockState(belowPos), world, belowPos);
 	}
 	
 	@Override

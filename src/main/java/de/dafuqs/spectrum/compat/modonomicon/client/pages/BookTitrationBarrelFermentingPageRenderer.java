@@ -41,7 +41,7 @@ public class BookTitrationBarrelFermentingPageRenderer extends BookGatedRecipePa
 	
 	@Override
 	protected int getRecipeHeight() {
-		return 70;
+		return 64;
 	}
 	
 	@Override

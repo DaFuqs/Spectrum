@@ -7,7 +7,7 @@ public enum PastelNodeType implements StringRepresentable {
 	STORAGE(true, true),
 	PROVIDER(false, true),
 	SENDER(false, true),
-	GATHER(true, false);
+	GATHER(true, true);
 	
 	private final boolean usesFilters, hasOuterRing;
 	

@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import org.jspecify.annotations.*;
 
-public class PreservationBlockDetectorBlock extends SpectrumFacingBlock implements EntityBlock, GameMasterBlock {
+public class PreservationBlockDetectorBlock extends SpectrumDirectionalBlock implements EntityBlock, GameMasterBlock {
 	
 	public static final MapCodec<PreservationBlockDetectorBlock> CODEC = simpleCodec(PreservationBlockDetectorBlock::new);
 	

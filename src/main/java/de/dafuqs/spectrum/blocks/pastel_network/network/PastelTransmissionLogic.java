@@ -8,17 +8,15 @@ import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.neoforged.neoforge.registries.*;
-import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.alg.interfaces.*;
 import org.jgrapht.alg.shortestpath.*;
 import org.jgrapht.graph.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
 
-@SuppressWarnings("UnstableApiUsage")
 public class PastelTransmissionLogic {
 	
 	public enum TransferMode {
@@ -27,9 +25,9 @@ public class PastelTransmissionLogic {
 		PUSH_PULL
 	}
 	
-	public static final int DEFAULT_MAX_TRANSFER_AMOUNT = 1;
+	public static final int DEFAULT_MAX_TRANSFER_COUNT_MULTIPLIER = 1;
 	public static final int DEFAULT_TRANSFER_TICKS_PER_NODE = 30;
-	public static final int DEFAULT_TRANSFER_RATE = 20;
+	public static final int DEFAULT_TRANSFER_COOLDOWN_TICKS = 20;
 	
 	private final ServerPastelNetwork network;
 	
@@ -96,7 +94,7 @@ public class PastelTransmissionLogic {
 		return this.network.getLoadedNodes(type);
 	}
 	
-	public Set<PastelNodeBlockEntity> getLoadedNodes(@NotNull DeferredHolder<PastelPayloadType, ?> payloadType, @Nullable PastelNodeType nodeType) {
+	public Set<PastelNodeBlockEntity> getLoadedNodes(DeferredHolder<PastelPayloadType, ?> payloadType, @Nullable PastelNodeType nodeType) {
 		Set<PastelNodeBlockEntity> nodes = new HashSet<>();
 		var loaded = this.getLoadedNodes(nodeType);
 		for(PastelNodeBlockEntity entity : loaded) {

@@ -11,7 +11,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -39,10 +39,9 @@ public class TintingStationBlock extends BaseInkBlock {
 		return new TintingStationBlockEntity(pos, state);
 	}
 	
-	@Nullable
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-		return world.isClientSide ? null : Support.checkType(type, SpectrumBlockEntities.TINTING_STATION.get(), TintingStationBlockEntity::serverTick);
+	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+		return createInkBlockTicker(level, blockEntityType, SpectrumBlockEntities.TINTING_STATION.get());
 	}
 	
 }

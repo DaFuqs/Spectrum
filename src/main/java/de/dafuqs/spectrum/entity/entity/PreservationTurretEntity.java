@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.ai.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;

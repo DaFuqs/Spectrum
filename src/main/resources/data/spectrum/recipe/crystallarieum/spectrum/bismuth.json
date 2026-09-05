@@ -3,7 +3,7 @@
   "fluid": {
     "fluid": "spectrum:liquid_crystal"
   },
-  "additional_recipe_manager_results": [
+  "additional_recipe_viewer_results": [
     {
       "count": 1,
       "id": "spectrum:bismuth_crystal"
@@ -27,7 +27,7 @@
       "ink_consumption_mod": 0.25
     },
     {
-      "consume_chance_per_second": 2.0E-4,
+      "consume_chance_per_second": 0.001,
       "growth_acceleration_mod": 1.25,
       "ingredient": {
         "item": "spectrum:star_fragment"

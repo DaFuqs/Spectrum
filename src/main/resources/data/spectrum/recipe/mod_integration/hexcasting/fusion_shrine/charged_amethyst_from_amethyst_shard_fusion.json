@@ -22,7 +22,6 @@
     "nothing"
   ],
   "finish_crafting_effect": "lightning_on_shrine",
-  "description": "",
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",

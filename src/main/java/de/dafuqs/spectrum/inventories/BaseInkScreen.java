@@ -13,7 +13,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.network.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -57,7 +56,7 @@ public class BaseInkScreen<T extends BaseInkScreenHandler> extends AbstractConta
 	}
 	
 	@Override
-	public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
 		super.render(guiGraphics, mouseX, mouseY, delta);
 		guiGraphics.blit(background, getGuiLeft() + 52, getGuiTop() + 18, 176, 0, 46, 46); // gauge blanket
 		renderTooltip(guiGraphics, mouseX, mouseY);
@@ -71,7 +70,7 @@ public class BaseInkScreen<T extends BaseInkScreenHandler> extends AbstractConta
 	}
 	
 	@Override
-	protected void renderTooltip(@NotNull GuiGraphics guiGraphics, int x, int y) {
+	protected void renderTooltip(GuiGraphics guiGraphics, int x, int y) {
 		super.renderTooltip(guiGraphics, x, y);
 		
 		if (this.colorSelectionWidget.isMouseOver(x, y)) {

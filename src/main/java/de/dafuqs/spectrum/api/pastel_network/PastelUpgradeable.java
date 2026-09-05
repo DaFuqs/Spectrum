@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.api.pastel_network;
 
-import java.util.*;
+import org.jspecify.annotations.*;
 
 public interface PastelUpgradeable {
 
-	default void apply(PastelUpgradeSignature upgrade, List<PastelUpgradeSignature> previousUpgrades) {
+	default void apply(PastelUpgradeSignature upgrade, @Nullable PastelUpgradeSignature previous) {
 		if (upgrade.light) {
 			markLit();
 		}
@@ -18,23 +18,13 @@ public interface PastelUpgradeable {
 		if (upgrade.sensor)
 			markSensor();
 
-		if (upgrade.category.isRedstone())
+		if (upgrade.goesToRedstoneRing())
 			return;
-
-		if (previousUpgrades.stream().anyMatch(u -> u.category.compoundsWith(upgrade.category))) {
-			applyCompounding(upgrade);
-		} else {
-			applySimple(upgrade);
-		}
-
-		applySlotUpgrade(upgrade);
+		
+		applySignature(upgrade);
 	}
-
-	void applyCompounding(PastelUpgradeSignature upgrade);
-
-	void applySimple(PastelUpgradeSignature upgrade);
-
-	void applySlotUpgrade(PastelUpgradeSignature upgrade);
+	
+	void applySignature(PastelUpgradeSignature upgrade);
 
 	void markLit();
 

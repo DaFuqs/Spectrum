@@ -33,7 +33,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.Optional;
@@ -49,27 +49,27 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	
 	protected UUID nodeId = UUID.randomUUID();
 	protected Optional<UUID> networkUUID = Optional.empty();
-	protected Optional<PastelUpgradeSignature> outerRing, innerRing, redstoneRing;
+	protected Optional<Holder.Reference<PastelUpgradeSignature>> outerRing, innerRing, redstoneRing;
 	protected Optional<DyeColor> color = Optional.empty();
 	
 	protected long lastTransferTick = 0;
-	protected final long cachedRedstonePowerTick = 0;
+	protected long cachedRedstonePowerTick = 0;
 	protected boolean cachedUnpowered = true;
 	protected Map<ResourceKey<PastelPayloadType>, Long> activeTransfers = new Object2LongArrayMap<>();
 	
 	// upgrade impl stuff
-	protected boolean lit, triggerTransfer, triggered, waiting, lamp, sensor, updated;
-	protected int transferCount = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT;
-	protected int transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
-	protected int transferRate = PastelTransmissionLogic.DEFAULT_TRANSFER_RATE;
+	protected boolean lit, triggerTransfer, triggered, waiting, lamp, sensor, upgradesInitialized;
+	protected int transferCountMultiplier = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_COUNT_MULTIPLIER;
+	protected int transferDurationTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
+	protected int transferCooldownTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_COOLDOWN_TICKS;
 	protected int filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 
-	protected boolean isInitialized = false;
+	protected boolean networkInitialized = false;
 	
 	private final List<ItemStack> filterItems;
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
 	long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
-	private @Nullable ConnectionState connectionState;
+	private ConnectionState connectionState = ConnectionState.DISCONNECTED;
 	
 	private final Object2BooleanMap<TagKey<Item>> filteredTags;
 	private boolean allTagsDeny = true;
@@ -83,19 +83,19 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		this.redstoneRing = Optional.empty();
 	}
 	
-	public static void tick(@NotNull Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
-		if (!node.isInitialized && !world.isClientSide()) { // kinda onLoad()?
+	public static void tick(Level level, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
+		if (!node.networkInitialized && !level.isClientSide()) { // kinda onLoad()?
 			node.getServerNetwork().ifPresent(network -> network.initializeNode(node));
-			node.isInitialized = true;
+			node.networkInitialized = true;
 		}
 
 		if (node.lamp && state.getValue(BlockStateProperties.LIT) != node.isEnabled()) {
-			world.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.LIT, node.cachedUnpowered));
+			level.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.LIT, node.cachedUnpowered));
 		}
 		
 		//Trigger transfer logic needs to be ticked here
 		if (node.triggerTransfer) {
-			var powered = world.hasNeighborSignal(pos);
+			var powered = level.hasNeighborSignal(pos);
 			
 			if (node.waiting && !powered) {
 				node.waiting = false;
@@ -106,7 +106,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			}
 		}
 		
-		if (world.isClientSide()) {
+		if (level.isClientSide()) {
 			if (node.networkUUID.isEmpty()) {
 				node.changeConnectionState(ConnectionState.DISCONNECTED);
 				node.interpLength = 17;
@@ -126,9 +126,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			
 			if (node.spinTicks > 0)
 				node.spinTicks--;
-		} else if (!node.updated) {
+		} else if (!node.upgradesInitialized) {
 			node.updateUpgrades();
-			node.updated = true;
+			node.upgradesInitialized = true;
 		}
 	}
 	
@@ -143,22 +143,21 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public Optional<PastelUpgradeSignature> getInnerRing() {
-		return innerRing;
+		return this.innerRing.map(Holder.Reference::value);
 	}
 	
 	public Optional<PastelUpgradeSignature> getOuterRing() {
-		return outerRing;
+		return this.outerRing.map(Holder.Reference::value);
 	}
 	
 	public Optional<PastelUpgradeSignature> getRedstoneRing() {
-		return redstoneRing;
+		return this.redstoneRing.map(Holder.Reference::value);
 	}
 	
 	// outer goes first, then inner, then redstone
-	public boolean tryInteractRings(ItemStack item, PastelNodeType type) {
-		var upgrade = SpectrumPastelUpgradeSignatures.of(item);
-		
-		if (upgrade.category.isRedstone()) {
+	// we do not allow duplicate upgrades
+	public boolean applyUpgrade(Holder.Reference<PastelUpgradeSignature> upgrade) {
+		if (upgrade.value().goesToRedstoneRing()) {
 			if (redstoneRing.isEmpty()) {
 				redstoneRing = Optional.of(upgrade);
 				return true;
@@ -167,10 +166,18 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			return false;
 		}
 		
-		if (outerRing.isEmpty() && type.hasOuterRing()) {
+		if (outerRing.isEmpty() && getNodeType().hasOuterRing()) {
+			if(innerRing.isPresent() && innerRing.get().equals(upgrade)) {
+				return false;
+			}
+			
 			outerRing = Optional.of(upgrade);
 			return true;
 		} else if (innerRing.isEmpty()) {
+			if(outerRing.isPresent() && outerRing.get().equals(upgrade)) {
+				return false;
+			}
+			
 			innerRing = Optional.of(upgrade);
 			return true;
 		}
@@ -183,13 +190,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		var stack = ItemStack.EMPTY;
 		
 		if (redstoneRing.isPresent()) {
-			stack = redstoneRing.get().upgradeItem.getDefaultInstance();
+			stack = redstoneRing.get().value().upgradeItem.value().getDefaultInstance();
 			redstoneRing = Optional.empty();
 		} else if (innerRing.isPresent()) {
-			stack = innerRing.get().upgradeItem.getDefaultInstance();
+			stack = innerRing.get().value().upgradeItem.value().getDefaultInstance();
 			innerRing = Optional.empty();
 		} else if (outerRing.isPresent()) {
-			stack = outerRing.get().upgradeItem.getDefaultInstance();
+			stack = outerRing.get().value().upgradeItem.value().getDefaultInstance();
 			outerRing = Optional.empty();
 		}
 		
@@ -201,23 +208,23 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public void updateUpgrades() {
-		transferCount = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT;
-		transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
-		var oldFilterSlotCount = filterSlotRows;
+		transferCountMultiplier = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_COUNT_MULTIPLIER;
+		transferDurationTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
+		transferCooldownTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_COOLDOWN_TICKS;
+		var oldFilterSlotRows = filterSlotRows;
 		filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 		triggerTransfer = false;
 		lit = false;
 		lamp = false;
 		sensor = false;
 		
-		//First one processed can't compound because it has nothing to compound on
-		outerRing.ifPresent(r -> apply(r, Collections.emptyList()));
-		innerRing.ifPresent(r -> apply(r, outerRing.map(List::of).orElse(Collections.emptyList())));
-		redstoneRing.ifPresent(r -> apply(r, Collections.emptyList()));
+		outerRing.ifPresent(r -> apply(r.value(), null));
+		innerRing.ifPresent(r -> apply(r.value(), outerRing.map(Holder.Reference::value).orElse(null)));
+		redstoneRing.ifPresent(r -> apply(r.value(), null));
 		
 		// Sanity
-		transferCount = Math.max(transferCount, 1);
-		transferTime = Mth.clamp(transferTime, 2, 100);
+		transferCountMultiplier = Math.max(transferCountMultiplier, 1);
+		transferDurationTicks = Mth.clamp(transferDurationTicks, 2, 100);
 		filterSlotRows = Mth.clamp(filterSlotRows, 1, 5);
 		
 		if (lit && lamp) {
@@ -228,7 +235,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			level.setBlockAndUpdate(worldPosition, getBlockState().setValue(BlockStateProperties.LIT, lit));
 		}
 		
-		if (filterSlotRows < oldFilterSlotCount) {
+		if (filterSlotRows < oldFilterSlotRows) {
 			for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
 				updateTagFilteringItems();
 				filterItems.set(i, ItemStack.EMPTY);
@@ -247,16 +254,16 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 	}
 	
-	public int getMaxTransferredAmount() {
-		return transferCount;
+	public int transferMultiplier() {
+		return transferCountMultiplier;
 	}
 	
-	public int getTransferTime() {
-		return transferTime;
+	public int getTransferDurationTicks() {
+		return transferDurationTicks;
 	}
 	
-	public int getTransferRate() {
-		return transferRate;
+	public int getTransferCooldownTicks() {
+		return transferCooldownTicks;
 	}
 	
 	public float getRedstoneAlphaMult() {
@@ -264,7 +271,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public boolean isEnabled() {
-		InteractionResult result = redstoneRing.map(r -> r.preProcessor
+		InteractionResult result = redstoneRing.map(r -> r.value().preProcessor
 				.apply(new PastelUpgradeSignature.RedstoneContext(this, level, worldPosition, cachedUnpowered)))
 				.orElse(InteractionResult.PASS);
 		
@@ -278,9 +285,10 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (time > this.cachedRedstonePowerTick && !getBlockState().getValue(PastelNodeBlock.REDSTONE_EMITTING)) {
 			this.cachedUnpowered = level.getBestNeighborSignal(this.worldPosition) == 0;
 		}
+		this.cachedRedstonePowerTick = time;
 		
 		boolean notPowered = redstoneRing.map(r -> {
-			InteractionResult post = r.postProcessor.apply(new PastelUpgradeSignature.RedstoneContext(this, level, worldPosition, cachedUnpowered));
+			InteractionResult post = r.value().postProcessor.apply(new PastelUpgradeSignature.RedstoneContext(this, level, worldPosition, cachedUnpowered));
 			
 			if (post == InteractionResult.SUCCESS)
 				return true;
@@ -298,8 +306,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public boolean cooldownExceededTo(PastelNodeBlockEntity otherNode) {
-		long thisNextTransferTime = this.lastTransferTick + this.getTransferRate();
-		long otherNextTransferTime = otherNode.lastTransferTick + otherNode.getTransferRate();
+		long thisNextTransferTime = this.lastTransferTick + this.getTransferCooldownTicks();
+		long otherNextTransferTime = otherNode.lastTransferTick + otherNode.getTransferCooldownTicks();
 		long time = this.getLevel().getGameTime();
 		
 		return time >= thisNextTransferTime && time >= otherNextTransferTime;
@@ -341,14 +349,31 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			}
 		}
 		this.color = nbt.contains("color_id", Tag.TAG_INT) ? Optional.of(DyeColor.byId(nbt.getInt("color_id"))) : Optional.empty();
-		this.outerRing = nbt.contains("outer_ring") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("outer_ring")))) : Optional.empty();
-		this.innerRing = nbt.contains("inner_ring") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("inner_ring")))) : Optional.empty();
-		this.redstoneRing = nbt.contains("redstone_ring") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("redstone_ring")))) : Optional.empty();
+		
+		this.outerRing = Optional.empty();
+		this.innerRing = Optional.empty();
+		this.redstoneRing = Optional.empty();
+		Optional.ofNullable(ResourceLocation.tryParse(nbt.getString("outer_ring")))
+				.map((resourceLocation) -> ResourceKey.create(SpectrumRegistryKeys.PASTEL_UPGRADE, resourceLocation))
+				.flatMap((resourceKey) -> registryLookup.lookupOrThrow(SpectrumRegistryKeys.PASTEL_UPGRADE).get(resourceKey))
+				.ifPresent(pastelUpgradeSignatureReference -> outerRing = Optional.of(pastelUpgradeSignatureReference));
+		
+		Optional.ofNullable(ResourceLocation.tryParse(nbt.getString("inner_ring")))
+				.map((resourceLocation) -> ResourceKey.create(SpectrumRegistryKeys.PASTEL_UPGRADE, resourceLocation))
+				.flatMap((resourceKey) -> registryLookup.lookupOrThrow(SpectrumRegistryKeys.PASTEL_UPGRADE).get(resourceKey))
+				.ifPresent(pastelUpgradeSignatureReference -> innerRing = Optional.of(pastelUpgradeSignatureReference));
+		
+		Optional.ofNullable(ResourceLocation.tryParse(nbt.getString("redstone_ring")))
+				.map((resourceLocation) -> ResourceKey.create(SpectrumRegistryKeys.PASTEL_UPGRADE, resourceLocation))
+				.flatMap((resourceKey) -> registryLookup.lookupOrThrow(SpectrumRegistryKeys.PASTEL_UPGRADE).get(resourceKey))
+				.ifPresent(pastelUpgradeSignatureReference -> redstoneRing = Optional.of(pastelUpgradeSignatureReference));
 		
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.readFilterNbt(nbt, this.filterItems);
 			this.updateTagFilteringItems();
 		}
+		
+		this.upgradesInitialized = false;
 	}
 	
 	@Override
@@ -376,9 +401,16 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.writeFilterNbt(nbt, this.filterItems);
 		}
-		outerRing.ifPresent(r -> nbt.putString("outer_ring", SpectrumPastelUpgradeSignatures.toString(r)));
-		innerRing.ifPresent(r -> nbt.putString("inner_ring", SpectrumPastelUpgradeSignatures.toString(r)));
-		redstoneRing.ifPresent(r -> nbt.putString("redstone_ring", SpectrumPastelUpgradeSignatures.toString(r)));
+		
+		this.outerRing.ifPresent(pastelUpgradeSignatureReference -> pastelUpgradeSignatureReference.unwrapKey().ifPresent((resourceKey) -> {
+			nbt.putString("outer_ring", resourceKey.location().toString());
+		}));
+		this.innerRing.ifPresent(pastelUpgradeSignatureReference -> pastelUpgradeSignatureReference.unwrapKey().ifPresent((resourceKey) -> {
+			nbt.putString("inner_ring", resourceKey.location().toString());
+		}));
+		this.redstoneRing.ifPresent(pastelUpgradeSignatureReference -> pastelUpgradeSignatureReference.unwrapKey().ifPresent((resourceKey) -> {
+			nbt.putString("redstone_ring", resourceKey.location().toString());
+		}));
 	}
 
 	@Override
@@ -719,29 +751,18 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	@Override
-	public void applySlotUpgrade(PastelUpgradeSignature upgrade) {
-		filterSlotRows += getNodeType().hasOuterRing() ? upgrade.slotRows : upgrade.slotRows * 2;
-	}
-	
-	@Override
-	public void applySimple(PastelUpgradeSignature upgrade) {
-		transferCount += upgrade.stack;
-		transferTime += upgrade.speed;
-		transferRate *= upgrade.transferRateMult;
-	}
-	
-	@Override
-	public void applyCompounding(PastelUpgradeSignature upgrade) {
-		transferCount = Math.round(transferCount * upgrade.stackMult);
-		transferTime = Math.round(transferTime * upgrade.speedMult);
-		transferRate = Math.round(transferRate * upgrade.transferRateMult);
+	public void applySignature(PastelUpgradeSignature upgrade) {
+		filterSlotRows += getNodeType().hasOuterRing() ? upgrade.additionalFilterRows : upgrade.additionalFilterRows * 2;
+		transferCountMultiplier = Math.round(transferCountMultiplier * upgrade.transferCountMultiplier);
+		transferDurationTicks = Math.round(transferDurationTicks * upgrade.transferDurationMultiplier);
+		transferCooldownTicks = Math.round(transferCooldownTicks * upgrade.transferCooldownMultiplier);
 	}
 	
 	@Override
 	public String toString() {
-		return this.getNodeType().toString() + "-" +
-				this.getColor().toString() + "-" +
-				this.getBlockPos().toString() + "-" +
+		return this.getNodeType() + "-" +
+				this.getColor() + "-" +
+				this.getBlockPos() + "-" +
 				this.getNodeId();
 	}
 	

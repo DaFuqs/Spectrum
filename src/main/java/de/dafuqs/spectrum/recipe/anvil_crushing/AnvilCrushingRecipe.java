@@ -30,11 +30,11 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe<SingleRecipeInput> 
 	protected final int particleCount;
 	protected final ResourceLocation soundEvent;
 	
-	public AnvilCrushingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier,
+	public AnvilCrushingRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
 							   Ingredient ingredient, ItemStack result, float crushedItemsPerPointOfDamage,
 							   float experience, Optional<ResourceLocation> particleEffectIdentifier, int particleCount, ResourceLocation soundEventIdentifier) {
 		
-		super(group, secret, requiredAdvancementIdentifier);
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		
 		this.ingredient = ingredient;
 		this.result = result;
@@ -44,7 +44,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe<SingleRecipeInput> 
 		this.particleCount = particleCount;
 		this.soundEvent = soundEventIdentifier;
 		
-		if (requiredAdvancementIdentifier.isPresent()) {
+		if (requiredAdvancement.isPresent()) {
 			registerInToastManager(getType(), this);
 		}
 	}
@@ -120,8 +120,9 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe<SingleRecipeInput> 
 		
 		private static final MapCodec<AnvilCrushingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
 				ItemStack.STRICT_CODEC.fieldOf("result").forGetter(recipe -> recipe.result),
 				Codec.FLOAT.fieldOf("crushedItemsPerPointOfDamage").forGetter(recipe -> recipe.crushedItemsPerPointOfDamage),
@@ -132,9 +133,10 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe<SingleRecipeInput> 
 		).apply(instance, AnvilCrushingRecipe::new));
 		
 		private static final StreamCodec<RegistryFriendlyByteBuf, AnvilCrushingRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
-				ByteBufCodecs.STRING_UTF8, c -> c.group,
-				ByteBufCodecs.BOOL, c -> c.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
+				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				Ingredient.CONTENTS_STREAM_CODEC, c -> c.ingredient,
 				ItemStack.STREAM_CODEC, c -> c.result,
 				ByteBufCodecs.FLOAT, c -> c.crushedItemsPerPointOfDamage,

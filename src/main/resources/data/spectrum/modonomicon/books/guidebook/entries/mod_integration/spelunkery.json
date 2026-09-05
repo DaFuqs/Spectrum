@@ -83,22 +83,6 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/items/ender_splice"
-      },
-      "recipe_id": "spectrum:mod_integration/spelunkery/potion_workshop_crafting/portal_fluid_bottle_crafting"
-    },
-    {
-      "type": "spectrum:potion_workshop_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/items/ender_splice"
-      },
-      "recipe_id": "spectrum:mod_integration/spelunkery/potion_workshop_crafting/portal_fluid_bucket_crafting"
-    },
-    {
-      "type": "spectrum:potion_workshop_crafting",
       "recipe_id": "spectrum:mod_integration/spelunkery/potion_workshop_crafting/spring_water_bucket_crafting"
     },
     {

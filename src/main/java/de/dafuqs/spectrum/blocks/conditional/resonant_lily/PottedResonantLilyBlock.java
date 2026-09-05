@@ -9,10 +9,11 @@ import net.minecraft.world.level.block.state.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class PottedResonantLilyBlock extends FlowerPotBlock implements RevelationAware {
 	
-	public PottedResonantLilyBlock(Block content, Properties settings) {
+	public PottedResonantLilyBlock(ResonantLilyBlock content, Properties settings) {
 		super(content, settings);
 		RevelationAware.register(this);
 	}

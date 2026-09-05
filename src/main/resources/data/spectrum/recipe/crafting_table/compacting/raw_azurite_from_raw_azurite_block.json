@@ -1,0 +1,13 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:raw_azurite_block"}
+      ],
+      "result": {
+        "id": "spectrum:raw_azurite",
+        "count": 9
+      },
+      "required_advancement": "spectrum:midgame/collect_azurite"
+    }

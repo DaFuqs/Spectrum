@@ -5,7 +5,7 @@
   "ingredient2": "spectrum:evernectar",
   "ingredient3": "spectrum:moonstone_powder",
   "effect": "spectrum:fatal_slumber",
-  "base_duration_ticks": 200,
+  "base_duration_ticks": 600,
   "potency_modifier": 0.1,
   "applicable_to_potions": false,
   "applicable_to_tipped_arrows": false,
@@ -13,6 +13,6 @@
   "required_advancement": "spectrum:unlocks/potions/fatal_slumber",
   "ink_color": "spectrum:purple",
   "ink_cost": 64,
-  "potency_hard_cap": 1,
+  "potency_hard_cap": 0,
   "base_yield": 1
 }

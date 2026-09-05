@@ -11,9 +11,8 @@ import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
-import javax.annotation.Nullable;
 import java.util.function.*;
 
 
@@ -39,7 +38,7 @@ public class InkPieWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+	protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 		guiGraphics.blitSprite(BACKGROUND_SPRITE, this.getX(), this.getY(), 42, 42);
 		
 		InkStorage inkStorage = inkCapability.get().getStorage();
@@ -104,7 +103,7 @@ public class InkPieWidget extends AbstractWidget {
 	}
 	
 	@Override
-	protected void updateWidgetNarration(@NotNull NarrationElementOutput narrationElementOutput) {
+	protected void updateWidgetNarration(NarrationElementOutput narrationElementOutput) {
 	
 	}
 	

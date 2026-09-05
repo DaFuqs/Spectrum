@@ -15,16 +15,16 @@ public class PrimordialFireBurningEmiRecipeGated extends GatedSpectrumEmiRecipe<
 	private final static ResourceLocation FIRE_TEXTURE = SpectrumCommon.locate("textures/block/primordial_fire_0.png");
 	
 	public PrimordialFireBurningEmiRecipeGated(RecipeHolder<PrimordialFireBurningRecipe> entry) {
-		super(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, entry, 80, 35);
+		super(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, entry, 120, 35);
 		this.inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
-		widgets.addSlot(inputs.getFirst(), 0, 0);
-		widgets.add(new AnimatedTexturedWidget(FIRE_TEXTURE, 1, 19, 16, 176, 1000));
-		widgets.addTexture(EmiTexture.EMPTY_ARROW, 24, 9);
-		widgets.addSlot(outputs.getFirst(), 54, 4).large(true).recipeContext(this);
+		widgets.addSlot(inputs.getFirst(), 0 + 20, 0);
+		widgets.add(new AnimatedTexturedWidget(FIRE_TEXTURE, 1 + 20, 19, 16, 176, 1000));
+		widgets.addTexture(EmiTexture.EMPTY_ARROW, 24 + 20, 9);
+		widgets.addSlot(outputs.getFirst(), 54 + 20, 4).large(true).recipeContext(this);
 	}
 	
 }

@@ -27,8 +27,5 @@
   "result": {
     "id": "spectrum:circlet_of_arrogance"
   },
-  "required_advancement": "spectrum:unlocks/trinkets/circlet_of_arrogance",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+  "required_advancement": "spectrum:unlocks/trinkets/circlet_of_arrogance"
 }

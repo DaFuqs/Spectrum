@@ -44,7 +44,6 @@ public class MiscPlayerDataAttachmentType {
 	
 	// Sleep
 	private int ticksBeforeSleep = -1, sleepingWindow = -1, sleepInvincibility;
-	private double lastSyncedSleepPotency = -2;
 	private List<MobEffectInstance> sleepAlteringEffects = List.of();
 	
 	// Sword mechanics
@@ -66,14 +65,6 @@ public class MiscPlayerDataAttachmentType {
 	public void tick() {
 		tickSleep();
 		tickSwordMechanics();
-		
-		if (!player.level().isClientSide()) {
-			double fortitude = player.getAttributeValue(SpectrumEntityAttributes.MENTAL_PRESENCE);
-			if (lastSyncedSleepPotency != fortitude) {
-				lastSyncedSleepPotency = fortitude;
-				SyncMentalPresencePayload.sendMentalPresenceSync((ServerPlayer) player, fortitude);
-			}
-		}
 	}
 	
 	private boolean isInModifiedMotionState() {
@@ -144,7 +135,6 @@ public class MiscPlayerDataAttachmentType {
 			
 			if (ticksBeforeSleep == 0) {
 				player.startSleeping(player.blockPosition());
-				((PlayerEntityAccessor) player).spectrum$setSleepTimer(0);
 				var world = player.level();
 				if (!world.isClientSide())
 					((ServerLevel) world).updateSleepingPlayerList();
@@ -220,14 +210,6 @@ public class MiscPlayerDataAttachmentType {
 			data.player = player;
 		}
 		return data;
-	}
-	
-	public void setLastSyncedSleepPotency(double lastSyncedSleepPotency) {
-		this.lastSyncedSleepPotency = lastSyncedSleepPotency;
-	}
-	
-	public double getLastSyncedSleepPotency() {
-		return lastSyncedSleepPotency;
 	}
 	
 	public void setLastGleamingPinTriggerTick(long tick) {

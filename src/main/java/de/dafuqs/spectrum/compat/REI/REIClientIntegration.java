@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import de.dafuqs.spectrum.recipe.color_picker.*;
+import de.dafuqs.spectrum.recipe.crafting.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
@@ -34,6 +35,7 @@ import me.shedaniel.rei.api.common.util.*;
 import me.shedaniel.rei.forge.*;
 import me.shedaniel.rei.plugin.common.*;
 import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
 
 import java.util.*;
@@ -44,6 +46,7 @@ public class REIClientIntegration implements REIClientPlugin {
 	
 	@Override
 	public void registerCategories(CategoryRegistry registry) {
+		registry.add(new GatedCraftingCategory());
 		registry.add(new PedestalCraftingCategory());
 		registry.add(new AnvilCrushingCategory());
 		registry.add(new FusionShrineCategory());
@@ -74,14 +77,15 @@ public class REIClientIntegration implements REIClientPlugin {
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_MOONSTONE)
 		);
 		registry.addWorkstations(SpectrumPlugins.PEDESTAL_CRAFTING, pedestals);
+		
 		if (SpectrumConfig.CONFIG.canPedestalCraftVanillaRecipes()) {
 			registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestals);
+			registry.addWorkstations(SpectrumPlugins.GATED_CRAFTING, pedestals);
 		}
-		
-		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
-		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumBlocks.FABRICATION_CHEST));
+		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET), EntryStacks.of(SpectrumBlocks.FABRICATION_CHEST));
 		registry.addWorkstations(BuiltinPlugin.BLASTING, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		
+		registry.addWorkstations(SpectrumPlugins.GATED_CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET), EntryStacks.of(SpectrumBlocks.FABRICATION_CHEST), EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL), EntryStacks.of(SpectrumBlocks.STRATINE_FLOATBLOCK), EntryStacks.of(SpectrumBlocks.PALTAERIA_FLOATBLOCK));
 		registry.addWorkstations(SpectrumPlugins.FUSION_SHRINE, EntryIngredient.of(EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT), EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_CALCITE)));
 		registry.addWorkstations(SpectrumPlugins.NATURES_STAFF, EntryStacks.of(SpectrumItems.NATURES_STAFF));
@@ -105,6 +109,7 @@ public class REIClientIntegration implements REIClientPlugin {
 	
 	@Override
 	public void registerDisplays(DisplayRegistry registry) {
+		registry.registerRecipeFiller(GatedCraftingRecipe.class, RecipeType.CRAFTING, GatedCraftingDisplay::new);
 		registry.registerRecipeFiller(AnvilCrushingRecipe.class, SpectrumRecipeTypes.ANVIL_CRUSHING, AnvilCrushingDisplay::new);
 		registry.registerRecipeFiller(PedestalRecipe.class, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingDisplay::new);
 		registry.registerRecipeFiller(FusionShrineRecipe.class, SpectrumRecipeTypes.FUSION_SHRINE, FusionShrineDisplay::new);
@@ -127,7 +132,6 @@ public class REIClientIntegration implements REIClientPlugin {
 		FreezingIdolBlock.FREEZING_STATE_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key.getBlock()), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getA().getBlock()), value.getB())));
 		FreezingIdolBlock.FREEZING_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getA().getBlock()), value.getB())));
 		FirestarterIdolBlock.BURNING_MAP.forEach((key, value) -> registry.add(new HeatingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getA().getBlock()), value.getB())));
-		
 		
 		registry.registerVisibilityPredicate((category, display) -> {
 			// do not list recipes in REI at all, until they are unlocked

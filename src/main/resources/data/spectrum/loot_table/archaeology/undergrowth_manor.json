@@ -10,17 +10,25 @@
           "weight": 4,
           "functions": [
             {
-              "function": "spectrum:fill_potion_fillable",
-              "ambient": true,
-              "show_particles": true,
-              "duration": 1200,
-              "status_effect": [
-                "spectrum:somnolence"
-              ],
-              "color": 11434988,
-              "amplifier": 0,
-              "ink_color": "spectrum:purple",
-              "ink_cost": 8
+              "function": "minecraft:set_components",
+              "components": {
+                "spectrum:ink_powered_potion_contents": {
+                  "effects": [
+                    {
+                      "effect": {
+                        "id": "spectrum:somnolence",
+                        "duration": 100,
+                        "show_particles": false
+                      },
+                      "ink_cost": {
+                        "color": "spectrum:purple",
+                        "amount": 8
+                      }
+                    }
+                  ]
+                }
+              },
+              "conditions": []
             }
           ]
         },

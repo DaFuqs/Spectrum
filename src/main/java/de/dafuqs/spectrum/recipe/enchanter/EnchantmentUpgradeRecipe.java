@@ -46,14 +46,8 @@ public class EnchantmentUpgradeRecipe extends GatedStackSpectrumRecipe<RecipeInp
 	protected final NonNullList<IngredientStack> inputs;
 	protected final ItemStack output;
 	
-	public EnchantmentUpgradeRecipe(
-			String group,
-			boolean secret,
-			Optional<ResourceLocation> requiredAdvancementIdentifier,
-			Either<Holder<Enchantment>, ResourceKey<Enchantment>> enchantmentEntry,
-			List<LevelData> levelData
-	) {
-		super(group, secret, requiredAdvancementIdentifier);
+	public EnchantmentUpgradeRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults, Either<Holder<Enchantment>, ResourceKey<Enchantment>> enchantmentEntry, List<LevelData> levelData) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		
 		this.either = enchantmentEntry;
 		this.levelData = levelData;
@@ -214,16 +208,18 @@ public class EnchantmentUpgradeRecipe extends GatedStackSpectrumRecipe<RecipeInp
 		
 		public static final MapCodec<EnchantmentUpgradeRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				Codec.either(Enchantment.CODEC, ResourceKey.codec(Registries.ENCHANTMENT)).fieldOf("enchantment").forGetter(c -> c.either),
 				LevelData.CODEC.listOf().fieldOf("levels").forGetter(recipe -> recipe.levelData)
 		).apply(i, EnchantmentUpgradeRecipe::new));
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, EnchantmentUpgradeRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
 				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
-				ByteBufCodecs.BOOL, recipe -> recipe.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				ByteBufCodecs.either(Enchantment.STREAM_CODEC, ResourceKey.streamCodec(Registries.ENCHANTMENT)), c -> c.either,
 				LevelData.STREAM_CODEC.apply(ByteBufCodecs.collection(NonNullList::createWithCapacity)), recipe -> recipe.levelData,
 				EnchantmentUpgradeRecipe::new

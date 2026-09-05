@@ -86,7 +86,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (currentRecipe == null) {
 			animator.swapState(FlowStates.INACTIVE);
 		} else {
-			if (currentRecipe.value().getFluidIngredient().test(tank.getFluid()) && inkStorage.getEnergy(currentRecipe.value().getInkColor()) > 0) {
+			if (currentRecipe.value().getFluid().test(tank.getFluid()) && inkStorage.getEnergy(currentRecipe.value().getInkColor()) > 0) {
 				animator.swapState(FlowStates.ACTIVE);
 			} else {
 				animator.swapState(FlowStates.IDLE);
@@ -120,10 +120,11 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	 */
 	private static void tickRecipe(Level level, BlockPos pos, CrystallarieumBlockEntity crystallarieum, RecipeHolder<CrystallarieumRecipe> recipe) {
 		if (crystallarieum.currentAdditive == CrystallarieumAdditive.EMPTY && !recipe.value().growsWithoutAdditive()) {
+			crystallarieum.canWork = false;
 			return;
 		}
 		
-		if (crystallarieum.canWork && (!recipe.value().getFluidIngredient().test(crystallarieum.tank.getFluid()) || crystallarieum.inkStorage.getEnergy(recipe.value().getInkColor()) == 0)) {
+		if (!recipe.value().getFluid().test(crystallarieum.tank.getFluid())) {
 			crystallarieum.canWork = false;
 			return;
 		}
@@ -132,24 +133,24 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		int inkCostBase = recipe.value().getInkCost();
 		if(inkCostBase > 0) {
 			float consumedInkFloat = inkCostBase * crystallarieum.currentAdditive.growthAccelerationMod() * crystallarieum.currentAdditive.inkConsumptionMod();
-			int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, level.getRandom());
-			if (crystallarieum.inkStorage.drainEnergy(recipe.value().getInkColor(), consumedInt) < consumedInt) {
+			int inkToConsume = Support.getIntFromDecimalWithChance(consumedInkFloat, level.getRandom());
+			if (crystallarieum.inkStorage.drainEnergy(recipe.value().getInkColor(), inkToConsume) < inkToConsume) {
 				crystallarieum.canWork = false;
 				crystallarieum.setInkDirty();
 				crystallarieum.updateInClientWorld();
 				return;
 			}
+			crystallarieum.setInkDirty();
 		}
 		
-		crystallarieum.setInkDirty();
 		crystallarieum.currentGrowthStageTicks += (int) (SECOND * crystallarieum.currentAdditive.growthAccelerationMod());
 		
 		// check if a catalyst should get used up
 		if (level.getRandom().nextFloat() < crystallarieum.currentAdditive.consumeChancePerSecond()) {
-			ItemStack catalystStack = crystallarieum.getItem(ADDITIVE_SLOT_ID);
-			catalystStack.shrink(1);
+			ItemStack additive = crystallarieum.getItem(ADDITIVE_SLOT_ID);
+			additive.shrink(1);
 			crystallarieum.updateInClientWorld();
-			if (catalystStack.isEmpty()) {
+			if (additive.isEmpty()) {
 				crystallarieum.currentAdditive = CrystallarieumAdditive.EMPTY;
 				if (!recipe.value().growsWithoutAdditive()) {
 					crystallarieum.canWork = false;
@@ -180,6 +181,8 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (this.currentRecipe == null || level == null) {
 			this.currentAdditive = CrystallarieumAdditive.EMPTY;
 			this.canWork = false;
+			this.currentGrowthStageTicks = 0;
+			this.tickLooper.reset();
 		} else {
 			this.currentAdditive = this.currentRecipe.value().getAdditive(getItem(ADDITIVE_SLOT_ID));
 			BlockState topState = this.level.getBlockState(this.worldPosition.above());

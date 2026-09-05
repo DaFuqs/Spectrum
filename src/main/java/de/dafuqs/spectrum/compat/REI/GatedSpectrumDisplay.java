@@ -17,7 +17,7 @@ import java.util.*;
 public abstract class GatedSpectrumDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
 	private final @Nullable ResourceLocation requiredAdvancementIdentifier;
-	private final boolean secret;
+	private final @Nullable ResourceLocation revealSecretAdvancement;
 	private final @Nullable Component secretHintText;
 	
 	// 1 input => 1 output
@@ -33,20 +33,22 @@ public abstract class GatedSpectrumDisplay extends BasicDisplay implements Gated
 	// n inputs => m outputs
 	public GatedSpectrumDisplay(RecipeHolder<? extends GatedRecipe<?>> recipe, List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
 		super(inputs, outputs);
-		this.secret = recipe.value().isSecret();
-		this.requiredAdvancementIdentifier = recipe.value().getRequiredAdvancementIdentifier().orElse(null);
+		this.requiredAdvancementIdentifier = recipe.value().getRequiredAdvancement().orElse(null);
+		this.revealSecretAdvancement = recipe.value().getRevealSecretAdvancement().orElse(null);
 		this.secretHintText = recipe.value().getSecretHintText(recipe.id());
 	}
 	
 	@Override
 	public boolean isUnlocked() {
-		Minecraft client = Minecraft.getInstance();
-		return AdvancementHelper.hasAdvancement(client.player, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(Minecraft.getInstance().player, this.requiredAdvancementIdentifier);
 	}
 	
 	@Override
 	public boolean isSecret() {
-		return this.secret;
+		if(this.revealSecretAdvancement == null) {
+			return false;
+		}
+		return !AdvancementHelper.hasAdvancement(Minecraft.getInstance().player, this.revealSecretAdvancement);
 	}
 	
 	public @Nullable Component getSecretHintText() {

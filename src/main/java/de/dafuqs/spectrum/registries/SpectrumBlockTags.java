@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.*;
 public class SpectrumBlockTags {
 	
 	// PLANTS
-	public static final TagKey<Block> AMARANTH_PLANTABLE = spectrum("amaranth_plantable");
 	public static final TagKey<Block> MERMAIDS_BRUSH_PLANTABLE = spectrum("mermaids_brush_plantable");
 	public static final TagKey<Block> QUITOXIC_REEDS_PLANTABLE = spectrum("quitoxic_reeds_plantable");
 	public static final TagKey<Block> QUITOXIC_REEDS_CONSUMABLE = spectrum("quitoxic_reeds_consumable");

@@ -1,15 +1,10 @@
 package de.dafuqs.spectrum.api.ink;
 
-import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
-import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
-import net.minecraft.server.level.*;
-import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
 
 import javax.annotation.*;
 import java.util.*;
@@ -17,10 +12,8 @@ import java.util.*;
 public class InkTransferHelper {
 	
 	/**
-	 * Transfers Ink from storages with lots of Ink
-	 * to storages with less.
-	 * When called repeatedly (like every tick) the values of all storages will equalize,
-	 * limited by their max storage.
+	 * Transfers Ink from storages with lots of Ink to storages with less.
+	 * When called repeatedly (like every tick) the values of all storages will equalize, limited by their max storage.
 	 * Don't forget to mark your stuff dirty, like with InkStorageBlockEntity.setInkDirty()!
 	 * @param capabilities The InkCapabilities to run an equalization tick on
 	 */

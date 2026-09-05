@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:neolith_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:neolith",
+    "count": 9
+  },
+  "required_advancement": "spectrum:midgame/collect_neolith"
+}

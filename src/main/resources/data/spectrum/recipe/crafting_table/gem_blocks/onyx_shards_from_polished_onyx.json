@@ -1,5 +1,6 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "spectrum:gated_crafting_shapeless",
+  "required_advancement": "spectrum:create_onyx_shard",
   "group": "compacting",
   "ingredients": [
     {

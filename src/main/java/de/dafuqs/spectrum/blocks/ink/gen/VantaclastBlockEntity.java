@@ -23,7 +23,7 @@ public class VantaclastBlockEntity extends InkGeneratorBlockEntity {
 	public static final long GENERATED_INK_PER_VALID_BLOCK = (long) Math.pow(2, 16);
 	
 	public VantaclastBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.VANTACLAST.get(), blockPos, blockState, 3);
+		super(SpectrumBlockEntities.VANTACLAST.get(), blockPos, blockState, 3, 1);
 	}
 	
 	@Override
@@ -32,7 +32,7 @@ public class VantaclastBlockEntity extends InkGeneratorBlockEntity {
 	}
 	
 	@Override
-	protected boolean tickLogic(Level level) {
+	public boolean tickLogic(Level level) {
 		RandomSource random = level.getRandom();
 		BlockPos posToTest = this.worldPosition.offset(random.nextIntBetweenInclusive(-MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL, MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL), random.nextInt(MAX_BLOCK_CHECK_DISTANCE_UP), random.nextIntBetweenInclusive(-MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL, MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL));
 		BlockState statetoTest = level.getBlockState(posToTest);

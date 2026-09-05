@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:templates/present",
+  "textures": {
+    "texture": "spectrum:block/present_pride",
+    "particle": "minecraft:block/orange_wool"
+  }
+}

@@ -31,6 +31,7 @@ import net.neoforged.fml.config.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.*;
+import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
 import net.neoforged.neoforge.network.event.*;
@@ -123,7 +124,6 @@ public class SpectrumCommon {
 		SpectrumPastelPayloadTypes.register(modBus);
 		SpectrumPastelPayloads.register(modBus);
 		modBus.addListener(SpectrumBlockEntities::addBlockEntityTypeBlocks);
-		SpectrumPastelUpgradeSignatures.register(modBus);
 		
 		// Worldgen
 		logInfo("Registering Features...");
@@ -137,7 +137,7 @@ public class SpectrumCommon {
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");
-		SpectrumFusionShrineWorldEffects.register(modBus);
+		SpectrumWorldEffects.register(modBus);
 		SpectrumRecipeTypes.register(modBus);
 		SpectrumRecipeSerializers.register(modBus);
 		

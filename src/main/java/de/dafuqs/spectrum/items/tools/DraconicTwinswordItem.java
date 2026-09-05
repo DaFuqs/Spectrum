@@ -27,6 +27,7 @@ import net.minecraft.world.level.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class DraconicTwinswordItem extends SwordItem implements SplittableItem, SlotReservingItem, Preenchanted, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 	
@@ -106,26 +107,9 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 		tooltip.add(Component.translatable("item.spectrum.draconic_twinsword.tooltip3").withStyle(ChatFormatting.GRAY));
 	}
 	
-	ResourceLocation COOLDOWN_ATTRIBUTE_ID = SpectrumCommon.locate("cooldown");
-	
 	@Override
 	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
-		// TODO: this is fired EVERY tick
-		if (entity instanceof Player player) {
-			if (player.getCooldowns().isOnCooldown(stack.getItem()) || SlotReservingItem.isReservingSlot(stack)) {
-				stack.set(DataComponents.ATTRIBUTE_MODIFIERS, stack.getAttributeModifiers().withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(COOLDOWN_ATTRIBUTE_ID, 0.0D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE), EquipmentSlotGroup.ANY));
-			} else {
-				stack.update(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY, comp -> {
-					ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
-					for (ItemAttributeModifiers.Entry entry : comp.modifiers()) {
-						if (!entry.modifier().is(COOLDOWN_ATTRIBUTE_ID)) {
-							builder.add(entry.attribute(), entry.modifier(), entry.slot());
-						}
-					}
-					return builder.build();
-				});
-			}
-		}
+		SlotReservingItem.inventoryTick(entity, stack);
 	}
 	
 	@Override

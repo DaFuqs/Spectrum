@@ -153,6 +153,9 @@ public class SpectrumConfig {
 	
 	public final ModConfigSpec.ConfigValue<DimensionPortalSetting> DimensionPortals;
 	
+	public final ModConfigSpec.ConfigValue<Integer> ConstructorsStaffInkCostPerBlock;
+	public final ModConfigSpec.ConfigValue<Integer> ExchangingStaffInkCostPerBlock;
+	
 	public enum DimensionPortalSetting {
 		CREATE_PORTALS,
 		PROTECT_LOWEST_OVERWORLD_LEVEL,
@@ -160,6 +163,16 @@ public class SpectrumConfig {
 	}
 	
 	private SpectrumConfig(ModConfigSpec.Builder builder) {
+		ConstructorsStaffInkCostPerBlock = builder
+				.translation("config.spectrum.constructors_staff_ink_cost_per_block")
+				.comment("Required Ink for one Block placed by the Constructor's Staff")
+				.define("constructors_staff_ink_cost_per_block", 1);
+		
+		ExchangingStaffInkCostPerBlock = builder
+				.translation("config.spectrum.exchanging_staff_ink_cost_per_block")
+				.comment("Required Ink for one Block placed by the Exchanging Staff")
+				.define("exchanging_staff_ink_cost_per_block", 5);
+		
 		DimensionPortals = builder
 				.translation("config.spectrum.dimension_portals")
 				.comment("Allow the creation of portals using Ruin")
@@ -246,21 +259,21 @@ public class SpectrumConfig {
 		
 		ShootingStarDimensions = builder
 				.translation("config.spectrum.shooting_star_dimensions")
-				.comment("Dimensions where shooting stars spawn for players. Shooting Stars will only spawn for players with sufficient progress in the mod")
-				.defineList("shooting_star_dimensions", List.of("minecraft:overworld", "starry_skies:overworld", "paradise_lost:paradise_lost"), () -> "mymod:my_[regex_matched_]*_dimension_id", o -> true);
+				.comment("Dimensions where Shooting Stars spawn for players. Shooting Stars will only spawn for players with sufficient progress in the mod.")
+				.defineList("shooting_star_dimensions", List.of("minecraft:overworld", "starry_skies:overworld", "paradise_lost:paradise_lost", "tropicraft:tropics"), () -> "mymod:my_[regex_matched_]*_dimension_id", o -> true);
 		
 		ShootingStarSpawnChance = builder
 				.translation("config.spectrum.shooting_star_spawn_chance")
 				.comment("""
-			Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 100 chances per night).
+			Shooting Star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 100 chances per night).
 			By default, there is a 0.0075 ^= 0.75 % chance at each of those check times. Making it ~1 shooting star spawn
 			per night per player that unlocked the required progression.""")
 				.define("shooting_star_spawn_chance", 0.0075D);
 		
 		StormStoneDimensions = builder
 				.translation("config.spectrum.storm_stone_dimensions")
-				.comment("Dimensions where lightning strikes can spawn Storm Stones")
-				.defineList("storm_stone_dimensions", List.of("minecraft:overworld", "starry_skies:overworld", "paradise_lost:paradise_lost"), () -> "mymod:my_[regex_matched_]*_dimension_id", o -> true);
+				.comment("Dimensions where lightning strikes will cause Storm Stones to spawn. Storm Stones will only be visible for players with sufficient progress in the mod.")
+				.defineList("storm_stone_dimensions", List.of("minecraft:overworld", "starry_skies:overworld", "paradise_lost:paradise_lost", "tropicraft:tropics"), () -> "mymod:my_[regex_matched_]*_dimension_id", o -> true);
 		
 		StormStoneSpawnChance = builder
 				.translation("config.spectrum.storm_stone_spawn_chance")

@@ -24,11 +24,6 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	protected final int craftingTime;
 	public boolean shapeless;
 
-	/**
-	 * When using the REI recipe functionality
-	 *
-	 * @param recipe The recipe
-	 */
 	public PedestalCraftingDisplay(RecipeHolder<PedestalRecipe> recipe) {
 		super(recipe, mapIngredients(recipe.value()), Collections.singletonList(EntryIngredients.of(recipe.value().getResultItem(BasicDisplay.registryAccess()))));
 		this.pedestalRecipeTier = recipe.value().getTier();

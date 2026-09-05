@@ -3,7 +3,7 @@
   "fluid": {
     "fluid": "spectrum:liquid_crystal"
   },
-  "additional_recipe_manager_results": [
+  "additional_recipe_viewer_results": [
     {
       "count": 1,
       "id": "spectrum:pure_glowstone"

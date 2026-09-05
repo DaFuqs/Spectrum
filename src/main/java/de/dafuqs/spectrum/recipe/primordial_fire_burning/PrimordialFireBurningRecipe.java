@@ -28,8 +28,8 @@ public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe<RecipeInput
 	protected final Ingredient input;
 	protected final ItemStack output;
 	
-	public PrimordialFireBurningRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Ingredient input, ItemStack output) {
-		super(group, secret, requiredAdvancementIdentifier);
+	public PrimordialFireBurningRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults, Ingredient input, ItemStack output) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		
 		this.input = input;
 		this.output = output;
@@ -147,16 +147,18 @@ public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe<RecipeInput
 		
 		public static final MapCodec<PrimordialFireBurningRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(recipe -> recipe.input),
 				ItemStack.STRICT_CODEC.fieldOf("result").forGetter(recipe -> recipe.output)
 		).apply(i, PrimordialFireBurningRecipe::new));
 		
 		private static final StreamCodec<RegistryFriendlyByteBuf, PrimordialFireBurningRecipe> PACKET_CODEC = StreamCodec.composite(
-				ByteBufCodecs.STRING_UTF8, c -> c.group,
-				ByteBufCodecs.BOOL, c -> c.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
+				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				Ingredient.CONTENTS_STREAM_CODEC, c -> c.input,
 				ItemStack.STREAM_CODEC, c -> c.output,
 				PrimordialFireBurningRecipe::new

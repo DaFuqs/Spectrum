@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.item_frame;
 
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.decoration.*;

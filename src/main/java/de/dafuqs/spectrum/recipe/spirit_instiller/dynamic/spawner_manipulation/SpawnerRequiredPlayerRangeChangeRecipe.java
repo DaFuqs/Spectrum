@@ -10,17 +10,18 @@ import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.crafting.*;
+import org.jspecify.annotations.*;
 
 public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe {
 	protected static final int DEFAULT_DETECTION_RANGE = 16;
 	protected static final int MAX_DETECTION_RANGE = 64;
 	
 	public SpawnerRequiredPlayerRangeChangeRecipe() {
-		super(IngredientStack.ofItems(SpectrumItems.STRATINE_GEM.get(), 4));
+		super(IngredientStack.ofItems(SpectrumItems.STRATINE_GEM.get(), 4), "recipe.spectrum.spawner.lore.increased_required_player_range");
 	}
 	
 	@Override
-	public boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
+	public boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, @Nullable CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
 		if (spawnerBlockEntityNbt == null) {
 			return true;
 		}
@@ -33,11 +34,6 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.SPIRIT_INSTILLER_SPAWNER_SPAWNER_PLAYER_RANGE_CHANGE;
-	}
-	
-	@Override
-	public Component getOutputLoreText() {
-		return Component.translatable("recipe.spectrum.spawner.lore.increased_required_player_range");
 	}
 	
 	@Override

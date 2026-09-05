@@ -1,0 +1,5 @@
+{
+  "name": "sensor",
+  "item": "spectrum:pure_echo",
+  "sensor": true
+}

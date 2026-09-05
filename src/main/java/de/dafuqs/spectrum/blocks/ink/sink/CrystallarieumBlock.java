@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.ink.sink;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.ink.color.*;
-import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
@@ -66,11 +65,10 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 				ItemStack stack = itemEntity.getItem();
 				
 				Optional<IFluidHandlerItem> fluidHandler = FluidUtil.getFluidHandler(stack);
-				
 				if (fluidHandler.isPresent()) {
-					FluidStack transferredStack = FluidUtil.tryFluidTransfer(crystallarieumBlockEntity.tank, fluidHandler.get(), 1000, true);
-					if(!transferredStack.isEmpty()) {
-						var containerItem = fluidHandler.get().getContainer();
+					FluidStack transferredFluid = FluidUtil.tryFluidTransfer(crystallarieumBlockEntity.tank, fluidHandler.get(), 1000, true);
+					if(!transferredFluid.isEmpty()) {
+						ItemStack containerItem = fluidHandler.get().getContainer();
 						itemEntity.setItem(containerItem);
 						return;
 					}

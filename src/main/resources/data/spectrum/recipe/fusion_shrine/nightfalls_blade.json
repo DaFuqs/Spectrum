@@ -32,11 +32,13 @@
     "id": "spectrum:nightfalls_blade"
   },
   "required_advancement": "spectrum:unlocks/equipment/nightfalls_blade",
-  "start_crafting_effect": "single_visual_explosion_on_shrine",
-  "during_crafting_effects": [
-    "nothing",
-    "visual_explosions_on_shrine",
-    "nothing"
-  ],
-  "finish_crafting_effect": "lightning_on_shrine"
+  "effects": {
+    "start": "single_visual_explosion_on_shrine",
+    "during": [
+      "nothing",
+      "visual_explosions_on_shrine",
+      "nothing"
+    ],
+    "finish": "lightning_on_shrine"
+  }
 }

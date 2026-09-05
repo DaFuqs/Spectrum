@@ -19,7 +19,7 @@ import java.util.*;
 public class EnchantedBookUnsoulingRecipe extends PrimordialFireBurningRecipe {
 	
 	public EnchantedBookUnsoulingRecipe(HolderLookup.Provider lookup) {
-		super("", false, Optional.of(UNLOCK_IDENTIFIER),
+		super("", Optional.empty(), Optional.empty(), List.of(),
 				Ingredient.of(SpectrumEnchantmentHelper.addOrUpgradeEnchantment(lookup, Items.ENCHANTED_BOOK.getDefaultInstance(), Enchantments.SOUL_SPEED, 1, false, false).getB()),
 				SpectrumEnchantmentHelper.addOrUpgradeEnchantment(lookup, Items.ENCHANTED_BOOK.getDefaultInstance(), Enchantments.SWIFT_SNEAK, 1, false, false).getB()
 		);

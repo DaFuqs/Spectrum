@@ -28,6 +28,7 @@ import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.blocks.geology.*;
 import de.dafuqs.spectrum.blocks.idols.*;
+import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.blocks.ink.gen.*;
 import de.dafuqs.spectrum.blocks.ink.sink.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
@@ -52,7 +53,6 @@ import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.blocks.weathering.*;
 import de.dafuqs.spectrum.data.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.particle.*;
@@ -208,6 +208,7 @@ public class SpectrumBlocks {
 	
 	public static final DeferredBlock<Block> VEGETAL_BLOCK = register(singleton(blockWithItem("vegetal_block", () -> new FlammableBlock(settings(MapColor.GRASS, SoundType.FUNGUS, 2.0F).noOcclusion())), TexturedModel.createDefault(TextureMapping::defaultTexture, SpectrumModelTemplates.TRANSLUCENT_OUTER1)));
 	public static final DeferredBlock<Block> NEOLITH_BLOCK = register(simple(blockWithItem("neolith_block", () -> new Block(settings(MapColor.COLOR_PURPLE, SoundType.COPPER, 6.0F).requiresCorrectToolForDrops().instrument(NoteBlockInstrument.BASEDRUM).lightLevel(state -> 13).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always)))));
+	// TODO: rename to shattered_bedrock_block
 	public static final DeferredBlock<Block> BEDROCK_DUST_BLOCK = register(simple(blockWithItem("bedrock_dust_block", () -> new BlockWithTooltip(settings(MapColor.STONE, SoundType.STONE, 100.0F, 3600.0F).pushReaction(PushReaction.BLOCK).requiresCorrectToolForDrops().instrument(NoteBlockInstrument.BASEDRUM), Component.translatable("spectrum.tooltip.dragon_and_wither_immune")), () -> IS.of(Rarity.UNCOMMON))));
 	
 	public static final DeferredBlock<SpectrumClusterBlock> BISMUTH_CLUSTER = register(cluster(blockWithItem("bismuth_cluster", () -> new SpectrumClusterBlock(gemstone(MapColor.WARPED_STEM, SoundType.CHAIN, 8), SpectrumClusterBlock.GrowthStage.CLUSTER), () -> IS.of(Rarity.UNCOMMON)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
@@ -425,8 +426,8 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> AMETHYST_CHISELED_BASALT = register(simple(blockWithItem("amethyst_chiseled_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 5)))));
 	public static final DeferredBlock<Block> CITRINE_CHISELED_BASALT = register(simple(blockWithItem("citrine_chiseled_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 7)))));
 	public static final DeferredBlock<Block> ONYX_CHISELED_BASALT = register(simple(blockWithItem("onyx_chiseled_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 3)))));
-	public static final DeferredBlock<Block> MOONSTONE_CHISELED_BASALT = register(moonstoneChiseled(blockWithItem("moonstone_chiseled_basalt", () -> new SpectrumLineFacingBlock(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 12))), SpectrumTextures.BASALT_CAP));
-	
+	public static final DeferredBlock<Block> MOONSTONE_CHISELED_BASALT = register(moonstoneChiseled(blockWithItem("moonstone_chiseled_basalt", () -> new SpectrumCounterDirectionalPlacedBlock(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 12))), SpectrumTextures.BASALT_CAP));
+
 	public static final DeferredBlock<Block> CALCITE_STAIRS = register(blockWithItem("calcite_stairs", () -> new StairBlock(CALCITE.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(CALCITE))));
 	public static final DeferredBlock<Block> CALCITE_SLAB = register(blockWithItem("calcite_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE))));
 	public static final DeferredBlock<Block> CALCITE_WALL = register(blockWithItem("calcite_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE))));
@@ -459,7 +460,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> AMETHYST_CHISELED_CALCITE = register(simple(blockWithItem("amethyst_chiseled_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 5)))));
 	public static final DeferredBlock<Block> CITRINE_CHISELED_CALCITE = register(simple(blockWithItem("citrine_chiseled_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 7)))));
 	public static final DeferredBlock<Block> ONYX_CHISELED_CALCITE = register(simple(blockWithItem("onyx_chiseled_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 3)))));
-	public static final DeferredBlock<Block> MOONSTONE_CHISELED_CALCITE = register(moonstoneChiseled(blockWithItem("moonstone_chiseled_calcite", () -> new SpectrumLineFacingBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 12))), SpectrumTextures.CALCITE_CAP));
+	public static final DeferredBlock<Block> MOONSTONE_CHISELED_CALCITE = register(moonstoneChiseled(blockWithItem("moonstone_chiseled_calcite", () -> new SpectrumCounterDirectionalPlacedBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 12))), SpectrumTextures.CALCITE_CAP));
 	
 	public static DeferredBlock<Block> registerGemstoneLight(String name, DeferredBlock<Block> gemBlock, DeferredBlock<Block> baseBlock, ResourceLocation capTexture, InkColor color) {
 		return register(axisRotated(blockWithItem(name, () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(baseBlock.get()).lightLevel(s -> 15).noOcclusion().forceSolidOn())), TexturedModel.createDefault(block -> SpectrumTextureMaps.sideTopInside(TextureMapping.getBlockTexture(block), capTexture, TextureMapping.getBlockTexture(gemBlock.get())), SpectrumModelTemplates.MULTILAYER_LIGHT)));
@@ -812,10 +813,10 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<FungusBlock> IVORY_NOXSHROOM = registerNoxshroom("ivory_noxshroom", SpectrumConfiguredFeatureKeys.IVORY_NOXFUNGUS, MapColor.QUARTZ);
 	public static final DeferredBlock<FungusBlock> CHESTNUT_NOXSHROOM = registerNoxshroom("chestnut_noxshroom", SpectrumConfiguredFeatureKeys.CHESTNUT_NOXFUNGUS, MapColor.CRIMSON_NYLIUM);
 	
-	public static final DeferredBlock<FlowerPotBlock> POTTED_SLATE_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_slate_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, SLATE_NOXSHROOM, pottedPlant())), "_type_1"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_EBONY_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_ebony_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, EBONY_NOXSHROOM, pottedPlant())), "_type_1"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_IVORY_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_ivory_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, IVORY_NOXSHROOM, pottedPlant())), "_type_1"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_CHESTNUT_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_chestnut_noxshroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, CHESTNUT_NOXSHROOM, pottedPlant())), "_type_1"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_SLATE_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_slate_noxshroom", () -> new FlowerPotBlock(SLATE_NOXSHROOM.get(), pottedPlant())), "_type_1"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_EBONY_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_ebony_noxshroom", () -> new FlowerPotBlock(EBONY_NOXSHROOM.get(), pottedPlant())), "_type_1"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_IVORY_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_ivory_noxshroom", () -> new FlowerPotBlock(IVORY_NOXSHROOM.get(), pottedPlant())), "_type_1"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_CHESTNUT_NOXSHROOM = register(pottedPlantWithCustomTexture(block("potted_chestnut_noxshroom", () -> new FlowerPotBlock(CHESTNUT_NOXSHROOM.get(), pottedPlant())), "_type_1"));
 	
 	public static BlockBehaviour.Properties noxcap(MapColor color) {
 		return settings(color, SoundType.STEM, 4.0F).instrument(NoteBlockInstrument.BASS);
@@ -933,7 +934,7 @@ public class SpectrumBlocks {
 	}
 	
 	public static final DeferredBlock<WeepingGalaSprigBlock> WEEPING_GALA_SPRIG = register(cross(blockWithItem("weeping_gala_sprig", () -> new WeepingGalaSprigBlock(copyWithMapColor(OAK_SAPLING, MapColor.WARPED_WART_BLOCK)))).withItemModel(SpectrumModelHelper::registerItemModel));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_WEEPING_GALA_SPRIG = register(pottedPlant(block("potted_weeping_gala_sprig", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, () -> WEEPING_GALA_SPRIG.get(), pottedPlant())), false));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_WEEPING_GALA_SPRIG = register(pottedPlant(block("potted_weeping_gala_sprig", () -> new FlowerPotBlock(WEEPING_GALA_SPRIG.get(), pottedPlant())), false));
 	
 	public static final DeferredBlock<Block> WEEPING_GALA_LEAVES = register(singleton(blockWithItem("weeping_gala_leaves", () -> new FlammableLeavesBlock(copyWithMapColor(OAK_LEAVES, MapColor.WARPED_WART_BLOCK))), TexturedModel.LEAVES));
 	public static final DeferredBlock<RotatedPillarBlock> STRIPPED_WEEPING_GALA_LOG = register(log(blockWithItem("stripped_weeping_gala_log", () -> new FlammableRotatedPillarBlock(galaWood(MapColor.COLOR_BROWN)))));
@@ -978,7 +979,7 @@ public class SpectrumBlocks {
 	
 	public static final DeferredBlock<Block> BASAL_MARBLE_PILLAR = register(axisRotated(blockWithItem("basal_marble_pillar", () -> new RotatedPillarBlock(basalMarble())), TexturedModel.COLUMN));
 	
-	public static final DeferredBlock<Block> POLISHED_BASAL_MARBLE = register(defaultUpFacing(blockWithItem("polished_basal_marble", () -> new SpectrumFacingBlock(basalMarble())), TexturedModel.CUBE_TOP_BOTTOM));
+	public static final DeferredBlock<Block> POLISHED_BASAL_MARBLE = register(defaultUpFacing(blockWithItem("polished_basal_marble", () -> new SpectrumDirectionalBlock(basalMarble())), TexturedModel.CUBE_TOP_BOTTOM));
 	public static final DeferredBlock<Block> POLISHED_BASAL_MARBLE_STAIRS = register(blockWithItem("polished_basal_marble_stairs", () -> new StairBlock(POLISHED_BASAL_MARBLE.get().defaultBlockState(), basalMarble())));
 	public static final DeferredBlock<Block> POLISHED_BASAL_MARBLE_SLAB = register(blockWithItem("polished_basal_marble_slab", () -> new SlabBlock(basalMarble())));
 	public static final DeferredBlock<Block> POLISHED_BASAL_MARBLE_WALL = register(blockWithItem("polished_basal_marble_wall", () -> new WallBlock(basalMarble())));
@@ -1059,7 +1060,7 @@ public class SpectrumBlocks {
 	}));
 	public static final DeferredBlock<GiantMossBallBlock> GIANT_MOSS_BALL = register(blockWithItem("giant_moss_ball", () -> new GiantMossBallBlock(settings(MapColor.PLANT, SoundType.WET_GRASS, 10F).noCollission().noOcclusion().offsetType(BlockBehaviour.OffsetType.XYZ))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(block, ModelLocationUtils.getModelLocation(block))));
 	
-	public static final DeferredBlock<Block> RESPLENDENT_BLOCK = register(defaultUpFacing(blockWithItem("resplendent_block", () -> new CushionedFacingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL)), () -> IS.of(Rarity.UNCOMMON)), TexturedModel.CUBE_TOP_BOTTOM));
+	public static final DeferredBlock<Block> RESPLENDENT_BLOCK = register(defaultUpFacing(blockWithItem("resplendent_block", () -> new CushionedDirectionalBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_WOOL)), () -> IS.of(Rarity.UNCOMMON)), TexturedModel.CUBE_TOP_BOTTOM));
 	public static final DeferredBlock<Block> RESPLENDENT_CUSHION = register(singleton(blockWithItem("resplendent_cushion", () -> new CushionBlock(BlockBehaviour.Properties.ofFullCopy(RESPLENDENT_BLOCK.get()).noOcclusion().isValidSpawn(SpectrumBlocks::never)), () -> IS.of(Rarity.UNCOMMON)), SpectrumTexturedModelProviders.CUSHION));
 	public static final DeferredBlock<Block> RESPLENDENT_CARPET = register(singleton(blockWithItem("resplendent_carpet", () -> new CushionedCarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)), () -> IS.of(Rarity.UNCOMMON)), TexturedModel.CARPET));
 	public static final DeferredBlock<SpectrumBedBlock> RESPLENDENT_BED = register(blockWithItem("resplendent_bed", () -> new SpectrumBedBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_BED)), () -> IS.of(1, Rarity.UNCOMMON)).withPredefinedItemModel().withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createSouthDefaultHorizontalFacingVariantMap()).with(PropertyDispatch.property(BedBlock.PART).select(BedPart.HEAD, SpectrumModelHelper.createModelVariant(block, "_head")).select(BedPart.FOOT, SpectrumModelHelper.createModelVariant(block, "_foot")))));
@@ -1143,7 +1144,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> RAW_AZURITE_BLOCK = register(simple(blockWithItem("raw_azurite_block", () -> new AzuriteBlock(ore().mapColor(MapColor.COLOR_BLUE)))));
 	public static final DeferredBlock<AzuriteOreBlock> DEEPSLATE_AZURITE_ORE = register(simpleMirrored(blockWithItem("deepslate_azurite_ore", () -> new AzuriteOreBlock(UniformInt.of(4, 7), deepslateOre().randomTicks(), SpectrumAdvancements.REVEAL_AZURITE, Blocks.DEEPSLATE.defaultBlockState()))));
 	public static final DeferredBlock<AzuriteOreBlock> BLACKSLAG_AZURITE_ORE = register(simpleMirrored(blockWithItem("blackslag_azurite_ore", () -> new AzuriteOreBlock(UniformInt.of(4, 7), blackslagOre().randomTicks(), SpectrumAdvancements.REVEAL_AZURITE, BLACKSLAG.get().defaultBlockState()))));
-	public static final DeferredBlock<Block> PURE_AZURITE_BLOCK = register(defaultUpFacing(blockWithItem("pure_azurite_block", () -> new SpectrumFacingBlock(BlockBehaviour.Properties.ofFullCopy(LAPIS_BLOCK).mapColor(MapColor.COLOR_BLUE))), TexturedModel.CUBE_TOP_BOTTOM));
+	public static final DeferredBlock<Block> PURE_AZURITE_BLOCK = register(defaultUpFacing(blockWithItem("pure_azurite_block", () -> new SpectrumDirectionalBlock(BlockBehaviour.Properties.ofFullCopy(LAPIS_BLOCK).mapColor(MapColor.COLOR_BLUE))), TexturedModel.CUBE_TOP_BOTTOM));
 	public static final DeferredBlock<SpectrumClusterBlock> AZURITE_CLUSTER = register(cluster(blockWithItem("azurite_cluster", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_BLUE, SpectrumSoundTypes.SMALL_ONYX_BUD, 2), SpectrumClusterBlock.GrowthStage.CLUSTER), () -> IS.of(Rarity.UNCOMMON)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> LARGE_AZURITE_BUD = register(cluster(blockWithItem("large_azurite_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_BLUE, SpectrumSoundTypes.LARGE_ONYX_BUD, 3), SpectrumClusterBlock.GrowthStage.LARGE), () -> IS.of(Rarity.UNCOMMON)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> SMALL_AZURITE_BUD = register(cluster(blockWithItem("small_azurite_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_BLUE, SpectrumSoundTypes.ONYX_CLUSTER, 5), SpectrumClusterBlock.GrowthStage.SMALL), () -> IS.of(Rarity.UNCOMMON)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
@@ -1152,13 +1153,13 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> RAW_MALACHITE_BLOCK = register(simple(blockWithItem("raw_malachite_block", () -> new Block(ore().mapColor(MapColor.EMERALD)))));
 	public static final DeferredBlock<Block> DEEPSLATE_MALACHITE_ORE = register(simple(blockWithItem("deepslate_malachite_ore", () -> new CloakedOreBlock(UniformInt.of(7, 11), deepslateOre(), SpectrumAdvancements.REVEAL_MALACHITE, Blocks.DEEPSLATE.defaultBlockState()), () -> IS.of(Rarity.UNCOMMON))));
 	public static final DeferredBlock<Block> BLACKSLAG_MALACHITE_ORE = register(singleton(blockWithItem("blackslag_malachite_ore", () -> new CloakedOreBlock(UniformInt.of(7, 11), blackslagOre(), SpectrumAdvancements.REVEAL_MALACHITE, BLACKSLAG.get().defaultBlockState()), () -> IS.of(Rarity.UNCOMMON)), TexturedModel.COLUMN_ALT));
-	public static final DeferredBlock<Block> PURE_MALACHITE_BLOCK = register(defaultUpFacing(blockWithItem("pure_malachite_block", () -> new SpectrumFacingBlock(gemstoneBlock(MapColor.EMERALD, SoundType.CHAIN)), () -> IS.of(Rarity.UNCOMMON)), TexturedModel.COLUMN_ALT));
+	public static final DeferredBlock<Block> PURE_MALACHITE_BLOCK = register(defaultUpFacing(blockWithItem("pure_malachite_block", () -> new SpectrumDirectionalBlock(gemstoneBlock(MapColor.EMERALD, SoundType.CHAIN)), () -> IS.of(Rarity.UNCOMMON)), TexturedModel.COLUMN_ALT));
 	public static final DeferredBlock<SpectrumClusterBlock> MALACHITE_CLUSTER = register(cluster(blockWithItem("malachite_cluster", () -> new SpectrumClusterBlock(gemstone(MapColor.EMERALD, SoundType.CHAIN, 9), SpectrumClusterBlock.GrowthStage.CLUSTER), () -> IS.of(Rarity.UNCOMMON)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> LARGE_MALACHITE_BUD = register(cluster(blockWithItem("large_malachite_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.EMERALD, SoundType.CHAIN, 7), SpectrumClusterBlock.GrowthStage.LARGE), () -> IS.of(Rarity.UNCOMMON)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> SMALL_MALACHITE_BUD = register(cluster(blockWithItem("small_malachite_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.EMERALD, SoundType.CHAIN, 5), SpectrumClusterBlock.GrowthStage.SMALL), () -> IS.of(Rarity.UNCOMMON)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	
 	public static final DeferredBlock<Block> RAW_BLOODSTONE_BLOCK = register(simple(blockWithItem("raw_bloodstone_block", () -> new Block(ore().mapColor(MapColor.COLOR_RED).sound(SpectrumSoundTypes.ONYX_CLUSTER)))));
-	public static final DeferredBlock<Block> PURE_BLOODSTONE_BLOCK = register(defaultUpFacing(blockWithItem("pure_bloodstone_block", () -> new SpectrumFacingBlock(gemstoneBlock(MapColor.COLOR_RED, SpectrumSoundTypes.ONYX_CLUSTER)), () -> IS.of(Rarity.UNCOMMON)), TexturedModel.COLUMN));
+	public static final DeferredBlock<Block> PURE_BLOODSTONE_BLOCK = register(defaultUpFacing(blockWithItem("pure_bloodstone_block", () -> new SpectrumDirectionalBlock(gemstoneBlock(MapColor.COLOR_RED, SpectrumSoundTypes.ONYX_CLUSTER)), () -> IS.of(Rarity.UNCOMMON)), TexturedModel.COLUMN));
 	public static final DeferredBlock<SpectrumClusterBlock> BLOODSTONE_CLUSTER = register(cluster(blockWithItem("bloodstone_cluster", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumSoundTypes.SMALL_ONYX_BUD, 6), SpectrumClusterBlock.GrowthStage.CLUSTER), () -> IS.of(Rarity.UNCOMMON)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> LARGE_BLOODSTONE_BUD = register(cluster(blockWithItem("large_bloodstone_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumSoundTypes.SMALL_ONYX_BUD, 4), SpectrumClusterBlock.GrowthStage.LARGE), () -> IS.of(Rarity.UNCOMMON)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
 	public static final DeferredBlock<SpectrumClusterBlock> SMALL_BLOODSTONE_BUD = register(cluster(blockWithItem("small_bloodstone_bud", () -> new SpectrumClusterBlock(gemstone(MapColor.COLOR_RED, SpectrumSoundTypes.ONYX_CLUSTER, 3), SpectrumClusterBlock.GrowthStage.SMALL), () -> IS.of(Rarity.UNCOMMON)), SpectrumModelTemplates.CRYSTALLARIEUM_FARMABLE));
@@ -1379,16 +1380,16 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<AmaranthBushelBlock> AMARANTH_BUSHEL = register(cross(blockWithItem("amaranth_bushel", () -> new AmaranthBushelBlock(SpectrumMobEffects.NOURISHING, 8, settings(MapColor.NONE, SoundType.CROP, 0.0F).noCollission()))).withItemModel(SpectrumModelHelper::registerItemModel));
 	public static final DeferredBlock<PottedAmaranthBushelBlock> POTTED_AMARANTH_BUSHEL = register(pottedPlant(block("potted_amaranth_bushel", () -> new PottedAmaranthBushelBlock(AMARANTH_BUSHEL.get(), pottedPlant())), false));
 	
-	public static final DeferredBlock<Block> RESONANT_LILY = register(simplePlant(blockWithItem("resonant_lily", () -> new ResonantLilyBlock(MobEffects.REGENERATION, 5, BlockBehaviour.Properties.ofFullCopy(POPPY).mapColor(MapColor.SNOW)))));
+	public static final DeferredBlock<ResonantLilyBlock> RESONANT_LILY = register(simplePlant(blockWithItem("resonant_lily", () -> new ResonantLilyBlock(MobEffects.REGENERATION, 5, BlockBehaviour.Properties.ofFullCopy(POPPY).mapColor(MapColor.SNOW)))));
 	public static final DeferredBlock<PottedResonantLilyBlock> POTTED_RESONANT_LILY = register(pottedPlant(block("potted_resonant_lily", () -> new PottedResonantLilyBlock(RESONANT_LILY.get(), pottedPlant())), false));
 	
 	public static final DeferredBlock<BloodOrchidBlock> BLOOD_ORCHID = register(blockWithItem("blood_orchid", () -> new BloodOrchidBlock(SpectrumMobEffects.FRENZY, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).offsetType(BlockBehaviour.OffsetType.NONE).randomTicks())).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerBlockTexturedItemModel(ctx, block, "5")).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BloodOrchidBlock.AGE).generate(stage -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModelProviders.cross(b -> b, stage.toString()).createWithSuffix(block, stage.toString(), ctx.modelOutput))))));
 	public static final DeferredBlock<Block> POTTED_BLOOD_ORCHID = register(singleton(block("potted_blood_orchid", () -> new PottedBloodOrchidBlock(BLOOD_ORCHID.get(), pottedPlant())), SpectrumTexturedModelProviders.flowerPotCross(b -> BLOOD_ORCHID.get(), "5", false)));
 	
-	public static final DeferredBlock<FlowerPotBlock> POTTED_SWEET_PEA = register(pottedPlantWithCustomTexture(block("potted_sweet_pea", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, SWEET_PEA, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_APRICOTTI = register(pottedPlantWithCustomTexture(block("potted_apricotti", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, APRICOTTI, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_VARIA_SPROUT = register(pottedPlantWithCustomTexture(block("potted_varia_sprout", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, VARIA_SPROUT, pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
-	public static final DeferredBlock<FlowerPotBlock> POTTED_HUMMING_BELL = register(pottedPlant(block("potted_humming_bell", () -> new FlowerPotBlock(() -> (FlowerPotBlock) FLOWER_POT, HUMMING_BELL, pottedPlant().lightLevel(s -> 9).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_SWEET_PEA = register(pottedPlantWithCustomTexture(block("potted_sweet_pea", () -> new FlowerPotBlock(SWEET_PEA.get(), pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_APRICOTTI = register(pottedPlantWithCustomTexture(block("potted_apricotti", () -> new FlowerPotBlock(APRICOTTI.get(), pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_VARIA_SPROUT = register(pottedPlantWithCustomTexture(block("potted_varia_sprout", () -> new FlowerPotBlock(VARIA_SPROUT.get(), pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
+	public static final DeferredBlock<FlowerPotBlock> POTTED_HUMMING_BELL = register(pottedPlant(block("potted_humming_bell", () -> new FlowerPotBlock(HUMMING_BELL.get(), pottedPlant().lightLevel(s -> 9).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
 	
 	public static DeferredBlock<ColoredSaplingBlock> registerColoredSapling(String name, InkColor color, TreeGrower generator) {
 		return register(simplePlant(blockWithItem(name, () -> new ColoredSaplingBlock(copyWithMapColor(OAK_SAPLING, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color, generator))));
@@ -1739,7 +1740,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> DEEP_LIGHT_CHISELED_PRESERVATION_STONE = register(singleton(blockWithItem("deep_light_chiseled_preservation_stone", () -> new DeepLightBlock(preservationBlock().lightLevel(state -> 2))), SpectrumTexturedModelProviders.cubeColumn(b -> b, "", b -> PRESERVATION_STONE.get(), "_top_generic")));
 	
 	public static final DeferredBlock<Block> PRESERVATION_ITEM_BOWL = register(singleton(blockWithItem("preservation_item_bowl", () -> new PreservationItemBowlBlock(preservationBlock().noOcclusion().isRedstoneConductor(SpectrumBlocks::never).isSuffocating(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never))), TexturedModel.createDefault(b -> new TextureMapping().put(TextureSlot.TEXTURE, SpectrumCommon.locate("block/preservation_item_bowl")).put(TextureSlot.SIDE, SpectrumCommon.locate("block/preservation_bricks")).put(SpectrumTextureSlots.BASE, SpectrumCommon.locate("block/preservation_stone_top_0")), SpectrumModelTemplates.BOWL)));
-	public static final DeferredBlock<Block> DIKE_GATE_FOUNTAIN = register(defaultUpFacing(blockWithItem("dike_gate_fountain", () -> new SpectrumFacingBlock(preservationBlock())), SpectrumTexturedModelProviders.cubeBottomTopParticle(b -> b, "_side", b -> b, "_top", b -> PRESERVATION_STONE.get(), "", b -> PRESERVATION_STONE.get(), "")));
+	public static final DeferredBlock<Block> DIKE_GATE_FOUNTAIN = register(defaultUpFacing(blockWithItem("dike_gate_fountain", () -> new SpectrumDirectionalBlock(preservationBlock())), SpectrumTexturedModelProviders.cubeBottomTopParticle(b -> b, "_side", b -> b, "_top", b -> PRESERVATION_STONE.get(), "", b -> PRESERVATION_STONE.get(), "")));
 	public static final DeferredBlock<Block> PRESERVATION_BRICKS = register(simple(blockWithItem("preservation_bricks", () -> new Block(preservationBlock()))));
 	public static final DeferredBlock<Block> SHIMMERING_PRESERVATION_BRICKS = register(blockWithItem("shimmering_preservation_bricks", () -> new Block(preservationBlock().lightLevel(s -> 5))).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, createModelVariant(TexturedModel.CUBE.create(block, ctx.modelOutput)), createModelVariant(SpectrumTexturedModelProviders.cubeAll(b -> b, "_fast").createWithSuffix(block, "_fast", ctx.modelOutput)), createModelVariant(SpectrumTexturedModelProviders.cubeAll(b -> b, "_slow").createWithSuffix(block, "_slow", ctx.modelOutput)))));
 	
@@ -1764,7 +1765,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> YELLOW_CHISELED_PRESERVATION_STONE = register(singleton(blockWithItem("yellow_chiseled_preservation_stone", () -> new Block(preservationBlock())), TexturedModel.COLUMN_ALT));
 	
 	public static final DeferredBlock<Block> PRESERVATION_GLASS = register(simple(blockWithItem("preservation_glass", () -> new TransparentBlock(preservationBlock().sound(SoundType.GLASS).noOcclusion().isRedstoneConductor(SpectrumBlocks::never).isSuffocating(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never)))));
-	public static final DeferredBlock<Block> TINTED_PRESERVATION_GLASS = register(simple(blockWithItem("tinted_preservation_glass", () -> new TintedGlassBlock(BlockBehaviour.Properties.ofFullCopy(PRESERVATION_GLASS.get())))));
+	public static final DeferredBlock<Block> TINTED_PRESERVATION_GLASS = register(simple(blockWithItem("tinted_preservation_glass", () -> new TintedGlassBlock(BlockBehaviour.Properties.ofFullCopy(PRESERVATION_GLASS.get()).pushReaction(PushReaction.NORMAL)))));
 	public static final DeferredBlock<Block> PRESERVATION_ROUNDEL = register(singleton(blockWithItem("preservation_roundel", () -> new PreservationRoundelBlock(preservationBlock().noOcclusion().forceSolidOn())), SpectrumTexturedModelProviders.ROUNDEL));
 	public static final DeferredBlock<PreservationBlockDetectorBlock> PRESERVATION_BLOCK_DETECTOR = register(blockWithItem("preservation_block_detector", () -> new PreservationBlockDetectorBlock(preservationBlock())).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, SpectrumModelHelper.createModelVariant(SpectrumTexturedModelProviders.complexOrientable(b -> b, "_side", b -> b, "_top", b -> PRESERVATION_STONE.get(), "_top_generic", b -> b, "_front", b -> b, "_back", b -> b, "_side").create(block, ctx.modelOutput))).with(SpectrumModelHelper.createNorthDefaultFacingVariantMap())));
 	

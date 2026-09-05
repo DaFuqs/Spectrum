@@ -70,7 +70,7 @@ public record PotionRecipeEffect(
 		return PACKET_CODEC.decode(buf);
 	}
 	
-	public @Nullable InkPoweredStatusEffectInstance getStatusEffectInstance(PotionMod potionMod, RandomSource random) {
+	public @Nullable InkPoweredMobEffectInstance getStatusEffectInstance(PotionMod potionMod, RandomSource random) {
 		float potency = potionMod.flatPotencyBonus();
 		int durationTicks = baseDurationTicks() + potionMod.flatDurationBonusTicks();
 		switch (statusEffect().value().getCategory()) {
@@ -109,8 +109,7 @@ public record PotionRecipeEffect(
 		}
 		
 		if (potency >= 0 && durationTicks > 0) {
-			int effectColor = potionMod.getColor(random);
-			return new InkPoweredStatusEffectInstance(new MobEffectInstance(statusEffect, durationTicks, (int) potency, !potionMod.flags().noParticles(), !potionMod.flags().noParticles()), new InkAmount(inkColor(), inkCost()), effectColor, potionMod.flags().unidentifiable());
+			return new InkPoweredMobEffectInstance(new MobEffectInstance(statusEffect, durationTicks, (int) potency, !potionMod.flags().noParticles(), !potionMod.flags().noParticles()), new InkAmount(inkColor(), inkCost()), potionMod.getColor(random), potionMod.flags().unidentifiable());
 		} else {
 			// the effect is so borked that the effect would be too weak
 			return null;

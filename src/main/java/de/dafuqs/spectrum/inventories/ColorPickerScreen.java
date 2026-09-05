@@ -1,15 +1,11 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.inventories.widgets.ink.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
-import org.jetbrains.annotations.*;
-
-import java.util.function.*;
 
 public class ColorPickerScreen extends BaseInkScreen<ColorPickerScreenHandler> {
 	
@@ -34,7 +30,7 @@ public class ColorPickerScreen extends BaseInkScreen<ColorPickerScreenHandler> {
 	}
 	
 	@Override
-	protected void renderTooltip(@NotNull GuiGraphics guiGraphics, int x, int y) {
+	protected void renderTooltip(GuiGraphics guiGraphics, int x, int y) {
 		super.renderTooltip(guiGraphics, x, y);
 		
 		if (this.inkPieWidget.isHoveredOrFocused()) {

@@ -14,9 +14,7 @@
   "criteria": {
     "applied_any_upgrade": {
       "trigger": "spectrum:pastel_node_upgrade",
-      "conditions": {
-        "input": "#spectrum:pastel_node_upgrades"
-      }
+      "conditions": {}
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",

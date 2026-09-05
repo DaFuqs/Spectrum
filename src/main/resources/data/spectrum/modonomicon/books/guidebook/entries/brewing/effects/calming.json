@@ -18,11 +18,6 @@
       "title": "effect.spectrum.calming",
       "status_effect_id": "spectrum:calming",
       "text": "book.spectrum.guidebook.calming.page0.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.calming.page1.title",
-      "text": "book.spectrum.guidebook.calming.page1.text"
     }
   ]
 }

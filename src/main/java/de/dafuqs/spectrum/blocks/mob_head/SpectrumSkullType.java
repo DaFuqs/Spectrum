@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;

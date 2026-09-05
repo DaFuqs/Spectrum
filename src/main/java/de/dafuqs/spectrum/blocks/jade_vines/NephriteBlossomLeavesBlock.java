@@ -55,7 +55,7 @@ public class NephriteBlossomLeavesBlock extends FlammableLeavesBlock implements 
 		int age = state.getValue(AGE);
 		int leafSum = 0;
 		
-		if (state.getValue(PERSISTENT) || random.nextFloat() > 0.1F) {
+		if (state.getValue(PERSISTENT) || random.nextFloat() > 0.2F) {
 			super.randomTick(state, world, pos, random);
 			return;
 		}

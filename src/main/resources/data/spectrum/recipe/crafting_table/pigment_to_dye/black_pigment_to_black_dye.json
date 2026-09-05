@@ -1,5 +1,6 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "spectrum:gated_crafting_shapeless",
+  "required_advancement": "spectrum:collect_pigment",
   "group": "pigment_to_dye",
   "ingredients": [
     {

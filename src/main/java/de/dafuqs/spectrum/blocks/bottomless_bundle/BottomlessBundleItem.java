@@ -1,15 +1,10 @@
 package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
-import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.client.resources.model.*;
 import net.minecraft.core.*;
 import net.minecraft.core.dispenser.*;
 import net.minecraft.network.chat.*;
@@ -26,7 +21,6 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import net.neoforged.api.distmarker.*;
 
 import java.util.*;
 

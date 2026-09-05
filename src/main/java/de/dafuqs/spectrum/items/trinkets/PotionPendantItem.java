@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.components.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
@@ -70,7 +71,7 @@ public class PotionPendantItem extends SpectrumCurioItem implements InkPoweredPo
 	}
 	
 	private void grantEffects(ItemStack stack, Player player) {
-		for (InkPoweredStatusEffectInstance inkPoweredEffect : InkPoweredPotionFillable.getEffects(stack)) {
+		for (InkPoweredMobEffectInstance inkPoweredEffect : InkPoweredPotionContentsComponent.getEffects(stack)) {
 			if (InkPowered.tryDrainEnergy(player, inkPoweredEffect.getInkCost())) {
 				MobEffectInstance effect = inkPoweredEffect.getStatusEffectInstance();
 				player.addEffect(new MobEffectInstance(effect.getEffect(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.isVisible(), true));

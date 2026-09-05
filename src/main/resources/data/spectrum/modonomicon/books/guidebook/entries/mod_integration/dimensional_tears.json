@@ -1,0 +1,41 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.dimensional_tears.name",
+  "icon": {
+    "item": "dimensional_tears:dimensional_tears_bottle"
+  },
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "dimensional_tears"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.mod_integration.dimensional_tears.name",
+      "text": "book.spectrum.guidebook.mod_integration.dimensional_tears.about.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe_id": "spectrum:mod_integration/dimensional_tears/potion_workshop_crafting/dimensional_tears_bottle"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe_id": "spectrum:mod_integration/dimensional_tears/potion_workshop_crafting/dimensional_tears_bucket"
+    }
+  ]
+}

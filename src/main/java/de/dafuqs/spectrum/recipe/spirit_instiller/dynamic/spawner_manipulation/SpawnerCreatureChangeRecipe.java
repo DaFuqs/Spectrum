@@ -23,7 +23,7 @@ import java.util.*;
 public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	
 	public SpawnerCreatureChangeRecipe() {
-		super(IngredientStack.ofTag(SpectrumItemTags.SKULLS), IngredientStack.ofItems(SpectrumItems.DOWNSTONE_FRAGMENTS.get(), 4), Optional.of(SpectrumAdvancements.SPAWNER_CREATURE_CHANGE));
+		super(IngredientStack.ofTag(SpectrumItemTags.SKULLS), IngredientStack.ofItems(SpectrumItems.DOWNSTONE_FRAGMENTS.get(), 4), Optional.of(SpectrumAdvancements.SPAWNER_CREATURE_CHANGE), "recipe.spectrum.spawner.lore.changed_creature");
 	}
 	
 	@Override
@@ -32,12 +32,12 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, CustomData spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+	public boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, @Nullable CustomData spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		Optional<EntityType<?>> entityType = SpectrumSkullBlock.getEntityTypeOfSkullStack(firstBowlStack);
 		entityType = entityType.isEmpty() ? SpectrumSkullBlock.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
 		
 		if (entityType.isEmpty() || entityType.get().is(SpectrumEntityTypeTags.SPAWNER_MANIPULATION_BLACKLISTED)) {
-			@Nullable Player player = recipeInput.getInstance().getOwnerIfOnline(recipeInput.getInstance().getLevel());
+			Player player = recipeInput.getInstance().getOwnerIfOnline(recipeInput.getInstance().getLevel());
 			if (player instanceof ServerPlayer serverPlayer) {
 				Support.grantAdvancementCriterion(serverPlayer, SpectrumAdvancements.FAILED_CREATING_EMPTY_OR_BLACKLISTED_SPAWNER, "failed_creating_empty_or_blacklisted_spawner");
 			}
@@ -45,7 +45,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 		}
 		
 		if (entityType.get() == EntityType.PLAYER) {
-			@Nullable Player player = recipeInput.getInstance().getOwnerIfOnline(recipeInput.getInstance().getLevel());
+			Player player = recipeInput.getInstance().getOwnerIfOnline(recipeInput.getInstance().getLevel());
 			if (player instanceof ServerPlayer serverPlayer) {
 				Support.grantAdvancementCriterion(serverPlayer, SpectrumAdvancements.FAILED_CREATING_PLAYER_SPAWNER, "failed_creating_player_spawner");
 			}
@@ -67,11 +67,6 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			}
 		}
 		return true;
-	}
-	
-	@Override
-	public Component getOutputLoreText() {
-		return Component.translatable("recipe.spectrum.spawner.lore.changed_creature");
 	}
 	
 	@Override

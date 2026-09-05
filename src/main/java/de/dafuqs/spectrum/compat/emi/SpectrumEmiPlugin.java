@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.recipe.crafting.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;
@@ -119,11 +120,11 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 	}
 	
 	public void registerRecipes(EmiRegistry registry) {
-		// TODO: Register our recipes ourselves
-		// right now dev.emi.emi.VanillaPlugin handles them
-		// which does not process the unlock check
-		//addAll(registry, RecipeType.CRAFTING, ShapedGatedCraftingEMIRecipe::new);
-		//addAll(registry, RecipeType.CRAFTING, ShapelessGatedCraftingEMIRecipe::new);
+		for (RecipeHolder<CraftingRecipe> recipe :  registry.getRecipeManager().getAllRecipesFor(RecipeType.CRAFTING)) {
+			if(recipe.value() instanceof GatedCraftingRecipe) {
+				addRecipeSafe(registry, () -> new CraftingEMIRecipeGated((RecipeHolder<GatedCraftingRecipe>)(Object) recipe));
+			}
+		}
 		
 		addAll(registry, SpectrumRecipeTypes.ANVIL_CRUSHING, AnvilCrushingEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingEmiRecipeGated::new);

@@ -4,6 +4,7 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -25,8 +26,9 @@ public class InkConvertingRecipe extends GatedSpectrumRecipe<RecipeInput> {
 	protected final InkColor color;
 	protected final long amount;
 	
-	public InkConvertingRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, Ingredient inputIngredient, InkColor color, long amount) {
-		super(group, secret, requiredAdvancementIdentifier);
+	public InkConvertingRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
+							   Ingredient inputIngredient, InkColor color, long amount) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		
 		this.inputIngredient = inputIngredient;
 		this.color = color;
@@ -108,17 +110,19 @@ public class InkConvertingRecipe extends GatedSpectrumRecipe<RecipeInput> {
 		
 		public static final MapCodec<InkConvertingRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(recipe -> recipe.inputIngredient),
 				InkColor.CODEC.fieldOf("ink_color").forGetter(recipe -> recipe.color),
 				Codec.LONG.fieldOf("amount").forGetter(recipe -> recipe.amount)
 		).apply(i, InkConvertingRecipe::new));
 		
-		public static final StreamCodec<RegistryFriendlyByteBuf, InkConvertingRecipe> PACKET_CODEC = StreamCodec.composite(
+		public static final StreamCodec<RegistryFriendlyByteBuf, InkConvertingRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
 				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
-				ByteBufCodecs.BOOL, recipe -> recipe.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				Ingredient.CONTENTS_STREAM_CODEC, recipe -> recipe.inputIngredient,
 				InkColor.PACKET_CODEC, recipe -> recipe.color,
 				ByteBufCodecs.VAR_LONG, recipe -> recipe.amount,

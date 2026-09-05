@@ -11,6 +11,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.item.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
@@ -43,7 +44,9 @@ public class SpectrumPresentUnpackBehaviors {
 		});
 		
 		PresentBlock.registerBehavior(SpectrumBlocks.INCANDESCENT_AMALGAM, (stack, presentBlockEntity, world, pos, random) -> {
-			IncandescentAmalgamBlock.explode(world, pos, presentBlockEntity.getOwnerIfOnline(world), stack);
+			Player owner = presentBlockEntity.getOwnerIfOnline(world);
+			world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState()); // delete the present block, so the explosion does not drop it
+			IncandescentAmalgamBlock.explode(world, pos, owner, stack);
 			return ItemStack.EMPTY;
 		});
 		

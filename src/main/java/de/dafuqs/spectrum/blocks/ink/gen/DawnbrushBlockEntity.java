@@ -14,7 +14,7 @@ import java.util.*;
 public class DawnbrushBlockEntity extends InkGeneratorBlockEntity {
 	
 	public DawnbrushBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.DAWNBRUSH.get(), blockPos, blockState, 3);
+		super(SpectrumBlockEntities.DAWNBRUSH.get(), blockPos, blockState, 3, 1);
 	}
 	
 	@Override
@@ -23,7 +23,7 @@ public class DawnbrushBlockEntity extends InkGeneratorBlockEntity {
 	}
 	
 	@Override
-	protected boolean tickLogic(Level level) {
+	public boolean tickLogic(Level level) {
 		List<InkAmount> generatedEnergy = generateInk(level, 16.0F);
 		for(InkAmount inkAmount : generatedEnergy) {
 			this.inkStorage.addEnergy(inkAmount.color(), inkAmount.amount());

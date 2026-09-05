@@ -79,7 +79,7 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 		int offsetPerAdditive = 18;
 		Ingredient ingredient = recipe.getIngredientStack();
 		parentScreen.renderIngredient(drawContext, recipeX + startX, recipeY + 5, mouseX, mouseY, ingredient);
-		parentScreen.renderIngredient(drawContext, recipeX + startX - offsetPerAdditive - 4, recipeY + 5, mouseX, mouseY, FluidRendering.fluidIngredientAsBucket(recipe.getFluidIngredient()));
+		parentScreen.renderIngredient(drawContext, recipeX + startX - offsetPerAdditive - 4, recipeY + 5, mouseX, mouseY, FluidRendering.fluidIngredientAsBucket(recipe.getFluid()));
 		drawContext.blit(BACKGROUND_TEXTURE, recipeX + startX - offsetPerAdditive - 7, recipeY + 1, 0, 0, 53, 25, 128, 128);
 		
 		

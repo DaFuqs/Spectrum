@@ -1,6 +1,6 @@
 {
   "type": "spectrum:primordial_fire_burning",
-  "secret": true,
+  "reveal_secret_advancement": "spectrum:hidden/collect_primordial_torch",
   "ingredient": [
     {
       "item": "minecraft:torch"

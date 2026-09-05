@@ -146,13 +146,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 	
 	@Override
 	public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
-		if (entity instanceof Player player) {
-			if (player.getCooldowns().isOnCooldown(stack.getItem()) || SlotReservingItem.isReservingSlot(stack)) {
-				stack.remove(DataComponents.ATTRIBUTE_MODIFIERS);
-			} else {
-				stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
-			}
-		}
+		SlotReservingItem.inventoryTick(entity, stack);
 	}
 	
 	@Override

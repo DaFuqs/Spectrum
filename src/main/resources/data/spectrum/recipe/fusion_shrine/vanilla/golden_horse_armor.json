@@ -27,8 +27,5 @@
   "result": {
     "id": "minecraft:golden_horse_armor"
   },
-  "required_advancement": "spectrum:create_onyx_shard",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+  "required_advancement": "spectrum:create_onyx_shard"
 }

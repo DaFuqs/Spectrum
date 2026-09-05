@@ -49,13 +49,10 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 			return new Triplet<>(targetBlock, targetBlock.asItem(), single ? 1 : Integer.MAX_VALUE);
 		}
 		
-		long blocksToPlace;
-		if (single) {
-			blocksToPlace = InkPowered.getAvailableInk(player, USED_COLOR) >= inkCostPerBlock ? 1 : 0;
-		} else {
-			blocksToPlace = InkPowered.getAvailableInk(player, USED_COLOR) / inkCostPerBlock;
+		long blocksToPlace = single ? 1 : 1024; // to not yeet performance out the window
+		if(inkCostPerBlock > 0) {
+			blocksToPlace = Math.min(blocksToPlace, InkPowered.getAvailableInk(player, USED_COLOR) / inkCostPerBlock);
 		}
-		blocksToPlace = Math.min(1024, blocksToPlace); // to not yeet performance out the window
 		
 		return BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, targetBlock, blocksToPlace);
 	}

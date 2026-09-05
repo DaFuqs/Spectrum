@@ -8,12 +8,18 @@ import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.world.item.crafting.*;
 
+import java.util.*;
+import java.util.stream.*;
+
 public class CinderhearthEmiRecipeGated extends GatedSpectrumEmiRecipe<CinderhearthRecipe> {
 	
 	public CinderhearthEmiRecipeGated(RecipeHolder<CinderhearthRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.CINDERHEARTH, entry, 136, 48);
 		this.inputs = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList();
-		this.outputs = recipe.getResultsWithChance().stream().map(p -> EmiStack.of(p.stack()).setChance(p.chance())).toList();
+		
+		this.outputs = new ArrayList<>();
+		this.outputs.addAll(recipe.getResultsWithChance().stream().map(p -> EmiStack.of(p.stack()).setChance(p.chance())).toList());
+		this.outputs.addAll(recipe.getAdditionalResults().stream().map(EmiStack::of).toList());
 	}
 	
 	@Override

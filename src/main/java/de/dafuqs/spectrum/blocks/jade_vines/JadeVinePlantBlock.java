@@ -22,8 +22,7 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jetbrains.annotations.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -226,13 +225,11 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 		MIDDLE,
 		TIP;
 		
-		@Contract(pure = true)
 		public String toString() {
 			return this.getSerializedName();
 		}
 		
 		@Override
-		@Contract(pure = true)
 		public String getSerializedName() {
 			return this == BASE ? "base" : this == MIDDLE ? "middle" : "tip";
 		}

@@ -58,6 +58,18 @@
       "border": false
     },
     {
+      "type": "modonomicon:spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:remember_kindling"
+      },
+      "item": {
+        "tag": "c:tea_leaves"
+      },
+      "title": "book.spectrum.guidebook.kindlings.breeding.title",
+      "text": "book.spectrum.guidebook.kindlings.breeding.text"
+    },
+    {
       "type": "modonomicon:text",
       "condition": {
         "type": "modonomicon:advancement",

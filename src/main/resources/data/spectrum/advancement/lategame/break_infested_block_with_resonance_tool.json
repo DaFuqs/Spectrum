@@ -37,9 +37,16 @@
             }
           }
         },
-        "block": {
-          "blocks": "#spectrum:infested_blocks"
-        }
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "#spectrum:infested_blocks"
+              }
+            }
+          }
+        ]
       }
     },
     "gotten_previous": {

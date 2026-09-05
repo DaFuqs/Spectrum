@@ -3,7 +3,7 @@
   "group": "demon_tea",
   "base_ingredient": "minecraft:glass_bottle",
   "use_up_base_ingredient": true,
-  "secret": true,
+  "reveal_secret_advancement": "spectrum:midgame/drink_tea_with_milk",
   "color": 10027008,
   "ingredient1": "spectrum:jade_vine_petals",
   "ingredient2": "spectrum:bloodboil_syrup",

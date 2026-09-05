@@ -7,7 +7,6 @@ import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.food.*;

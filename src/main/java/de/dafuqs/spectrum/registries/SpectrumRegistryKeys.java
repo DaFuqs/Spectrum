@@ -16,7 +16,7 @@ import net.minecraft.resources.*;
 
 public class SpectrumRegistryKeys {
 	
-	public static final ResourceKey<Registry<FusionShrineRecipeWorldEffect>> WORLD_EFFECT = of("world_effect");
+	public static final ResourceKey<Registry<WorldEffect>> WORLD_EFFECT = of("world_effect");
 	public static final ResourceKey<Registry<GemstoneColor>> GEMSTONE_COLOR = of("gemstone_color");
 	public static final ResourceKey<Registry<GlassArrowVariant>> GLASS_ARROW_VARIANT = of("glass_arrow_variant");
 	public static final ResourceKey<Registry<InkColor>> INK_COLOR = of("ink_color");

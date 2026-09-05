@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:bismuth_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:bismuth_crystal",
+    "count": 9
+  },
+  "required_advancement": "spectrum:lategame/collect_bismuth_crystal"
+}

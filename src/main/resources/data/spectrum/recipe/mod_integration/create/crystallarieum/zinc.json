@@ -9,7 +9,7 @@
   "ink_color": "spectrum:brown",
   "ink_cost_tier": 2,
   "seconds_per_growth_stage": 60,
-  "additional_recipe_manager_results": [
+  "additional_recipe_viewer_results": [
     {
       "count": 1,
       "id": "spectrum:pure_zinc"

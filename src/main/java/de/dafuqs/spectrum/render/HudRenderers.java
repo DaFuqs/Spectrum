@@ -3,28 +3,19 @@ package de.dafuqs.spectrum.render;
 import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
-import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.inventories.widgets.ink.*;
-import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.multiplayer.*;
-import net.minecraft.client.renderer.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import net.neoforged.neoforge.client.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.*;
-import org.joml.*;
 import org.jspecify.annotations.*;
-
-import java.lang.Math;
-import java.util.function.*;
 
 
 public class HudRenderers {

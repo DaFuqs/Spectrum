@@ -43,17 +43,11 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 	public final Optional<FermentationData> fermentationData;
 	
 	public TitrationBarrelRecipe(
-			String group,
-			boolean secret,
-			Optional<ResourceLocation> requiredAdvancementIdentifier,
-			List<IngredientStack> inputStacks,
-			FluidIngredient fluid,
-			ItemStack outputItemStack,
-			Item tappingItem,
-			int minFermentationTimeHours,
-			Optional<FermentationData> fermentationData
+			String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
+			List<IngredientStack> inputStacks, FluidIngredient fluid, ItemStack outputItemStack, Item tappingItem,
+			int minFermentationTimeHours, Optional<FermentationData> fermentationData
 	) {
-		super(group, secret, requiredAdvancementIdentifier);
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		
 		this.inputStacks = inputStacks;
 		this.fluid = fluid;
@@ -250,8 +244,9 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 		
 		public static final MapCodec<TitrationBarrelRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				IngredientStack.CODEC.listOf().fieldOf("ingredients").forGetter(recipe -> recipe.inputStacks),
 				FluidIngredient.CODEC.optionalFieldOf("fluid", FluidIngredient.empty()).forGetter(recipe -> recipe.fluid),
 				ItemStack.STRICT_CODEC.fieldOf("result").forGetter(recipe -> recipe.outputItemStack),
@@ -261,9 +256,10 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<FluidRecipeI
 		).apply(i, TitrationBarrelRecipe::new));
 		
 		private static final StreamCodec<RegistryFriendlyByteBuf, TitrationBarrelRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
-				ByteBufCodecs.STRING_UTF8, c -> c.group,
-				ByteBufCodecs.BOOL, c -> c.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
+				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				IngredientStack.STREAM_CODEC.apply(ByteBufCodecs.list()), c -> c.inputStacks,
 				FluidIngredient.STREAM_CODEC, c -> c.fluid,
 				ItemStack.STREAM_CODEC, c -> c.outputItemStack,

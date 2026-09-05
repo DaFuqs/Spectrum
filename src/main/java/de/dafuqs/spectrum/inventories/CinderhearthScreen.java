@@ -11,7 +11,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 
-import java.util.function.*;
+import java.util.*;
 
 public class CinderhearthScreen extends AbstractContainerScreen<CinderhearthScreenHandler> {
 	
@@ -27,7 +27,9 @@ public class CinderhearthScreen extends AbstractContainerScreen<CinderhearthScre
 	@Override
 	protected void init() {
 		super.init();
-		this.inkListWidget = new InkListWidget(getGuiLeft() + 140, getGuiTop() + 34, 40, () -> menu.getBlockEntity().getLevel().getCapability(InkCapabilities.BLOCK, menu.getBlockEntity().getBlockPos()));
+		this.inkListWidget = new InkListWidget(getGuiLeft() + 140, getGuiTop() + 34,
+				() -> menu.getBlockEntity().getLevel().getCapability(InkCapabilities.BLOCK, menu.getBlockEntity().getBlockPos()),
+				List.of(InkColors.ORANGE, InkColors.MAGENTA, InkColors.LIGHT_BLUE, InkColors.PURPLE, InkColors.BLACK));
 		addRenderableWidget(inkListWidget);
 	}
 	

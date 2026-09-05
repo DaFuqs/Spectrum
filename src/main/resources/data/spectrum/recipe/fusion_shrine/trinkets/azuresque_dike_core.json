@@ -24,8 +24,5 @@
   "result": {
     "id": "spectrum:azuresque_dike_core"
   },
-  "required_advancement": "spectrum:unlocks/trinkets/azuresque_dike_core",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+  "required_advancement": "spectrum:unlocks/trinkets/azuresque_dike_core"
 }

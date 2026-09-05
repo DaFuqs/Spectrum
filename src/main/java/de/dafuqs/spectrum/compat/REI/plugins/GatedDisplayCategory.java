@@ -28,7 +28,7 @@ public abstract class GatedDisplayCategory<T extends GatedRecipeDisplay> impleme
 		if (display.isUnlocked()) {
 			if (display.isSecret()) {
 				if (display.getSecretHintText() == null) {
-					widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() - 9), SECRET).centered().color(0x3f3f3f).noShadow());
+					widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() - 4), SECRET).centered().color(0x3f3f3f).noShadow());
 				} else {
 					widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() - 9), SECRET_HINT).centered().color(0x3f3f3f).noShadow());
 					widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 1), display.getSecretHintText()).centered().color(0x3f3f3f).noShadow());

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.magic_items.ampoules;
 
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
@@ -28,8 +29,8 @@ public class MalachiteGlassAmpouleItem extends GlassAmpouleItem implements InkPo
 	public boolean trigger(Level world, ItemStack stack, @Nullable LivingEntity attacker, @Nullable LivingEntity target, Vec3 position) {
 		List<MobEffectInstance> e = new ArrayList<>();
 		if (attacker instanceof Player player) {
-			List<InkPoweredStatusEffectInstance> effects = InkPoweredPotionFillable.getEffects(stack);
-			for (InkPoweredStatusEffectInstance effect : effects) {
+			List<InkPoweredMobEffectInstance> effects = InkPoweredPotionContentsComponent.getEffects(stack);
+			for (InkPoweredMobEffectInstance effect : effects) {
 				if (InkPowered.tryDrainEnergy(player, effect.getInkCost())) {
 					e.add(effect.getStatusEffectInstance());
 				}

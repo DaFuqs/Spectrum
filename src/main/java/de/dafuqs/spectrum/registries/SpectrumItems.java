@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.conditional.*;
@@ -46,7 +45,6 @@ import java.util.function.*;
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 import static net.minecraft.world.item.Items.*;
 
-//TODO: Migrate tools to use tool components
 @SuppressWarnings("unused")
 public class SpectrumItems {
 	

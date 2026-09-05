@@ -1,9 +1,6 @@
 package de.dafuqs.spectrum.registries.client;
 
-import com.mojang.authlib.minecraft.client.*;
-import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.shaders.*;
-import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.*;
@@ -12,11 +9,11 @@ import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.client.*;
 import de.dafuqs.spectrum.deeper_down.client.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.inventories.widgets.ink.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -34,11 +31,13 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.renderer.*;
+import net.minecraft.client.resources.model.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -53,15 +52,12 @@ import net.minecraft.world.phys.shapes.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
-import net.neoforged.neoforge.client.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.event.entity.player.*;
-import org.joml.*;
 import org.jspecify.annotations.*;
 import oshi.util.tuples.*;
 
-import java.lang.Math;
 import java.util.*;
 
 @EventBusSubscriber(modid = SpectrumCommon.MOD_ID, value = Dist.CLIENT)
@@ -72,23 +68,28 @@ public class SpectrumClientEventListeners {
 	private static boolean lookingAtUniverseSpyholeInitialEffectPlayed = false;
 	
 	public static void register(IEventBus modBus) {
-		/* TODO: port
-		//DynamicItemRenderer.registerDynamicItemRenderer(SpectrumBlocks.BOTTOMLESS_BUNDLE.asItem(), BottomlessBundleItem.Renderer::new);
-		//DynamicItemRenderer.registerDynamicItemRenderer(SpectrumItems.OMNI_ACCELERATOR.asItem(), OmniAcceleratorItem.Renderer::new);
-		/*ModelLoadingPlugin.register((ctx) -> {
-			ctx.modifyModelAfterBake().register((orig, c) -> {
-				ModelResourceLocation id = c.topLevelId();
-				if (id instanceof ModelResourceLocation mid && CUSTOM_ITEM_MODELS.contains(mid)) {
-					return new DynamicRenderModel(orig);
-				}
-				return orig;
-			});
-		});*/
+
+	}
+	
+	@SubscribeEvent
+	public static void registerAdditional(ModelEvent.RegisterAdditional event) {
+		event.register(PastelNodeBlockEntityRenderer.CRYSTAL_CONNECTION);
+		event.register(PastelNodeBlockEntityRenderer.CRYSTAL_PROVIDER);
+		event.register(PastelNodeBlockEntityRenderer.CRYSTAL_SENDER);
+		event.register(PastelNodeBlockEntityRenderer.CRYSTAL_STORAGE);
+		event.register(PastelNodeBlockEntityRenderer.CRYSTAL_GATHER);
+		
+		event.register(ModelResourceLocation.standalone(PastelNodeBases.BASE_LOCATION));
+		event.register(ModelResourceLocation.standalone(PastelNodeBases.FLUID_LOCATION));
+		event.register(ModelResourceLocation.standalone(PastelNodeBases.INK_LOCATION));
+		event.register(ModelResourceLocation.standalone(PastelNodeBases.OMNI_LOCATION));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_ink_base")));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_fluid_base")));
+		event.register(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/pastel_omni_base")));
 	}
 	
 	@SubscribeEvent
 	public static void register(RegisterClientExtensionsEvent event) {
-		// TODO: maybe the Circlet of arrogance can be moved here and use IClientItemExtensions.setupModelAnimations()?
 		event.registerItem(new IClientItemExtensions() {
 			private final Map<EquipmentSlot, HumanoidModel<LivingEntity>> MODELS = new Object2ObjectArrayMap<>();
 			
@@ -311,32 +312,26 @@ public class SpectrumClientEventListeners {
 		BlockHitResult target = event.getTarget();
 		Camera camera = event.getCamera();
 		
-		boolean shouldCancel = false;
-		
-		outer:
 		for (ItemStack handStack : client.player.getHandSlots()) {
 			switch (handStack.getItem()) {
 				case PaintbrushItem paintbrushItem:
 					InkCapability inkCapability = client.level.getCapability(InkCapabilities.BLOCK, target.getBlockPos());
 					if (inkCapability != null) {
 						HudRenderers.hoveredCapability = inkCapability;
-						break outer;
+						return;
 					}
 					break;
 				case ConstructorsStaffItem constructorsStaffItem:
-					shouldCancel = renderPlacementStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), target);
-					break outer;
+					event.setCanceled(renderPlacementStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), target));
+					return;
 				case ExchangeStaffItem exchangeStaffItem:
-					shouldCancel = renderExchangeStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), handStack, target);
-					break outer;
+					event.setCanceled(renderExchangeStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), handStack, target));
+					return;
 				default:
 					break;
 			}
 		}
-		
-		event.setCanceled(shouldCancel);
 	}
-	
 	
 	private static boolean renderPlacementStaffOutline(Minecraft client, PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, BlockHitResult hitResult) {
 		ClientLevel world = client.level;
@@ -358,7 +353,9 @@ public class SpectrumClientEventListeners {
 					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock, Integer.MAX_VALUE);
 					item = inventoryItemAndCount.getB();
 					itemCountInInventory = inventoryItemAndCount.getC();
-					inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / ConstructorsStaffItem.INK_COST_PER_BLOCK;
+					if(SpectrumConfig.CONFIG.ConstructorsStaffInkCostPerBlock.get() > 0) {
+						inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / SpectrumConfig.CONFIG.ConstructorsStaffInkCostPerBlock.get();
+					}
 				}
 				
 				boolean sneaking = player.isShiftKeyDown();
@@ -370,16 +367,7 @@ public class SpectrumClientEventListeners {
 					long usableCount = Math.min(itemCountInInventory, inkLimit);
 					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getDirection(), usableCount, ConstructorsStaffItem.getRange(player), !sneaking);
 					if (!positions.isEmpty()) {
-						for (BlockPos newPosition : positions) {
-							if (world.getWorldBorder().isWithinBounds(newPosition)) {
-								BlockPos testPos = lookingAtPos.subtract(newPosition);
-								shape = Shapes.or(shape, lookingAtState.getShape(world, lookingAtPos, CollisionContext.of(camera.getEntity())).move(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
-							}
-						}
-						
-						HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), false);
-						VertexConsumer linesBuffer = consumers.getBuffer(RenderType.lines());
-						WorldRendererAccessor.invokeRenderShape(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						renderExtendedBlockOutline(matrices, camera, d, e, f, consumers, positions, world, lookingAtPos, shape, lookingAtState, item);
 						return true;
 					}
 				}
@@ -387,6 +375,19 @@ public class SpectrumClientEventListeners {
 		}
 		
 		return false;
+	}
+	
+	private static void renderExtendedBlockOutline(PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, List<BlockPos> positions, ClientLevel world, BlockPos lookingAtPos, VoxelShape shape, BlockState lookingAtState, Item item) {
+		for (BlockPos newPosition : positions) {
+			if (world.getWorldBorder().isWithinBounds(newPosition)) {
+				BlockPos testPos = lookingAtPos.subtract(newPosition);
+				shape = Shapes.or(shape, lookingAtState.getShape(world, lookingAtPos, CollisionContext.of(camera.getEntity())).move(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
+			}
+		}
+		
+		HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), false);
+		VertexConsumer linesBuffer = consumers.getBuffer(RenderType.lines());
+		WorldRendererAccessor.invokeRenderShape(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 	}
 	
 	private static boolean renderExchangeStaffOutline(Minecraft client, PoseStack matrices, Camera camera, double d, double e, double f, MultiBufferSource consumers, ItemStack exchangeStaffItemStack, BlockHitResult hitResult) {
@@ -418,7 +419,9 @@ public class SpectrumClientEventListeners {
 								itemCountInInventory += itemProvider.getItemCount(player, currentStack, exchangeBlockItem);
 							}
 						}
-						inkLimit = InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / ExchangeStaffItem.INK_COST_PER_BLOCK;
+						if(SpectrumConfig.CONFIG.ExchangingStaffInkCostPerBlock.get() > 0) {
+							inkLimit = InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / SpectrumConfig.CONFIG.ExchangingStaffInkCostPerBlock.get();
+						}
 					}
 					
 					if (itemCountInInventory == 0) {
@@ -428,16 +431,7 @@ public class SpectrumClientEventListeners {
 					} else {
 						long usableCount = Math.min(itemCountInInventory, inkLimit);
 						List<BlockPos> positions = BuildingHelper.getConnectedBlocks(world, lookingAtPos, usableCount, ExchangeStaffItem.getRange(player));
-						for (BlockPos newPosition : positions) {
-							if (world.getWorldBorder().isWithinBounds(newPosition)) {
-								BlockPos testPos = lookingAtPos.subtract(newPosition);
-								shape = Shapes.or(shape, lookingAtState.getShape(world, lookingAtPos, CollisionContext.of(camera.getEntity())).move(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
-							}
-						}
-						
-						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size(), false);
-						VertexConsumer linesBuffer = consumers.getBuffer(RenderType.lines());
-						WorldRendererAccessor.invokeRenderShape(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						renderExtendedBlockOutline(matrices, camera, d, e, f, consumers, positions, world, lookingAtPos, shape, lookingAtState, exchangeBlockItem);
 						return true;
 					}
 				}

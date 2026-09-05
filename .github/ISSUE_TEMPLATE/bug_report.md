@@ -8,6 +8,8 @@ assignees: ''
 ---
 
 **Note:** If the bug happens on Forge/Neoforge in combination with **Sinytra Connector**, please report all issues to Sinytra Connector instead
+**Note:** Currently supported versions: Minecraft 1.21.1 @ Fabric & Neoforge
+**Note:** Known Incompatibilities: Enchancement
 
 **Describe the bug**
 A clear and concise description of what the bug is.

@@ -4,7 +4,6 @@ import com.google.common.collect.*;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.ai.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.*;

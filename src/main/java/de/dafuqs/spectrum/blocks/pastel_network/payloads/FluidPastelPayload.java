@@ -1,30 +1,19 @@
 package de.dafuqs.spectrum.blocks.pastel_network.payloads;
 
-import com.mojang.blaze3d.vertex.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.client.*;
-import de.dafuqs.spectrum.particle.effect.*;
-import dev.emi.emi.*;
-import dev.emi.emi.api.stack.*;
-import net.minecraft.client.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.texture.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.resources.*;
-import net.minecraft.world.inventory.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 public record FluidPastelPayload(FluidStack fluidStack, ParticleOptions particleEffect) implements PastelPayload {
 	

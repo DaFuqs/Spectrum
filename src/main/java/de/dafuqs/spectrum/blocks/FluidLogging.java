@@ -102,8 +102,13 @@ public class FluidLogging {
 		
 		@Override
 		default boolean canPlaceLiquid(@Nullable Player player, BlockGetter world, BlockPos pos, BlockState state, Fluid fluid) {
-			return state.getValue(getFillableFluids()) == State.NOT_LOGGED
-					&& (fluid == Fluids.WATER || fluid == Fluids.LAVA || fluid == SpectrumFluids.LIQUID_CRYSTAL.get() || fluid == SpectrumFluids.MIDNIGHT_SOLUTION.get() || fluid == SpectrumFluids.DRAGONROT.get());
+			Collection<State> v = getFillableFluids().getPossibleValues();
+			for(State s : v) {
+				if(s.fluid.get().getFluidType() == fluid.getFluidType()) {
+					return true;
+				}
+			}
+			return false;
 		}
 		
 		@Override

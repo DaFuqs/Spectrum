@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:gated_crafting_shaped",
+  "group": "compacting",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:pure_azurite"
+    }
+  },
+  "result": {
+    "id": "spectrum:pure_azurite_block",
+    "count": 1
+  },
+  "required_advancement": "spectrum:midgame/collect_azurite"
+}

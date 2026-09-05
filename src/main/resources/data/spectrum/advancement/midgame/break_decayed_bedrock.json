@@ -15,12 +15,19 @@
     "broken_decayed_bedrock": {
       "trigger": "spectrum:block_broken",
       "conditions": {
-        "block": {
-          "blocks": "spectrum:ruin",
-          "state": {
-            "conversion": "default"
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "spectrum:ruin",
+                "state": {
+                  "conversion": "default"
+                }
+              }
+            }
           }
-        }
+        ]
       }
     },
     "collected_bedrock_dust": {

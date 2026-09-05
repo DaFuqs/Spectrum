@@ -13,7 +13,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -62,7 +61,6 @@ public class BookPedestalCraftingPageRenderer extends BookGatedRecipePageRendere
 		}
 	}
 	
-	@Contract(pure = true)
 	private ResourceLocation getBackgroundTextureForTier(PedestalRecipeTier pedestalRecipeTier) {
 		return switch (pedestalRecipeTier) {
 			case BASIC -> BACKGROUND_TEXTURE1;

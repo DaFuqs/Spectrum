@@ -1,0 +1,11 @@
+{
+  "parent": "spectrum:templates/base_trans_light_core",
+  "textures": {
+    "case": "spectrum:block/weeping_gala_light",
+    "base": "spectrum:block/weeping_gala_light_base",
+    "glass": "spectrum:block/weeping_gala_light_glass",
+    "shell": "spectrum:block/weeping_gala_light_shell",
+    "filament": "spectrum:block/weeping_gala_light_filament",
+    "ends": "spectrum:block/weeping_gala_light_ends"
+  }
+}

@@ -162,5 +162,4 @@ public class CrackedEndPortalFrameBlock extends Block {
 		}
 		
 	}
-	
 }

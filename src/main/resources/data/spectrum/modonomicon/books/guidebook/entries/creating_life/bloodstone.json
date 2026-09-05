@@ -34,9 +34,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/resources/bloodstone"
       },
-      "title": "book.spectrum.guidebook.bloodstone.page1.title",
+      "title": "book.spectrum.guidebook.bloodstone.growing.title",
       "recipe_id": "spectrum:crystallarieum/spectrum/bloodstone",
-      "text": "book.spectrum.guidebook.bloodstone.page1.text"
+      "text": "book.spectrum.guidebook.bloodstone.growing.text"
     }
   ]
 }

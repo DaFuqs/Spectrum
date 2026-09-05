@@ -10,7 +10,6 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.storage.loot.*;
-import org.jetbrains.annotations.*;
 import org.joml.*;
 
 import java.util.*;
@@ -71,7 +70,6 @@ public interface ShootingStar {
 			return types[0];
 		}
 		
-		@Contract("_ -> new")
 		public static ResourceKey<LootTable> getLootTable(int index) {
 			return values()[index].getLootTable();
 		}

@@ -94,13 +94,17 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
 		// since the quitoxic reeds are stacked and break from bottom to top
 		// the player that broke the other blocks is not propagated
-		// we have to apply a workaround here by having a special "not cloaked" property
-		for (int i = 1; i < MAX_GROWTH_HEIGHT_CRYSTAL; i++) {
-			BlockPos offsetPos = pos.offset(0, i, 0);
-			if (level.getBlockState(offsetPos).is(this)) {
-				level.setBlockAndUpdate(offsetPos, level.getBlockState(offsetPos).setValue(ALWAYS_DROP, true));
-			} else {
-				break;
+		// we have to apply a workaround here by using a special "not cloaked" state property
+		if (this.isVisibleTo(player)) {
+			int i = 1;
+			while (true) {
+				BlockPos offsetPos = pos.offset(0, i, 0);
+				if (level.getBlockState(offsetPos).is(this)) {
+					level.setBlockAndUpdate(offsetPos, level.getBlockState(offsetPos).setValue(ALWAYS_DROP, true));
+					i++;
+				} else {
+					break;
+				}
 			}
 		}
 		
@@ -204,9 +208,8 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 		}
 	}
 	
-	
-	public BlockState getStateForPos(Level world, BlockPos blockPos) {
-		FluidLogging.State fluidState = defaultBlockState().getValue(LOGGED).getStateForPos(world, blockPos);
+	public BlockState getStateForPos(Level world, BlockPos pos) {
+		FluidLogging.State fluidState = defaultBlockState().getValue(LOGGED).getStateForPos(world, pos);
 		if(LOGGED.getPossibleValues().contains(fluidState)) {
 			return defaultBlockState().setValue(LOGGED, fluidState);
 		}
@@ -247,18 +250,11 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 			return false;
 		}
 		BlockState upState = world.getBlockState(pos.above());
-		BlockState upState2 = world.getBlockState(pos.above(2));
-		if (!upState.is(this)) {
-			if (!upState.isAir() && !upState2.isAir()) {
-				return false;
-			}
+		if (!upState.is(this) && !upState.isAir()) {
+			return false;
 		}
 		
 		BlockState state = world.getBlockState(pos);
-		if (state.is(this)) {
-			return true;
-		}
-		
 		FluidState fluidState = world.getFluidState(pos);
 		return fluidState.getAmount() == 8 && (fluidState.is(FluidTags.WATER) || state.is(SpectrumBlocks.LIQUID_CRYSTAL) || state.is(SpectrumBlocks.DRAGONROT));
 	}

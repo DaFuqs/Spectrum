@@ -8,13 +8,14 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public class PlacedItemBlockEntity extends BlockEntity implements PlayerOwned {
 	
 	protected ItemStack stack = ItemStack.EMPTY;
-	protected UUID ownerUUID;
+	protected @Nullable UUID ownerUUID;
 	
 	public PlacedItemBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
 		super(type, pos, state);
@@ -53,7 +54,7 @@ public class PlacedItemBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	

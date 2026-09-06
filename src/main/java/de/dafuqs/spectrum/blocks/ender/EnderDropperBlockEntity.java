@@ -20,8 +20,8 @@ import java.util.*;
 
 public class EnderDropperBlockEntity extends DispenserBlockEntity implements PlayerOwnedWithName {
 	
-	private UUID ownerUUID;
-	private String ownerName;
+	private @Nullable UUID ownerUUID;
+	private @Nullable String ownerName;
 	
 	public EnderDropperBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.ENDER_DROPPER.get(), blockPos, blockState);
@@ -117,12 +117,12 @@ public class EnderDropperBlockEntity extends DispenserBlockEntity implements Pla
 	}
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
 	@Override
-	public String getOwnerName() {
+	public @Nullable String getOwnerName() {
 		return this.ownerName;
 	}
 	

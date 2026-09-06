@@ -59,15 +59,8 @@ public class ServerPastelNetwork extends PastelNetwork<ServerLevel> {
 		}
 	}
 	
-	private boolean addLoadedNode(PastelNodeBlockEntity node) {
+	public boolean addLoadedNode(PastelNodeBlockEntity node) {
 		return !this.loadedNodes.get(node.getNodeType()).add(node);
-	}
-	
-	public void initializeNode(PastelNodeBlockEntity node) {
-		var type = this.loadedNodes.get(node.getNodeType());
-		if (!type.contains(node)) {
-			type.add(node);
-		}
 	}
 	
 	@Override

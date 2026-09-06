@@ -85,7 +85,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	
 	public static void tick(Level level, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
 		if (!node.networkInitialized && !level.isClientSide()) { // kinda onLoad()?
-			node.getServerNetwork().ifPresent(network -> network.initializeNode(node));
+			node.getServerNetwork().ifPresent(network -> network.addLoadedNode(node));
 			node.networkInitialized = true;
 		}
 

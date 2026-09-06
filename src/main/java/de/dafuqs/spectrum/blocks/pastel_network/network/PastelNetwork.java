@@ -104,7 +104,7 @@ public class PastelNetwork<W extends Level> {
 					.mapToInt(vertices::indexOf)
 					.filter(v -> v != currentVertex)
 					.boxed()
-					.collect(Collectors.toList());
+					.toList();
 			
 			if (edgeIndexes.isEmpty())
 				continue;

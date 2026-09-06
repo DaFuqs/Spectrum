@@ -64,7 +64,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	}
 	
 	public static List<ItemEntity> getInputItemEntities(Level world, EnderHopperBlockEntity enderHopperBlockEntity) {
-		return enderHopperBlockEntity.getInputAreaShape().toAabbs().stream().flatMap((box) -> world.getEntitiesOfClass(ItemEntity.class, box.move(enderHopperBlockEntity.getHopperX() - 0.5D, enderHopperBlockEntity.getHopperY() - 0.5D, enderHopperBlockEntity.getHopperZ() - 0.5D), EntitySelector.ENTITY_STILL_ALIVE).stream()).collect(Collectors.toList());
+		return enderHopperBlockEntity.getInputAreaShape().toAabbs().stream().flatMap((box) -> world.getEntitiesOfClass(ItemEntity.class, box.move(enderHopperBlockEntity.getHopperX() - 0.5D, enderHopperBlockEntity.getHopperY() - 0.5D, enderHopperBlockEntity.getHopperZ() - 0.5D), EntitySelector.ENTITY_STILL_ALIVE).stream()).toList();
 	}
 	
 	private static void insertIntoEnderChest(EnderHopperBlockEntity enderHopperBlockEntity, IItemHandlerModifiable itemHandler) {

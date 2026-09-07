@@ -36,13 +36,6 @@
       "title": "container.spectrum.rei.pedestal_recipe",
       "recipe_id": "spectrum:pedestal/tier3/liquid_crystal_bucket",
       "text": "book.spectrum.guidebook.liquid_crystal.page1.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "item": {
-        "item": "minecraft:clay"
-      },
-      "text": "book.spectrum.guidebook.liquid_crystal.page2.text"
     }
   ]
 }

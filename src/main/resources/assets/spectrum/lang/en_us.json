@@ -3077,8 +3077,6 @@
   "book.spectrum.guidebook.lightweight.page0.text": "[#](449900)Makes me a bit lighter[#]() with each level, allowing me to jump further and fall slower.\\\nHigh levels even made me take [#](449900)no more fall damage[#]().",
   "book.spectrum.guidebook.liquid_crystal.page0.text": "The pure energy of gems in liquid form. Seems to have a healing effect.",
   "book.spectrum.guidebook.liquid_crystal.page1.text": "Bringing it in contact with other liquids results in various materials with interesting properties.",
-  "book.spectrum.guidebook.liquid_crystal.page3.text": "Allowing an entire block of Liquid Crystal to absorb the immense heat of Lava resulted in this.\\\nAlmost feels like a [](item://minecraft:magma_block), albeit way hotter.",
-  "book.spectrum.guidebook.liquid_crystal.page4.text": "When [#](bb00bb)Water[#]() flowed into a full block of Liquid Crystal, the crystal solidified.\\\nSince even the slightest touch was enough to give me a cold shiver, I named it Frostbite Crystal.",
   "book.spectrum.guidebook.liquid_crystal_essences.name": "Crystallization",
   "book.spectrum.guidebook.liquid_crystal_essences.page0.text": "Allowing an entire block of [Liquid Crystal](entry://general/liquid_crystal) to absorb the immense heat of [#](bb00bb)Lava[#]() resulted in this.\\\nAlmost feels like a [#](bb00bb)Magma Block[#](), albeit way hotter.",
   "book.spectrum.guidebook.liquid_crystal_essences.page1.text": "[Crushing](entry://general/item_crushing) [#](bb00bb)Blazing Crystal[#]() gave me this searing hot essence that almost sets my hand on fire when I touch it. Crushing [#](bb00bb)Magma Blocks[#]() also seems to work, albeit with far less yield.",

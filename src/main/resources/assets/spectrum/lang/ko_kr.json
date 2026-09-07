@@ -3075,8 +3075,6 @@
   "book.spectrum.guidebook.lightweight.page0.text": "레벨이 오를수록 [#](449900)내 몸을 점점 더 가볍게 만들어[#](), 더 멀리 뛰고 깃털처럼 천천히 떨어지게 해 주었다.\\\n높은 레벨에 도달하자 아예 [#](449900)낙하 피해를 전혀 입지 않게[#]() 되었다.",
   "book.spectrum.guidebook.liquid_crystal.page0.text": "액체 형태로 녹아내린 순수한 보석의 에너지다. 무언가를 치유하는 힘을 품고 있는 것 같다.",
   "book.spectrum.guidebook.liquid_crystal.page1.text": "이 액체를 다른 액체들과 맞닿게 하면 꽤나 흥미로운 특성을 지닌 갖가지 물질들이 탄생한다.",
-  "book.spectrum.guidebook.liquid_crystal.page3.text": "액체 수정 한 블록 전체가 용암의 무시무시한 열기를 온전히 집어삼키도록 내버려 두었더니 이런 결과물이 나왔다.\\\n마치 [](item://minecraft:magma_block) 같은 질감이지만, 그보다 비교도 안 될 정도로 뜨겁다.",
-  "book.spectrum.guidebook.liquid_crystal.page4.text": "[#](bb00bb)물[#]()이 꽉 찬 액체 수정 블록 속으로 흘러 들어오자, 수정이 그대로 얼어붙어 버렸다.\\\n살짝 스치기만 해도 뼛속까지 시린 오한이 밀려오길래, 나는 이것에 '동상의 결정'이라는 찰떡같은 이름을 붙여주었다.",
   "book.spectrum.guidebook.liquid_crystal_essences.name": "결정화",
   "book.spectrum.guidebook.liquid_crystal_essences.page0.text": "[액체 수정](entry://general/liquid_crystal) 한 블록 전체가 [#](bb00bb)용암[#]()의 무시무시한 열기를 온전히 집어삼키도록 내버려 두었더니 이런 결과물이 나왔다.\\\n마치 [#](bb00bb)마그마 블록[#]() 같은 질감이지만, 그보다 비교도 안 될 정도로 뜨겁다.",
   "book.spectrum.guidebook.liquid_crystal_essences.page1.text": "[#](bb00bb)타오르는 결정[#]()을 [분쇄해보니](entry://general/item_crushing) 만지는 것만으로도 손에 불이 붙을 것 같은 이 시뻘겋게 달아오른 정수를 얻었다. [#](bb00bb)마그마 블록[#]()을 분쇄하는 것도 통하긴 하지만, 얻어지는 양이 턱없이 적다.",

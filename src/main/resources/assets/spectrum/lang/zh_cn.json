@@ -4725,8 +4725,6 @@
 
   "book.spectrum.guidebook.liquid_crystal.page0.text": "宝石晶的纯净能量以液态形式存在，似乎具有治疗效果。",
   "book.spectrum.guidebook.liquid_crystal.page1.text": "使其与其他液体结合会产生具有有趣特性的各种材料。",
-  "book.spectrum.guidebook.liquid_crystal.page3.text": "完整的一格液态水晶在吸收了[#](bb00bb)熔岩[#]()的巨大热量之后形成了这个东西。\\\n感觉很像[](item://minecraft:magma_block)，但要热得多。",
-  "book.spectrum.guidebook.liquid_crystal.page4.text": "当[#](bb00bb)水[#]()流入液态水晶的源头时，水晶固化了。\\\n只是轻轻触碰，我就感受到了凛冽而刺骨的严寒。我将其命名为霜冻水晶。",
 
   "book.spectrum.guidebook.liquid_crystal_essences.name": "结晶",
   "book.spectrum.guidebook.liquid_crystal_essences.page0.text": "完整的一格液态水晶在吸收了[#](bb00bb)熔岩[#]()的巨大热量之后形成了这个东西。\\\n感觉很像[](item://minecraft:magma_block)，只是温度要高得多。",

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.sugar.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
+import net.minecraft.server.level.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
@@ -19,10 +20,10 @@ public class FallingBlockEntityMixin {
 	 */
 	@Inject(method = "causeFallDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/tags/TagKey;)Z"))
 	private void spectrum$processAnvilCrushing(float fallDistance, float damageMultiplier, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir, @Local(ordinal = 1) DamageSource damageSource2, @Local(ordinal = 2) float fallHurt) {
-		if (damageSource2.is(DamageTypes.FALLING_ANVIL)) {
-			FallingBlockEntity thisEntity = (FallingBlockEntity) (Object) this;
-			thisEntity.level().getEntities(EntityTypeTest.forClass(ItemEntity.class), thisEntity.getBoundingBox(), Entity::isAlive)
-					.forEach((entity) -> AnvilCrusher.crush(entity, fallHurt));
+		FallingBlockEntity thisEntity = (FallingBlockEntity) (Object) this;
+		if (damageSource2.is(DamageTypes.FALLING_ANVIL) && thisEntity.level() instanceof ServerLevel serverLevel) {
+			serverLevel.getEntities(EntityTypeTest.forClass(ItemEntity.class), thisEntity.getBoundingBox(), Entity::isAlive)
+					.forEach((entity) -> AnvilCrusher.crush(serverLevel, entity, fallHurt));
 		}
 	}
 	

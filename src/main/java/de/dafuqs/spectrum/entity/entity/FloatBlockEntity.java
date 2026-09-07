@@ -221,7 +221,9 @@ public class FloatBlockEntity extends FallingBlockEntity {
 		// we have to use a relatively big bounding box here
 		this.level().getEntities(this, this.getBoundingBox().inflate(0.5), DAMAGE_SELECTOR).forEach((entity) -> {
 			if (entity instanceof ItemEntity itemEntity) {
-				AnvilCrusher.crush(itemEntity, damage * 2);
+				if(level() instanceof ServerLevel serverLevel) {
+					AnvilCrusher.crush(serverLevel, itemEntity, damage * 2);
+				}
 			} else {
 				entity.hurt(damageSource, damage);
 			}

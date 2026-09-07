@@ -35,12 +35,12 @@ public class SpectrumLootPoolModifiers {
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/wither_skeleton")), new TreasureHunterDropDefinition(Items.WITHER_SKELETON_SKULL, 0.1F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/zombie")), new TreasureHunterDropDefinition(Items.ZOMBIE_HEAD, 0.02F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/piglin")), new TreasureHunterDropDefinition(Items.PIGLIN_HEAD, 0.02F));
-		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/piglin_brute")), new TreasureHunterDropDefinition(Items.PIGLIN_HEAD, 0.02F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/ender_dragon")), new TreasureHunterDropDefinition(Items.DRAGON_HEAD, 0.35F)); // why not!
 		
 		// Spectrum head drops
 		// ATTENTION: No specific enough loot tables exist for fox, axolotl, parrot and shulker variants.
 		// Those are handled separately in setup()
+		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/piglin_brute")), new TreasureHunterDropDefinition(SpectrumSkullType.PIGLIN_BRUTE, 0.02F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/sheep")), new TreasureHunterDropDefinition(SpectrumSkullType.SHEEP, 0.02F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/bat")), new TreasureHunterDropDefinition(SpectrumSkullType.BAT, 0.02F));
 		put(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.withDefaultNamespace("entities/blaze")), new TreasureHunterDropDefinition(SpectrumSkullType.BLAZE, 0.02F));

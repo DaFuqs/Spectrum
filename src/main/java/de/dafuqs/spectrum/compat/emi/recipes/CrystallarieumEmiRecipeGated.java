@@ -26,14 +26,24 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 	
 	public CrystallarieumEmiRecipeGated(RecipeHolder<CrystallarieumRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, entry, 124, 100);
-		inputs = List.of(
-				EmiIngredient.of(recipe.getIngredientStack()),
-				EmiStack.of(recipe.getGrowthStages().getFirst().getBlock())
-		);
+		
+		inputs = new ArrayList<>();
+		inputs.add(EmiIngredient.of(recipe.getIngredientStack()));
+		inputs.add(EmiStack.of(recipe.getGrowthStages().getFirst().getBlock()));
+		recipe.getAdditives()
+				.stream()
+				.map((i) -> EmiIngredient.of(i.ingredient()))
+				.forEach(e -> inputs.add(e));
+		
 		outputs.addAll(recipe.getGrowthStages().stream().map(state -> {
 			Block block = state.getBlock();
 			return block instanceof LiquidBlock liquidBlock ? EmiStack.of(liquidBlock.fluid) : EmiStack.of(block);
 		}).toList());
+	}
+	
+	@Override
+	public List<EmiIngredient> getInputs() {
+		return super.getInputs();
 	}
 	
 	@Override

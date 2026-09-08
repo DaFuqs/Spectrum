@@ -801,21 +801,66 @@ public class SpectrumEventListeners {
 	@SubscribeEvent
 	private static void shieldBlock(LivingShieldBlockEvent event) {
 		var entity = event.getEntity();
+		
 		var activeStack = entity.getUseItem();
 		var useTime = entity.getTicksUsingItem();
 		
-		if (!(activeStack.getItem() instanceof ParryingSwordItem parryingSword))
-			return;
-		
-		if (entity instanceof Player player && parryingSword.canBluffParry(activeStack, entity, useTime)) {
-			var comp = MiscPlayerDataAttachmentType.get(player);
-			comp.setParryTicks(15);
+		if (activeStack.getItem() instanceof ParryingSwordItem parryingSword) {
+			if (entity instanceof Player player && parryingSword.canBluffParry(activeStack, entity, useTime)) {
+				var comp = MiscPlayerDataAttachmentType.get(player);
+				comp.setParryTicks(15);
+				
+				if (parryingSword.canPerfectParry(activeStack, entity, useTime))
+					comp.markForPerfectCounter();
+			}
 			
-			if (parryingSword.canPerfectParry(activeStack, entity, useTime))
-				comp.markForPerfectCounter();
+			float blockedDamageMultiplier = parryingSword.getBlockedDamageMultiplier(event.getDamageSource(), activeStack, entity, useTime);
+			if(blockedDamageMultiplier > 1.0F) {
+				event.setBlocked(true);
+				return;
+			} else {
+				float newDamage = event.getBlockedDamage() * blockedDamageMultiplier;
+				event.setBlockedDamage(newDamage);
+			}
 		}
 		
-		event.setBlockedDamage(event.getBlockedDamage() * parryingSword.getBlockedDamageMultiplier(event.getDamageSource(), activeStack, entity, useTime));
+		// if the target has one of:
+		// - a Puff Circlet equipped
+		// - the projectile rebound effect
+		// protect it from this projectile
+		if(event.getDamageSource().getDirectEntity() instanceof Projectile projectile && !projectile.getType().is(SpectrumEntityTypeTags.UNDEFLECTABLE)) {
+			Level world = projectile.level();
+			if (!world.isClientSide()) {
+				boolean protect = false;
+				
+				MobEffectInstance reboundInstance = entity.getEffect(SpectrumMobEffects.PROJECTILE_REBOUND);
+				if (reboundInstance != null && entity.level().getRandom().nextFloat() < SpectrumMobEffects.PROJECTILE_REBOUND_CHANCE_PER_LEVEL * (reboundInstance.getAmplifier() + 1)) {
+					protect = true;
+				}
+				
+				if (!protect && SpectrumCurioItem.hasEquipped(entity, SpectrumItems.PUFF_CIRCLET.get())) {
+					AzureDikeAttachmentType azureDikeAttachment = entity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
+					if (azureDikeAttachment.getCurrentCharges() > 0) {
+						azureDikeAttachment.absorbDamage(entity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
+						protect = true;
+					}
+				}
+				
+				if (protect) {
+					world.playSound(null, projectile.blockPosition(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundSource.PLAYERS, 1.0F, 1.0F);
+					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world, projectile.position(),
+							ColoredCraftingParticleEffect.WHITE, 6,
+							new Vec3(0, 0, 0),
+							new Vec3(projectile.getX() - entity.position().x, projectile.getY() - entity.position().y, projectile.getZ() - entity.position().z));
+					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world, projectile.position(),
+							ColoredCraftingParticleEffect.BLUE, 6,
+							new Vec3(0, 0, 0),
+							new Vec3(projectile.getX() - entity.position().x, projectile.getY() - entity.position().y, projectile.getZ() - entity.position().z));
+					
+					event.setBlocked(true);
+				}
+			}
+		}
 	}
 	
 	@SubscribeEvent
@@ -945,61 +990,6 @@ public class SpectrumEventListeners {
 		if (event.getCurrentGameMode() == GameType.SPECTATOR && event.getNewGameMode() != GameType.SPECTATOR
 				&& event.getEntity() instanceof ServerPlayer serverPlayer && HardcoreDeathAttachmentType.hasHardcoreDeath(serverPlayer)) {
 			HardcoreDeathAttachmentType.clearHardcoreDeath(serverPlayer);
-		}
-	}
-	
-	@SubscribeEvent
-	private static void onProjectileImpact(ProjectileImpactEvent event) {
-		// if the target has a Puff circlet equipped
-		// protect it from this projectile
-		Projectile projectile = event.getProjectile();
-		HitResult hitResult = event.getRayTraceResult();
-		
-		if(projectile.getType().is(SpectrumEntityTypeTags.UNDEFLECTABLE)) {
-			return;
-		}
-		
-		if(!(hitResult instanceof EntityHitResult entityHitResult)) {
-			return;
-		}
-		
-		Level world = projectile.level();
-		if (!world.isClientSide()) {
-			Entity entity = entityHitResult.getEntity();
-			if (entity instanceof LivingEntity livingEntity) {
-				boolean protect = false;
-				
-				MobEffectInstance reboundInstance = livingEntity.getEffect(SpectrumMobEffects.PROJECTILE_REBOUND);
- 				if (reboundInstance != null && entity.level().getRandom().nextFloat() < SpectrumMobEffects.PROJECTILE_REBOUND_CHANCE_PER_LEVEL * (reboundInstance.getAmplifier() + 1)) {
-					protect = true;
-				}
-				
-				if(!protect && SpectrumCurioItem.hasEquipped(livingEntity, SpectrumItems.PUFF_CIRCLET.get())) {
-					AzureDikeAttachmentType azureDikeAttachment = livingEntity.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
-					if (azureDikeAttachment.getCurrentCharges() > 0) {
-						azureDikeAttachment.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
-						protect = true;
-					}
-				}
-				
-				if (protect) {
-					projectile.shoot(0, 0, 0, 0, 0);
-					
-					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world, projectile.position(),
-							ColoredCraftingParticleEffect.WHITE, 6,
-							new Vec3(0, 0, 0),
-							new Vec3(projectile.getX() - livingEntity.position().x, projectile.getY() - livingEntity.position().y, projectile.getZ() - livingEntity.position().z));
-					PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) world, projectile.position(),
-							ColoredCraftingParticleEffect.BLUE, 6,
-							new Vec3(0, 0, 0),
-							new Vec3(projectile.getX() - livingEntity.position().x, projectile.getY() - livingEntity.position().y, projectile.getZ() - livingEntity.position().z));
-					
-					world.playSound(null, projectile.blockPosition(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundSource.PLAYERS, 1.0F, 1.0F);
-					livingEntity.hurtTime = Math.max(livingEntity.hurtTime, 1);
-					event.setCanceled(true);
-				}
-				
-			}
 		}
 	}
 	

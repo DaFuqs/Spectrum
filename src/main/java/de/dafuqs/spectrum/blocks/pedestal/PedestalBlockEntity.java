@@ -625,8 +625,9 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 	private boolean craftVanillaRecipe(Level level, @Nullable CraftingRecipe recipe, PedestalBlockEntity pedestal, int maxCountPerStack) {
 		if (canAcceptRecipeOutput(recipe, createRecipeInput(), maxCountPerStack)) {
 			ItemStack recipeOutput = recipe.assemble(createRecipeInput().getCraftingGridInput(), pedestal.getLevel().registryAccess());
+			NonNullList<ItemStack> remainders = level.getRecipeManager().getRemainingItemsFor(RecipeType.CRAFTING, createRecipeInput().getCraftingGridInput(), level);
 			Player player = getOwnerIfOnline(level);
-			//TODO revise for non-player crafting
+			
 			if (player == null) {
 				recipeOutput.onCraftedBySystem(level);
 			} else {
@@ -634,7 +635,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			}
 			
 			// -1 for all crafting inputs
-			decrementInputStacks(pedestal);
+			decrementInputStacks(pedestal, remainders);
 			
 			ItemStack existingOutput = pedestal.getItem(OUTPUT_SLOT_ID);
 			if (existingOutput.isEmpty()) {
@@ -650,12 +651,12 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		}
 	}
 	
-	private void decrementInputStacks(Container inventory) {
+	private void decrementInputStacks(Container inventory, NonNullList<ItemStack> remainders) {
 		if (level == null) return;
 		for (int i = 0; i < 9; i++) {
 			ItemStack itemStack = inventory.getItem(i);
 			if (!itemStack.isEmpty()) {
-				ItemStack remainder = itemStack.getCraftingRemainingItem();
+				ItemStack remainder = remainders.get(i);
 				if (remainder.isEmpty()) {
 					itemStack.shrink(1);
 				} else {

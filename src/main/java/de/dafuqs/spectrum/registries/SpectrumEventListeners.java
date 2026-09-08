@@ -701,7 +701,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void applySetHealthDamage(LivingIncomingDamageEvent event) {
+	private static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
 		float amount = event.getAmount();
 		DamageSource source = event.getSource();
 		LivingEntity target = event.getEntity();
@@ -736,7 +736,7 @@ public class SpectrumEventListeners {
 				}
 				
 				SpectrumDamageTypes.recursiveDamageFlag = false;
-				event.setCanceled(true);
+				event.setAmount(0);
 			}
 		}
 	}

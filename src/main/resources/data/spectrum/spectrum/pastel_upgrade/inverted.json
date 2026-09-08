@@ -1,5 +1,6 @@
 {
   "name": "inverted",
   "item": "spectrum:pure_coal",
+  "goes_to_redstone_ring": true,
   "redstone": "inverted"
 }

@@ -40,7 +40,7 @@ public class MemoryToHeadRecipe extends SpiritInstillerRecipe {
 				.set(DataComponents.LORE, new ItemLore(List.of(Component.translatable("recipe.spectrum.memory_to_head.lore"))))
 				.set(DataComponents.ENTITY_DATA, CustomData.of(nbt)).build();
 		
-		return new IngredientStack(Ingredient.of(SpectrumBlocks.MEMORY), DataComponentPredicate.EMPTY, previewPatch, 1);
+		return new IngredientStack(Ingredient.of(SpectrumBlocks.MEMORY), DataComponentPredicate.EMPTY, Map.of(), previewPatch, 1);
 	}
 	
 	@Override

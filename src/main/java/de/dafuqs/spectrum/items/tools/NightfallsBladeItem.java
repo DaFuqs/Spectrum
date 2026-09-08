@@ -13,6 +13,7 @@ import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
@@ -70,7 +71,7 @@ public class NightfallsBladeItem extends TieredItem implements InkPoweredPotionF
 									world.getRandom().nextFloat() - 0.5, world.getRandom().nextFloat() - 0.5, world.getRandom().nextFloat() - 0.5
 							);
 						} else {
-							target.addEffect(instance.getStatusEffectInstance(), attacker);
+							target.addEffect((instance.getFreshStatusEffectInstance()), attacker);
 						}
 					}
 				}

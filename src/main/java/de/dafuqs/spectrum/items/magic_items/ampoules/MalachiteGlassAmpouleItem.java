@@ -32,7 +32,7 @@ public class MalachiteGlassAmpouleItem extends GlassAmpouleItem implements InkPo
 			List<InkPoweredMobEffectInstance> effects = InkPoweredPotionContentsComponent.getEffects(stack);
 			for (InkPoweredMobEffectInstance effect : effects) {
 				if (InkPowered.tryDrainEnergy(player, effect.getInkCost())) {
-					e.add(effect.getStatusEffectInstance());
+					e.add(effect.getFreshStatusEffectInstance());
 				}
 			}
 		}

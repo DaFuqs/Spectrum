@@ -815,7 +815,7 @@ public class SpectrumEventListeners {
 				comp.markForPerfectCounter();
 		}
 		
-		event.setBlockedDamage(event.getBlockedDamage() * parryingSword.getBlockingMultiplier(event.getDamageSource(), activeStack, entity, useTime));
+		event.setBlockedDamage(event.getBlockedDamage() * parryingSword.getBlockedDamageMultiplier(event.getDamageSource(), activeStack, entity, useTime));
 	}
 	
 	@SubscribeEvent

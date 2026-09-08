@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.compat.emi;
 
 import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
@@ -28,6 +29,14 @@ public abstract class SpectrumEmiRecipe implements EmiRecipe {
 		this.recipeIdentifier = recipeIdentifier;
 		this.width = width;
 		this.height = height;
+	}
+	
+	public static EmiIngredient ofIngredientStack(IngredientStack s) {
+		return EmiIngredient.of(s.getItems().map(EmiStack::of).toList());
+	}
+	
+	public static List<EmiIngredient> ofIngredientStacks(Collection<IngredientStack> s) {
+		return s.stream().map(SpectrumEmiRecipe::ofIngredientStack).toList();
 	}
 	
 	public RegistryAccess getRegistryManager() {

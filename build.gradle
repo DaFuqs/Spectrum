@@ -62,6 +62,18 @@ neoForge {
 			programArgument '--uuid=5010ad09-0229-4d70-8a2c-bc254821dcb3'
 		}
 
+		// introduced in MC 1.21.9
+		// client_debug {
+		// 	client()
+		// 	programArgument '-DMC_DEBUG_ENABLED'
+		// 	programArgument '-DMC_DEBUG_PATHFINDING'
+		// 	programArgument '-DMC_DEBUG_SHAPES'
+		// 	programArgument '-DMC_DEBUG_STRUCTURES'
+		// 	programArgument '-DMC_DEBUG_STRUCTURE_EDIT_MODE'
+		// 	programArgument '-DMC_DEBUG_STRUCTURE_GOAL_SELECTOR'
+		// 	programArgument '-DMC_DEBUG_KEEP_JIGSAW_BLOCKS_DURING_STRUCTURE_GEN'
+		// }
+
 		server {
 			server()
 			programArgument '--nogui'

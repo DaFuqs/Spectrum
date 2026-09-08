@@ -837,7 +837,6 @@
     ]
   },
   "ost.azure": {
-    "subtitle": "spectrum.subtitles.azure",
     "sounds": [
       "spectrum:ost/azure"
     ]

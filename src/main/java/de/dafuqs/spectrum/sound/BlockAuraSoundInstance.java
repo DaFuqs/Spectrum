@@ -130,7 +130,7 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 	
 	public static void addToExistingInstanceOrCreateNewOne(Level world, BlockPos pos) {
 		double nearestDistance = Double.MAX_VALUE;
-		@Nullable BlockAuraSoundInstance nearest = null;
+		BlockAuraSoundInstance nearest = null;
 		for (BlockAuraSoundInstance instance : INSTANCES) {
 			double squaredDistance = pos.distToLowCornerSqr(instance.absX, instance.absY, instance.absZ);
 			if (squaredDistance < nearestDistance) {

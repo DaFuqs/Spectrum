@@ -4118,7 +4118,7 @@
   "book.spectrum.guidebook.progression_sharing.sync_all_persistent.title": "Keep all Advancements synced",
   "book.spectrum.guidebook.progression_sharing.sync_all_persistent.text": "[#](449900)Creates a mental link between everyone present[#](), sharing [#](449900)all past and future advancements[#]() with one another from therefore on.",
   "book.spectrum.guidebook.progression_sharing.sync_spectrum_once.title": "Sync Spectrum Progress once",
-  "book.spectrum.guidebook.progression_sharing.sync_spectrum_once.text": "Shares [#](449900)all spectrum-based knowledge[#]() amongst everyone present.",
+  "book.spectrum.guidebook.progression_sharing.sync_spectrum_once.text": "Shares [#](449900)only spectrum-based knowledge[#]() amongst everyone present.",
   "book.spectrum.guidebook.progression_sharing.sync_spectrum_persistent.title": "Keep Spectrum Progress synced",
   "book.spectrum.guidebook.progression_sharing.sync_spectrum_persistent.text": "[#](449900)Creates a mental link between everyone present[#](), sharing [#](449900)only the knowledge about spectrum-based matters[#]() with one another from therefore on.",
   "book.spectrum.guidebook.progression_sharing.leave_all_parties.title": "Unbinding from Sync Groups",

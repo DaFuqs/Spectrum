@@ -1,0 +1,13 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": "minecraft:rotten_flesh",
+  "use_up_base_ingredient": true,
+  "color": 11783485,
+  "ingredient1": "spectrum:vegetal",
+  "ingredient2": "spectrum:clover",
+  "ingredient3": "#minecraft:flowers",
+  "result": {
+    "id": "minecraft:rabbit_hide"
+  },
+  "required_advancement": "spectrum:unlocks/resources/rabbit_hide"
+}

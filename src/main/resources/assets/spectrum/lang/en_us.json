@@ -3637,6 +3637,7 @@
   "book.spectrum.guidebook.potion_workshop_crafting.page8.title": "Powdering Snow",
   "book.spectrum.guidebook.potion_workshop_crafting.page9.text": "Will consume 10 XP from the [#](bb00bb)Knowledge Gem[#]().",
   "book.spectrum.guidebook.potion_workshop_crafting.page9.title": "Bottles o' Enchanting",
+  "book.spectrum.guidebook.potion_workshop_crafting.rabbit_hide.text": "This potent herbal tincture allows me to extract something useful from what would otherwise be very useless material.",
   "book.spectrum.guidebook.simple_reagents.name": "Using Reagents",
   "book.spectrum.guidebook.simple_reagents.about.text": "Instead of adding ingredients to the potion bit by bit, as in the [#](bb00bb)Brewing Stand[#](), I can dissolve all the ingredients at once in the liquid contained in [Mermaid's Gems](entry://general/mermaids_brush). This includes the reagents!\\\n\\\nThe [Potion Workshop](entry://brewing/potion_workshop) has multiple reagent slots, allowing me to apply a variety of improvements at once, but I can only use each reagent once per brew.",
   "book.spectrum.guidebook.complex_reagents.name": "Complex Reagents",

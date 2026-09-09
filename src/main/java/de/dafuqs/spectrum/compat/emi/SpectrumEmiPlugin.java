@@ -225,10 +225,10 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.CALCITE))
+				.id(syntheticId("world/fluid_interaction", Blocks.CLAY))
 				.leftInput(liquidCrystalCatalyst)
 				.rightInput(waterCatalyst, false)
-				.output(EmiStack.of(Blocks.CALCITE))
+				.output(EmiStack.of(Blocks.CLAY))
 				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
@@ -239,10 +239,10 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.COBBLED_DEEPSLATE))
+				.id(syntheticId("world/fluid_interaction", Blocks.CALCITE))
 				.leftInput(liquidCrystalCatalyst)
 				.rightInput(lavaCatalyst, false)
-				.output(EmiStack.of(Blocks.COBBLED_DEEPSLATE))
+				.output(EmiStack.of(Blocks.CALCITE))
 				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()

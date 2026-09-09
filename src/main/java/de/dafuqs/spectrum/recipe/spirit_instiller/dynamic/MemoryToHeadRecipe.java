@@ -29,12 +29,12 @@ public class MemoryToHeadRecipe extends SpiritInstillerRecipe {
 	public MemoryToHeadRecipe() {
 		super("", Optional.of(SpectrumCommon.locate("unlocks/memory_to_head")), Optional.empty(), List.of(),
 				getMemoryStack(), IngredientStack.ofItems(SpectrumItems.VEGETAL.get(), 4), IngredientStack.ofItems(SpectrumItems.QUITOXIC_POWDER.get(), 4),
-				new ItemStack(Blocks.ZOMBIE_HEAD), 200, 1, true, false);
+				new ItemStack(SpectrumSkullBlock.getBlock(SpectrumSkullType.PIG).get()), 200, 1, true, false);
 	}
 	
 	private static IngredientStack getMemoryStack() {
 		CompoundTag nbt = new CompoundTag();
-		nbt.putString("id", "minecraft:zombie");
+		nbt.putString("id", "minecraft:pig");
 		
 		DataComponentPatch previewPatch = DataComponentPatch.builder()
 				.set(DataComponents.LORE, new ItemLore(List.of(Component.translatable("recipe.spectrum.memory_to_head.lore"))))

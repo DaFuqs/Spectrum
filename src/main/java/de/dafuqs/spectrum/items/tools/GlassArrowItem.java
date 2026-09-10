@@ -42,7 +42,6 @@ public class GlassArrowItem extends ArrowItem {
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
 		tooltip.add(Component.translatable("item.spectrum.glass_arrow.tooltip").withStyle(ChatFormatting.GRAY));
-		tooltip.add(Component.translatable("item.spectrum.glass_arrow.tooltip2").withStyle(ChatFormatting.GRAY));
 		if (variant != GlassArrowVariant.MALACHITE) {
 			tooltip.add(Component.translatable(getDescriptionId() + ".tooltip").withStyle(ChatFormatting.GRAY));
 		}

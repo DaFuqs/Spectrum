@@ -90,7 +90,7 @@
           "id": "spectrum:evoker_head"
         },
         {
-          "id": "spectrum:fox_head"
+          "id": "spectrum:fox_red_head"
         },
         {
           "id": "spectrum:fox_arctic_head"
@@ -156,7 +156,7 @@
           "id": "spectrum:parrot_blue_head"
         },
         {
-          "id": "spectrum:parrot_cyan_head"
+          "id": "spectrum:parrot_yellow_blue_head"
         },
         {
           "id": "spectrum:parrot_gray_head"
@@ -165,7 +165,7 @@
           "id": "spectrum:parrot_green_head"
         },
         {
-          "id": "spectrum:parrot_red_head"
+          "id": "spectrum:parrot_red_blue_head"
         }
       ]
     },

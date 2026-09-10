@@ -63,7 +63,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		));
 		builder.put(SpectrumSkullType.ENDERMITE, List.of(new Tuple<>(new EndermiteHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.ENDERMITE_HEAD)), ResourceLocation.parse("textures/entity/endermite.png"))));
 		builder.put(SpectrumSkullType.EVOKER, List.of(new Tuple<>(new IllagerHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.EVOKER_HEAD)), ResourceLocation.parse("textures/entity/illager/evoker.png"))));
-		builder.put(SpectrumSkullType.FOX, List.of(new Tuple<>(new FoxHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.FOX_HEAD)), ResourceLocation.parse("textures/entity/fox/fox.png"))));
+		builder.put(SpectrumSkullType.FOX_RED, List.of(new Tuple<>(new FoxHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.FOX_RED_HEAD)), ResourceLocation.parse("textures/entity/fox/fox.png"))));
 		builder.put(SpectrumSkullType.FOX_ARCTIC, List.of(new Tuple<>(new FoxHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.FOX_ARCTIC_HEAD)), ResourceLocation.parse("textures/entity/fox/snow_fox.png"))));
 		builder.put(SpectrumSkullType.FROG_COLD, List.of(new Tuple<>(new FrogHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.FROG_COLD_HEAD)), ResourceLocation.parse("textures/entity/frog/cold_frog.png"))));
 		builder.put(SpectrumSkullType.FROG_TEMPERATE, List.of(new Tuple<>(new FrogHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.FROG_TEMPERATE_HEAD)), ResourceLocation.parse("textures/entity/frog/temperate_frog.png"))));
@@ -84,11 +84,11 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		builder.put(SpectrumSkullType.MULE, List.of(new Tuple<>(new HorseHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.MULE_HEAD)), ResourceLocation.parse("textures/entity/horse/mule.png"))));
 		builder.put(SpectrumSkullType.OCELOT, List.of(new Tuple<>(new CatHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.OCELOT_HEAD)), ResourceLocation.parse("textures/entity/cat/ocelot.png"))));
 		builder.put(SpectrumSkullType.PANDA, List.of(new Tuple<>(new PandaHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PANDA_HEAD)), ResourceLocation.parse("textures/entity/panda/panda.png")))); // pandas have variants
+		builder.put(SpectrumSkullType.PARROT_RED_BLUE, List.of(new Tuple<>(new ParrotHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PARROT_RED_BLUE_HEAD)), ResourceLocation.parse("textures/entity/parrot/parrot_red_blue.png"))));
 		builder.put(SpectrumSkullType.PARROT_BLUE, List.of(new Tuple<>(new ParrotHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PARROT_BLUE_HEAD)), ResourceLocation.parse("textures/entity/parrot/parrot_blue.png"))));
-		builder.put(SpectrumSkullType.PARROT_CYAN, List.of(new Tuple<>(new ParrotHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PARROT_CYAN_HEAD)), ResourceLocation.parse("textures/entity/parrot/parrot_yellow_blue.png")))); // cyan vs. yellow_blue
-		builder.put(SpectrumSkullType.PARROT_GRAY, List.of(new Tuple<>(new ParrotHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PARROT_GRAY_HEAD)), ResourceLocation.parse("textures/entity/parrot/parrot_grey.png")))); // gray vs.grey
 		builder.put(SpectrumSkullType.PARROT_GREEN, List.of(new Tuple<>(new ParrotHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PARROT_GREEN_HEAD)), ResourceLocation.parse("textures/entity/parrot/parrot_green.png"))));
-		builder.put(SpectrumSkullType.PARROT_RED, List.of(new Tuple<>(new ParrotHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PARROT_RED_HEAD)), ResourceLocation.parse("textures/entity/parrot/parrot_red_blue.png")))); // red vs. red_blue
+		builder.put(SpectrumSkullType.PARROT_YELLOW_BLUE, List.of(new Tuple<>(new ParrotHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PARROT_YELLOW_BLUE_HEAD)), ResourceLocation.parse("textures/entity/parrot/parrot_yellow_blue.png"))));
+		builder.put(SpectrumSkullType.PARROT_GRAY, List.of(new Tuple<>(new ParrotHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PARROT_GRAY_HEAD)), ResourceLocation.parse("textures/entity/parrot/parrot_grey.png")))); // gray vs.grey
 		builder.put(SpectrumSkullType.PHANTOM, List.of(new Tuple<>(new PhantomHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PHANTOM_HEAD)), ResourceLocation.parse("textures/entity/phantom.png"))));
 		builder.put(SpectrumSkullType.PIG, List.of(new Tuple<>(new PigHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PIG_HEAD)), ResourceLocation.parse("textures/entity/pig/pig.png"))));
 		builder.put(SpectrumSkullType.PILLAGER, List.of(new Tuple<>(new IllagerHeadModel(modelLoader.bakeLayer(SpectrumModelLayers.PILLAGER_HEAD)), ResourceLocation.parse("textures/entity/illager/pillager.png"))));

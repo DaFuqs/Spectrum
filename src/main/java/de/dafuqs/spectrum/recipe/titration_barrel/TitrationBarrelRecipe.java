@@ -163,6 +163,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 			if (alcPercent >= 100 && inputStack.getItem() instanceof FermentedItem) {
 				return SpectrumItems.PURE_ALCOHOL.getDefaultInstance();
 			}
+			inputStack.set(SpectrumDataComponentTypes.BEVERAGE, new BeverageComponent((long) ageIngameDays, (int) alcPercent, thickness));
 		}
 		
 		if (fermentationData.isPresent() && !fermentationData.get().statusEffectEntries().isEmpty()) {
@@ -187,7 +188,6 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe<StorageRecip
 			}
 		}
 		
-		inputStack.set(SpectrumDataComponentTypes.BEVERAGE, new BeverageComponent((long) ageIngameDays, (int) alcPercent, thickness));
 		return inputStack;
 	}
 	

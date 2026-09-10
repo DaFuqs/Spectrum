@@ -4,7 +4,7 @@
     "id": "spectrum:memory",
     "components": {
       "entity_data": {
-        "id": "minecraft:fox"
+        "id": "minecraft:fox_red"
       },
       "spectrum:memory": {
         "ticks_to_manifest": 20

@@ -274,12 +274,12 @@
         ]
       }
     },
-    "has_fox_head": {
+    "has_fox_red_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "spectrum:fox_head"
+            "items": "spectrum:fox_red_head"
           }
         ]
       }
@@ -464,12 +464,12 @@
         ]
       }
     },
-    "has_parrot_cyan_head": {
+    "has_parrot_yellow_blue_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "spectrum:parrot_cyan_head"
+            "items": "spectrum:parrot_yellow_blue_head"
           }
         ]
       }
@@ -494,12 +494,12 @@
         ]
       }
     },
-    "has_parrot_red_head": {
+    "has_parrot_red_blue_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": "spectrum:parrot_red_head"
+            "items": "spectrum:parrot_red_blue_head"
           }
         ]
       }

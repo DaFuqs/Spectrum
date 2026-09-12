@@ -366,8 +366,11 @@ public class SpectrumEventListeners {
 			LastKillAttachmentType.rememberKillTick(livinSource, livinSource.level().getGameTime());
 			
 			MobEffectInstance frenzy = livinSource.getEffect(SpectrumMobEffects.FRENZY);
-			if (frenzy != null) {
-				((FrenzyMobEffect) frenzy.getEffect().value()).onKill(livinSource, frenzy.getAmplifier());
+			if (frenzy != null && frenzy.getEffect() instanceof FrenzyMobEffect frenzyMobEffect) {
+				// I assume some mod scrambled effects? We once had an issue with
+				// java.lang.ClassCastException: class net.minecraft.world.effect.HealOrHarmMobEffect cannot be cast to class de.dafuqs.spectrum.mob_effect.FrenzyMobEffect
+				// in combination with Vestiges https://www.curseforge.com/minecraft/mc-mods/vestiges-of-the-present/
+				frenzyMobEffect.onKill(livinSource, frenzy.getAmplifier());
 			}
 		}
 		

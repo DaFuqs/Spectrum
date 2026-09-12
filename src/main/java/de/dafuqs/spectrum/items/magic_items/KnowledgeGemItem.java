@@ -17,6 +17,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -43,7 +44,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 	}
 	
 	@Override
-	public int getMaxStoredExperience(HolderLookup.Provider lookup, ItemStack itemStack) {
+	public int getMaxStoredExperience(HolderLookup.@Nullable Provider lookup, ItemStack itemStack) {
 		int efficiencyLevel = SpectrumEnchantmentHelper.getLevel(lookup, Enchantments.EFFICIENCY, itemStack);
 		return maxStorageBase * (int) Math.pow(10, Math.min(5, efficiencyLevel)); // to not exceed int max
 	}

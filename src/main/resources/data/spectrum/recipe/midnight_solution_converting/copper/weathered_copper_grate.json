@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:midnight_solution_converting",
+  "ingredient": [
+    {
+      "item": "minecraft:exposed_copper_grate"
+    }
+  ],
+  "result": {
+    "id": "minecraft:weathered_copper_grate",
+    "count": 1
+  }
+}

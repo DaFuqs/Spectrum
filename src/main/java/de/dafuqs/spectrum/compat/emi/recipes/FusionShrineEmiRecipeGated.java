@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import de.dafuqs.spectrum.registries.*;
@@ -9,6 +10,7 @@ import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 
 import java.util.*;
@@ -26,7 +28,7 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 		}
 		inputs = new ArrayList<>();
 		inputs.add(NeoForgeEmiIngredient.of(recipe.getFluid()));
-		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList());
+		inputs.addAll(ofIngredientStacks(recipe.getIngredientStacks()));
 	}
 	
 	@Override

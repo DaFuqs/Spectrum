@@ -53,6 +53,10 @@ public class FrenzyMobEffect extends MobEffect {
 			entity.hurt(SpectrumDamageTypes.sleep(entity.level(), null), potency);
 		}
 		
+		if(entity.removeEffectsCuredBy(SpectrumEffectCures.FRENZY)) {
+			entity.removeEffect(SpectrumMobEffects.FRENZY);
+		}
+		
 		return true;
 	}
 	

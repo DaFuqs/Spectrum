@@ -1,0 +1,57 @@
+{
+  "name": "book.spectrum.guidebook.progression_sharing.name",
+  "description": "book.spectrum.guidebook.progression_sharing.description",
+  "icon": "minecraft:textures/gui/sprites/advancements/challenge_frame_obtained.png",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/advancement_syncing"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/fusion_shrine"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 6,
+  "y": 1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.progression_sharing.name",
+      "text": "book.spectrum.guidebook.progression_sharing.about.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "book.spectrum.guidebook.progression_sharing.advancement_sync_all_once.title",
+      "recipe_id": "spectrum:fusion_shrine/advancement/sync_all_once",
+      "text": "book.spectrum.guidebook.progression_sharing.advancement_sync_all_once.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "book.spectrum.guidebook.progression_sharing.sync_all_persistent.title",
+      "recipe_id": "spectrum:fusion_shrine/advancement/sync_all_persistent",
+      "text": "book.spectrum.guidebook.progression_sharing.sync_all_persistent.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "book.spectrum.guidebook.progression_sharing.sync_spectrum_once.title",
+      "recipe_id": "spectrum:fusion_shrine/advancement/sync_spectrum_once",
+      "text": "book.spectrum.guidebook.progression_sharing.sync_spectrum_once.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "book.spectrum.guidebook.progression_sharing.sync_spectrum_persistent.title",
+      "recipe_id": "spectrum:fusion_shrine/advancement/sync_spectrum_persistent",
+      "text": "book.spectrum.guidebook.progression_sharing.sync_spectrum_persistent.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "book.spectrum.guidebook.progression_sharing.leave_all_parties.title",
+      "recipe_id": "spectrum:fusion_shrine/advancement/leave_all_parties",
+      "text": "book.spectrum.guidebook.progression_sharing.leave_all_parties.text"
+    }
+  ]
+}

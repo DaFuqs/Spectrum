@@ -1,5 +1,6 @@
 {
   "name": "trigger",
   "item": "spectrum:pure_quartz",
+  "goes_to_redstone_ring": true,
   "trigger": true
 }

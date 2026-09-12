@@ -1,5 +1,6 @@
 {
   "name": "always_active",
   "item": "spectrum:pure_redstone",
+  "goes_to_redstone_ring": true,
   "redstone": "always_active"
 }

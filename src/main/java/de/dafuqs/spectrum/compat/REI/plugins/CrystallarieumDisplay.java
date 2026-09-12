@@ -4,6 +4,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
+import dev.emi.emi.api.stack.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
@@ -45,6 +46,12 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 		if (firstBlockStateItem != Items.AIR) {
 			inputs.add(EntryIngredients.of(firstBlockStateItem));
 		}
+		
+		recipe.getAdditives()
+				.stream()
+				.map((i) -> EntryIngredients.ofIngredient(i.ingredient()))
+				.forEach(inputs::add);
+		
 		return inputs;
 	}
 	

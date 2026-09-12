@@ -14,6 +14,7 @@ import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
+import java.util.regex.*;
 
 public class VariantHelper {
 	
@@ -47,35 +48,38 @@ public class VariantHelper {
 	
 	public static @Nullable <T> T recolorRegistryObject(T original, InkColor newColor, Map<T, Map<InkColor, T>> cache, Function<T, ResourceLocation> idGetter, Function<ResourceLocation, T> lookup, T defaultToIgnore) {
 		Map<InkColor, T> colorMap = cache.computeIfAbsent(original, k -> new HashMap<>());
+		
 		return colorMap.computeIfAbsent(newColor, color -> {
 			ResourceLocation id = idGetter.apply(original);
-			String[] parts = id.getPath().split("_");
+			String path = id.getPath();
 			
-			// Option 1: try replacing an existing color ("red_concrete" => "light_blue_concrete")
-			for (int i = 0; i < parts.length; i++) {
-				int finalI = i;
-				InkColor matched = SpectrumRegistries.INK_COLOR.stream()
-								.filter(c -> c.getID().getPath().equals(parts[finalI]))
-								.findFirst()
-								.orElse(null);
+			// Option 1: try replacing an existing color
+			// "red_concrete"      -> "light_blue_concrete"
+			// "light_blue_planks" -> "orange_planks"
+			for (InkColor existingColor : SpectrumRegistries.INK_COLOR) {
+				String existing = existingColor.getID().getPath();
 				
-				if (matched != null) {
-					parts[i] = color.getID().getPath();
-					String newPath = String.join("_", parts);
+				// Match the color as a complete "_" delimited component
+				String regex = "(^|_)" + Pattern.quote(existing) + "(_|$)";
+				if (path.matches(".*" + regex + ".*")) {
+					String newPath = path.replaceFirst(regex, "$1" + Matcher.quoteReplacement(color.getID().getPath()) + "$2");
 					ResourceLocation newId = ResourceLocation.fromNamespaceAndPath(id.getNamespace(), newPath);
 					T newObj = lookup.apply(newId);
-					return (newObj != defaultToIgnore && !newObj.equals(original)) ? newObj : null;
+					if (newObj != defaultToIgnore && !newObj.equals(original)) {
+						return newObj;
+					}
+					break;
 				}
 			}
 			
 			// Option 2: prefix the color ("concrete" => "light_blue_concrete")
-			T newObj = lookup.apply(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), color.getID().getPath() + "_" + id.getPath()));
+			T newObj = lookup.apply(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), color.getID().getPath() + "_" + path));
 			if(newObj != defaultToIgnore && !newObj.equals(original)) {
 				return newObj;
 			}
 			
 			// Option 3: prefix the color + "_stained_" ("glass" => "red_stained_glass")
-			newObj = lookup.apply(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), color.getID().getPath() + "_stained_" + id.getPath()));
+			newObj = lookup.apply(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), color.getID().getPath() + "_stained_" + path));
 			return (newObj != defaultToIgnore && !newObj.equals(original)) ? newObj : null;
 		});
 	}

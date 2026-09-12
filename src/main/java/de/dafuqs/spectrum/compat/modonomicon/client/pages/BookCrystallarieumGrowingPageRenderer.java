@@ -74,27 +74,30 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 		
 		renderTitle(drawContext, recipeY, second);
 		
+		
 		// the ingredient
-		int startX = 26;
+		parentScreen.renderIngredient(drawContext, recipeX, recipeY, mouseX, mouseY, recipe.getIngredientStack());
+		// fluid bucket
+		parentScreen.renderIngredient(drawContext, recipeX, recipeY + 16, mouseX, mouseY, FluidRendering.fluidIngredientAsBucket(recipe.getFluid()));
+		// crystallarieum
+		parentScreen.renderItemStack(drawContext, recipeX + 20, recipeY + 8, mouseX, mouseY, CrystallarieumBlock.withColor(SpectrumBlocks.CRYSTALLARIEUM.asItem().getDefaultInstance(), recipe.getInkColor()));
+		
+		// the arrow
+		drawContext.blit(BACKGROUND_TEXTURE, recipeX + 40, recipeY + 11, 0, 0, 9, 9, 128, 128);
+		
 		int offsetPerAdditive = 18;
-		Ingredient ingredient = recipe.getIngredientStack();
-		parentScreen.renderIngredient(drawContext, recipeX + startX, recipeY + 5, mouseX, mouseY, ingredient);
-		parentScreen.renderIngredient(drawContext, recipeX + startX - offsetPerAdditive - 4, recipeY + 5, mouseX, mouseY, FluidRendering.fluidIngredientAsBucket(recipe.getFluid()));
-		drawContext.blit(BACKGROUND_TEXTURE, recipeX + startX - offsetPerAdditive - 7, recipeY + 1, 0, 0, 53, 25, 128, 128);
 		
-		
-		// growth stages
+		// the block on top of the crystallarieum
 		Iterator<BlockState> it = recipe.getGrowthStages().iterator();
 		BlockState growthState = it.next();
-		parentScreen.renderItemStack(drawContext, recipeX + startX + offsetPerAdditive, recipeY - 1, mouseX, mouseY, growthState.getBlock().asItem().getDefaultInstance());
+		parentScreen.renderItemStack(drawContext, recipeX + 20, recipeY - 1, mouseX, mouseY, growthState.getBlock().asItem().getDefaultInstance());
+		
+		// growth stages
 		int x = 0;
 		while (it.hasNext()) {
-			parentScreen.renderItemStack(drawContext, recipeX + 62 + offsetPerAdditive * x, recipeY + 4, mouseX, mouseY, it.next().getBlock().asItem().getDefaultInstance());
+			parentScreen.renderItemStack(drawContext, recipeX + 50 + offsetPerAdditive * x, recipeY + 4, mouseX, mouseY, it.next().getBlock().asItem().getDefaultInstance());
             x++;
         }
-
-        // crystallarieum
-        parentScreen.renderItemStack(drawContext, recipeX + startX + offsetPerAdditive, recipeY + 8, mouseX, mouseY, CrystallarieumBlock.withColor(SpectrumBlocks.CRYSTALLARIEUM.asItem().getDefaultInstance(), recipe.getInkColor()));
 
         // catalyst text
         renderBookTextHolder(drawContext, catalystText, 0, 42, BookEntryScreen.PAGE_WIDTH);
@@ -103,12 +106,12 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 		renderBookTextHolder(drawContext, depletionText, 0, 45 + LINE_HEIGHT * 3, BookEntryScreen.PAGE_WIDTH);
 		renderBookTextHolder(drawContext, second ? craftingTimeText2 : craftingTimeText1, 0, 82, BookEntryScreen.PAGE_WIDTH);
 		
-		// the catalysts
+		// the additives with their modifiers
 		x = 0;
 		recipeY += 4;
         for (CrystallarieumAdditive catalyst : recipe.getAdditives()) {
-            int offsetX = recipeX + startX + offsetPerAdditive * x;
-            parentScreen.renderIngredient(drawContext, recipeX + startX + offsetPerAdditive * x, recipeY + 27, mouseX, mouseY, catalyst.ingredient());
+            int offsetX = 25 + recipeX + offsetPerAdditive * x;
+            parentScreen.renderIngredient(drawContext, offsetX, recipeY + 27, mouseX, mouseY, catalyst.ingredient());
 
             RenderSystem.enableBlend();
 			

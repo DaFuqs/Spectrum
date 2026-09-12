@@ -1,5 +1,6 @@
 {
   "name": "lamp",
   "item": "spectrum:pure_glowstone",
+  "goes_to_redstone_ring": true,
   "lamp": true
 }

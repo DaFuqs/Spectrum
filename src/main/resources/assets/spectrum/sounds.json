@@ -735,6 +735,10 @@
       {
         "name": "spectrum:music/proper_motions_in_missing_memory_of",
         "stream": true
+      },
+      {
+        "name": "spectrum:music/proper_motions_mutilated",
+        "stream": true
       }
     ]
   },
@@ -837,7 +841,6 @@
     ]
   },
   "ost.azure": {
-    "subtitle": "spectrum.subtitles.azure",
     "sounds": [
       "spectrum:ost/azure"
     ]

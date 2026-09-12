@@ -48,7 +48,7 @@ public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<Enc
 		
 		this.inputs = recipe.getIngredientStacks().stream()
 				.map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList()))
-				.collect(Collectors.toList());
+				.collect(Collectors.toCollection(ArrayList::new));
 		
 		// Then the xp
 		inputs.add(EmiStack.of(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getLevelData().getFirst().experience(), true)));
@@ -105,7 +105,7 @@ public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<Enc
 		widgets.add(new DynamicStackWidget(c -> inputs.get(selectedSourceLevel), 0, 0, 18));
 		
 		// Center Slot
-		widgets.add(new DynamicStackWidget(c -> inputs.get(cap + selectedSourceLevel), 0, 31, 31));
+		widgets.add(new DynamicStackWidget(c -> inputs.get(levelCap + selectedSourceLevel), 0, 31, 31));
 		
 		// Output
 		widgets.add(new DynamicStackWidget(c -> outputs.get(selectedSourceLevel - 1), 0, 106, 26).large(true).recipeContext(this));

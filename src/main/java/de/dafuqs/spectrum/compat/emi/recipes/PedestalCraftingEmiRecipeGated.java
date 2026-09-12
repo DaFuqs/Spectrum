@@ -39,7 +39,7 @@ public class PedestalCraftingEmiRecipeGated extends GatedSpectrumEmiRecipe<Pedes
 		List<EmiIngredient> list = NonNullList.withSize(9 + powderSlotCount, EmiStack.EMPTY);
 		
 		for (int i = 0; i < ingredientCount; i++) {
-			list.set(recipe.getGridSlotId(i), EmiIngredient.of(Arrays.stream(ingredients.get(i).getIngredient().getItems()).map(EmiStack::of).toList()));
+			list.set(recipe.getGridSlotId(i), ofIngredientStack(ingredients.get(i)));
 		}
 		for (int i = 0; i < powderSlotCount; i++) {
 			GemstoneColor color = BuiltinGemstoneColor.values()[i];

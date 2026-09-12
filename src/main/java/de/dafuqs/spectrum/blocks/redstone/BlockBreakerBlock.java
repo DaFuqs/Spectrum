@@ -25,7 +25,7 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 	
 	public static final MapCodec<BlockBreakerBlock> CODEC = simpleCodec(BlockBreakerBlock::new);
 	
-	private static ItemStack BREAK_STACK;
+	private static @Nullable ItemStack BREAK_STACK;
 	
 	public BlockBreakerBlock(Properties settings) {
 		super(settings);
@@ -84,7 +84,7 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Entit
 		if (!(blockEntity instanceof BlockBreakerBlockEntity blockBreakerBlockEntity)) {
 			return;
 		}
-		@Nullable Player owner = FakePlayerHelper.getFakePlayer(world, blockBreakerBlockEntity);
+		Player owner = FakePlayerHelper.getFakePlayer(world, blockBreakerBlockEntity);
 		if (!GenericClaimModsCompat.canBreak(world, breakingPos, owner)) {
 			return;
 		}

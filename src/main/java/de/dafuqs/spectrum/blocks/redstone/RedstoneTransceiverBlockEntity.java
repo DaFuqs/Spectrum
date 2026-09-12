@@ -26,15 +26,22 @@ public class RedstoneTransceiverBlockEntity extends BlockEntity implements Wirel
 		this.listener = new WirelessRedstoneSignalEventQueue(new BlockPositionSource(this.worldPosition), RANGE, this);
 	}
 	
-	private static boolean isSender(Level world, BlockPos blockPos) {
+	private static boolean isSender(@Nullable Level world, BlockPos blockPos) {
 		if (world == null) {
 			return false;
 		}
-		return world.getBlockState(blockPos).getValue(RedstoneTransceiverBlock.SENDER);
+		return isSender(world.getBlockState(blockPos));
+	}
+	
+	private static boolean isSender(BlockState state) {
+		if(!state.is(SpectrumBlocks.REDSTONE_TRANSCEIVER)) {
+			return false;
+		}
+		return state.getValue(RedstoneTransceiverBlock.SENDER);
 	}
 	
 	public static void serverTick(Level world, BlockPos pos, BlockState state, RedstoneTransceiverBlockEntity blockEntity) {
-		if (isSender(world, pos)) {
+		if (isSender(blockEntity.getBlockState())) {
 			if (blockEntity.currentSignal != blockEntity.cachedSignal) {
 				blockEntity.currentSignal = blockEntity.cachedSignal;
 				blockEntity.getLevel().gameEvent(SpectrumGameEvents.WIRELESS_REDSTONE_SIGNAL, blockEntity.getBlockPos(), new GameEvent.Context(null, state));

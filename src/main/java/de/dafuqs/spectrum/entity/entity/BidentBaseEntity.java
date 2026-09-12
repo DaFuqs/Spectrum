@@ -2,10 +2,13 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.network.syncher.*;
+import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
+import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 
 public abstract class BidentBaseEntity extends ThrownTrident {
@@ -26,6 +29,15 @@ public abstract class BidentBaseEntity extends ThrownTrident {
 	public void setPickupItemStack(ItemStack stack) {
 		entityData.set(STACK, stack.copy());
 		super.setPickupItemStack(stack);
+		this.entityData.set(ID_LOYALTY, this.getLoyaltyFromItem(stack));
+		this.entityData.set(ID_FOIL, stack.hasFoil());
+	}
+	
+	// [VanillaCopy] ThrownTrident.getLoyaltyFromItem
+	private byte getLoyaltyFromItem(ItemStack stack) {
+		return this.level() instanceof ServerLevel serverlevel
+				? (byte) Mth.clamp(EnchantmentHelper.getTridentReturnToOwnerAcceleration(serverlevel, stack, this), 0, 127)
+				: 0;
 	}
 	
 	@Override

@@ -79,6 +79,11 @@
       "type": "spectrum:potion_workshop_crafting",
       "recipe_id": "spectrum:potion_workshop_crafting/dragon_breath",
       "text": "book.spectrum.guidebook.potion_workshop_crafting.page10.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe_id": "spectrum:potion_workshop_crafting/rabbit_hide",
+      "text": "book.spectrum.guidebook.potion_workshop_crafting.rabbit_hide.text"
     }
   ]
 }

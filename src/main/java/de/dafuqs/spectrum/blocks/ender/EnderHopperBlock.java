@@ -136,7 +136,7 @@ public class EnderHopperBlock extends BaseEntityBlock {
                     player.awardStat(Stats.OPEN_ENDERCHEST);
                     PiglinAi.angerNearbyPiglins(player, true);
                 } else {
-                    player.displayClientMessage(Component.translatable("block.spectrum.ender_hopper_with_owner", enderHopperBlockEntity.getOwnerName()), true);
+                    player.displayClientMessage(Component.translatable("block.spectrum.ender_hopper.owner", enderHopperBlockEntity.getOwnerName()), true);
                 }
 
             }

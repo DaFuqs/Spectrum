@@ -40,7 +40,7 @@ public enum SpectrumToolTiers implements Tier {
 	
 	BEDROCK(
 			BlockTags.INCORRECT_FOR_NETHERITE_TOOL,
-			0,
+			Integer.MAX_VALUE,
 			SpectrumConfig.CONFIG.BedrockMiningSpeed.get().floatValue(),
 			SpectrumConfig.CONFIG.BedrockAttackDamage.get().floatValue(),
 			SpectrumConfig.CONFIG.BedrockEnchantability.get(),

@@ -50,14 +50,11 @@ public class AzuriteOreBlock extends CloakedOreBlock implements AzureAuraEmittin
 	
 	@Override
 	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-		super.playerWillDestroy(world, pos, state, player);
-		
 		if (world.isClientSide() && this.isVisibleTo(player)) {
-			ParticleHelper.playTriangulatedParticle(world, SpectrumParticleTypes.AZURE_AURA, 1, false, Vec3.ZERO, 0, true, Vec3.atCenterOf(pos), new Vec3(0, 0.08D + world.getRandom().nextDouble() * 0.04, 0));
-			ParticleHelper.playParticleAroundBlockSides(world, SpectrumParticleTypes.AZURE_MOTE_SMALL, pos, Direction.values(), 3, Vec3.ZERO);
+			onBreak(world, pos);
 		}
 		
-		return state;
+		return super.playerWillDestroy(world, pos, state, player);
 	}
 	
 	@Override

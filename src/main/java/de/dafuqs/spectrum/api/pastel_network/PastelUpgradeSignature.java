@@ -46,6 +46,7 @@ public final class PastelUpgradeSignature {
 	public static final Codec<PastelUpgradeSignature> CODEC = RecordCodecBuilder.create((i -> i.group(
 			ItemStack.ITEM_NON_AIR_CODEC.fieldOf("item").forGetter(c -> c.upgradeItem),
 			Codec.STRING.fieldOf("name").forGetter(c -> c.name),
+			Codec.BOOL.optionalFieldOf("goes_to_redstone_ring", false).forGetter(c -> c.goesToRedstoneRing),
 			Codec.INT.optionalFieldOf("additional_filter_rows", 0).forGetter(c -> c.additionalFilterRows),
 			Codec.FLOAT.optionalFieldOf("transfer_count_multiplier", 1.0F).forGetter(c -> c.transferCountMultiplier),
 			Codec.FLOAT.optionalFieldOf("transfer_duration_multiplier", 1.0F).forGetter(c -> c.transferDurationMultiplier),
@@ -63,6 +64,7 @@ public final class PastelUpgradeSignature {
 	
 	public final Holder<Item> upgradeItem;
 	public final String name;
+	public final boolean goesToRedstoneRing;
 	public final ResourceLocation outerRing, innerRing;
 	public final int additionalFilterRows;
 	public final float transferCountMultiplier, transferDurationMultiplier, transferCooldownMultiplier;
@@ -71,8 +73,8 @@ public final class PastelUpgradeSignature {
 	public final RedstoneStateModifier preProcessor;
 	public final RedstoneStateModifier postProcessor;
 	
-	private PastelUpgradeSignature(Holder<Item> upgradeItem, String name, int additionalFilterRows, float transferCountMultiplier, float transferDurationMultiplier, float transferCooldownMultiplier, boolean light, boolean triggerTransfer, boolean lamp, boolean sensor, RedstoneBehavior redstoneBehavior) {
-		this(upgradeItem, name, additionalFilterRows, transferCountMultiplier, transferDurationMultiplier, transferCooldownMultiplier, light, redstoneBehavior != RedstoneBehavior.NONE || triggerTransfer, lamp, sensor, redstoneBehavior, switch (redstoneBehavior) {
+	private PastelUpgradeSignature(Holder<Item> upgradeItem, String name, boolean goesToRedstoneRing, int additionalFilterRows, float transferCountMultiplier, float transferDurationMultiplier, float transferCooldownMultiplier, boolean light, boolean triggerTransfer, boolean lamp, boolean sensor, RedstoneBehavior redstoneBehavior) {
+		this(upgradeItem, name, goesToRedstoneRing, additionalFilterRows, transferCountMultiplier, transferDurationMultiplier, transferCooldownMultiplier, light, redstoneBehavior != RedstoneBehavior.NONE || triggerTransfer, lamp, sensor, redstoneBehavior, switch (redstoneBehavior) {
 			case ALWAYS_ACTIVE -> (RedstoneStateModifier) context -> InteractionResult.SUCCESS;
 			case ALWAYS_INACTIVE -> (RedstoneStateModifier) context -> InteractionResult.FAIL;
 			default -> RedstoneStateModifier.PASS;
@@ -82,11 +84,10 @@ public final class PastelUpgradeSignature {
 		});
 	}
 	
-	private PastelUpgradeSignature(Holder<Item> upgradeItem, String name, int additionalFilterRows, float transferCountMultiplier, float transferDurationMultiplier, float transferCooldownMultiplier, boolean light, boolean triggerTransfer, boolean lamp, boolean sensor, RedstoneBehavior redstoneBehavior, RedstoneStateModifier preProcessor, RedstoneStateModifier postProcessor) {
+	private PastelUpgradeSignature(Holder<Item> upgradeItem, String name, boolean goesToRedstoneRing, int additionalFilterRows, float transferCountMultiplier, float transferDurationMultiplier, float transferCooldownMultiplier, boolean light, boolean triggerTransfer, boolean lamp, boolean sensor, RedstoneBehavior redstoneBehavior, RedstoneStateModifier preProcessor, RedstoneStateModifier postProcessor) {
 		this.upgradeItem = upgradeItem;
 		this.name = name;
-		this.innerRing = SpectrumCommon.locate(INNER_RING_BASE_PATH + name + ".png");
-		this.outerRing = redstoneBehavior != RedstoneBehavior.NONE ? SpectrumCommon.locate(REDSTONE_RING_BASE_PATH + name + ".png") : SpectrumCommon.locate(OUTER_RING_BASE_PATH + name + ".png");
+		this.goesToRedstoneRing = goesToRedstoneRing;
 		this.additionalFilterRows = additionalFilterRows;
 		this.transferCountMultiplier = transferCountMultiplier;
 		this.transferDurationMultiplier = transferDurationMultiplier;
@@ -98,6 +99,9 @@ public final class PastelUpgradeSignature {
 		this.postProcessor = postProcessor;
 		this.sensor = sensor;
 		this.redstoneBehavior = redstoneBehavior;
+		
+		this.innerRing = SpectrumCommon.locate(INNER_RING_BASE_PATH + name + ".png");
+		this.outerRing = goesToRedstoneRing() ? SpectrumCommon.locate(REDSTONE_RING_BASE_PATH + name + ".png") : SpectrumCommon.locate(OUTER_RING_BASE_PATH + name + ".png");
 	}
 	
 	public ResourceLocation outerRing() {
@@ -109,7 +113,7 @@ public final class PastelUpgradeSignature {
 	}
 	
 	public boolean goesToRedstoneRing() {
-		return redstoneBehavior != RedstoneBehavior.NONE;
+		return goesToRedstoneRing;
 	}
 	
 	/**

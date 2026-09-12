@@ -17,9 +17,8 @@ import java.util.*;
 
 public class AnvilCrusher {
 	
-	public static void crush(ItemEntity itemEntity, float damageAmount) {
+	public static void crush(ServerLevel world, ItemEntity itemEntity, float damageAmount) {
 		ItemStack thisItemStack = itemEntity.getItem();
-		Level world = itemEntity.level();
 		
 		SingleRecipeInput inventory = new SingleRecipeInput(thisItemStack);
 		
@@ -65,7 +64,7 @@ public class AnvilCrusher {
 					world.playSound(null, position.x, position.y, position.z, soundEvent, SoundSource.PLAYERS, randomVolume, randomPitch);
 				}
 				
-				PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity((ServerLevel) world, position, recipe.getParticleEffect(), recipe.getParticleCount(), Vec3.ZERO);
+				PlayParticleWithExactVelocityPayload.playParticleWithExactVelocity(world, position, recipe.getParticleEffect(), recipe.getParticleCount(), Vec3.ZERO);
 			}
 		}
 	}

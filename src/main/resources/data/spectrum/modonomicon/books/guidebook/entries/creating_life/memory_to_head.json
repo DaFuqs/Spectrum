@@ -1,7 +1,7 @@
 {
   "name": "book.spectrum.guidebook.memory_to_head.name",
   "icon": {
-    "item": "minecraft:zombie_head"
+    "item": "spectrum:pig_head"
   },
   "condition": {
     "type": "modonomicon:advancement",

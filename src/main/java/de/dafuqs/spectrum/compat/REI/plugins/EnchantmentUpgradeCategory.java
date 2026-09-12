@@ -54,21 +54,21 @@ public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpg
 					Widgets.withBounds(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x - 10, startPoint.y + 2, 64, 0, 16, 16), new Rectangle(startPoint.x - 10, startPoint.y + 2, 16, 16)),
 					Component.translatable(EnchanterBlockEntity.OVERCHANTING_TOOLTIP).withStyle(s -> s.withColor(OVERCHANT_COLOR))));
 		
-		int maxIndex = (overchantingUnlocked ? display.recipeMaxLevel : display.enchantMaxLevel) - 1;
+		int maxIndex = (overchantingUnlocked ? display.recipeMaxLevel : display.enchantMaxLevel) - 2;
 		widgets.add(Widgets.createButton(new Rectangle(startPoint.x - 8 + 84, startPoint.y + 20, 8, 8), Component.literal("-"))
 				.onClick(b -> display.index = Math.clamp(display.index - 1, 0, maxIndex))); // decrement
 		widgets.add(Widgets.createButton(new Rectangle(startPoint.x - 8 + 94, startPoint.y + 20, 8, 8), Component.literal("+"))
 				.onClick(b -> display.index = Math.clamp(display.index + 1, 0, maxIndex))); // increment
 		
 		// surrounding input slots
-		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 18, startPoint.y - 7 + 9), inputs, () -> display.index + 3).markInput());
-		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 44, startPoint.y - 7 + 9), inputs, () -> display.index + 3).markInput());
-		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 62, startPoint.y - 7 + 27), inputs, () -> display.index + 3).markInput());
-		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 62, startPoint.y - 7 + 53), inputs, () -> display.index + 3).markInput());
-		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 44, startPoint.y - 7 + 71), inputs, () -> display.index + 3).markInput());
-		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 18, startPoint.y - 7 + 71), inputs, () -> display.index + 3).markInput());
-		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8, startPoint.y - 7 + 53), inputs, () -> display.index + 3).markInput());
-		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8, startPoint.y - 7 + 27), inputs, () -> display.index + 3).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 18, startPoint.y - 7 + 9), inputs, () -> display.index + 2).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 44, startPoint.y - 7 + 9), inputs, () -> display.index + 2).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 62, startPoint.y - 7 + 27), inputs, () -> display.index + 2).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 62, startPoint.y - 7 + 53), inputs, () -> display.index + 2).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 44, startPoint.y - 7 + 71), inputs, () -> display.index + 2).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8 + 18, startPoint.y - 7 + 71), inputs, () -> display.index + 2).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8, startPoint.y - 7 + 53), inputs, () -> display.index + 2).markInput());
+		widgets.add(new OffsetEntryWidget(new Point(startPoint.x - 8, startPoint.y - 7 + 27), inputs, () -> display.index + 2).markInput());
 		
 		// Knowledge Gem and Enchanter
 		widgets.add(new IndexedEntryWidget(new Point(startPoint.x - 8 + 111, startPoint.y - 7 + 14), () -> display.index).markInput().entries(inputs.get(0)));

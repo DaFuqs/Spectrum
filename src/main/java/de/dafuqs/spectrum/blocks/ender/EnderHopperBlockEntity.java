@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.items.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -27,8 +28,8 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	private final VoxelShape ABOVE_SHAPE = Block.box(0.0D, 16.0D, 0.0D, 16.0D, 32.0D, 16.0D);
 	private final VoxelShape INPUT_AREA_SHAPE = Shapes.or(INSIDE_SHAPE, ABOVE_SHAPE);
 	
-	private UUID ownerUUID;
-	private String ownerName;
+	private @Nullable UUID ownerUUID;
+	private @Nullable String ownerName;
 	
 	private int transferCooldown;
 	
@@ -64,7 +65,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	}
 	
 	public static List<ItemEntity> getInputItemEntities(Level world, EnderHopperBlockEntity enderHopperBlockEntity) {
-		return enderHopperBlockEntity.getInputAreaShape().toAabbs().stream().flatMap((box) -> world.getEntitiesOfClass(ItemEntity.class, box.move(enderHopperBlockEntity.getHopperX() - 0.5D, enderHopperBlockEntity.getHopperY() - 0.5D, enderHopperBlockEntity.getHopperZ() - 0.5D), EntitySelector.ENTITY_STILL_ALIVE).stream()).collect(Collectors.toList());
+		return enderHopperBlockEntity.getInputAreaShape().toAabbs().stream().flatMap((box) -> world.getEntitiesOfClass(ItemEntity.class, box.move(enderHopperBlockEntity.getHopperX() - 0.5D, enderHopperBlockEntity.getHopperY() - 0.5D, enderHopperBlockEntity.getHopperZ() - 0.5D), EntitySelector.ENTITY_STILL_ALIVE).stream()).toList();
 	}
 	
 	private static void insertIntoEnderChest(EnderHopperBlockEntity enderHopperBlockEntity, IItemHandlerModifiable itemHandler) {
@@ -187,12 +188,12 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	}
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
 	@Override
-	public String getOwnerName() {
+	public @Nullable String getOwnerName() {
 		return this.ownerName;
 	}
 	

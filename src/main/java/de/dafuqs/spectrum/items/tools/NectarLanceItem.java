@@ -23,18 +23,18 @@ public class NectarLanceItem extends LightGreatswordItem implements SlotBackgrou
 	}
 	
 	@Override
-	public float getBlockingMultiplier(DamageSource source, ItemStack stack, LivingEntity entity, int usedTime) {
+	public float getBlockedDamageMultiplier(DamageSource source, ItemStack stack, LivingEntity entity, int usedTime) {
 		if (source.is(DamageTypeTags.IS_PROJECTILE)) {
-			return 0;
+			return 1.0F;
 		}
 		if (canPerfectParry(stack, entity, usedTime)) {
-			return 0.0F;
+			return 1.0F;
 		} else if (canBluffParry(stack, entity, usedTime)) {
-			return 0.1F;
+			return 0.9F;
 		} else if (usedTime <= getMaxShieldingTime(entity, stack) / 2F) {
-			return 0.25F;
+			return 0.75F;
 		}
-		return 0.6F;
+		return 0.4F;
 	}
 	
 	@Override

@@ -29,11 +29,9 @@
         }
       },
       "predicates": {
-        "spectrum:infused_beverage": [
-          {
-            "variants": "malt_beer"
-          }
-        ]
+        "spectrum:infused_beverage": {
+          "variant": "malt_beer"
+        }
       }
     }
   },

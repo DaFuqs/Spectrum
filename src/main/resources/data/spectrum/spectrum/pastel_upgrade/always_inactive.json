@@ -1,5 +1,6 @@
 {
   "name": "always_inactive",
   "item": "spectrum:pure_lapis",
+  "goes_to_redstone_ring": true,
   "redstone": "always_inactive"
 }

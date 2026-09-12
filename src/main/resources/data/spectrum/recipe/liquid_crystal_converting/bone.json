@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:liquid_crystal_converting",
+  "ingredient": [
+    {
+      "item": "minecraft:armadillo_scute"
+    },
+    {
+      "item": "minecraft:turtle_scute"
+    }
+  ],
+  "result": {
+    "id": "minecraft:bone",
+    "count": 4
+  }
+}

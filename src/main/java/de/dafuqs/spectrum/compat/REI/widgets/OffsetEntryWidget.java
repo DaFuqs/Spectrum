@@ -35,8 +35,11 @@ public class OffsetEntryWidget extends EntryWidget {
 	public EntryStack<?> getCurrentEntry() {
 		int i = indexer.get();
 		if(i != prevIndex) {
+			this.getCyclingEntries().clear();
+			if (removeTagMatch) tagMatch = null;
 			entries(inputs.get(i));
+			prevIndex = i;
 		}
-		return getCyclingEntries().get().get(i);
+		return super.getCurrentEntry();
 	}
 }

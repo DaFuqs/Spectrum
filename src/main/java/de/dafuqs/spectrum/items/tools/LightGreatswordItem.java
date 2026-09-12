@@ -24,19 +24,19 @@ public class LightGreatswordItem extends ParryingSwordItem implements SplitDamag
 	}
 	
 	@Override
-	public float getBlockingMultiplier(DamageSource source, ItemStack stack, LivingEntity entity, int usedTime) {
+	public float getBlockedDamageMultiplier(DamageSource source, ItemStack stack, LivingEntity entity, int usedTime) {
 		if (source.is(DamageTypeTags.IS_PROJECTILE))
-			return 0;
+			return 1.0F;
 		
 		if (canPerfectParry(stack, entity, usedTime)) {
-			return 0.05F;
+			return 0.95F;
 		} else if (canBluffParry(stack, entity, usedTime)) {
-			return 0.2F;
+			return 0.8F;
 		} else if (usedTime <= getMaxShieldingTime(entity, stack) / 2F) {
 			return 0.5F;
 		}
 		
-		return 0.75F;
+		return 0.25F;
 	}
 	
 	@Override

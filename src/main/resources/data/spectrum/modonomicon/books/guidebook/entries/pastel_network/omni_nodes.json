@@ -22,7 +22,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "book.spectrum.guidebook.sender_node.name",
+      "title": "book.spectrum.guidebook.provider_node.name",
       "recipe_id": "spectrum:pedestal/tier3/pastel_network/omni_provider_node"
     },
     {

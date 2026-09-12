@@ -60,7 +60,7 @@ public class ConcealingOilsItem extends Item implements InkPoweredPotionFillable
 		
 		InkPoweredMobEffectInstance effect = InkPoweredPotionContentsComponent.getEffects(oilsStack).getFirst();
 		if (InkPowered.tryDrainEnergy(player, effect.getInkCost().color(), effect.getInkCost().amount())) {
-			stackToApplyTo.set(SpectrumDataComponentTypes.CONCEALED_EFFECT, effect.getStatusEffectInstance());
+			stackToApplyTo.set(SpectrumDataComponentTypes.CONCEALED_EFFECT, effect.getFreshStatusEffectInstance());
 			stackToApplyTo.set(SpectrumDataComponentTypes.CONCEALED_EFFECT_PROFILE, new ResolvableProfile(player.getGameProfile()));
 			
 			if (!player.getAbilities().instabuild) {

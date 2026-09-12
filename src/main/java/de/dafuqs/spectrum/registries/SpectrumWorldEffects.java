@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
@@ -26,21 +27,15 @@ public class SpectrumWorldEffects {
 	public static WorldEffect WEATHER_CLEAR = WorldEffect.register("weather_clear", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
-			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
-			serverWorldProperties.setRainTime(0);
-			serverWorldProperties.setRaining(false);
-			serverWorldProperties.setThunderTime(0);
-			serverWorldProperties.setThundering(false);
+			ServerLevel overworld = world.getServer().overworld();
+			overworld.setWeatherParameters(ServerLevel.RAIN_DELAY.sample(overworld.getRandom()), 0, false, false);
 		}
 	});
 	public static WorldEffect WEATHER_RAIN = WorldEffect.register("weather_rain", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
-			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
-			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.getRandom(), 12000, 18000));
-			serverWorldProperties.setRaining(true);
-			serverWorldProperties.setThunderTime(0);
-			serverWorldProperties.setThundering(false);
+			ServerLevel overworld = world.getServer().overworld();
+			overworld.setWeatherParameters(0, ServerLevel.RAIN_DELAY.sample(overworld.getRandom()), true, false);
 			
 			world.playSound(null, pos.above(), SoundEvents.WEATHER_RAIN, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
@@ -48,22 +43,17 @@ public class SpectrumWorldEffects {
 	public static WorldEffect WEATHER_THUNDER = WorldEffect.register("weather_thunder", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
-			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
-			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.getRandom(), 12000, 24000));
-			serverWorldProperties.setRaining(true);
-			serverWorldProperties.setThunderTime(Mth.randomBetweenInclusive(world.getRandom(), 3600, 15600));
-			serverWorldProperties.setThundering(true);
+			ServerLevel overworld = world.getServer().overworld();
+			overworld.setWeatherParameters(0, ServerLevel.THUNDER_DURATION.sample(overworld.getRandom()), true, true);
+			
 			world.playSound(null, pos.above(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
 	});
 	public static WorldEffect WEATHER_RAIN_SHORT = WorldEffect.register("weather_rain_short", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
-			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
-			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.getRandom(), 4000, 6000));
-			serverWorldProperties.setRaining(true);
-			serverWorldProperties.setThunderTime(0);
-			serverWorldProperties.setThundering(false);
+			ServerLevel overworld = world.getServer().overworld();
+			overworld.setWeatherParameters(0, ServerLevel.RAIN_DELAY.sample(overworld.getRandom()) / 4, true, false);
 			
 			world.playSound(null, pos.above(), SoundEvents.WEATHER_RAIN, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
@@ -71,11 +61,9 @@ public class SpectrumWorldEffects {
 	public static WorldEffect WEATHER_THUNDER_SHORT = WorldEffect.register("weather_thunder_short", new WorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerLevel world, BlockPos pos) {
-			ServerLevelData serverWorldProperties = ((ServerLevelData) world.getLevelData());
-			serverWorldProperties.setRainTime(Mth.randomBetweenInclusive(world.getRandom(), 4000, 6000));
-			serverWorldProperties.setRaining(true);
-			serverWorldProperties.setThunderTime(Mth.randomBetweenInclusive(world.getRandom(), 3000, 4000));
-			serverWorldProperties.setThundering(true);
+			ServerLevel overworld = world.getServer().overworld();
+			overworld.setWeatherParameters(0, ServerLevel.THUNDER_DURATION.sample(overworld.getRandom()) / 4, true, true);
+			
 			world.playSound(null, pos.above(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.WEATHER, 0.8F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 		}
 	});

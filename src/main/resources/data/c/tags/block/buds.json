@@ -4,6 +4,19 @@
     "#spectrum:crystallarieum_growable_buds",
 
     {
+      "id": "nomansland:small_quartzite_bud",
+      "required": false
+    },
+    {
+      "id": "nomansland:medium_quartzite_bud",
+      "required": false
+    },
+    {
+      "id": "nomansland:large_quartzite_bud",
+      "required": false
+    },
+
+    {
       "id": "biomemakeover:small_illunite_bud",
       "required": false
     },

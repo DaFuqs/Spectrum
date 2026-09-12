@@ -79,6 +79,9 @@ public class FluidPastelPayloadType extends PastelPayloadType {
 			}
 			
 			FluidStack drainedAmount = sourceHandler.drain(sourceFluid.copyWithAmount(amountToSend), IFluidHandler.FluidAction.EXECUTE);
+			if(drainedAmount.getAmount() < 1) {
+				continue;
+			}
 			PastelPayload payload = new FluidPastelPayload(drainedAmount);
 			PastelTransmission transmission = new PastelTransmission(graphPath.getVertexList(), payload, sourceNode.getTransferDurationTicks());
 			logic.addTransmission(sourceNode, destinationNode, transferMode, transmission);

@@ -51,9 +51,9 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public @Nullable BlockState handleFluidCollision(Level world, FluidState state, FluidState otherState, Direction direction) {
 		if (otherState.is(FluidTags.WATER)) {
-			return state.isSource() && direction != Direction.DOWN ? SpectrumBlocks.FROSTBITE_CRYSTAL.get().defaultBlockState() : Blocks.CALCITE.defaultBlockState();
+			return state.isSource() && direction != Direction.DOWN ? SpectrumBlocks.FROSTBITE_CRYSTAL.get().defaultBlockState() : Blocks.CLAY.defaultBlockState();
 		} else if (otherState.is(FluidTags.LAVA)) {
-			return state.isSource() && direction != Direction.DOWN ? SpectrumBlocks.BLAZING_CRYSTAL.get().defaultBlockState() : Blocks.COBBLED_DEEPSLATE.defaultBlockState();
+			return state.isSource() && direction != Direction.DOWN ? SpectrumBlocks.BLAZING_CRYSTAL.get().defaultBlockState() : Blocks.CALCITE.defaultBlockState();
 		}
 		return null;
 	}

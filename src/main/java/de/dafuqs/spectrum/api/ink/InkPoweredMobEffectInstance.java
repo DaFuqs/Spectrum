@@ -36,8 +36,15 @@ public record InkPoweredMobEffectInstance(MobEffectInstance statusEffectInstance
 			InkPoweredMobEffectInstance::new
 	);
 	
+	// for displaying purposes
+	@Deprecated
 	public MobEffectInstance getStatusEffectInstance() {
 		return statusEffectInstance;
+	}
+	
+	// for application
+	public MobEffectInstance getFreshStatusEffectInstance() {
+		return new MobEffectInstance(statusEffectInstance);
 	}
 	
 	public InkAmount getInkCost() {

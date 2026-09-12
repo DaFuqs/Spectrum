@@ -21,27 +21,11 @@ import java.util.*;
 
 public abstract class InkGeneratorBlockEntity extends BaseInkBlockEntity<TotalCappedInkStorage> implements MenuProvider {
 	
+	public static final int INK_SLOT_ID = 0;
 	public static final long RUN_LOGIC_EVERY_X_TICKS = 20;
 	
-	public InkGeneratorBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState, int tier) {
-		super(blockEntityType, blockPos, blockState, new TotalCappedInkStorage((long) Math.pow(256, tier), Map.of()));
-	}
-	
-	@SuppressWarnings("unused")
-	public static void serverTick(Level level, BlockPos pos, BlockState state, InkGeneratorBlockEntity blockEntity) {
-		blockEntity.inkDirty = false;
-		if (blockEntity.paused) {
-			return;
-		}
-		
-		if (blockEntity.shouldTickLogic(level)) {
-			if(blockEntity.tickLogic(level)) {
-				blockEntity.setInkDirty();
-			} else {
-				blockEntity.paused = true;
-			}
-		}
-		blockEntity.equalizeInkContainer(OUTPUT_SLOT_ID);
+	public InkGeneratorBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState, int tier, int inventorySize) {
+		super(blockEntityType, blockPos, blockState, new TotalCappedInkStorage((long) Math.pow(256, tier), Map.of()), inventorySize, INK_SLOT_ID);
 	}
 	
 	@Override
@@ -61,20 +45,18 @@ public abstract class InkGeneratorBlockEntity extends BaseInkBlockEntity<TotalCa
 		return new BaseInkScreenHandler(syncId, playerInventory, this, this.selectedColor);
 	}
 	
-	@Override
-	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		BaseInkScreenHandler.ScreenOpeningData.STREAM_CODEC.encode(buffer, new BaseInkScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
-	}
-	
-	protected boolean shouldTickLogic(Level world) {
+	public boolean shouldTickLogic(Level world) {
 		return world.getGameTime() % RUN_LOGIC_EVERY_X_TICKS == 0;
 	}
 	
-	protected abstract boolean tickLogic(Level level);
+	public abstract boolean tickLogic(Level level);
 	
 	@Override
 	public boolean canPlaceItem(int slot, ItemStack stack) {
-		return stack.getCapability(InkCapabilities.ITEM) != null;
+		if (slot == INK_SLOT_ID) {
+			return stack.getCapability(InkCapabilities.ITEM) != null;
+		}
+		return true;
 	}
 	
 }

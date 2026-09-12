@@ -18,10 +18,10 @@
         "advancement_identifier": "spectrum:unlocks/blocks/crystallarieum"
       }
     },
-    "collected_dragonbone": {
+    "plucked_resplendent_feather": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:break_cracked_dragonbone"
+        "advancement_identifier": "spectrum:pluck_resplendent_feather"
       }
     }
   }

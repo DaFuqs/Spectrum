@@ -8,6 +8,7 @@ import org.jgrapht.*;
 import org.jgrapht.graph.*;
 
 import java.util.*;
+import java.util.function.*;
 import java.util.stream.*;
 
 public class PastelNetwork<W extends Level> {
@@ -52,10 +53,6 @@ public class PastelNetwork<W extends Level> {
 			return false;
 		
 		return graph.containsEdge(pos1, pos2);
-	}
-	
-	public boolean removeEdge(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
-		return graph.removeEdge(node.getBlockPos(), parent.getBlockPos()) != null;
 	}
 	
 	public UUID getUUID() {
@@ -104,12 +101,12 @@ public class PastelNetwork<W extends Level> {
 					.mapToInt(vertices::indexOf)
 					.filter(v -> v != currentVertex)
 					.boxed()
-					.collect(Collectors.toList());
+					.collect(Collectors.toCollection(ArrayList::new));
 			
 			if (edgeIndexes.isEmpty())
 				continue;
 			
-			edgeIndexes.add(0, vertices.indexOf(vertex));
+			edgeIndexes.addFirst(vertices.indexOf(vertex));
 			
 			graphStorage.putIntArray("EdgeIndexes" + i, edgeIndexes);
 		}

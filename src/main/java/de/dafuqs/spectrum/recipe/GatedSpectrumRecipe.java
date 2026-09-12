@@ -77,7 +77,7 @@ public abstract class GatedSpectrumRecipe<C extends RecipeInput> implements Gate
 			EnchantmentHelper.setEnchantments(newOutput, recipeOutputEnchantments);
 		}
 		for (Object2IntMap.Entry<Holder<Enchantment>> entry : stackToCopyComponentsFromEnchantments.entrySet()) {
-			SpectrumEnchantmentHelper.addOrUpgradeEnchantment(newOutput, entry.getKey(), entry.getIntValue(), false, false);
+			newOutput = SpectrumEnchantmentHelper.addOrUpgradeEnchantment(newOutput, entry.getKey(), entry.getIntValue(), false, false).getB();
 		}
 		
 		return newOutput;

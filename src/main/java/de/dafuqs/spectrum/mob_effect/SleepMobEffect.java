@@ -96,7 +96,10 @@ public class SleepMobEffect extends MobEffect {
 		Holder<MobEffect> holder = effectInstance.getEffect();
 		
 		if (holder.is(SpectrumMobEffects.SOMNOLENCE) || holder.is(SpectrumMobEffects.CALMING)) {
+			cures.add(EffectCures.PROTECTED_BY_TOTEM);
 			cures.add(SpectrumEffectCures.SEDATIVES);
+		} else {
+			cures.add(SpectrumEffectCures.FRENZY);
 		}
 	}
 	

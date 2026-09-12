@@ -2,7 +2,6 @@ plugins {
 	id 'maven-publish'
 	id 'idea'
 	id 'net.neoforged.moddev' version '2.0.140'
-	id 'org.openrewrite.rewrite' version "latest.release"
 }
 
 version = project.mod_version
@@ -29,10 +28,6 @@ repositories {
 	}
 	// maven { url = "https://maven.kyrptonaught.dev" } // CustomPortalAPI as requirement for Starry Skies
 	mavenCentral()
-}
-
-rewrite {
-	activeRecipe "org.openrewrite.java.jspecify.JSpecifyBestPractices"
 }
 
 base {
@@ -67,6 +62,18 @@ neoForge {
 			programArgument '--uuid=5010ad09-0229-4d70-8a2c-bc254821dcb3'
 		}
 
+		// introduced in MC 1.21.9
+		// client_debug {
+		// 	client()
+		// 	programArgument '-DMC_DEBUG_ENABLED'
+		// 	programArgument '-DMC_DEBUG_PATHFINDING'
+		// 	programArgument '-DMC_DEBUG_SHAPES'
+		// 	programArgument '-DMC_DEBUG_STRUCTURES'
+		// 	programArgument '-DMC_DEBUG_STRUCTURE_EDIT_MODE'
+		// 	programArgument '-DMC_DEBUG_STRUCTURE_GOAL_SELECTOR'
+		// 	programArgument '-DMC_DEBUG_KEEP_JIGSAW_BLOCKS_DURING_STRUCTURE_GEN'
+		// }
+
 		server {
 			server()
 			programArgument '--nogui'
@@ -97,8 +104,6 @@ configurations {
 }
 
 dependencies {
-	rewrite "org.openrewrite.recipe:rewrite-migrate-java:3.34.1"
-
 	// TODO: remove additionalRuntimeClasspath for MC 1.21.9+
 	// see https://github.com/neoforged/ModDevGradle?tab=readme-ov-file#external-dependencies-runs
 	// jgrapht (the graph lib we use) and its dependencies
@@ -140,7 +145,6 @@ dependencies {
 
 	// Mod Compat
 	// KNOWN INCOMPAT: Colorful Hearts completely overrides neos heart rendering, making hearts unable to be modified by divinity / deadly poison
-	// implementation("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
 	/*implementation*/ /*runtimeOnly*/ compileOnly("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
 	/*implementation*/ /*runtimeOnly*/ compileOnly("com.unascribed:ears-api:${project.ears_version}") { transitive = false }
 	/*implementation*/ /*runtimeOnly*/ compileOnly("maven.modrinth:create:${project.create_version}") { transitive = false }

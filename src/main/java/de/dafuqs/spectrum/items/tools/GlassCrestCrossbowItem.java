@@ -25,7 +25,7 @@ import java.util.*;
 // right click ability: able to overload an already loaded arrow
 public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements ExtendedItemBarProvider, SlotBackgroundEffectProvider, InkPowered {
 	
-	private static final InkAmount OVERCHARGE_COST = new InkAmount(InkColors.WHITE, 1000);
+	private static final InkAmount OVERCHARGE_COST = new InkAmount(InkColors.WHITE, 100);
 	private static final int OVERCHARGE_DURATION_MAX_TICKS = 20 * 6; // 6 seconds
 	
 	public GlassCrestCrossbowItem(Properties settings) {
@@ -119,7 +119,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 	public float getProjectileVelocityModifier(ItemStack stack, LivingEntity shooter) {
 		float parent = super.getProjectileVelocityModifier(stack, shooter);
 		float overcharge = getOvercharge(stack);
-		return overcharge == 0 ? parent : parent * (1 + overcharge * 0.75F);
+		return overcharge == 0 ? parent : parent * (1 + overcharge * 1F);
 	}
 	
 	@Override

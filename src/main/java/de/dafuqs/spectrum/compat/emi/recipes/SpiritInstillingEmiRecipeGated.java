@@ -16,7 +16,7 @@ public class SpiritInstillingEmiRecipeGated extends GatedSpectrumEmiRecipe<Spiri
 	
 	public SpiritInstillingEmiRecipeGated(RecipeHolder<SpiritInstillerRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.SPIRIT_INSTILLER, entry, 116, 48);
-		inputs = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList();
+		inputs = ofIngredientStacks(recipe.getIngredientStacks());
 	}
 	
 	@Override

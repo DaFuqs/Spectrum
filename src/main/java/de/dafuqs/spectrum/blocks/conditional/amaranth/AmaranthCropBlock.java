@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.conditional.amaranth;
 
+import appeng.datagen.providers.tags.*;
 import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.*;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
+import net.neoforged.neoforge.common.util.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
@@ -111,11 +113,6 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 		} else {
 			return AGE_TO_SHAPE[state.getValue(this.getAgeProperty())];
 		}
-	}
-	
-	@Override
-	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-		return state.is(SpectrumBlockTags.AMARANTH_PLANTABLE);
 	}
 	
 }

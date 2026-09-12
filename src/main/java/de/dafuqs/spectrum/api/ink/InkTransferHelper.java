@@ -12,10 +12,8 @@ import java.util.*;
 public class InkTransferHelper {
 	
 	/**
-	 * Transfers Ink from storages with lots of Ink
-	 * to storages with less.
-	 * When called repeatedly (like every tick) the values of all storages will equalize,
-	 * limited by their max storage.
+	 * Transfers Ink from storages with lots of Ink to storages with less.
+	 * When called repeatedly (like every tick) the values of all storages will equalize, limited by their max storage.
 	 * Don't forget to mark your stuff dirty, like with InkStorageBlockEntity.setInkDirty()!
 	 * @param capabilities The InkCapabilities to run an equalization tick on
 	 */

@@ -37,7 +37,7 @@ public abstract class BlockMixin {
 		
 		// Resonance: drop self or modify drops for some items
 		if (EnchantmentHelper.hasTag(stack, SpectrumEnchantmentTags.RESONANT_BLOCK_DROPS)) {
-			ResonanceProcessor.applyResonance(world.registryAccess(), state, blockEntity, droppedStacks);
+			droppedStacks = ResonanceProcessor.applyResonance(world.registryAccess(), state, blockEntity, droppedStacks);
 		}
 		
 		if (!droppedStacks.isEmpty()) {

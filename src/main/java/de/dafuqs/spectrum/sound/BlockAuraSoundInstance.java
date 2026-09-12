@@ -113,13 +113,15 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 	
 	@Override
 	public boolean isStopped() {
-		boolean done;
+		boolean done = sources.isEmpty();
 		
-		if (volume <= 0) {
-			done = true;
-		} else {
-			Entity cameraEntity = Minecraft.getInstance().getCameraEntity();
-			done = cameraEntity == null || cameraEntity.position().distanceToSqr(absX, absY, absZ) > MAX_DISTANCE * MAX_DISTANCE;
+		if(!done) {
+			if (volume <= 0) {
+				done = true;
+			} else {
+				Entity cameraEntity = Minecraft.getInstance().getCameraEntity();
+				done = cameraEntity == null || cameraEntity.position().distanceToSqr(absX, absY, absZ) > MAX_DISTANCE * MAX_DISTANCE;
+			}
 		}
 		
 		if (done) {
@@ -130,7 +132,7 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 	
 	public static void addToExistingInstanceOrCreateNewOne(Level world, BlockPos pos) {
 		double nearestDistance = Double.MAX_VALUE;
-		@Nullable BlockAuraSoundInstance nearest = null;
+		BlockAuraSoundInstance nearest = null;
 		for (BlockAuraSoundInstance instance : INSTANCES) {
 			double squaredDistance = pos.distToLowCornerSqr(instance.absX, instance.absY, instance.absZ);
 			if (squaredDistance < nearestDistance) {
@@ -148,6 +150,12 @@ public class BlockAuraSoundInstance extends AbstractSoundInstance implements Tic
 			BlockAuraSoundInstance newInstance = new BlockAuraSoundInstance(SpectrumSoundEvents.OST_AZURE, world, pos.immutable());
 			INSTANCES.add(newInstance);
 			Minecraft.getInstance().getSoundManager().play(newInstance);
+		}
+	}
+	
+	public static void removeFromSoundInstances(Level world, BlockPos pos) {
+		for (BlockAuraSoundInstance instance : INSTANCES) {
+			instance.sources.remove(pos);
 		}
 	}
 	

@@ -24,7 +24,7 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 		if (!recipe.getFluidInput().isEmpty()) {
 			inputs.add(NeoForgeEmiIngredient.of(recipe.getFluidInput()));
 		}
-		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList());
+		inputs.addAll(ofIngredientStacks(recipe.getIngredientStacks()));
 		
 		displayedStacks = buildFermentationOutputVariations(recipe);
 	}

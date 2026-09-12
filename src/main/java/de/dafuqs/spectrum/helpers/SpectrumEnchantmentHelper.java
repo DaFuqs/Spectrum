@@ -165,13 +165,17 @@ public class SpectrumEnchantmentHelper {
 		return stack;
 	}
 	
-	public static int getLevel(HolderLookup.Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+	public static int getLevel(HolderLookup.@Nullable Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+		if(provider == null) return 0; // TooltipContext.getRegistries() can be null - see https://github.com/DaFuqs/Spectrum/issues/960
+		
 		HolderLookup.RegistryLookup<Enchantment> lookup = provider.lookup(Registries.ENCHANTMENT).get();
 		Optional<Holder.Reference<Enchantment>> ench = lookup.get(enchantment);
 		return ench.isEmpty() ? 0 : stack.getEnchantmentLevel(ench.get());
 	}
 	
-	public static int getTagLevel(HolderLookup.Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+	public static int getTagLevel(HolderLookup.@Nullable Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+		if(provider == null) return 0; // TooltipContext.getRegistries() can be null - see https://github.com/DaFuqs/Spectrum/issues/960
+		
 		HolderLookup.RegistryLookup<Enchantment> lookup = provider.lookup(Registries.ENCHANTMENT).get();
 		Optional<Holder.Reference<Enchantment>> ench = lookup.get(enchantment);
 		return ench.isEmpty() ? 0 : stack.getTagEnchantments().getLevel(ench.get());

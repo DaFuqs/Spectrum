@@ -59,7 +59,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onPlace(state, world, pos, oldState, notify);
 		if (!world.isClientSide()) {
-			updateConnectedUpgradeBlock((ServerLevel) world, pos);
+			updateConnectedUpgradeableBlocks((ServerLevel) world, pos);
 		}
 	}
 	
@@ -67,7 +67,7 @@ public class UpgradeBlock extends BaseEntityBlock {
 	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
 		super.onRemove(state, world, pos, newState, moved);
 		if (!world.isClientSide()) {
-			updateConnectedUpgradeBlock((ServerLevel) world, pos);
+			updateConnectedUpgradeableBlocks((ServerLevel) world, pos);
 		}
 	}
 
@@ -75,13 +75,13 @@ public class UpgradeBlock extends BaseEntityBlock {
 	 * When placed or removed the upgrade block searches for a valid Upgradeable block
 	 * and triggers it to update its upgrades
 	 */
-	private void updateConnectedUpgradeBlock(ServerLevel world, BlockPos pos) {
+	private void updateConnectedUpgradeableBlocks(ServerLevel level, BlockPos pos) {
 		for (Vec3i possibleUpgradeBlockOffset : Upgradeable.POSSIBLE_UPGRADE_POS_OFFSETS) {
 			BlockPos currentPos = pos.offset(possibleUpgradeBlockOffset);
-			BlockEntity blockEntity = world.getBlockEntity(currentPos);
+			BlockEntity blockEntity = level.getBlockEntity(currentPos);
 			if (blockEntity instanceof Upgradeable upgradeable && upgradeable.getUpgradePosOffsets().contains(possibleUpgradeBlockOffset)) {
-				upgradeable.resetUpgrades();
-				playConnectedParticles(world, pos, currentPos);
+				upgradeable.calculateUpgrades(level);
+				playConnectedParticles(level, pos, currentPos);
 			}
 		}
 	}

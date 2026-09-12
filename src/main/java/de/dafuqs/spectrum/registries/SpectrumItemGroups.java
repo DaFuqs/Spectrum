@@ -188,9 +188,9 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.STAFF_OF_REMEMBRANCE);
 					entries.accept(SpectrumItems.CONSTRUCTORS_STAFF);
 					entries.accept(SpectrumItems.EXCHANGING_STAFF);
-					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.FORTUNE, 3, false, false).ifPresent(entries::accept);
-					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.SILK_TOUCH, 1, false, false).ifPresent(entries::accept);
-					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), SpectrumEnchantmentKeys.RESONANCE, 1, false, false).ifPresent(entries::accept);
+					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.FORTUNE, 3, true, true).ifPresent(entries::accept);
+					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.SILK_TOUCH, 1, true, true).ifPresent(entries::accept);
+					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), SpectrumEnchantmentKeys.RESONANCE, 1, true, true).ifPresent(entries::accept);
 					entries.accept(SpectrumItems.BLOCK_FLOODER);
 					entries.accept(SpectrumItems.ENDER_SPLICE);
 					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.ENDER_SPLICE.get(), Map.of(SpectrumEnchantmentKeys.RESONANCE, 1, SpectrumEnchantmentKeys.INDESTRUCTIBLE, 1)));
@@ -839,6 +839,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.POLISHED_BLACKSLAG_PRESSURE_PLATE);
 					entries.accept(SpectrumBlocks.INFESTED_BLACKSLAG);
 					entries.accept(SpectrumBlocks.SHALE_CLAY);
+					entries.accept(SpectrumBlocks.TILLED_SHALE_CLAY);
 					entries.accept(SpectrumBlocks.POLISHED_SHALE_CLAY);
 					entries.accept(SpectrumBlocks.EXPOSED_POLISHED_SHALE_CLAY);
 					entries.accept(SpectrumBlocks.WEATHERED_POLISHED_SHALE_CLAY);
@@ -882,6 +883,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.BONE_ASH_SHINGLES);
 					entries.accept(SpectrumBlocks.BLACK_MATERIA);
 					entries.accept(SpectrumBlocks.SLUSH);
+					entries.accept(SpectrumBlocks.TILLED_SLUSH);
 					entries.accept(SpectrumBlocks.OVERGROWN_SLUSH);
 					entries.accept(SpectrumBlocks.BLACK_SLUDGE);
 					

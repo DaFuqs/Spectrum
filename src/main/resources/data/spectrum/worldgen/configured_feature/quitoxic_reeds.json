@@ -8,6 +8,18 @@
     "prioritize_tip": false,
     "layers": [
       {
+        "height": 1,
+        "provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "spectrum:quitoxic_reeds",
+            "Properties": {
+              "fluid_logged": "water"
+            }
+          }
+        }
+      },
+      {
         "height": {
           "type": "minecraft:uniform",
           "min_inclusive": 2,

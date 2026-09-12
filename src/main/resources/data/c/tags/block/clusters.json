@@ -9,6 +9,11 @@
     },
 
     {
+      "id": "nomansland:quartzite_cluster",
+      "required": false
+    },
+
+    {
       "id": "mythicupgrades:ametrine_cluster",
       "required": false
     },

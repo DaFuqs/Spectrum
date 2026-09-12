@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.blocks.ink;
 
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
@@ -13,6 +15,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jspecify.annotations.*;
 
 public abstract class BaseInkBlock extends HorizontalDirectionalBlock implements EntityBlock {
 	
@@ -52,16 +55,22 @@ public abstract class BaseInkBlock extends HorizontalDirectionalBlock implements
         if (world.isClientSide()) {
             return InteractionResult.SUCCESS;
         } else {
-            this.openScreen(world, pos, player);
-            return InteractionResult.CONSUME;
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof BaseInkBlockEntity<?> inkBlockEntity) {
+				inkBlockEntity.setOwner(player);
+				player.openMenu(inkBlockEntity);
+			}
+			return InteractionResult.CONSUME;
         }
 	}
 	
-	protected void openScreen(Level world, BlockPos pos, Player player) {
+	@Override
+	public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BaseInkBlockEntity<?> inkBlockEntity) {
-			inkBlockEntity.setOwner(player);
-			player.openMenu(inkBlockEntity);
+			if (placer instanceof Player player) {
+				inkBlockEntity.setOwner(player);
+			}
 		}
 	}
 	
@@ -91,6 +100,10 @@ public abstract class BaseInkBlock extends HorizontalDirectionalBlock implements
 	public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
 		Containers.dropContentsOnDestroy(state, newState, world, pos);
 		super.onRemove(state, world, pos, newState, moved);
+	}
+	
+	protected static <T extends BlockEntity> @Nullable BlockEntityTicker<T> createInkBlockTicker(Level level, BlockEntityType<T> serverType, BlockEntityType<? extends BaseInkBlockEntity<?>> clientType) {
+		return level.isClientSide ? null : Support.checkType(serverType, clientType, BaseInkBlockEntity::serverTick);
 	}
 	
 }

@@ -28,11 +28,9 @@
         }
       },
       "predicates": {
-        "spectrum:infused_beverage": [
-          {
-            "variants": "malt_beer"
-          }
-        ]
+        "spectrum:infused_beverage": {
+          "variant": "malt_beer"
+        }
       }
     },
     "H": "minecraft:cooked_rabbit"

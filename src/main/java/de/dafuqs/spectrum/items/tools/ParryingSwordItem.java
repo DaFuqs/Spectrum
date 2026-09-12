@@ -59,7 +59,7 @@ public abstract class ParryingSwordItem extends SwordItem implements ExtendedIte
 		return ItemUtils.startUsingInstantly(world, user, hand);
 	}
 	
-	public abstract float getBlockingMultiplier(DamageSource source, ItemStack stack, LivingEntity entity, int usedTime);
+	public abstract float getBlockedDamageMultiplier(DamageSource source, ItemStack stack, LivingEntity entity, int usedTime);
 	
 	public boolean canPerfectParry(ItemStack stack, LivingEntity entity, int usedTime) {
 		return usedTime <= getPerfectParryWindow(entity, stack);

@@ -17,7 +17,9 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
+import net.minecraft.world.level.*;
 import net.neoforged.fml.event.lifecycle.*;
+import org.jspecify.annotations.*;
 
 public class SpectrumModelPredicateProviders {
 	
@@ -197,11 +199,6 @@ public class SpectrumModelPredicateProviders {
 		);
 	}
 	
-	private static void registerBlockingPredicate(Item item) {
-		ItemProperties.register(item, ResourceLocation.parse("blocking"), (stack, world, entity, seed) ->
-				entity != null && entity.isBlocking() ? 1.0F : 0.0F);
-	}
-	
 	private static void registerBowPredicates(Item bowItem) {
 		ItemProperties.register(bowItem, ResourceLocation.parse("pull"), (stack, world, entity, i) ->
 				entity == null || entity.getUseItem() != stack ? 0.0F : (float) (stack.getUseDuration(entity) - entity.getUseItemRemainingTicks()) / 20.0F);
@@ -240,8 +237,29 @@ public class SpectrumModelPredicateProviders {
 	}
 	
 	private static void registerEnderSplicePredicates(Item item) {
-		ItemProperties.register(item, ResourceLocation.parse("bound"), (stack, world, entity, i) ->
-				EnderSpliceItem.hasTeleportTarget(stack) ? 1.0F : 0.0F);
+		ItemProperties.register(item, ResourceLocation.parse("bound"), (stack, level, entity, i) -> {
+			EnderSpliceComponent component = stack.get(SpectrumDataComponentTypes.ENDER_SPLICE);
+			if(component == null) {
+				return 0.0F;
+			}
+			if(component.targetUUID().isPresent()) {
+				return 0.1F;
+			}
+			if(component.dimension().isPresent()) {
+				ResourceKey<Level> dimension = component.dimension().get();
+				return switch (dimension.location().toString()) {
+					case "minecraft:overworld" -> 0.2F;
+					case "minecraft:the_nether" -> 0.3F;
+					case "minecraft:the_end" -> 0.4F;
+					case "spectrum:deeper_down" -> 0.5F;
+					case "spectrum:the_conservatory" -> 0.6F;
+					case "aether:the_aether" -> 0.7F;
+					case "ae2:spatial_storage" -> 0.8F;
+					default -> 1.0F;
+				};
+			}
+			return 0.0F;
+		});
 	}
 	
 	private static void registerAshenCircletPredicates(Item item) {

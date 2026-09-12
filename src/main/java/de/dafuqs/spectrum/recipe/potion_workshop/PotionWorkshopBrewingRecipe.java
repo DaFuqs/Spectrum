@@ -239,7 +239,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	private static void setCustomPotionEffects(ItemStack stack, PotionMod potionMod, List<InkPoweredMobEffectInstance> effects) {
 		List<MobEffectInstance> instances = new ArrayList<>();
 		for (InkPoweredMobEffectInstance e : effects) {
-			instances.add(e.getStatusEffectInstance());
+			instances.add(e.getFreshStatusEffectInstance());
 		}
 		
 		int potionColor = InkPoweredPotionContentsComponent.getColor(effects).orElse(0);

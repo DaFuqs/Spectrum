@@ -41,6 +41,7 @@ import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
+import de.dafuqs.spectrum.blocks.portal.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.redstone.*;
@@ -1312,6 +1313,7 @@ public class SpectrumBlocks {
 	
 	public static final DeferredBlock<Block> STUCK_STORM_STONE = register(defaultWestHorizontalFacing(block("stuck_storm_stone", () -> new StuckStormStoneBlock(settings(MapColor.NONE, SoundType.SMALL_AMETHYST_BUD, 0.0F).noCollission().noOcclusion().isSuffocating(SpectrumBlocks::never).noTerrainParticles().isViewBlocking(SpectrumBlocks::never).replaceable())), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<DeeperDownPortalBlock> DEEPER_DOWN_PORTAL = register(block("deeper_down_portal", () -> new DeeperDownPortalBlock(settings(MapColor.COLOR_BLACK, SoundType.EMPTY, -1.0F, 3600000.0F).isValidSpawn(Blocks::never).pushReaction(PushReaction.BLOCK).lightLevel(state -> 8).noLootTable())).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(DeeperDownPortalBlock.FACING_UP, ModelLocationUtils.getModelLocation(block, "_up"), ModelLocationUtils.getModelLocation(block)))));
+	public static final DeferredBlock<ConservatoryPortalBlock> CONSERVATORY_PORTAL = register(block("conservatory_portal", () -> new ConservatoryPortalBlock(settings(MapColor.COLOR_BLACK, SoundType.EMPTY, -1.0F, 3600000.0F).isValidSpawn(Blocks::never).pushReaction(PushReaction.BLOCK).lightLevel(state -> 8).noLootTable())).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(DeeperDownPortalBlock.FACING_UP, ModelLocationUtils.getModelLocation(block, "_up"), ModelLocationUtils.getModelLocation(block)))));
 	
 	private static BlockBehaviour.Properties upgrade() {
 		return BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT.get()).forceSolidOn();

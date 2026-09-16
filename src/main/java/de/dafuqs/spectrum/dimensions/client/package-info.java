@@ -1,7 +1,7 @@
 @NullMarked
 @MethodsReturnNonnullByDefault
 @FieldsAreNonnullByDefault
-package de.dafuqs.spectrum.deeper_down;
+package de.dafuqs.spectrum.dimensions.client;
 
 import net.minecraft.*;
 import org.jspecify.annotations.*;

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.particle.client;
 
 import de.dafuqs.spectrum.config.*;
-import de.dafuqs.spectrum.deeper_down.client.*;
+import de.dafuqs.spectrum.dimensions.client.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.client.multiplayer.*;

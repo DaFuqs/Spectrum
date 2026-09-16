@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import com.google.common.collect.*;
 import com.llamalad7.mixinextras.sugar.*;
-import de.dafuqs.spectrum.deeper_down.*;
+import de.dafuqs.spectrum.dimensions.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.NoiseChunk.*;

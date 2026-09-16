@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.deeper_down.client;
+package de.dafuqs.spectrum.dimensions.client;
 
 import net.minecraft.client.renderer.*;
 import net.minecraft.world.phys.*;

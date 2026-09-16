@@ -48,21 +48,21 @@ public class SpectrumShaders {
 		noiseEdgePostProcess = Optional.empty();
 	}
 	
-	public static void updateShaders(Minecraft client, ClientLevel world) {
+	public static void updateShaders(Minecraft client, ClientLevel level) {
 		tickNoise(client);
-		if (world.dimension().equals(SpectrumDimensionKeys.DIMENSION_KEY)) {
+		if (SpectrumDimensionKeys.isSpectrumDimension(level)) {
 			if (colorGradingPostProcess.isEmpty()) {
 				colorGradingPostProcess = SpectrumShaders.loadPostProcess(client, SpectrumShaders.COLOR_GRADING_ID);
 			}
-			tickColorGrading(world);
+			tickColorGrading(level);
 		} else if (colorGradingPostProcess.isPresent()) {
 			colorGradingPostProcess.get().close();
 			colorGradingPostProcess = Optional.empty();
 		}
 	}
 	
-	private static void tickColorGrading(ClientLevel world) {
-		if (world.dimension().equals(SpectrumDimensionKeys.DIMENSION_KEY)) {
+	private static void tickColorGrading(ClientLevel level) {
+		if (SpectrumDimensionKeys.isSpectrumDimension(level)) {
 			colorGradingPostProcess.ifPresent(pps -> {
 				for (int i = 0; i < 5; i++) {
 					pps.setUniform(COLOR_GRADING_UNIFORMS[i], ColorGrading.GRADING_OUT[i]);

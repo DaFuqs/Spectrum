@@ -1,6 +1,8 @@
 {
   "biome": "spectrum:black_langast",
+  "ultradark": true,
   "environmental_data": {
+    "ultradark": true,
     "environmental_lighting_multiplier": 0.6,
     "fog_brightness_multiplier": 0.6,
     "fog_near_multiplier": 0.1,

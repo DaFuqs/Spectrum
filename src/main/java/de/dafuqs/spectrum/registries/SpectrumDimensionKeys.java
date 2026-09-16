@@ -7,9 +7,17 @@ import net.minecraft.world.level.*;
 
 public class SpectrumDimensionKeys {
 	
-	public static final ResourceLocation DIMENSION_ID = SpectrumCommon.locate("deeper_down");
-	public static final ResourceKey<Level> DIMENSION_KEY = ResourceKey.create(Registries.DIMENSION, DIMENSION_ID);
+	public static final ResourceLocation DEEPER_DOWN_ID = SpectrumCommon.locate("deeper_down");
+	public static final ResourceKey<Level> DEEPER_DOWN_KEY = ResourceKey.create(Registries.DIMENSION, DEEPER_DOWN_ID);
 	
-	public static final ResourceLocation DIMENSION_EFFECTS_ID = SpectrumCommon.locate("deeper_down");
+	public static final ResourceLocation DEEPER_DOWN_SPECIAL_EFFECTS_ID = SpectrumCommon.locate("deeper_down");
+	
+	public static final ResourceLocation CONSERVATIONARY_ID = SpectrumCommon.locate("conservationary");
+	public static final ResourceKey<Level> CONSERVATIONARY_KEY = ResourceKey.create(Registries.DIMENSION, CONSERVATIONARY_ID);
+	
+	public static boolean isSpectrumDimension(Level level) {
+		ResourceKey<Level> dimensionKey = level.dimension();
+		return dimensionKey.equals(SpectrumDimensionKeys.DEEPER_DOWN_KEY) ||  dimensionKey.equals(SpectrumDimensionKeys.CONSERVATIONARY_KEY);
+	}
 	
 }

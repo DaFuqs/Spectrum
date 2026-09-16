@@ -5,14 +5,14 @@ import net.minecraft.world.phys.*;
 import org.jspecify.annotations.*;
 
 
-public class DeeperDownDimensionEffects extends DimensionSpecialEffects {
+public class DeeperDownDimensionSpecialEffects extends DimensionSpecialEffects {
 	
-	public DeeperDownDimensionEffects() {
+	public DeeperDownDimensionSpecialEffects() {
 		super(Float.NaN, false, DimensionSpecialEffects.SkyType.NONE, false, true);
 	}
 	
 	@Override
-	public @Nullable float[] getSunriseColor(float skyAngle, float tickDelta) {
+	public float @Nullable [] getSunriseColor(float skyAngle, float tickDelta) {
 		return null;
 	}
 	

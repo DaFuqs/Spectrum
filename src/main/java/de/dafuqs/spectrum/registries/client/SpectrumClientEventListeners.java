@@ -127,7 +127,7 @@ public class SpectrumClientEventListeners {
 	
 	@SubscribeEvent
 	private static void registerDimensionSpecialEffectsEvent(RegisterDimensionSpecialEffectsEvent event) {
-		event.register(SpectrumDimensionKeys.DIMENSION_EFFECTS_ID, new DeeperDownDimensionEffects());
+		event.register(SpectrumDimensionKeys.DEEPER_DOWN_SPECIAL_EFFECTS_ID, new DeeperDownDimensionSpecialEffects());
 	}
 	
 	@SubscribeEvent

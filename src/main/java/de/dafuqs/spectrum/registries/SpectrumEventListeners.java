@@ -312,8 +312,8 @@ public class SpectrumEventListeners {
 	@SubscribeEvent
 	public static void damagePlayersOutOfBoundsInDD(PlayerTickEvent.Post event) {
 		if(event.getEntity() instanceof ServerPlayer player) {
-			Level world = player.level();
-			if (!player.isCreative() && !player.isSpectator() && world.dimension() == SpectrumDimensionKeys.DIMENSION_KEY && player.getY() > world.getMaxBuildHeight()) {
+			Level level = player.level();
+			if (!player.isCreative() && !player.isSpectator() && SpectrumDimensionKeys.isSpectrumDimension(level) && player.getY() > level.getMaxBuildHeight()) {
 				player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
 				if (player.isDeadOrDying()) {
 					Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");

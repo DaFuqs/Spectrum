@@ -38,7 +38,7 @@ public class DimensionReverb {
 			if (level == null) {
 				return;
 			}
-			if (level.dimension().location() != SpectrumDimensionKeys.DIMENSION_ID) {
+			if (level.dimension().location() != SpectrumDimensionKeys.DEEPER_DOWN_ID) {
 				return;
 			}
 			

@@ -107,8 +107,13 @@ public class ConservatoryDataStore extends SavedData {
 		return true;
 	}
 	
-	public @Nullable BlockPos getOverworldDestinationForPlayer(ServerLevel serverLevel, BlockPos conservatoryPos) {
-		// TODO
+	public @Nullable BlockPos getOverworldDestinationForPlayer(ServerLevel conservatory, BlockPos portalPos, Player player) {
+		UUID uuid = player.getUUID();
+		for(Entry entry : this.entries) {
+			if(entry.player.equals(uuid) && entry.conservatoryPos.distManhattan(player.blockPosition()) > MAX_ALLOWED_PLAYER_DISTANCE_FROM_ORIGIN) {
+				return entry.overworldPos;
+			}
+		}
 		return null;
 	}
 	

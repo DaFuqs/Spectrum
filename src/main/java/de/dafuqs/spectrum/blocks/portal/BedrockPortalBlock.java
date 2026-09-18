@@ -79,7 +79,7 @@ public abstract class BedrockPortalBlock extends Block {
 		builder.add(FACING_UP);
 	}
 	
-	public void teleportToSafePosition(Level world, Entity entity, BlockPos targetPos, int maxRadius) {
+	public static void teleportToSafePosition(Level world, Entity entity, BlockPos targetPos, int maxRadius) {
 		for (BlockPos bp : BlockPos.withinManhattan(targetPos, maxRadius, maxRadius, maxRadius)) {
 			entity.setPos(Vec3.atBottomCenterOf(bp));
 			if (world.getBlockState(bp.below()).getCollisionShape(world, bp.below()) == Shapes.block()

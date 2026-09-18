@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.blocks.portal.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.dimensions.*;
@@ -62,6 +63,8 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.level.levelgen.structure.*;
+import net.minecraft.world.level.portal.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
@@ -87,6 +90,7 @@ import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
+import java.util.function.*;
 
 @EventBusSubscriber(modid = SpectrumCommon.MOD_ID)
 public class SpectrumEventListeners {
@@ -336,10 +340,31 @@ public class SpectrumEventListeners {
 						Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_conservatory_bounds", "get_rekt");
 					}
 				}
-				
-				
 			}
 		}
+	}
+	
+	@SubscribeEvent
+	public static void onChorusFruitTeleport(EntityTeleportEvent.ChorusFruit event) {
+		if(!(event.getEntityLiving() instanceof ServerPlayer player)) {
+			return;
+		}
+		
+		ServerLevel currentLevel = (ServerLevel) player.level();
+		BlockPos playerPos = player.blockPosition();
+		StructureStart structureStart = currentLevel.structureManager().getStructureWithPieceAt(playerPos, structureHolder -> structureHolder.is(SpectrumStructureTags.END_CITIES));
+		// yes, this can and will be null outside any structure
+		if(structureStart.getStructure() == null) {
+			return;
+		}
+		
+		BoundingBox boundingBox = structureStart.getBoundingBox();
+		if(boundingBox.isInside(playerPos.below(5))) {
+			return;
+		}
+		
+		// we are at the bottom of an end city, whee!
+		ConservatoryDataStore.teleportToConservatory(boundingBox.getCenter(), currentLevel, player, SpectrumStructureIDs.END_TEST);
 	}
 	
 	@SubscribeEvent

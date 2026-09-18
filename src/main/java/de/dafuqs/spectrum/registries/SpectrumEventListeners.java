@@ -12,6 +12,7 @@ import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
+import de.dafuqs.spectrum.dimensions.*;
 import de.dafuqs.spectrum.entity.spawners.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -310,14 +311,33 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public static void damagePlayersOutOfBoundsInDD(PlayerTickEvent.Post event) {
+	public static void damagePlayersOutOfDimensionBounds(PlayerTickEvent.Post event) {
 		if(event.getEntity() instanceof ServerPlayer player) {
 			Level level = player.level();
-			if (!player.isCreative() && !player.isSpectator() && SpectrumDimensionKeys.isSpectrumDimension(level) && player.getY() > level.getMaxBuildHeight()) {
-				player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
-				if (player.isDeadOrDying()) {
-					Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");
+			if (!player.isCreative() && !player.isSpectator()) {
+				ResourceKey<Level> dimensionKey = level.dimension();
+				boolean isDeeperDown = dimensionKey.equals(SpectrumDimensionKeys.DEEPER_DOWN_KEY);
+				boolean isConservatory = dimensionKey.equals(SpectrumDimensionKeys.CONSERVATORY_KEY);
+				
+				if(isDeeperDown) {
+					if(player.getY() < level.getMaxBuildHeight()) {
+						return;
+					}
+					player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
+					if (player.isDeadOrDying()) {
+						Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");
+					}
+				} else if(isConservatory) {
+					if((player.getY() < level.getMaxBuildHeight() || !ConservatoryDataStore.getInstance(level.getServer()).isPlayerOutsideConservatoryBounds(level, player))) {
+						return;
+					}
+					player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
+					if (player.isDeadOrDying()) {
+						Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_conservatory_bounds", "get_rekt");
+					}
 				}
+				
+				
 			}
 		}
 	}
@@ -997,7 +1017,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void onEntityJoinLevel(EntityJoinLevelEvent event) {
+	private static void onEntityJoinLevel(FinalizeSpawnEvent event) {
 		event.getEntity().gameEvent(SpectrumGameEvents.ENTITY_SPAWNED);
 	}
 	

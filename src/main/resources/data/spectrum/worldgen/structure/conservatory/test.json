@@ -1,0 +1,48 @@
+{
+  "type": "minecraft:jigsaw",
+  "biomes": "spectrum:the_conservatory",
+  "step": "strongholds",
+  "spawn_overrides": {
+    "ambient": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "axolotls": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "creature": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "misc": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "monster": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "underground_water_creature": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "water_ambient": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "water_creature": {
+      "bounding_box": "full",
+      "spawns": []
+    }
+  },
+  "terrain_adaptation": "none",
+  "start_pool": "spectrum:city_below/city_centers",
+  "size": 7,
+  "start_height": {
+    "absolute": 64
+  },
+  "max_distance_from_center": 116,
+  "use_expansion_hack": false,
+  "liquid_settings": "ignore_waterlogging"
+}

@@ -12,7 +12,7 @@ public class SpectrumDimensionKeys {
 	
 	public static final ResourceLocation DEEPER_DOWN_SPECIAL_EFFECTS_ID = SpectrumCommon.locate("deeper_down");
 	
-	public static final ResourceLocation CONSERVATORY_ID = SpectrumCommon.locate("conservatory");
+	public static final ResourceLocation CONSERVATORY_ID = SpectrumCommon.locate("the_conservatory");
 	public static final ResourceKey<Level> CONSERVATORY_KEY = ResourceKey.create(Registries.DIMENSION, CONSERVATORY_ID);
 	
 	public static boolean isSpectrumDimension(Level level) {

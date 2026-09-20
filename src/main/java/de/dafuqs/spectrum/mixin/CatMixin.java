@@ -37,7 +37,6 @@ public abstract class CatMixin extends TamableAnimal {
 			goalSelector.getAvailableGoals().stream()
 					.filter( wrappedGoal -> wrappedGoal != null && wrappedGoal.getGoal() instanceof WaterAvoidingRandomStrollGoal)
 					.forEach(wrappedGoal -> goalSelector.removeGoal(wrappedGoal.getGoal()));
-			goalSelector.addGoal(4, new TryFindWaterGoal((Cat) (Object) this));
 			goalSelector.addGoal(5, new CatusStrollGoal((Cat) (Object) this, 1.0F));
 		} else if(variant.equals(SpectrumCatVariants.FELIS)) {
 			goalSelector.getAvailableGoals().stream()

@@ -6,11 +6,13 @@ import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
+import net.minecraft.core.particles.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -114,109 +116,105 @@ public class NaturesStaffItem extends Item implements InkPowered {
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
 		Level world = context.getLevel();
-		
 		Player user = context.getPlayer();
 		if (user == null) {
 			return InteractionResult.FAIL;
 		}
 		
-		if (world.isClientSide()) {
-			if (canUse(user)) {
-				return InteractionResult.PASS;
-			} else {
-				playDenySound(world, user);
-				return InteractionResult.FAIL;
-			}
+		if (!canUse(user)) {
+			playDenySound(world, user);
+			return InteractionResult.FAIL;
 		}
 		
 		if (user.getTicksUsingItem() < 2) {
 			return InteractionResult.PASS;
 		}
 		
-		if (user instanceof ServerPlayer player) {
-			ItemStack stack = context.getItemInHand();
-			BlockPos blockPos = context.getClickedPos();
-			
-			if (!GenericClaimModsCompat.canInteract(world, blockPos, user)) {
-				playDenySound(world, context.getPlayer());
-				return InteractionResult.FAIL;
-			}
-			
-			if (user.getTicksUsingItem() % 10 == 0) {
-				spawnParticlesAndEffect(world, context.getClickedPos());
-				
-				boolean success = false;
-				BlockState sourceState = world.getBlockState(blockPos);
-				
-				if (sourceState.getBlock() instanceof NaturesStaffTriggered naturesStaffTriggered && naturesStaffTriggered.canUseNaturesStaff(world, blockPos, sourceState)) {
-					if (naturesStaffTriggered.onNaturesStaffUse(world, blockPos, sourceState, player)) {
-						success = true;
-					}
-				} else {
-					// loaded as convertible? => convert
-					BlockState destinationState = NaturesStaffConversionDataLoader.getConvertedBlockState(sourceState.getBlock());
-					if (destinationState != null) {
-						if (destinationState.getBlock() instanceof SimpleWaterloggedBlock) {
-							if (touchesWater(world, blockPos)) {
-								destinationState = destinationState.setValue(CoralPlantBlock.WATERLOGGED, true);
-							} else {
-								destinationState = destinationState.setValue(CoralPlantBlock.WATERLOGGED, false);
-							}
-						}
-						world.setBlock(blockPos, destinationState, 3);
-						
-						payForUse(player, stack, INK_COST, ITEM_COST);
-						success = true;
-					} else if (sourceState.is(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
-						// blockstate marked as stackable => stack more on top!
-						int i = 0;
-						BlockState state;
-						do {
-							state = world.getBlockState(context.getClickedPos().above(i));
-							i++;
-						} while (state.is(sourceState.getBlock()));
-						
-						BlockPos targetPos = context.getClickedPos().above(i - 1);
-						if (tryPlaceBlock(sourceState, world, targetPos, Direction.DOWN, Direction.UP)) {
-							success = true;
-						}
-					} else if (sourceState.is(SpectrumBlockTags.NATURES_STAFF_SPREADABLE)) {
-						RandomSource random = world.getRandom();
-						
-						for (int i = 0; i < 5; i++) {
-							BlockPos randomOffsetPos = blockPos.offset(random.nextIntBetweenInclusive(-3, 3), random.nextIntBetweenInclusive(-3, 3), random.nextIntBetweenInclusive(-3, 3));
-							if (tryPlaceBlock(sourceState, world, randomOffsetPos, Direction.getRandom(random), Direction.getRandom(random))) {
-								success = true;
-								break;
-							}
-						}
-					} else if (sourceState.isRandomlyTicking() && sourceState.is(SpectrumBlockTags.NATURES_STAFF_TICKABLE)) {
-						// random tickable and whitelisted? => tick
-						// without whitelist we would be able to tick budding blocks, ...
-						
-						if (world instanceof ServerLevel) {
-							sourceState.randomTick((ServerLevel) world, blockPos, world.getRandom());
-						}
-						success = true;
-					} else if (BoneMealItem.growCrop(Items.BONE_MEAL.getDefaultInstance(), world, blockPos)) {
-						// fertilizable => grow!
-						success = true;
-					} else {
-						if (sourceState.isFaceSturdy(world, blockPos, context.getClickedFace()) && BoneMealItem.growWaterPlant(Items.BONE_MEAL.getDefaultInstance(), world, blockPos.relative(context.getClickedFace()), context.getClickedFace())) {
-							success = true;
-						}
-					}
-				}
-				
-				if (success) {
-					payForUse(player, stack, INK_COST, ITEM_COST);
-					SpectrumAdvancementCriteria.NATURES_STAFF_CONVERSION.trigger(player, sourceState, world.getBlockState(blockPos));
-					return InteractionResult.CONSUME;
-				}
-			}
-			
+		BlockPos clickedPos = context.getClickedPos();
+		ItemStack stack = context.getItemInHand();
+		
+		if (!GenericClaimModsCompat.canInteract(world, clickedPos, user)) {
+			playDenySound(world, context.getPlayer());
+			return InteractionResult.FAIL;
 		}
 		
+		if (user.getTicksUsingItem() % 10 != 0) {
+			return InteractionResult.PASS;
+		}
+		
+		if(world.isClientSide()) {
+			return InteractionResult.SUCCESS;
+		}
+		
+		boolean success = false;
+		BlockState sourceState = world.getBlockState(clickedPos);
+		
+		if (sourceState.getBlock() instanceof NaturesStaffTriggered naturesStaffTriggered && naturesStaffTriggered.canUseNaturesStaff(world, clickedPos, sourceState)) {
+			if (naturesStaffTriggered.onNaturesStaffUse(world, clickedPos, sourceState, user)) {
+				success = true;
+			}
+		} else {
+			// loaded as convertible? => convert
+			BlockState destinationState = NaturesStaffConversionDataLoader.getConvertedBlockState(sourceState.getBlock());
+			if (destinationState != null) {
+				if (destinationState.getBlock() instanceof SimpleWaterloggedBlock) {
+					if (touchesWater(world, clickedPos)) {
+						destinationState = destinationState.setValue(CoralPlantBlock.WATERLOGGED, true);
+					} else {
+						destinationState = destinationState.setValue(CoralPlantBlock.WATERLOGGED, false);
+					}
+				}
+				world.setBlock(clickedPos, destinationState, 3);
+				
+				payForUse(user, stack, INK_COST, ITEM_COST);
+				success = true;
+			} else if (sourceState.is(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
+				// blockstate marked as stackable => stack more on top!
+				int i = 0;
+				BlockState state;
+				do {
+					state = world.getBlockState(clickedPos.above(i));
+					i++;
+				} while (state.is(sourceState.getBlock()));
+				
+				BlockPos targetPos = clickedPos.above(i - 1);
+				if (tryPlaceBlock(sourceState, world, targetPos, Direction.DOWN, Direction.UP)) {
+					success = true;
+				}
+			} else if (sourceState.is(SpectrumBlockTags.NATURES_STAFF_SPREADABLE)) {
+				RandomSource random = world.getRandom();
+				
+				for (int i = 0; i < 5; i++) {
+					BlockPos randomOffsetPos = clickedPos.offset(random.nextIntBetweenInclusive(-3, 3), random.nextIntBetweenInclusive(-3, 3), random.nextIntBetweenInclusive(-3, 3));
+					if (tryPlaceBlock(sourceState, world, randomOffsetPos, Direction.getRandom(random), Direction.getRandom(random))) {
+						success = true;
+						break;
+					}
+				}
+			} else if (sourceState.isRandomlyTicking() && sourceState.is(SpectrumBlockTags.NATURES_STAFF_TICKABLE)) {
+				// random tickable and whitelisted? => tick
+				// without whitelist we would be able to tick budding blocks, ...
+				
+				if (world instanceof ServerLevel) {
+					sourceState.randomTick((ServerLevel) world, clickedPos, world.getRandom());
+				}
+				success = true;
+			} else if (BoneMealItem.growCrop(Items.BONE_MEAL.getDefaultInstance(), world, clickedPos)) {
+				// fertilizable => grow!
+				success = true;
+			} else {
+				if (sourceState.isFaceSturdy(world, clickedPos, context.getClickedFace()) && BoneMealItem.growWaterPlant(Items.BONE_MEAL.getDefaultInstance(), world, clickedPos.relative(context.getClickedFace()), context.getClickedFace())) {
+					success = true;
+				}
+			}
+		}
+		
+		if (success && user instanceof ServerPlayer serverPlayer) {
+			payForUse(user, stack, INK_COST, ITEM_COST);
+			PlayNaturesStaffParticlesPayload.sendPlayParticles(world, clickedPos);
+			SpectrumAdvancementCriteria.NATURES_STAFF_CONVERSION.trigger(serverPlayer, sourceState, world.getBlockState(clickedPos));
+			return InteractionResult.CONSUME;
+		}
 		return InteractionResult.PASS;
 	}
 	
@@ -240,21 +238,20 @@ public class NaturesStaffItem extends Item implements InkPowered {
 				|| world.getFluidState(blockPos.west()).is(FluidTags.WATER);
 	}
 	
-	private static void spawnParticlesAndEffect(Level world, BlockPos blockPos) {
+	public static void spawnParticlesAndEffect(Level world, BlockPos blockPos) {
 		BlockState blockState = world.getBlockState(blockPos);
 		if (blockState.is(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
 			int i = 0;
 			while (world.getBlockState(blockPos.above(i)).is(blockState.getBlock())) {
-				world.levelEvent(LevelEvent.PARTICLES_AND_SOUND_PLANT_GROWTH, blockPos.above(i), 15);
-				i++;
+				ParticleUtils.spawnParticleInBlock(world, blockPos.above(i), 15, ParticleTypes.HAPPY_VILLAGER);
+			i++;
 			}
-			world.levelEvent(LevelEvent.PARTICLES_AND_SOUND_PLANT_GROWTH, blockPos, 15);
-			BoneMealItem.addGrowthParticles(world, blockPos.above(i + 1), 5);
+			ParticleUtils.spawnParticleInBlock(world, blockPos.above(i + 1), 15, ParticleTypes.HAPPY_VILLAGER);
 			for (int j = 1; world.getBlockState(blockPos.below(j)).is(blockState.getBlock()); j++) {
-				world.levelEvent(LevelEvent.PARTICLES_AND_SOUND_PLANT_GROWTH, blockPos.below(j), 15);
+				ParticleUtils.spawnParticleInBlock(world, blockPos.below(j), 15, ParticleTypes.HAPPY_VILLAGER);
 			}
 		} else {
-			world.levelEvent(LevelEvent.PARTICLES_AND_SOUND_PLANT_GROWTH, blockPos, 15);
+			ParticleUtils.spawnParticleInBlock(world, blockPos, 15, ParticleTypes.HAPPY_VILLAGER);
 		}
 	}
 	

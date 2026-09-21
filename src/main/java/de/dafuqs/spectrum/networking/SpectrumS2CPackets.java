@@ -47,6 +47,7 @@ public class SpectrumS2CPackets {
 		registrar.playToClient(PastelNodeStatusUpdatePayload.ID, PastelNodeStatusUpdatePayload.CODEC, PastelNodeStatusUpdatePayload::execute);
 		registrar.playToClient(PastelNetworkEdgeSyncPayload.ID, PastelNetworkEdgeSyncPayload.CODEC, PastelNetworkEdgeSyncPayload::execute);
 		registrar.playToClient(PastelNetworkRemovedPayload.ID, PastelNetworkRemovedPayload.CODEC, PastelNetworkRemovedPayload::execute);
+		registrar.playToClient(PlayNaturesStaffParticlesPayload.ID, PlayNaturesStaffParticlesPayload.CODEC, PlayNaturesStaffParticlesPayload::execute);
 	}
 	
 }

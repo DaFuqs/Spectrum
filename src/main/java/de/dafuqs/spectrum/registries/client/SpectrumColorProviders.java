@@ -89,7 +89,7 @@ public class SpectrumColorProviders {
 		event.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
 				InkPoweredPotionContentsComponent component = stack.get(SpectrumDataComponentTypes.INK_POWERED_POTION_CONTENTS);
-				if(component != null) {
+				if(component != null && !component.effects().isEmpty()) {
 					return FastColor.ARGB32.opaque(component.effects().getFirst().getColor());
 				}
 			}

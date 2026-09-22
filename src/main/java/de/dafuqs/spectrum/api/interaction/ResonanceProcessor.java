@@ -7,6 +7,7 @@ import net.minecraft.core.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -23,7 +24,7 @@ public abstract class ResonanceProcessor {
 		this.blockPredicate = blockPredicate;
 	}
 	
-	public abstract Optional<List<ItemStack>> process(BlockState state, BlockEntity blockEntity, List<ItemStack> droppedStacks);
+	public abstract Optional<List<ItemStack>> process(BlockState state, @Nullable BlockEntity blockEntity, List<ItemStack> droppedStacks);
 	
 	public static List<ItemStack> applyResonance(RegistryAccess drm, BlockState minedState, BlockEntity blockEntity, List<ItemStack> original) {
 		Registry<ResonanceProcessor> resonanceProcessors = drm.registryOrThrow(SpectrumRegistryKeys.RESONANCE_PROCESSOR);

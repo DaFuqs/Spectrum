@@ -12,6 +12,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -35,7 +36,7 @@ public class ModifyDropsResonanceProcessor extends ResonanceProcessor {
 	}
 	
 	@Override
-	public Optional<List<ItemStack>> process(BlockState state, BlockEntity blockEntity, List<ItemStack> droppedStacks) {
+	public Optional<List<ItemStack>> process(BlockState state, @Nullable BlockEntity blockEntity, List<ItemStack> droppedStacks) {
 		if (blockPredicate.test(state)) {
 			return Optional.of(modifyDrops(droppedStacks));
 		}

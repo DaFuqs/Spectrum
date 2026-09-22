@@ -45,6 +45,7 @@ public class ModifyDropsResonanceProcessor extends ResonanceProcessor {
 	
 	private List<ItemStack> modifyDrops(List<ItemStack> droppedStacks) {
 		List<ItemStack> results = new ArrayList<>();
+		outer:
 		for (ItemStack stack : droppedStacks) {
 			for (Map.Entry<Ingredient, Item> modifiedDrop : modifiedDrops.entrySet()) {
 				if (modifiedDrop.getKey().test(stack)) {
@@ -52,9 +53,12 @@ public class ModifyDropsResonanceProcessor extends ResonanceProcessor {
 					convertedStack = modifiedDrop.getValue().getDefaultInstance();
 					convertedStack.setCount(stack.getCount());
 					results.add(convertedStack);
-					break;
+					break outer;
 				}
 			}
+			
+			// did not find a matching conversion; use the original
+			results.add(stack);
 		}
 		return results;
 	}

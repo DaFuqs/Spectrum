@@ -134,24 +134,28 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	public static void playerInteraction(PlayerInteractEvent.EntityInteractSpecific event) {
-		if (event.getLevel().isClientSide()) return;
-		
 		Entity target = event.getTarget();
 		Component entityCustomName = target.getCustomName();
-		if (entityCustomName == null || !(target instanceof Cat cat)) return;
+		if (!(target instanceof Cat cat)) return;
 		
 		Player player = event.getEntity();
 		InteractionHand hand = event.getHand();
 		ItemStack itemStack = player.getItemInHand(hand);
 		
+		if(cat.getVariant().equals(SpectrumCatVariants.FELIS) && cat.isFood(itemStack)) {
+			cat.playSound(SoundEvents.CAT_PURR);
+			cat.handleEntityEvent(EntityEvent.TAMING_SUCCEEDED);
+		}
+		
+		if (entityCustomName == null) return;
+		if (event.getLevel().isClientSide()) return;
+		
 		String customName = target.getCustomName().getString().toUpperCase(Locale.ROOT);
 		boolean howMany = customName.equals("AAA") || customName.equals("AAA ❣");
-		if (player instanceof ServerPlayer serverPlayerEntity) {
-			if (itemStack.is(SpectrumItems.STRATINE_GEM) && cat.hasEffect(MobEffects.LEVITATION) && howMany) {
-				Support.grantAdvancementCriterion(serverPlayerEntity, ResourceLocation.fromNamespaceAndPath("spectrum", "midgame/become_enlightened"), "confirmed");
-				cat.removeEffect(MobEffects.LEVITATION);
-				cat.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 600, 1));
-			}
+		if (howMany && player instanceof ServerPlayer serverPlayerEntity && itemStack.is(SpectrumItems.STRATINE_GEM) && cat.hasEffect(MobEffects.LEVITATION)) {
+			Support.grantAdvancementCriterion(serverPlayerEntity, ResourceLocation.fromNamespaceAndPath("spectrum", "midgame/become_enlightened"), "confirmed");
+			cat.removeEffect(MobEffects.LEVITATION);
+			cat.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 600, 1));
 		}
 	}
 	

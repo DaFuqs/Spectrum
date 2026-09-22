@@ -23,7 +23,7 @@ public class LizardFrillsFeatureRenderer<T extends LizardEntity> extends RenderL
 		LizardFrillVariant frills = lizard.getFrills().value();
 		
 		VertexConsumer vertexConsumer = vertexConsumers.getBuffer(SpectrumRenderLayers.GlowInTheDarkRenderLayer.get(frills.getTextureLocation()));
-		var color = lizard.getColor().getColorInt();
+		var color = lizard.getColor().getColorARGB();
 		this.getParentModel().renderToBuffer(matrices, vertexConsumer, 15728640, OverlayTexture.NO_OVERLAY, color);
     }
     

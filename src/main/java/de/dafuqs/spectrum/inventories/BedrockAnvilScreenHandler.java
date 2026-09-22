@@ -117,7 +117,8 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 			ItemEnchantments.Mutable builder = new ItemEnchantments.Mutable(EnchantmentHelper.getEnchantmentsForCrafting(outputStack));
 			repairLevelCost += (long) inputStack.getOrDefault(DataComponents.REPAIR_COST, 0) + (long) repairSlotStack.getOrDefault(DataComponents.REPAIR_COST, 0);
 			this.repairItemCount = 0;
-			boolean pigmentInRepairSlot = repairSlotStack.getItem() instanceof PigmentItem;
+			PigmentItem pigment = repairSlotStack.getItem() instanceof PigmentItem pigmentItem ? pigmentItem : null;
+			boolean pigmentInRepairSlot = pigment != null;
 			if (pigmentInRepairSlot) {
 				repairItemCount = 1;
 			}
@@ -229,7 +230,7 @@ public class BedrockAnvilScreenHandler extends ItemCombinerMenu {
 				}
 				
 				if (pigmentInRepairSlot) {
-					int newColor = ((PigmentItem) repairSlotStack.getItem()).getInkColor().getColorInt();
+					int newColor = pigment.getInkColor().getColorRGB();
 					newName = newName.setStyle(newName.getStyle().withColor(newColor));
 					outputStack.set(DataComponents.CUSTOM_NAME, newName);
 				} else if(this.newItemName.equals(inputStack.getHoverName().getString())) {

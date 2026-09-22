@@ -133,6 +133,6 @@ public class CrystallarieumBlock extends InWorldInteractionBlock implements Slot
 	@Override
 	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
 		var color = stack.getOrDefault(SpectrumDataComponentTypes.INK_COLOR, InkColors.WHITE);
-		return color.getColorInt();
+		return color.getColorARGB();
 	}
 }

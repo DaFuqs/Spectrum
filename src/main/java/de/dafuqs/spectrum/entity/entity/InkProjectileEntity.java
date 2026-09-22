@@ -109,7 +109,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		InkColor inkColor = this.getInkColor();
 		if (amount > 0) {
 			for (int j = 0; j < amount; ++j) {
-				this.level().addParticle(ColoredCraftingParticleEffect.of(inkColor.getColorInt()), this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), 0, 0, 0);
+				this.level().addParticle(ColoredCraftingParticleEffect.of(inkColor.getColorARGB()), this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), 0, 0, 0);
 			}
 		}
 	}
@@ -292,9 +292,9 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		Vec3 targetPos = position();
 		Vec3 velocity = getDeltaMovement();
 		
-		world.addParticle(ColoredExplosionParticleEffect.of(inkColor.getColorInt()), targetPos.x, targetPos.y, targetPos.z, 0, 0, 0);
+		world.addParticle(ColoredExplosionParticleEffect.of(inkColor.getColorARGB()), targetPos.x, targetPos.y, targetPos.z, 0, 0, 0);
 		for (int i = 0; i < 10; i++) {
-			world.addParticle(ColoredCraftingParticleEffect.of(inkColor.getColorInt()), targetPos.x, targetPos.y, targetPos.z, -velocity.x * 3, -velocity.y * 3, -velocity.z * 3);
+			world.addParticle(ColoredCraftingParticleEffect.of(inkColor.getColorARGB()), targetPos.x, targetPos.y, targetPos.z, -velocity.x * 3, -velocity.y * 3, -velocity.z * 3);
 		}
 	}
 	

@@ -75,7 +75,7 @@ public class ColorPickerBlockEntity extends InkGeneratorBlockEntity implements M
 				}
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world,
 						new Vec3(worldPosition.getX() + 0.5, worldPosition.getY() + 0.7, worldPosition.getZ() + 0.5),
-						ColoredFluidRisingParticleEffect.of(inkColor.getColorInt()),
+						ColoredFluidRisingParticleEffect.of(inkColor.getColorARGB()),
 						5,
 						new Vec3(0.22, 0.0, 0.22),
 						new Vec3(0.0, 0.1, 0.0)

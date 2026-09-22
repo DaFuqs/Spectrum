@@ -199,7 +199,7 @@ public class PresentBlock extends BaseEntityBlock {
 			spawnParticlesClient(world, pos, randomColor, 15);
 		} else {
 			for (Map.Entry<InkColor, Integer> color : colors.entrySet()) {
-				spawnParticlesClient(world, pos, color.getKey().getColorInt(), color.getValue() * 10);
+				spawnParticlesClient(world, pos, color.getKey().getColorARGB(), color.getValue() * 10);
 			}
 		}
 	}

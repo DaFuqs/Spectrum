@@ -83,7 +83,7 @@ public class ArtistsPaletteItem extends SpectrumCurioItem implements InkStorageI
 		var progress = Support.getSensiblePercent(storage.getCurrentTotal(), storage.getMaxTotal(), 14);
 		if (colors.size() == 1) {
 			var color = colors.getFirst();
-			return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, color.getColorInt() | 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
+			return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, color.getColorARGB() | 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
 		}
 		
 		if (colors.isEmpty()) return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);

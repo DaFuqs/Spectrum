@@ -196,7 +196,7 @@ public class BedrockAnvilScreen extends ItemCombinerScreen<BedrockAnvilScreenHan
 		}
 		if (slotId == 1) {
 			if (stack.getItem() instanceof PigmentItem pigmentItem) {
-				this.nameField.setTextColor(pigmentItem.getInkColor().getColorInt());
+				this.nameField.setTextColor(pigmentItem.getInkColor().getColorRGB());
 			} else {
 				if (this.menu.getSlot(0).getItem().getHoverName() instanceof MutableComponent mutableText) {
 					if (mutableText.getStyle().getColor() == null) {

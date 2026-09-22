@@ -100,7 +100,7 @@ public class SpectrumColorProviders {
 			if (tintIndex == 1) {
 				InkFlaskItem i = (InkFlaskItem) stack.getItem();
 				SingleInkStorage storage = i.getEnergyStorage(stack);
-				return FastColor.ARGB32.opaque(storage.getStoredColor().getColorInt());
+				return storage.getStoredColor().getColorRGB();
 			}
 			return -1;
 		}, SpectrumItems.INK_FLASK.get());
@@ -113,7 +113,7 @@ public class SpectrumColorProviders {
 		event.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
 				var color = stack.get(SpectrumDataComponentTypes.INK_COLOR);
-				return FastColor.ARGB32.opaque(color == null ? -1 : color.getColorInt());
+				return color == null ? -1 : color.getColorRGB();
 			}
 			return -1;
 		}, SpectrumItems.PAINTBRUSH.get());

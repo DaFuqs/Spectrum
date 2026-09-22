@@ -94,14 +94,14 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 		
 		if (crystal.currentRecipe != null) {
 			ink = crystal.currentRecipe.value().getInkColor();
-			active.render(matrices, vertices, LightTexture.FULL_BRIGHT, overlay, ink.getColorInt());
+			active.render(matrices, vertices, LightTexture.FULL_BRIGHT, overlay, ink.getColorARGB());
 		} else {
 			inactive.render(matrices, vertices, light, overlay);
 		}
 		
 		crystal.rotation += crystal._speed.get();
 		matrices.mulPose(Axis.YP.rotationDegrees(crystal.rotation));
-		var argb = FastColor.ARGB32.color(Math.round(crystal._alpha.get() * 255), ink.getColorInt());
+		var argb = FastColor.ARGB32.color(Math.round(crystal._alpha.get() * 255), ink.getColorARGB());
 		halo.y = (float) (-9 - bounce);
 		matrices.mulPose(Axis.YP.rotationDegrees(-crystal.rotation * 2));
 		echo.y = (float) (0.5 - (bounce / 3));

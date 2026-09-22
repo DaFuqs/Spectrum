@@ -7,7 +7,17 @@
   "use_up_base_ingredient": true,
   "required_experience": 300,
   "color": 13333666,
-  "ingredient1": "spectrum:knowledge_gem",
+  "ingredient1": {
+    "item": "spectrum:knowledge_gem",
+    "predicates": {
+      "spectrum:stored_experience": {
+        "min": 300
+      }
+    },
+    "preview_components": {
+      "spectrum:stored_experience": 300
+    }
+  },
   "ingredient2": "minecraft:popped_chorus_fruit",
   "ingredient3": "spectrum:raw_bloodstone",
   "result": {

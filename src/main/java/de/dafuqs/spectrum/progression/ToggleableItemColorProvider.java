@@ -26,7 +26,7 @@ public class ToggleableItemColorProvider implements ItemColor {
 			return event.getItemColors().getColor(vanillaStack, tintIndex);
 		} else {
 			// no tint
-			return 16777215;
+			return 0xFFFFFFFF;
 		}
 	}
 }

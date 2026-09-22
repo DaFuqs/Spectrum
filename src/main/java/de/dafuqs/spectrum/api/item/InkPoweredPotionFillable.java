@@ -23,28 +23,33 @@ public interface InkPoweredPotionFillable {
 	
 	// saving
 	default void addOrUpgradeEffects(ItemStack potionFillableStack, List<InkPoweredMobEffectInstance> newEffects, Optional<Integer> color, boolean unidentifiable) {
-		if (!isFull(potionFillableStack)) {
-			// by default, values are immutable, so we need to copy the values to an arraylist to be able to add stuff to it
-			List<InkPoweredMobEffectInstance> existingEffects = new ArrayList<>(InkPoweredPotionContentsComponent.getEffects(potionFillableStack));
-			int maxCount = maxEffectCount();
-			int maxAmplifier = maxEffectAmplifier();
-			for (InkPoweredMobEffectInstance newEffect : newEffects) {
-				MobEffectInstance statusEffectInstance = newEffect.getStatusEffectInstance();
-				if (statusEffectInstance.getAmplifier() > maxAmplifier) {
-					statusEffectInstance = new MobEffectInstance(statusEffectInstance.getEffect(), statusEffectInstance.getDuration(), maxAmplifier, statusEffectInstance.isAmbient(), statusEffectInstance.isVisible());
-				}
-				if (existingEffects.size() == maxCount) {
-					break;
-				}
-				
-				// calculate the final amount of this effect and add it
-				InkAmount adjustedCost = new InkAmount(newEffect.getInkCost().color(), adjustFinalCostFor(newEffect));
-				InkPoweredMobEffectInstance modifiedInstance = new InkPoweredMobEffectInstance(statusEffectInstance, adjustedCost, color, unidentifiable);
-				existingEffects.add(modifiedInstance);
+		if(newEffects.isEmpty()) {
+			return;
+		}
+		if (isFull(potionFillableStack)) {
+			return;
+		}
+		
+		// by default, values are immutable, so we need to copy the values to an arraylist to be able to add stuff to it
+		List<InkPoweredMobEffectInstance> existingEffects = new ArrayList<>(InkPoweredPotionContentsComponent.getEffects(potionFillableStack));
+		int maxCount = maxEffectCount();
+		int maxAmplifier = maxEffectAmplifier();
+		for (InkPoweredMobEffectInstance newEffect : newEffects) {
+			MobEffectInstance statusEffectInstance = newEffect.getStatusEffectInstance();
+			if (statusEffectInstance.getAmplifier() > maxAmplifier) {
+				statusEffectInstance = new MobEffectInstance(statusEffectInstance.getEffect(), statusEffectInstance.getDuration(), maxAmplifier, statusEffectInstance.isAmbient(), statusEffectInstance.isVisible());
+			}
+			if (existingEffects.size() == maxCount) {
+				break;
 			}
 			
-			InkPoweredPotionContentsComponent.setEffects(potionFillableStack, existingEffects);
+			// calculate the final amount of this effect and add it
+			InkAmount adjustedCost = new InkAmount(newEffect.getInkCost().color(), adjustFinalCostFor(newEffect));
+			InkPoweredMobEffectInstance modifiedInstance = new InkPoweredMobEffectInstance(statusEffectInstance, adjustedCost, color, unidentifiable);
+			existingEffects.add(modifiedInstance);
 		}
+		
+		InkPoweredPotionContentsComponent.setEffects(potionFillableStack, existingEffects);
 	}
 	
 	default boolean isFull(ItemStack itemStack) {

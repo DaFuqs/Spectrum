@@ -3,7 +3,7 @@
   "entry_to_open": "spectrum:pastel_network/ink_nodes",
   "name": "book.spectrum.guidebook.automated_ink_transfer.name",
   "icon": {
-    "item": "spectrum:pigment_palette"
+    "item": "spectrum:ink_node"
   },
   "condition": {
     "type": "modonomicon:advancement",

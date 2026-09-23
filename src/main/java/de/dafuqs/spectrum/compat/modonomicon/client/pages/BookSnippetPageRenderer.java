@@ -23,17 +23,22 @@ public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> i
 			renderTitle(drawContext, page.getTitle(), page.showTitleSeparator(), BookEntryScreen.PAGE_WIDTH / 2, 0);
 		}
 		
-		if (page.getText() instanceof RenderedBookTextHolder renderedText) {
-			int y = getTextY();
-			for (MutableComponent component : renderedText.getRenderedText()) {
-				var wrapped = MarkdownComponentRenderUtils.wrapComponents(component, BookEntryScreen.PAGE_WIDTH - 10, BookEntryScreen.PAGE_WIDTH - 10, font);
-				for (FormattedCharSequence orderedText : wrapped) {
-					drawCenteredStringNoShadow(drawContext, orderedText, page.getBook().getBookTextOffsetWidth() + BookEntryScreen.PAGE_WIDTH / 2, y, 0, 1);
-					y += font.lineHeight;
+		if(page.centerText()) {
+			if (page.getText() instanceof RenderedBookTextHolder renderedText) {
+				int y = getTextY();
+				for (MutableComponent component : renderedText.getRenderedText()) {
+					var wrapped = MarkdownComponentRenderUtils.wrapComponents(component, BookEntryScreen.PAGE_WIDTH - 10, BookEntryScreen.PAGE_WIDTH - 10, font);
+					for (FormattedCharSequence orderedText : wrapped) {
+						drawCenteredStringNoShadow(drawContext, orderedText, page.getBook().getBookTextOffsetWidth() + BookEntryScreen.PAGE_WIDTH / 2, y, 0, 1);
+						y += font.lineHeight;
+					}
 				}
+			} else {
+				drawCenteredStringNoShadow(drawContext, page.getText().getComponent().getVisualOrderText(), BookEntryScreen.PAGE_WIDTH / 2, getTextY(), 0, 1);
 			}
 		} else {
-			drawCenteredStringNoShadow(drawContext, page.getText().getComponent().getVisualOrderText(), BookEntryScreen.PAGE_WIDTH / 2, getTextY(), 0, 1);
+			var textY = this.getTextY();
+			this.renderBookTextHolder(drawContext, this.getPage().getText(), 0, textY, BookEntryScreen.PAGE_WIDTH, BookEntryScreen.PAGE_HEIGHT - textY);
 		}
 		
 		RenderSystem.enableBlend();
@@ -57,7 +62,7 @@ public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> i
 				}
 			}
 			
-			var textStyle = getClickedComponentStyleAtForTextHolder(page.getText(), BookEntryScreen.PAGE_WIDTH / 2, getTextY(), BookEntryScreen.PAGE_WIDTH, pMouseX, pMouseY);
+			var textStyle = getClickedComponentStyleAtForTextHolder(page.getText(), BookEntryScreen.PAGE_WIDTH / 2, getTextY(), BookEntryScreen.PAGE_WIDTH, BookEntryScreen.PAGE_HEIGHT - getTextY(), pMouseX, pMouseY);
 			if (textStyle != null) {
 				return textStyle;
 			}

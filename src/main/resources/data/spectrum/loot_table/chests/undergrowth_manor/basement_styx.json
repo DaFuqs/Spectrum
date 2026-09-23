@@ -23,20 +23,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:onyx_powder_block",
-          "weight": 2,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 4,
-                "max": 8
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:wither_rose",
           "weight": 3,
           "functions": [

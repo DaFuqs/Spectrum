@@ -32,7 +32,15 @@
       "recipe_id": "spectrum:pedestal/tier4/crystallarieum"
     },
     {
-      "type": "modonomicon:text",
+      "type": "spectrum:snippet",
+      "resource_path": "spectrum:textures/gui/modonomicon/crystallarieum.png",
+      "resource_width": 128,
+      "resource_height": 128,
+      "texture_x": 70,
+      "texture_y": 0,
+      "texture_width": 37,
+      "texture_height": 22,
+      "center_text": false,
       "title": "book.spectrum.guidebook.crystallarieum.page2.title",
       "text": "book.spectrum.guidebook.crystallarieum.page2.text"
     },

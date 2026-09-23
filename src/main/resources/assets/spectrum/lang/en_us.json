@@ -2500,7 +2500,7 @@
   "book.spectrum.guidebook.crystallarieum.page14.title": "Prismarine",
   "book.spectrum.guidebook.crystallarieum.page15.title": "Quartz",
   "book.spectrum.guidebook.crystallarieum.page16.title": "Redstone",
-  "book.spectrum.guidebook.crystallarieum.page2.text": "Different additives have different effects on bud growth:\n\n- increasing (>>) or decreasing (<<) the required time\n\n- reducing (--) or increasing (++) the required Ink quantity\n\n- the additive getting used up extremely fast (E) to not at all (NA)",
+  "book.spectrum.guidebook.crystallarieum.page2.text": "Different additives have different effects on bud growth:\n\n- speeding up (>>) or slowing down (<<) growth time\n\n- reducing (--) or increasing (++) the required Ink quantity\n\n- the additive getting used up extremely fast (E) to not at all (NA)",
   "book.spectrum.guidebook.crystallarieum.page2.title": "Additives",
   "book.spectrum.guidebook.crystallarieum.page3.text": "[#](449900)Metallic resources[#]() require unrefined materials such as [#](bb00bb)Raw Iron[#](), resulting in a [#](bb00bb)Small Iron Bud[#]() that will grow steadily until it can be safely harvested.\\\n\\\nFor [#](449900)crystalline resources[#](), an existing crystal can be used as a seed to grow identical copies of itself.",
   "book.spectrum.guidebook.crystallarieum.page3.title": "Metals vs. Crystals",

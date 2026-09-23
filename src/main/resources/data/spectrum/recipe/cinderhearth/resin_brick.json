@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": "spectrum:resin_clump",
+  "results": [
+    {
+      "id": "spectrum:resin_brick",
+      "count": 3
+    }
+  ],
+  "experience": 1.0,
+  "time": 20,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "minecraft:resin_clump"
+    }
+  ]
+}

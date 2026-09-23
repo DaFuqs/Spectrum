@@ -10,7 +10,11 @@ group = project.maven_group
 repositories {
 	maven { url = "https://maven.is-immensely.gay/releases" } // Revelationary, Fractal, AEA, Arrowhead, ...
 	maven { url = "https://maven.shedaniel.me/" } // REI
-	maven { url = "https://maven.terraformersmc.com/" } // Modmenu, EMI
+	maven { url = "https://maven.terraformersmc.com/" } // Modmenu
+	maven {
+		name = "Sleeping Town"
+		url = "https://repo.sleeping.town/"
+	} // EMI
 	maven { url = "https://maven.nucleoid.xyz/" } // Common Protection API
 	maven { url = "https://maven.blamejared.com" } // JEI, Botania
 	maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components API

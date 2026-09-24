@@ -37,7 +37,7 @@ public class DumpTagsCommand {
 					tagFile.getParentFile().mkdirs();
 					tagFile.createNewFile();
 					
-					FileWriterWithEncoding writer = new FileWriterWithEncoding.Builder().setCharset(StandardCharsets.UTF_8).get();
+					FileWriterWithEncoding writer = new FileWriterWithEncoding.Builder().setCharset(StandardCharsets.UTF_8).setFile(tagFile).get();
 					for (Holder<?> entry : pair.getSecond()) {
 						writer.write(entry.unwrapKey().get().location().toString());
 						writer.write(System.lineSeparator());

@@ -29,7 +29,7 @@ public class DumpRegistriesCommand {
 			file.getParentFile().mkdirs();
 			try {
 				file.createNewFile();
-				FileWriterWithEncoding writer = new FileWriterWithEncoding.Builder().setCharset(StandardCharsets.UTF_8).get();
+				FileWriterWithEncoding writer = new FileWriterWithEncoding.Builder().setCharset(StandardCharsets.UTF_8).setFile(file).get();
 				for (ResourceKey<?> e : registry.value().registryKeySet()) {
 					writer.write(e.location().toString());
 					writer.write(System.lineSeparator());

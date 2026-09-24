@@ -41,6 +41,8 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.DRACONIC_TWINSWORD.get(), (context) -> new BidentEntityRenderer(context, 2.15F, 0));
 		register(SpectrumEntityTypes.MARROW.get(), MarrowRenderer::new);
 		register(SpectrumEntityTypes.SPLINTERSPAWN.get(), SplinterspawnRenderer::new);
+		register(SpectrumEntityTypes.KOI.get(), KoiRenderer::new);
+		register(SpectrumEntityTypes.CRAWFISH.get(), CrawfishRenderer::new);
 	}
 	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererProvider<T> factory) {

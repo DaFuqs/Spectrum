@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.level.levelgen.*;
@@ -47,6 +48,8 @@ public class SpectrumEntityTypes {
 	public static final DeferredHolder<EntityType<?>, EntityType<DraconicTwinswordEntity>> DRACONIC_TWINSWORD= register("draconic_twinsword", EntityType.Builder.of((EntityType.EntityFactory<DraconicTwinswordEntity>) DraconicTwinswordEntity::new, MobCategory.MISC).clientTrackingRange(6).updateInterval(2).setShouldReceiveVelocityUpdates(true).sized(0.5F, 0.5F).fireImmune());
 	public static final DeferredHolder<EntityType<?>, EntityType<Marrow>> MARROW = register("marrow", EntityType.Builder.of(Marrow::new, MobCategory.MONSTER).sized(0.6F, 1.99F).eyeHeight(1.74F).ridingOffset(-0.7F).clientTrackingRange(8));
 	public static final DeferredHolder<EntityType<?>, EntityType<Splinterspawn>> SPLINTERSPAWN = register("splinterspawn", EntityType.Builder.of(Splinterspawn::new, MobCategory.MONSTER).sized(0.4F, 0.3F).eyeHeight(0.13F).passengerAttachments(0.2375F).clientTrackingRange(8));
+	public static final DeferredHolder<EntityType<?>, EntityType<Koi>> KOI = register("koi", EntityType.Builder.of(Koi::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.3F).eyeHeight(0.195F).clientTrackingRange(4));
+	public static final DeferredHolder<EntityType<?>, EntityType<Crawfish>> CRAWFISH = register("crawfish", EntityType.Builder.of(Crawfish::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.3F).eyeHeight(0.195F).clientTrackingRange(4));
 	
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
 		event.put(LIVING_MARKER.get(),LivingMarkerEntity.createLivingAttributes().build());
@@ -58,6 +61,8 @@ public class SpectrumEntityTypes {
 		event.put(ERASER.get(), EraserEntity.createEraserAttributes().build());
 		event.put(MARROW.get(), Marrow.createMarrowAttributes().build());
 		event.put(SPLINTERSPAWN.get(), Splinterspawn.createSplinterSpawnAttributes().build());
+		event.put(KOI.get(), Koi.createKoiAttributes().build());
+		event.put(CRAWFISH.get(), Crawfish.createCrawfishAttributes().build());
 	}
 	
 	public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {

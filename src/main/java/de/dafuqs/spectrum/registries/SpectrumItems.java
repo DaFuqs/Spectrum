@@ -410,6 +410,9 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> ERASER_SPAWN_EGG = register("eraser_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.ERASER, 0x200d29, 0xc83e93, IS.of()));
 	public static final DeferredItem<Item> MARROW_SPAWN_EGG = register("marrow_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.MARROW, 0x908188, 0xe2762f, IS.of()));
 	public static final DeferredItem<Item> SPLINTERSPAWN_SPAWN_EGG = register("splinterspawn_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.SPLINTERSPAWN, 0x7b6b75, 0xf6db6f, IS.of()));
+	public static final DeferredItem<Item> KOI_SPAWN_EGG = register("koi_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.KOI, 0xfcdbc7, 0xe3796e, IS.of()));
+	public static final DeferredItem<Item> CRAWFISH_SPAWN_EGG = register("crawfish_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.CRAWFISH, 0x83b5ae, 0x546787, IS.of()));
+	public static final DeferredItem<Item> BUCKET_OF_KOI = register("bucket_of_koi", () -> new MobBucketItem(SpectrumEntityTypes.KOI.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY, IS.of(1)));
 	
 	// Magical Tools
 	public static final DeferredItem<Item> BAG_OF_HOLDING = register("bag_of_holding", () -> new BagOfHoldingItem(IS.of(1)));

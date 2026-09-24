@@ -1473,8 +1473,11 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.ERASER_SPAWN_EGG);
 					entries.accept(SpectrumItems.MARROW_SPAWN_EGG);
 					entries.accept(SpectrumItems.SPLINTERSPAWN_SPAWN_EGG);
+					entries.accept(SpectrumItems.KOI_SPAWN_EGG);
+					entries.accept(SpectrumItems.CRAWFISH_SPAWN_EGG);
 					
 					entries.accept(SpectrumItems.BUCKET_OF_ERASER);
+					entries.accept(SpectrumItems.BUCKET_OF_KOI);
 					
 					entries.accept(SpectrumBlocks.SPLINTERSPAWN_INFESTED_PYRITE);
 					entries.accept(SpectrumBlocks.SPLINTERSPAWN_INFESTED_SHALE_CLAY);

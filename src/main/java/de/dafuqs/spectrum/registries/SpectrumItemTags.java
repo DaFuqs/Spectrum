@@ -23,6 +23,7 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> SHOOTING_STARS = spectrum("shooting_stars");
 	public static final TagKey<Item> GLASS_ARROWS = spectrum("glass_arrows");
 	public static final TagKey<Item> KINDLING_FOOD = spectrum("kindling_food");
+	public static final TagKey<Item> CRAWFISH_FOOD = spectrum("crawfish_food");
 	public static final TagKey<Item> REQUIRES_OMNI_ACCELERATOR_PVP_ENABLED = spectrum("requires_omni_accelerator_pvp_enabled");
 	public static final TagKey<Item> EMISSIVE = spectrum("emissive");
 	public static final TagKey<Item> TAG_FILTERING_ITEMS = spectrum("tag_filtering_items");

@@ -64,6 +64,8 @@
     "minecraft:zombie_spawn_egg",
     "minecraft:zombie_horse_spawn_egg",
     "minecraft:zombie_villager_spawn_egg",
-    "minecraft:zombified_piglin_spawn_egg"
+    "minecraft:zombified_piglin_spawn_egg",
+    "minecraft:koi_spawn_egg",
+    "minecraft_crawfish_spawn_egg"
   ]
 }

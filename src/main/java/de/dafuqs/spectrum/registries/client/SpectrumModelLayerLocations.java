@@ -37,7 +37,10 @@ public class SpectrumModelLayerLocations {
 	public static final ModelLayerLocation MARROW_INNER_ARMOR = new ModelLayerLocation(SpectrumCommon.locate("marrow"), "inner_armor");
 	public static final ModelLayerLocation MARROW_OUTER_ARMOR = new ModelLayerLocation(SpectrumCommon.locate("marrow"), "outer_armor");
 	public static final ModelLayerLocation MARROW_OUTER_LAYER = new ModelLayerLocation(SpectrumCommon.locate("marrow"), "outer");
-
+	
+	public static final ModelLayerLocation KOI = new ModelLayerLocation(SpectrumCommon.locate("koi"), "main");
+	public static final ModelLayerLocation CRAWFISH = new ModelLayerLocation(SpectrumCommon.locate("crawfish"), "main");
+	
 	/**
 	 * Mob Heads
 	 */
@@ -188,6 +191,9 @@ public class SpectrumModelLayerLocations {
 		ClientHooks.registerLayerDefinition(MARROW_INNER_ARMOR, SkeletonModel::createBodyLayer);
 		ClientHooks.registerLayerDefinition(MARROW_OUTER_ARMOR, SkeletonModel::createBodyLayer);
 		ClientHooks.registerLayerDefinition(MARROW_OUTER_LAYER, SkeletonModel::createBodyLayer);
+		
+		ClientHooks.registerLayerDefinition(KOI, KoiModel::createBodyLayer);
+		ClientHooks.registerLayerDefinition(CRAWFISH, CrawfishModel::createBodyLayer);
 		
 		ClientHooks.registerLayerDefinition(ALLAY_HEAD, AllayHeadModel::getTexturedModelData);
 		ClientHooks.registerLayerDefinition(AXOLOTL_BLUE_HEAD, AxolotlHeadModel::getTexturedModelData);

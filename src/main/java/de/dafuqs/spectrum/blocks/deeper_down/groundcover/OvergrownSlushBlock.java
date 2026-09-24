@@ -3,15 +3,25 @@ package de.dafuqs.spectrum.blocks.deeper_down.groundcover;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.data.worldgen.placement.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.levelgen.feature.*;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
+import net.minecraft.world.level.levelgen.placement.*;
 import net.neoforged.neoforge.common.*;
 import org.jspecify.annotations.*;
 
-public class OvergrownSlushBlock extends BlackslagVegetationBlock {
+import java.util.*;
+
+public class OvergrownSlushBlock extends BlackslagVegetationBlock implements OvergrownBlock {
 	
 	public OvergrownSlushBlock(Properties settings) {
 		super(settings);

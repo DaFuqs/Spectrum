@@ -1,10 +1,16 @@
 package de.dafuqs.spectrum.registries;
 
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.worldgen.features.*;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
+import net.minecraft.util.*;
+import net.minecraft.util.random.*;
+import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
+import net.minecraft.world.level.levelgen.feature.stateproviders.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
 
@@ -24,7 +30,7 @@ public class SpectrumFeatures {
 	public static DeferredHolder<Feature<?>, PillarFeature> PILLAR = registerFeature("pillar", new PillarFeature(BlockStateFeatureConfig.CODEC));
 	public static DeferredHolder<Feature<?>, ColumnsFeature> COLUMNS = registerFeature("columns", new ColumnsFeature(ColumnsFeatureConfig.CODEC));
 	public static DeferredHolder<Feature<?>, CrystalFormationFeature> BLOB = registerFeature("crystal_formation", new CrystalFormationFeature(CrystalFormationFeatureFeatureConfig.CODEC));
-	public static DeferredHolder<Feature<?>, RandomBlockProximityPatchFeature> RANDOM_BLOCK_PROXIMITY_PATCH = registerFeature("random_block_proximity_patch", new RandomBlockProximityPatchFeature(RandomBlockProximityPatchFeatureConfig.CODEC));
+	public static DeferredHolder<Feature<?>, BlockProximityFeature> BLOCK_PROXIMITY = registerFeature("block_proximity", new BlockProximityFeature(BlockProximityFeatureConfig.CODEC));
 	public static DeferredHolder<Feature<?>, ExposedFossilFeature> EXPOSED_FOSSIL = registerFeature("exposed_fossil", new ExposedFossilFeature(FossilFeatureConfiguration.CODEC));
 	public static DeferredHolder<Feature<?>, WallPatchFeature> WALL_PATCH = registerFeature("wall_patch", new WallPatchFeature(WallPatchFeatureConfig.CODEC));
 	public static DeferredHolder<Feature<?>, AshDunesFeature> ASH_DUNES = registerFeature("ash_dunes", new AshDunesFeature(AshDunesFeatureConfig.CODEC));

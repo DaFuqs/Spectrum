@@ -55,6 +55,12 @@ public class Crawfish extends TamableAnimal implements NeutralMob {
 		this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
 		this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, LivingEntity.class, true, otherEntity -> {
+			if(this.hasEffect(SpectrumMobEffects.CALMING)) {
+				return false;
+			}
+			if(otherEntity instanceof Player player && player.getUUID() == getOwnerUUID()) {
+				return false;
+			}
 			if(otherEntity.getType() == EntityType.RABBIT) {
 				return true;
 			}
@@ -67,12 +73,12 @@ public class Crawfish extends TamableAnimal implements NeutralMob {
 	
 	@Override
 	public boolean isPushedByFluid() {
-		return true;
+		return false;
 	}
 	
 	protected boolean hatesThisEntityInParticular(LivingEntity other) {
-		long a = other.getUUID().getLeastSignificantBits() & 0x10;
-		long b = this.getUUID().getLeastSignificantBits() & 0x10;
+		long a = other.getUUID().hashCode() & 0x10;
+		long b = this.getUUID().hashCode() & 0x10;
 		return a == b;
 	}
 	
@@ -179,7 +185,28 @@ public class Crawfish extends TamableAnimal implements NeutralMob {
 	
 	@Override
 	public @Nullable AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
-		return SpectrumEntityTypes.CRAWFISH.get().create(level);
+		Crawfish offspring = SpectrumEntityTypes.CRAWFISH.get().create(level);
+		if (offspring != null && this.isTame()) {
+			offspring.setOwnerUUID(this.getOwnerUUID());
+			offspring.setTame(true, true);
+		}
+		return offspring;
+	}
+	
+	@Override
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack handStack = player.getItemInHand(hand);
+		if (!this.level().isClientSide || this.isBaby() && this.isFood(handStack)) {
+			if (this.isTame() && this.isOwnedBy(player) && this.isFood(handStack) && this.getHealth() < this.getMaxHealth()) {
+				FoodProperties foodproperties = handStack.getFoodProperties(this);
+				float f = foodproperties != null ? (float) foodproperties.nutrition() : 1.0F;
+				this.heal(2.0F * f);
+				handStack.consume(1, player);
+				this.gameEvent(GameEvent.EAT);
+				return InteractionResult.sidedSuccess(this.level().isClientSide());
+			}
+		}
+		return super.mobInteract(player, hand);
 	}
 	
 	public boolean isAngryAtAllPlayers(Level level) {

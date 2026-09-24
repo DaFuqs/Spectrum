@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "spectrum:block/weeping_gala_planks",
-    "top": "spectrum:block/weeping_gala_planks",
-    "side": "spectrum:block/weeping_gala_planks"
-  }
-}

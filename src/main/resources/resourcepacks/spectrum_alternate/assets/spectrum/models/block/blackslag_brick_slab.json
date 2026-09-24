@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "spectrum:block/blackslag_bricks",
-    "top": "spectrum:block/blackslag_bricks",
-    "side": "spectrum:block/blackslag_bricks"
-  }
-}

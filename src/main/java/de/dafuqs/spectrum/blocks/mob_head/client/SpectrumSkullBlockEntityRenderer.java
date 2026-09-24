@@ -182,6 +182,8 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 				new Tuple<>(new StrayHeadModel(modelLoader.bakeLayer(SpectrumModelLayerLocations.MARROW_HEAD_OVERLAY)), MarrowRenderer.MARROW_CLOTHES_LOCATION)
 		));
 		builder.put(SpectrumSkullType.SPLINTERSPAWN, List.of(new Tuple<>(new SilverfishHeadModel(modelLoader.bakeLayer(SpectrumModelLayerLocations.SPLINTERSPAWN_HEAD)), SpectrumCommon.locate("textures/entity/splinterspawn/splinterspawn.png"))));
+		builder.put(SpectrumSkullType.KOI, List.of(new Tuple<>(new SilverfishHeadModel(modelLoader.bakeLayer(SpectrumModelLayerLocations.KOI_HEAD)), SpectrumCommon.locate("textures/entity/koi/koi.png"))));
+		builder.put(SpectrumSkullType.CRAWFISH, List.of(new Tuple<>(new SilverfishHeadModel(modelLoader.bakeLayer(SpectrumModelLayerLocations.CRAWFISH_HEAD)), SpectrumCommon.locate("textures/entity/crawfish/crawfish.png"))));
 		
 		return builder.build();
     }
@@ -198,9 +200,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 			yaw *= blockState.getValue(SkullBlock.ROTATION);
 		}
 		SpectrumSkullType skullType = SpectrumSkullBlock.getSkullType(spectrumSkullBlockEntity.getBlockState().getBlock());
-		
 		renderModels(tickDelta, poseStack, vertexConsumerProvider, light, skullType, direction, yaw);
-		
 	}
 	
 	public static void renderModels(float tickDelta, PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int light, SpectrumSkullType skullType, @Nullable Direction direction, float yaw) {

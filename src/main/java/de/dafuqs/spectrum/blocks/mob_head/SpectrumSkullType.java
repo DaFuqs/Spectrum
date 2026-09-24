@@ -140,7 +140,9 @@ public enum SpectrumSkullType implements SkullBlock.Type {
 	MONSTROSITY(SpectrumEntityTypes.MONSTROSITY, SpectrumSoundEvents.ENTITY_MONSTROSITY_AMBIENT.getLocation()),
 	PRESERVATION_TURRET(SpectrumEntityTypes.PRESERVATION_TURRET, SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_AMBIENT.getLocation()),
 	MARROW(SpectrumEntityTypes.MARROW, SpectrumSoundEvents.ENTITY_MARROW_AMBIENT.getLocation()),
-	SPLINTERSPAWN(SpectrumEntityTypes.SPLINTERSPAWN, SpectrumSoundEvents.ENTITY_SPLINTERSPAWN_AMBIENT.getLocation());
+	SPLINTERSPAWN(SpectrumEntityTypes.SPLINTERSPAWN, SpectrumSoundEvents.ENTITY_SPLINTERSPAWN_AMBIENT.getLocation()),
+	KOI(SpectrumEntityTypes.KOI, SpectrumSoundEvents.ENTITY_KOI_AMBIENT.getLocation()),
+	CRAWFISH(SpectrumEntityTypes.CRAWFISH, SpectrumSoundEvents.ENTITY_CRAWFISH_AMBIENT.getLocation());
 	
 	public static final Codec<SpectrumSkullType> CODEC = StringRepresentable.fromEnum(SpectrumSkullType::values);
 	

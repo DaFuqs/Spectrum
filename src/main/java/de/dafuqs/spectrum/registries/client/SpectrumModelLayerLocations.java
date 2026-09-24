@@ -166,6 +166,8 @@ public class SpectrumModelLayerLocations {
 	public static final ModelLayerLocation MARROW_HEAD = new ModelLayerLocation(SpectrumCommon.locate("marrow_head"), "main");
 	public static final ModelLayerLocation MARROW_HEAD_OVERLAY = new ModelLayerLocation(SpectrumCommon.locate("marrow_head"), "overlay");
 	public static final ModelLayerLocation SPLINTERSPAWN_HEAD = new ModelLayerLocation(SpectrumCommon.locate("splinterspawn_head"), "main");
+	public static final ModelLayerLocation KOI_HEAD = new ModelLayerLocation(SpectrumCommon.locate("koi_head"), "main");
+	public static final ModelLayerLocation CRAWFISH_HEAD = new ModelLayerLocation(SpectrumCommon.locate("crawfish_head"), "main");
 
 	/**
 	 * Armor
@@ -319,6 +321,8 @@ public class SpectrumModelLayerLocations {
 		ClientHooks.registerLayerDefinition(MARROW_HEAD, SkullModel::createMobHeadLayer);
 		ClientHooks.registerLayerDefinition(MARROW_HEAD_OVERLAY, SkullModel::createMobHeadLayer);
 		ClientHooks.registerLayerDefinition(SPLINTERSPAWN_HEAD, SilverfishHeadModel::getTexturedModelData);
+		ClientHooks.registerLayerDefinition(KOI_HEAD, KoiHeadModel::getTexturedModelData);
+		ClientHooks.registerLayerDefinition(CRAWFISH_HEAD, CrawfishHeadModel::getTexturedModelData);
 		
 		ClientHooks.registerLayerDefinition(BEDROCK_LAYER, () -> LayerDefinition.create(BedrockArmorModel.getMeshDefinition(), 128, 128));
 	}

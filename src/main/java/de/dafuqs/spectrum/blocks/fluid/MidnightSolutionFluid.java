@@ -158,7 +158,8 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 		if (!enchantments.isEmpty()) {
 			int randomEnchantmentIndex = world.getRandom().nextInt(enchantments.size());
 			Object2IntMap.Entry<Holder<Enchantment>> entryToRemove = enchantments.entrySet().stream().toList().get(randomEnchantmentIndex);
-			Tuple<ItemStack, Integer> result = SpectrumEnchantmentHelper.removeEnchantments(itemStack, entryToRemove.getKey());
+			// we copy the stack and call `setItem` so the clients get updated
+			Tuple<ItemStack, Integer> result = SpectrumEnchantmentHelper.removeEnchantments(itemStack.copy(), entryToRemove.getKey());
 			
 			if (result.getB() > 0) {
 				spawnXP(world, itemEntity, EnchanterBlockEntity.getEnchantingPrice(itemStack, entryToRemove.getKey(), entryToRemove.getIntValue()));
@@ -178,12 +179,15 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 				spawnXP(world, itemEntity, EnchanterBlockEntity.getEnchantingPrice(boundItem.getDefaultInstance(), entryToRemove.getKey(), entryToRemove.getIntValue()));
 				
 				ItemEnchantments targetEnchants = builder.toImmutable();
+				// we copy the stack and call `setItem` so the clients get updated
+				ItemStack newStack = itemStack.copy();
 				if (targetEnchants.isEmpty()) {
-					itemStack.remove(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS);
-					itemStack.remove(SpectrumDataComponentTypes.BOUND_ITEM);
+					newStack.remove(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS);
+					newStack.remove(SpectrumDataComponentTypes.BOUND_ITEM);
 				} else {
-					itemStack.set(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS, targetEnchants);
+					newStack.set(SpectrumDataComponentTypes.CANVAS_ENCHANTMENTS, targetEnchants);
 				}
+				itemEntity.setItem(newStack);
 				itemEntity.setDefaultPickUpDelay();
 			}
 		}

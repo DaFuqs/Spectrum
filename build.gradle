@@ -10,7 +10,7 @@ group = project.maven_group
 repositories {
 	maven { url = "https://maven.is-immensely.gay/releases" } // Revelationary, Fractal, AEA, Arrowhead, ...
 	maven { url = "https://maven.shedaniel.me/" } // REI
-	maven { url = "https://maven.terraformersmc.com/" } // Modmenu
+	//maven { url = "https://maven.terraformersmc.com/" }
 	maven {
 		name = "Sleeping Town"
 		url = "https://repo.sleeping.town/"

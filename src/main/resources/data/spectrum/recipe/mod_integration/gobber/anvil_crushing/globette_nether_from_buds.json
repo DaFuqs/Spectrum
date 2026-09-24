@@ -1,11 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "neoforge:mod_loaded",
-      "modid": "create"
-    }
-  ],
-
   "type": "spectrum:enchantment_upgrade",
   "bulk_item": {
     "item": "spectrum:cyan_pigment"
@@ -19,5 +12,11 @@
   "xp_scaling": {
     "type": "spectrum:doubling",
     "scaling_value": 400
-  }
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "gobber2"
+    }
+  ]
 }

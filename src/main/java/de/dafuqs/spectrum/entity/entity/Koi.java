@@ -15,8 +15,14 @@ public class Koi extends AbstractSchoolingFish {
     public Koi(EntityType<? extends Koi> entityType, Level level) {
         super(entityType, level);
     }
-
-    @Override
+	
+	@Override
+	public @Nullable SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+		this.getAttribute(Attributes.SCALE).setBaseValue(0.75 + level.getRandom().nextDouble() * 0.75);
+		return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
+	}
+	
+	@Override
     public ItemStack getBucketItemStack() {
         return new ItemStack(SpectrumItems.BUCKET_OF_KOI.get());
     }

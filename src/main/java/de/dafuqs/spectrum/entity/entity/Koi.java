@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.sounds.*;
+import net.minecraft.world.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
@@ -9,6 +10,7 @@ import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import org.jspecify.annotations.*;
 
 public class Koi extends AbstractSchoolingFish {
 	
@@ -29,22 +31,22 @@ public class Koi extends AbstractSchoolingFish {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.COD_AMBIENT;
+        return SpectrumSoundEvents.ENTITY_KOI_AMBIENT;
     }
+	
+	@Override
+	protected SoundEvent getHurtSound(DamageSource damageSource) {
+		return SpectrumSoundEvents.ENTITY_KOI_HURT;
+	}
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.COD_DEATH;
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEvents.COD_HURT;
+        return SpectrumSoundEvents.ENTITY_KOI_DEATH;
     }
 
     @Override
     protected SoundEvent getFlopSound() {
-        return SoundEvents.COD_FLOP;
+        return SpectrumSoundEvents.ENTITY_KOI_FLOP;
     }
 	
 	public static AttributeSupplier.Builder createKoiAttributes() {

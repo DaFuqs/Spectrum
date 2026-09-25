@@ -9,6 +9,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.util.valueproviders.*;
+import net.minecraft.world.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
@@ -17,9 +18,11 @@ import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.player.*;
+import net.minecraft.world.food.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import org.jspecify.annotations.*;
@@ -148,9 +151,6 @@ public class Crawfish extends TamableAnimal implements NeutralMob {
 		this.setCollectedXP(compound.getInt("collected_xp"));
 	}
 	
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
 	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
@@ -160,22 +160,22 @@ public class Crawfish extends TamableAnimal implements NeutralMob {
 	
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.SILVERFISH_AMBIENT;
+		return SpectrumSoundEvents.ENTITY_CRAWFISH_AMBIENT;
 	}
 	
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSource) {
-		return SoundEvents.SILVERFISH_HURT;
+		return SpectrumSoundEvents.ENTITY_CRAWFISH_HURT;
 	}
 	
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.SILVERFISH_DEATH;
+		return SpectrumSoundEvents.ENTITY_CRAWFISH_DEATH;
 	}
 	
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState block) {
-		this.playSound(SoundEvents.SILVERFISH_STEP, 0.15F, 1.0F);
+		this.playSound(SpectrumSoundEvents.ENTITY_CRAWFISH_STEP, 0.15F, 1.0F);
 	}
 	
 	@Override

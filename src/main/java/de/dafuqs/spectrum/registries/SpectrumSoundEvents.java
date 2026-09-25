@@ -299,6 +299,16 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_SPLINTERSPAWN_DEATH = register("entity.splinterspawn.death");
 	public static final SoundEvent ENTITY_SPLINTERSPAWN_STEP = register("entity.splinterspawn.step");
 	
+	public static final SoundEvent ENTITY_KOI_AMBIENT = register("entity.koi.ambient");
+	public static final SoundEvent ENTITY_KOI_DEATH = register("entity.koi.hurt");
+	public static final SoundEvent ENTITY_KOI_HURT = register("entity.koi.death");
+	public static final SoundEvent ENTITY_KOI_FLOP = register("entity.koi.flop");
+	
+	public static final SoundEvent ENTITY_CRAWFISH_AMBIENT = register("entity.crawfish.ambient");
+	public static final SoundEvent ENTITY_CRAWFISH_HURT = register("entity.crawfish.hurt");
+	public static final SoundEvent ENTITY_CRAWFISH_DEATH = register("entity.crawfish.death");
+	public static final SoundEvent ENTITY_CRAWFISH_STEP = register("entity.crawfish.step");
+	
 	// OST - AMBIENT
 	public static final SoundEvent OST_AZURE = register("ost.azure");
 	

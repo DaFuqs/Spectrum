@@ -9,6 +9,18 @@
           }
         ]
       }
+    },
+    "interacted_with_crawfish": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/entity_interact/crawfish"
+      }
     }
-  }
+  },
+  "requirements": [
+    [
+      "interacted_with_crawfish",
+      "has_koi"
+    ]
+  ]
 }

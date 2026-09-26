@@ -17,16 +17,22 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_crawfish"
-      },
-      "anchor": "crawfish",
       "item": {
         "item": "spectrum:crawfish"
       },
       "text": "book.spectrum.guidebook.crawfish.page0.text",
       "title": "item.spectrum.crawfish"
+    },
+    {
+      "type": "modonomicon:entity",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_crawfish"
+      },
+      "entity_id": "spectrum:crawfish",
+      "scale": 1.0,
+      "title": "book.spectrum.guidebook.crawfish.entity.title",
+      "text": "book.spectrum.guidebook.crawfish.entity.text"
     }
   ]
 }

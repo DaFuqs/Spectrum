@@ -5,10 +5,25 @@
       "conditions": {
         "items": [
           {
-            "items": "spectrum:koi"
+            "items": [
+              "spectrum:koi",
+              "spectrum:bucket_of_koi"
+            ]
           }
         ]
       }
+    },
+    "interacted_with_koi": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/entity_interact/koi"
+      }
     }
-  }
+  },
+  "requirements": [
+    [
+      "interacted_with_koi",
+      "has_koi"
+    ]
+  ]
 }

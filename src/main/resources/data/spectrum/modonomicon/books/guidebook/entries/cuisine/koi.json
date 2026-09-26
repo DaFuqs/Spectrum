@@ -17,16 +17,22 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_koi"
-      },
-      "anchor": "koi",
       "item": {
         "item": "spectrum:koi"
       },
       "title": "item.spectrum.koi",
       "text": "book.spectrum.guidebook.koi.page0.text"
+    },
+    {
+      "type": "modonomicon:entity",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_koi"
+      },
+      "entity_id": "spectrum:koi",
+      "scale": 1.0,
+      "title": "book.spectrum.guidebook.koi.entity.title",
+      "text": "book.spectrum.guidebook.koi.entity.text"
     }
   ]
 }

@@ -63,7 +63,7 @@ public class Koi extends AbstractFish {
 	public static AttributeSupplier.Builder createKoiAttributes() {
 		return Monster.createMonsterAttributes()
 				.add(Attributes.MAX_HEALTH, 6.0)
-				.add(Attributes.MOVEMENT_SPEED, 0.8);
+				.add(Attributes.MOVEMENT_SPEED, 0.4);
 	}
 	
 	@Override

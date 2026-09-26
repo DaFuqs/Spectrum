@@ -8,6 +8,7 @@ import net.minecraft.world.level.material.*;
 public class SpectrumFluidTags {
 	
 	public static final TagKey<Fluid> MIDNIGHT_SOLUTION_CONVERTED = of("midnight_solution_converted");
+	public static final TagKey<Fluid> WATER_PATH_NODES = of("water_path_nodes");
 	
 	public static final TagKey<Fluid> LAGOON_ROD_FISHABLE_IN = of("lagoon_rod_fishable_in");
 	public static final TagKey<Fluid> MOLTEN_ROD_FISHABLE_IN = of("molten_rod_fishable_in");

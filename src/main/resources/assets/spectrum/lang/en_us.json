@@ -3062,6 +3062,11 @@
   "book.spectrum.guidebook.knowledge_gem.page2.text": "Putting a Knowledge Gem in a [Black Hole Chest](entry://magical_blocks/black_hole_chest) will allow it to absorb XP orbs and store the experience in the gem.",
   "book.spectrum.guidebook.knowledge_gem.page2.title": "XP Orb Absorption",
   "book.spectrum.guidebook.koi.page0.text": "A pale, large and hearty fish that feels most at home in puddles of [Liquid Crystal](entry://general/liquid_crystal).",
+  "book.spectrum.guidebook.koi.entity.title":  "Live Koi",
+  "book.spectrum.guidebook.koi.entity.text": "Wonderful creatures, from small to large. I can catch them with a [](item://minecraft:water_bucket).",
+  "book.spectrum.guidebook.crawfish.entity.title":  "Live Crawfish",
+  "book.spectrum.guidebook.crawfish.entity.text": "I found them rather... unsociable.\\\nThey are not very tolerant of other creatures in their vicinity (particularly other crawfish, or creatures they regard as a nuisance).\\\n\\\nInterestingly, they can be tamed. With a bit of experience (to be taken literally), they can be trained to become true fighting machines.",
+
   "book.spectrum.guidebook.lagoon_rod.page0.text": "Spending quiet days on my patio I have noticed that marine life seems to be strangely attracted to the [Mermaid's Gems](entry://general/mermaids_brush) I found earlier. Since they naturally float on water, I decided to use one as a bobber.\\\n\\\nLo and behold, not only does it increase my success, but it also has a number of other interesting side effects...",
   "book.spectrum.guidebook.lagoon_rod.page1.text": "*I wonder what I can bring to the surface.*",
   "book.spectrum.guidebook.laurels_of_serenity.page0.text": "The idea of being left alone is great! What isn't so great is having my tongue go numb from drinking leaf juice every fifteen minutes. The solution to my problems is self evident, simply wear the nightdew!... and pump it full of purple ink.\\\n\\\n*Wait – since this is made from the flowers, does that make it a lei?*",
@@ -5093,6 +5098,7 @@
   "item.spectrum.workstaff.tooltip.right_click_actions": "Able to Till, Strip and Flatten",
   "item.spectrum.workstaff.tooltip.right_click_actions_disabled": "Tilling, Stripping and Flattening disabled",
   "item.spectrum.yellow_pigment": "Yellow Pigment",
+  "item.spectrum.silver_scale": "Silver Scale",
 
   "item.spectrum.sugar_stick": "Sugar Stick",
   "item.spectrum.topaz_sugar_stick": "Topaz Sugar Stick",

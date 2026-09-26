@@ -413,6 +413,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> KOI_SPAWN_EGG = register("koi_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.KOI, 0xfcdbc7, 0xe3796e, IS.of()));
 	public static final DeferredItem<Item> CRAWFISH_SPAWN_EGG = register("crawfish_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.CRAWFISH, 0x83b5ae, 0x546787, IS.of()));
 	public static final DeferredItem<Item> BUCKET_OF_KOI = register("bucket_of_koi", () -> new MobBucketItem(SpectrumEntityTypes.KOI.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY, IS.of(1)));
+	public static final DeferredItem<Item> SILVER_SCALE = register("silver_scale", () -> new Item(IS.of(Rarity.UNCOMMON)));
 	
 	// Magical Tools
 	public static final DeferredItem<Item> BAG_OF_HOLDING = register("bag_of_holding", () -> new BagOfHoldingItem(IS.of(1)));

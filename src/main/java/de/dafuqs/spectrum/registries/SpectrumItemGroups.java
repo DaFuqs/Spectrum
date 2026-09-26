@@ -671,6 +671,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
 					entries.accept(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
 					entries.accept(SpectrumItems.DRAGONROT_BUCKET);
+					
+					entries.accept(SpectrumItems.SILVER_SCALE);
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_PURE_RESOURCES, Component.translatable("itemGroup.spectrum.pure_resources"))
@@ -1559,12 +1561,12 @@ public class SpectrumItemGroups {
 					
 					entries.accept(SpectrumItems.DIVINATION_HEART);
 					
-					// TODO: Finish impl
+					// todo: add model
+					entries.accept(SpectrumBlocks.TINTING_STATION);
+					// TODO: add model & finish impl
 					entries.accept(SpectrumBlocks.DAWNBRUSH);
 					entries.accept(SpectrumBlocks.TWILL);
 					entries.accept(SpectrumBlocks.VANTACLAST);
-					
-					entries.accept(SpectrumBlocks.TINTING_STATION);
 				}).build();
 	}
 	

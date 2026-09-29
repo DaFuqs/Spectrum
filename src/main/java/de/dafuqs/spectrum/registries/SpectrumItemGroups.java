@@ -672,7 +672,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
 					entries.accept(SpectrumItems.DRAGONROT_BUCKET);
 					
-					entries.accept(SpectrumItems.SILVER_SCALE);
+					//entries.accept(SpectrumItems.SILVER_SCALE); // TODO: readd when they got textures & uses
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_PURE_RESOURCES, Component.translatable("itemGroup.spectrum.pure_resources"))

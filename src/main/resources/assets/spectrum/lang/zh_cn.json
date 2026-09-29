@@ -4016,7 +4016,7 @@
   "book.spectrum.guidebook.crafting_tablet.page1.title": "基座自动化",
   "book.spectrum.guidebook.crafting_tablet.page1.text": "总有一天，我需要频繁反复合成某样材料，以至于想过搞自动化。或许我也会变成某种流水生产线每个物品都搞自动生产的肝帝人皇。\\\n\\\n[七彩基座](entry://general/pedestal)有专门放置合成模板的槽位。使用漏斗或者类似的器件填充基座的时候，物品会按照合成模板中配方的指示均匀地落在对应的槽位上。",
 
-  "book.spectrum.guidebook.crawfish.page0.text": "看看我上次钓鱼钓上来了什么！这其实不是鱼，而是一种**甲壳动物**。\\\n\\\n它们似乎即使在最泥泞的池塘里也能活得好好的。",
+  "book.spectrum.guidebook.crawfish.about.text": "看看我上次钓鱼钓上来了什么！这其实不是鱼，而是一种**甲壳动物**。\\\n\\\n它们似乎即使在最泥泞的池塘里也能活得好好的。",
 
   "book.spectrum.guidebook.creating_enchanted_books.name": "制作附魔书",
   "book.spectrum.guidebook.creating_enchanted_books.page0.text": "[附魔基座](entry://enchanting/enchanter)可以消耗[颜料](entry://general/pigment)，原材料与经验对[#](bb00bb)普通书本[#]()添加附魔。 \\\n\\\n虽然经验开销略高于附魔台，但我可以对附魔的附魔进行更为细致入微的选取。",
@@ -4718,7 +4718,7 @@
   "book.spectrum.guidebook.knowledge_gem.page2.title": "经验球吸收",
   "book.spectrum.guidebook.knowledge_gem.page2.text": "将知识宝石放入[黑洞箱](entry://magical_blocks/black_hole_chest)中可以吸收经验球并将经验存储在宝石中。",
 
-  "book.spectrum.guidebook.koi.page0.text": "一种体型硕大、肉质厚实的淡水鱼类，最喜欢在[液态水晶](entry://general/liquid_crystal)的水坑中栖息。",
+  "book.spectrum.guidebook.koi.about.text": "一种体型硕大、肉质厚实的淡水鱼类，最喜欢在[液态水晶](entry://general/liquid_crystal)的水坑中栖息。",
 
   "book.spectrum.guidebook.lagoon_rod.page0.text": "在阳台上享受宁静的日子时，我发现海里的生物似乎会被我之前找到的[美人鱼宝石](entry://general/mermaids_brush)所吸引。鉴于这些宝石能自然漂浮在水面上，于是我决定用一颗来做浮漂。\\\n\\\n你猜怎么着，不仅提高了上钩率，还带来了不少其他有趣的副作用...",
   "book.spectrum.guidebook.lagoon_rod.page1.text": "*不知道我能钓上来些什么。*",

@@ -3,8 +3,8 @@
   "group": "memories",
   "time": 800,
   "experience": 4.0,
-  "ingredient1": "spectrum:koi_head",
-  "ingredient2": "minecraft:bone_meal",
+  "ingredient1": "spectrum:crawfish_head",
+  "ingredient2": "minecraft:mud",
   "center_ingredient": {
     "tag": "spectrum:memory_bonding_agents",
     "count": 4
@@ -13,10 +13,10 @@
     "id": "spectrum:memory",
     "components": {
       "entity_data": {
-        "id": "spectrum:koi"
+        "id": "spectrum:crawfish"
       },
       "spectrum:memory": {
-        "ticks_to_manifest": 8
+        "ticks_to_manifest": 4
       }
     }
   },

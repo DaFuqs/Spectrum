@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.blocks.fluid.*;
+import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
@@ -14,6 +15,7 @@ import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.fluids.*;
@@ -71,18 +73,16 @@ public class Koi extends AbstractFish {
 		super.aiStep();
 		
 		if (this.isAlive() && isInFluidType(SpectrumFluids.LIQUID_CRYSTAL_TYPE.get())) {
-			if(this.level().isClientSide()) {
-				this.level()
-						.addParticle(
-								ParticleTypes.PORTAL,
-				this.getRandomX(0.5),
-						this.getRandomY() - 0.25,
-						this.getRandomZ(0.5),
-						(this.random.nextDouble() - 0.5) * 2.0,
-						-this.random.nextDouble(),
-						(this.random.nextDouble() - 0.5) * 2.0);
+			Level level = this.level();
+			if(level.isClientSide()) {
+				if(random.nextInt(6) == 0) {
+					level.addParticle(ParticleTypes.END_ROD,
+							this.getRandomX(0.5), this.getRandomY(), this.getRandomZ(0.5),
+							random.nextGaussian() * 0.005, random.nextGaussian() * 0.005, random.nextGaussian() * 0.005);
+				}
 			} else if(--this.scaleDropTime <= 0) {
-				this.spawnAtLocation(SpectrumItems.SILVER_SCALE);
+				// TODO: readd when they got textures & uses
+				//this.spawnAtLocation(SpectrumItems.SILVER_SCALE);
 				this.scaleDropTime = SCALE_DROP_TIME_BASE + this.getRandom().nextInt(SCALE_DROP_TIME_BASE);
 			}
 		}

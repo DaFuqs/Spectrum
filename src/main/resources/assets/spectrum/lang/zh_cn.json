@@ -2575,7 +2575,6 @@
   "biome.spectrum.howling_spires": "呼啸尖峰",
 
   "effect.spectrum.immunity": "免疫",
-  "effect.spectrum.immunity.desc": "移除所有负面状态效果，并免疫负面状态效果。",
   "effect.spectrum.another_roll": "重骰",
   "effect.spectrum.another_roll.desc": "影响幸运、抢夺和其他基于运气的附魔掉落。",
   "effect.spectrum.scarred": "重伤",

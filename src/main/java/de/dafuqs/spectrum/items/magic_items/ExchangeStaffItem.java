@@ -164,7 +164,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 		tooltip.add(Component.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(Minecraft.getInstance().player)).withStyle(ChatFormatting.GRAY));
 		getStoredBlock(stack).ifPresent(block -> tooltip.add(Component.translatable("item.spectrum.exchanging_staff.tooltip.target", block.getName()).withStyle(ChatFormatting.GRAY)));
 		if(SpectrumConfig.CONFIG.ExchangingStaffInkCostPerBlock.get() > 0) {
-			addInkPoweredTooltip(tooltip);
+			addInkPoweredTooltip(stack, tooltip);
 		}
 	}
 	

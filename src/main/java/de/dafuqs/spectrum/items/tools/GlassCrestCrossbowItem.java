@@ -109,7 +109,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 		float overcharge = getOvercharge(stack);
 		if (overcharge == 0) {
 			tooltip.add(Component.translatable("item.spectrum.glass_crest_crossbow.tooltip.how_to_overcharge").withStyle(ChatFormatting.GRAY));
-			addInkPoweredTooltip(tooltip);
+			addInkPoweredTooltip(stack, tooltip);
 		} else {
 			tooltip.add(Component.translatable("item.spectrum.glass_crest_crossbow.tooltip.overcharged", Support.DF.format(overcharge * 100)).withStyle(ChatFormatting.GRAY));
 		}

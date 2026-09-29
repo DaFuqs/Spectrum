@@ -99,7 +99,7 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 			}
 		}
 		
-		addInkPoweredTooltip(tooltip);
+		addInkPoweredTooltip(stack, tooltip);
 	}
 	
 }

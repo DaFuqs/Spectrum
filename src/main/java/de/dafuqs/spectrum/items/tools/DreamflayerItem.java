@@ -153,8 +153,8 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 	}
 	
 	@Override
-	public void addInkPoweredTooltip(List<Component> tooltip) {
-		InkPowered.super.addInkPoweredTooltip(tooltip);
+	public void addInkPoweredTooltip(ItemStack stack, List<Component> tooltip) {
+		InkPowered.super.addInkPoweredTooltip(stack, tooltip);
 	}
 	
 	@Override

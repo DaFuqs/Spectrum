@@ -46,7 +46,7 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 		tooltip.add(Component.translatable("item.spectrum.fractal_glass_crest_bident.tooltip").withStyle(ChatFormatting.GRAY));
 		tooltip.add(Component.translatable("item.spectrum.fractal_glass_crest_bident.tooltip2").withStyle(ChatFormatting.GRAY));
 		tooltip.add(Component.translatable("item.spectrum.fractal_glass_crest_bident.tooltip3").withStyle(ChatFormatting.GRAY));
-		addInkPoweredTooltip(tooltip);
+		addInkPoweredTooltip(stack, tooltip);
 	}
 	
 	@Override

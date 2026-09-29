@@ -103,7 +103,7 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
-		addInkPoweredTooltip(tooltip);
+		addInkPoweredTooltip(stack, tooltip);
 	}
 	
 	@Override

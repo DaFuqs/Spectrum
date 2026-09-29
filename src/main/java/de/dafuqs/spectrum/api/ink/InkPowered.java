@@ -52,15 +52,15 @@ public interface InkPowered {
 	 * These are added as the player facing tooltip
 	 **/
 	@OnlyIn(Dist.CLIENT)
-	default void addInkPoweredTooltip(List<Component> tooltip) {
+	default void addInkPoweredTooltip(ItemStack stack, List<Component> tooltip) {
 		if (canUseClient()) {
-			if (getUsedColors().size() > 1) {
+			if (getUsedColors(stack).size() > 1) {
 				tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.prefix").withStyle(ChatFormatting.GRAY));
-				for (InkColor color : getUsedColors()) {
+				for (InkColor color : getUsedColors(stack)) {
 					tooltip.add(color.getColoredInkName().withStyle(ChatFormatting.GRAY));
 				}
 			} else {
-				tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.consume", getUsedColors().getFirst().getColoredInkName()).withStyle(ChatFormatting.GRAY));
+				tooltip.add(Component.translatable("spectrum.tooltip.ink_powered.consume", getUsedColors(stack).getFirst().getColoredInkName()).withStyle(ChatFormatting.GRAY));
 			}
 		}
 	}

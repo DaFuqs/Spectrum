@@ -68,7 +68,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		tooltip.add(Component.translatable("item.spectrum.constructors_staff.tooltip.range", getRange(Minecraft.getInstance().player)).withStyle(ChatFormatting.GRAY));
 		tooltip.add(Component.translatable("item.spectrum.constructors_staff.tooltip.crouch").withStyle(ChatFormatting.GRAY));
 		if(SpectrumConfig.CONFIG.ConstructorsStaffInkCostPerBlock.get() > 0) {
-			addInkPoweredTooltip(tooltip);
+			addInkPoweredTooltip(stack, tooltip);
 		}
 	}
 	

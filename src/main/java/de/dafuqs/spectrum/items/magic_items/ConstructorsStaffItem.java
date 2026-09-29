@@ -148,7 +148,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 	}
 	
 	@Override
-	public List<InkColor> getUsedColors() {
+	public List<InkColor> getUsedColors(ItemStack stack) {
 		return List.of(USED_COLOR);
 	}
 	

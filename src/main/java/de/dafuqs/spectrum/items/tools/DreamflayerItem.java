@@ -148,7 +148,7 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 	}
 	
 	@Override
-	public List<InkColor> getUsedColors() {
+	public List<InkColor> getUsedColors(ItemStack stack) {
 		return List.of(USED_COLOR);
 	}
 	

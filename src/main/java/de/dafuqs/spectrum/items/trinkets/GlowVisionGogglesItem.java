@@ -75,7 +75,7 @@ public class GlowVisionGogglesItem extends SpectrumCurioItem implements InkPower
 	}
 	
 	@Override
-	public List<InkColor> getUsedColors() {
+	public List<InkColor> getUsedColors(ItemStack stack) {
 		return List.of(INK_COST.color());
 	}
 }

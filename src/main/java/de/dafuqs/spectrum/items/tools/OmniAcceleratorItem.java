@@ -96,7 +96,7 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	}
 	
 	@Override
-	public List<InkColor> getUsedColors() {
+	public List<InkColor> getUsedColors(ItemStack stack) {
 		return List.of(COST.color());
 	}
 	

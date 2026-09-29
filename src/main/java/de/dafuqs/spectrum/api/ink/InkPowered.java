@@ -26,7 +26,6 @@ import java.util.*;
 
 public interface InkPowered {
 	
-	
 	@OnlyIn(Dist.CLIENT)
 	static boolean canUseClient() {
 		Minecraft client = Minecraft.getInstance();
@@ -41,7 +40,12 @@ public interface InkPowered {
 	 * The colors that the object requires for working.
 	 * These are added as the player facing tooltip
 	 **/
-	List<InkColor> getUsedColors();
+	@Deprecated(forRemoval = true)
+	default List<InkColor> getUsedColors() {
+		return Collections.emptyList();
+	}
+	
+	List<InkColor> getUsedColors(ItemStack stack);
 	
 	/**
 	 * The colors that the object requires for working.

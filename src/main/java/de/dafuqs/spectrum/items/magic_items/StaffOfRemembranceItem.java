@@ -133,7 +133,7 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 	}
 	
 	@Override
-	public List<InkColor> getUsedColors() {
+	public List<InkColor> getUsedColors(ItemStack stack) {
 		return List.of(USED_COLOR);
 	}
 	

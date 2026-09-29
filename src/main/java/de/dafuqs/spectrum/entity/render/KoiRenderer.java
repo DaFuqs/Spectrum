@@ -27,7 +27,15 @@ public class KoiRenderer extends MobRenderer<Koi, KoiModel<Koi>> {
 	@Override
     protected void setupRotations(Koi entity, PoseStack poseStack, float bob, float yBodyRot, float partialTick, float scale) {
         super.setupRotations(entity, poseStack, bob, yBodyRot, partialTick, scale);
-        float f = 4.3F * Mth.sin(0.6F * bob);
+        
+		// if it is rendering at world origin render unmodified
+		// this is probably a fake entity (e.g. in a book)
+		// the entity should render as if in water, not flopping
+		if(entity.position().lengthSqr() == 0) {
+			return;
+		}
+		
+		float f = 4.3F * Mth.sin(0.6F * bob);
         poseStack.mulPose(Axis.YP.rotationDegrees(f));
         if (!entity.isInWater()) {
             poseStack.translate(0.1F, 0.1F, -0.1F);

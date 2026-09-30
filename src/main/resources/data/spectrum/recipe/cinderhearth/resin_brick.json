@@ -1,9 +1,9 @@
 {
   "type": "spectrum:cinderhearth",
-  "ingredient": "spectrum:resin_clump",
+  "ingredient": "minecraft:resin_clump",
   "results": [
     {
-      "id": "spectrum:resin_brick",
+      "id": "minecraft:resin_brick",
       "count": 3
     }
   ],

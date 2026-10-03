@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "arctozolt-DD",
+            "pokemon": "arctozolt",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "32-64",
+            "weight": 15.0,
+            "condition": {
+                "biomes": [
+                    "spectrum:crystal_gardens"
+                ]
+            }
+        }
+    ]
+}

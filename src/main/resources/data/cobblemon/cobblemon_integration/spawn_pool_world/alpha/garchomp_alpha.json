@@ -1,0 +1,60 @@
+{
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "garchomp-alpha-DD",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon-herd",
+      "bucket": "boss",
+      "spawnablePositionType": "grounded",
+      "maxHerdSize": 7,
+      "levelRange": "46-100",
+      "weight": 15.0,
+      "condition": {
+                "biomes": [
+                    "spectrum:razor_edge"
+                ]
+            },
+      "herdablePokemon": [
+        {
+          "pokemon": "garchomp held_item=cobblemon:dragon_gem alpha=true",
+          "weight": 30.0,
+          "levelRange": "1-100",
+          "maxTimes": 1,
+          "isLeader": true,
+          "isFollower": false
+        },
+        {
+          "pokemon": "gible",
+          "weight": 80.0,
+          "levelRange": "8-27",
+          "levelRangeOffset": "-3-3",
+          "maxTimes": 7,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "gabite",
+          "weight": 70.0,
+          "levelRange": "26-43",
+          "levelRangeOffset": "-2-4",
+          "maxTimes": 5,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "garchomp",
+          "weight": 50.0,
+          "levelRange": "49-55",
+          "levelRangeOffset": "-1-5",
+          "maxTimes": 3,
+          "isLeader": false,
+          "isFollower": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "amoonguss-alpha-DD",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon-herd",
+      "bucket": "boss",
+      "spawnablePositionType": "grounded",
+      "maxHerdSize": 6,
+      "levelRange": "37-100",
+      "weight": 50.0,
+      "condition": {
+                "biomes": [
+                    "spectrum:noxshroom_forest"
+                ]
+            },
+      "herdablePokemon": [
+        {
+          "pokemon": "amoonguss held_item=cobblemon:poison_gem alpha=true",
+          "weight": 30.0,
+          "levelRange": "1-100",
+          "maxTimes": 1,
+          "isLeader": true,
+          "isFollower": false
+        },
+        {
+          "pokemon": "foongus",
+          "weight": 80.0,
+          "levelRange": "7-26",
+          "levelRangeOffset": "-3-3",
+          "maxTimes": 7,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "amoonguss",
+          "weight": 120.0,
+          "levelRange": "41-42",
+          "levelRangeOffset": "-2-4",
+          "maxTimes": 5,
+          "isLeader": false,
+          "isFollower": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "togepi-1S",
+            "pokemon": "togepi",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "7-21",
+            "weight": 30.5,
+            "condition": {
+                "biomes": [
+                    "spectrum:noxshroom_forest"
+                ]
+            }
+        }
+    ]
+}

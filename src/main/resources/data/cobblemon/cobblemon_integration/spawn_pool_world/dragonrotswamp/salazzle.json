@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "salazzle-DD",
+            "pokemon": "salazzle",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "34-59",
+            "weight": 41.0,
+            "condition": {
+                "biomes": [
+                    "spectrum:dragonrot_swamp"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "salandit-DD",
+            "pokemon": "salandit",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "15-41",
+            "weight": 80.0,
+            "condition": {
+                "biomes": [
+                    "spectrum:dragonrot_swamp"
+                ]
+            }
+        }
+    ]
+}

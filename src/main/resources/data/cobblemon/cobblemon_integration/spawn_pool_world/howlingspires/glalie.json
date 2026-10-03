@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "glalie-1S",
+            "pokemon": "glalie",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "31-52",
+            "weight": 30.5,
+            "condition": {
+                "biomes": [
+                    "spectrum:howling_spires"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:aloe_leaf",
+    "count": 4
+  },
+  "results": [
+    {
+      "id": "minecraft:slime_ball",
+      "count": 1
+    }
+  ],
+  "experience": 0.1,
+  "time": 200,
+  "required_advancement": "spectrum:hidden/collect_aloe"
+}

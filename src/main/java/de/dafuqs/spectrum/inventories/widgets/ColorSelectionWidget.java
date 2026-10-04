@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
 import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.ink.*;
 import de.dafuqs.spectrum.registries.*;
@@ -10,6 +11,7 @@ import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import org.jspecify.annotations.*;
 
@@ -20,6 +22,9 @@ import static de.dafuqs.spectrum.helpers.RenderHelper.*;
 
 
 public class ColorSelectionWidget extends AbstractWidget {
+	
+	protected static final ResourceLocation LARGE_SPRITE = SpectrumCommon.locate("widget/color_selection_16");
+	protected static final ResourceLocation SINGLE_SPRITE = SpectrumCommon.locate("widget/color_selection_1");
 	
 	protected final BaseInkBlockEntity<?> blockEntity;
 	
@@ -63,6 +68,9 @@ public class ColorSelectionWidget extends AbstractWidget {
 	
 	@Override
 	protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
+		context.blitSprite(LARGE_SPRITE, this.getX(), this.getY(), 56, 14);
+		context.blitSprite(SINGLE_SPRITE, selectedIndexX - 1, selectedIndexY - 1, 6, 6);
+		
 		// draw selection icons
 		int i = -1;
 		int currentX = this.getX() + 1;

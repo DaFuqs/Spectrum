@@ -35,14 +35,6 @@ public class BaseInkScreen<T extends BaseInkScreenHandler> extends AbstractConta
 	}
 	
 	@Override
-	protected void init() {
-		super.init();
-		this.colorSelectionWidget = new ColorSelectionWidget(getGuiLeft() + 113, getGuiTop() + 55, getGuiLeft() + 139, getGuiTop() + 25, this.menu.getBlockEntity());
-		this.colorSelectionWidget.setChangedListener(this);
-		addRenderableWidget(this.colorSelectionWidget);
-	}
-	
-	@Override
 	protected void renderLabels(GuiGraphics drawContext, int mouseX, int mouseY) {
 		int titleX = (imageWidth - font.width(title)) / 2;
 		int titleY = 6;

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.inventories.widgets.*;
 import de.dafuqs.spectrum.inventories.widgets.ink.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
@@ -9,7 +10,7 @@ import net.minecraft.world.entity.player.*;
 
 public class InkStorageScreen extends BaseInkScreen<InkStorageScreenHandler> {
 	
-	protected static final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
+	protected static final ResourceLocation BACKGROUND = SpectrumCommon.locate("textures/gui/container/ink_storage.png");
 	
 	protected StackedInkBarWidget stackedInkBarWidget;
 	protected InkPieWidget inkPieWidget;
@@ -23,9 +24,13 @@ public class InkStorageScreen extends BaseInkScreen<InkStorageScreenHandler> {
 	protected void init() {
 		super.init();
 		
-		this.inkPieWidget = new InkPieWidget(getGuiLeft() + 54, getGuiTop() + 21, () -> menu.getBlockEntity().getInkCapability());
+		this.colorSelectionWidget = new ColorSelectionWidget(getGuiLeft() + 113 - 16, getGuiTop() + 55, getGuiLeft() + 139 - 16, getGuiTop() + 25, this.menu.getBlockEntity());
+		this.colorSelectionWidget.setChangedListener(this);
+		addRenderableWidget(this.colorSelectionWidget);
+		
+		this.inkPieWidget = new InkPieWidget(getGuiLeft() + 54 - 32, getGuiTop() + 21, () -> menu.getBlockEntity().getInkCapability());
 		addRenderableWidget(this.inkPieWidget);
-		this.stackedInkBarWidget = new StackedInkBarWidget(getGuiLeft() + 100, getGuiTop() + 21, () -> this.menu.getBlockEntity().getInkCapability());
+		this.stackedInkBarWidget = new StackedInkBarWidget(getGuiLeft() + 100 - 32, getGuiTop() + 21, () -> this.menu.getBlockEntity().getInkCapability());
 		addRenderableWidget(stackedInkBarWidget);
 	}
 	

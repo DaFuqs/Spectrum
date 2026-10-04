@@ -1,0 +1,30 @@
+{
+  "name": "block.spectrum.daydreamer",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/daydreamer"
+  },
+  "icon": {
+    "item": "spectrum:daydreamer"
+  },
+  "category": "spectrum:ink",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": -2,
+  "y": -1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.daydreamer.about.text",
+      "title": "block.spectrum.daydreamer"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier2/daydreamer",
+      "text": "book.spectrum.guidebook.daydreamer.recipe.text"
+    }
+  ]
+}

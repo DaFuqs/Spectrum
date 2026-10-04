@@ -6105,8 +6105,8 @@
   "block.spectrum.vantaclast": "Vantaclast",
   "block.spectrum.vantaclast.tooltip": "Generates Ink by consuming colored blocks",
   "block.spectrum.vantaclast.tooltip2": "Place in the vicinity of colored trees",
-  "block.spectrum.dawnbrush": "Dawnbrush",
-  "block.spectrum.dawnbrush.tooltip": "Generates Ink based on weather and time of day",
+  "block.spectrum.daydreamer": "Daydreamer",
+  "block.spectrum.daydreamer.tooltip": "Generates Ink based on weather and time of day",
 
   "block.spectrum.ink_node": "Pastel Ink Node",
   "block.spectrum.ink_node.tooltip": "Balances out Ink between all connected blocks",

@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 300,
+  "tier": "simple",
+  "colors": {
+    "spectrum:cyan": 8,
+    "spectrum:magenta": 4,
+    "spectrum:black": 2
+  },
+  "experience": 2.0,
+  "pattern": [
+    " S ",
+    "BDB",
+    "CCC"
+  ],
+  "key": {
+    "S": "#spectrum:colored_saplings",
+    "D": "minecraft:dirt",
+    "B": "spectrum:polished_basalt_crest",
+    "C": "spectrum:polished_calcite"
+  },
+  "result": {
+    "id": "spectrum:twill",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/blocks/twill"
+}

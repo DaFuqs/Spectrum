@@ -11,14 +11,13 @@
   "hide_while_locked": true,
   "parents": [
     {
-      "entry": "spectrum:ink/color_picker",
-      "line_reversed": true
+      "entry": "spectrum:ink/ink"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
-  "y": 3,
+  "x": 3,
+  "y": -1,
   "pages": [
     {
       "type": "modonomicon:text",

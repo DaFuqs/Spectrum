@@ -10,8 +10,12 @@
   "ingredients": [
     "minecraft:anvil",
     {
+      "item": "minecraft:gold_ingot",
+      "count": 8
+    },
+    {
       "item": "spectrum:bedrock_dust",
-      "count": 27
+      "count": 8
     },
     {
       "item": "spectrum:black_pigment",

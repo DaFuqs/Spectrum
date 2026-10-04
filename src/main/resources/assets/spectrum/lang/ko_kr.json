@@ -6101,8 +6101,8 @@
   "block.spectrum.vantaclast": "색채분해기",
   "block.spectrum.vantaclast.tooltip": "색깔 블록을 소모하여 잉크를 만듭니다",
   "block.spectrum.vantaclast.tooltip2": "색깔 나무 근처에 배치해야 합니다",
-  "block.spectrum.dawnbrush": "여명붓",
-  "block.spectrum.dawnbrush.tooltip": "날씨와 시간에 따라 잉크를 만듭니다",
+  "block.spectrum.daydreamer": "여명붓",
+  "block.spectrum.daydreamer.tooltip": "날씨와 시간에 따라 잉크를 만듭니다",
 
   "block.spectrum.ink_node": "파스텔 잉크 노드",
   "block.spectrum.ink_node.tooltip": "연결된 모든 블록들 간의 잉크를 균등하게 분배합니다",

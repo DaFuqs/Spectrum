@@ -143,7 +143,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> COLOR_PICKER = register(defaultWestHorizontalFacing(blockWithItem("color_picker", () -> new ColorPickerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<Block> TWILL = register(defaultWestHorizontalFacing(blockWithItem("twill", () -> new TwillBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<Block> VANTACLAST = register(defaultWestHorizontalFacing(blockWithItem("vantaclast", () -> new VantaclastBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
-	public static final DeferredBlock<Block> DAWNBRUSH = register(defaultWestHorizontalFacing(blockWithItem("dawnbrush", () -> new DawnbrushBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<Block> DAYDREAMER = register(defaultWestHorizontalFacing(blockWithItem("daydreamer", () -> new DaydreamerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
 	
 	// Ink Sinks
 	public static final DeferredBlock<Block> TINTING_STATION = register(defaultWestHorizontalFacing(blockWithItem("tinting_station", () -> new TintingStationBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
@@ -2629,6 +2629,7 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(ZOMBIE_IDOL.get(), RenderType.translucent());
 		
 		ItemBlockRenderTypes.setRenderLayer(LIQUID_CRYSTAL_CAULDRON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TWILL.get(), RenderType.cutout());
 	}
 	
 }

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.inventories.widgets.*;
 import de.dafuqs.spectrum.inventories.widgets.ink.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
@@ -22,6 +23,10 @@ public class ColorPickerScreen extends BaseInkScreen<ColorPickerScreenHandler> {
 	@Override
 	protected void init() {
 		super.init();
+		
+		this.colorSelectionWidget = new ColorSelectionWidget(getGuiLeft() + 113, getGuiTop() + 55, getGuiLeft() + 139, getGuiTop() + 25, this.menu.getBlockEntity());
+		this.colorSelectionWidget.setChangedListener(this);
+		addRenderableWidget(this.colorSelectionWidget);
 		
 		this.inkPieWidget = new InkPieWidget(getGuiLeft() + 54, getGuiTop() + 20, () -> menu.getBlockEntity().getInkCapability());
 		addRenderableWidget(this.inkPieWidget);

@@ -11,15 +11,15 @@ import net.minecraft.world.level.block.state.*;
 import java.util.*;
 
 // produces roughly ~10k Ink / ingame day
-public class DawnbrushBlockEntity extends InkGeneratorBlockEntity {
+public class DaydreamerBlockEntity extends InkGeneratorBlockEntity {
 	
-	public DawnbrushBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.DAWNBRUSH.get(), blockPos, blockState, 3, 1);
+	public DaydreamerBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(SpectrumBlockEntities.DAYDREAMER.get(), blockPos, blockState, 3, 1);
 	}
 	
 	@Override
 	protected Component getDefaultName() {
-		return Component.translatable("block.spectrum.dawnbrush");
+		return Component.translatable("block.spectrum.daydreamer");
 	}
 	
 	@Override

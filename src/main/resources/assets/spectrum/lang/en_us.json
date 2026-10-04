@@ -4135,6 +4135,15 @@
   "book.spectrum.guidebook.progression_sharing.leave_all_parties.title": "Unbinding from Sync Groups",
   "book.spectrum.guidebook.progression_sharing.leave_all_parties.text": "Removes all mental links.",
 
+  "book.spectrum.guidebook.tinting_station.about.text": "",
+  "book.spectrum.guidebook.tinting_station.recipe.text": "*The perfect way to give my creativity free rein.*",
+  "book.spectrum.guidebook.vantaclast.about.text": "",
+  "book.spectrum.guidebook.vantaclast.recipe.text": "",
+  "book.spectrum.guidebook.daydreamer.about.text": "",
+  "book.spectrum.guidebook.daydreamer.recipe.text": "",
+  "book.spectrum.guidebook.twill.about.text": "",
+  "book.spectrum.guidebook.twill.recipe.text": "",
+
   "commands.spectrum.primordial_fire.put_on.success": "Set %d entities on fire",
   "commands.spectrum.primordial_fire.put_out.success": "Extinguished %d entities",
   "commands.spectrum.progression_sanity.success": "Printed the sanity checks findings to the servers console",
@@ -6105,8 +6114,8 @@
   "block.spectrum.vantaclast": "Vantaclast",
   "block.spectrum.vantaclast.tooltip": "Generates Ink by consuming colored blocks",
   "block.spectrum.vantaclast.tooltip2": "Place in the vicinity of colored trees",
-  "block.spectrum.dawnbrush": "Dawnbrush",
-  "block.spectrum.dawnbrush.tooltip": "Generates Ink based on weather and time of day",
+  "block.spectrum.daydreamer": "Daydreamer",
+  "block.spectrum.daydreamer.tooltip": "Generates Ink based on weather and time of day",
 
   "block.spectrum.ink_node": "Pastel Ink Node",
   "block.spectrum.ink_node.tooltip": "Balances out Ink between all connected blocks",

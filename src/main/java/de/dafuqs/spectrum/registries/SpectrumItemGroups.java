@@ -1598,7 +1598,7 @@ public class SpectrumItemGroups {
 					// todo: add model
 					entries.accept(SpectrumBlocks.TINTING_STATION);
 					// TODO: add model & finish impl
-					entries.accept(SpectrumBlocks.DAWNBRUSH);
+					entries.accept(SpectrumBlocks.DAYDREAMER);
 					entries.accept(SpectrumBlocks.TWILL);
 					entries.accept(SpectrumBlocks.VANTACLAST);
 				}).build();

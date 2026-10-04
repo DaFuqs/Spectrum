@@ -18,7 +18,7 @@ import net.minecraft.world.level.*;
 import javax.annotation.*;
 import java.util.*;
 
-public class BaseInkScreenHandler extends AbstractContainerMenu implements InkColorSelectedPacketReceiver {
+public abstract class BaseInkScreenHandler extends AbstractContainerMenu implements InkColorSelectedPacketReceiver {
 	
 	public record ScreenOpeningData(BlockPos pos, Optional<Holder<InkColor>> inkColor) {
 		public static final StreamCodec<RegistryFriendlyByteBuf, ScreenOpeningData> STREAM_CODEC = StreamCodec.composite(
@@ -81,9 +81,7 @@ public class BaseInkScreenHandler extends AbstractContainerMenu implements InkCo
 		}
 	}
 	
-	public void addBlockEntitySlots() {
-		this.addSlot(new InkStorageSlot(blockEntity, 0, 133, 33));
-	}
+	public abstract void addBlockEntitySlots();
 	
 	public BaseInkBlockEntity<?> getBlockEntity() {
 		return this.blockEntity;

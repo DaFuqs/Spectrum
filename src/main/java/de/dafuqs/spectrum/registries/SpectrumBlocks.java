@@ -2595,6 +2595,7 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(ZOMBIE_IDOL.get(), RenderType.translucent());
 		
 		ItemBlockRenderTypes.setRenderLayer(LIQUID_CRYSTAL_CAULDRON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TWILL.get(), RenderType.cutout());
 	}
 	
 }

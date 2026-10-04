@@ -17,7 +17,7 @@
     "C": "spectrum:cyan_pigment",
     "M": "spectrum:magenta_pigment",
     "Y": "spectrum:yellow_pigment",
-    "W": "#minecraft:wool",
+    "L": "#minecraft:wood",
     "D": "minecraft:green_dye",
     "P": "#minecraft:planks"
   },

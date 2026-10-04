@@ -17,13 +17,13 @@
     "C": "spectrum:cyan_pigment",
     "M": "spectrum:magenta_pigment",
     "Y": "spectrum:yellow_pigment",
-    "L": "#minecraft:logs",
+    "L": "#minecraft:wood",
     "D": "minecraft:green_dye",
     "P": "#minecraft:planks"
   },
   "result": {
-    "id": "spectrum:tinting_station",
+    "id": "spectrum:vantaclast",
     "count": 1
   },
-  "required_advancement": "spectrum:unlocks/blocks/tinting_station"
+  "required_advancement": "spectrum:unlocks/blocks/vantaclast"
 }

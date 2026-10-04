@@ -2,18 +2,18 @@
   "variants": {
     "facing=east": {
       "model": "spectrum:block/daydreamer",
-      "y": 180
+      "y": 90
     },
     "facing=north": {
-      "model": "spectrum:block/daydreamer",
-      "y": 90
+      "model": "spectrum:block/daydreamer"
     },
     "facing=south": {
       "model": "spectrum:block/daydreamer",
-      "y": 270
+      "y": 180
     },
     "facing=west": {
-      "model": "spectrum:block/daydreamer"
+      "model": "spectrum:block/daydreamer",
+      "y": 270
     }
   }
 }

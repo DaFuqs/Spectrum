@@ -2,18 +2,18 @@
   "variants": {
     "facing=east": {
       "model": "spectrum:block/vantaclast",
-      "y": 180
+      "y": 90
     },
     "facing=north": {
-      "model": "spectrum:block/vantaclast",
-      "y": 90
+      "model": "spectrum:block/vantaclast"
     },
     "facing=south": {
       "model": "spectrum:block/vantaclast",
-      "y": 270
+      "y": 180
     },
     "facing=west": {
-      "model": "spectrum:block/vantaclast"
+      "model": "spectrum:block/vantaclast",
+      "y": 270
     }
   }
 }

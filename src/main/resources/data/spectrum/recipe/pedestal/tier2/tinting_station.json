@@ -9,20 +9,21 @@
   },
   "experience": 2.0,
   "pattern": [
-    "B B",
     "CMY",
-    "PPP"
+    "PDP",
+    "PLP"
   ],
   "key": {
     "C": "spectrum:cyan_pigment",
     "M": "spectrum:magenta_pigment",
     "Y": "spectrum:yellow_pigment",
-    "P": "spectrum:polished_calcite",
-    "B": "spectrum:polished_basalt"
+    "W": "#minecraft:wool",
+    "D": "minecraft:green_dye",
+    "P": "#minecraft:planks"
   },
   "result": {
-    "id": "spectrum:color_picker",
+    "id": "spectrum:tinting_station",
     "count": 1
   },
-  "required_advancement": "spectrum:unlocks/blocks/color_picker"
+  "required_advancement": "spectrum:unlocks/blocks/tinting_station"
 }

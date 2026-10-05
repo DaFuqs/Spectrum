@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "built_advanced_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure"
+      }
+    },
+    "collected_ash": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_ash"
+      }
+    },
+    "collected_frostbite": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_frostbite_resource"
+      }
+    }
+  }
+}

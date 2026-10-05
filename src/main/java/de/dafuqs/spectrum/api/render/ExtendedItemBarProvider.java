@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.api.render;
 
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public interface ExtendedItemBarProvider {
 	

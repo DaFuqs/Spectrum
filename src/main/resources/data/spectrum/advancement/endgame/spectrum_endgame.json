@@ -24,14 +24,10 @@
         "advancement_identifier": "spectrum:lategame/collect_enough_hints"
       }
     },
-    "socketed_mysterious_locket": {
-      "trigger": "spectrum:crafted_with_fusion_shrine",
+    "collected_mysterious_locket": {
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "items": [
-          {
-            "items": "spectrum:mysterious_locket"
-          }
-        ]
+        "advancement_identifier": "spectrum:lategame/collect_mysterious_locket"
       }
     }
   }

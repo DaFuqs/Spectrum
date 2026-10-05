@@ -20,8 +20,5 @@
   "result": {
     "id": "spectrum:ring_of_aerial_grace"
   },
-  "required_advancement": "spectrum:unlocks/trinkets/ring_of_aerial_grace",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+  "required_advancement": "spectrum:unlocks/trinkets/ring_of_aerial_grace"
 }

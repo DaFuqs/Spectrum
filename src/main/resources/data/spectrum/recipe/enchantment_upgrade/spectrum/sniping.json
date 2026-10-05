@@ -1,23 +1,35 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:green_pigment"
-  },
   "enchantment": "spectrum:sniping",
-  "item_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_factor": 2.0,
-    "scaling_value": 8
-  },
-  "level_cap": 5,
-  "required_advancement": "spectrum:unlocks/enchantments/sniping",
-  "xp_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      200,
-      1000,
-      5000,
-      10000
-    ]
-  }
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:green_pigment"
+      },
+      "ingredient_count_per_bowl": 2,
+      "experience": 400
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:green_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 800
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:green_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 1600
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:green_pigment"
+      },
+      "ingredient_count_per_bowl": 16,
+      "experience": 3200
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/sniping"
 }

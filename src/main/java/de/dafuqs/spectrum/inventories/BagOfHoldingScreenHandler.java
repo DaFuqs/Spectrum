@@ -5,7 +5,6 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 public class BagOfHoldingScreenHandler extends ChestMenu {
 	
@@ -14,7 +13,7 @@ public class BagOfHoldingScreenHandler extends ChestMenu {
 	}
 	
 	public BagOfHoldingScreenHandler(int syncId, Inventory playerInventory, Container inventory) {
-		super(SpectrumScreenHandlerTypes.BAG_OF_HOLDING, syncId, playerInventory, inventory, 3);
+		super(SpectrumMenuTypes.BAG_OF_HOLDING, syncId, playerInventory, inventory, 3);
 	}
 	
 	@Override

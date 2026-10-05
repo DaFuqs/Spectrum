@@ -2,7 +2,8 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:neolith",
   "modifiers": {
-    "unidentifiable": true
+    "unidentifiable": true,
+    "color": -13083194
   },
   "required_advancement": "spectrum:unlocks/reagents/neolith"
 }

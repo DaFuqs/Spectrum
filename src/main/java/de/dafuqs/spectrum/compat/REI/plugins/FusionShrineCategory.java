@@ -10,7 +10,6 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.level.material.*;
-import javax.annotation.*;
 
 import java.util.*;
 

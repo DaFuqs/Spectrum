@@ -3,8 +3,6 @@ package de.dafuqs.spectrum.entity.render;
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.client.gui.*;
-import de.dafuqs.spectrum.entity.models.*;
-import de.dafuqs.spectrum.registries.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
@@ -12,7 +10,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.neoforged.api.distmarker.*;
-import javax.annotation.*;
 import org.joml.*;
 
 import java.lang.Math;

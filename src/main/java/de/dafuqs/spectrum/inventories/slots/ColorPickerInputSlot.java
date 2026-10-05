@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.inventories.slots;
 
-import de.dafuqs.spectrum.recipe.color_picker.InkConvertingRecipe;
+import de.dafuqs.spectrum.recipe.color_picker.*;
 import net.minecraft.world.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;

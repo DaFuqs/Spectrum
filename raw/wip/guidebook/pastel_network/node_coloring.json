@@ -4,7 +4,7 @@
   "advancement": "spectrum:unlocks/milestones/__todo_unlock_pastel_node_coloring",
   "category": "spectrum:pastel_network",
   "priority": true,
-  "secret": true,
+  "reveal_secret_advancement": "spectrum:TODO",
   "pages": [
     {
       "type": "modonomicon:spotlight",

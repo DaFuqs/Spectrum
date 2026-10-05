@@ -1,0 +1,13 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:citrine_powder_block"}
+      ],
+      "result": {
+        "id": "spectrum:citrine_powder",
+        "count": 9
+      },
+      "required_advancement": "spectrum:hidden/collect_shards/citrine"
+    }

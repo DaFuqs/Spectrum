@@ -1,15 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
-import com.mojang.blaze3d.vertex.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.client.resources.model.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
@@ -22,7 +17,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -101,40 +96,14 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	}
 	
 	@Override
-	public List<InkColor> getUsedColors() {
+	public List<InkColor> getUsedColors(ItemStack stack) {
 		return List.of(COST.color());
 	}
 	
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
 		super.appendHoverText(stack, context, tooltip, type);
-		addInkPoweredTooltip(tooltip);
-	}
-	
-	public static class Renderer implements DynamicItemRenderer {
-		public Renderer() {
-		}
-		
-		@Override
-		public void render(ItemRenderer renderer, ItemStack stack, ItemDisplayContext mode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model) {
-			renderer.render(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
-			Minecraft client = Minecraft.getInstance();
-			if (mode != ItemDisplayContext.GUI || client.level == null) return;
-			
-			Optional<ItemStack> optionalStack = getFirstStack(client.level.registryAccess(), stack);
-			if (optionalStack.isEmpty()) {
-				return;
-			}
-			ItemStack bundledStack = optionalStack.get();
-			
-			BakedModel bundledModel = renderer.getModel(bundledStack, client.level, client.player, 0);
-			
-			matrices.pushPose();
-			matrices.scale(0.5F, 0.5F, 0.5F);
-			matrices.translate(0.5F, 0.5F, 0.5F);
-			renderer.render(bundledStack, mode, leftHanded, matrices, vertexConsumers, light, overlay, bundledModel);
-			matrices.popPose();
-		}
+		addInkPoweredTooltip(stack, tooltip);
 	}
 	
 	@Override

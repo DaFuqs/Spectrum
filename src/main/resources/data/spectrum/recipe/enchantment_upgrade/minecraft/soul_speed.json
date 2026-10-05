@@ -1,23 +1,30 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:light_gray_pigment"
-  },
-  "enchantment": "minecraft:soul_speed",
   "group": "vanilla_enchantment_upgrades",
-  "item_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_factor": 2.0,
-    "scaling_value": 8
-  },
-  "level_cap": 3,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_treasure",
-  "xp_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      200,
-      2400,
-      10000
-    ]
-  }
+  "enchantment": "minecraft:soul_speed",
+
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:light_gray_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 400
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_gray_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 800
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_gray_pigment"
+      },
+      "ingredient_count_per_bowl": 16,
+      "experience": 1600
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_treasure"
 }

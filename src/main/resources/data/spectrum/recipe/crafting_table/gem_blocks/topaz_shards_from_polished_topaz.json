@@ -1,5 +1,6 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "spectrum:gated_crafting_shapeless",
+  "required_advancement": "spectrum:hidden/collect_shards/topaz",
   "group": "compacting",
   "ingredients": [
     {

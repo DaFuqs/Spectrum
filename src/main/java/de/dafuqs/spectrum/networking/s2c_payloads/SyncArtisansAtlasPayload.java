@@ -14,7 +14,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.level.saveddata.maps.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 import java.util.*;
 

@@ -8,7 +8,6 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 public class PedestalPreviewSlot extends NonInteractiveResultSlot implements SlotWithOnClickAction {
 	public PedestalPreviewSlot(Container inventory, int index, int x, int y) {

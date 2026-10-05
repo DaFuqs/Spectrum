@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
+import dev.emi.emi.api.stack.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
@@ -11,17 +12,17 @@ import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
 
 import java.util.*;
 
 public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	
 	protected final List<EntryIngredient> growthStages;
-	protected final List<CrystallarieumCatalyst> catalysts;
+	protected final List<CrystallarieumAdditive> additives;
 	protected final InkColor inkColor;
-	protected final boolean growsWithoutCatalyst;
+	protected final boolean growsWithoutAdditive;
 	protected final int secondsPerStage;
 	
 	public CrystallarieumDisplay(RecipeHolder<CrystallarieumRecipe> recipe) {
@@ -31,9 +32,9 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 		for (BlockState state : recipe.value().getGrowthStages()) {
 			growthStages.add(EntryIngredients.of(state.getBlock().asItem()));
 		}
-		this.catalysts = recipe.value().getCatalysts();
+		this.additives = recipe.value().getAdditives();
 		this.inkColor = recipe.value().getInkColor();
-		this.growsWithoutCatalyst = recipe.value().growsWithoutCatalyst();
+		this.growsWithoutAdditive = recipe.value().growsWithoutAdditive();
 		this.secondsPerStage = recipe.value().getSecondsPerGrowthStage();
 	}
 	
@@ -45,6 +46,12 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 		if (firstBlockStateItem != Items.AIR) {
 			inputs.add(EntryIngredients.of(firstBlockStateItem));
 		}
+		
+		recipe.getAdditives()
+				.stream()
+				.map((i) -> EntryIngredients.ofIngredient(i.ingredient()))
+				.forEach(inputs::add);
+		
 		return inputs;
 	}
 	
@@ -56,7 +63,13 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 		}
 		
 		for (BlockState growthStageState : recipe.getGrowthStages()) {
-			Item blockStateItem = growthStageState.getBlock().asItem();
+			Block block = growthStageState.getBlock();
+			// Yes, there was a request for the Crystallarieum to grow fluids
+			if(block instanceof LiquidBlock liquidBlock) {
+				outputs.add(EntryIngredients.of(liquidBlock.fluid));
+				continue;
+			}
+			Item blockStateItem = block.asItem();
 			if (blockStateItem != Items.AIR) {
 				outputs.add(EntryIngredients.of(blockStateItem));
 			}

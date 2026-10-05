@@ -11,7 +11,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 public record PlayFusionCraftingInProgressParticlePayload(BlockPos pos) implements CustomPacketPayload {
 	

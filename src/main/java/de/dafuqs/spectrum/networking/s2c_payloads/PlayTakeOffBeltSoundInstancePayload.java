@@ -8,7 +8,6 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 public record PlayTakeOffBeltSoundInstancePayload() implements CustomPacketPayload {
 	

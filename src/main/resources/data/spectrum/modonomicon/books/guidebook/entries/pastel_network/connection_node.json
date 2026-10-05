@@ -5,7 +5,7 @@
   },
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:unlocks/blocks/pastel_network"
+    "advancement_id": "spectrum:unlocks/pastel_network/base"
   },
   "category": "spectrum:pastel_network",
   "hide_while_locked": true,
@@ -22,14 +22,14 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.connection_node.page0.text",
+      "text": "book.spectrum.guidebook.connection_node.about.text",
       "title": "book.spectrum.guidebook.connection_node.name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.connection_node.page1.text",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id": "spectrum:pedestal/tier3/pastel_network/connection_node"
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/connection_node",
+      "text": "book.spectrum.guidebook.connection_node.recipe.text"
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.recipe.crafting.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;
@@ -65,7 +66,6 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registry.addCategory(SpectrumEmiRecipeCategories.POTION_WORKSHOP_CRAFTING);
 		registry.addCategory(SpectrumEmiRecipeCategories.POTION_WORKSHOP_REACTING);
 		registry.addCategory(SpectrumEmiRecipeCategories.SPIRIT_INSTILLER);
-		registry.addCategory(SpectrumEmiRecipeCategories.SLUDGE_CONVERTING);
 		registry.addCategory(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING);
 		registry.addCategory(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING);
 		registry.addCategory(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING);
@@ -105,7 +105,6 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registry.addWorkstation(SpectrumEmiRecipeCategories.FREEZING, EmiStack.of(SpectrumBlocks.POLAR_BEAR_IDOL));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.ENCHANTER, EmiStack.of(SpectrumBlocks.ENCHANTER));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.ENCHANTMENT_UPGRADE, EmiStack.of(SpectrumBlocks.ENCHANTER));
-		registry.addWorkstation(SpectrumEmiRecipeCategories.SLUDGE_CONVERTING, EmiStack.of(SpectrumItems.SLUDGE_BUCKET));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING, EmiStack.of(SpectrumItems.LIQUID_CRYSTAL_BUCKET));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING, EmiStack.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING, EmiStack.of(SpectrumItems.DRAGONROT_BUCKET));
@@ -121,11 +120,11 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 	}
 	
 	public void registerRecipes(EmiRegistry registry) {
-		// TODO: Register our recipes ourselves
-		// right now dev.emi.emi.VanillaPlugin handles them
-		// which does not process the unlock check
-		//addAll(registry, RecipeType.CRAFTING, ShapedGatedCraftingEMIRecipe::new);
-		//addAll(registry, RecipeType.CRAFTING, ShapelessGatedCraftingEMIRecipe::new);
+		for (RecipeHolder<CraftingRecipe> recipe :  registry.getRecipeManager().getAllRecipesFor(RecipeType.CRAFTING)) {
+			if(recipe.value() instanceof GatedCraftingRecipe) {
+				addRecipeSafe(registry, () -> new CraftingEMIRecipeGated((RecipeHolder<GatedCraftingRecipe>)(Object) recipe));
+			}
+		}
 		
 		addAll(registry, SpectrumRecipeTypes.ANVIL_CRUSHING, AnvilCrushingEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.PEDESTAL, PedestalCraftingEmiRecipeGated::new);
@@ -136,7 +135,6 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, (r) -> new PotionWorkshopEmiRecipeGated<>(SpectrumEmiRecipeCategories.POTION_WORKSHOP_CRAFTING, r));
 		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, PotionWorkshopReactingEmiRecipe::new);
 		addAll(registry, SpectrumRecipeTypes.SPIRIT_INSTILLING, SpiritInstillingEmiRecipeGated::new);
-		addAll(registry, SpectrumRecipeTypes.SLUDGE_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.SLUDGE_CONVERTING, r));
 		addAll(registry, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING, r));
 		addAll(registry, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING, r));
 		addAll(registry, SpectrumRecipeTypes.DRAGONROT_CONVERTING, (r) -> new FluidConvertingEmiRecipeGated<>(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING, r));
@@ -190,42 +188,18 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		EmiStack dragonrot = EmiStack.of(SpectrumFluids.DRAGONROT.get(), amount);
 		EmiStack liquidCrystal = EmiStack.of(SpectrumFluids.LIQUID_CRYSTAL.get(), amount);
 		EmiStack midnightSolution = EmiStack.of(SpectrumFluids.MIDNIGHT_SOLUTION.get(), amount);
-		EmiStack sludge = EmiStack.of(SpectrumFluids.SLUDGE.get(), amount);
 		EmiStack waterCatalyst = water.copy().setRemainder(water);
 		EmiStack lavaCatalyst = lava.copy().setRemainder(lava);
 		EmiStack dragonrotCatalyst = dragonrot.copy().setRemainder(dragonrot);
 		EmiStack liquidCrystalCatalyst = liquidCrystal.copy().setRemainder(liquidCrystal);
 		EmiStack midnightSolutionCatalyst = midnightSolution.copy().setRemainder(midnightSolution);
-		EmiStack sludgeCatalyst = sludge.copy().setRemainder(sludge);
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.SLUSH.get()))
-				.leftInput(dragonrotCatalyst)
-				.rightInput(waterCatalyst, false)
-				.output(EmiStack.of(SpectrumBlocks.SLUSH))
-				.requiredAdvancement(DragonrotConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
+		
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
 				.id(syntheticId("world/fluid_interaction", Blocks.TERRACOTTA))
 				.leftInput(dragonrotCatalyst)
 				.rightInput(lavaCatalyst, false)
 				.output(EmiStack.of(Blocks.TERRACOTTA))
 				.requiredAdvancement(DragonrotConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.BLACKSLAG.get()))
-				.leftInput(dragonrotCatalyst)
-				.rightInput(sludgeCatalyst, false)
-				.output(EmiStack.of(SpectrumBlocks.BLACKSLAG))
-				.requiredAdvancement(DragonrotConvertingRecipe.UNLOCK_IDENTIFIER)
-				.requiredAdvancement(SludgeConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", SpectrumBlocks.COBBLED_BLACKSLAG.get()))
-				.leftInput(dragonrotCatalyst)
-				.rightInput(sludgeCatalyst, false)
-				.output(EmiStack.of(SpectrumBlocks.COBBLED_BLACKSLAG.get()))
-				.requiredAdvancement(DragonrotConvertingRecipe.UNLOCK_IDENTIFIER)
-				.requiredAdvancement(SludgeConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
 				.id(syntheticId("world/fluid_interaction", Blocks.TUFF))
@@ -251,10 +225,10 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.CALCITE))
+				.id(syntheticId("world/fluid_interaction", Blocks.CLAY))
 				.leftInput(liquidCrystalCatalyst)
 				.rightInput(waterCatalyst, false)
-				.output(EmiStack.of(Blocks.CALCITE))
+				.output(EmiStack.of(Blocks.CLAY))
 				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
@@ -265,19 +239,11 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.COBBLED_DEEPSLATE))
+				.id(syntheticId("world/fluid_interaction", Blocks.CALCITE))
 				.leftInput(liquidCrystalCatalyst)
 				.rightInput(lavaCatalyst, false)
-				.output(EmiStack.of(Blocks.COBBLED_DEEPSLATE))
+				.output(EmiStack.of(Blocks.CALCITE))
 				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.CLAY))
-				.leftInput(liquidCrystalCatalyst)
-				.rightInput(sludgeCatalyst, false)
-				.output(EmiStack.of(Blocks.CLAY))
-				.requiredAdvancement(LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER)
-				.requiredAdvancement(SludgeConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
 		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
 				.id(syntheticId("world/fluid_interaction", Blocks.BLACKSTONE))
@@ -286,34 +252,13 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				.output(EmiStack.of(Blocks.BLACKSTONE))
 				.requiredAdvancement(MidnightSolutionConvertingRecipe.UNLOCK_IDENTIFIER)
 				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.DIRT))
-				.leftInput(sludgeCatalyst)
-				.rightInput(waterCatalyst, false)
-				.output(EmiStack.of(Blocks.DIRT))
-				.requiredAdvancement(SludgeConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.COARSE_DIRT))
-				.leftInput(sludgeCatalyst)
-				.rightInput(waterCatalyst, false)
-				.output(EmiStack.of(Blocks.COARSE_DIRT))
-				.requiredAdvancement(SludgeConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
-		addRecipeSafe(registry, () -> SpectrumWorldInteractionRecipe.customBuilder()
-				.id(syntheticId("world/fluid_interaction", Blocks.MUD))
-				.leftInput(sludgeCatalyst)
-				.rightInput(lavaCatalyst, false)
-				.output(EmiStack.of(Blocks.MUD))
-				.requiredAdvancement(SludgeConvertingRecipe.UNLOCK_IDENTIFIER)
-				.build());
 	}
 	
 	public void registerRecipeHandlers(EmiRegistry registry) {
-		registry.addRecipeHandler(SpectrumScreenHandlerTypes.PEDESTAL, new PedestalRecipeHandler());
-		registry.addRecipeHandler(SpectrumScreenHandlerTypes.CRAFTING_TABLET, new CraftingTabletRecipeHandler());
-		registry.addRecipeHandler(SpectrumScreenHandlerTypes.CINDERHEARTH, new CinderhearthRecipeHandler());
-		registry.addRecipeHandler(SpectrumScreenHandlerTypes.POTION_WORKSHOP, new PotionWorkshopRecipeHandler());
+		registry.addRecipeHandler(SpectrumMenuTypes.PEDESTAL, new PedestalRecipeHandler());
+		registry.addRecipeHandler(SpectrumMenuTypes.CRAFTING_TABLET, new CraftingTabletRecipeHandler());
+		registry.addRecipeHandler(SpectrumMenuTypes.CINDERHEARTH, new CinderhearthRecipeHandler());
+		registry.addRecipeHandler(SpectrumMenuTypes.POTION_WORKSHOP, new PotionWorkshopRecipeHandler());
 	}
 	
 	public static ResourceLocation syntheticId(String type, Block block) {

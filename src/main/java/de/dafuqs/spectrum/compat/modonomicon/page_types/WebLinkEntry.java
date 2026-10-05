@@ -10,7 +10,7 @@ import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 /**
  * A node that is a link to another existing entry

@@ -21,11 +21,13 @@
   "criteria": {
     "created_glass_crest_tool": {
       "trigger": "spectrum:crafted_with_fusion_shrine",
-      "items": [
-        {
-          "items": "#spectrum:glass_crest_equipment"
-        }
-      ]
+      "conditions": {
+        "items": [
+          {
+            "items": "#spectrum:glass_crest_equipment"
+          }
+        ]
+      }
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",

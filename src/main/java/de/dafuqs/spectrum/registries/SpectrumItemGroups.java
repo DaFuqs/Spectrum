@@ -3,17 +3,13 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.fractal.api.*;
 import de.dafuqs.fractal.interfaces.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.item_group.*;
 import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
-import de.dafuqs.spectrum.compat.*;
-import de.dafuqs.spectrum.compat.ae2.*;
-import de.dafuqs.spectrum.compat.create.*;
-import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.minecraft.core.*;
@@ -192,9 +188,9 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.STAFF_OF_REMEMBRANCE);
 					entries.accept(SpectrumItems.CONSTRUCTORS_STAFF);
 					entries.accept(SpectrumItems.EXCHANGING_STAFF);
-					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.FORTUNE, 3, false, false).ifPresent(entries::accept);
-					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.SILK_TOUCH, 1, false, false).ifPresent(entries::accept);
-					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), SpectrumEnchantmentKeys.RESONANCE, 1, false, false).ifPresent(entries::accept);
+					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.FORTUNE, 3, true, true).ifPresent(entries::accept);
+					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.SILK_TOUCH, 1, true, true).ifPresent(entries::accept);
+					SpectrumEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, SpectrumItems.EXCHANGING_STAFF.get().getDefaultInstance(), SpectrumEnchantmentKeys.RESONANCE, 1, true, true).ifPresent(entries::accept);
 					entries.accept(SpectrumItems.BLOCK_FLOODER);
 					entries.accept(SpectrumItems.ENDER_SPLICE);
 					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.ENDER_SPLICE.get(), Map.of(SpectrumEnchantmentKeys.RESONANCE, 1, SpectrumEnchantmentKeys.INDESTRUCTIBLE, 1)));
@@ -226,10 +222,11 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.ITEM_ROUNDEL);
 					entries.accept(SpectrumBlocks.POTION_WORKSHOP);
 					entries.accept(SpectrumBlocks.SPIRIT_INSTILLER);
-					entries.accept(SpectrumBlocks.CRYSTALLARIEUM);
-					entries.accept(SpectrumBlocks.CINDERHEARTH);
 					entries.accept(SpectrumBlocks.CRYSTAL_APOTHECARY);
+					
 					entries.accept(SpectrumBlocks.COLOR_PICKER);
+					entries.accept(SpectrumBlocks.CINDERHEARTH);
+					entries.accept(SpectrumBlocks.CRYSTALLARIEUM);
 					
 					entries.accept(SpectrumBlocks.UPGRADE_SPEED);
 					entries.accept(SpectrumBlocks.UPGRADE_SPEED2);
@@ -242,10 +239,19 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.UPGRADE_EXPERIENCE2);
 					
 					entries.accept(SpectrumBlocks.CONNECTION_NODE);
-					entries.accept(SpectrumBlocks.PROVIDER_NODE);
-					entries.accept(SpectrumBlocks.SENDER_NODE);
-					entries.accept(SpectrumBlocks.STORAGE_NODE);
-					entries.accept(SpectrumBlocks.GATHER_NODE);
+					entries.accept(SpectrumBlocks.INK_NODE);
+					entries.accept(SpectrumBlocks.ITEM_PROVIDER_NODE);
+					entries.accept(SpectrumBlocks.ITEM_SENDER_NODE);
+					entries.accept(SpectrumBlocks.ITEM_STORAGE_NODE);
+					entries.accept(SpectrumBlocks.ITEM_GATHER_NODE);
+					entries.accept(SpectrumBlocks.FLUID_PROVIDER_NODE);
+					entries.accept(SpectrumBlocks.FLUID_SENDER_NODE);
+					entries.accept(SpectrumBlocks.FLUID_STORAGE_NODE);
+					entries.accept(SpectrumBlocks.FLUID_GATHER_NODE);
+					entries.accept(SpectrumBlocks.OMNI_PROVIDER_NODE);
+					entries.accept(SpectrumBlocks.OMNI_SENDER_NODE);
+					entries.accept(SpectrumBlocks.OMNI_STORAGE_NODE);
+					entries.accept(SpectrumBlocks.OMNI_GATHER_NODE);
 					
 					entries.accept(SpectrumBlocks.LIGHT_LEVEL_DETECTOR);
 					entries.accept(SpectrumBlocks.WEATHER_DETECTOR);
@@ -663,9 +669,10 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.MOONSTONE_CORE);
 					
 					entries.accept(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
-					entries.accept(SpectrumItems.SLUDGE_BUCKET);
 					entries.accept(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
 					entries.accept(SpectrumItems.DRAGONROT_BUCKET);
+					
+					//entries.accept(SpectrumItems.SILVER_SCALE); // TODO: readd when they got textures & uses
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_PURE_RESOURCES, Component.translatable("itemGroup.spectrum.pure_resources"))
@@ -752,49 +759,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.LARGE_AZURITE_BUD);
 					entries.accept(SpectrumBlocks.AZURITE_CLUSTER);
 					entries.accept(SpectrumItems.PURE_AZURITE);
-					
-					if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.AE2_ID)) {
-						entries.accept(AE2Compat.PURE_CERTUS_QUARTZ);
-						entries.accept(AE2Compat.SMALL_CERTUS_QUARTZ_BUD);
-						entries.accept(AE2Compat.LARGE_CERTUS_QUARTZ_BUD);
-						entries.accept(AE2Compat.CERTUS_QUARTZ_CLUSTER);
-						entries.accept(AE2Compat.PURE_CERTUS_QUARTZ_BLOCK);
-						
-						entries.accept(AE2Compat.PURE_FLUIX);
-						entries.accept(AE2Compat.SMALL_FLUIX_BUD);
-						entries.accept(AE2Compat.LARGE_FLUIX_BUD);
-						entries.accept(AE2Compat.FLUIX_CLUSTER);
-						entries.accept(AE2Compat.PURE_FLUIX_BLOCK);
-					}
-					
-					if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.CREATE_ID)) {
-						entries.accept(CreateCompat.PURE_ZINC);
-						entries.accept(CreateCompat.SMALL_ZINC_BUD);
-						entries.accept(CreateCompat.LARGE_ZINC_BUD);
-						entries.accept(CreateCompat.ZINC_CLUSTER);
-						entries.accept(CreateCompat.PURE_ZINC_BLOCK);
-					}
-					
-					if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.GOBBER_ID)) {
-						entries.accept(GobberCompat.PURE_GLOBETTE);
-						entries.accept(GobberCompat.SMALL_GLOBETTE_BUD);
-						entries.accept(GobberCompat.LARGE_GLOBETTE_BUD);
-						entries.accept(GobberCompat.GLOBETTE_CLUSTER);
-						entries.accept(GobberCompat.PURE_GLOBETTE_BLOCK);
-						
-						entries.accept(GobberCompat.PURE_GLOBETTE_NETHER);
-						entries.accept(GobberCompat.SMALL_GLOBETTE_NETHER_BUD);
-						entries.accept(GobberCompat.LARGE_GLOBETTE_NETHER_BUD);
-						entries.accept(GobberCompat.GLOBETTE_NETHER_CLUSTER);
-						entries.accept(GobberCompat.PURE_GLOBETTE_NETHER_BLOCK);
-						
-						entries.accept(GobberCompat.PURE_GLOBETTE_END);
-						entries.accept(GobberCompat.SMALL_GLOBETTE_END_BUD);
-						entries.accept(GobberCompat.LARGE_GLOBETTE_END_BUD);
-						entries.accept(GobberCompat.GLOBETTE_END_CLUSTER);
-						entries.accept(GobberCompat.PURE_GLOBETTE_END_BLOCK);
-					}
-					
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_BLOCKS, Component.translatable("itemGroup.spectrum.blocks"))
@@ -938,8 +902,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.BONE_ASH_SHINGLES);
 					entries.accept(SpectrumBlocks.BLACK_MATERIA);
 					entries.accept(SpectrumBlocks.SLUSH);
-					entries.accept(SpectrumBlocks.OVERGROWN_SLUSH);
 					entries.accept(SpectrumBlocks.TILLED_SLUSH);
+					entries.accept(SpectrumBlocks.OVERGROWN_SLUSH);
 					entries.accept(SpectrumBlocks.BLACK_SLUDGE);
 					
 					entries.accept(SpectrumItems.ASH_FLAKES);
@@ -1619,8 +1583,11 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.ERASER_SPAWN_EGG);
 					entries.accept(SpectrumItems.MARROW_SPAWN_EGG);
 					entries.accept(SpectrumItems.SPLINTERSPAWN_SPAWN_EGG);
+					entries.accept(SpectrumItems.KOI_SPAWN_EGG);
+					entries.accept(SpectrumItems.CRAWFISH_SPAWN_EGG);
 					
 					entries.accept(SpectrumItems.BUCKET_OF_ERASER);
+					entries.accept(SpectrumItems.BUCKET_OF_KOI);
 					
 					entries.accept(SpectrumBlocks.SPLINTERSPAWN_INFESTED_PYRITE);
 					entries.accept(SpectrumBlocks.SPLINTERSPAWN_INFESTED_SHALE_CLAY);
@@ -1701,6 +1668,13 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.PRESERVATION_CHEST);
 					
 					entries.accept(SpectrumItems.DIVINATION_HEART);
+					
+					// todo: add model
+					entries.accept(SpectrumBlocks.TINTING_STATION);
+					// TODO: add model & finish impl
+					entries.accept(SpectrumBlocks.DAYDREAMER);
+					entries.accept(SpectrumBlocks.TWILL);
+					entries.accept(SpectrumBlocks.VANTACLAST);
 				}).build();
 	}
 	

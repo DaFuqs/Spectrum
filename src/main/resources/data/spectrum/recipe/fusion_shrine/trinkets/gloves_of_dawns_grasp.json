@@ -23,8 +23,5 @@
   "result": {
     "id": "spectrum:gloves_of_dawns_grasp"
   },
-  "required_advancement": "spectrum:unlocks/trinkets/gloves_of_dawns_grasp",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+  "required_advancement": "spectrum:unlocks/trinkets/gloves_of_dawns_grasp"
 }

@@ -34,6 +34,11 @@
       "text": "book.spectrum.guidebook.undergrowth_manor.page1.text"
     },
     {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.undergrowth_manor.pyrite_projector.text",
+      "recipe_id": "spectrum:pedestal/tier4/pyrite_projector"
+    },
+    {
       "type": "modonomicon:image",
       "use_legacy_rendering": true,
       "title": "book.spectrum.guidebook.undergrowth_manor.page4.title",

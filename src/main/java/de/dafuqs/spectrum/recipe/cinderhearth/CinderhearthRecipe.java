@@ -27,8 +27,10 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInp
 	protected final float experience;
 	protected final List<StackWithChance> resultsWithChance;
 	
-	public CinderhearthRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, IngredientStack ingredient, int time, float experience, List<StackWithChance> resultsWithChance) {
-		super(group, secret, requiredAdvancementIdentifier);
+	public CinderhearthRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
+							  IngredientStack ingredient, int time, float experience, List<StackWithChance> resultsWithChance
+	) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		
 		this.ingredient = ingredient;
 		this.time = time;
@@ -136,8 +138,9 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInp
 		
 		public static final MapCodec<CinderhearthRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				IngredientStack.CODEC.fieldOf("ingredient").forGetter(recipe -> recipe.ingredient),
 				Codec.INT.fieldOf("time").forGetter(recipe -> recipe.time),
 				Codec.FLOAT.optionalFieldOf("experience", 0f).forGetter(recipe -> recipe.experience),
@@ -146,8 +149,9 @@ public class CinderhearthRecipe extends GatedStackSpectrumRecipe<SingleRecipeInp
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, CinderhearthRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
 				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
-				ByteBufCodecs.BOOL, recipe -> recipe.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				IngredientStack.STREAM_CODEC, recipe -> recipe.ingredient,
 				ByteBufCodecs.VAR_INT, recipe -> recipe.time,
 				ByteBufCodecs.FLOAT, recipe -> recipe.experience,

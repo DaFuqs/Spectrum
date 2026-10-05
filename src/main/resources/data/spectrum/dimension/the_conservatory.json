@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:the_conservatory",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "spectrum:the_conservatory",
+      "lakes": false,
+      "features": false,
+      "layers": [
+        {
+          "height": 128,
+          "block": "spectrum:preservation_stone"
+        }
+      ]
+    }
+  }
+}

@@ -8,7 +8,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import javax.annotation.*;
 import top.theillusivec4.curios.api.*;
 
 public class SevenLeagueBootsItem extends SpectrumCurioItem {

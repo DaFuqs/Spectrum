@@ -1,21 +1,22 @@
 package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class PottedColoredSaplingBlock extends FlowerPotBlock implements RevelationAware, ColoredTree {
 	
 	protected final InkColor color;
 	
-	public PottedColoredSaplingBlock(Block content, Properties settings, InkColor color) {
+	public PottedColoredSaplingBlock(ColoredSaplingBlock content, Properties settings, InkColor color) {
 		super(content, settings);
 		this.color = color;
 		RevelationAware.register(this);

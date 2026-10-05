@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items.magic_items;
 import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 import java.util.*;
 

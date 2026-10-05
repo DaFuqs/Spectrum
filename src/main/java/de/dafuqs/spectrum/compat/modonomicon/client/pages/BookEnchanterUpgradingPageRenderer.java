@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
@@ -14,11 +16,10 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 
-import java.util.*;
-
 public class BookEnchanterUpgradingPageRenderer extends BookGatedRecipePageRenderer<EnchantmentUpgradeRecipe, BookGatedRecipePage<EnchantmentUpgradeRecipe>> {
 	
 	private static final ResourceLocation BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/enchanter_crafting.png");
+	private static final ItemStack ENCHANTER = SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance();
 	
 	public BookEnchanterUpgradingPageRenderer(BookGatedRecipePage<EnchantmentUpgradeRecipe> page) {
 		super(page);
@@ -43,33 +44,25 @@ public class BookEnchanterUpgradingPageRenderer extends BookGatedRecipePageRende
 		// the ingredients
 		NonNullList<Ingredient> ingredients = recipe.getIngredients();
 		
-		int ingredientX = recipeX - 3;
-		
 		// surrounding input slots
-		List<ItemStack> inputStacks = new ArrayList<>();
-		int requiredItemCountSplit = recipe.getBaseItemCost() / 8;
-		int requiredItemCountModulo = recipe.getBaseItemCost() % 8;
-		for (int i = 0; i < 8; i++) {
-			int addAmount = i < requiredItemCountModulo ? 1 : 0;
-			inputStacks.add(new ItemStack(recipe.getBulkItem(), requiredItemCountSplit + addAmount));
-		}
-		
-		parentScreen.renderItemStack(drawContext, ingredientX + 16, recipeY, mouseX, mouseY, inputStacks.get(0));
-		parentScreen.renderItemStack(drawContext, ingredientX + 40, recipeY, mouseX, mouseY, inputStacks.get(1));
-		parentScreen.renderItemStack(drawContext, ingredientX + 56, recipeY + 16, mouseX, mouseY, inputStacks.get(2));
-		parentScreen.renderItemStack(drawContext, ingredientX + 56, recipeY + 40, mouseX, mouseY, inputStacks.get(3));
-		parentScreen.renderItemStack(drawContext, ingredientX + 40, recipeY + 56, mouseX, mouseY, inputStacks.get(4));
-		parentScreen.renderItemStack(drawContext, ingredientX + 16, recipeY + 56, mouseX, mouseY, inputStacks.get(5));
-		parentScreen.renderItemStack(drawContext, ingredientX, recipeY + 40, mouseX, mouseY, inputStacks.get(6));
-		parentScreen.renderItemStack(drawContext, ingredientX, recipeY + 16, mouseX, mouseY, inputStacks.get(7));
+		EnchantmentUpgradeRecipe.LevelData levelOneData = recipe.getForSourceLevel(1);
+		IngredientStack bowlStack = IngredientStack.of(levelOneData.ingredient(), levelOneData.countPerBowl());
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 13, recipeY, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 37, recipeY, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 53, recipeY + 16, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 53, recipeY + 40, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 37, recipeY + 56, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + 13, recipeY + 56, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX - 3, recipeY + 40, mouseX, mouseY, bowlStack);
+		ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX - 3, recipeY + 16, mouseX, mouseY, bowlStack);
 		
 		// center input slot
-		parentScreen.renderIngredient(drawContext, ingredientX + 28, recipeY + 28, mouseX, mouseY, ingredients.getFirst());
+		parentScreen.renderIngredient(drawContext, recipeX + 25, recipeY + 28, mouseX, mouseY, ingredients.getFirst());
 		
 		// Knowledge Gem and Enchanter
-		ItemStack knowledgeDropStackWithXP = KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getBaseXPCost(), true);
+		ItemStack knowledgeDropStackWithXP = KnowledgeGemItem.getKnowledgeDropStackWithXP(levelOneData.experience(), true);
 		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 9, mouseX, mouseY, knowledgeDropStackWithXP);
-		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 46, mouseX, mouseY, SpectrumBlocks.ENCHANTER.asItem().getDefaultInstance());
+		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 46, mouseX, mouseY, ENCHANTER);
 		
 		// the output
 		parentScreen.renderItemStack(drawContext, recipeX + 81, recipeY + 31, mouseX, mouseY, recipe.getResultItem(world.registryAccess()));

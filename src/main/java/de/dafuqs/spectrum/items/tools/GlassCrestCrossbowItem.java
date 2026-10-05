@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
@@ -18,14 +18,14 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.api.distmarker.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 // right click ability: able to overload an already loaded arrow
 public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements ExtendedItemBarProvider, SlotBackgroundEffectProvider, InkPowered {
 	
-	private static final InkAmount OVERCHARGE_COST = new InkAmount(InkColors.WHITE, 1000);
+	private static final InkAmount OVERCHARGE_COST = new InkAmount(InkColors.WHITE, 100);
 	private static final int OVERCHARGE_DURATION_MAX_TICKS = 20 * 6; // 6 seconds
 	
 	public GlassCrestCrossbowItem(Properties settings) {
@@ -33,7 +33,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 	}
 	
 	@Override
-	public List<InkColor> getUsedColors() {
+	public List<InkColor> getUsedColors(ItemStack stack) {
 		return List.of(OVERCHARGE_COST.color());
 	}
 	
@@ -109,7 +109,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 		float overcharge = getOvercharge(stack);
 		if (overcharge == 0) {
 			tooltip.add(Component.translatable("item.spectrum.glass_crest_crossbow.tooltip.how_to_overcharge").withStyle(ChatFormatting.GRAY));
-			addInkPoweredTooltip(tooltip);
+			addInkPoweredTooltip(stack, tooltip);
 		} else {
 			tooltip.add(Component.translatable("item.spectrum.glass_crest_crossbow.tooltip.overcharged", Support.DF.format(overcharge * 100)).withStyle(ChatFormatting.GRAY));
 		}
@@ -119,7 +119,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
 	public float getProjectileVelocityModifier(ItemStack stack, LivingEntity shooter) {
 		float parent = super.getProjectileVelocityModifier(stack, shooter);
 		float overcharge = getOvercharge(stack);
-		return overcharge == 0 ? parent : parent * (1 + overcharge * 0.75F);
+		return overcharge == 0 ? parent : parent * (1 + overcharge * 1F);
 	}
 	
 	@Override

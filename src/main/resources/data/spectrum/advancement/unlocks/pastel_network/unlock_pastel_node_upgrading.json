@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_pastel_network": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/pastel_network/base"
+      }
+    },
+    "collected_pure_resource": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_pure_resource"
+      }
+    }
+  }
+}

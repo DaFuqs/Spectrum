@@ -11,7 +11,6 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
 

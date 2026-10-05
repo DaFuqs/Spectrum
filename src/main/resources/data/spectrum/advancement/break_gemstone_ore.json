@@ -16,20 +16,16 @@
     "broken_gemstone_ore": {
       "trigger": "spectrum:block_broken",
       "conditions": {
-        "block": {
-          "blocks": [
-            "spectrum:topaz_ore",
-            "spectrum:amethyst_ore",
-            "spectrum:citrine_ore",
-            "spectrum:onyx_ore",
-            "spectrum:moonstone_ore",
-            "spectrum:deepslate_topaz_ore",
-            "spectrum:deepslate_amethyst_ore",
-            "spectrum:deepslate_citrine_ore",
-            "spectrum:deepslate_onyx_ore",
-            "spectrum:deepslate_moonstone_ore"
-          ]
-        },
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "#spectrum:gemstone_ores"
+              }
+            }
+          }
+        ],
         "player": [
           {
             "condition": "minecraft:entity_properties",

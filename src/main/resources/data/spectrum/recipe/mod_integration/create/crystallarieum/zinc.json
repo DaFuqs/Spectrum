@@ -1,6 +1,6 @@
 {
   "type": "spectrum:crystallarieum_growing",
-  "fluid_medium": {
+  "fluid": {
     "fluid": "spectrum:liquid_crystal"
   },
   "ingredient": {
@@ -9,43 +9,44 @@
   "ink_color": "spectrum:brown",
   "ink_cost_tier": 2,
   "seconds_per_growth_stage": 60,
-  "additional_recipe_manager_results": [
+  "additional_recipe_viewer_results": [
     {
       "count": 1,
       "id": "spectrum:pure_zinc"
     }
-  ],"catalysts": [
-  {
-    "ingredient": [
-      {
-        "item": "create:zinc_nugget"
-      }
-    ],
-    "growth_acceleration_mod": 4.0,
-    "ink_consumption_mod": 0.5,
-    "consume_chance_per_second": 0.2
-  },
-  {
-    "ingredient": [
-      {
-        "item": "spectrum:pure_copper"
-      }
-    ],
-    "growth_acceleration_mod": 8.0,
-    "ink_consumption_mod": 2.0,
-    "consume_chance_per_second": 0.05
-  },
-  {
-    "ingredient": [
-      {
-        "item": "spectrum:neolith"
-      }
-    ],
-    "growth_acceleration_mod": 1.5,
-    "ink_consumption_mod": 0.25,
-    "consume_chance_per_second": 0.02
-  }
-],
+  ],
+  "additives": [
+    {
+      "ingredient": [
+        {
+          "item": "create:zinc_nugget"
+        }
+      ],
+      "growth_acceleration_mod": 4.0,
+      "ink_consumption_mod": 0.5,
+      "consume_chance_per_second": 0.2
+    },
+    {
+      "ingredient": [
+        {
+          "item": "spectrum:pure_copper"
+        }
+      ],
+      "growth_acceleration_mod": 8.0,
+      "ink_consumption_mod": 2.0,
+      "consume_chance_per_second": 0.05
+    },
+    {
+      "ingredient": [
+        {
+          "item": "spectrum:neolith"
+        }
+      ],
+      "growth_acceleration_mod": 1.5,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 0.02
+    }
+  ],
   "growth_stage_states": [
     {
       "Name": "spectrum:small_zinc_bud",

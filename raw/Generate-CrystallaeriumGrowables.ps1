@@ -463,7 +463,7 @@ foreach($entry in $entries.GetEnumerator()) {
     New-Item -Path ".\crystallarieum\$name`.json" -ItemType File -Force -Value @"
 {
   "type": "spectrum:crystallarieum_growing",
-  "fluid_medium": {
+  "fluid": {
     "fluid": "$Fluid"
   },
   "ingredient": {
@@ -472,13 +472,13 @@ foreach($entry in $entries.GetEnumerator()) {
   "ink_color": "$InkColor",
   "ink_cost_tier": xxx,
   "seconds_per_growth_stage": 60,
-  "additional_recipe_manager_results": [
+  "additional_recipe_viewer_results": [
     {
       "count": 1,
       "id": "spectrum:pure_$name"
     }
   ],
-  "catalysts": [
+  "additives": [
     {
       "consume_chance_per_second": x.x,
       "growth_acceleration_mod": x.x,

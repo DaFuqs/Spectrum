@@ -4,6 +4,7 @@
     "icon": {
       "id": "spectrum:pure_bloodstone"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.grow_bloodstone_in_crystallarieum.title"
     },

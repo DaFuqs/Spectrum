@@ -1,21 +1,29 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:red_pigment"
-  },
-  "enchantment": "minecraft:fire_aspect",
   "group": "vanilla_enchantment_upgrades",
-  "item_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_factor": 2.0,
-    "scaling_value": 8
-  },
-  "level_cap": 4,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage",
-  "xp_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_factor": 2.0,
-    "scaling_value": 200,
-    "start": 200
-  }
+  "enchantment": "minecraft:fire_aspect",
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:red_pigment"
+      },
+      "ingredient_count_per_bowl": 2,
+      "experience": 200
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:red_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 400
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:red_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 800
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage"
 }

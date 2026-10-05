@@ -1,0 +1,27 @@
+{
+  "name": "item.spectrum.koi",
+  "icon": {
+    "item": "spectrum:koi"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_koi"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": -2,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:koi"
+      },
+      "title": "item.spectrum.koi",
+      "text": "book.spectrum.guidebook.koi.about.text"
+    }
+  ]
+}

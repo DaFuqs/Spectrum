@@ -1,0 +1,37 @@
+{
+  "geode_inner_layer_block_predicate": {
+    "blocks": "spectrum:onyx_block"
+  },
+  "min_distance_from_center": 5,
+  "max_distance_from_center": 15,
+  "tries_per_range_increment": 24,
+  "ore_configuration": [
+    {
+      "state": {
+        "Name": "spectrum:onyx_ore"
+      },
+      "target": {
+        "predicate_type": "minecraft:tag_match",
+        "tag": "minecraft:stone_ore_replaceables"
+      }
+    },
+    {
+      "state": {
+        "Name": "spectrum:deepslate_onyx_ore"
+      },
+      "target": {
+        "predicate_type": "minecraft:tag_match",
+        "tag": "minecraft:deepslate_ore_replaceables"
+      }
+    },
+    {
+      "target": {
+        "predicate_type": "minecraft:tag_match",
+        "tag": "spectrum:blackslag_ore_replaceables"
+      },
+      "state": {
+        "Name": "spectrum:blackslag_onyx_ore"
+      }
+    }
+  ]
+}

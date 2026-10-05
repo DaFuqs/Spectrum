@@ -8,7 +8,7 @@
     "advancement_id": "spectrum:break_gemstone_ore"
   },
   "category": "spectrum:general",
-  "hide_while_locked": false,
+  "hide_while_locked": true,
   "turnin": "spectrum:collect_any_basic_shard",
   "parents": [
     {

@@ -4,7 +4,7 @@ import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -44,13 +44,14 @@ public class LoreHelper {
 		}
 	}
 	
-	public static void setLore(ItemStack stack, @Nullable Component lore) {
+	public static ItemStack setLore(ItemStack stack, @Nullable Component lore) {
 		if (lore == null) {
 			stack.remove(DataComponents.LORE);
 		} else {
 			ItemLore component = new ItemLore(List.of(lore));
 			stack.set(DataComponents.LORE, component);
 		}
+		return stack;
 	}
 	
 	public static void removeLore(ItemStack itemStack) {

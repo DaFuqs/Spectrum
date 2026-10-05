@@ -41,13 +41,13 @@ public class SpectrumS2CPackets {
 		registrar.playToClient(PlayDivinityAppliedEffectsPayload.ID, PlayDivinityAppliedEffectsPayload.CODEC, PlayDivinityAppliedEffectsPayload::execute);
 		registrar.playToClient(MoonstoneStrikePayload.ID, MoonstoneStrikePayload.CODEC, MoonstoneStrikePayload::execute);
 		registrar.playToClient(SyncArtisansAtlasPayload.ID, SyncArtisansAtlasPayload.CODEC, SyncArtisansAtlasPayload::execute);
-		registrar.playToClient(SyncMentalPresencePayload.ID, SyncMentalPresencePayload.CODEC, SyncMentalPresencePayload::execute);
 		registrar.playToClient(CompactingChestStatusUpdatePayload.ID, CompactingChestStatusUpdatePayload.CODEC, CompactingChestStatusUpdatePayload::execute);
 		registrar.playToClient(FabricationChestStatusUpdatePayload.ID, FabricationChestStatusUpdatePayload.CODEC, FabricationChestStatusUpdatePayload::execute);
 		registrar.playToClient(BlackHoleChestStatusUpdatePayload.ID, BlackHoleChestStatusUpdatePayload.CODEC, BlackHoleChestStatusUpdatePayload::execute);
 		registrar.playToClient(PastelNodeStatusUpdatePayload.ID, PastelNodeStatusUpdatePayload.CODEC, PastelNodeStatusUpdatePayload::execute);
 		registrar.playToClient(PastelNetworkEdgeSyncPayload.ID, PastelNetworkEdgeSyncPayload.CODEC, PastelNetworkEdgeSyncPayload::execute);
 		registrar.playToClient(PastelNetworkRemovedPayload.ID, PastelNetworkRemovedPayload.CODEC, PastelNetworkRemovedPayload::execute);
+		registrar.playToClient(PlayNaturesStaffParticlesPayload.ID, PlayNaturesStaffParticlesPayload.CODEC, PlayNaturesStaffParticlesPayload::execute);
 	}
 	
 }

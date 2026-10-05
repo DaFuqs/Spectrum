@@ -7,7 +7,6 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.util.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 public record RenameItemInBedrockAnvilPayload(String name) implements CustomPacketPayload {
 	

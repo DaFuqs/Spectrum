@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:stratine_floatblock"
+    }
+  ],
+  "result": {
+    "id": "spectrum:stratine_fragments",
+    "count": 9
+  },
+  "required_advancement": "spectrum:midgame/carry_too_many_heavy_gravity_blocks"
+}

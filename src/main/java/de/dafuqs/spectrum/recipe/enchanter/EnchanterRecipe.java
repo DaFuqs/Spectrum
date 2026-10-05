@@ -30,8 +30,8 @@ public class EnchanterRecipe extends GatedSpectrumRecipe<RecipeInput> {
 	// copy all modified components from the first stack in the ingredients to the output stack
 	protected final boolean copyComponents;
 	
-	public EnchanterRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, List<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, boolean copyComponents) {
-		super(group, secret, requiredAdvancementIdentifier);
+	public EnchanterRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults, List<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, boolean copyComponents) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		
 		this.inputs = inputs;
 		this.output = output;
@@ -140,8 +140,9 @@ public class EnchanterRecipe extends GatedSpectrumRecipe<RecipeInput> {
 		
 		public static final MapCodec<EnchanterRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				Ingredient.CODEC_NONEMPTY.listOf().optionalFieldOf("ingredients", List.of()).forGetter(recipe -> recipe.inputs),
 				ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.output),
 				Codec.INT.optionalFieldOf("required_experience", 0).forGetter(recipe -> recipe.requiredExperience),
@@ -152,8 +153,9 @@ public class EnchanterRecipe extends GatedSpectrumRecipe<RecipeInput> {
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, EnchanterRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
 				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
-				ByteBufCodecs.BOOL, recipe -> recipe.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancementIdentifier,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.inputs,
 				ItemStack.STREAM_CODEC, recipe -> recipe.output,
 				ByteBufCodecs.VAR_INT, recipe -> recipe.requiredExperience,

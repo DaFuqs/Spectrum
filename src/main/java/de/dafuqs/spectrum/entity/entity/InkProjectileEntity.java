@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.*;
@@ -27,6 +27,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -108,7 +109,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		InkColor inkColor = this.getInkColor();
 		if (amount > 0) {
 			for (int j = 0; j < amount; ++j) {
-				this.level().addParticle(ColoredCraftingParticleEffect.of(inkColor.getColorInt()), this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), 0, 0, 0);
+				this.level().addParticle(ColoredCraftingParticleEffect.of(inkColor.getColorARGB()), this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), 0, 0, 0);
 			}
 		}
 	}
@@ -188,8 +189,8 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				continue;
 			}
 			if (dyeColor.isPresent()) {
-				BlockState coloredBlockState = BlockVariantHelper.getCursedBlockColorVariant(this.level(), blockPos, dyeColor.get());
-				if (!coloredBlockState.isAir()) {
+				@Nullable BlockState coloredBlockState = VariantHelper.getColoredBlockState(this.level(), blockPos, inkColor);
+				if (coloredBlockState != null) {
 					this.level().setBlockAndUpdate(blockPos, coloredBlockState);
 				}
 			}
@@ -291,9 +292,9 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		Vec3 targetPos = position();
 		Vec3 velocity = getDeltaMovement();
 		
-		world.addParticle(ColoredExplosionParticleEffect.of(inkColor.getColorInt()), targetPos.x, targetPos.y, targetPos.z, 0, 0, 0);
+		world.addParticle(ColoredExplosionParticleEffect.of(inkColor.getColorARGB()), targetPos.x, targetPos.y, targetPos.z, 0, 0, 0);
 		for (int i = 0; i < 10; i++) {
-			world.addParticle(ColoredCraftingParticleEffect.of(inkColor.getColorInt()), targetPos.x, targetPos.y, targetPos.z, -velocity.x * 3, -velocity.y * 3, -velocity.z * 3);
+			world.addParticle(ColoredCraftingParticleEffect.of(inkColor.getColorARGB()), targetPos.x, targetPos.y, targetPos.z, -velocity.x * 3, -velocity.y * 3, -velocity.z * 3);
 		}
 	}
 	

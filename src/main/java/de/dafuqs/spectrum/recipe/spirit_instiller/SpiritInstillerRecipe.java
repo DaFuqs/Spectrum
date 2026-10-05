@@ -19,7 +19,6 @@ import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 
 import java.util.*;
@@ -41,11 +40,11 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
 	protected final boolean copyComponents;
 	
-	public SpiritInstillerRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier,
-								 IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack output,
+	public SpiritInstillerRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
+	                             IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack output,
 								 int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, boolean copyComponents) {
 		
-		super(group, secret, requiredAdvancementIdentifier);
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		
 		this.centerIngredient = centerIngredient;
 		this.bowlIngredient1 = bowlIngredient1;
@@ -195,8 +194,9 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 		
 		public static final MapCodec<SpiritInstillerRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group),
-				Codec.BOOL.optionalFieldOf("secret", false).forGetter(recipe -> recipe.secret),
-				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancementIdentifier),
+				ResourceLocation.CODEC.optionalFieldOf("required_advancement").forGetter(recipe -> recipe.requiredAdvancement),
+				ResourceLocation.CODEC.optionalFieldOf("reveal_secret_advancement").forGetter(recipe -> recipe.revealSecretAdvancement),
+				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				IngredientStack.CODEC.fieldOf("center_ingredient").forGetter(recipe -> recipe.centerIngredient),
 				IngredientStack.CODEC.fieldOf("ingredient1").forGetter(recipe -> recipe.bowlIngredient1),
 				IngredientStack.CODEC.fieldOf("ingredient2").forGetter(recipe -> recipe.bowlIngredient2),
@@ -208,9 +208,10 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe<InstanceReci
 		).apply(i, SpiritInstillerRecipe::new));
 		
 		private static final StreamCodec<RegistryFriendlyByteBuf, SpiritInstillerRecipe> PACKET_CODEC = PacketCodecHelper.tuple(
-				ByteBufCodecs.STRING_UTF8, c -> c.group,
-				ByteBufCodecs.BOOL, c -> c.secret,
-				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), c -> c.requiredAdvancementIdentifier,
+				ByteBufCodecs.STRING_UTF8, recipe -> recipe.group,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.requiredAdvancement,
+				ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC), recipe -> recipe.revealSecretAdvancement,
+				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				IngredientStack.STREAM_CODEC, c -> c.centerIngredient,
 				IngredientStack.STREAM_CODEC, c -> c.bowlIngredient1,
 				IngredientStack.STREAM_CODEC, c -> c.bowlIngredient2,

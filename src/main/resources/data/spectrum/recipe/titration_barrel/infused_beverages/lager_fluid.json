@@ -8,7 +8,9 @@
     }
   ],
   "min_fermentation_time_hours": 4,
-  "fluid": "#c:honey",
+  "fluid": {
+    "tag": "c:honey"
+  },
   "tapping_item": "minecraft:glass_bottle",
   "fermentation": {
     "fermentation_speed_mod": 1.25,
@@ -107,8 +109,7 @@
     {
       "type": "neoforge:not",
       "value": {
-        "type": "neoforge:tag_empty",
-        "registry": "minecraft:fluid",
+        "type": "spectrum:fluid_tag_empty",
         "tag": "c:honey"
       }
     }

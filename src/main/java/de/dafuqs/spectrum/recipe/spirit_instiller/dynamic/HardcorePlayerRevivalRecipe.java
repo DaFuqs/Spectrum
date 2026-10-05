@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic;
 
 import com.mojang.authlib.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
@@ -16,14 +15,14 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	
 	public HardcorePlayerRevivalRecipe() {
-		super("", false, Optional.empty(),
+		super("", Optional.empty(), Optional.empty(), List.of(),
 				IngredientStack.ofItems(Blocks.PLAYER_HEAD.asItem()), IngredientStack.ofItems(Items.TOTEM_OF_UNDYING), IngredientStack.ofItems(Items.ENCHANTED_GOLDEN_APPLE),
 				ItemStack.EMPTY, 1200, 100, true, false);
 	}
@@ -37,8 +36,8 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	public ItemStack assemble(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, HolderLookup.Provider drm) {
 		SpiritInstillerBlockEntity spiritInstillerBlockEntity = recipeInput.getInstance();
 		GameProfile gameProfile = getSkullOwner(recipeInput.getItem(SpiritInstillerRecipe.CENTER_INGREDIENT));
-		if (gameProfile != null && SpectrumCommon.minecraftServer != null) {
-			ServerPlayer revivedPlayer = SpectrumCommon.minecraftServer.getPlayerList().getPlayerByName(gameProfile.getName());
+		if (gameProfile != null) {
+			ServerPlayer revivedPlayer = recipeInput.getInstance().getLevel().getServer().getPlayerList().getPlayerByName(gameProfile.getName());
 			if (revivedPlayer != null) {
 				HardcoreDeathAttachmentType.clearHardcoreDeath(revivedPlayer);
 				revivedPlayer.setGameMode(revivedPlayer.server.getDefaultGameType());
@@ -64,11 +63,11 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 		ItemStack instillerStack = inventory.getItem(0);
 		if (instillerStack.is(Blocks.PLAYER_HEAD.asItem())) {
 			GameProfile gameProfile = getSkullOwner(instillerStack);
-			if (gameProfile == null || SpectrumCommon.minecraftServer == null) {
+			if (gameProfile == null) {
 				return false;
 			}
 			
-			PlayerList playerManager = SpectrumCommon.minecraftServer.getPlayerList();
+			PlayerList playerManager = inventory.getInstance().getLevel().getServer().getPlayerList();
 			ServerPlayer playerToRevive = gameProfile.getId() == null ? playerManager.getPlayerByName(gameProfile.getName()) : playerManager.getPlayer(gameProfile.getId());
 			return playerToRevive != null && HardcoreDeathAttachmentType.hasHardcoreDeath(playerToRevive);
 		}

@@ -15,7 +15,7 @@
     }
   ],
   "fluid": {
-    "fluids": "#c:honey"
+    "tag": "c:honey"
   },
   "min_fermentation_time_hours": 24,
   "fermentation": {
@@ -112,8 +112,7 @@
     {
       "type": "neoforge:not",
       "value": {
-        "type": "neoforge:tag_empty",
-        "registry": "minecraft:fluid",
+        "type": "spectrum:fluid_tag_empty",
         "tag": "c:honey"
       }
     }

@@ -4,4 +4,4 @@
 package de.dafuqs.spectrum;
 
 import net.minecraft.*;
-import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.*;

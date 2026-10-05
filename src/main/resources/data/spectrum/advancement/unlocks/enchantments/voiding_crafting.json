@@ -6,12 +6,6 @@
         "advancement_identifier": "spectrum:midgame/build_enchanting_structure"
       }
     },
-    "entered_end": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "minecraft:end/root"
-      }
-    },
     "has_chorus_flower": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {

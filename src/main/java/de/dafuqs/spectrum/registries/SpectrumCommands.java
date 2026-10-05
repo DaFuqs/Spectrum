@@ -15,6 +15,8 @@ public class SpectrumCommands {
 		DumpRegistriesCommand.register(spectrumNode);
 		DumpTagsCommand.register(spectrumNode);
 		ListItemTagsCommand.register(spectrumNode, event.getBuildContext());
+		ForceEnchantCommand.register(spectrumNode, event.getBuildContext());
+		AdvancementSyncCommand.register(spectrumNode);
 		
 		event.getDispatcher().getRoot().addChild(spectrumNode);
 	}

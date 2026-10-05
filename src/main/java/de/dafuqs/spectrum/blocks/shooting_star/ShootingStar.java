@@ -1,24 +1,18 @@
 package de.dafuqs.spectrum.blocks.shooting_star;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.storage.loot.*;
-import javax.annotation.*;
-
-import org.jetbrains.annotations.*;
 import org.joml.*;
 
 import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
 
 public interface ShootingStar {
 	
@@ -76,7 +70,6 @@ public interface ShootingStar {
 			return types[0];
 		}
 		
-		@Contract("_ -> new")
 		public static ResourceKey<LootTable> getLootTable(int index) {
 			return values()[index].getLootTable();
 		}

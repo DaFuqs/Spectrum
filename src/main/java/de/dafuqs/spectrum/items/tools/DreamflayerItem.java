@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -20,7 +20,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -148,13 +148,13 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 	}
 	
 	@Override
-	public List<InkColor> getUsedColors() {
+	public List<InkColor> getUsedColors(ItemStack stack) {
 		return List.of(USED_COLOR);
 	}
 	
 	@Override
-	public void addInkPoweredTooltip(List<Component> tooltip) {
-		InkPowered.super.addInkPoweredTooltip(tooltip);
+	public void addInkPoweredTooltip(ItemStack stack, List<Component> tooltip) {
+		InkPowered.super.addInkPoweredTooltip(stack, tooltip);
 	}
 	
 	@Override

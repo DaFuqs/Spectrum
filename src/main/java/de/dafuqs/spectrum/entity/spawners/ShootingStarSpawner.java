@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.entity.spawners;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.entity.entity.*;
@@ -14,7 +13,6 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
 
 public class ShootingStarSpawner implements CustomSpawner {
 	

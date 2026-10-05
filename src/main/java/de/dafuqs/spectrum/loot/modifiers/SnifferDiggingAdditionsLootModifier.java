@@ -11,7 +11,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.neoforged.neoforge.common.loot.*;
-import javax.annotation.*;
 
 import java.util.*;
 

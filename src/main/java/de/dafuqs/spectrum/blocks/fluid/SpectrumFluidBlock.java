@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public abstract class SpectrumFluidBlock extends LiquidBlock {
 	

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.world.*;
@@ -24,7 +23,7 @@ public class CompactingChestScreenHandler extends AbstractContainerMenu {
 	
 	// serverside
 	public CompactingChestScreenHandler(int syncId, Inventory playerInventory, CompactingChestBlockEntity blockEntity, ContainerData propertyDelegate) {
-		super(SpectrumScreenHandlerTypes.COMPACTING_CHEST, syncId);
+		super(SpectrumMenuTypes.COMPACTING_CHEST, syncId);
 		
 		this.blockEntity = blockEntity;
 		this.propertyDelegate = propertyDelegate;

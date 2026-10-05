@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.mixin.client;
 
 import com.llamalad7.mixinextras.injector.*;
 import com.mojang.blaze3d.systems.*;
-import de.dafuqs.spectrum.render.SpectrumShaders;
+import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.render.biome_rendering.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;

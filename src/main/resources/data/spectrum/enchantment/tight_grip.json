@@ -30,6 +30,6 @@
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#spectrum:",
+  "supported_items": "#spectrum:enchantable/tight_grip",
   "weight": 2
 }

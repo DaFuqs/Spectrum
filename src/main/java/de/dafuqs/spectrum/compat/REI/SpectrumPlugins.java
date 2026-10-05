@@ -6,6 +6,7 @@ import me.shedaniel.rei.api.common.category.*;
 
 public class SpectrumPlugins {
 	
+	public static final CategoryIdentifier<GatedCraftingDisplay> GATED_CRAFTING = CategoryIdentifier.of(SpectrumCommon.locate("gated_crafting"));
 	public static final CategoryIdentifier<PedestalCraftingDisplay> PEDESTAL_CRAFTING = CategoryIdentifier.of(SpectrumCommon.locate("pedestal_crafting"));
 	public static final CategoryIdentifier<AnvilCrushingDisplay> ANVIL_CRUSHING = CategoryIdentifier.of(SpectrumCommon.locate("anvil_crushing"));
 	public static final CategoryIdentifier<FusionShrineDisplay> FUSION_SHRINE = CategoryIdentifier.of(SpectrumCommon.locate("fusion_shrine"));
@@ -16,7 +17,6 @@ public class SpectrumPlugins {
 	public static final CategoryIdentifier<PotionWorkshopCraftingDisplay> POTION_WORKSHOP_CRAFTING = CategoryIdentifier.of(SpectrumCommon.locate("potion_workshop_crafting"));
 	public static final CategoryIdentifier<PotionWorkshopReactingDisplay> POTION_WORKSHOP_REACTING = CategoryIdentifier.of(SpectrumCommon.locate("potion_workshop_reacting"));
 	public static final CategoryIdentifier<SpiritInstillingDisplay> SPIRIT_INSTILLER = CategoryIdentifier.of(SpectrumCommon.locate("spirit_instiller"));
-	public static final CategoryIdentifier<SludgeConvertingDisplay> SLUDGE_CONVERTING = CategoryIdentifier.of(SpectrumCommon.locate("sludge_converting"));
 	public static final CategoryIdentifier<LiquidCrystalConvertingDisplay> LIQUID_CRYSTAL_CONVERTING = CategoryIdentifier.of(SpectrumCommon.locate("liquid_crystal_converting"));
 	public static final CategoryIdentifier<MidnightSolutionConvertingDisplay> MIDNIGHT_SOLUTION_CONVERTING = CategoryIdentifier.of(SpectrumCommon.locate("midnight_solution_converting"));
 	public static final CategoryIdentifier<DragonrotConvertingDisplay> DRAGONROT_CONVERTING = CategoryIdentifier.of(SpectrumCommon.locate("dragonrot_converting"));

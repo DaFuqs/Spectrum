@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.spawners;
 
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;

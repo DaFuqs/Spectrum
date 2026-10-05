@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.storage.*;
-import de.dafuqs.spectrum.api.entity.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.components.*;
@@ -18,7 +17,9 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
+import net.minecraft.world.level.*;
 import net.neoforged.fml.event.lifecycle.*;
+import org.jspecify.annotations.*;
 
 public class SpectrumModelPredicateProviders {
 	
@@ -58,9 +59,6 @@ public class SpectrumModelPredicateProviders {
 		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD.get());
 		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON.get());
 		registerOversizedItemPredicate(SpectrumItems.OMNI_ACCELERATOR.get());
-		
-		registerBlockingPredicate(SpectrumItems.NECTAR_LANCE.get());
-		registerBlockingPredicate(SpectrumItems.KNOTTED_SWORD.get());
 		
 		registerBidentThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT.get());
 		registerBidentThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT.get());
@@ -193,21 +191,12 @@ public class SpectrumModelPredicateProviders {
 				SlotReservingItem.isReservingSlot(stack) ? 1.0F : 0.0F);
 	}
 	
-	public static ItemDisplayContext DISPLAY_CONTEXT = ItemDisplayContext.FIXED;
+	public static int MAGIC_OVERSIZED_SEED = -567877769;
 	
 	private static void registerOversizedItemPredicate(Item item) {
 		ItemProperties.register(item, ResourceLocation.parse("oversized"), (stack, world, entity, seed) ->
-				DISPLAY_CONTEXT == ItemDisplayContext.FIRST_PERSON_LEFT_HAND
-						|| DISPLAY_CONTEXT == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND
-						|| DISPLAY_CONTEXT == ItemDisplayContext.THIRD_PERSON_LEFT_HAND
-						|| DISPLAY_CONTEXT == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND
-						? 1.0F : 0.0F
+				seed == MAGIC_OVERSIZED_SEED ? 1.0F : 0.0F
 		);
-	}
-	
-	private static void registerBlockingPredicate(Item item) {
-		ItemProperties.register(item, ResourceLocation.parse("blocking"), (stack, world, entity, seed) ->
-				entity != null && entity.isBlocking() ? 1.0F : 0.0F);
 	}
 	
 	private static void registerBowPredicates(Item bowItem) {
@@ -248,8 +237,29 @@ public class SpectrumModelPredicateProviders {
 	}
 	
 	private static void registerEnderSplicePredicates(Item item) {
-		ItemProperties.register(item, ResourceLocation.parse("bound"), (stack, world, entity, i) ->
-				EnderSpliceItem.hasTeleportTarget(stack) ? 1.0F : 0.0F);
+		ItemProperties.register(item, ResourceLocation.parse("bound"), (stack, level, entity, i) -> {
+			EnderSpliceComponent component = stack.get(SpectrumDataComponentTypes.ENDER_SPLICE);
+			if(component == null) {
+				return 0.0F;
+			}
+			if(component.targetUUID().isPresent()) {
+				return 0.1F;
+			}
+			if(component.dimension().isPresent()) {
+				ResourceKey<Level> dimension = component.dimension().get();
+				return switch (dimension.location().toString()) {
+					case "minecraft:overworld" -> 0.2F;
+					case "minecraft:the_nether" -> 0.3F;
+					case "minecraft:the_end" -> 0.4F;
+					case "spectrum:deeper_down" -> 0.5F;
+					case "spectrum:the_conservatory" -> 0.6F;
+					case "aether:the_aether" -> 0.7F;
+					case "ae2:spatial_storage" -> 0.8F;
+					default -> 1.0F;
+				};
+			}
+			return 0.0F;
+		});
 	}
 	
 	private static void registerAshenCircletPredicates(Item item) {

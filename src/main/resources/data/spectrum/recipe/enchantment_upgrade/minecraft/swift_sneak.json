@@ -1,28 +1,43 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:light_blue_pigment"
-  },
-  "enchantment": "minecraft:swift_sneak",
   "group": "vanilla_enchantment_upgrades",
-  "item_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      8,
-      32,
-      128,
-      256
-    ]
-  },
-  "level_cap": 5,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_swift_sneak",
-  "xp_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      200,
-      600,
-      2000,
-      5000
-    ]
-  }
+  "enchantment": "minecraft:swift_sneak",
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 400
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 800
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 16,
+      "experience": 1600
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 32,
+      "experience": 3200
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 64,
+      "experience": 6400
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_swift_sneak"
 }

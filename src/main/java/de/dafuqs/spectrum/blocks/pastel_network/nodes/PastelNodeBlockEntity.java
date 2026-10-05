@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -32,13 +33,12 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
-import net.neoforged.neoforge.capabilities.*;
-import net.neoforged.neoforge.items.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, MenuProvider, PastelUpgradeable {
 	
@@ -49,29 +49,27 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	
 	protected UUID nodeId = UUID.randomUUID();
 	protected Optional<UUID> networkUUID = Optional.empty();
-	protected Optional<PastelUpgradeSignature> outerRing, innerRing, redstoneRing;
+	protected Optional<Holder.Reference<PastelUpgradeSignature>> outerRing, innerRing, redstoneRing;
 	protected Optional<DyeColor> color = Optional.empty();
 	
-	// TODO: move these to ServerPastelNetwork?
 	protected long lastTransferTick = 0;
-	protected final long cachedRedstonePowerTick = 0;
+	protected long cachedRedstonePowerTick = 0;
 	protected boolean cachedUnpowered = true;
-	protected PastelNetwork.NodePriority priority = PastelNetwork.NodePriority.GENERIC;
-	protected long itemCountUnderway = 0;
-	
+	protected Map<ResourceKey<PastelPayloadType>, Long> activeTransfers = new Object2LongArrayMap<>();
 	
 	// upgrade impl stuff
-	protected boolean lit, triggerTransfer, triggered, waiting, lamp, sensor, updated;
-	protected int transferCount = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT;
-	protected int transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
+	protected boolean lit, triggerTransfer, triggered, waiting, lamp, sensor, upgradesInitialized;
+	protected int transferCountMultiplier = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_COUNT_MULTIPLIER;
+	protected int transferDurationTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
+	protected int transferCooldownTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_COOLDOWN_TICKS;
 	protected int filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 
-	protected boolean isInitialized = false;
+	protected boolean networkInitialized = false;
 	
 	private final List<ItemStack> filterItems;
 	float rotationTarget, crystalRotation, lastRotationTarget, heightTarget, crystalHeight, lastHeightTarget, alphaTarget, ringAlpha, lastAlphaTarget;
 	long creationStamp = -1, interpTicks, interpLength = -1, spinTicks;
-	private @Nullable ConnectionState connectionState;
+	private ConnectionState connectionState = ConnectionState.DISCONNECTED;
 	
 	private final Object2BooleanMap<TagKey<Item>> filteredTags;
 	private boolean allTagsDeny = true;
@@ -85,28 +83,19 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		this.redstoneRing = Optional.empty();
 	}
 	
-	public @Nullable IItemHandler getConnectedStorage() {
-		BlockState state = this.getBlockState();
-		if (!(state.getBlock() instanceof PastelNodeBlock)) {
-			return null;
-		}
-		Direction direction = state.getValue(PastelNodeBlock.FACING);
-		return level.getCapability(Capabilities.ItemHandler.BLOCK, this.getBlockPos().relative(direction.getOpposite()), direction);
-	}
-	
-	public static void tick(Level world, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
-		if (!node.isInitialized && !world.isClientSide()) { // kinda onLoad()?
-			node.getServerNetwork().ifPresent(network -> network.initializeNode(node));
-			node.isInitialized = true;
+	public static void tick(Level level, BlockPos pos, BlockState state, PastelNodeBlockEntity node) {
+		if (!node.networkInitialized && !level.isClientSide()) { // kinda onLoad()?
+			node.getServerNetwork().ifPresent(network -> network.addLoadedNode(node));
+			node.networkInitialized = true;
 		}
 
-		if (node.lamp && state.getValue(BlockStateProperties.LIT) != node.canTransfer()) {
-			world.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.LIT, node.cachedUnpowered));
+		if (node.lamp && state.getValue(BlockStateProperties.LIT) != node.isEnabled()) {
+			level.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.LIT, node.cachedUnpowered));
 		}
 		
 		//Trigger transfer logic needs to be ticked here
 		if (node.triggerTransfer) {
-			var powered = world.hasNeighborSignal(pos);
+			var powered = level.hasNeighborSignal(pos);
 			
 			if (node.waiting && !powered) {
 				node.waiting = false;
@@ -117,11 +106,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			}
 		}
 		
-		if (world.isClientSide()) {
+		if (level.isClientSide()) {
 			if (node.networkUUID.isEmpty()) {
 				node.changeConnectionState(ConnectionState.DISCONNECTED);
 				node.interpLength = 17;
-			} else if (!node.canTransfer()) {
+			} else if (!node.isEnabled()) {
 				node.changeConnectionState(ConnectionState.INACTIVE);
 				node.interpLength = 21;
 			} else if (node.spinTicks > 0) {
@@ -137,9 +126,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			
 			if (node.spinTicks > 0)
 				node.spinTicks--;
-		} else if (!node.updated) {
+		} else if (!node.upgradesInitialized) {
 			node.updateUpgrades();
-			node.updated = true;
+			node.upgradesInitialized = true;
 		}
 	}
 	
@@ -154,26 +143,21 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public Optional<PastelUpgradeSignature> getInnerRing() {
-		return innerRing;
+		return this.innerRing.map(Holder.Reference::value);
 	}
 	
 	public Optional<PastelUpgradeSignature> getOuterRing() {
-		return outerRing;
+		return this.outerRing.map(Holder.Reference::value);
 	}
 	
 	public Optional<PastelUpgradeSignature> getRedstoneRing() {
-		return redstoneRing;
-	}
-	
-	public PastelNetwork.NodePriority getPriority() {
-		return priority;
+		return this.redstoneRing.map(Holder.Reference::value);
 	}
 	
 	// outer goes first, then inner, then redstone
-	public boolean tryInteractRings(ItemStack item, PastelNodeType type) {
-		var upgrade = SpectrumPastelUpgradeSignatures.of(item);
-		
-		if (upgrade.category.isRedstone()) {
+	// we do not allow duplicate upgrades
+	public boolean applyUpgrade(Holder.Reference<PastelUpgradeSignature> upgrade) {
+		if (upgrade.value().goesToRedstoneRing()) {
 			if (redstoneRing.isEmpty()) {
 				redstoneRing = Optional.of(upgrade);
 				return true;
@@ -182,10 +166,18 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			return false;
 		}
 		
-		if (outerRing.isEmpty() && type.hasOuterRing()) {
+		if (outerRing.isEmpty() && getNodeType().hasOuterRing()) {
+			if(innerRing.isPresent() && innerRing.get().equals(upgrade)) {
+				return false;
+			}
+			
 			outerRing = Optional.of(upgrade);
 			return true;
 		} else if (innerRing.isEmpty()) {
+			if(outerRing.isPresent() && outerRing.get().equals(upgrade)) {
+				return false;
+			}
+			
 			innerRing = Optional.of(upgrade);
 			return true;
 		}
@@ -198,13 +190,13 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		var stack = ItemStack.EMPTY;
 		
 		if (redstoneRing.isPresent()) {
-			stack = redstoneRing.get().upgradeItem.getDefaultInstance();
+			stack = redstoneRing.get().value().upgradeItem.value().getDefaultInstance();
 			redstoneRing = Optional.empty();
 		} else if (innerRing.isPresent()) {
-			stack = innerRing.get().upgradeItem.getDefaultInstance();
+			stack = innerRing.get().value().upgradeItem.value().getDefaultInstance();
 			innerRing = Optional.empty();
 		} else if (outerRing.isPresent()) {
-			stack = outerRing.get().upgradeItem.getDefaultInstance();
+			stack = outerRing.get().value().upgradeItem.value().getDefaultInstance();
 			outerRing = Optional.empty();
 		}
 		
@@ -216,38 +208,34 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public void updateUpgrades() {
-		transferCount = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_AMOUNT;
-		transferTime = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
-		var oldFilterSlotCount = filterSlotRows;
+		transferCountMultiplier = PastelTransmissionLogic.DEFAULT_MAX_TRANSFER_COUNT_MULTIPLIER;
+		transferDurationTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_TICKS_PER_NODE;
+		transferCooldownTicks = PastelTransmissionLogic.DEFAULT_TRANSFER_COOLDOWN_TICKS;
+		var oldFilterSlotRows = filterSlotRows;
 		filterSlotRows = DEFAULT_FILTER_SLOT_ROWS;
 		triggerTransfer = false;
 		lit = false;
 		lamp = false;
 		sensor = false;
-		var oldPriority = priority;
-		priority = PastelNetwork.NodePriority.GENERIC;
 		
-		//First one processed can't compound because it has nothing to compound on
-		outerRing.ifPresent(r -> apply(r, Collections.emptyList()));
-		innerRing.ifPresent(r -> apply(r, outerRing.map(List::of).orElse(Collections.emptyList())));
-		redstoneRing.ifPresent(r -> apply(r, Collections.emptyList()));
+		outerRing.ifPresent(r -> apply(r.value(), null));
+		innerRing.ifPresent(r -> apply(r.value(), outerRing.map(Holder.Reference::value).orElse(null)));
+		redstoneRing.ifPresent(r -> apply(r.value(), null));
 		
 		// Sanity
-		transferCount = Math.max(transferCount, 1);
-		transferTime = Mth.clamp(transferTime, 2, 100);
+		transferCountMultiplier = Math.max(transferCountMultiplier, 1);
+		transferDurationTicks = Mth.clamp(transferDurationTicks, 2, 100);
 		filterSlotRows = Mth.clamp(filterSlotRows, 1, 5);
 		
 		if (lit && lamp) {
 			lit = false;
 		}
 		
-		if (level != null) {
-			networkUUID.ifPresent(uuid -> ServerPastelNetworkManager.get((ServerLevel) level).getNetwork(uuid).ifPresent(n -> n.updateNodePriority(this, oldPriority)));
-			if (getBlockState().getValue(BlockStateProperties.LIT) != lit)
-				level.setBlockAndUpdate(worldPosition, getBlockState().setValue(BlockStateProperties.LIT, lit));
+		if (level != null && getBlockState().getValue(BlockStateProperties.LIT) != lit) {
+			level.setBlockAndUpdate(worldPosition, getBlockState().setValue(BlockStateProperties.LIT, lit));
 		}
 		
-		if (filterSlotRows < oldFilterSlotCount) {
+		if (filterSlotRows < oldFilterSlotRows) {
 			for (int i = getDrawnSlots(); i < filterItems.size(); i++) {
 				updateTagFilteringItems();
 				filterItems.set(i, ItemStack.EMPTY);
@@ -266,21 +254,26 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 	}
 	
-	public long getMaxTransferredAmount() {
-		return transferCount;
+	public int transferMultiplier() {
+		return transferCountMultiplier;
 	}
 	
-	public int getTransferTime() {
-		return transferTime;
+	public int getTransferDurationTicks() {
+		return transferDurationTicks;
+	}
+	
+	public int getTransferCooldownTicks() {
+		return transferCooldownTicks;
 	}
 	
 	public float getRedstoneAlphaMult() {
 		return redstoneRing.isPresent() ? 0.5F : 0.25F;
 	}
 	
-	public boolean canTransfer() {
-		var result = redstoneRing.map(r -> r.preProcessor
-				.apply(new PastelUpgradeSignature.RedstoneContext(this, level, worldPosition, cachedUnpowered))).orElse(InteractionResult.PASS);
+	public boolean isEnabled() {
+		InteractionResult result = redstoneRing.map(r -> r.value().preProcessor
+				.apply(new PastelUpgradeSignature.RedstoneContext(this, level, worldPosition, cachedUnpowered)))
+				.orElse(InteractionResult.PASS);
 		
 		if (result == InteractionResult.SUCCESS)
 			return true;
@@ -292,9 +285,10 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (time > this.cachedRedstonePowerTick && !getBlockState().getValue(PastelNodeBlock.REDSTONE_EMITTING)) {
 			this.cachedUnpowered = level.getBestNeighborSignal(this.worldPosition) == 0;
 		}
+		this.cachedRedstonePowerTick = time;
 		
 		boolean notPowered = redstoneRing.map(r -> {
-			var post = r.postProcessor.apply(new PastelUpgradeSignature.RedstoneContext(this, level, worldPosition, cachedUnpowered));
+			InteractionResult post = r.value().postProcessor.apply(new PastelUpgradeSignature.RedstoneContext(this, level, worldPosition, cachedUnpowered));
 			
 			if (post == InteractionResult.SUCCESS)
 				return true;
@@ -305,12 +299,18 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 			return cachedUnpowered;
 		}).orElse(cachedUnpowered);
 		
-		var canTransfer = this.getLevel().getGameTime() > lastTransferTick;
 		if (triggerTransfer) {
-			return triggered && canTransfer;
+			return triggered;
 		}
+		return notPowered;
+	}
+	
+	public boolean cooldownExceededTo(PastelNodeBlockEntity otherNode) {
+		long thisNextTransferTime = this.lastTransferTick + this.getTransferCooldownTicks();
+		long otherNextTransferTime = otherNode.lastTransferTick + otherNode.getTransferCooldownTicks();
+		long time = this.getLevel().getGameTime();
 		
-		return canTransfer && notPowered;
+		return time >= thisNextTransferTime && time >= otherNextTransferTime;
 	}
 	
 	public void markTransferred(boolean setTransferCooldown) {
@@ -329,47 +329,88 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(nbt, registryLookup);
 		
-		this.nodeId = nbt.contains("NodeID") ? nbt.getUUID("NodeID") : UUID.randomUUID();
-		this.networkUUID = nbt.contains("NetworkUUID") ? Optional.of(nbt.getUUID("NetworkUUID")) : Optional.empty();
-		this.triggered = nbt.contains("Triggered") && nbt.getBoolean("Triggered");
-		this.waiting = nbt.contains("Waiting") && nbt.getBoolean("Waiting");
-		this.creationStamp = nbt.contains("creationStamp") ? nbt.getLong("creationStamp") : 0;
-		this.lastTransferTick = nbt.contains("LastTransferTick", Tag.TAG_LONG) ? nbt.getLong("LastTransferTick") : 0;
-		this.itemCountUnderway = nbt.contains("ItemCountUnderway", Tag.TAG_LONG) ? nbt.getLong("ItemCountUnderway") : 0;
-		this.color = nbt.contains("ColorId", Tag.TAG_INT) ? Optional.of(DyeColor.byId(nbt.getInt("ColorId"))) : Optional.empty();
-		this.outerRing = nbt.contains("OuterRing") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("OuterRing")))) : Optional.empty();
-		this.innerRing = nbt.contains("InnerRing") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("InnerRing")))) : Optional.empty();
-		this.redstoneRing = nbt.contains("RedstoneRing") ? Optional.ofNullable(SpectrumRegistries.PASTEL_UPGRADE.get(ResourceLocation.tryParse(nbt.getString("RedstoneRing")))) : Optional.empty();
+		this.nodeId = nbt.contains("node_id") ? nbt.getUUID("node_id") : UUID.randomUUID();
+		this.networkUUID = nbt.contains("network_uuid") ? Optional.of(nbt.getUUID("network_uuid")) : Optional.empty();
+		this.triggered = nbt.contains("triggered") && nbt.getBoolean("triggered");
+		this.waiting = nbt.contains("waiting") && nbt.getBoolean("waiting");
+		this.creationStamp = nbt.contains("creation_timestamp") ? nbt.getLong("creation_timestamp") : 0;
+		this.lastTransferTick = nbt.contains("last_transfer_tick", Tag.TAG_LONG) ? nbt.getLong("last_transfer_tick") : 0;
+		this.activeTransfers = new Object2LongArrayMap<>();
+		if(nbt.contains("active_transfers", Tag.TAG_COMPOUND)) {
+			HolderGetter<PastelPayloadType> reg = registryLookup.asGetterLookup().lookupOrThrow(SpectrumRegistryKeys.PASTEL_PAYLOAD_TYPE);
+			CompoundTag activeTransfersTag = nbt.getCompound("active_transfers");
+			for(String key : activeTransfersTag.getAllKeys()) {
+				ResourceKey<PastelPayloadType> resourceKey = ResourceKey.create(SpectrumRegistryKeys.PASTEL_PAYLOAD_TYPE, ResourceLocation.parse(key));
+				Optional<Holder.Reference<PastelPayloadType>> type = reg.get(resourceKey);
+				if(type.isPresent()) {
+					Long value = activeTransfersTag.getLong(key);
+					activeTransfers.put(type.get().key(), value);
+				}
+			}
+		}
+		this.color = nbt.contains("color_id", Tag.TAG_INT) ? Optional.of(DyeColor.byId(nbt.getInt("color_id"))) : Optional.empty();
+		
+		this.outerRing = Optional.empty();
+		this.innerRing = Optional.empty();
+		this.redstoneRing = Optional.empty();
+		Optional.ofNullable(ResourceLocation.tryParse(nbt.getString("outer_ring")))
+				.map((resourceLocation) -> ResourceKey.create(SpectrumRegistryKeys.PASTEL_UPGRADE, resourceLocation))
+				.flatMap((resourceKey) -> registryLookup.lookupOrThrow(SpectrumRegistryKeys.PASTEL_UPGRADE).get(resourceKey))
+				.ifPresent(pastelUpgradeSignatureReference -> outerRing = Optional.of(pastelUpgradeSignatureReference));
+		
+		Optional.ofNullable(ResourceLocation.tryParse(nbt.getString("inner_ring")))
+				.map((resourceLocation) -> ResourceKey.create(SpectrumRegistryKeys.PASTEL_UPGRADE, resourceLocation))
+				.flatMap((resourceKey) -> registryLookup.lookupOrThrow(SpectrumRegistryKeys.PASTEL_UPGRADE).get(resourceKey))
+				.ifPresent(pastelUpgradeSignatureReference -> innerRing = Optional.of(pastelUpgradeSignatureReference));
+		
+		Optional.ofNullable(ResourceLocation.tryParse(nbt.getString("redstone_ring")))
+				.map((resourceLocation) -> ResourceKey.create(SpectrumRegistryKeys.PASTEL_UPGRADE, resourceLocation))
+				.flatMap((resourceKey) -> registryLookup.lookupOrThrow(SpectrumRegistryKeys.PASTEL_UPGRADE).get(resourceKey))
+				.ifPresent(pastelUpgradeSignatureReference -> redstoneRing = Optional.of(pastelUpgradeSignatureReference));
 		
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.readFilterNbt(nbt, this.filterItems);
 			this.updateTagFilteringItems();
 		}
+		
+		this.upgradesInitialized = false;
 	}
 	
 	@Override
 	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(nbt, registryLookup);
 		if (creationStamp != -1) {
-			nbt.putLong("creationStamp", creationStamp);
+			nbt.putLong("creation_timestamp", creationStamp);
 		}
 		if (this.networkUUID.isPresent()) {
-			nbt.putUUID("NetworkUUID", this.networkUUID.get());
+			nbt.putUUID("network_uuid", this.networkUUID.get());
 		}
 		if (this.color.isPresent()) {
-			nbt.putInt("ColorId", this.color.get().getId());
+			nbt.putInt("color_id", this.color.get().getId());
 		}
-		nbt.putUUID("NodeID", this.nodeId);
-		nbt.putBoolean("Triggered", this.triggered);
-		nbt.putBoolean("Waiting", this.waiting);
-		nbt.putLong("LastTransferTick", this.lastTransferTick);
-		nbt.putLong("ItemCountUnderway", this.itemCountUnderway);
+		nbt.putUUID("node_id", this.nodeId);
+		nbt.putBoolean("triggered", this.triggered);
+		nbt.putBoolean("waiting", this.waiting);
+		nbt.putLong("last_transfer_tick", this.lastTransferTick);
+		
+		CompoundTag transferTag = new CompoundTag();
+		for(Map.Entry<ResourceKey<PastelPayloadType>, Long> transfer : this.activeTransfers.entrySet()) {
+			transferTag.putLong(registryLookup.asGetterLookup().lookupOrThrow(SpectrumRegistryKeys.PASTEL_PAYLOAD_TYPE).get(transfer.getKey()).get().key().location().toString(), transfer.getValue());
+		}
+		nbt.put("active_transfers", transferTag);
 		if (this.getNodeType().usesFilters()) {
 			FilterConfigurable.writeFilterNbt(nbt, this.filterItems);
 		}
-		outerRing.ifPresent(r -> nbt.putString("OuterRing", SpectrumPastelUpgradeSignatures.toString(r)));
-		innerRing.ifPresent(r -> nbt.putString("InnerRing", SpectrumPastelUpgradeSignatures.toString(r)));
-		redstoneRing.ifPresent(r -> nbt.putString("RedstoneRing", SpectrumPastelUpgradeSignatures.toString(r)));
+		
+		this.outerRing.ifPresent(pastelUpgradeSignatureReference -> pastelUpgradeSignatureReference.unwrapKey().ifPresent((resourceKey) -> {
+			nbt.putString("outer_ring", resourceKey.location().toString());
+		}));
+		this.innerRing.ifPresent(pastelUpgradeSignatureReference -> pastelUpgradeSignatureReference.unwrapKey().ifPresent((resourceKey) -> {
+			nbt.putString("inner_ring", resourceKey.location().toString());
+		}));
+		this.redstoneRing.ifPresent(pastelUpgradeSignatureReference -> pastelUpgradeSignatureReference.unwrapKey().ifPresent((resourceKey) -> {
+			nbt.putString("redstone_ring", resourceKey.location().toString());
+		}));
 	}
 
 	@Override
@@ -413,6 +454,20 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return PastelNodeType.CONNECTION;
 	}
 	
+	public PastelNodeBases.PastelNodeBase getNodeBase() {
+		if (this.getBlockState().getBlock() instanceof PastelNodeBlock pastelNodeBlock) {
+			return pastelNodeBlock.base;
+		}
+		return PastelNodeBases.ITEM;
+	}
+	
+	public Set<Supplier<? extends PastelPayloadType>> getSupportedPayloads() {
+		if (this.getBlockState().getBlock() instanceof PastelNodeBlock pastelNodeBlock) {
+			return pastelNodeBlock.supportedPayloads;
+		}
+		return Set.of();
+	}
+	
 	public void setNetworkUUID(@Nullable UUID uuid) {
 		this.networkUUID = Optional.ofNullable(uuid);
 		if (this.getLevel() != null && !this.getLevel().isClientSide()) {
@@ -421,13 +476,12 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		}
 	}
 	
-	public long getItemCountUnderway() {
-		return this.itemCountUnderway;
+	public long getUnderway(ResourceKey<PastelPayloadType> payloadType) {
+		return this.activeTransfers.getOrDefault(payloadType, 0L);
 	}
 	
-	public void addItemCountUnderway(long count) {
-		this.itemCountUnderway += count;
-		this.itemCountUnderway = Math.max(0, this.itemCountUnderway);
+	public void addUnderway(ResourceKey<PastelPayloadType> payloadType, long amount) {
+		this.activeTransfers.put(payloadType, Math.max(0,  this.activeTransfers.getOrDefault(payloadType, 0L) + amount));
 		this.setChanged();
 	}
 	
@@ -502,7 +556,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	
 	@Override
 	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.encode(buffer, new FilterConfigurable.ExtendedDataWithPos(this.getBlockPos(), this));
+		ExtendedDataWithPos.STREAM_CODEC.encode(buffer, new FilterConfigurable.ExtendedDataWithPos(this.getBlockPos(), this));
 	}
 	
 	public boolean equals(Object obj) {
@@ -697,36 +751,18 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	@Override
-	public void applySlotUpgrade(PastelUpgradeSignature upgrade) {
-		filterSlotRows += getNodeType().hasOuterRing() ? upgrade.slotRows : upgrade.slotRows * 2;
-	}
-	
-	@Override
-	public void applySimple(PastelUpgradeSignature upgrade) {
-		transferCount += upgrade.stack;
-		transferTime += upgrade.speed;
-	}
-	
-	@Override
-	public void applyCompounding(PastelUpgradeSignature upgrade) {
-		transferCount = Math.round(transferCount * upgrade.stackMult);
-		transferTime = Math.round(transferTime * upgrade.speedMult);
-	}
-	
-	@Override
-	public void upgradePriority() {
-		if (priority == PastelNetwork.NodePriority.GENERIC) {
-			priority = PastelNetwork.NodePriority.MODERATE;
-		} else {
-			priority = PastelNetwork.NodePriority.HIGH;
-		}
+	public void applySignature(PastelUpgradeSignature upgrade) {
+		filterSlotRows += getNodeType().hasOuterRing() ? upgrade.additionalFilterRows : upgrade.additionalFilterRows * 2;
+		transferCountMultiplier = Math.round(transferCountMultiplier * upgrade.transferCountMultiplier);
+		transferDurationTicks = Math.round(transferDurationTicks * upgrade.transferDurationMultiplier);
+		transferCooldownTicks = Math.round(transferCooldownTicks * upgrade.transferCooldownMultiplier);
 	}
 	
 	@Override
 	public String toString() {
-		return this.getNodeType().toString() + "-" +
-				this.getColor().toString() + "-" +
-				this.getBlockPos().toString() + "-" +
+		return this.getNodeType() + "-" +
+				this.getColor() + "-" +
+				this.getBlockPos() + "-" +
 				this.getNodeId();
 	}
 	

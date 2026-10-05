@@ -13,10 +13,15 @@
       }
     }
   ],
-  "tool": {
-    "type": "farmersdelight:item_ability",
-    "action": "pickaxe_dig"
-  },
+  "tool": [
+    {
+      "type": "farmersdelight:item_ability",
+      "action": "pickaxe:dig"
+    },
+    {
+      "tag": "minecraft:pickaxes"
+    }
+  ],
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",

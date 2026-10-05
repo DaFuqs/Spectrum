@@ -1284,6 +1284,36 @@
         ]
       }
     },
+    "has_splinterspawn_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "spectrum:splinterspawn_head"
+          }
+        ]
+      }
+    },
+    "has_koi_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "spectrum:koi_head"
+          }
+        ]
+      }
+    },
+    "has_crawfish_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "spectrum:crawfish_head"
+          }
+        ]
+      }
+    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

@@ -28,8 +28,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -191,7 +190,6 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		}
 	}
 	
-	@Contract("_, _ -> new")
 	protected static AABB getBoxWithRadius(BlockPos blockPos, int radius) {
 		return AABB.ofSize(Vec3.atCenterOf(blockPos), radius, radius, radius);
 	}
@@ -315,7 +313,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	
 	@Override
 	public void writeClientSideData(AbstractContainerMenu menu, RegistryFriendlyByteBuf buffer) {
-		FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.encode(buffer, new ExtendedDataWithPos(worldPosition, this));
+		FilterConfigurable.ExtendedDataWithPos.STREAM_CODEC.encode(buffer, new ExtendedDataWithPos(worldPosition, this));
 	}
 	
 	@Override

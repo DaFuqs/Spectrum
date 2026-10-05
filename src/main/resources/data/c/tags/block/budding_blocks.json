@@ -8,6 +8,11 @@
     },
 
     {
+      "id": "nomansland:budding_quartzite",
+      "required": false
+    },
+
+    {
       "id": "geode_plus:budding_basalt_ancient_debris",
       "required": false
     },

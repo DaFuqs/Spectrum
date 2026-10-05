@@ -10,7 +10,6 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
@@ -19,11 +18,10 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jspecify.annotations.NullMarked;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 @NullMarked
-public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.SpectrumFluidLoggable {
+public class ThreatConfluxBlock extends PlacedItemBlock {
 	
 	public static final MapCodec<ThreatConfluxBlock> CODEC = simpleCodec(ThreatConfluxBlock::new);
 	
@@ -57,11 +55,10 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	public static final VoxelShape ARMED_SHAPE = Block.box(0, 0, 0, 16, 0.125, 16);
 	
 	public static final EnumProperty<ArmedState> ARMED = EnumProperty.create("armed", ArmedState.class);
-	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_INCLUDING_NONE;
 	
 	public ThreatConfluxBlock(BlockBehaviour.Properties properties) {
 		super(properties);
-		registerDefaultState(this.stateDefinition.any().setValue(ARMED, ArmedState.NOT_ARMED).setValue(LOGGED, FluidLogging.State.NOT_LOGGED));
+		registerDefaultState(this.stateDefinition.any().setValue(ARMED, ArmedState.NOT_ARMED));
 	}
 	
 	@Override
@@ -119,8 +116,6 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 			level.scheduleTick(pos, this, TICKS_TO_DETONATE);
 		}
 		
-		state.getValue(LOGGED).onEntityCollision(state, level, pos, entity);
-		
 		super.entityInside(state, level, pos, entity);
 	}
 	
@@ -145,7 +140,7 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(ARMED, LOGGED);
+		builder.add(ARMED);
 	}
 	
 	protected void explode(ServerLevel level, BlockPos pos) {

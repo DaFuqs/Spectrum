@@ -6,18 +6,14 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.render.biome_rendering.*;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
-import net.minecraft.util.profiling.ProfilerFiller;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.server.packs.resources.*;
+import net.minecraft.util.profiling.*;
+import net.minecraft.world.level.biome.*;
 import net.neoforged.neoforge.common.conditions.*;
-import javax.annotation.*;
 
 import java.util.*;
-import java.util.function.*;
 
 public class BiomeRenderingDataLoader extends SimpleJsonResourceReloadListener {
 	

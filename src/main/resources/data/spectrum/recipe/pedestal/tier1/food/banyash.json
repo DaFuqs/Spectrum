@@ -28,11 +28,9 @@
         }
       },
       "predicates": {
-        "spectrum:infused_beverage": [
-          {
-            "variants": "rum"
-          }
-        ]
+        "spectrum:infused_beverage": {
+          "variant": "rum"
+        }
       }
     },
     "B": "spectrum:prickly_bayleaf"

@@ -8,14 +8,11 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.component.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.alchemy.*;
-import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -62,7 +59,6 @@ public abstract class ItemStackMixin {
 		}
 	}
 	
-	// TODO: move to event
 	@Inject(method = "getTooltipLines", at = @At(value = "INVOKE", target = "net/minecraft/world/item/TooltipFlag.isAdvanced ()Z", shift = At.Shift.BEFORE, ordinal = 1))
 	public void spectrum$AppendTooltip(Item.TooltipContext context, Player player, TooltipFlag type, CallbackInfoReturnable<List<Component>> cir, @Local Consumer<Component> consumer) {
 		var stack = (ItemStack) (Object) this;
@@ -79,7 +75,6 @@ public abstract class ItemStackMixin {
 		if (canvasEnchantments != null && !canvasEnchantments.isEmpty()) {
 			canvasEnchantments.addToTooltip(context, consumer, type);
 		}
-		
 	}
 	
 }

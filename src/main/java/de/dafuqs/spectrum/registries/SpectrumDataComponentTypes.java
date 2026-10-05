@@ -2,10 +2,9 @@ package de.dafuqs.spectrum.registries;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.components.*;
-import de.dafuqs.spectrum.mixin.accessors.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.core.registries.*;
@@ -43,7 +42,7 @@ public class SpectrumDataComponentTypes {
 	public static final Supplier<DataComponentType<InertiaComponent>> INERTIA = register("inertia", builder -> builder.persistent(InertiaComponent.CODEC).networkSynchronized(InertiaComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<InfusedBeverageComponent>> INFUSED_BEVERAGE = register("infused_beverage", builder -> builder.persistent(InfusedBeverageComponent.CODEC).networkSynchronized(InfusedBeverageComponent.PACKET_CODEC));
 	public static final Supplier<DataComponentType<InkColor>> INK_COLOR = register("ink_color", builder -> builder.persistent(InkColor.CODEC).networkSynchronized(InkColor.PACKET_CODEC));
-	public static final Supplier<DataComponentType<InkPoweredComponent>> INK_POWERED = register("ink_powered", builder -> builder.persistent(InkPoweredComponent.CODEC).networkSynchronized(InkPoweredComponent.PACKET_CODEC).cacheEncoding());
+	public static final Supplier<DataComponentType<InkPoweredPotionContentsComponent>> INK_POWERED_POTION_CONTENTS = register("ink_powered_potion_contents", builder -> builder.persistent(InkPoweredPotionContentsComponent.CODEC).networkSynchronized(InkPoweredPotionContentsComponent.PACKET_CODEC).cacheEncoding());
 	public static final Supplier<DataComponentType<InkStorageComponent>> INK_STORAGE = register("ink_storage", builder -> builder.persistent(InkStorageComponent.CODEC).networkSynchronized(InkStorageComponent.PACKET_CODEC).cacheEncoding());
 	public static final Supplier<DataComponentType<Unit>> IS_PREVIEW_ITEM = register("is_preview_item", builder -> builder.persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
 	public static final Supplier<DataComponentType<JadeWineComponent>> JADE_WINE = register("jade_wine", builder -> builder.persistent(JadeWineComponent.CODEC).networkSynchronized(JadeWineComponent.PACKET_CODEC));

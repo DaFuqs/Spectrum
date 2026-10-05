@@ -29,14 +29,6 @@
         }
       }
     },
-    "fished_in_sludge": {
-      "trigger": "spectrum:fishing_rod_hooked",
-      "conditions": {
-        "fluid": {
-          "fluids": "#spectrum:sludge"
-        }
-      }
-    },
     "fished_in_liquid_crystal": {
       "trigger": "spectrum:fishing_rod_hooked",
       "conditions": {

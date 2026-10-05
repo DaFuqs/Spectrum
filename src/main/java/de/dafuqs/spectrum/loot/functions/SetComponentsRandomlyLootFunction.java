@@ -8,7 +8,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
-import javax.annotation.*;
 
 import java.util.*;
 

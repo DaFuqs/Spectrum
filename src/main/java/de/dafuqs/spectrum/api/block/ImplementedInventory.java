@@ -4,7 +4,6 @@ import net.minecraft.core.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 /**
  * A simple {@code Inventory} implementation with only default methods + an item list getter.

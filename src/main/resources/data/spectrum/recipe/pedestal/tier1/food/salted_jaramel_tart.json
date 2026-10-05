@@ -1,6 +1,6 @@
 {
   "type": "spectrum:pedestal",
-  "secret": true,
+  "reveal_secret_advancement": "spectrum:midgame/craft_salted_jaramel_trifle_or_tart",
   "time": 160,
   "tier": "basic",
   "colors": {

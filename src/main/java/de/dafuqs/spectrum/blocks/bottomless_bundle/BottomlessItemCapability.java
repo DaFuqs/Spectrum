@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.bottomless_bundle;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public final class BottomlessItemCapability extends BottomlessItemHandler {
 	

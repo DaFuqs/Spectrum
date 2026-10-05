@@ -1,9 +1,0 @@
-{
-  "values": [
-    "spectrum:connection_node",
-    "spectrum:provider_node",
-    "spectrum:storage_node",
-    "spectrum:sender_node",
-    "spectrum:gather_node"
-  ]
-}

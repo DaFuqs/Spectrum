@@ -34,17 +34,14 @@ public enum PedestalRecipeTier implements StringRepresentable {
 		this.gemstoneColors = gemstoneColors;
 	}
 	
-	@Contract(pure = true)
 	public int getPowderSlotCount() {
 		return this.gemstoneColors.length;
 	}
 	
-	@Contract(pure = true)
 	public GemstoneColor[] getAvailableGemstoneColors() {
 		return gemstoneColors;
 	}
 	
-	@Contract(pure = true)
 	public static Optional<PedestalRecipeTier> getHighestUnlockedRecipeTier(Player player) {
 		if (AdvancementHelper.hasAdvancement(player, COMPLEX.unlockAdvancementId)) {
 			return Optional.of(PedestalRecipeTier.COMPLEX);

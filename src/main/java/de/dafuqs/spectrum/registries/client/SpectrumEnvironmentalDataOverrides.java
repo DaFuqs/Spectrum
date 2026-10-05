@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.registries.client;
 
-import de.dafuqs.spectrum.render.biome_rendering.EnvironmentalData;
-import de.dafuqs.spectrum.render.biome_rendering.EnvironmentalDataOverride;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.core.Holder;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
+import de.dafuqs.spectrum.render.biome_rendering.*;
+import net.minecraft.core.*;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.*;
 
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public class SpectrumEnvironmentalDataOverrides {
 

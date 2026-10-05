@@ -8,7 +8,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class SpectrumBuddingBlock extends SpectrumGemstoneBlock {
 	

@@ -13,7 +13,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import javax.annotation.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -32,11 +31,12 @@ public class UnlockToastManager {
 		put(SpectrumAdvancements.FOURTH_BREWING_SLOT, new Tuple<>(() -> SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultInstance(), "fourth_potion_reagent_unlocked"));
 		put(SpectrumAdvancements.MIDGAME, new Tuple<>(() -> SpectrumBlocks.PEDESTAL_ONYX.asItem().getDefaultInstance(), "second_advancement_tree_unlocked"));
 		put(SpectrumAdvancements.LATEGAME, new Tuple<>(() -> SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultInstance(), "third_advancement_tree_unlocked"));
+		put(SpectrumAdvancements.ENDGAME, new Tuple<>(() -> SpectrumItems.MYSTERIOUS_LOCKET.asItem().getDefaultInstance(), "fourth_advancement_tree_unlocked"));
 		put(SpectrumAdvancements.ASCEND_KINDLING, new Tuple<>(() -> SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultInstance(), "ascend_kindling"));
 		put(SpectrumAdvancements.VIVISECT_KINDLING, new Tuple<>(() -> SpectrumItems.DIVINATION_HEART.get().getDefaultInstance(), "vivisect_kindling"));
 		put(SpectrumAdvancements.PAINTBRUSH_COLORING, new Tuple<>(() -> SpectrumItems.PAINTBRUSH.get().getDefaultInstance(), "block_coloring_unlocked"));
 		put(SpectrumAdvancements.PAINTBRUSH_INK_SLINGING, new Tuple<>(() -> SpectrumItems.PAINTBRUSH.get().getDefaultInstance(), "ink_slinging_unlocked"));
-		put(SpectrumAdvancements.PASTEL_NODE_COLORING, new Tuple<>(() -> SpectrumBlocks.SENDER_NODE.asItem().getDefaultInstance(), "pastel_node_coloring"));
+		put(SpectrumAdvancements.PASTEL_NODE_COLORING, new Tuple<>(() -> SpectrumBlocks.ITEM_SENDER_NODE.asItem().getDefaultInstance(), "pastel_node_coloring"));
 	}};
 	
 	public static void clear() {
@@ -44,10 +44,10 @@ public class UnlockToastManager {
 	}
 	
 	public static void registerGatedRecipe(RecipeType<?> recipeType, GatedRecipe<?> gatedRecipe) {
-		ResourceLocation requiredAdvancementIdentifier = gatedRecipe.getRequiredAdvancementIdentifier().orElse(null);
+		ResourceLocation requiredAdvancementIdentifier = gatedRecipe.getRequiredAdvancement().orElse(null);
 		
 		// secret recipes should not have a popup
-		if (gatedRecipe.isSecret()) {
+		if (gatedRecipe.getRevealSecretAdvancement().isPresent()) {
 			return;
 		}
 		

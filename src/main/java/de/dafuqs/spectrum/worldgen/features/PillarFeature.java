@@ -6,7 +6,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.levelgen.feature.*;
-import javax.annotation.*;
 
 // a version of BasaltPillarFeature with configurable block state
 public class PillarFeature extends Feature<BlockStateFeatureConfig> {

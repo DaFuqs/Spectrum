@@ -3,8 +3,6 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.*;
 import net.minecraft.resources.*;
 
-import static de.dafuqs.spectrum.SpectrumCommon.*;
-
 @SuppressWarnings("unused")
 public class SpectrumRecipes {
 	

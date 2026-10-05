@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.progression;
 
 import net.minecraft.client.color.item.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.event.*;
 
 public class ToggleableItemColorProvider implements ItemColor {
@@ -27,7 +26,7 @@ public class ToggleableItemColorProvider implements ItemColor {
 			return event.getItemColors().getColor(vanillaStack, tintIndex);
 		} else {
 			// no tint
-			return 16777215;
+			return 0xFFFFFFFF;
 		}
 	}
 }

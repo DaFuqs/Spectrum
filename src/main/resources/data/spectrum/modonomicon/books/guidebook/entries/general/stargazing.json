@@ -77,15 +77,15 @@
       "text": "book.spectrum.guidebook.stargazing.page4.text"
     },
     {
-      "type": "spectrum:pedestal_crafting",
+      "type": "modonomicon:crafting_recipe",
       "title": "book.spectrum.guidebook.compression",
-      "recipe_id": "spectrum:pedestal/tier1/compacting/stardust_block",
+      "recipe_id_1": "spectrum:crafting_table/compacting/stardust_block",
       "text": ""
     },
     {
-      "type": "spectrum:pedestal_crafting",
+      "type": "modonomicon:crafting_recipe",
       "title": "book.spectrum.guidebook.decompression",
-      "recipe_id": "spectrum:pedestal/tier1/compacting/stardust_from_stardust_block",
+      "recipe_id_1": "spectrum:crafting_table/compacting/stardust_from_stardust_block",
       "text": ""
     }
   ]

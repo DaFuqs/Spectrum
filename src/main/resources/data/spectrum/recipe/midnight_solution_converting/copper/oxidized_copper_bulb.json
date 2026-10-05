@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:midnight_solution_converting",
+  "ingredient": [
+    {
+      "item": "minecraft:weathered_copper_bulb"
+    }
+  ],
+  "result": {
+    "id": "minecraft:oxidized_copper_bulb",
+    "count": 1
+  }
+}

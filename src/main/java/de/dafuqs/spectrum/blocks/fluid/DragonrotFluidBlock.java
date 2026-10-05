@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	
@@ -55,12 +55,10 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 			return SpectrumBlocks.SLUSH.get().defaultBlockState();
 		} else if (otherState.is(FluidTags.LAVA)) {
 			return Blocks.TERRACOTTA.defaultBlockState();
-		} else if (otherState.is(SpectrumFluidTags.SLUDGE)) {
-			return direction == Direction.DOWN ? SpectrumBlocks.BLACKSLAG.get().defaultBlockState() : SpectrumBlocks.COBBLED_BLACKSLAG.get().defaultBlockState();
 		} else if (otherState.is(SpectrumFluidTags.LIQUID_CRYSTAL)) {
 			return Blocks.TUFF.defaultBlockState();
 		} else if (otherState.is(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
-			return SpectrumBlocks.ROTTEN_GROUND.get().defaultBlockState();
+			return Blocks.MUD.defaultBlockState();
 		}
 		return null;
 	}

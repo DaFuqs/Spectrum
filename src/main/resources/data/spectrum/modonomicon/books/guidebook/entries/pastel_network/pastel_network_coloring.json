@@ -8,7 +8,7 @@
   },
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:milestones/unlock_pastel_node_coloring"
+    "advancement_id": "spectrum:unlocks/pastel_network/unlock_pastel_node_coloring"
   },
   "category": "spectrum:pastel_network",
   "hide_while_locked": true,

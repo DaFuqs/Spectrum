@@ -31,10 +31,10 @@ public class EarlyRenderingParticleContainer {
 		particles.clear();
 	}
 	
-	public void render(final PoseStack matrices, final MultiBufferSource vertexConsumers, final Camera camera, final float tickDelta) {
+	public void renderAfterEntities(final PoseStack matrices, final MultiBufferSource vertexConsumers, final Camera camera, final float tickDelta) {
 		for (final Queue<EarlyRenderingParticle> particles : particles.values()) {
 			for (final EarlyRenderingParticle particle : particles) {
-				particle.renderAsEntity(matrices, vertexConsumers, camera, tickDelta);
+				particle.renderAfterEntities(matrices, vertexConsumers, camera, tickDelta);
 			}
 		}
 	}

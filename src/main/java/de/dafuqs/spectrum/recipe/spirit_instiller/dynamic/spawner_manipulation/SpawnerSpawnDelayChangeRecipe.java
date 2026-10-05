@@ -9,6 +9,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.crafting.*;
+import org.jspecify.annotations.*;
 
 public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	
@@ -21,11 +22,11 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	protected static final float EXPONENT = 0.98F;
 	
 	public SpawnerSpawnDelayChangeRecipe() {
-		super(IngredientStack.ofItems(SpectrumItems.MIDNIGHT_CHIP.get(), 4));
+		super(IngredientStack.ofItems(SpectrumItems.MIDNIGHT_CHIP.get(), 4), "recipe.spectrum.spawner.lore.decreased_spawn_delay");
 	}
 	
 	@Override
-	public boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
+	public boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, @Nullable CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
 		if (spawnerBlockEntityNbt == null) {
 			return true;
 		}
@@ -38,11 +39,6 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeSerializers.SPIRIT_INSTILLER_SPAWNER_SPAWN_DELAY_CHANGE;
-	}
-	
-	@Override
-	public Component getOutputLoreText() {
-		return Component.translatable("recipe.spectrum.spawner.lore.decreased_spawn_delay");
 	}
 	
 	@Override

@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.component.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -151,7 +152,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 		if (enchantment == Enchantments.FORTUNE) {
 			level = stack.getOrDefault(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT).fortuneLevel();
 		} else {
-			int fortuneLevel = SpectrumEnchantmentHelper.getLevel(registryLookup, Enchantments.FORTUNE, stack);
+			int fortuneLevel = stack.getEnchantmentLevel(registryLookup.lookup(Registries.ENCHANTMENT).get().get(Enchantments.FORTUNE).get());
 			stack.update(SpectrumDataComponentTypes.WORKSTAFF, WorkstaffComponent.DEFAULT, comp -> new WorkstaffComponent(comp.canTill(), comp.canShoot(), Math.max(comp.fortuneLevel(), Math.max(fortuneLevel, 1))));
 		}
 		

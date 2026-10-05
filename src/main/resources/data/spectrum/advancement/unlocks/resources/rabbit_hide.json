@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_vegetal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_vegetal"
+      }
+    },
+    "collected_clover": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_clover"
+      }
+    }
+  }
+}

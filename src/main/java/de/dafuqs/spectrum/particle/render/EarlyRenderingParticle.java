@@ -6,5 +6,5 @@ import net.minecraft.client.renderer.*;
 
 
 public interface EarlyRenderingParticle {
-	void renderAsEntity(final PoseStack matrices, final MultiBufferSource vertexConsumers, final Camera camera, final float tickDelta);
+	void renderAfterEntities(final PoseStack matrices, final MultiBufferSource vertexConsumers, final Camera camera, final float tickDelta);
 }

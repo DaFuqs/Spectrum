@@ -1,7 +1,11 @@
 {
   "type": "minecraft:smelting",
   "group": "diamond",
-  "ingredient": [{"item": "spectrum:blackslag_diamond_ore"}],
+  "ingredient": [
+    {
+      "item": "spectrum:blackslag_diamond_ore"
+    }
+  ],
   "result": {
     "id": "minecraft:diamond"
   },

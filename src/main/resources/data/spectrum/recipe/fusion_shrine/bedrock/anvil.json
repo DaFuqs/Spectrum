@@ -10,8 +10,12 @@
   "ingredients": [
     "minecraft:anvil",
     {
+      "item": "minecraft:gold_ingot",
+      "count": 8
+    },
+    {
       "item": "spectrum:bedrock_dust",
-      "count": 27
+      "count": 8
     },
     {
       "item": "spectrum:black_pigment",
@@ -26,8 +30,5 @@
     "id": "spectrum:bedrock_anvil",
     "count": 1
   },
-  "required_advancement": "spectrum:unlocks/equipment/bedrock_tools",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+  "required_advancement": "spectrum:unlocks/equipment/bedrock_tools"
 }

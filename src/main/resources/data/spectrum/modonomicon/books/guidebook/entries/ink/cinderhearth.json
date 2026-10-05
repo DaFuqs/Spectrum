@@ -11,28 +11,37 @@
   "hide_while_locked": true,
   "parents": [
     {
-      "entry": "spectrum:ink/color_picker",
-      "line_reversed": true
+      "entry": "spectrum:ink/ink"
     },
     {
-      "entry": "spectrum:ink/pure_resources"
+      "entry": "spectrum:ink/pure_resources",
+      "line_reversed": true
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 2,
-  "y": 3,
+  "x": 3,
+  "y": 1,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cinderhearth.page0.text",
-      "title": "block.spectrum.cinderhearth"
+      "title": "block.spectrum.cinderhearth",
+      "text": "book.spectrum.guidebook.cinderhearth.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.cinderhearth.page1.text",
       "title": "container.spectrum.rei.pedestal_recipe",
       "recipe_id": "spectrum:pedestal/tier3/cinderhearth"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/cinderhearth_blazing"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.cinderhearth.knowledge_gem.title",
+      "text": "book.spectrum.guidebook.cinderhearth.knowledge_gem.text"
     },
     {
       "type": "modonomicon:multiblock",

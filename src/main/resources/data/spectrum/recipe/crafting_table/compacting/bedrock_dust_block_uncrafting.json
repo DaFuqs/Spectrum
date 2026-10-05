@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:bedrock_dust_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:bedrock_dust",
+    "count": 9
+  },
+  "required_advancement": "spectrum:midgame/break_decayed_bedrock"
+}

@@ -15,7 +15,7 @@ public abstract class PotionItemMixin {
 		CustomPotionDataComponent component = stack.get(SpectrumDataComponentTypes.CUSTOM_POTION_DATA);
 		if (component != null) {
 			int additionalDrinkDuration = component.additionalDrinkDuration();
-			drinkTime += Math.max(4, drinkTime + additionalDrinkDuration);
+			drinkTime = Math.max(4, drinkTime + additionalDrinkDuration);
 		}
 		return drinkTime;
 	}

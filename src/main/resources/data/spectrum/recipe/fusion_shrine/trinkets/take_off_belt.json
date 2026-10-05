@@ -20,8 +20,5 @@
   "result": {
     "id": "spectrum:take_off_belt"
   },
-  "required_advancement": "spectrum:unlocks/trinkets/take_off_belt",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+  "required_advancement": "spectrum:unlocks/trinkets/take_off_belt"
 }

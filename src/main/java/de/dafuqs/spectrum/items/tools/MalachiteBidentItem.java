@@ -20,13 +20,12 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
-import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -205,10 +204,8 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	
 	@Override
 	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
-		var composition = new DamageComposition();
-		var source = composition.getPlayerOrEntity(attacker);
-		SpectrumDamageTypes.wrapWithStackTracking(source, stack);
-		composition.add(source, damage);
+		DamageComposition composition = new DamageComposition();
+		composition.add(composition.getPlayerOrEntity(attacker), damage);
 		return composition;
 	}
 	

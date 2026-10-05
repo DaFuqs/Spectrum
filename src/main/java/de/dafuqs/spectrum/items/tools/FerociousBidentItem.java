@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -14,7 +14,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.entity.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -29,7 +29,7 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 	}
 	
 	@Override
-	public List<InkColor> getUsedColors() {
+	public List<InkColor> getUsedColors(ItemStack stack) {
 		return List.of(RIPTIDE_COST.color());
 	}
 	
@@ -75,7 +75,7 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 		tooltip.add(Component.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip").withStyle(ChatFormatting.GRAY));
 		tooltip.add(Component.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip2").withStyle(ChatFormatting.GRAY));
 		tooltip.add(Component.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip3").withStyle(ChatFormatting.GRAY));
-		addInkPoweredTooltip(tooltip);
+		addInkPoweredTooltip(stack, tooltip);
 	}
 	
 	@Override

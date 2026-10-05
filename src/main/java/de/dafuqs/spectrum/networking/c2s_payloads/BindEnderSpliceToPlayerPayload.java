@@ -9,7 +9,6 @@ import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 public record BindEnderSpliceToPlayerPayload(int entityId) implements CustomPacketPayload {
 	

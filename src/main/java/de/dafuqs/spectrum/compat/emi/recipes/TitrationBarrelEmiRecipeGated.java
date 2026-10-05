@@ -10,9 +10,7 @@ import net.minecraft.client.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.api.distmarker.*;
-import net.neoforged.neoforge.fluids.crafting.*;
-import org.jspecify.annotations.Nullable;
-import net.minecraft.world.level.material.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -26,7 +24,7 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 		if (!recipe.getFluidInput().isEmpty()) {
 			inputs.add(NeoForgeEmiIngredient.of(recipe.getFluidInput()));
 		}
-		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList());
+		inputs.addAll(ofIngredientStacks(recipe.getIngredientStacks()));
 		
 		displayedStacks = buildFermentationOutputVariations(recipe);
 	}

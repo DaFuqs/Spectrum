@@ -23,8 +23,5 @@
   "result": {
     "id": "spectrum:radiance_pin"
   },
-  "required_advancement": "spectrum:unlocks/trinkets/radiance_pin",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+  "required_advancement": "spectrum:unlocks/trinkets/radiance_pin"
 }

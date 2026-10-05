@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -15,7 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 import oshi.util.tuples.*;
 
 public abstract class BuildingStaffItem extends Item implements PrioritizedBlockInteraction, InkPowered {
@@ -49,13 +49,10 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 			return new Triplet<>(targetBlock, targetBlock.asItem(), single ? 1 : Integer.MAX_VALUE);
 		}
 		
-		long blocksToPlace;
-		if (single) {
-			blocksToPlace = InkPowered.getAvailableInk(player, USED_COLOR) >= inkCostPerBlock ? 1 : 0;
-		} else {
-			blocksToPlace = InkPowered.getAvailableInk(player, USED_COLOR) / inkCostPerBlock;
+		long blocksToPlace = single ? 1 : 1024; // to not yeet performance out the window
+		if(inkCostPerBlock > 0) {
+			blocksToPlace = Math.min(blocksToPlace, InkPowered.getAvailableInk(player, USED_COLOR) / inkCostPerBlock);
 		}
-		blocksToPlace = Math.min(1024, blocksToPlace); // to not yeet performance out the window
 		
 		return BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, targetBlock, blocksToPlace);
 	}

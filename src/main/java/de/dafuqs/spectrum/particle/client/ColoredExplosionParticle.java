@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import org.joml.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 
 public class ColoredExplosionParticle extends HugeExplosionParticle {

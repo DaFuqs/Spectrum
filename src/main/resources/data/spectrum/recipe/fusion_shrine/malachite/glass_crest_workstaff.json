@@ -41,8 +41,5 @@
   "result": {
     "id": "spectrum:glass_crest_workstaff"
   },
-  "required_advancement": "spectrum:unlocks/malachite/glass_crest_workstaff",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+  "required_advancement": "spectrum:unlocks/malachite/glass_crest_workstaff"
 }

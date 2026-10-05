@@ -3,15 +3,16 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.flammable.*;
 import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -44,7 +45,11 @@ public class ColoredStrippedWoodBlock extends FlammableRotatedPillarBlock implem
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		return Map.of(this.defaultBlockState(), Blocks.STRIPPED_OAK_WOOD.defaultBlockState());
+		Map<BlockState, BlockState> map = new Hashtable<>();
+		for (Direction.Axis axis : RotatedPillarBlock.AXIS.getPossibleValues()) {
+			map.put(this.defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis), Blocks.STRIPPED_OAK_WOOD.defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis));
+		}
+		return map;
 	}
 	
 	@Override

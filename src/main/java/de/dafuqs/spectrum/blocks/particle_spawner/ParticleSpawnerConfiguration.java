@@ -12,7 +12,6 @@ import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
 import org.joml.*;
 
 public record ParticleSpawnerConfiguration(

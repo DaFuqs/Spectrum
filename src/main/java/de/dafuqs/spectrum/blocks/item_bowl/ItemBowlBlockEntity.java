@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
 import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -18,10 +17,8 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
 
 import java.util.*;
 
@@ -55,7 +52,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 		if (amount > 0) {
 			Optional<InkColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getInkColor(itemStack.getItem());
 			if (optionalItemColor.isPresent()) {
-				ParticleOptions particleEffect = ColoredSparkleRisingParticleEffect.of(optionalItemColor.get().getColorInt());
+				ParticleOptions particleEffect = ColoredSparkleRisingParticleEffect.of(optionalItemColor.get().getColorARGB());
 				
 				for (int i = 0; i < amount; i++) {
 					float randomX = 0.1F + world.getRandom().nextFloat() * 0.8F;
@@ -74,12 +71,13 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 		
 		int decrementAmount = Math.min(amount, storedStack.getCount());
 		ItemStack remainder = storedStack.getCraftingRemainingItem();
+		remainder.setCount(decrementAmount);
+		
 		if (!remainder.isEmpty()) {
 			if (storedStack.getCount() == 1) {
 				setItem(0, remainder);
 			} else {
 				getItem(0).shrink(decrementAmount);
-				remainder.setCount(decrementAmount);
 				
 				ItemEntity itemEntity = new ItemEntity(level, worldPosition.getX() + 0.5, worldPosition.getY() + 1, worldPosition.getZ() + 0.5, remainder);
 				itemEntity.push(0, 0.1, 0);
@@ -104,7 +102,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 		ItemStack storedStack = this.getItem(0);
 		if (!storedStack.isEmpty() && level != null) {
 			InkColor itemColor = ColorRegistry.ITEM_COLORS.getInkColor(storedStack.getItem(), InkColors.PURPLE);
-			ParticleOptions sparkleRisingParticleEffect = ColoredSparkleRisingParticleEffect.of(itemColor.getColorInt());
+			ParticleOptions sparkleRisingParticleEffect = ColoredSparkleRisingParticleEffect.of(itemColor.getColorARGB());
 			
 			if (this.getLevel() instanceof ServerLevel serverWorld) {
 				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) level,
@@ -112,7 +110,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 						sparkleRisingParticleEffect, 50,
 						new Vec3(0.4, 0.2, 0.4), new Vec3(0.06, 0.16, 0.06));
 				
-				ColorTransmissionPayload.playColorTransmissionParticle(serverWorld, new ColoredTransmission(new Vec3(this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 1.0D, this.worldPosition.getZ() + 0.5D), new ExactPositionSource(orbTargetPos), 20, itemColor.getColorInt()));
+				ColorTransmissionPayload.playColorTransmissionParticle(serverWorld, new ColoredTransmission(new Vec3(this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 1.0D, this.worldPosition.getZ() + 0.5D), new ExactPositionSource(orbTargetPos), 20, itemColor.getColorARGB()));
 			} else if (this.getLevel().isClientSide()) {
 				for (int i = 0; i < 50; i++) {
 					float randomOffsetX = worldPosition.getX() + 0.3F + level.getRandom().nextFloat() * 0.6F;
@@ -127,7 +125,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 							randomVelocityX, randomVelocityY, randomVelocityZ);
 				}
 				
-				ParticleOptions sphereParticleEffect = new ColoredTransmissionParticleEffect(new ExactPositionSource(orbTargetPos), 20, itemColor.getColorInt());
+				ParticleOptions sphereParticleEffect = new ColoredTransmissionParticleEffect(new ExactPositionSource(orbTargetPos), 20, itemColor.getColorARGB());
 				this.getLevel().addParticle(sphereParticleEffect, this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 1.0D, this.worldPosition.getZ() + 0.5D, (orbTargetPos.x() - this.worldPosition.getX()) * 0.045, 0, (orbTargetPos.z() - this.worldPosition.getZ()) * 0.045);
 			}
 			

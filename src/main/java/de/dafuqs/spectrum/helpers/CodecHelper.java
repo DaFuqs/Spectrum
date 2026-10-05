@@ -9,8 +9,7 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import org.apache.commons.lang3.math.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.function.*;

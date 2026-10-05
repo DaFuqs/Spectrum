@@ -1,17 +1,16 @@
 package de.dafuqs.spectrum.helpers;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
-import javax.annotation.*;
 import org.joml.*;
 
 import java.awt.*;
 import java.lang.Math;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.regex.*;
 
 public class SpectrumColorHelper {
@@ -99,6 +98,23 @@ public class SpectrumColorHelper {
 		var blendedGreen = Math.round(Mth.lerp(delta, start.y, end.y) * 255F);
 		var blendedBlue = Math.round(Mth.lerp(delta, start.z, end.z) * 255F);
 		return (blendedRed & 255) << 16 | (blendedGreen & 255) << 8 | (blendedBlue & 255) | 0xFF000000;
+	}
+	
+	public static Optional<Integer> blendColors(Optional<Integer> first, Optional<Integer> second) {
+		if(first.isEmpty()) {
+			return second;
+		} else if(second.isEmpty()) {
+			return first;
+		}
+		
+		int f = first.get();
+		int s = second.get();
+		
+		int r = FastColor.ARGB32.red(f) + FastColor.ARGB32.red(s);
+		int g = FastColor.ARGB32.green(f) + FastColor.ARGB32.green(s);
+		int b = FastColor.ARGB32.blue(f) + FastColor.ARGB32.blue(s);
+		
+		return Optional.of(FastColor.ARGB32.color(r / 2, g / 2, b / 2));
 	}
 	
 }

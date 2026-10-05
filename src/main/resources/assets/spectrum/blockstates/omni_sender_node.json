@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "spectrum:block/omni_sender_node"
+    }
+  }
+}

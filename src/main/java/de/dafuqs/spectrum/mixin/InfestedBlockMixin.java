@@ -23,10 +23,6 @@ public abstract class InfestedBlockMixin {
 	 */
 	@Inject(at = @At("HEAD"), method = "spawnAfterBreak", cancellable = true)
 	public void onStacksDropped(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack, boolean dropExperience, CallbackInfo ci) {
-		if (EnchantmentHelper.hasTag(stack, SpectrumEnchantmentTags.RESONANT_BLOCK_DROPS)) {
-			ci.cancel();
-		}
-		
 		if (EnchantmentHelper.hasTag(stack, SpectrumEnchantmentTags.AUTO_KILLS_SILVERFISH)) {
 			Silverfish silverfishEntity = EntityType.SILVERFISH.create(world);
 			if (silverfishEntity != null) {

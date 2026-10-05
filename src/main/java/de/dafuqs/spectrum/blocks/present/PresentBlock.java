@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -30,7 +30,7 @@ import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import org.joml.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -199,7 +199,7 @@ public class PresentBlock extends BaseEntityBlock {
 			spawnParticlesClient(world, pos, randomColor, 15);
 		} else {
 			for (Map.Entry<InkColor, Integer> color : colors.entrySet()) {
-				spawnParticlesClient(world, pos, color.getKey().getColorInt(), color.getValue() * 10);
+				spawnParticlesClient(world, pos, color.getKey().getColorARGB(), color.getValue() * 10);
 			}
 		}
 	}

@@ -1,9 +1,8 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "bottom": "spectrum:block/paltaeria_floatblock_bottom",
-    "side": "spectrum:block/paltaeria_floatblock",
-    "top": "spectrum:block/paltaeria_floatblock_top"
+    "end": "spectrum:block/paltaeria_floatblock_top",
+    "side": "spectrum:block/paltaeria_floatblock"
   },
   "display": {
     "ground": {

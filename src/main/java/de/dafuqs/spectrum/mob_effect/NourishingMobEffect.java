@@ -5,7 +5,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.food.*;
 import net.minecraft.world.level.*;
-import javax.annotation.*;
 
 public class NourishingMobEffect extends MobEffect {
 	

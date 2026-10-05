@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.blocks.deeper_down.flora.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.levelgen.feature.*;
-import net.neoforged.neoforge.registries.*;
 
 import java.util.*;
 

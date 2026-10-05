@@ -24,7 +24,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -81,7 +81,7 @@ public class EraserEntity extends Spider implements PackEntity<EraserEntity>, Bu
 	
 	@Override
 	public boolean canBeAffected(MobEffectInstance effect) {
-		return super.canBeAffected(effect) && effect.getEffect() != SpectrumMobEffects.DEADLY_POISON;
+		return super.canBeAffected(effect) && !effect.getEffect().is(SpectrumMobEffects.DEADLY_POISON);
 	}
 	
 	@Override

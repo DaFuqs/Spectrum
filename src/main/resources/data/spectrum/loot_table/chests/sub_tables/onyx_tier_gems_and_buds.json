@@ -7,36 +7,6 @@
         {
           "type": "minecraft:item",
           "weight": 5,
-          "name": "spectrum:onyx_shard",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 5
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:small_onyx_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:medium_onyx_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:large_onyx_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:onyx_cluster"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
           "name": "minecraft:amethyst_shard",
           "functions": [
             {

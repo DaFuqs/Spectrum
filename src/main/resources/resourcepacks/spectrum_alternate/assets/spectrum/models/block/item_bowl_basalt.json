@@ -1,0 +1,9 @@
+{
+  "parent": "spectrum:templates/base_bowl",
+  "textures": {
+    "top": "spectrum:block/basalt_bowl_top",
+    "side": "spectrum:block/basalt_bowl_side",
+    "inner": "spectrum:block/basalt_bowl_inner",
+    "bottom": "spectrum:block/basalt_bowl_bottom"
+  }
+}

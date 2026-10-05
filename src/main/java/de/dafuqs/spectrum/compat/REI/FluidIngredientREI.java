@@ -4,11 +4,7 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.crafting.*;
-import org.jspecify.annotations.NonNull;
-
-import javax.annotation.*;
-
-import java.util.*;
+import org.jspecify.annotations.*;
 
 import static net.minecraft.world.level.material.Fluids.*;
 

@@ -7,7 +7,6 @@ import net.minecraft.world.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
 import net.neoforged.neoforge.common.*;
-import javax.annotation.*;
 
 import java.util.*;
 

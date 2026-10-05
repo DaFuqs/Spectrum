@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.inventories.slots;
 
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import net.minecraft.world.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;

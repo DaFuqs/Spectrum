@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.sound;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.config.*;
 import net.minecraft.client.*;
 import net.minecraft.client.resources.sounds.*;

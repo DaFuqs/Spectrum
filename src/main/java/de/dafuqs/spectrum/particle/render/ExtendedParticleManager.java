@@ -6,5 +6,5 @@ import net.minecraft.client.renderer.*;
 
 
 public interface ExtendedParticleManager {
-	void render(PoseStack matrices, MultiBufferSource vertexConsumers, Camera camera, float tickDelta);
+	void renderAfterEntities(PoseStack matrices, MultiBufferSource vertexConsumers, Camera camera, float tickDelta);
 }

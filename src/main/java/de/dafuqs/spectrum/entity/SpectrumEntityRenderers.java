@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.entity;
 
 import de.dafuqs.spectrum.entity.render.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.world.entity.*;
 import net.neoforged.fml.event.lifecycle.*;
@@ -9,7 +10,7 @@ import net.neoforged.fml.event.lifecycle.*;
 public class SpectrumEntityRenderers {
 	
 	public static void registerClient(FMLClientSetupEvent event) {
-		register(SpectrumEntityTypes.FLOAT_BLOCK.get(), FloatBlockEntityRenderer::new);
+		register(SpectrumEntityTypes.FLOAT_BLOCK.get(), FallingBlockRenderer::new);
 		register(SpectrumEntityTypes.SEAT.get(), SeatEntityRenderer::new);
 		register(SpectrumEntityTypes.SHOOTING_STAR.get(), ShootingStarEntityRenderer::new);
 		register(SpectrumEntityTypes.PHANTOM_FRAME.get(), PhantomFrameEntityRenderer::new);
@@ -40,6 +41,8 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.DRACONIC_TWINSWORD.get(), (context) -> new BidentEntityRenderer(context, 2.15F, 0));
 		register(SpectrumEntityTypes.MARROW.get(), MarrowRenderer::new);
 		register(SpectrumEntityTypes.SPLINTERSPAWN.get(), SplinterspawnRenderer::new);
+		register(SpectrumEntityTypes.KOI.get(), KoiRenderer::new);
+		register(SpectrumEntityTypes.CRAWFISH.get(), CrawfishRenderer::new);
 	}
 	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererProvider<T> factory) {

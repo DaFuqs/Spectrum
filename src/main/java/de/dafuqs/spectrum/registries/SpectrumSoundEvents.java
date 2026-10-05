@@ -30,6 +30,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent MUSIC_DEEPER_DOWN_NOXSHROOM_FOREST = register("music.deeper_down.noxshroom_forest");
 	public static final SoundEvent MUSIC_DEEPER_DOWN_RAZOR_EDGE = register("music.deeper_down.razor_edge");
 	
+	public static final SoundEvent MUSIC_THE_CONSERVATORY = register("music.the_conservatory");
+	
 	// Sounds
 	public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");
 	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_GENERIC = register("pedestal_crafting_finished_generic");
@@ -149,7 +151,6 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent RADIANCE_STAFF_BREAK = register("radiance_staff_break");
 	
 	public static final SoundEvent LIQUID_CRYSTAL_AMBIENT = register("liquid_crystal_ambient");
-	public static final SoundEvent SLUDGE_AMBIENT = register("sludge_ambient");
 	public static final SoundEvent MIDNIGHT_SOLUTION_AMBIENT = register("midnight_solution_ambient");
 	
 	public static final SoundEvent FADING_PLACED = register("fading_placed");
@@ -297,6 +298,16 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_SPLINTERSPAWN_HURT = register("entity.splinterspawn.hurt");
 	public static final SoundEvent ENTITY_SPLINTERSPAWN_DEATH = register("entity.splinterspawn.death");
 	public static final SoundEvent ENTITY_SPLINTERSPAWN_STEP = register("entity.splinterspawn.step");
+	
+	public static final SoundEvent ENTITY_KOI_AMBIENT = register("entity.koi.ambient");
+	public static final SoundEvent ENTITY_KOI_DEATH = register("entity.koi.hurt");
+	public static final SoundEvent ENTITY_KOI_HURT = register("entity.koi.death");
+	public static final SoundEvent ENTITY_KOI_FLOP = register("entity.koi.flop");
+	
+	public static final SoundEvent ENTITY_CRAWFISH_AMBIENT = register("entity.crawfish.ambient");
+	public static final SoundEvent ENTITY_CRAWFISH_HURT = register("entity.crawfish.hurt");
+	public static final SoundEvent ENTITY_CRAWFISH_DEATH = register("entity.crawfish.death");
+	public static final SoundEvent ENTITY_CRAWFISH_STEP = register("entity.crawfish.step");
 	
 	// OST - AMBIENT
 	public static final SoundEvent OST_AZURE = register("ost.azure");

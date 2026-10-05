@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.inventories.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
@@ -17,7 +16,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 @OnlyIn(value = Dist.CLIENT, _interface = LidBlockEntity.class)
 public abstract class SpectrumChestBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity, ImplementedInventory {

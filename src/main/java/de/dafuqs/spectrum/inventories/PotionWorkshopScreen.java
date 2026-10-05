@@ -47,18 +47,15 @@ public class PotionWorkshopScreen extends AbstractContainerScreen<PotionWorkshop
 	
 	@Override
 	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
-		int startX = (this.width - this.imageWidth) / 2;
-		int startY = (this.height - this.imageHeight) / 2;
-		
 		// main background
-		drawContext.blit(background, startX, startY, 0, 0, imageWidth, imageHeight);
+		drawContext.blit(background, getGuiLeft(), getGuiTop(), 0, 0, imageWidth, imageHeight);
 		
 		int brewTime = (this.menu).getBrewTime();
 		if (brewTime > 0) {
 			// the rising bubbles
 			int progress = BUBBLE_PROGRESS[brewTime / 2 % 13];
 			if (progress > 0) {
-				drawContext.blit(background, startX + 29, startY + 39 + 43 - progress, 176, 40 - progress, 11, progress);
+				drawContext.blit(background, getGuiLeft() + 29, getGuiTop() + 39 + 43 - progress, 176, 40 - progress, 11, progress);
 			}
 			
 			int maxBrewTime = (this.menu).getMaxBrewTime();
@@ -67,7 +64,7 @@ public class PotionWorkshopScreen extends AbstractContainerScreen<PotionWorkshop
 			// the brew
 			progress = (int) (100.0F * ((float) brewTime / maxBrewTime));
 			RenderSystem.setShaderColor(color.getRed() / 255F, color.getGreen() / 255F, color.getBlue() / 255F, 1.0F);
-			drawContext.blit(background, startX + 45, startY + 22, 0, 212, progress, 44);
+			drawContext.blit(background, getGuiLeft() + 45, getGuiTop() + 22, 0, 212, progress, 44);
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 			
 		}

@@ -10,7 +10,7 @@ import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.util.profiling.*;
 import net.minecraft.world.entity.player.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

@@ -1,23 +1,29 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:light_gray_pigment"
-  },
-  "enchantment": "minecraft:frost_walker",
   "group": "vanilla_enchantment_upgrades",
-  "item_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_factor": 2.0,
-    "scaling_value": 8
-  },
-  "level_cap": 4,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_treasure",
-  "xp_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      400,
-      1600,
-      3200
-    ]
-  }
+  "enchantment": "minecraft:frost_walker",
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:light_gray_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 800
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_gray_pigment"
+      },
+      "ingredient_count_per_bowl": 16,
+      "experience": 1600
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_gray_pigment"
+      },
+      "ingredient_count_per_bowl": 32,
+      "experience": 3200
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_treasure"
 }

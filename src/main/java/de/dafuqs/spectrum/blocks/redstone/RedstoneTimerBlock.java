@@ -17,9 +17,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.ticks.*;
-import org.jspecify.annotations.Nullable;
-
-import javax.annotation.*;
+import org.jspecify.annotations.*;
 
 public class RedstoneTimerBlock extends DiodeBlock {
 	

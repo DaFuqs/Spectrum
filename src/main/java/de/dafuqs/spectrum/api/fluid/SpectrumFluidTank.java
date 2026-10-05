@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.api.fluid;
 
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import javax.annotation.*;
 
 public class SpectrumFluidTank extends FluidTank {
     private final Callback updateCallback;

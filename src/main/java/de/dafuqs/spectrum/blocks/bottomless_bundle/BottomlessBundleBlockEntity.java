@@ -6,7 +6,6 @@ import net.minecraft.nbt.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
 
 /**
  * Forge-native replacement for the Fabric SingleVariantStorage-based block entity.

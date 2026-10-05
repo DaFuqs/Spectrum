@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:raw_malachite_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:raw_malachite",
+    "count": 9
+  },
+  "required_advancement": "spectrum:lategame/grow_malachite_in_crystallarieum"
+}

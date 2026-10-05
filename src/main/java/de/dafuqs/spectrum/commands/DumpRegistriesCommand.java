@@ -6,7 +6,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.neoforged.fml.loading.*;
 import org.apache.commons.io.output.*;
-import org.spongepowered.include.com.google.common.base.*;
 
 import java.io.*;
 import java.nio.charset.*;
@@ -30,7 +29,7 @@ public class DumpRegistriesCommand {
 			file.getParentFile().mkdirs();
 			try {
 				file.createNewFile();
-				FileWriterWithEncoding writer = new FileWriterWithEncoding.Builder().setCharset(StandardCharsets.UTF_8).get();
+				FileWriterWithEncoding writer = new FileWriterWithEncoding.Builder().setCharset(StandardCharsets.UTF_8).setFile(file).get();
 				for (ResourceKey<?> e : registry.value().registryKeySet()) {
 					writer.write(e.location().toString());
 					writer.write(System.lineSeparator());

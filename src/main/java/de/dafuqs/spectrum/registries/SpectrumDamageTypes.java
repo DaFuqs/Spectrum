@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.api.damage_type.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.magic.*;
 import net.minecraft.core.registries.*;
@@ -9,7 +8,7 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
@@ -145,10 +144,6 @@ public class SpectrumDamageTypes {
 	
 	public static DamageSource primordialFire(Level world, @Nullable LivingEntity attacker) {
 		return new PrimordialFireDamageSource(world, attacker);
-	}
-	
-	public static void wrapWithStackTracking(DamageSource source, ItemStack stack) {
-		((StackTracking) source).spectrum$setTrackedStack(stack);
 	}
 	
 	public static class SetHealthDamageSource extends DamageSource {

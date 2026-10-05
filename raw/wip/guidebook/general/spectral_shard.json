@@ -1,7 +1,7 @@
 {
   "name": "Spectral Shard",
   "advancement": "spectrum:unlocks/resources/spectral_shard",
-  "secret": true,
+  "reveal_secret_advancement": "spectrum:TODO",
   "icon": "spectrum:spectral_shard",
   "category": "spectrum:general",
   "turnin": "spectrum:endgame/create_spectral_shard",

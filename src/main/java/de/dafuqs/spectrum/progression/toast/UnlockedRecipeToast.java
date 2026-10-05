@@ -18,7 +18,6 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.enchantment.*;
-import javax.annotation.*;
 
 import java.util.*;
 

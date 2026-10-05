@@ -2,14 +2,13 @@ package de.dafuqs.spectrum.particle.effect;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.blocks.pastel_network.payloads.PastelPayload;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.particle.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
-import javax.annotation.*;
 
 import java.util.*;
 

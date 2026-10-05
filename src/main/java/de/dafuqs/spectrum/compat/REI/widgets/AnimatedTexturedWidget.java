@@ -7,7 +7,7 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.events.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum;
 
 import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
-import de.dafuqs.spectrum.blocks.pastel_network.payloads.PastelPayload;
+import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.capabilities.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.config.*;
@@ -21,9 +21,7 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.bus.api.*;
@@ -33,11 +31,12 @@ import net.neoforged.fml.config.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.*;
+import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
 import net.neoforged.neoforge.network.event.*;
 import net.neoforged.neoforge.network.registration.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 import org.slf4j.*;
 
 import java.util.*;
@@ -49,9 +48,7 @@ public class SpectrumCommon {
 	public static final String MOD_ID = "spectrum";
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
-	// Todo: move to filter classes
-	public static final Map<ResourceLocation, TagKey<Item>> CACHED_ITEM_TAG_MAP = new HashMap<>();
-
+	
 	public static void logInfo(String message) {
 		LOGGER.info("{}", message);
 	}
@@ -124,9 +121,9 @@ public class SpectrumCommon {
 		SpectrumItemGroups.register(modBus);
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register(modBus);
-		PastelPayload.register(modBus);
+		SpectrumPastelPayloadTypes.register(modBus);
+		SpectrumPastelPayloads.register(modBus);
 		modBus.addListener(SpectrumBlockEntities::addBlockEntityTypeBlocks);
-		SpectrumPastelUpgradeSignatures.register(modBus);
 		
 		// Worldgen
 		logInfo("Registering Features...");
@@ -140,8 +137,7 @@ public class SpectrumCommon {
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");
-		SpectrumRecipeScalings.init();
-		SpectrumFusionShrineWorldEffects.register(modBus);
+		SpectrumWorldEffects.register(modBus);
 		SpectrumRecipeTypes.register(modBus);
 		SpectrumRecipeSerializers.register(modBus);
 		
@@ -153,7 +149,7 @@ public class SpectrumCommon {
 		
 		// GUI
 		logInfo("Registering Screen Handler Types...");
-		SpectrumScreenHandlerTypes.register(modBus);
+		SpectrumMenuTypes.register(modBus);
 		
 		logInfo("Registering Enchantment Drops...");
 		SpectrumGlobalLootModifierSerializers.register(modBus);
@@ -227,6 +223,8 @@ public class SpectrumCommon {
 		SpectrumEventListeners.register();
 		logInfo("Registering Tree Decorator Types...");
 		SpectrumTreeDecoratorTypes.register(modBus);
+		logInfo("Registering Cat Variants...");
+		SpectrumCatVariants.register(modBus);
 		
 		logInfo("Registering Attachments...");
 		SpectrumAttachmentTypes.register(modBus);

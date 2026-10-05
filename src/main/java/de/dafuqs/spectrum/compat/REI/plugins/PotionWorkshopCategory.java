@@ -9,10 +9,8 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import javax.annotation.*;
 
 import java.util.*;
-
 
 public abstract class PotionWorkshopCategory<T extends PotionWorkshopRecipeDisplay> extends GatedDisplayCategory<T> {
 	
@@ -22,7 +20,6 @@ public abstract class PotionWorkshopCategory<T extends PotionWorkshopRecipeDispl
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP);
 	}
-	
 	
 	@Override
 	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, T display) {

@@ -15,7 +15,6 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import javax.annotation.*;
 
 import java.util.*;
 
@@ -36,7 +35,7 @@ public class CraftingTabletScreenHandler extends RecipeBookMenu<RecipeInput, Rec
 	}
 	
 	public CraftingTabletScreenHandler(int syncId, Inventory playerInventory, ContainerLevelAccess context, ItemStack craftingTabletItemStack) {
-		super(SpectrumScreenHandlerTypes.CRAFTING_TABLET, syncId);
+		super(SpectrumMenuTypes.CRAFTING_TABLET, syncId);
 		this.craftingInventory = new CraftingTabletInventory(this);
 		this.craftingResultInventory = new ResultContainer();
 		this.context = context;

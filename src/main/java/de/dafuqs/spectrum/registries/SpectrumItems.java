@@ -2,18 +2,17 @@ package de.dafuqs.spectrum.registries;
 
 import com.klikli_dev.modonomicon.registry.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.conditional.*;
-import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
+import de.dafuqs.spectrum.items.ink.*;
 import de.dafuqs.spectrum.items.item_frame.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
@@ -46,7 +45,6 @@ import java.util.function.*;
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 import static net.minecraft.world.item.Items.*;
 
-//TODO: Migrate tools to use tool components
 @SuppressWarnings("unused")
 public class SpectrumItems {
 	
@@ -225,7 +223,6 @@ public class SpectrumItems {
 	
 	// Fluid Buckets
 	public static final DeferredItem<Item> LIQUID_CRYSTAL_BUCKET = register("liquid_crystal_bucket", () -> new BucketItem(SpectrumFluids.LIQUID_CRYSTAL.get(), IS.of(1).craftRemainder(BUCKET)));
-	public static final DeferredItem<Item> SLUDGE_BUCKET = register("sludge_bucket", () -> new BucketItem(SpectrumFluids.SLUDGE.get(), IS.of(1).craftRemainder(BUCKET)));
 	public static final DeferredItem<Item> MIDNIGHT_SOLUTION_BUCKET = register("midnight_solution_bucket", () -> new BucketItem(SpectrumFluids.MIDNIGHT_SOLUTION.get(), IS.of(1).craftRemainder(BUCKET)));
 	public static final DeferredItem<Item> DRAGONROT_BUCKET = register("dragonrot_bucket", () -> new BucketItem(SpectrumFluids.DRAGONROT.get(), IS.of(1).craftRemainder(BUCKET)));
 	
@@ -413,6 +410,10 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> ERASER_SPAWN_EGG = register("eraser_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.ERASER, 0x200d29, 0xc83e93, IS.of()));
 	public static final DeferredItem<Item> MARROW_SPAWN_EGG = register("marrow_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.MARROW, 0x908188, 0xe2762f, IS.of()));
 	public static final DeferredItem<Item> SPLINTERSPAWN_SPAWN_EGG = register("splinterspawn_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.SPLINTERSPAWN, 0x7b6b75, 0xf6db6f, IS.of()));
+	public static final DeferredItem<Item> KOI_SPAWN_EGG = register("koi_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.KOI, 0xfcdbc7, 0xe3796e, IS.of()));
+	public static final DeferredItem<Item> CRAWFISH_SPAWN_EGG = register("crawfish_spawn_egg", () -> new DeferredSpawnEggItem(SpectrumEntityTypes.CRAWFISH, 0x83b5ae, 0x546787, IS.of()));
+	public static final DeferredItem<Item> BUCKET_OF_KOI = register("bucket_of_koi", () -> new MobBucketItem(SpectrumEntityTypes.KOI.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY, IS.of(1)));
+	public static final DeferredItem<Item> SILVER_SCALE = register("silver_scale", () -> new Item(IS.of(Rarity.UNCOMMON)));
 	
 	// Magical Tools
 	public static final DeferredItem<Item> BAG_OF_HOLDING = register("bag_of_holding", () -> new BagOfHoldingItem(IS.of(1)));
@@ -448,7 +449,7 @@ public class SpectrumItems {
 	// Specialty Magical Tools
 	public static final DeferredItem<KnowledgeGemItem> KNOWLEDGE_GEM = register("knowledge_gem", () -> new KnowledgeGemItem(IS.of(1, Rarity.UNCOMMON), 10000));
 	public static final DeferredItem<Item> CELESTIAL_POCKETWATCH = register("celestial_pocketwatch", () -> new CelestialPocketWatchItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<Item> ARTISANS_ATLAS = register("artisans_atlas", () -> new ArtisansAtlasItem(IS.of(Rarity.UNCOMMON)));
+	public static final DeferredItem<Item> ARTISANS_ATLAS = register("artisans_atlas", () -> new ArtisansAtlasItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> GILDED_BOOK = register("gilded_book", () -> new GildedBookItem(IS.of(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> ENCHANTMENT_CANVAS = register("enchantment_canvas", () -> new EnchantmentCanvasItem(IS.of(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> EVERPROMISE_RIBBON = register("everpromise_ribbon", () -> new EverpromiseRibbonItem(IS.of()));
@@ -466,7 +467,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> FANCIFUL_BISMUTH_RING = register("fanciful_bismuth_ring", () -> new Item(IS.of(16, Rarity.UNCOMMON)));
 	
 	public static final DeferredItem<Item> GLOW_VISION_GOGGLES = register("glow_vision_goggles", () -> new GlowVisionGogglesItem(IS.of(1, Rarity.UNCOMMON)));
-	public static final DeferredItem<Item> JEOPARDANT = register("jeopardant", () -> new AttackRingItem(IS.of(1, Rarity.UNCOMMON)));
+	public static final DeferredItem<Item> JEOPARDANT = register("jeopardant", () -> new JeopardantItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<SevenLeagueBootsItem> SEVEN_LEAGUE_BOOTS = register("seven_league_boots", () -> new SevenLeagueBootsItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> COTTON_CLOUD_BOOTS = register("cotton_cloud_boots", () -> new CottonCloudBootsItem(IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> RADIANCE_PIN = register("radiance_pin", () -> new RadiancePinItem(IS.of(1, Rarity.UNCOMMON)));

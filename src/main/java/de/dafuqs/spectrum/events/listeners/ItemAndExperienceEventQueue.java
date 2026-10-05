@@ -8,7 +8,6 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
 
 /**
  * Since Sucking chests can react to both spawned items and experience

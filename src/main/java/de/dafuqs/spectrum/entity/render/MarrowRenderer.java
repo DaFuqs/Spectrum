@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.resources.*;
 import net.neoforged.api.distmarker.*;
-import javax.annotation.*;
 
 @OnlyIn(Dist.CLIENT)
 public class MarrowRenderer extends SkeletonRenderer<Marrow> {

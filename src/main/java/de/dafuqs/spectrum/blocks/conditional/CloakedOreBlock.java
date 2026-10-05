@@ -15,7 +15,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -58,6 +58,7 @@ public class CloakedOreBlock extends DropExperienceBlock implements RevelationAw
 		return new Tuple<>(this.asItem(), cloakBlockState.getBlock().asItem());
 	}
 	
+	@Override
 	public int getExpDrop(BlockState state, LevelAccessor level, BlockPos pos, @Nullable BlockEntity blockEntity, @Nullable Entity breaker, ItemStack tool) {
 		if(breaker instanceof Player player && isVisibleTo(player)) {
 			return super.getExpDrop(state, level, pos, blockEntity, breaker, tool);

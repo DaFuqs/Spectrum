@@ -1,17 +1,15 @@
 package de.dafuqs.spectrum.registries.client;
 
-import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.ink.*;
+import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.components.*;
-import de.dafuqs.spectrum.items.energy.*;
+import de.dafuqs.spectrum.items.ink.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.color.item.*;
 import net.minecraft.util.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.event.*;
 
@@ -76,9 +74,13 @@ public class SpectrumColorProviders {
 		
 		event.register((stack, tintIndex) -> {
 			if (tintIndex > 0) {
-				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
-				if (effects.size() > tintIndex - 1) {
-					return FastColor.ARGB32.opaque(effects.get(tintIndex - 1).getColor());
+				InkPoweredPotionContentsComponent component = stack.get(SpectrumDataComponentTypes.INK_POWERED_POTION_CONTENTS);
+				if(component != null) {
+					int effectIndex = tintIndex - 1;
+					List<InkPoweredMobEffectInstance> effects = component.effects();
+					if (effects.size() > effectIndex) {
+						return FastColor.ARGB32.opaque(effects.get(effectIndex).getColor());
+					}
 				}
 			}
 			return -1;
@@ -86,9 +88,9 @@ public class SpectrumColorProviders {
 		
 		event.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
-				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
-				if (!effects.isEmpty()) {
-					return FastColor.ARGB32.opaque(effects.getFirst().getColor());
+				InkPoweredPotionContentsComponent component = stack.get(SpectrumDataComponentTypes.INK_POWERED_POTION_CONTENTS);
+				if(component != null && !component.effects().isEmpty()) {
+					return FastColor.ARGB32.opaque(component.effects().getFirst().getColor());
 				}
 			}
 			return -1;
@@ -98,7 +100,7 @@ public class SpectrumColorProviders {
 			if (tintIndex == 1) {
 				InkFlaskItem i = (InkFlaskItem) stack.getItem();
 				SingleInkStorage storage = i.getEnergyStorage(stack);
-				return FastColor.ARGB32.opaque(storage.getStoredColor().getColorInt());
+				return storage.getStoredColor().getColorRGB();
 			}
 			return -1;
 		}, SpectrumItems.INK_FLASK.get());
@@ -111,7 +113,7 @@ public class SpectrumColorProviders {
 		event.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
 				var color = stack.get(SpectrumDataComponentTypes.INK_COLOR);
-				return FastColor.ARGB32.opaque(color == null ? -1 : color.getColorInt());
+				return color == null ? -1 : color.getColorRGB();
 			}
 			return -1;
 		}, SpectrumItems.PAINTBRUSH.get());

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.recipe.*;
-import de.dafuqs.spectrum.blocks.pedestal.BuiltinGemstoneColor;
+import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import me.shedaniel.rei.api.common.category.*;
@@ -24,11 +24,6 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	protected final int craftingTime;
 	public boolean shapeless;
 
-	/**
-	 * When using the REI recipe functionality
-	 *
-	 * @param recipe The recipe
-	 */
 	public PedestalCraftingDisplay(RecipeHolder<PedestalRecipe> recipe) {
 		super(recipe, mapIngredients(recipe.value()), Collections.singletonList(EntryIngredients.of(recipe.value().getResultItem(BasicDisplay.registryAccess()))));
 		this.pedestalRecipeTier = recipe.value().getTier();

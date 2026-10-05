@@ -38,11 +38,6 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "block.spectrum.sludge",
-      "recipe_id": "spectrum:potion_workshop_crafting/sludge_bucket"
-    },
-    {
-      "type": "spectrum:potion_workshop_crafting",
       "title": "block.spectrum.liquid_crystal",
       "recipe_id": "spectrum:potion_workshop_crafting/liquid_crystal_bucket"
     },
@@ -84,6 +79,11 @@
       "type": "spectrum:potion_workshop_crafting",
       "recipe_id": "spectrum:potion_workshop_crafting/dragon_breath",
       "text": "book.spectrum.guidebook.potion_workshop_crafting.page10.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe_id": "spectrum:potion_workshop_crafting/rabbit_hide",
+      "text": "book.spectrum.guidebook.potion_workshop_crafting.rabbit_hide.text"
     }
   ]
 }

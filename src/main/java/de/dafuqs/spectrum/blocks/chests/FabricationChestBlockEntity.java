@@ -15,7 +15,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -222,7 +222,7 @@ public class FabricationChestBlockEntity extends SpectrumChestBlockEntity implem
 	}
 	
 	private static boolean isRecipeValid(Recipe<?> recipe) {
-		return recipe instanceof ShapelessRecipe || recipe instanceof ShapedRecipe;
+		return recipe instanceof CraftingRecipe;
 	}
 	
 	private boolean isRecipeCraftable(Recipe<?> recipe) {

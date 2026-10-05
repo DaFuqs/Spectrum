@@ -9,7 +9,6 @@ import net.minecraft.network.codec.*;
 import net.minecraft.network.protocol.common.custom.*;
 import net.minecraft.world.level.block.entity.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 
 public record ChangeCompactingChestSettingsPayload(AutoCraftingMode mode) implements CustomPacketPayload {
 	

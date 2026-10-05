@@ -1,25 +1,10 @@
 {
-  "type": "spectrum:random_block_proximity_patch",
+  "type": "minecraft:flower",
   "config": {
-    "tries": 32,
+    "tries": 64,
     "xz_spread": 7,
     "y_spread": 3,
-    "block_scan_range": 6,
-    "blocks_to_find": [
-      "spectrum:hummingstone"
-    ],
-    "close_to_block_feature": {
-      "feature": {
-        "type": "minecraft:simple_block",
-        "config": {
-          "to_place": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "spectrum:humming_bell"
-            }
-          }
-        }
-      },
+    "feature": {
       "placement": [
         {
           "type": "minecraft:block_predicate_filter",
@@ -28,46 +13,95 @@
             "blocks": "minecraft:air"
           }
         }
-      ]
-    },
-    "fallback_feature": {
+      ],
       "feature": {
-        "type": "minecraft:simple_block",
+        "type": "spectrum:block_proximity",
         "config": {
-          "to_place": {
-            "type": "minecraft:weighted_state_provider",
-            "entries": [
-              {
-                "weight": 3,
-                "data": {
-                  "Name": "spectrum:moss_ball"
+          "block_scan_range": 6,
+          "blocks_to_find": [
+            "spectrum:hummingstone"
+          ],
+          "placement": [
+            {
+              "type": "minecraft:block_predicate_filter",
+              "predicate": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              }
+            }
+          ],
+          "feature": {
+            "feature": {
+              "type": "minecraft:simple_block",
+              "config": {
+                "to_place": {
+                  "type": "minecraft:simple_state_provider",
+                  "state": {
+                    "Name": "spectrum:humming_bell"
+                  }
                 }
-              },
+              }
+            },
+            "placement": [
               {
-                "weight": 3,
-                "data": {
-                  "Name": "minecraft:fern"
-                }
-              },
-              {
-                "weight": 1,
-                "data": {
-                  "Name": "spectrum:giant_moss_ball"
+                "type": "minecraft:block_predicate_filter",
+                "predicate": {
+                  "type": "minecraft:matching_blocks",
+                  "blocks": "minecraft:air"
                 }
               }
             ]
+          },
+          "fallback_feature": {
+            "placement": [
+              {
+                "type": "minecraft:block_predicate_filter",
+                "predicate": {
+                  "type": "minecraft:matching_blocks",
+                  "blocks": "minecraft:air"
+                }
+              }
+            ],
+            "feature": {
+              "type": "minecraft:simple_block",
+              "placement": [
+                {
+                  "type": "minecraft:block_predicate_filter",
+                  "predicate": {
+                    "type": "minecraft:matching_blocks",
+                    "blocks": "minecraft:air"
+                  }
+                }
+              ],
+              "config": {
+                "to_place": {
+                  "type": "minecraft:weighted_state_provider",
+                  "entries": [
+                    {
+                      "weight": 3,
+                      "data": {
+                        "Name": "spectrum:moss_ball"
+                      }
+                    },
+                    {
+                      "weight": 3,
+                      "data": {
+                        "Name": "minecraft:fern"
+                      }
+                    },
+                    {
+                      "weight": 1,
+                      "data": {
+                        "Name": "spectrum:giant_moss_ball"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
           }
         }
-      },
-      "placement": [
-        {
-          "type": "minecraft:block_predicate_filter",
-          "predicate": {
-            "type": "minecraft:matching_blocks",
-            "blocks": "minecraft:air"
-          }
-        }
-      ]
+      }
     }
   }
 }

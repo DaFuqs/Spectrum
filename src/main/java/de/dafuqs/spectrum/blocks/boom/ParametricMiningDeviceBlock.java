@@ -1,17 +1,11 @@
 package de.dafuqs.spectrum.blocks.boom;
 
-import appeng.entity.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
-import net.minecraft.core.particles.*;
-import net.minecraft.core.registries.*;
 import net.minecraft.server.level.*;
-import net.minecraft.sounds.*;
 import net.minecraft.world.*;
-import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -23,10 +17,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import net.neoforged.neoforge.event.*;
-import org.jspecify.annotations.Nullable;
-
-import javax.annotation.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 

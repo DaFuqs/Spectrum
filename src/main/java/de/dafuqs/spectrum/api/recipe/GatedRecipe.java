@@ -6,26 +6,28 @@ import net.minecraft.locale.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
-import net.neoforged.api.distmarker.*;
 import net.neoforged.fml.loading.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public interface GatedRecipe<C extends RecipeInput> extends Recipe<C> {
 	
-	boolean isSecret();
+	Optional<ResourceLocation> getRevealSecretAdvancement();
 	
-	Optional<ResourceLocation> getRequiredAdvancementIdentifier();
+	Optional<ResourceLocation> getRequiredAdvancement();
 	
 	@Nullable ResourceLocation getRecipeTypeUnlockIdentifier();
 	
 	String getRecipeTypeShortID();
 	
+	List<ItemStack> getAdditionalResults();
+	
 	default boolean canPlayerCraft(@Nullable Player playerEntity) {
 		return AdvancementHelper.hasAdvancement(playerEntity, getRecipeTypeUnlockIdentifier())
-				&& AdvancementHelper.hasAdvancement(playerEntity, getRequiredAdvancementIdentifier().orElse(null));
+				&& AdvancementHelper.hasAdvancement(playerEntity, getRequiredAdvancement().orElse(null));
 	}
 	
 	default Component getSingleUnlockToastString() {
@@ -47,7 +49,7 @@ public interface GatedRecipe<C extends RecipeInput> extends Recipe<C> {
 	}
 	
 	default @Nullable Component getSecretHintText(ResourceLocation id) {
-		if (isSecret()) {
+		if (getRevealSecretAdvancement().isPresent()) {
 			String secretHintLangKey = id.toLanguageKey("recipe", "hint").replace("/", ".");
 			return Language.getInstance().has(secretHintLangKey)
 					? Component.translatable(secretHintLangKey)

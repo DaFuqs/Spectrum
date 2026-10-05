@@ -7,7 +7,6 @@ import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.world.phys.*;
-import net.neoforged.api.distmarker.*;
 
 
 public class MoonstoneStrikeParticle extends NoRenderParticle {

@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.sound;
 
 
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.mob_effect.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.client.resources.sounds.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.player.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 
 public class DivinitySoundInstance extends AbstractSoundInstance implements TickableSoundInstance {

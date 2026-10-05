@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.*;
-import javax.annotation.*;
 
 
 public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<CompactingChestBlockEntity> {

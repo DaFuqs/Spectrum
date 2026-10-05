@@ -12,7 +12,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
-import javax.annotation.*;
 
 import java.util.*;
 

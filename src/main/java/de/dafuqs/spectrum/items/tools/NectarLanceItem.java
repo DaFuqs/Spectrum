@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.render.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.mob_effect.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
@@ -14,7 +14,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class NectarLanceItem extends LightGreatswordItem implements SlotBackgroundEffectProvider {
 	
@@ -23,18 +23,18 @@ public class NectarLanceItem extends LightGreatswordItem implements SlotBackgrou
 	}
 	
 	@Override
-	public float getBlockingMultiplier(DamageSource source, ItemStack stack, LivingEntity entity, int usedTime) {
+	public float getBlockedDamageMultiplier(DamageSource source, ItemStack stack, LivingEntity entity, int usedTime) {
 		if (source.is(DamageTypeTags.IS_PROJECTILE)) {
-			return 0;
+			return 1.0F;
 		}
 		if (canPerfectParry(stack, entity, usedTime)) {
-			return 0.0F;
+			return 1.0F;
 		} else if (canBluffParry(stack, entity, usedTime)) {
-			return 0.1F;
+			return 0.9F;
 		} else if (usedTime <= getMaxShieldingTime(entity, stack) / 2F) {
-			return 0.25F;
+			return 0.75F;
 		}
-		return 0.6F;
+		return 0.4F;
 	}
 	
 	@Override

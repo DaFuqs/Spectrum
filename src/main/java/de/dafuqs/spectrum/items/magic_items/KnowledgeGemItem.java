@@ -17,7 +17,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
-import javax.annotation.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -37,12 +37,14 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 	public static ItemStack getKnowledgeDropStackWithXP(int experience, boolean noStoreTooltip) {
 		ItemStack stack = new ItemStack(SpectrumItems.KNOWLEDGE_GEM.get());
 		stack.set(SpectrumDataComponentTypes.STORED_EXPERIENCE, experience);
-		if (noStoreTooltip) stack.set(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP, Unit.INSTANCE);
+		if (noStoreTooltip) {
+			stack.set(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP, Unit.INSTANCE);
+		}
 		return stack;
 	}
 	
 	@Override
-	public int getMaxStoredExperience(HolderLookup.Provider lookup, ItemStack itemStack) {
+	public int getMaxStoredExperience(HolderLookup.@Nullable Provider lookup, ItemStack itemStack) {
 		int efficiencyLevel = SpectrumEnchantmentHelper.getLevel(lookup, Enchantments.EFFICIENCY, itemStack);
 		return maxStorageBase * (int) Math.pow(10, Math.min(5, efficiencyLevel)); // to not exceed int max
 	}
@@ -120,14 +122,10 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Loo
 		} else {
 			tooltip.add(Component.literal(storedExperience + " ").withStyle(ChatFormatting.GREEN).append(Component.translatable("item.spectrum.knowledge_gem.tooltip.stored_experience", maxExperience).withStyle(ChatFormatting.GRAY)));
 		}
-		if (shouldDisplayUsageTooltip(stack)) {
+		if (!stack.has(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP)) {
 			tooltip.add(Component.translatable("item.spectrum.knowledge_gem.tooltip.use", getTransferableExperiencePerTick(lookup, stack)).withStyle(ChatFormatting.GRAY));
 			addBannerPatternProviderTooltip(tooltip);
 		}
-	}
-	
-	public boolean shouldDisplayUsageTooltip(ItemStack itemStack) {
-		return itemStack.has(SpectrumDataComponentTypes.HIDE_USAGE_TOOLTIP);
 	}
 	
 	public boolean removePlayerExperience(Player playerEntity, int experience) {

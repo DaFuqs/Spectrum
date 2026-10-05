@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
-import de.dafuqs.spectrum.data_loaders.client.ParticleSpawnerParticlesDataLoader;
+import de.dafuqs.spectrum.data_loaders.client.*;
 import de.dafuqs.spectrum.mixin.client.accessors.*;
 import de.dafuqs.spectrum.networking.c2s_payloads.*;
 import net.minecraft.*;
@@ -18,7 +18,6 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.*;
-import javax.annotation.*;
 import org.lwjgl.glfw.*;
 
 import java.util.*;
@@ -164,8 +163,8 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 	
 	@Override
 	protected void renderBg(GuiGraphics drawContext, float delta, int mouseX, int mouseY) {
-		int x = (this.width - this.imageWidth) / 2;
-		int y = (this.height - this.imageHeight) / 2;
+		int x = getGuiLeft();
+		int y = getGuiTop();
 		
 		// the background
 		drawContext.blit(GUI_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
@@ -204,8 +203,8 @@ public class ParticleSpawnerScreen extends AbstractContainerScreen<ParticleSpawn
 	}
 	
 	protected void setupInputFields(ParticleSpawnerBlockEntity blockEntity) {
-		int startX = (this.width - this.imageWidth) / 2 + 3;
-		int startY = (this.height - this.imageHeight) / 2 + 3;
+		int startX = getGuiLeft() + 3;
+		int startY = getGuiTop() + 3;
 		
 		ParticleSpawnerConfiguration configuration = blockEntity.getConfiguration();
 		cyanField = addTextFieldWidget(startX + 16, startY + 51, Component.literal("Cyan"), String.valueOf(configuration.cmyColor().getX()), this::isPositiveDecimalNumber100);

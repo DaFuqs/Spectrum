@@ -1,6 +1,0 @@
-{
-  "parent": "spectrum:templates_item/blocking_sword",
-  "textures": {
-    "layer0": "spectrum:item/knotted_sword"
-  }
-}

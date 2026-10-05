@@ -4,6 +4,7 @@
     "icon": {
       "id": "spectrum:pure_azurite"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.grow_azurite_in_crystallarieum.title"
     },

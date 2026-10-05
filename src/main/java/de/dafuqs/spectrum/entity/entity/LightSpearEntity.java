@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.commands.arguments.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.valueproviders.*;
@@ -9,7 +9,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.function.*;
 

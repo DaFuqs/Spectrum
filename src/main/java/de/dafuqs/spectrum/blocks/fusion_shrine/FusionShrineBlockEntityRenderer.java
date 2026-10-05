@@ -12,7 +12,6 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.client.textures.*;
 import net.neoforged.neoforge.fluids.*;
-import javax.annotation.*;
 import org.joml.Math;
 
 import java.util.*;

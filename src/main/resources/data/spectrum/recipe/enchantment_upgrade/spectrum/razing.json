@@ -1,27 +1,35 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:gray_pigment"
-  },
   "enchantment": "spectrum:razing",
-  "item_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      32,
-      128,
-      256,
-      512
-    ]
-  },
-  "level_cap": 5,
-  "required_advancement": "spectrum:unlocks/enchantments/razing_usage",
-  "xp_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      400,
-      2000,
-      10000,
-      10000
-    ]
-  }
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:gray_pigment"
+      },
+      "ingredient_count_per_bowl": 1,
+      "experience": 200
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:gray_pigment"
+      },
+      "ingredient_count_per_bowl": 2,
+      "experience": 400
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:gray_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 800
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:gray_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 1600
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/razing_usage"
 }

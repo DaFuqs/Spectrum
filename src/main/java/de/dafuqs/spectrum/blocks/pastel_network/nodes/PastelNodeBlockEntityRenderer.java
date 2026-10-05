@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
-import com.mojang.authlib.minecraft.client.*;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import de.dafuqs.spectrum.*;
@@ -8,10 +7,7 @@ import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
-import net.minecraft.client.model.geom.*;
-import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.block.*;
 import net.minecraft.client.renderer.blockentity.*;
@@ -19,39 +15,24 @@ import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
-import net.minecraft.world.item.*;
-import javax.annotation.*;
 
 public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<PastelNodeBlockEntity> {
 	
 	private static final long REAL_DAY_LENGTH = 86400 * 20;
-	private static final Crystal CONNECTION = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/connection_node_crystal")), false);
-	private static final Crystal PROVIDER = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/provider_node_crystal")), true);
-	private static final Crystal SENDER = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/sender_node_crystal")), true);
-	private static final Crystal STORAGE = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/storage_node_crystal")), true);
-	private static final Crystal GATHER = new Crystal(ModelResourceLocation.standalone(SpectrumCommon.locate("technical/gather_node_crystal")), false);
 	
-	private static final ResourceLocation BASE = SpectrumCommon.locate("textures/block/pastel_node_base.png");
+	public static final ModelResourceLocation CRYSTAL_CONNECTION = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/connection_node_crystal"));
+	public static final ModelResourceLocation CRYSTAL_PROVIDER = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/provider_node_crystal"));
+	public static final ModelResourceLocation CRYSTAL_SENDER = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/sender_node_crystal"));
+	public static final ModelResourceLocation CRYSTAL_STORAGE = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/storage_node_crystal"));
+	public static final ModelResourceLocation CRYSTAL_GATHER = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/gather_node_crystal"));
+	
 	private static final ResourceLocation INNER_RING = SpectrumCommon.locate("textures/block/pastel_node_inner_ring_blank.png");
 	private static final ResourceLocation OUTER_RING = SpectrumCommon.locate("textures/block/pastel_node_outer_ring_blank.png");
 	private static final ResourceLocation REDSTONE_RING = SpectrumCommon.locate("textures/block/pastel_node_redstone_ring_blank.png");
 	
-	private final ModelPart base;
-	
 	@SuppressWarnings("unused")
 	public PastelNodeBlockEntityRenderer(BlockEntityRendererProvider.Context ctx) {
-		this.base = getItemNodeBaseTexturedModelData().bakeRoot();
-	}
 	
-	public static LayerDefinition getItemNodeBaseTexturedModelData() {
-		MeshDefinition modelData = new MeshDefinition();
-		PartDefinition modelPartData = modelData.getRoot();
-		modelPartData.addOrReplaceChild("base", CubeListBuilder.create().texOffs(6, 0).addBox(-1.0F, 1.1F, -1.0F, 2.0F, 0.0F, 2.0F), PartPose.ZERO);
-		modelPartData.addOrReplaceChild("leaf1", CubeListBuilder.create().texOffs(-4, 0).addBox(-2.0F, 1.0F, -4.0F, 4.0F, 0.0F, 4.0F), PartPose.offsetAndRotation(0.0F, 0.0F, -1.0F, 0.5236F, 0.0F, 0.0F));
-		modelPartData.addOrReplaceChild("leaf2", CubeListBuilder.create().texOffs(-4, 4).addBox(-2.0F, 1.0F, 0.0F, 4.0F, 0.0F, 4.0F), PartPose.offsetAndRotation(0.0F, 0.0F, 1.0F, -0.5236F, 0.0F, 0.0F));
-		modelPartData.addOrReplaceChild("leaf3", CubeListBuilder.create().texOffs(-4, 8).addBox(0.0F, 1.0F, -2.0F, 4.0F, 0.0F, 4.0F), PartPose.offsetAndRotation(1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.5236F));
-		modelPartData.addOrReplaceChild("leaf4", CubeListBuilder.create().texOffs(-4, 12).addBox(-4.0F, 1.0F, -2.0F, 4.0F, 0.0F, 4.0F), PartPose.offsetAndRotation(-1.0F, 0.0F, 0.0F, 0.0F, 0.0F, -0.5236F));
-		return LayerDefinition.create(modelData, 16, 16);
 	}
 	
 	@Override
@@ -64,14 +45,6 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 			return;
 		
 		var time = (world.getGameTime() + node.getCreationStamp()) % REAL_DAY_LENGTH + tickDelta;
-		
-		var crystal = switch (node.getNodeType()) {
-			case CONNECTION -> CONNECTION;
-			case STORAGE -> STORAGE;
-			case PROVIDER -> PROVIDER;
-			case SENDER -> SENDER;
-			case GATHER -> GATHER;
-		};
 		
 		var heightMod = 0.5F;
 		
@@ -121,16 +94,19 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 			}
 		}
 		
+		BlockRenderDispatcher blockRenderManager = Minecraft.getInstance().getBlockRenderer();
+		
 		matrices.translate(0, -0.5, 0);
 		float quarterCrystalRotation = node.crystalRotation / 2;
-		matrices.mulPose(Axis.YP.rotation(quarterCrystalRotation));
-		var rootBuffer = vertexConsumers.getBuffer(RenderType.entityCutout(BASE));
-		base.render(matrices, rootBuffer, light, overlay);
 		
+		// BASE
+		matrices.mulPose(Axis.YP.rotation(quarterCrystalRotation));
+		ModelResourceLocation base = node.getNodeBase().getModelLocation();
+		blockRenderManager.getModelRenderer().renderModel(matrices.last(), vertexConsumers.getBuffer(Sheets.cutoutBlockSheet()), null, blockRenderManager.getBlockModelShaper().getModelManager().getModel(base), 1.0F, 1.0F, 1.0F, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
 		matrices.mulPose(Axis.YP.rotation(quarterCrystalRotation * 2));
 		
+		// RINGS
 		matrices.scale(0.6F, 0.6F, 0.6F);
-		
 		var color = SpectrumColorHelper.colorIntToVec(node.networkUUID.flatMap(id -> Pastel.getClientInstance().getNetwork(id)).map(PastelNetwork::getColor).orElse(0xFFFFFF));
 		color = SpectrumColorHelper.colorIntToVec(SpectrumColorHelper.interpolate(color, SpectrumColorHelper.WASH, 0.2125F));
 		
@@ -149,7 +125,8 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 			RenderHelper.renderFlatTransWithZYOffsetAndColor(matrices, redstoneRing, true, 5F + ringHeight, 15F, node.ringAlpha * node.getRedstoneAlphaMult(), 1F, overlay, color.x, color.y, color.z);
 		}
 		
-		if (crystal.hasOuterRing()) {
+		PastelNodeType nodeType = node.getNodeType();
+		if (nodeType.hasOuterRing()) {
 			var outerRing = vertexConsumers.getBuffer(RenderType.entityTranslucent(node.getOuterRing().map(PastelUpgradeSignature::outerRing).orElse(OUTER_RING)));
 			if (node.getOuterRing().isPresent()) {
 				RenderHelper.renderFlatTransWithZYOffset(matrices, outerRing, true, 5.75F + ringHeight * 2, 11F, node.ringAlpha, 1F, overlay);
@@ -158,16 +135,21 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 			}
 		}
 		
+		// CRYSTAL
 		matrices.translate(0.0, node.crystalHeight, 0.0);
-		BlockRenderDispatcher blockRenderManager = Minecraft.getInstance().getBlockRenderer();
-		blockRenderManager.getModelRenderer().renderModel(matrices.last(), vertexConsumers.getBuffer(Sheets.solidBlockSheet()), null, blockRenderManager.getBlockModelShaper().getModelManager().getModel(crystal.crystal), 1.0F, 1.0F, 1.0F, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
+		ModelResourceLocation crystalLocation = switch (nodeType) {
+			case CONNECTION -> CRYSTAL_CONNECTION;
+			case STORAGE -> CRYSTAL_STORAGE;
+			case PROVIDER -> CRYSTAL_PROVIDER;
+			case SENDER -> CRYSTAL_SENDER;
+			case GATHER -> CRYSTAL_GATHER;
+		};
+		blockRenderManager.getModelRenderer().renderModel(matrices.last(), vertexConsumers.getBuffer(Sheets.translucentCullBlockSheet()), null, blockRenderManager.getBlockModelShaper().getModelManager().getModel(crystalLocation), 1.0F, 1.0F, 1.0F, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
 		matrices.popPose();
 	}
 	
 	private float mod(double in) {
 		return (float) (in % (Math.PI * 2));
 	}
-	
-	private record Crystal(ModelResourceLocation crystal, boolean hasOuterRing) {
-	}
+
 }

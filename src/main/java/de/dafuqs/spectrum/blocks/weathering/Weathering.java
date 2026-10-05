@@ -8,7 +8,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
 
 import java.util.Optional;
 import java.util.function.Supplier;

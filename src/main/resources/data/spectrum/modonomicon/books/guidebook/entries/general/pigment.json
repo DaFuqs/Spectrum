@@ -258,8 +258,8 @@
     },
     {
       "title": "book.spectrum.guidebook.pigment.page18.title",
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier1/pigment_blocks/magenta_block",
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "spectrum:crafting_table/pigment_blocks/magenta_block",
       "text": "book.spectrum.guidebook.pigment.page18.text"
     }
   ]

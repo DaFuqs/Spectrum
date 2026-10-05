@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:moonstone_powder_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:moonstone_powder",
+    "count": 9
+  },
+  "required_advancement": "spectrum:lategame/collect_moonstone"
+}

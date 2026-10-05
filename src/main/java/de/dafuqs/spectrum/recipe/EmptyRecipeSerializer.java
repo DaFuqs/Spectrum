@@ -5,7 +5,6 @@ import com.mojang.serialization.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.item.crafting.*;
-import javax.annotation.*;
 
 import java.util.function.Supplier;
 

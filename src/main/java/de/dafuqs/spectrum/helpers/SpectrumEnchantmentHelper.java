@@ -14,7 +14,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
@@ -165,13 +165,17 @@ public class SpectrumEnchantmentHelper {
 		return stack;
 	}
 	
-	public static int getLevel(HolderLookup.Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+	public static int getLevel(HolderLookup.@Nullable Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+		if(provider == null) return 0; // TooltipContext.getRegistries() can be null - see https://github.com/DaFuqs/Spectrum/issues/960
+		
 		HolderLookup.RegistryLookup<Enchantment> lookup = provider.lookup(Registries.ENCHANTMENT).get();
 		Optional<Holder.Reference<Enchantment>> ench = lookup.get(enchantment);
 		return ench.isEmpty() ? 0 : stack.getEnchantmentLevel(ench.get());
 	}
 	
-	public static int getTagLevel(HolderLookup.Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+	public static int getTagLevel(HolderLookup.@Nullable Provider provider, ResourceKey<Enchantment> enchantment, ItemStack stack) {
+		if(provider == null) return 0; // TooltipContext.getRegistries() can be null - see https://github.com/DaFuqs/Spectrum/issues/960
+		
 		HolderLookup.RegistryLookup<Enchantment> lookup = provider.lookup(Registries.ENCHANTMENT).get();
 		Optional<Holder.Reference<Enchantment>> ench = lookup.get(enchantment);
 		return ench.isEmpty() ? 0 : stack.getTagEnchantments().getLevel(ench.get());
@@ -212,6 +216,14 @@ public class SpectrumEnchantmentHelper {
 		} else {
 			return false;
 		}
+	}
+	
+	public static ItemStack getEnchantedBookStackWith(Holder<Enchantment> enchant, int level) {
+		var enchStack = new ItemStack(Items.ENCHANTED_BOOK);
+		var builder = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+		builder.set(enchant, level);
+		enchStack.set(DataComponents.STORED_ENCHANTMENTS, builder.toImmutable());
+		return enchStack;
 	}
 	
 }

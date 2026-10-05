@@ -5,6 +5,6 @@ import net.neoforged.neoforge.common.*;
 public class SpectrumEffectCures {
 	
 	public static final EffectCure SEDATIVES = EffectCure.get("sedatives");
-	public static final EffectCure COMMAND_ONLY = EffectCure.get("command_only");
+	public static final EffectCure FRENZY = EffectCure.get("frenzy");
 	
 }

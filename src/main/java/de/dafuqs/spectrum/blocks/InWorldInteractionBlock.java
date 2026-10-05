@@ -72,7 +72,7 @@ public abstract class InWorldInteractionBlock extends BaseEntityBlock {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof InWorldInteractionBlockEntity inWorldInteractionBlockEntity) {
 			int previousCount = itemStack.getCount();
-			ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, inWorldInteractionBlockEntity, null);
+			ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, inWorldInteractionBlockEntity, Direction.DOWN);
 			
 			if (remainingStack.getCount() != previousCount) {
 				inWorldInteractionBlockEntity.inventoryChanged();

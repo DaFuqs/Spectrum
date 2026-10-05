@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/bloodstone_block_top",
+    "side": "spectrum:block/bloodstone_block_side"
+  }
+}

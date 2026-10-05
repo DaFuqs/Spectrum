@@ -14,7 +14,6 @@ import net.minecraft.world.level.storage.loot.LootContext.*;
 import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
-import javax.annotation.*;
 
 import java.util.*;
 

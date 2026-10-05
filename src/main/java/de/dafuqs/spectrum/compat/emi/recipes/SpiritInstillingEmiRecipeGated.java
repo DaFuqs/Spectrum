@@ -16,13 +16,7 @@ public class SpiritInstillingEmiRecipeGated extends GatedSpectrumEmiRecipe<Spiri
 	
 	public SpiritInstillingEmiRecipeGated(RecipeHolder<SpiritInstillerRecipe> entry) {
 		super(SpectrumEmiRecipeCategories.SPIRIT_INSTILLER, entry, 116, 48);
-		inputs = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getItems().map(EmiStack::of).toList())).toList();
-		
-		if (recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {
-			ItemStack outputStack = recipe.getResultItem(getRegistryManager());
-			LoreHelper.setLore(outputStack, spawnerChangeRecipe.getOutputLoreText());
-			outputs = List.of(EmiStack.of(outputStack));
-		}
+		inputs = ofIngredientStacks(recipe.getIngredientStacks());
 	}
 	
 	@Override

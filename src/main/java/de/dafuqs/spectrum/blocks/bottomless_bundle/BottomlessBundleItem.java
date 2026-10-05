@@ -1,15 +1,10 @@
 package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
-import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.client.resources.model.*;
 import net.minecraft.core.*;
 import net.minecraft.core.dispenser.*;
 import net.minecraft.network.chat.*;
@@ -26,8 +21,6 @@ import net.minecraft.world.item.context.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
-import net.neoforged.api.distmarker.*;
-import javax.annotation.*;
 
 import java.util.*;
 
@@ -267,29 +260,6 @@ public class BottomlessBundleItem extends BlockItem {
 			return stack;
 		}
 		
-	}
-	
-	@OnlyIn(Dist.CLIENT)
-	public static class Renderer implements DynamicItemRenderer {
-		public Renderer() {
-		}
-		
-		@Override
-		public void render(ItemRenderer renderer, ItemStack stack, ItemDisplayContext mode, boolean leftHanded, PoseStack matrices, MultiBufferSource vertexConsumers, int light, int overlay, BakedModel model) {
-			// TODO
-			/*renderer.render(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
-			if (mode != ItemDisplayContext.GUI || getStoredAmount(stack) <= 0)
-				return;
-			ItemStack bundledStack = BottomlessBundleItem.getTemplateVariant(stack);
-			Minecraft client = Minecraft.getInstance();
-			BakedModel bundledModel = renderer.getModel(bundledStack, client.level, client.player, 0);
-			
-			matrices.pushPose();
-			matrices.scale(0.5F, 0.5F, 0.5F);
-			matrices.translate(0.5F, 0.5F, 0.5F);
-			renderer.render(bundledStack, mode, leftHanded, matrices, vertexConsumers, light, overlay, bundledModel);
-			matrices.popPose();*/
-		}
 	}
 	
 	@Override

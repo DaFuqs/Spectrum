@@ -1,20 +1,29 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:brown_pigment"
-  },
-  "enchantment": "minecraft:loyalty",
   "group": "vanilla_enchantment_upgrades",
-  "item_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_factor": 2.0,
-    "scaling_value": 8
-  },
-  "level_cap": 4,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_trident",
-  "xp_scaling": {
-    "type": "spectrum:doubling",
-    "scaling_factor": 2.0,
-    "scaling_value": 200
-  }
+  "enchantment": "minecraft:loyalty",
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:brown_pigment"
+      },
+      "ingredient_count_per_bowl": 2,
+      "experience": 200
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:brown_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 400
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:brown_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 800
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_trident"
 }

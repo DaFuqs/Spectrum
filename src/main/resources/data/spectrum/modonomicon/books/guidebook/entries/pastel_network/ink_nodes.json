@@ -1,0 +1,33 @@
+{
+  "name": "book.spectrum.guidebook.ink_nodes.name",
+  "icon": {
+    "item": "spectrum:pigment_palette"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/pastel_network/ink"
+  },
+  "category": "spectrum:pastel_network",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -3,
+  "y": 1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.ink_nodes.name",
+      "text": "book.spectrum.guidebook.ink_nodes.about.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/ink_node"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pure_recipe",
+      "recipe_id": "spectrum:pedestal/tier3/pastel_network/ink_node_refined"
+    }
+  ]
+}

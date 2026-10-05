@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.networking.s2c_payloads;
 
 import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
@@ -15,7 +15,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 import org.joml.*;
 
 public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor color) implements CustomPacketPayload {
@@ -43,7 +42,7 @@ public record PlayFusionCraftingFinishedParticlePayload(BlockPos pos, InkColor c
 		float velocityModifier = 0.25F;
 		for (Vec3 velocity : VectorPattern.SIXTEEN.getVectors()) {
 			context.player().level().addParticle(
-					new DynamicParticleEffect(ColoredCraftingParticleEffect.of(payload.color.getColorInt()).getType(), 0.0F, color, 1.5F, 40, false, true),
+					new DynamicParticleEffect(ColoredCraftingParticleEffect.of(payload.color.getColorARGB()).getType(), 0.0F, color, 1.5F, 40, false, true),
 					sourcePos.x, sourcePos.y, sourcePos.z,
 					velocity.x * velocityModifier, 0.0F, velocity.z * velocityModifier
 			);

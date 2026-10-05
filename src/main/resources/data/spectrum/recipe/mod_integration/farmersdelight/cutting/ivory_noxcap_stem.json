@@ -1,0 +1,37 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "spectrum:ivory_noxcap_stem"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "spectrum:stripped_ivory_noxcap_stem"
+      }
+    },
+    {
+      "item": {
+        "count": 1,
+        "id": "spectrum:myceylon"
+      }
+    }
+  ],
+  "tool": [
+    {
+      "type": "farmersdelight:item_ability",
+      "action": "axe_strip"
+    },
+    {
+      "tag": "minecraft:axes"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ]
+}

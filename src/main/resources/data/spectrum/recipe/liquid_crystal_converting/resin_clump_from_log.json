@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:liquid_crystal_converting",
+  "ingredient": [
+    {
+      "item": "minecraft:pale_oak_log"
+    }
+  ],
+  "result": {
+    "id": "minecraft:resin_clump",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "minecraft:resin_clump"
+    }
+  ]
+}

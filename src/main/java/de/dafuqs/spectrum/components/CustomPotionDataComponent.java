@@ -7,7 +7,6 @@ import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
-import javax.annotation.*;
 
 import java.util.function.*;
 

@@ -1,28 +1,36 @@
 {
   "type": "spectrum:enchantment_upgrade",
-  "bulk_item": {
-    "item": "spectrum:light_blue_pigment"
-  },
-  "enchantment": "minecraft:luck_of_the_sea",
   "group": "vanilla_enchantment_upgrades",
-  "item_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      8,
-      32,
-      128,
-      256
-    ]
-  },
-  "level_cap": 5,
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_water_luck",
-  "xp_scaling": {
-    "type": "spectrum:indexed",
-    "indexes": [
-      200,
-      400,
-      2000,
-      4000
-    ]
-  }
+  "enchantment": "minecraft:luck_of_the_sea",
+  "levels": [
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 2,
+      "experience": 200
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 4,
+      "experience": 400
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 8,
+      "experience": 800
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:light_blue_pigment"
+      },
+      "ingredient_count_per_bowl": 16,
+      "experience": 1600
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_water_luck"
 }

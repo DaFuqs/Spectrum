@@ -2,9 +2,10 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.*;
+import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
@@ -12,6 +13,7 @@ import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
+import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
@@ -19,7 +21,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -51,7 +53,7 @@ public class NightfallsBladeItem extends TieredItem implements InkPoweredPotionF
 	}
 	
 	@Override
-	public long adjustFinalCostFor(InkPoweredStatusEffectInstance instance) {
+	public long adjustFinalCostFor(InkPoweredMobEffectInstance instance) {
 		return Math.round(Math.pow(instance.getInkCost().amount(), 1.75 + instance.getStatusEffectInstance().getAmplifier()));
 	}
 	
@@ -59,8 +61,8 @@ public class NightfallsBladeItem extends TieredItem implements InkPoweredPotionF
 	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		if (target.isAlive() && attacker instanceof Player player) {
 			if (AdvancementHelper.hasAdvancement(player, UNLOCK_IDENTIFIER)) {
-				List<InkPoweredStatusEffectInstance> effects = InkPoweredPotionFillable.getEffects(stack);
-				for (InkPoweredStatusEffectInstance instance : effects) {
+				List<InkPoweredMobEffectInstance> effects = InkPoweredPotionContentsComponent.getEffects(stack);
+				for (InkPoweredMobEffectInstance instance : effects) {
 					if (InkPowered.tryDrainEnergy(player, instance.getInkCost().color(), instance.getInkCost().amount())) {
 						Level world = attacker.level();
 						if (world.isClientSide()) {
@@ -69,7 +71,7 @@ public class NightfallsBladeItem extends TieredItem implements InkPoweredPotionF
 									world.getRandom().nextFloat() - 0.5, world.getRandom().nextFloat() - 0.5, world.getRandom().nextFloat() - 0.5
 							);
 						} else {
-							target.addEffect(instance.getStatusEffectInstance(), attacker);
+							target.addEffect((instance.getFreshStatusEffectInstance()), attacker);
 						}
 					}
 				}
@@ -91,7 +93,7 @@ public class NightfallsBladeItem extends TieredItem implements InkPoweredPotionF
 	
 	@Override
 	public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable Player player, ItemStack stack) {
-		List<InkPoweredStatusEffectInstance> effects = InkPoweredPotionFillable.getEffects(stack);
+		List<InkPoweredMobEffectInstance> effects = InkPoweredPotionContentsComponent.getEffects(stack);
 		if (effects.isEmpty()) {
 			return SlotBackgroundEffectProvider.SlotEffect.NONE;
 		}
@@ -103,16 +105,16 @@ public class NightfallsBladeItem extends TieredItem implements InkPoweredPotionF
 	
 	@Override
 	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
-		List<InkPoweredStatusEffectInstance> effects = InkPoweredPotionFillable.getEffects(stack);
-		if (effects.isEmpty())
-			return 0x000000;
-		
-		return effects.getFirst().getColor();
+		InkPoweredPotionContentsComponent effects = stack.get(SpectrumDataComponentTypes.INK_POWERED_POTION_CONTENTS);
+		if (effects == null) {
+			return 0x0;
+		}
+		return effects.getColor().orElse(0x0);
 	}
 	
 	@Override
 	public float getEffectOpacity(@Nullable Player player, ItemStack stack, float tickDelta) {
-		List<InkPoweredStatusEffectInstance> effects = InkPoweredPotionFillable.getEffects(stack);
+		List<InkPoweredMobEffectInstance> effects = InkPoweredPotionContentsComponent.getEffects(stack);
 		if (effects.isEmpty())
 			return 0F;
 		

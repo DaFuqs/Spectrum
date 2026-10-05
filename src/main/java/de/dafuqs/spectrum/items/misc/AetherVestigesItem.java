@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.items.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class AetherVestigesItem extends ItemWithTooltip implements SlotBackgroundEffectProvider {
 	

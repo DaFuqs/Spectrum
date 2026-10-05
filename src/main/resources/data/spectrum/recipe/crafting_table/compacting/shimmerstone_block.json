@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:gated_crafting_shaped",
+  "group": "compacting",
+  "pattern": [
+    "SSS",
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:shimmerstone_gem"
+    }
+  },
+  "result": {
+    "id": "spectrum:shimmerstone_block",
+    "count": 1
+  },
+  "required_advancement": "spectrum:collect_shimmerstone"
+}

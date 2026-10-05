@@ -2,12 +2,15 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.stream.*;
 
 public record PotionMod(
@@ -78,8 +81,10 @@ public record PotionMod(
 			boolean potentDecreasingEffect,
 			boolean negateDecreasingDuration,
 			boolean randomColor,
-			List<Tuple<PotionRecipeEffect, Float>> additionalEffects
+			List<Tuple<PotionRecipeEffect, Float>> additionalEffects,
+			Optional<Integer> color
 	) {
+		
 		private static final Codec<Tuple<PotionRecipeEffect, Float>> ENTRY_CODEC = RecordCodecBuilder.create(i -> i.group(
 				PotionRecipeEffect.CODEC.forGetter(Tuple::getA),
 				Codec.FLOAT.optionalFieldOf("chance", 1f).forGetter(Tuple::getB)
@@ -92,11 +97,7 @@ public record PotionMod(
 		
 		public record Conditions(PotionFlags potionFlags) {
 			
-			public Conditions(PotionFlags potionFlags) {
-				this.potionFlags = potionFlags;
-			}
-			
-			public static final PotionFlags.Conditions ANY = new Conditions(new PotionFlags(false, false, false, false, false, false, false, false, false, List.of()));
+			public static final PotionFlags.Conditions ANY = new Conditions(new PotionFlags(false, false, false, false, false, false, false, false, false, List.of(), Optional.empty()));
 			
 			public static final Codec<PotionFlags.Conditions> CODEC = RecordCodecBuilder.create(i -> i.group(
 					PotionMod.PotionFlags.CODEC.forGetter(Conditions::potionFlags)
@@ -112,6 +113,9 @@ public record PotionMod(
 				if (this.potionFlags.potentDecreasingEffect && !reagentFlags.potentDecreasingEffect) return false;
 				if (this.potionFlags.negateDecreasingDuration && !reagentFlags.negateDecreasingDuration) return false;
 				if (this.potionFlags.randomColor && !reagentFlags.randomColor) return false;
+				if (this.potionFlags.color.isPresent()) {
+					return reagentFlags.color.isPresent() && this.potionFlags.color.get().equals(reagentFlags.color.get());
+				}
 				return true;
 			}
 			
@@ -127,7 +131,8 @@ public record PotionMod(
 				Codec.BOOL.optionalFieldOf("potent_decreasing_effect", false).forGetter(PotionFlags::potentDecreasingEffect),
 				Codec.BOOL.optionalFieldOf("negate_decreasing_duration", false).forGetter(PotionFlags::negateDecreasingDuration),
 				Codec.BOOL.optionalFieldOf("random_color", false).forGetter(PotionFlags::randomColor),
-				ENTRY_CODEC.listOf().optionalFieldOf("additional_effects", List.of()).forGetter(PotionFlags::additionalEffects)
+				ENTRY_CODEC.listOf().optionalFieldOf("additional_effects", List.of()).forGetter(PotionFlags::additionalEffects),
+				Codec.INT.optionalFieldOf("color").forGetter(PotionFlags::color)
 		).apply(i, PotionFlags::new));
 		
 		public static final StreamCodec<RegistryFriendlyByteBuf, PotionFlags> PACKET_CODEC = PacketCodecHelper.tuple(
@@ -141,12 +146,15 @@ public record PotionMod(
 				ByteBufCodecs.BOOL, PotionFlags::negateDecreasingDuration,
 				ByteBufCodecs.BOOL, PotionFlags::randomColor,
 				ENTRY_PACKET_CODEC.apply(ByteBufCodecs.list()), PotionFlags::additionalEffects,
+				ByteBufCodecs.optional(ByteBufCodecs.VAR_INT), PotionFlags::color,
 				PotionFlags::new
 		);
 	}
 	
-	public int getColor(RandomSource random) {
-		return flags.randomColor ? java.awt.Color.getHSBColor(random.nextFloat(), 0.7F, 0.9F).getRGB() : flags.unidentifiable ? 0x2f2f2f : -1; // dark gray
+	public Optional<Integer> getColor(RandomSource random) {
+		return flags.randomColor
+				? Optional.of(Color.getHSBColor(random.nextFloat(), 0.7F, 0.9F).getRGB())
+				: flags.color;
 	}
 	
 	public static class Builder {
@@ -167,7 +175,7 @@ public record PotionMod(
 		public int additionalDrinkDurationTicks = 0;
 		public PotionFlags flags = new PotionFlags(
 				false, false, false, false, false, false,
-				false, false, false, List.of()
+				false, false, false, List.of(), Optional.empty()
 		);
 		
 		public Builder() {
@@ -203,7 +211,8 @@ public record PotionMod(
 					this.flags.potentDecreasingEffect | potionMod.flags.potentDecreasingEffect,
 					this.flags.negateDecreasingDuration | potionMod.flags.negateDecreasingDuration,
 					this.flags.randomColor | potionMod.flags.randomColor,
-					Stream.concat(this.flags.additionalEffects.stream(), potionMod.flags.additionalEffects.stream()).toList()
+					Stream.concat(this.flags.additionalEffects.stream(), potionMod.flags.additionalEffects.stream()).toList(),
+					SpectrumColorHelper.blendColors(this.flags.color, potionMod.flags.color)
 			);
 			return this;
 		}

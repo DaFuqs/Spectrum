@@ -27,8 +27,8 @@ public class MixinParticleManager implements ExtendedParticleManager {
 	}
 	
 	@Override
-	public void render(final PoseStack matrices, final MultiBufferSource vertexConsumers, final Camera camera, final float tickDelta) {
-		spectrum$earlyRenderingParticleContainer.render(matrices, vertexConsumers, camera, tickDelta);
+	public void renderAfterEntities(final PoseStack matrices, final MultiBufferSource vertexConsumers, final Camera camera, final float tickDelta) {
+		spectrum$earlyRenderingParticleContainer.renderAfterEntities(matrices, vertexConsumers, camera, tickDelta);
 	}
 	
 }

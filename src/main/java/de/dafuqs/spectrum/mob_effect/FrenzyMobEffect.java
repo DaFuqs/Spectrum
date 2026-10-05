@@ -6,7 +6,6 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.neoforged.neoforge.common.*;
-import javax.annotation.*;
 
 import java.util.*;
 
@@ -52,6 +51,10 @@ public class FrenzyMobEffect extends MobEffect {
 		var potency = (SleepMobEffect.getSleepScaling(entity) * (amplifier + 1) / 3) / 20;
 		if (potency > 0 && entity.getHealth() > potency) {
 			entity.hurt(SpectrumDamageTypes.sleep(entity.level(), null), potency);
+		}
+		
+		if(entity.removeEffectsCuredBy(SpectrumEffectCures.FRENZY)) {
+			entity.removeEffect(SpectrumMobEffects.FRENZY);
 		}
 		
 		return true;

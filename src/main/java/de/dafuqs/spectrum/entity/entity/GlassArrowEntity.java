@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.magic.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
@@ -18,7 +18,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 public class GlassArrowEntity extends AbstractArrow {
 	
@@ -156,10 +156,20 @@ public class GlassArrowEntity extends AbstractArrow {
 		return this.entityData.get(VARIANT);
 	}
 	
+	// Null when shot from a dispenser
+	@Override
+	public @Nullable ItemStack getWeaponItem() {
+		return super.getWeaponItem();
+	}
+	
 	@Override
 	protected void doKnockback(LivingEntity target, DamageSource source) {
 		double punch = getVariant() == GlassArrowVariant.CITRINE ? 5 : 0;
-		punch += this.level() instanceof ServerLevel serverWorld ? EnchantmentHelper.modifyKnockback(serverWorld, getWeaponItem(), target, source, 0.0F) : 0.0F;
+		if(this.level() instanceof ServerLevel serverWorld) {
+			ItemStack weapon = getWeaponItem();
+			punch += weapon != null ? EnchantmentHelper.modifyKnockback(serverWorld, weapon, target, source, 0.0F) : 0.0F;
+		}
+		
 		if (punch > 0.0) {
 			double e = Math.max(0.0, 1.0 - target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
 			Vec3 vec3d = this.getDeltaMovement().multiply(1.0, 0.0, 1.0).normalize().scale(punch * 0.6 * e);

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.crafting.dynamic;
 
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
@@ -18,7 +19,7 @@ public class ClearPotionFillableRecipe extends SingleItemCraftingRecipe {
 		if (stack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
 			stack = stack.copy();
 			stack.setCount(1);
-			inkPoweredPotionFillable.clearEffects(stack);
+			InkPoweredPotionContentsComponent.clearEffects(stack);
 		}
 		return stack;
 	}

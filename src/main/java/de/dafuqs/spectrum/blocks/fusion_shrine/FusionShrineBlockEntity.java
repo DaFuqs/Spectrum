@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.blocks.fusion_shrine;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
-import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.fluid.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
@@ -30,7 +30,7 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
 import net.neoforged.neoforge.fluids.capability.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -65,7 +65,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			if (!randomStack.isEmpty()) {
 				Optional<InkColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getInkColor(randomStack.getItem());
 				if (optionalItemColor.isPresent()) {
-					ParticleOptions particleEffect = ColoredCraftingParticleEffect.of(optionalItemColor.get().getColorInt());
+					ParticleOptions particleEffect = ColoredCraftingParticleEffect.of(optionalItemColor.get().getColorARGB());
 					
 					int particleAmount = (int) StrictMath.ceil(randomStack.getCount() / 8.0F);
 					for (int i = 0; i < particleAmount; i++) {
@@ -85,7 +85,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			Fluid fluid = this.getTank().getFluid().getFluid();
 			Optional<InkColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getInkColor(fluid);
 			if (optionalFluidColor.isPresent()) {
-				ParticleOptions particleEffect = ColoredFluidRisingParticleEffect.of(optionalFluidColor.get().getColorInt());
+				ParticleOptions particleEffect = ColoredFluidRisingParticleEffect.of(optionalFluidColor.get().getColorARGB());
 				
 				float randomX = 0.1F + level.getRandom().nextFloat() * 0.8F;
 				float randomZ = 0.1F + level.getRandom().nextFloat() * 0.8F;
@@ -103,74 +103,74 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	}
 	
 	@SuppressWarnings("unused")
-	public static void serverTick(Level world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
-		if (fusionShrineBlockEntity.upgrades == null) {
-			fusionShrineBlockEntity.calculateUpgrades();
+	public static void serverTick(Level level, BlockPos pos, BlockState state, FusionShrineBlockEntity fusionShrine) {
+		if (fusionShrine.upgrades == null) {
+			fusionShrine.calculateUpgrades(level);
 		}
 		
-		if (fusionShrineBlockEntity.inventoryChanged) {
-			var previousRecipe = fusionShrineBlockEntity.currentRecipe;
-			fusionShrineBlockEntity.currentRecipe = calculateRecipe(world, fusionShrineBlockEntity);
+		if (fusionShrine.inventoryChanged) {
+			var previousRecipe = fusionShrine.currentRecipe;
+			fusionShrine.currentRecipe = calculateRecipe(level, fusionShrine);
 			
-			if (!Objects.equals(fusionShrineBlockEntity.currentRecipe, previousRecipe)) {
-				fusionShrineBlockEntity.craftingTime = 0;
-				if (fusionShrineBlockEntity.currentRecipe == null) {
-					PlayBlockBoundSoundInstancePayload.sendCancelBlockBoundSoundInstance((ServerLevel) world, fusionShrineBlockEntity.worldPosition);
+			if (!Objects.equals(fusionShrine.currentRecipe, previousRecipe)) {
+				fusionShrine.craftingTime = 0;
+				if (fusionShrine.currentRecipe == null) {
+					PlayBlockBoundSoundInstancePayload.sendCancelBlockBoundSoundInstance((ServerLevel) level, fusionShrine.worldPosition);
 				} else {
-					fusionShrineBlockEntity.craftingTimeTotal = (int) Math.ceil(fusionShrineBlockEntity.currentRecipe.value().getCraftingTime() / fusionShrineBlockEntity.upgrades.getEffectiveValue(Upgradeable.UpgradeType.SPEED));
+					fusionShrine.craftingTimeTotal = (int) Math.ceil(fusionShrine.currentRecipe.value().getCraftingTime() / fusionShrine.upgrades.getEffectiveValue(Upgradeable.UpgradeType.SPEED));
 				}
 				
-				fusionShrineBlockEntity.updateInClientWorld();
+				fusionShrine.updateInClientWorld();
 			}
 			
-			fusionShrineBlockEntity.inventoryChanged = false;
+			fusionShrine.inventoryChanged = false;
 		}
 		
-		var recipe = fusionShrineBlockEntity.currentRecipe;
+		var recipe = fusionShrine.currentRecipe;
 		if (recipe == null) {
 			return;
 		}
 		
 		// check the crafting conditions from time to time
 		// good for performance because of the many checks
-		if (fusionShrineBlockEntity.craftingTime % 60 == 0) {
-			Player lastInteractedPlayer = fusionShrineBlockEntity.getOwnerIfOnline(world);
+		if (fusionShrine.craftingTime % 60 == 0) {
+			Player lastInteractedPlayer = fusionShrine.getOwnerIfOnline(level);
 			
-			boolean recipeConditionsMet = recipe.value().canPlayerCraft(lastInteractedPlayer) && recipe.value().areConditionMetCurrently((ServerLevel) world, blockPos);
-			boolean structureComplete = FusionShrineBlock.verifyStructure(world, blockPos, null);
-			boolean structureCompleteWithSky = FusionShrineBlock.verifySkyAccess((ServerLevel) world, blockPos) && structureComplete;
+			boolean recipeConditionsMet = recipe.value().canPlayerCraft(lastInteractedPlayer) && recipe.value().areConditionMetCurrently((ServerLevel) level, pos);
+			boolean structureComplete = FusionShrineBlock.verifyStructure(level, pos, null);
+			boolean structureCompleteWithSky = FusionShrineBlock.verifySkyAccess((ServerLevel) level, pos) && structureComplete;
 			
 			if (!recipeConditionsMet || !structureCompleteWithSky) {
 				if (!structureCompleteWithSky) {
-					fusionShrineBlockEntity.scatterContents(world);
+					fusionShrine.scatterContents(level);
 				}
-				fusionShrineBlockEntity.craftingTime = 0;
+				fusionShrine.craftingTime = 0;
 				return;
 			}
 		}
 		
 		// advance crafting
-		++fusionShrineBlockEntity.craftingTime;
+		++fusionShrine.craftingTime;
 		
-		if (fusionShrineBlockEntity.craftingTime == 1 && fusionShrineBlockEntity.craftingTimeTotal > 1) {
-			PlayBlockBoundSoundInstancePayload.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING, (ServerLevel) world, fusionShrineBlockEntity.getBlockPos(), fusionShrineBlockEntity.craftingTimeTotal - fusionShrineBlockEntity.craftingTime);
+		if (fusionShrine.craftingTime == 1 && fusionShrine.craftingTimeTotal > 1) {
+			PlayBlockBoundSoundInstancePayload.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING, (ServerLevel) level, fusionShrine.getBlockPos(), fusionShrine.craftingTimeTotal - fusionShrine.craftingTime);
 		}
 		
 		// craft when enough ticks have passed
-		FusionShrineRecipeWorldEffect effect = recipe.value().getWorldEffectForTick(fusionShrineBlockEntity.craftingTime, fusionShrineBlockEntity.craftingTimeTotal);
-		if (fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
-			craft(world, blockPos, fusionShrineBlockEntity, recipe);
-			fusionShrineBlockEntity.inventoryChanged();
+		WorldEffect effect = recipe.value().getWorldEffectForTick(fusionShrine.craftingTime, fusionShrine.craftingTimeTotal);
+		if (fusionShrine.craftingTime == fusionShrine.craftingTimeTotal) {
+			craft(level, pos, fusionShrine, recipe);
+			fusionShrine.inventoryChanged();
 		} else {
-			PlayFusionCraftingInProgressParticlePayload.sendPlayFusionCraftingInProgressParticles((ServerLevel) world, blockPos);
+			PlayFusionCraftingInProgressParticlePayload.sendPlayFusionCraftingInProgressParticles((ServerLevel) level, pos);
 		}
 		
 		// play the current crafting effect
 		if (effect != null) {
-			effect.trigger((ServerLevel) world, blockPos);
+			effect.trigger((ServerLevel) level, pos);
 		}
 		
-		fusionShrineBlockEntity.setChanged();
+		fusionShrine.setChanged();
 	}
 
 	private static @Nullable RecipeHolder<FusionShrineRecipe> calculateRecipe(Level world, FusionShrineBlockEntity fusionShrineBlockEntity) {
@@ -279,15 +279,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		setChanged();
 	}
 	
-	// UPGRADEABLE
 	@Override
-	public void resetUpgrades() {
-		this.upgrades = null;
-		this.setChanged();
-	}
-	
-	@Override
-	public void calculateUpgrades() {
+	public void calculateUpgrades(Level level) {
 		this.upgrades = Upgradeable.calculateUpgradeMods4(level, worldPosition, 2, 0, this.ownerUUID);
 		this.setChanged();
 	}

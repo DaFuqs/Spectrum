@@ -1,18 +1,13 @@
 package de.dafuqs.spectrum.compat.exclusions_lib;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
-import net.minecraft.resources.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.levelgen.blockpredicates.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
-import javax.annotation.*;
-
-import java.util.function.*;
 
 /**
  * Loaded when Exclusions Lib is *not* present

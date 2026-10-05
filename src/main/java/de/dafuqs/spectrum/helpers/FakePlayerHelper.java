@@ -6,22 +6,16 @@ import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.common.util.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public class FakePlayerHelper {
 	
-	private static final Map<UUID, FakePlayer> FAKE_PLAYER_CACHE = new Object2ObjectArrayMap<>();
-	
 	public static @Nullable Player getFakePlayer(ServerLevel level, PlayerOwned playerOwned) {
 		UUID ownerUUID = playerOwned.getOwnerUUID();
 		if(ownerUUID == null) return null;
-		
-		return FAKE_PLAYER_CACHE.computeIfAbsent(ownerUUID, uuid -> {
-			GameProfile fakeProfile = new GameProfile(ownerUUID, "[Spectrum Fake Player of " + ownerUUID + "]");
-			return new FakePlayer(level, fakeProfile);
-		});
+		return FakePlayerFactory.get(level, new GameProfile(ownerUUID, "[Spectrum Fake Player of " + ownerUUID + "]"));
 	}
 	
 }

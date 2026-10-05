@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.items.food.*;
+import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.component.*;
@@ -28,7 +28,7 @@ public class ConcealingOilsItem extends Item implements InkPoweredPotionFillable
 	
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-		if (!InkPoweredPotionFillable.getEffects(stack).isEmpty()) {
+		if (!InkPoweredPotionContentsComponent.getEffects(stack).isEmpty()) {
 			tooltip.add(Component.translatable("item.spectrum.concealing_oils.tooltip").withStyle(s -> s.applyFormat(ChatFormatting.GRAY).withItalic(true)));
 		}
 		appendPotionFillableTooltip(stack, tooltip, Component.translatable("item.spectrum.concealing_oils.when_poisoned"), true, context.tickRate());
@@ -58,9 +58,9 @@ public class ConcealingOilsItem extends Item implements InkPoweredPotionFillable
 			return false;
 		}
 		
-		InkPoweredStatusEffectInstance effect = InkPoweredPotionFillable.getEffects(oilsStack).getFirst();
+		InkPoweredMobEffectInstance effect = InkPoweredPotionContentsComponent.getEffects(oilsStack).getFirst();
 		if (InkPowered.tryDrainEnergy(player, effect.getInkCost().color(), effect.getInkCost().amount())) {
-			stackToApplyTo.set(SpectrumDataComponentTypes.CONCEALED_EFFECT, effect.getStatusEffectInstance());
+			stackToApplyTo.set(SpectrumDataComponentTypes.CONCEALED_EFFECT, effect.getFreshStatusEffectInstance());
 			stackToApplyTo.set(SpectrumDataComponentTypes.CONCEALED_EFFECT_PROFILE, new ResolvableProfile(player.getGameProfile()));
 			
 			if (!player.getAbilities().instabuild) {

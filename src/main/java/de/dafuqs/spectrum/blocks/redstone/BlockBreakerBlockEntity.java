@@ -7,19 +7,20 @@ import net.minecraft.nbt.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public class BlockBreakerBlockEntity extends BlockEntity implements PlayerOwned {
 	
-	private UUID ownerUUID;
+	private @Nullable UUID ownerUUID;
 	
 	public BlockBreakerBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.BLOCK_BREAKER.get(), pos, state);
 	}
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	

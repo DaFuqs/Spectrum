@@ -1,12 +1,9 @@
 package de.dafuqs.spectrum.render.biome_rendering;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.*;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
 
-import java.util.*;
-
-import static net.minecraft.util.Mth.lerp;
+import static net.minecraft.util.Mth.*;
 
 public record ColorGrading(float saturation, float rubedo, float colorTemperature, float threshold, float bloom) {
 	

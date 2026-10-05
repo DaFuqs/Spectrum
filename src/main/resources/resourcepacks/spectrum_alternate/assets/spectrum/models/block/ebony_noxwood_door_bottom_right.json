@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_right",
+  "textures": {
+    "bottom": "spectrum:block/ebony_noxwood_door_bottom",
+    "top": "spectrum:block/ebony_noxwood_door_top"
+  }
+}

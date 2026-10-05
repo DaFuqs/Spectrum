@@ -726,6 +726,22 @@
       }
     ]
   },
+  "music.the_conservatory": {
+    "sounds": [
+      {
+        "name": "spectrum:music/proper_motions_dreamless_lullabies",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/proper_motions_in_missing_memory_of",
+        "stream": true
+      },
+      {
+        "name": "spectrum:music/proper_motions_mutilated",
+        "stream": true
+      }
+    ]
+  },
   "music.le_fishe_au_chocolat": {
     "sounds": [
       {
@@ -767,16 +783,6 @@
     "subtitle": "spectrum.subtitles.ender_splice_binds",
     "sounds": [
       "spectrum:ender_splice_bound"
-    ]
-  },
-  "sludge_ambient": {
-    "subtitle": "spectrum.subtitles.block.sludge.ambient",
-    "sounds": [
-      "spectrum:sludge_ambient",
-      "spectrum:sludge_ambient2",
-      "spectrum:sludge_ambient3",
-      "spectrum:sludge_ambient4",
-      "spectrum:sludge_ambient5"
     ]
   },
   "liquid_crystal_ambient": {
@@ -835,7 +841,6 @@
     ]
   },
   "ost.azure": {
-    "subtitle": "spectrum.subtitles.azure",
     "sounds": [
       "spectrum:ost/azure"
     ]
@@ -2258,6 +2263,84 @@
     "subtitle": "spectrum.subtitles.entity.splinterspawn.hurt"
   },
   "entity.splinterspawn.step": {
+    "sounds": [
+      "mob/silverfish/step1",
+      "mob/silverfish/step2",
+      "mob/silverfish/step3",
+      "mob/silverfish/step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+
+  "entity.koi.ambient": {
+    "sounds": [
+      "spectrum:dummy"
+    ]
+  },
+  "entity.koi.death": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "spectrum.subtitles.entity.koi.death"
+  },
+  "entity.koi.hurt": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "spectrum.subtitles.entity.koi.hurt"
+  },
+  "entity.koi.flop": {
+    "sounds": [
+      {
+        "name": "entity/fish/flop1",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop2",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop3",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop4",
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "spectrum.subtitles.entity.koi.flop"
+  },
+
+  "entity.crawfish.ambient": {
+    "sounds": [
+      "mob/silverfish/say1",
+      "mob/silverfish/say2",
+      "mob/silverfish/say3",
+      "mob/silverfish/say4"
+    ],
+    "subtitle": "spectrum.subtitles.entity.crawfish.ambient"
+  },
+  "entity.crawfish.death": {
+    "sounds": [
+      "mob/silverfish/kill"
+    ],
+    "subtitle": "spectrum.subtitles.entity.crawfish.death"
+  },
+  "entity.crawfish.hurt": {
+    "sounds": [
+      "mob/silverfish/hit1",
+      "mob/silverfish/hit2",
+      "mob/silverfish/hit3"
+    ],
+    "subtitle": "spectrum.subtitles.entity.crawfish.hurt"
+  },
+  "entity.crawfish.step": {
     "sounds": [
       "mob/silverfish/step1",
       "mob/silverfish/step2",

@@ -28,11 +28,9 @@
         }
       },
       "predicates": {
-        "spectrum:infused_beverage": [
-          {
-            "variants": "sawblade_holly_liquor"
-          }
-        ]
+        "spectrum:infused_beverage": {
+          "variant": "sawblade_holly_liquor"
+        }
       }
     }
   },

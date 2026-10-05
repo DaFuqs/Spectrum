@@ -8,8 +8,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jetbrains.annotations.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -38,7 +37,6 @@ public class SpectrumWallSkullBlock extends WallSkullBlock {
 		return SpectrumWallSkullBlock.MOB_WALL_HEADS.get(skullType);
 	}
 	
-	@Contract(pure = true)
 	public static Collection<Block> getMobWallHeads() {
 		return SpectrumWallSkullBlock.MOB_WALL_HEADS.values();
 	}

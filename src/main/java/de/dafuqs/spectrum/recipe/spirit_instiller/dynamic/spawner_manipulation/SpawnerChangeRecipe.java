@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
@@ -14,21 +15,21 @@ import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.block.entity.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 	
-	public SpawnerChangeRecipe(IngredientStack ingredient, IngredientStack ingredient2, Optional<ResourceLocation> requiredAdvancementIdentifier) {
-		super("spawner_manipulation", false, requiredAdvancementIdentifier,
-				IngredientStack.ofItems(Items.SPAWNER), ingredient, ingredient2,
-				Items.SPAWNER.getDefaultInstance(), 200, 0, true, false);
+	public SpawnerChangeRecipe(IngredientStack ingredient, String outputLore) {
+		this(ingredient, IngredientStack.ofItems(SpectrumItems.VEGETAL.get(), 4), Optional.of(SpectrumAdvancements.SPAWNER_MANIPULATION),  outputLore);
 	}
 	
-	public SpawnerChangeRecipe(IngredientStack ingredient) {
-		super("spawner_manipulation", false, Optional.of(SpectrumAdvancements.SPAWNER_MANIPULATION),
-				IngredientStack.ofItems(Items.SPAWNER), ingredient, IngredientStack.ofItems(SpectrumItems.VEGETAL.get(), 4),
-				Items.SPAWNER.getDefaultInstance(), 200, 0, true, false);
+	public SpawnerChangeRecipe(IngredientStack ingredient, IngredientStack ingredient2, Optional<ResourceLocation> requiredAdvancement, String outputLore) {
+		super("spawner_manipulation", requiredAdvancement, Optional.empty(), List.of(),
+				IngredientStack.ofItems(Items.SPAWNER), ingredient, ingredient2,
+				LoreHelper.setLore(Items.SPAWNER.getDefaultInstance(), Component.translatable(outputLore)),
+				200, 0, true, false);
 	}
 	
 	@Override
@@ -65,10 +66,8 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 		return canCraftWithBlockEntityTag(inventory, blockEntityComponent, inventory.getItem(1), inventory.getItem(2));
 	}
 	
-	public abstract boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack);
+	public abstract boolean canCraftWithBlockEntityTag(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, @Nullable CustomData spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack);
 	
 	public abstract CompoundTag getSpawnerResultNbt(CompoundTag nbt, ItemStack firstBowlStack, ItemStack secondBowlStack, InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput);
-	
-	public abstract Component getOutputLoreText();
 	
 }

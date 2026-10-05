@@ -23,7 +23,11 @@
       {
         "effect": {
           "type": "minecraft:multiply",
-          "factor": 1.5
+          "factor": {
+            "type": "minecraft:linear",
+            "base": 1.5,
+            "per_level_above_first": 0.5
+          }
         }
       }
     ],
@@ -31,7 +35,11 @@
       {
         "effect": {
           "type": "minecraft:multiply",
-          "factor": 1.5
+          "factor": {
+            "type": "minecraft:linear",
+            "base": 1.5,
+            "per_level_above_first": 0.5
+          }
         }
       }
     ]

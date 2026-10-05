@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.attachment_types.AzureDikeAttachmentType;
+import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.progression.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;

@@ -39,17 +39,6 @@ public class TravelersBackpackCompat extends SpectrumIntegrationPacks.ModIntegra
 	}
 	
 	private void registerFluidEffects() {
-		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("sludge", SpectrumFluids.SLUDGE.get().getSource()) {
-			@Override
-			public void affectDrinker(FluidStack fluidStack, Level world, Entity entity) {
-				if (entity instanceof LivingEntity livingEntity) {
-					livingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200));
-					livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 400, 2));
-					livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600, 3));
-				}
-			}
-		});
-		
 		EffectFluidRegistry.registerFluidEffect(new SpectrumEffectFluid("liquid_crystal", SpectrumFluids.LIQUID_CRYSTAL.get().getSource()) {
 			@Override
 			public void affectDrinker(FluidStack fluidStack, Level world, Entity entity) {

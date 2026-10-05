@@ -21,8 +21,5 @@
   "result": {
     "id": "spectrum:totem_pendant"
   },
-  "required_advancement": "spectrum:unlocks/trinkets/totem_pendant",
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+  "required_advancement": "spectrum:unlocks/trinkets/totem_pendant"
 }

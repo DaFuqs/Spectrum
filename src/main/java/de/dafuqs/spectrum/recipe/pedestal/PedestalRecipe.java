@@ -19,7 +19,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -43,10 +43,10 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe<PedestalRe
 	// - Yield upgrades disabled (item multiplication)
 	protected final boolean noBenefitsFromYieldUpgrades;
 	
-	public PedestalRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier,
-						  PedestalRecipeTier tier, List<IngredientStack> inputs, Map<GemstoneColor, Integer> powderInputs, ItemStack output,
+	public PedestalRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
+	                      PedestalRecipeTier tier, List<IngredientStack> inputs, Map<GemstoneColor, Integer> powderInputs, ItemStack output,
 						  float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades) {
-		super(group, secret, requiredAdvancementIdentifier);
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults);
 		
 		this.tier = tier;
 		this.inputs = inputs;
@@ -224,7 +224,7 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe<PedestalRe
 	
 	@Override
 	public boolean canPlayerCraft(Player playerEntity) {
-		return this.tier.hasUnlocked(playerEntity) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier.orElse(null));
+		return this.tier.hasUnlocked(playerEntity) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancement.orElse(null));
 	}
 	
 	@Override

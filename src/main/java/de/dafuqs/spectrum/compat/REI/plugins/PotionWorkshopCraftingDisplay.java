@@ -13,11 +13,6 @@ public class PotionWorkshopCraftingDisplay extends PotionWorkshopRecipeDisplay {
 	protected final IngredientStack baseIngredient;
 	protected final boolean consumeBaseIngredient;
 	
-	/**
-	 * When using the REI recipe functionality
-	 *
-	 * @param recipe The recipe
-	 */
 	public PotionWorkshopCraftingDisplay(RecipeHolder<PotionWorkshopCraftingRecipe> recipe) {
 		super(recipe);
 		this.baseIngredient = recipe.value().getBaseIngredient();

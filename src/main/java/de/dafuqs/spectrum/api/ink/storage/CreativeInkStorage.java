@@ -1,0 +1,92 @@
+package de.dafuqs.spectrum.api.ink.storage;
+
+import de.dafuqs.spectrum.api.ink.color.*;
+import net.minecraft.network.chat.*;
+
+import java.util.*;
+
+public class CreativeInkStorage extends InkStorage {
+	
+	private static final Map<InkColor, Long> STORAGE = new HashMap<>() {{
+		for (InkColor inkColor : InkColors.all()) {
+			put(inkColor, Long.MAX_VALUE);
+		}
+	}};
+	
+	public CreativeInkStorage() {
+		super();
+	}
+	
+	@Override
+	public boolean accepts(InkColor color) {
+		return true;
+	}
+	
+	@Override
+	public long addEnergy(InkColor color, long amount) {
+		return 0;
+	}
+	
+	@Override
+	public long drainEnergy(InkColor color, long requestedAmount) {
+		return requestedAmount;
+	}
+	
+	@Override
+	public long getEnergy(InkColor color) {
+		return Long.MAX_VALUE;
+	}
+	
+	@Override
+	public Map<InkColor, Long> getEnergy() {
+		return STORAGE;
+	}
+	
+	@Override
+	public void setEnergy(Map<InkColor, Long> colors, long total) {
+	}
+	
+	@Override
+	public long getMaxPerColor() {
+		return Long.MAX_VALUE;
+	}
+	
+	@Override
+	public long getMaxTotal() {
+		return Long.MAX_VALUE;
+	}
+	
+	@Override
+	public long getCurrentTotal() {
+		return Long.MAX_VALUE;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return false;
+	}
+	
+	@Override
+	public boolean isFull() {
+		return true;
+	}
+	
+	@Override
+	public void fillCompletely() {
+	}
+	
+	@Override
+	public void clearContent() {
+	}
+	
+	@Override
+	public List<Component> getTooltip() {
+		return List.of(Component.translatable("item.spectrum.creative_ink_assortment.tooltip"));
+	}
+	
+	@Override
+	public long getRoom(InkColor color) {
+		return Long.MAX_VALUE;
+	}
+	
+}

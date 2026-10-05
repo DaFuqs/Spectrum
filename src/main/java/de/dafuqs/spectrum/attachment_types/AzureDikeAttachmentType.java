@@ -16,7 +16,6 @@ import net.minecraft.world.level.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.network.*;
 import net.neoforged.neoforge.network.handling.*;
-import javax.annotation.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
 
@@ -54,8 +53,6 @@ public class AzureDikeAttachmentType {
 	public static final AttachmentType<AzureDikeAttachmentType> ATTACHMENT_TYPE =
 			AttachmentType.builder(AzureDikeAttachmentType::new)
 					.serialize(CODEC)
-					.copyOnDeath()
-					.copyHandler(COPY_HANDLER)
 					.sync(STREAM_CODEC)
 					.build();
 	

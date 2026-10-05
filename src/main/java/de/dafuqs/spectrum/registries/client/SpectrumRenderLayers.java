@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.registries.client;
 
 import com.mojang.blaze3d.vertex.*;
-import de.dafuqs.spectrum.mixin.client.accessors.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.resources.*;
 

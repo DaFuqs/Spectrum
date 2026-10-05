@@ -13,7 +13,6 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.*;
-import javax.annotation.*;
 
 import java.util.*;
 

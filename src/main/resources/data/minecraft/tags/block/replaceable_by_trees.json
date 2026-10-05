@@ -4,7 +4,6 @@
     "spectrum:persistent_light",
     "spectrum:nephrite_blossom_bulb",
 
-    "spectrum:liquid_crystal",
-    "spectrum:sludge"
+    "spectrum:liquid_crystal"
   ]
 }

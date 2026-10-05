@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -10,10 +9,10 @@ import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.*;
 
 import java.util.*;
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public class MobEffectHelper {
 	
@@ -106,9 +105,9 @@ public class MobEffectHelper {
 	private static final StatusEffectBackground NIGHT_ALCHEMY = new StatusEffectBackground("night_alchemy");
 	
 	public static ResourceLocation getTextureLocation(ResourceLocation original, MobEffectInstance effect, RenderType renderType) {
-		var type = effect.getEffect();
+		Holder<MobEffect> type = effect.getEffect();
 		
-		if (type == SpectrumMobEffects.DIVINITY)
+		if (type.is(SpectrumMobEffects.DIVINITY))
 			return DIVINITY.get(renderType);
 		
 		if (type.is(SpectrumMobEffectTags.NIGHT_ALCHEMY))

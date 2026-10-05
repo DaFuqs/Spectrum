@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import static net.minecraft.world.level.block.HopperBlock.*;
 
@@ -136,7 +136,7 @@ public class EnderHopperBlock extends BaseEntityBlock {
                     player.awardStat(Stats.OPEN_ENDERCHEST);
                     PiglinAi.angerNearbyPiglins(player, true);
                 } else {
-                    player.displayClientMessage(Component.translatable("block.spectrum.ender_hopper_with_owner", enderHopperBlockEntity.getOwnerName()), true);
+                    player.displayClientMessage(Component.translatable("block.spectrum.ender_hopper.owner", enderHopperBlockEntity.getOwnerName()), true);
                 }
 
             }

@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 3200,
+  "tier": "complex",
+  "colors": {
+    "spectrum:magenta": 32,
+    "spectrum:white": 16
+  },
+  "experience": 4.0,
+  "pattern": [
+    "CMY",
+    "PDP",
+    "PLP"
+  ],
+  "key": {
+    "C": "spectrum:cyan_pigment",
+    "M": "spectrum:magenta_pigment",
+    "Y": "spectrum:yellow_pigment",
+    "L": "#minecraft:wood",
+    "D": "minecraft:green_dye",
+    "P": "#minecraft:planks"
+  },
+  "result": {
+    "id": "spectrum:daydreamer",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/blocks/daydreamer"
+}

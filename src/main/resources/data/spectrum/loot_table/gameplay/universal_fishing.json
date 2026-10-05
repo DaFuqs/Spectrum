@@ -24,23 +24,6 @@
         },
         {
           "type": "minecraft:loot_table",
-          "value": "spectrum:gameplay/fishing/sludge/fishing",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "location": {
-                  "fluid": {
-                    "fluids": "#spectrum:sludge"
-                  }
-                }
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:loot_table",
           "value": "spectrum:gameplay/fishing/liquid_crystal/fishing",
           "conditions": [
             {

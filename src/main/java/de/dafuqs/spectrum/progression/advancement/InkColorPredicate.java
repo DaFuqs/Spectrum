@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.api.energy.color.*;
-import org.jspecify.annotations.Nullable;
+import de.dafuqs.spectrum.api.ink.color.*;
 
+import javax.annotation.*;
 import java.util.*;
 
 public record InkColorPredicate(Optional<InkColor> color) {

@@ -37,7 +37,7 @@ public class GuidebookItem extends ModonomiconItem implements LoomPatternProvide
 	}
 	
 	public static void reprocessAdvancementUnlocks(ServerPlayer serverPlayerEntity) {
-		if (serverPlayerEntity.getServer() == null || SpectrumCommon.minecraftServer == null) {
+		if (serverPlayerEntity.getServer() == null) {
 			return;
 		}
 		
@@ -55,7 +55,7 @@ public class GuidebookItem extends ModonomiconItem implements LoomPatternProvide
 				for (var criterionEntry : advancement.value().criteria().entrySet()) {
 					var conditions = criterionEntry.getValue().triggerInstance();
 					if (conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
-						var advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancements().get(hasAdvancementConditions.getAdvancementIdentifier());
+						var advancementCriterionAdvancement = serverPlayerEntity.getServer().getAdvancements().get(hasAdvancementConditions.getAdvancementIdentifier());
 						if (advancementCriterionAdvancement != null) {
 							var hasAdvancementCriterionAdvancement = tracker.getOrStartProgress(advancementCriterionAdvancement);
 							if (hasAdvancementCriterionAdvancement.isDone()) {

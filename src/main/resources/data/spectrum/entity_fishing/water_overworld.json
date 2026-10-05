@@ -23,6 +23,10 @@
       "weight": 5
     },
     {
+      "entity_type": "spectrum:crawfish",
+      "weight": 5
+    },
+    {
       "entity_type": "minecraft:squid",
       "weight": 4
     },

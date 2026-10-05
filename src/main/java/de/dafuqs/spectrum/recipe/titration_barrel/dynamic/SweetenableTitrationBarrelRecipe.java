@@ -16,8 +16,9 @@ import java.util.*;
 
 public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRecipe {
 	
-	public SweetenableTitrationBarrelRecipe(String group, boolean secret, Optional<ResourceLocation> requiredAdvancementIdentifier, List<IngredientStack> inputStacks, FluidIngredient fluid, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
-		super(group, secret, requiredAdvancementIdentifier, inputStacks, fluid, outputItemStack, tappingItem, minFermentationTimeHours, Optional.of(fermentationData));
+	public SweetenableTitrationBarrelRecipe(String group, Optional<ResourceLocation> requiredAdvancement, Optional<ResourceLocation> revealSecretAdvancement, List<ItemStack> additionalResults,
+											List<IngredientStack> inputStacks, FluidIngredient fluid, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
+		super(group, requiredAdvancement, revealSecretAdvancement, additionalResults, inputStacks, fluid, outputItemStack, tappingItem, minFermentationTimeHours, Optional.of(fermentationData));
 	}
 	
 	@Override

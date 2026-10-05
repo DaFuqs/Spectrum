@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.helpers;
 
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
-import javax.annotation.*;
 
 import java.util.*;
 
@@ -53,8 +52,8 @@ public record SchedulerMap<K>(Map<K, Integer> map) implements Iterable<Map.Entry
 				if (next.getValue() >= 1) {
 					next.setValue(next.getValue() - 1);
 				} else {
-					if (key instanceof SchedulerMap.Callback) {
-						((Callback) key).trigger();
+					if (key instanceof SchedulerMap.Callback callback) {
+						callback.trigger();
 					}
 					iterator.remove();
 				}

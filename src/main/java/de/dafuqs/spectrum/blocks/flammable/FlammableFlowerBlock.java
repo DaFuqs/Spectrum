@@ -5,7 +5,6 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import javax.annotation.*;
 
 public class FlammableFlowerBlock extends FlowerBlock {
 	

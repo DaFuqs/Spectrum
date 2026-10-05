@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import de.dafuqs.spectrum.recipe.color_picker.*;
+import de.dafuqs.spectrum.recipe.crafting.*;
 import de.dafuqs.spectrum.recipe.crafting.dynamic.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
@@ -21,19 +22,19 @@ import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.*;
-import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.registries.*;
-
-import java.util.function.*;
 
 public class SpectrumRecipeSerializers {
 	
 	private static final DeferredRegister<RecipeSerializer<?>> REGISTRAR = DeferredRegister.create(Registries.RECIPE_SERIALIZER, SpectrumCommon.MOD_ID);
 	
 	// VANILLA
+	public static final RecipeSerializer<ShapedGatedCraftingRecipe> GATED_SHAPED_CRAFTING_RECIPE_SERIALIZER = register("gated_crafting_shaped", new ShapedGatedCraftingRecipe.Serializer());
+	public static final RecipeSerializer<ShapelessGatedCraftingRecipe> GATED_SHAPELESS_CRAFTING_RECIPE_SERIALIZER = register("gated_crafting_shapeless", new ShapelessGatedCraftingRecipe.Serializer());
+	
 	public static final RecipeSerializer<RepairAnythingRecipe> REPAIR_ANYTHING_SERIALIZER = register("repair_anything", new EmptyRecipeSerializer<>(RepairAnythingRecipe::new));
 	public static final RecipeSerializer<ClearInkRecipe> CLEAR_INK_SERIALIZER = register("clear_ink", new EmptyRecipeSerializer<>(ClearInkRecipe::new));
 	public static final RecipeSerializer<ClearEnderSpliceRecipe> CLEAR_ENDER_SPLICE_SERIALIZER = register("clear_ender_splice", new EmptyRecipeSerializer<>(ClearEnderSpliceRecipe::new));
@@ -64,7 +65,6 @@ public class SpectrumRecipeSerializers {
 	public static final RecipeSerializer<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING_SERIALIZER = register("potion_workshop_reacting", new PotionWorkshopReactingRecipe.Serializer());
 	
 	// Fluid converting
-	public static final FluidConvertingRecipe.Serializer<SludgeConvertingRecipe> SLUDGE_CONVERTING_SERIALIZER = register("sludge_converting", new FluidConvertingRecipe.Serializer<>(SludgeConvertingRecipe::new));
 	public static final FluidConvertingRecipe.Serializer<LiquidCrystalConvertingRecipe> LIQUID_CRYSTAL_CONVERTING_SERIALIZER = register("liquid_crystal_converting", new FluidConvertingRecipe.Serializer<>(LiquidCrystalConvertingRecipe::new));
 	public static final FluidConvertingRecipe.Serializer<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER = register("midnight_solution_converting", new FluidConvertingRecipe.Serializer<>(MidnightSolutionConvertingRecipe::new));
 	public static final FluidConvertingRecipe.Serializer<DragonrotConvertingRecipe> DRAGONROT_CONVERTING_SERIALIZER = register("dragonrot_converting", new FluidConvertingRecipe.Serializer<>(DragonrotConvertingRecipe::new));

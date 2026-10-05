@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "compacting",
+  "ingredients": [
+    {
+      "item": "spectrum:raw_bloodstone_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:raw_bloodstone",
+    "count": 9
+  },
+  "required_advancement": "spectrum:grow_bloodstone_in_crystallarieum"
+}

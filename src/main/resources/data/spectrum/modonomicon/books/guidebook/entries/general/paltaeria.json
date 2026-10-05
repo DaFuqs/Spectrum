@@ -50,14 +50,14 @@
       "text": "book.spectrum.guidebook.paltaeria.page2.text"
     },
     {
-      "type": "spectrum:pedestal_crafting",
+      "type": "modonomicon:crafting_recipe",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/carry_too_many_low_gravity_blocks"
       },
       "text": "book.spectrum.guidebook.paltaeria.page3.text",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id": "spectrum:pedestal/tier1/compacting/paltaeria_floatblock"
+      "recipe_id_1": "spectrum:crafting_table/compacting/paltaeria_floatblock"
     }
   ]
 }

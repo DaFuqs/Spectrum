@@ -22,7 +22,7 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 	
 	// clientside
 	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, RegistryFriendlyByteBuf buf) {
-		this(syncId, playerInventory, FilterConfigurable.ExtendedDataWithPos.PACKET_CODEC.decode(buf));
+		this(syncId, playerInventory, FilterConfigurable.ExtendedDataWithPos.STREAM_CODEC.decode(buf));
 	}
 	
 	protected BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, FilterConfigurable.ExtendedDataWithPos data) {
@@ -31,7 +31,7 @@ public class BlackHoleChestScreenHandler extends AbstractContainerMenu {
 	
 	// serverside
 	public BlackHoleChestScreenHandler(int syncId, Inventory playerInventory, BlackHoleChestBlockEntity blockEntity, FilterConfigurable.ExtendedDataWithPos data) {
-		super(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, syncId);
+		super(SpectrumMenuTypes.BLACK_HOLE_CHEST, syncId);
 		this.world = playerInventory.player.level();
 		this.filterInventory = FilterConfigurable.getFilterInventoryFromExtendedData(syncId, playerInventory, data.data(), this);
 		this.blockEntity = blockEntity;

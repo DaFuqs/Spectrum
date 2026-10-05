@@ -14,6 +14,14 @@
       "weight": 4
     },
     {
+      "entity_type": "spectrum:koi",
+      "weight": 100
+    },
+    {
+      "entity_type": "spectrum:crawfish",
+      "weight": 1
+    },
+    {
       "entity_type": "minecraft:allay",
       "weight": 1
     }

@@ -15,7 +15,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.*;
 import top.theillusivec4.curios.api.*;
 
 import java.util.*;
@@ -64,13 +64,6 @@ public class WhispyCircletItem extends SpectrumCurioItem {
 				preventPhantomSpawns(serverPlayer);
 			}
 		}
-	}
-	
-	@Override
-	public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation id, ItemStack stack) {
-		Multimap<Holder<Attribute>, AttributeModifier> modifiers = super.getAttributeModifiers(slotContext, id, stack);
-		modifiers.put(SpectrumEntityAttributes.MENTAL_PRESENCE, new AttributeModifier(ATTRIBUTE_ID, 0.3, AttributeModifier.Operation.ADD_VALUE));
-		return modifiers;
 	}
 	
 }

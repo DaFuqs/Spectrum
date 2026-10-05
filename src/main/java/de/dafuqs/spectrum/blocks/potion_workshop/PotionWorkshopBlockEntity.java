@@ -30,7 +30,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -400,6 +400,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements MenuProvid
 		ItemStack currentRemainder = currentStack.getCraftingRemainingItem();
 		currentStack.shrink(amount);
 		if (!currentRemainder.isEmpty()) {
+			currentRemainder.setCount(amount);
 			addToInventoryOrSpawn(potionWorkshopBlockEntity, currentRemainder);
 		}
 	}

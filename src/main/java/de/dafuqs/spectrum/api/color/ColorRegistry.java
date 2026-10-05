@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.api.color;
 
-import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.material.*;
 import net.neoforged.neoforge.event.*;
-
-import java.util.*;
 
 public abstract class ColorRegistry<T> {
 	

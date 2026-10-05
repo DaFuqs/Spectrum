@@ -25,11 +25,9 @@
         }
       },
       "predicates": {
-        "spectrum:infused_beverage": [
-          {
-            "variants": "berry_liquor"
-          }
-        ]
+        "spectrum:infused_beverage": {
+          "variant": "berry_liquor"
+        }
       }
     },
     "H": "minecraft:honey_bottle",

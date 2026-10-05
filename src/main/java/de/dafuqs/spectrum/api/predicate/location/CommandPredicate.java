@@ -9,7 +9,6 @@ import net.minecraft.network.codec.*;
 import net.minecraft.server.*;
 import net.minecraft.server.level.*;
 import net.minecraft.world.phys.*;
-import javax.annotation.*;
 
 import java.util.concurrent.atomic.*;
 

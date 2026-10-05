@@ -5,20 +5,19 @@
   "fluid": {
     "fluid": "spectrum:liquid_crystal"
   },
-  "secret": true,
+  "reveal_secret_advancement": "spectrum:lategame/no_rgb",
   "ingredients": [
     "spectrum:pure_malachite",
     "spectrum:pure_azurite",
     "spectrum:pure_bloodstone"
   ],
   "result": {
-    "id": "minecraft:raw_copper"
+    "id": "minecraft:raw_copper",
+    "components": {
+      "minecraft:enchantment_glint_override": true,
+      "minecraft:rarity": "epic"
+    }
   },
-  "start_crafting_effect": "nothing",
-  "during_crafting_effects": [
-    "nothing"
-  ],
-  "finish_crafting_effect": "nothing",
   "description": {
     "type": "translatable",
     "translate": "spectrum.recipe.fusion_shrine.explanation.no_rgb"

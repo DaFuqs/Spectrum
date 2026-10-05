@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import de.dafuqs.spectrum.api.block.*;
-import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
@@ -13,6 +12,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -66,16 +66,16 @@ public class PresentBlockEntity extends PlacedItemBlockEntity implements PlayerO
 	}
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return PresentBlockItem.getOwner(this.stack).flatMap(ResolvableProfile::id).orElse(null);
 	}
 	
-	public ResolvableProfile getOwner() {
+	public @Nullable ResolvableProfile getOwner() {
 		return PresentBlockItem.getOwner(this.stack).orElse(null);
 	}
 	
 	@Override
-	public String getOwnerName() {
+	public @Nullable String getOwnerName() {
 		return PresentBlockItem.getOwner(this.stack).flatMap(ResolvableProfile::name).orElse("???");
 	}
 	
@@ -90,7 +90,7 @@ public class PresentBlockEntity extends PlacedItemBlockEntity implements PlayerO
 		setChanged();
 	}
 	
-	public UUID getOpenerUUID() {
+	public @Nullable UUID getOpenerUUID() {
 		return this.ownerUUID;
 	}
 	

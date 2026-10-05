@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "pastel_network",
+  "time": 80,
+  "tier": "advanced",
+  "colors": {
+    "spectrum:black": 1
+  },
+  "experience": 1.0,
+  "pattern": [
+    " A ",
+    "ASA",
+    "YXY"
+  ],
+  "key": {
+    "S": "spectrum:onyx_shard",
+    "X": "spectrum:polished_basalt",
+    "Y": "spectrum:polished_calcite",
+    "A": "spectrum:raw_azurite"
+  },
+  "result": {
+    "id": "spectrum:gather_node",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/pastel_network/item"
+}

@@ -12,11 +12,11 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.shapes.*;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
-public class PyriteRipperBlock extends SpectrumFacingBlock {
+public class PyriteRipperBlock extends SpectrumDirectionalBlock {
 	
 	public static final MapCodec<PyriteRipperBlock> CODEC = simpleCodec(PyriteRipperBlock::new);
 	

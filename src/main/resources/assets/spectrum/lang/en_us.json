@@ -6173,6 +6173,12 @@
   "block.spectrum.blue_symbolic_calcite": "Blue Symbolic Calcite",
   "block.spectrum.purple_symbolic_calcite": "Purple Symbolic Calcite",
   "block.spectrum.magenta_symbolic_calcite": "Magenta Symbolic Calcite",
-  "block.spectrum.pink_symbolic_calcite": "Pink Symbolic Calcite"
+  "block.spectrum.pink_symbolic_calcite": "Pink Symbolic Calcite",
+
+  "book.spectrum.guidebook.symbolics.name": "Symbolic Blocks",
+  "book.spectrum.guidebook.symbolics.page0.text": "I was watching a bee when I got inspiration for an art project! The colors of my [Pigments](entry://general/pigment) are fairly striking, and show up well on both [#](bb00bb)Basalt[#]() and [#](bb00bb)Calcite[#](). \\\n I flattened the surface of some standard Polished blocks and painted what came naturally. The result is these colorful symbols. \\\n\\\n...do they mean something?",
+  "book.spectrum.guidebook.symbolics.page1.title": "So many options!",
+  "book.spectrum.guidebook.symbolics.page2.text": "There's a lot of pigment in one jar. I can get four blocks from each one!",
+  "book.spectrum.guidebook.symbolics.page3.text": "The gemstone powder helps the colors pop more."
 
 }

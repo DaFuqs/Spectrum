@@ -6090,22 +6090,6 @@
   "entity.spectrum.monstrosity.text17": "MY HOME",
   "entity.spectrum.monstrosity.text18": "DONT PUSH",
 
-  "______done_until_here": "TODO:",
-  "advancements.spectrum.craft_energy_collector.title": "Roger That",
-  "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from a geodes",
-  "advancements.spectrum.place_energy_collector.title": "A new Form of Energy",
-  "advancements.spectrum.place_energy_collector.description": "Place the collector in the center of a geode and watch it work",
-  "advancements.spectrum.unused2.title": "Having a Blast",
-  "advancements.spectrum.meet_paintlich.title": "Marked by Time",
-  "advancements.spectrum.meet_paintlich.description": "Meet a Certain Someone",
-  "advancements.spectrum.defeat_paintlich.title": "Crossed Paintbrushes",
-  "advancements.spectrum.defeat_paintlich.description": "Win a light-hearted discussion with an Aging Celebrity",
-
-  "book.spectrum.guidebook.mysterious_locket.page4.title": "The Locket's Contents",
-  "book.spectrum.guidebook.mysterious_locket.page4.text": "There also was a little note inside... who could it have belonged to?",
-  "book.spectrum.guidebook.mysterious_locket.page5.text": "Now that I understand the Dreiton language, it is easy for me to decipher the inscription on the back:\\\n\\\n*Don't be silly, Asteras – the moon cannot shine, it can only reflect the light of the sun.*",
-  "book.spectrum.guidebook.mysterious_locket.page5.title": "The unidentified Note",
-
   "block.spectrum.tinting_station": "Tinting Station",
   "block.spectrum.tinting_station.tooltip": "Fills Ink equipment and recolors items that have color variants",
   "block.spectrum.twill": "Twill",
@@ -6139,5 +6123,21 @@
   "block.spectrum.omni_storage_node.tooltip": "Serves as storage for Sender and Gather Nodes",
   "block.spectrum.omni_gather_node": "§8Pastel Omni Gather Node",
   "block.spectrum.omni_gather_node.tooltip": "Gathers items and fluids from Sender, Provider and Storage Nodes",
-  "block.spectrum.omni_pastel_network_nodes.tooltip.placing": "Place against things. It will probably work."
+  "block.spectrum.omni_pastel_network_nodes.tooltip.placing": "Place against things. It will probably work.",
+
+  "______done_until_here": "TODO:",
+  "advancements.spectrum.craft_energy_collector.title": "Roger That",
+  "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from a geodes",
+  "advancements.spectrum.place_energy_collector.title": "A new Form of Energy",
+  "advancements.spectrum.place_energy_collector.description": "Place the collector in the center of a geode and watch it work",
+  "advancements.spectrum.unused2.title": "Having a Blast",
+  "advancements.spectrum.meet_paintlich.title": "Marked by Time",
+  "advancements.spectrum.meet_paintlich.description": "Meet a Certain Someone",
+  "advancements.spectrum.defeat_paintlich.title": "Crossed Paintbrushes",
+  "advancements.spectrum.defeat_paintlich.description": "Win a light-hearted discussion with an Aging Celebrity",
+
+  "book.spectrum.guidebook.mysterious_locket.page4.title": "The Locket's Contents",
+  "book.spectrum.guidebook.mysterious_locket.page4.text": "There also was a little note inside... who could it have belonged to?",
+  "book.spectrum.guidebook.mysterious_locket.page5.text": "Now that I understand the Dreiton language, it is easy for me to decipher the inscription on the back:\\\n\\\n*Don't be silly, Asteras – the moon cannot shine, it can only reflect the light of the sun.*",
+  "book.spectrum.guidebook.mysterious_locket.page5.title": "The unidentified Note"
 }

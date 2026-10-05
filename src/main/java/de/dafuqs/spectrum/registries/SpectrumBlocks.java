@@ -313,7 +313,8 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> PYRITE_STACK = register(simple(blockWithItem("pyrite_stack", () -> new Block(BlockBehaviour.Properties.ofFullCopy(PYRITE.get())))));
 	public static final DeferredBlock<Block> PYRITE_PANELING = register(singleton(blockWithItem("pyrite_paneling", () -> new Block(BlockBehaviour.Properties.ofFullCopy(PYRITE.get()))), SpectrumTexturedModelProviders.cubeColumn(b -> b, "", b -> PYRITE_PLATING.get(), "")));
 	public static final DeferredBlock<Block> PYRITE_VENT = register(singleton(blockWithItem("pyrite_vent", () -> new Block(BlockBehaviour.Properties.ofFullCopy(PYRITE.get()))), SpectrumTexturedModelProviders.cubeColumn(b -> b, "", b -> PYRITE_PLATING.get(), "")));
-	public static final DeferredBlock<PyriteRipperBlock> PYRITE_RIPPER = register(blockWithItem("pyrite_ripper", () -> new PyriteRipperBlock(BlockBehaviour.Properties.ofFullCopy(PYRITE.get()).noOcclusion().isValidSpawn(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never))).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.properties(BlockStateProperties.FACING, PyriteRipperBlock.MIRRORED)
+	public static final DeferredBlock<PyriteRipperBlock> PYRITE_RIPPER = register(blockWithItem("pyrite_ripper", () -> new PyriteRipperBlock(BlockBehaviour.Properties.ofFullCopy(PYRITE.get()).noOcclusion().isValidSpawn(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never)))
+			.withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.properties(BlockStateProperties.FACING, PyriteRipperBlock.MIRRORED)
 			.select(Direction.EAST, false, SpectrumModelHelper.createModelVariant(block, "").with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
 			.select(Direction.NORTH, false, SpectrumModelHelper.createModelVariant(block, "").with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
 			.select(Direction.SOUTH, false, SpectrumModelHelper.createModelVariant(block, "").with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
@@ -487,29 +488,29 @@ public class SpectrumBlocks {
 		return BlockBehaviour.Properties.ofFullCopy(GLASS).sound(soundGroup).mapColor(mapColor);
 	}
 	
-	public static final DeferredBlock<Block> TOPAZ_GLASS = register(simple(blockWithItem("topaz_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.TOPAZ_CLUSTER, MapColor.COLOR_CYAN), BuiltinGemstoneColor.CYAN), InkColors.CYAN)));
-	public static final DeferredBlock<Block> AMETHYST_GLASS = register(simple(blockWithItem("amethyst_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SoundType.AMETHYST_CLUSTER, MapColor.COLOR_MAGENTA), BuiltinGemstoneColor.MAGENTA), InkColors.MAGENTA)));
-	public static final DeferredBlock<Block> CITRINE_GLASS = register(simple(blockWithItem("citrine_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW), BuiltinGemstoneColor.YELLOW), InkColors.YELLOW)));
-	public static final DeferredBlock<Block> ONYX_GLASS = register(simple(blockWithItem("onyx_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK), BuiltinGemstoneColor.BLACK), InkColors.BLACK)));
-	public static final DeferredBlock<Block> MOONSTONE_GLASS = register(simple(blockWithItem("moonstone_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW), BuiltinGemstoneColor.WHITE), InkColors.WHITE)));
-	public static final DeferredBlock<Block> CHISELED_TOPAZ_GLASS = register(simple(blockWithItem("chiseled_topaz_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.TOPAZ_CLUSTER, MapColor.COLOR_CYAN), BuiltinGemstoneColor.CYAN), InkColors.CYAN)));
-	public static final DeferredBlock<Block> CHISELED_AMETHYST_GLASS = register(simple(blockWithItem("chiseled_amethyst_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SoundType.AMETHYST_CLUSTER, MapColor.COLOR_MAGENTA), BuiltinGemstoneColor.MAGENTA), InkColors.MAGENTA)));
-	public static final DeferredBlock<Block> CHISELED_CITRINE_GLASS = register(simple(blockWithItem("chiseled_citrine_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW), BuiltinGemstoneColor.YELLOW), InkColors.YELLOW)));
-	public static final DeferredBlock<Block> CHISELED_ONYX_GLASS = register(simple(blockWithItem("chiseled_onyx_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK), BuiltinGemstoneColor.BLACK), InkColors.BLACK)));
-	public static final DeferredBlock<Block> CHISELED_MOONSTONE_GLASS = register(simple(blockWithItem("chiseled_moonstone_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW), BuiltinGemstoneColor.WHITE), InkColors.WHITE)));
-	public static final DeferredBlock<Block> RADIANT_GLASS = register(simple(blockWithItem("radiant_glass", () -> new RadiantGlassBlock(gemstoneGlass(SoundType.GLASS, MapColor.SAND).lightLevel(value -> 12)), InkColors.WHITE)));
+	public static final DeferredBlock<GemstoneGlassBlock> TOPAZ_GLASS = register(blockWithItem("topaz_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.TOPAZ_CLUSTER, MapColor.COLOR_CYAN), BuiltinGemstoneColor.CYAN)));
+	public static final DeferredBlock<Block> AMETHYST_GLASS = register(blockWithItem("amethyst_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SoundType.AMETHYST_CLUSTER, MapColor.COLOR_MAGENTA), BuiltinGemstoneColor.MAGENTA)));
+	public static final DeferredBlock<Block> CITRINE_GLASS = register(blockWithItem("citrine_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW), BuiltinGemstoneColor.YELLOW)));
+	public static final DeferredBlock<Block> ONYX_GLASS = register(blockWithItem("onyx_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK), BuiltinGemstoneColor.BLACK)));
+	public static final DeferredBlock<Block> MOONSTONE_GLASS = register(blockWithItem("moonstone_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW), BuiltinGemstoneColor.WHITE)));
+	public static final DeferredBlock<Block> CHISELED_TOPAZ_GLASS = register(blockWithItem("chiseled_topaz_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.TOPAZ_CLUSTER, MapColor.COLOR_CYAN), BuiltinGemstoneColor.CYAN)));
+	public static final DeferredBlock<Block> CHISELED_AMETHYST_GLASS = register(blockWithItem("chiseled_amethyst_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SoundType.AMETHYST_CLUSTER, MapColor.COLOR_MAGENTA), BuiltinGemstoneColor.MAGENTA)));
+	public static final DeferredBlock<Block> CHISELED_CITRINE_GLASS = register(blockWithItem("chiseled_citrine_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW), BuiltinGemstoneColor.YELLOW)));
+	public static final DeferredBlock<Block> CHISELED_ONYX_GLASS = register(blockWithItem("chiseled_onyx_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK), BuiltinGemstoneColor.BLACK)));
+	public static final DeferredBlock<Block> CHISELED_MOONSTONE_GLASS = register(blockWithItem("chiseled_moonstone_glass", () -> new GemstoneGlassBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW), BuiltinGemstoneColor.WHITE)));
+	public static final DeferredBlock<Block> RADIANT_GLASS = register(blockWithItem("radiant_glass", () -> new RadiantGlassBlock(gemstoneGlass(SoundType.GLASS, MapColor.SAND).lightLevel(value -> 12))));
 	
-	public static final DeferredBlock<Block> TOPAZ_GLASS_PANE = register(blockWithItem("topaz_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.TOPAZ_CLUSTER, MapColor.COLOR_CYAN)), InkColors.CYAN));
-	public static final DeferredBlock<Block> AMETHYST_GLASS_PANE = register(blockWithItem("amethyst_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SoundType.AMETHYST_CLUSTER, MapColor.COLOR_MAGENTA)), InkColors.MAGENTA));
-	public static final DeferredBlock<Block> CITRINE_GLASS_PANE = register(blockWithItem("citrine_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW)), InkColors.YELLOW));
-	public static final DeferredBlock<Block> ONYX_GLASS_PANE = register(blockWithItem("onyx_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK)), InkColors.BLACK));
-	public static final DeferredBlock<Block> MOONSTONE_GLASS_PANE = register(blockWithItem("moonstone_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW)), InkColors.WHITE));
-	public static final DeferredBlock<Block> CHISELED_TOPAZ_GLASS_PANE = register(blockWithItem("chiseled_topaz_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.TOPAZ_CLUSTER, MapColor.COLOR_CYAN)), InkColors.CYAN));
-	public static final DeferredBlock<Block> CHISELED_AMETHYST_GLASS_PANE = register(blockWithItem("chiseled_amethyst_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SoundType.AMETHYST_CLUSTER, MapColor.COLOR_MAGENTA)), InkColors.MAGENTA));
-	public static final DeferredBlock<Block> CHISELED_CITRINE_GLASS_PANE = register(blockWithItem("chiseled_citrine_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW)), InkColors.YELLOW));
-	public static final DeferredBlock<Block> CHISELED_ONYX_GLASS_PANE = register(blockWithItem("chiseled_onyx_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK)), InkColors.BLACK));
-	public static final DeferredBlock<Block> CHISELED_MOONSTONE_GLASS_PANE = register(blockWithItem("chiseled_moonstone_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW)), InkColors.WHITE));
-	public static final DeferredBlock<Block> RADIANT_GLASS_PANE = register(blockWithItem("radiant_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SoundType.GLASS, MapColor.SAND).lightLevel(value -> 12)), InkColors.WHITE));
+	public static final DeferredBlock<Block> TOPAZ_GLASS_PANE = register(blockWithItem("topaz_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.TOPAZ_CLUSTER, MapColor.COLOR_CYAN))));
+	public static final DeferredBlock<Block> AMETHYST_GLASS_PANE = register(blockWithItem("amethyst_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SoundType.AMETHYST_CLUSTER, MapColor.COLOR_MAGENTA))));
+	public static final DeferredBlock<Block> CITRINE_GLASS_PANE = register(blockWithItem("citrine_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW))));
+	public static final DeferredBlock<Block> ONYX_GLASS_PANE = register(blockWithItem("onyx_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK))));
+	public static final DeferredBlock<Block> MOONSTONE_GLASS_PANE = register(blockWithItem("moonstone_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW))));
+	public static final DeferredBlock<Block> CHISELED_TOPAZ_GLASS_PANE = register(blockWithItem("chiseled_topaz_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.TOPAZ_CLUSTER, MapColor.COLOR_CYAN))));
+	public static final DeferredBlock<Block> CHISELED_AMETHYST_GLASS_PANE = register(blockWithItem("chiseled_amethyst_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SoundType.AMETHYST_CLUSTER, MapColor.COLOR_MAGENTA))));
+	public static final DeferredBlock<Block> CHISELED_CITRINE_GLASS_PANE = register(blockWithItem("chiseled_citrine_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.CITRINE_CLUSTER, MapColor.COLOR_YELLOW))));
+	public static final DeferredBlock<Block> CHISELED_ONYX_GLASS_PANE = register(blockWithItem("chiseled_onyx_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.ONYX_CLUSTER, MapColor.COLOR_BLACK))));
+	public static final DeferredBlock<Block> CHISELED_MOONSTONE_GLASS_PANE = register(blockWithItem("chiseled_moonstone_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SpectrumSoundTypes.MOONSTONE_CLUSTER, MapColor.SNOW))));
+	public static final DeferredBlock<Block> RADIANT_GLASS_PANE = register(blockWithItem("radiant_glass_pane", () -> new IronBarsBlock(gemstoneGlass(SoundType.GLASS, MapColor.SAND).lightLevel(value -> 12))));
 	
 	public static final DeferredBlock<Block> ETHEREAL_PLATFORM = register(simple(blockWithItem("ethereal_platform", () -> new EtherealPlatformBlock(gemstoneGlass(SoundType.AMETHYST, MapColor.NONE).pushReaction(PushReaction.NORMAL)))));
 	public static final DeferredBlock<Block> UNIVERSE_SPYHOLE = register(simple(blockWithItem("universe_spyhole", () -> new TransparentBlock(settings(MapColor.NONE, SpectrumSoundTypes.CITRINE_BLOCK, 1.5F).requiresCorrectToolForDrops().isViewBlocking(SpectrumBlocks::never)))));
@@ -629,7 +630,7 @@ public class SpectrumBlocks {
 	}
 	
 	public static DeferredBlock<ColoredFenceGateBlock> registerColoredFenceGate(String name, DeferredBlock<ColoredPlankBlock> baseBlock, WoodType woodType, InkColor color) {
-		return register(blockWithItem(name, () -> new ColoredFenceGateBlock(copyWithMapColor(OAK_FENCE_GATE, baseBlock.get().defaultMapColor()), woodType, color), color));
+		return register(blockWithItem(name, () -> new ColoredFenceGateBlock(copyWithMapColor(OAK_FENCE_GATE, baseBlock.get().defaultMapColor()), woodType, color)));
 	}
 	
 	public static DeferredBlock<ColoredWoodenButtonBlock> registerColoredButton(String name, DeferredBlock<ColoredPlankBlock> baseBlock, InkColor color) {
@@ -1470,7 +1471,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<PottedColoredSaplingBlock> POTTED_YELLOW_SAPLING = registerPottedColoredSapling("potted_yellow_sapling", YELLOW_SAPLING);
 	
 	public static DeferredBlock<ColoredStrippedLogBlock> registerColoredStrippedLog(String name, InkColor color) {
-		return register(log(blockWithItem(name, () -> new ColoredStrippedLogBlock(copyWithMapColor(STRIPPED_OAK_LOG, color.getMapColor()), color), color)));
+		return register(log(blockWithItem(name, () -> new ColoredStrippedLogBlock(copyWithMapColor(STRIPPED_OAK_LOG, color.getMapColor()), color))));
 	}
 	
 	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_BLACK_LOG = registerColoredStrippedLog("stripped_black_log", InkColors.BLACK);
@@ -1490,28 +1491,28 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_WHITE_LOG = registerColoredStrippedLog("stripped_white_log", InkColors.WHITE);
 	public static final DeferredBlock<ColoredStrippedLogBlock> STRIPPED_YELLOW_LOG = registerColoredStrippedLog("stripped_yellow_log", InkColors.YELLOW);
 	
-	public static DeferredBlock<ColoredStrippedWoodBlock> registerColoredStrippedWood(String name, DeferredBlock<ColoredStrippedSpectrumLogBlock> logBlock, InkColor color) {
+	public static DeferredBlock<ColoredStrippedWoodBlock> registerColoredStrippedWood(String name, DeferredBlock<ColoredStrippedLogBlock> logBlock, InkColor color) {
 		return register(blockWithItem(name, () -> new ColoredStrippedWoodBlock(copyWithMapColor(STRIPPED_OAK_WOOD, logBlock.get().defaultMapColor()), color)));
 	}
 	
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_BLACK_WOOD = registerColoredStrippedWood("stripped_black_wood", InkColors.BLACK);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_BLUE_WOOD = registerColoredStrippedWood("stripped_blue_wood", InkColors.BLUE);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_BROWN_WOOD = registerColoredStrippedWood("stripped_brown_wood", InkColors.BROWN);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_CYAN_WOOD = registerColoredStrippedWood("stripped_cyan_wood", InkColors.CYAN);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_GRAY_WOOD = registerColoredStrippedWood("stripped_gray_wood", InkColors.GRAY);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_GREEN_WOOD = registerColoredStrippedWood("stripped_green_wood", InkColors.GREEN);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_LIGHT_BLUE_WOOD = registerColoredStrippedWood("stripped_light_blue_wood", InkColors.LIGHT_BLUE);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_LIGHT_GRAY_WOOD = registerColoredStrippedWood("stripped_light_gray_wood", InkColors.LIGHT_GRAY);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_LIME_WOOD = registerColoredStrippedWood("stripped_lime_wood", InkColors.LIME);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_MAGENTA_WOOD = registerColoredStrippedWood("stripped_magenta_wood", InkColors.MAGENTA);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_ORANGE_WOOD = registerColoredStrippedWood("stripped_orange_wood", InkColors.ORANGE);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_PINK_WOOD = registerColoredStrippedWood("stripped_pink_wood", InkColors.PINK);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_PURPLE_WOOD = registerColoredStrippedWood("stripped_purple_wood", InkColors.PURPLE);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_RED_WOOD = registerColoredStrippedWood("stripped_red_wood", InkColors.RED);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_WHITE_WOOD = registerColoredStrippedWood("stripped_white_wood", InkColors.WHITE);
-	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_YELLOW_WOOD = registerColoredStrippedWood("stripped_yellow_wood", InkColors.YELLOW);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_BLACK_WOOD = registerColoredStrippedWood("stripped_black_wood", STRIPPED_BLACK_LOG, InkColors.BLACK);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_BLUE_WOOD = registerColoredStrippedWood("stripped_blue_wood", STRIPPED_BLUE_LOG, InkColors.BLUE);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_BROWN_WOOD = registerColoredStrippedWood("stripped_brown_wood", STRIPPED_BROWN_LOG, InkColors.BROWN);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_CYAN_WOOD = registerColoredStrippedWood("stripped_cyan_wood", STRIPPED_CYAN_LOG, InkColors.CYAN);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_GRAY_WOOD = registerColoredStrippedWood("stripped_gray_wood", STRIPPED_GRAY_LOG, InkColors.GRAY);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_GREEN_WOOD = registerColoredStrippedWood("stripped_green_wood", STRIPPED_GREEN_LOG, InkColors.GREEN);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_LIGHT_BLUE_WOOD = registerColoredStrippedWood("stripped_light_blue_wood", STRIPPED_LIGHT_BLUE_LOG, InkColors.LIGHT_BLUE);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_LIGHT_GRAY_WOOD = registerColoredStrippedWood("stripped_light_gray_wood", STRIPPED_LIGHT_GRAY_LOG, InkColors.LIGHT_GRAY);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_LIME_WOOD = registerColoredStrippedWood("stripped_lime_wood", STRIPPED_LIME_LOG, InkColors.LIME);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_MAGENTA_WOOD = registerColoredStrippedWood("stripped_magenta_wood", STRIPPED_MAGENTA_LOG, InkColors.MAGENTA);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_ORANGE_WOOD = registerColoredStrippedWood("stripped_orange_wood", STRIPPED_ORANGE_LOG, InkColors.ORANGE);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_PINK_WOOD = registerColoredStrippedWood("stripped_pink_wood", STRIPPED_PINK_LOG, InkColors.PINK);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_PURPLE_WOOD = registerColoredStrippedWood("stripped_purple_wood", STRIPPED_PURPLE_LOG, InkColors.PURPLE);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_RED_WOOD = registerColoredStrippedWood("stripped_red_wood", STRIPPED_RED_LOG, InkColors.RED);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_WHITE_WOOD = registerColoredStrippedWood("stripped_white_wood", STRIPPED_WHITE_LOG, InkColors.WHITE);
+	public static final DeferredBlock<ColoredStrippedWoodBlock> STRIPPED_YELLOW_WOOD = registerColoredStrippedWood("stripped_yellow_wood", STRIPPED_YELLOW_LOG, InkColors.YELLOW);
 	
-	public static DeferredBlock<ColoredLogBlock> registerColoredLog(String name, Supplier<? extends ColoredStrippedSpectrumLogBlock> strippedBlock, InkColor color, ResourceKey<LootTable> strippingLootTableKey) {
+	public static DeferredBlock<ColoredLogBlock> registerColoredLog(String name, Supplier<? extends ColoredStrippedLogBlock> strippedBlock, InkColor color, ResourceKey<LootTable> strippingLootTableKey) {
 		return register(log(blockWithItem(name, () -> new ColoredLogBlock(copyWithMapColor(OAK_LOG, color.getMapColor()), strippedBlock, color, strippingLootTableKey))));
 	}
 	
@@ -1532,29 +1533,29 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredLogBlock> WHITE_LOG = registerColoredLog("white_log", STRIPPED_WHITE_LOG, InkColors.WHITE, SpectrumLootTableKeys.WHITE_LOG_STRIPPING);
 	public static final DeferredBlock<ColoredLogBlock> YELLOW_LOG = registerColoredLog("yellow_log", STRIPPED_YELLOW_LOG, InkColors.YELLOW, SpectrumLootTableKeys.YELLOW_LOG_STRIPPING);
 	
-	public static DeferredBlock<ColoredWoodBlock> registerColoredWood(String name, Supplier<? extends ColoredStrippedWoodBlock> strippedBlock, InkColor color) {
-		return register(blockWithItem(name, () -> new ColoredWoodBlock(copyWithMapColor(OAK_WOOD, color.getMapColor()), strippedBlock, color), color));
+	public static DeferredBlock<ColoredWoodBlock> registerColoredWood(String name, Supplier<? extends ColoredStrippedWoodBlock> strippedBlock, DeferredBlock<ColoredLogBlock> logBlock, InkColor color, ResourceKey<LootTable> strippingLootTableKey) {
+		return register(blockWithItem(name, () -> new ColoredWoodBlock(copyWithMapColor(OAK_WOOD, logBlock.get().defaultMapColor()), strippedBlock, color, strippingLootTableKey)));
 	}
 	
-	public static final DeferredBlock<ColoredWoodBlock> BLACK_WOOD = registerColoredWood("black_wood", STRIPPED_BLACK_WOOD, InkColors.BLACK);
-	public static final DeferredBlock<ColoredWoodBlock> BLUE_WOOD = registerColoredWood("blue_wood", STRIPPED_BLUE_WOOD, InkColors.BLUE);
-	public static final DeferredBlock<ColoredWoodBlock> BROWN_WOOD = registerColoredWood("brown_wood", STRIPPED_BROWN_WOOD, InkColors.BROWN);
-	public static final DeferredBlock<ColoredWoodBlock> CYAN_WOOD = registerColoredWood("cyan_wood", STRIPPED_CYAN_WOOD, InkColors.CYAN);
-	public static final DeferredBlock<ColoredWoodBlock> GRAY_WOOD = registerColoredWood("gray_wood", STRIPPED_GRAY_WOOD, InkColors.GRAY);
-	public static final DeferredBlock<ColoredWoodBlock> GREEN_WOOD = registerColoredWood("green_wood", STRIPPED_GREEN_WOOD, InkColors.GREEN);
-	public static final DeferredBlock<ColoredWoodBlock> LIGHT_BLUE_WOOD = registerColoredWood("light_blue_wood", STRIPPED_LIGHT_BLUE_WOOD, InkColors.LIGHT_BLUE);
-	public static final DeferredBlock<ColoredWoodBlock> LIGHT_GRAY_WOOD = registerColoredWood("light_gray_wood", STRIPPED_LIGHT_GRAY_WOOD, InkColors.LIGHT_GRAY);
-	public static final DeferredBlock<ColoredWoodBlock> LIME_WOOD = registerColoredWood("lime_wood", STRIPPED_LIME_WOOD, InkColors.LIME);
-	public static final DeferredBlock<ColoredWoodBlock> MAGENTA_WOOD = registerColoredWood("magenta_wood", STRIPPED_MAGENTA_WOOD, InkColors.MAGENTA);
-	public static final DeferredBlock<ColoredWoodBlock> ORANGE_WOOD = registerColoredWood("orange_wood", STRIPPED_ORANGE_WOOD, InkColors.ORANGE);
-	public static final DeferredBlock<ColoredWoodBlock> PINK_WOOD = registerColoredWood("pink_wood", STRIPPED_PINK_WOOD, InkColors.PINK);
-	public static final DeferredBlock<ColoredWoodBlock> PURPLE_WOOD = registerColoredWood("purple_wood", STRIPPED_PURPLE_WOOD, InkColors.PURPLE);
-	public static final DeferredBlock<ColoredWoodBlock> RED_WOOD = registerColoredWood("red_wood", STRIPPED_RED_WOOD, InkColors.RED);
-	public static final DeferredBlock<ColoredWoodBlock> WHITE_WOOD = registerColoredWood("white_wood", STRIPPED_WHITE_WOOD, InkColors.WHITE);
-	public static final DeferredBlock<ColoredWoodBlock> YELLOW_WOOD = registerColoredWood("yellow_wood", STRIPPED_YELLOW_WOOD, InkColors.YELLOW);
+	public static final DeferredBlock<ColoredWoodBlock> BLACK_WOOD = registerColoredWood("black_wood", STRIPPED_BLACK_WOOD, BLACK_LOG, InkColors.BLACK, SpectrumLootTableKeys.BLACK_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> BLUE_WOOD = registerColoredWood("blue_wood", STRIPPED_BLUE_WOOD, BLUE_LOG, InkColors.BLUE, SpectrumLootTableKeys.BLUE_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> BROWN_WOOD = registerColoredWood("brown_wood", STRIPPED_BROWN_WOOD, BROWN_LOG, InkColors.BROWN, SpectrumLootTableKeys.BROWN_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> CYAN_WOOD = registerColoredWood("cyan_wood", STRIPPED_CYAN_WOOD, CYAN_LOG, InkColors.CYAN, SpectrumLootTableKeys.CYAN_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> GRAY_WOOD = registerColoredWood("gray_wood", STRIPPED_GRAY_WOOD, GRAY_LOG, InkColors.GRAY, SpectrumLootTableKeys.GRAY_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> GREEN_WOOD = registerColoredWood("green_wood", STRIPPED_GREEN_WOOD, GREEN_LOG, InkColors.GREEN, SpectrumLootTableKeys.GREEN_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> LIGHT_BLUE_WOOD = registerColoredWood("light_blue_wood", STRIPPED_LIGHT_BLUE_WOOD, LIGHT_BLUE_LOG, InkColors.LIGHT_BLUE, SpectrumLootTableKeys.LIGHT_BLUE_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> LIGHT_GRAY_WOOD = registerColoredWood("light_gray_wood", STRIPPED_LIGHT_GRAY_WOOD, LIGHT_GRAY_LOG, InkColors.LIGHT_GRAY, SpectrumLootTableKeys.LIGHT_GRAY_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> LIME_WOOD = registerColoredWood("lime_wood", STRIPPED_LIME_WOOD, LIME_LOG, InkColors.LIME, SpectrumLootTableKeys.LIME_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> MAGENTA_WOOD = registerColoredWood("magenta_wood", STRIPPED_MAGENTA_WOOD, MAGENTA_LOG, InkColors.MAGENTA, SpectrumLootTableKeys.MAGENTA_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> ORANGE_WOOD = registerColoredWood("orange_wood", STRIPPED_ORANGE_WOOD, ORANGE_LOG, InkColors.ORANGE, SpectrumLootTableKeys.ORANGE_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> PINK_WOOD = registerColoredWood("pink_wood", STRIPPED_PINK_WOOD, PINK_LOG, InkColors.PINK, SpectrumLootTableKeys.PINK_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> PURPLE_WOOD = registerColoredWood("purple_wood", STRIPPED_PURPLE_WOOD, PURPLE_LOG, InkColors.PURPLE, SpectrumLootTableKeys.PURPLE_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> RED_WOOD = registerColoredWood("red_wood", STRIPPED_RED_WOOD, RED_LOG, InkColors.RED, SpectrumLootTableKeys.RED_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> WHITE_WOOD = registerColoredWood("white_wood", STRIPPED_WHITE_WOOD, WHITE_LOG, InkColors.WHITE, SpectrumLootTableKeys.WHITE_LOG_STRIPPING);
+	public static final DeferredBlock<ColoredWoodBlock> YELLOW_WOOD = registerColoredWood("yellow_wood", STRIPPED_YELLOW_WOOD, YELLOW_LOG, InkColors.YELLOW, SpectrumLootTableKeys.YELLOW_LOG_STRIPPING);
 	
 	public static DeferredBlock<TrapDoorBlock> registerColoredTrapdoor(String name, InkColor color) {
-		return register(blockWithItem(name, () -> new TrapDoorBlock(SpectrumBlockSetTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor())), color));
+		return register(blockWithItem(name, () -> new TrapDoorBlock(SpectrumBlockSetTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()))));
 	}
 	
 	public static final DeferredBlock<TrapDoorBlock> BLACK_TRAPDOOR = registerColoredTrapdoor("black_trapdoor", InkColors.BLACK);
@@ -1575,7 +1576,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<TrapDoorBlock> YELLOW_TRAPDOOR = registerColoredTrapdoor("yellow_trapdoor", InkColors.YELLOW);
 	
 	public static DeferredBlock<DoorBlock> registerColoredDoor(String name, InkColor color) {
-		return register(blockWithItem(name, () -> new DoorBlock(SpectrumBlockSetTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor())), color));
+		return register(blockWithItem(name, () -> new DoorBlock(SpectrumBlockSetTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()))));
 	}
 	
 	public static final DeferredBlock<DoorBlock> BLACK_DOOR = registerColoredDoor("black_door", InkColors.BLACK);
@@ -1630,7 +1631,7 @@ public class SpectrumBlocks {
 	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> YELLOW_HANGING_SIGN = registerHangingSign("yellow", SpectrumWoodTypes.YELLOW, copyWithMapColor(OAK_WOOD, InkColors.YELLOW.getMapColor()));
 	
 	public static DeferredBlock<ColoredLeavesBlock> registerColoredLeaves(String name, InkColor color) {
-		return register(singleton(blockWithItem(name, () -> new ColoredLeavesBlock(copyWithMapColor(OAK_LEAVES, color.getMapColor()), color), color), TexturedModel.LEAVES));
+		return register(singleton(blockWithItem(name, () -> new ColoredLeavesBlock(copyWithMapColor(OAK_LEAVES, color.getMapColor()), color)), TexturedModel.LEAVES));
 	}
 	
 	public static final DeferredBlock<ColoredLeavesBlock> BLACK_LEAVES = registerColoredLeaves("black_leaves", InkColors.BLACK);
@@ -1651,7 +1652,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredLeavesBlock> YELLOW_LEAVES = registerColoredLeaves("yellow_leaves", InkColors.YELLOW);
 	
 	public static DeferredBlock<ColoredGrassBlock> registerColoredGrassBlock(String name, InkColor color) {
-		return register(blockWithItem(name, () -> new ColoredGrassBlock(copyWithMapColor(GRASS_BLOCK, color.getMapColor()), color), color));
+		return register(blockWithItem(name, () -> new ColoredGrassBlock(copyWithMapColor(GRASS_BLOCK, color.getMapColor()), color)));
 	}
 	
 	public static final DeferredBlock<ColoredGrassBlock> BLACK_GRASS_BLOCK = registerColoredGrassBlock("black_grass_block", InkColors.BLACK);
@@ -1672,7 +1673,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredGrassBlock> YELLOW_GRASS_BLOCK = registerColoredGrassBlock("yellow_grass_block", InkColors.YELLOW);
 	
 	public static DeferredBlock<GlowBlock> registerGlowBlock(String name, InkColor color) {
-		return register(simple(blockWithItem(name, () -> new GlowBlock(settings(color.getMapColor(), SoundType.BASALT, 2.5F).requiresCorrectToolForDrops().lightLevel(state -> 1).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always), color), color)));
+		return register(simple(blockWithItem(name, () -> new GlowBlock(settings(color.getMapColor(), SoundType.BASALT, 2.5F).requiresCorrectToolForDrops().lightLevel(state -> 1).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always), color))));
 	}
 	
 	public static final DeferredBlock<GlowBlock> BLACK_GLOWBLOCK = registerGlowBlock("black_glowblock", InkColors.BLACK);
@@ -1693,7 +1694,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<GlowBlock> YELLOW_GLOWBLOCK = registerGlowBlock("yellow_glowblock", InkColors.YELLOW);
 	
 	public static DeferredBlock<ColoredLightBlock> registerColoredLightBlock(String name, InkColor color) {
-		return register(blockWithItem(name, () -> new ColoredLightBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP).mapColor(color.getMapColor()), color), color).withBlockModel((ctx, block) -> {
+		return register(blockWithItem(name, () -> new ColoredLightBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP).mapColor(color.getMapColor()), color)).withBlockModel((ctx, block) -> {
 			ResourceLocation off = TexturedModel.CUBE.create(block, ctx.modelOutput);
 			ResourceLocation on = SpectrumModelTemplates.COLORED_LAMP_ON.createWithSuffix(block, "_on", SpectrumTextureMaps.innerOuter(block, "_on", block, "_outer"), ctx.modelOutput);
 			return MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(BlockStateProperties.LIT, on, off));
@@ -1718,7 +1719,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredLightBlock> YELLOW_LAMP = registerColoredLightBlock("yellow_lamp", InkColors.YELLOW);
 	
 	public static DeferredBlock<PigmentBlock> registerPigmentBlock(String name, InkColor color) {
-		return register(simple(blockWithItem(name, () -> new PigmentBlock(settings(color.getMapColor(), SoundType.WOOL, 1.0F), color), color)));
+		return register(simple(blockWithItem(name, () -> new PigmentBlock(settings(color.getMapColor(), SoundType.WOOL, 1.0F), color))));
 	}
 	
 	public static final DeferredBlock<PigmentBlock> BLACK_BLOCK = registerPigmentBlock("black_block", InkColors.BLACK);
@@ -1739,7 +1740,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<PigmentBlock> YELLOW_BLOCK = registerPigmentBlock("yellow_block", InkColors.YELLOW);
 	
 	public static DeferredBlock<ColoredSporeBlossomBlock> registerColoredSporeBlossomBlock(String name, InkColor color, ColoredFallingSporeBlossomParticleEffect falling, ColoredSporeBlossomAirParticleEffect air) {
-		return register(singleton(blockWithItem(name, () -> new ColoredSporeBlossomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPORE_BLOSSOM).mapColor(color.getMapColor()), color, falling, air), color), TexturedModel.createDefault(b -> SpectrumTextureMaps.flowerParticle(b, "", b, ""), SpectrumModelTemplates.SPORE_BLOSSOM)));
+		return register(singleton(blockWithItem(name, () -> new ColoredSporeBlossomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPORE_BLOSSOM).mapColor(color.getMapColor()), color, falling, air)), TexturedModel.createDefault(b -> SpectrumTextureMaps.flowerParticle(b, "", b, ""), SpectrumModelTemplates.SPORE_BLOSSOM)));
 	}
 	
 	public static final DeferredBlock<ColoredSporeBlossomBlock> BLACK_SPORE_BLOSSOM = registerColoredSporeBlossomBlock("black_spore_blossom", InkColors.BLACK, ColoredFallingSporeBlossomParticleEffect.BLACK, ColoredSporeBlossomAirParticleEffect.BLACK);

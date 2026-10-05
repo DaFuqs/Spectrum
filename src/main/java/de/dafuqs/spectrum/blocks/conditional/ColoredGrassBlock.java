@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import com.mojang.serialization.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -30,10 +30,8 @@ public class ColoredGrassBlock extends SpreadingSnowyDirtBlock implements Boneme
 		BLOCKS.put(color, this);
 	}
 	
-	
 	@Override
 	protected @NotNull MapCodec<ColoredGrassBlock> codec() {
-		//TODO: Make the codec
 		return null;
 	}
 	

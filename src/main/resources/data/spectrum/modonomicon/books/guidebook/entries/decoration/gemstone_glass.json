@@ -43,6 +43,26 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe_id": "spectrum:pedestal/tier1/glass/moonstone_glass"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/glass/chiseled_topaz_glass"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/glass/chiseled_amethyst_glass"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/glass/chiseled_citrine_glass"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/glass/chiseled_onyx_glass"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier1/glass/chiseled_moonstone_glass"
     }
   ]
 }

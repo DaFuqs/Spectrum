@@ -24,6 +24,22 @@
     "spectrum:topaz_chiseled_calcite",
     "spectrum:citrine_chiseled_calcite",
     "spectrum:onyx_chiseled_calcite",
-    "spectrum:moonstone_chiseled_calcite"
+    "spectrum:moonstone_chiseled_calcite",
+    "spectrum:white_symbolic_calcite",
+    "spectrum:light_gray_symbolic_calcite",
+    "spectrum:gray_symbolic_calcite",
+    "spectrum:black_symbolic_calcite",
+    "spectrum:brown_symbolic_calcite",
+    "spectrum:red_symbolic_calcite",
+    "spectrum:orange_symbolic_calcite",
+    "spectrum:yellow_symbolic_calcite",
+    "spectrum:lime_symbolic_calcite",
+    "spectrum:green_symbolic_calcite",
+    "spectrum:cyan_symbolic_calcite",
+    "spectrum:light_blue_symbolic_calcite",
+    "spectrum:blue_symbolic_calcite",
+    "spectrum:purple_symbolic_calcite",
+    "spectrum:magenta_symbolic_calcite",
+    "spectrum:pink_symbolic_calcite"
   ]
 }

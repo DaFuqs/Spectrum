@@ -4,6 +4,12 @@
     "spectrum:citrine_glass_pane",
     "spectrum:topaz_glass_pane",
     "spectrum:moonstone_glass_pane",
-    "spectrum:onyx_glass_pane"
+    "spectrum:onyx_glass_pane",
+
+    "spectrum:chiseled_amethyst_glass_pane",
+    "spectrum:chiseled_citrine_glass_pane",
+    "spectrum:chiseled_topaz_glass_pane",
+    "spectrum:chiseled_moonstone_glass_pane",
+    "spectrum:chiseled_onyx_glass_pane"
   ]
 }

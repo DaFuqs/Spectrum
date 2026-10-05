@@ -4,6 +4,8 @@ import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.flammable.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.world.level.block.state.properties.*;
+import org.jspecify.annotations.Nullable;
 import org.jspecify.annotations.*;
 
 import java.util.*;
@@ -13,8 +15,8 @@ public class ColoredFenceGateBlock extends FlammableFenceGateBlock {
 	private static final Map<InkColor, ColoredFenceGateBlock> BLOCKS = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredFenceGateBlock(Properties settings, InkColor color) {
-		super(SpectrumWoodTypes.COLORED_WOOD, settings);
+	public ColoredFenceGateBlock(Properties settings, WoodType woodType, InkColor color) {
+		super(woodType, settings);
 		this.color = color;
 		BLOCKS.put(color, this);
 	}

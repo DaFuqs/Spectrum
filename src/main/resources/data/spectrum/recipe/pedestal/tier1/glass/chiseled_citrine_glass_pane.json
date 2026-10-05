@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "gemstone_glass",
+  "time": 20,
+  "tier": "basic",
+  "colors": {},
+  "experience": 0.1,
+  "pattern": [
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": "spectrum:chiseled_citrine_glass"
+  },
+  "result": {
+    "id": "spectrum:chiseled_citrine_glass_pane",
+    "count": 16
+  },
+  "required_advancement": "spectrum:hidden/collect_shards/citrine"
+}

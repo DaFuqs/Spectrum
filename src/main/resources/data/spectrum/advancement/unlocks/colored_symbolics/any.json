@@ -1,0 +1,10 @@
+{
+  "criteria": {
+    "has_any_pigment": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_pigment"
+      }
+    }
+  }
+}

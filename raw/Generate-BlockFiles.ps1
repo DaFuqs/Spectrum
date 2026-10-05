@@ -1,4 +1,19 @@
-﻿$new = @("weeping_gala_slab")
+﻿$new = @("black_trapdoor",
+"blue_trapdoor",
+"brown_trapdoor",
+"cyan_trapdoor",
+"gray_trapdoor",
+"green_trapdoor",
+"light_blue_trapdoor",
+"light_gray_trapdoor",
+"lime_trapdoor",
+"magenta_trapdoor",
+"orange_trapdoor",
+"pink_trapdoor",
+"purple_trapdoor",
+"red_trapdoor",
+"white_trapdoor",
+"yellow_trapdoor")
 
 enum BlockType {
     Default
@@ -16,6 +31,10 @@ enum BlockType {
     Beam
     Flower
     TallFlower
+    Sign
+    HangingSign
+    Door
+    Trapdoor
 }
 
 Function Generate-BlockFiles {
@@ -99,6 +118,135 @@ Function Generate-BlockFiles {
 			"x": 90
 		}
 	}
+}
+"@
+        }
+
+                function Get-BlockStateDoor($Name) {
+            Write-Output @"
+{
+  "variants": {
+    "facing=east,half=lower,hinge=left,open=false": {
+      "model": "spectrum:block/$Name`_bottom_left"
+    },
+    "facing=east,half=lower,hinge=left,open=true": {
+      "model": "spectrum:block/$Name`_bottom_left_open",
+      "y": 90
+    },
+    "facing=east,half=lower,hinge=right,open=false": {
+      "model": "spectrum:block/$Name`_bottom_right"
+    },
+    "facing=east,half=lower,hinge=right,open=true": {
+      "model": "spectrum:block/$Name`_bottom_right_open",
+      "y": 270
+    },
+    "facing=east,half=upper,hinge=left,open=false": {
+      "model": "spectrum:block/$Name`_top_left"
+    },
+    "facing=east,half=upper,hinge=left,open=true": {
+      "model": "spectrum:block/$Name`_top_left_open",
+      "y": 90
+    },
+    "facing=east,half=upper,hinge=right,open=false": {
+      "model": "spectrum:block/$Name`_top_right"
+    },
+    "facing=east,half=upper,hinge=right,open=true": {
+      "model": "spectrum:block/$Name`_top_right_open",
+      "y": 270
+    },
+    "facing=north,half=lower,hinge=left,open=false": {
+      "model": "spectrum:block/$Name`_bottom_left",
+      "y": 270
+    },
+    "facing=north,half=lower,hinge=left,open=true": {
+      "model": "spectrum:block/$Name`_bottom_left_open"
+    },
+    "facing=north,half=lower,hinge=right,open=false": {
+      "model": "spectrum:block/$Name`_bottom_right",
+      "y": 270
+    },
+    "facing=north,half=lower,hinge=right,open=true": {
+      "model": "spectrum:block/$Name`_bottom_right_open",
+      "y": 180
+    },
+    "facing=north,half=upper,hinge=left,open=false": {
+      "model": "spectrum:block/$Name`_top_left",
+      "y": 270
+    },
+    "facing=north,half=upper,hinge=left,open=true": {
+      "model": "spectrum:block/$Name`_top_left_open"
+    },
+    "facing=north,half=upper,hinge=right,open=false": {
+      "model": "spectrum:block/$Name`_top_right",
+      "y": 270
+    },
+    "facing=north,half=upper,hinge=right,open=true": {
+      "model": "spectrum:block/$Name`_top_right_open",
+      "y": 180
+    },
+    "facing=south,half=lower,hinge=left,open=false": {
+      "model": "spectrum:block/$Name`_bottom_left",
+      "y": 90
+    },
+    "facing=south,half=lower,hinge=left,open=true": {
+      "model": "spectrum:block/$Name`_bottom_left_open",
+      "y": 180
+    },
+    "facing=south,half=lower,hinge=right,open=false": {
+      "model": "spectrum:block/$Name`_bottom_right",
+      "y": 90
+    },
+    "facing=south,half=lower,hinge=right,open=true": {
+      "model": "spectrum:block/$Name`_bottom_right_open"
+    },
+    "facing=south,half=upper,hinge=left,open=false": {
+      "model": "spectrum:block/$Name`_top_left",
+      "y": 90
+    },
+    "facing=south,half=upper,hinge=left,open=true": {
+      "model": "spectrum:block/$Name`_top_left_open",
+      "y": 180
+    },
+    "facing=south,half=upper,hinge=right,open=false": {
+      "model": "spectrum:block/$Name`_top_right",
+      "y": 90
+    },
+    "facing=south,half=upper,hinge=right,open=true": {
+      "model": "spectrum:block/$Name`_top_right_open"
+    },
+    "facing=west,half=lower,hinge=left,open=false": {
+      "model": "spectrum:block/$Name`_bottom_left",
+      "y": 180
+    },
+    "facing=west,half=lower,hinge=left,open=true": {
+      "model": "spectrum:block/$Name`_bottom_left_open",
+      "y": 270
+    },
+    "facing=west,half=lower,hinge=right,open=false": {
+      "model": "spectrum:block/$Name`_bottom_right",
+      "y": 180
+    },
+    "facing=west,half=lower,hinge=right,open=true": {
+      "model": "spectrum:block/$Name`_bottom_right_open",
+      "y": 90
+    },
+    "facing=west,half=upper,hinge=left,open=false": {
+      "model": "spectrum:block/$Name`_top_left",
+      "y": 180
+    },
+    "facing=west,half=upper,hinge=left,open=true": {
+      "model": "spectrum:block/$Name`_top_left_open",
+      "y": 270
+    },
+    "facing=west,half=upper,hinge=right,open=false": {
+      "model": "spectrum:block/$Name`_top_right",
+      "y": 180
+    },
+    "facing=west,half=upper,hinge=right,open=true": {
+      "model": "spectrum:block/$Name`_top_right_open",
+      "y": 90
+    }
+  }
 }
 "@
         }
@@ -544,6 +692,80 @@ Function Generate-BlockFiles {
 			}
 		}
 	]
+}
+"@
+        }
+
+        function Get-BlockStateTrapdoor($Name) {
+            Write-Output @"
+{
+  "variants": {
+    "facing=east,half=bottom,open=false": {
+      "model": "spectrum:block/$Name`_bottom",
+      "y": 90
+    },
+    "facing=east,half=bottom,open=true": {
+      "model": "spectrum:block/$Name`_open",
+      "y": 90
+    },
+    "facing=east,half=top,open=false": {
+      "model": "spectrum:block/$Name`_top",
+      "y": 90
+    },
+    "facing=east,half=top,open=true": {
+      "model": "spectrum:block/$Name`_open",
+      "x": 180,
+      "y": 270
+    },
+    "facing=north,half=bottom,open=false": {
+      "model": "spectrum:block/$Name`_bottom"
+    },
+    "facing=north,half=bottom,open=true": {
+      "model": "spectrum:block/$Name`_open"
+    },
+    "facing=north,half=top,open=false": {
+      "model": "spectrum:block/$Name`_top"
+    },
+    "facing=north,half=top,open=true": {
+      "model": "spectrum:block/$Name`_open",
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=bottom,open=false": {
+      "model": "spectrum:block/$Name`_bottom",
+      "y": 180
+    },
+    "facing=south,half=bottom,open=true": {
+      "model": "spectrum:block/$Name`_open",
+      "y": 180
+    },
+    "facing=south,half=top,open=false": {
+      "model": "spectrum:block/$Name`_top",
+      "y": 180
+    },
+    "facing=south,half=top,open=true": {
+      "model": "spectrum:block/$Name`_open",
+      "x": 180,
+      "y": 0
+    },
+    "facing=west,half=bottom,open=false": {
+      "model": "spectrum:block/$Name`_bottom",
+      "y": 270
+    },
+    "facing=west,half=bottom,open=true": {
+      "model": "spectrum:block/$Name`_open",
+      "y": 270
+    },
+    "facing=west,half=top,open=false": {
+      "model": "spectrum:block/$Name`_top",
+      "y": 270
+    },
+    "facing=west,half=top,open=true": {
+      "model": "spectrum:block/$Name`_open",
+      "x": 180,
+      "y": 90
+    }
+  }
 }
 "@
         }
@@ -1104,6 +1326,17 @@ Function Generate-BlockFiles {
 "@
         }
 
+        function Get-ItemModelGenerated($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spectrum:item/$Name"
+  }
+}
+"@
+        }
+
         function Get-ItemModelTallFlower($Name) {
             Write-Output @"
 {
@@ -1227,6 +1460,40 @@ Function Generate-BlockFiles {
 "@
         }
 
+        function Get-LootTableDoor($Name) {
+            Write-Output @"
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:$Name",
+          "conditions": [
+            {
+              "block": "spectrum:$Name",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+"@
+        }
+
 
         ####################################
         #endregion LOOT TABLE              #
@@ -1301,7 +1568,19 @@ Function Generate-BlockFiles {
                 $blockState = Get-BlockStateSlab -Name $_
             } elseif ($blockType -eq [BlockType]::Beam) {
                 $blockState = Get-BlockStateBeam -Name $_
+            } elseif ($blockType -eq [BlockType]::Door) {
+                $blockState = Get-BlockStateDoor -Name $_
+            } elseif ($blockType -eq [BlockType]::Trapdoor) {
+                $blockState = Get-BlockStateTrapdoor -Name $_
+            } elseif($blockType -eq [BlockType]::Sign -or $blockType -eq [BlockType]::HangingSign) {
+                $wallSignName = $_ -replace "_sign", "_wall_sign"
+            
+                $blockState = Get-BlockStateDefault -Name $_
+                $blockState2 = Get-BlockStateDefault -Name $_
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\blockstates\") -Name "$wallSignName`.json" -ItemType File -Force -Value $blockState2 | Out-Null
             }
+
+
             New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\blockstates\") -Name "$_`.json" -ItemType File -Force -Value $blockState | Out-Null
     
             # BLOCK MODELS
@@ -1356,6 +1635,121 @@ Function Generate-BlockFiles {
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top.json" -ItemType File -Force -Value $(Get-BlockModelSlabTop -Name $textureName) | Out-Null
             } elseif ($blockType -eq [BlockType]::Beam) {
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelBeam -Name $_) | Out-Null
+            } elseif ($blockType -eq [BlockType]::Door) {
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_bottom_left.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "textures": {
+    "bottom": "spectrum:block/$_`_bottom",
+    "top": "spectrum:block/$_`_top"
+  }
+}
+"@ | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_bottom_left_open.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:block/door_bottom_left_open",
+  "textures": {
+    "bottom": "spectrum:block/$_`_bottom",
+    "top": "spectrum:block/$_`_top"
+  }
+}
+"@ | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_bottom_right.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:block/door_bottom_right",
+  "textures": {
+    "bottom": "spectrum:block/$_`_bottom",
+    "top": "spectrum:block/$_`_top"
+  }
+}
+"@ | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_bottom_right_open.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:block/door_bottom_right_open",
+  "textures": {
+    "bottom": "spectrum:block/$_`_bottom",
+    "top": "spectrum:block/$_`_top"
+  }
+}
+"@ | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top_left.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:block/door_top_left",
+  "textures": {
+    "bottom": "spectrum:block/$_`_bottom",
+    "top": "spectrum:block/$_`_top"
+  }
+}
+"@ | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top_left_open.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:block/door_top_left_open",
+  "textures": {
+    "bottom": "spectrum:block/$_`_bottom",
+    "top": "spectrum:block/$_`_top"
+  }
+}
+"@ | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top_right.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:block/door_top_right",
+  "textures": {
+    "bottom": "spectrum:block/$_`_bottom",
+    "top": "spectrum:block/$_`_top"
+  }
+}
+"@ | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top_right_open.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:block/door_top_right_open",
+  "textures": {
+    "bottom": "spectrum:block/$_`_bottom",
+    "top": "spectrum:block/$_`_top"
+  }
+}
+"@ | Out-Null        
+            } elseif ($blockType -eq [BlockType]::Trapdoor) {
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_bottom.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:block/template_orientable_trapdoor_bottom",
+  "textures": {
+    "texture": "spectrum:block/$_"
+  }
+}
+"@ | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_open.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:block/template_orientable_trapdoor_open",
+  "textures": {
+    "texture": "spectrum:block/$_"
+  }
+}
+"@ | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:block/template_orientable_trapdoor_top",
+  "textures": {
+    "texture": "spectrum:block/$_"
+  }
+}
+"@ | Out-Null
+            } elseif($blockType -eq [BlockType]::Sign -or $blockType -eq [BlockType]::HangingSign) {
+                $first = $($_ -split "_")[0]
+
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(@"
+                {
+  "textures": {
+    "particle": "spectrum:block/$first`_planks"
+  }
+}
+"@) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$wallSignName`.json" -ItemType File -Force -Value @"
+                {
+  "textures": {
+    "particle": "spectrum:block/stripped_$first`_log"
+  }
+}
+"@ | Out-Null
             }
 
             # ITEM MODEL
@@ -1365,9 +1759,20 @@ Function Generate-BlockFiles {
                 $itemModel = Get-ItemModel -Name ($_ -replace "[0-9]", "")
             } elseif($blockType -eq [BlockType]::TallFlower) {
                 $itemModel = Get-ItemModelTallFlower -Name $_
+            } elseif($blockType -eq [BlockType]::Door) {
+                $itemModel = Get-ItemModelGenerated -Name $_
+            } elseif($blockType -eq [BlockType]::Trapdoor) {
+                $itemModel = @"
+{
+  "parent": "spectrum:block/$_`_bottom"
+}
+"@
+            } elseif($blockType -eq [BlockType]::Sign -or $blockType -eq [BlockType]::HangingSign) {
+                $itemModel = Get-ItemModelGenerated -Name $_
             } else {
                 $itemModel = Get-ItemModel -Name $_
             }
+            
             New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\item\") -Name "$_`.json" -ItemType File -Force -Value $itemModel -ErrorAction SilentlyContinue | Out-Null
 
 
@@ -1377,6 +1782,8 @@ Function Generate-BlockFiles {
               $lootTable = Get-LootTableTallFlower -Name $_
             } elseif($blockType -eq [BlockType]::Slab) {
               $lootTable = Get-LootTableSlab -Name $_
+            } elseif($blockType -eq [BlockType]::Door) {
+              $lootTable = Get-LootTableDoor -Name $_
             } else {
               $lootTable = Get-LootTable -Name $_
             }
@@ -1391,4 +1798,4 @@ Function Generate-BlockFiles {
     }
 }
 
-Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Slab)
+Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Trapdoor)

@@ -1,0 +1,148 @@
+{
+  "name": "book.spectrum.guidebook.symbolics.name",
+  "icon": {
+    "item": "spectrum:cyan_symbolic_basalt"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/colored_symbolics/any"
+  },
+  "category": "spectrum:decoration",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:decoration/pigment",
+      "line_reversed": true
+    },
+    {
+      "entry": "spectrum:decoration/block_variants"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 7,
+  "y": 3,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.symbolics.page0.text",
+      "title": "book.spectrum.guidebook.symbolics.name"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.symbolics.page1.title",
+      "items": [
+        {
+          "id": "spectrum:black_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:black_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:blue_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:blue_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:brown_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:brown_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:cyan_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:cyan_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:gray_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:gray_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:green_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:green_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:light_blue_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:light_blue_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:light_gray_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:light_gray_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:lime_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:lime_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:magenta_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:magenta_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:orange_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:orange_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:pink_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:pink_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:purple_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:purple_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:red_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:red_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:white_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:white_symbolic_calcite"
+        },
+        {
+          "id": "spectrum:yellow_symbolic_basalt"
+        },
+        {
+          "id": "spectrum:yellow_symbolic_calcite"
+        }
+      ]
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "skip_recipe_unlock_check": true,
+      "recipe_id": "spectrum:pedestal/tier1/colored_symbolics/cyan_symbolic_basalt",
+      "text": "book.spectrum.guidebook.symbolics.page2.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "skip_recipe_unlock_check": true,
+      "recipe_id": "spectrum:pedestal/tier1/colored_symbolics/cyan_symbolic_calcite",
+      "text": "book.spectrum.guidebook.symbolics.page3.text"
+    }
+  ]
+}

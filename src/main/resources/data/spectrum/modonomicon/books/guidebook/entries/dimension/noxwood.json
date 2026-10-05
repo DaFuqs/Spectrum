@@ -45,7 +45,7 @@
     },
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.noxwood.page2.title",
+      "title": "book.spectrum.guidebook.noxwood.slate_collection.title",
       "items": [
         {
           "id": "spectrum:slate_noxcap_block"
@@ -108,6 +108,18 @@
           "id": "spectrum:slate_noxwood_lantern"
         },
         {
+          "id": "spectrum:slate_noxwood_sign"
+        },
+        {
+          "id": "spectrum:slate_noxwood_hanging_sign"
+        }
+      ]
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.noxwood.ebony_collection.title",
+      "items": [
+        {
           "id": "spectrum:ebony_noxcap_block"
         },
         {
@@ -166,12 +178,18 @@
         },
         {
           "id": "spectrum:ebony_noxwood_lantern"
+        },
+        {
+          "id": "spectrum:ebony_noxwood_sign"
+        },
+        {
+          "id": "spectrum:ebony_noxwood_hanging_sign"
         }
       ]
     },
     {
       "type": "spectrum:collection",
-      "title": "book.spectrum.guidebook.noxwood.page3.title",
+      "title": "book.spectrum.guidebook.noxwood.ivory_collection.title",
       "items": [
         {
           "id": "spectrum:ivory_noxcap_block"
@@ -234,6 +252,18 @@
           "id": "spectrum:ivory_noxwood_lantern"
         },
         {
+          "id": "spectrum:ivory_noxwood_sign"
+        },
+        {
+          "id": "spectrum:ivory_noxwood_hanging_sign"
+        }
+      ]
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.noxwood.chestnut_collection.title",
+      "items": [
+        {
           "id": "spectrum:chestnut_noxcap_block"
         },
         {
@@ -292,6 +322,12 @@
         },
         {
           "id": "spectrum:chestnut_noxwood_lantern"
+        },
+        {
+          "id": "spectrum:chestnut_noxwood_sign"
+        },
+        {
+          "id": "spectrum:chestnut_noxwood_hanging_sign"
         }
       ]
     },

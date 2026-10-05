@@ -8,7 +8,7 @@
   "ingredients": [
     "spectrum:fanciful_tuff_ring",
     {
-      "item": "minecraft:quartz",
+      "tag": "c:gems/quartz",
       "count": 8
     },
     {

@@ -17,7 +17,7 @@
   ],
   "key": {
     "L": "minecraft:tuff",
-    "Q": "minecraft:quartz"
+    "Q": "#c:gems/quartz"
   },
   "result": {
     "id": "spectrum:fanciful_circlet",

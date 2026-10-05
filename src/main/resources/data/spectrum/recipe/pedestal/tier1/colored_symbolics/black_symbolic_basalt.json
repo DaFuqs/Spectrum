@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "symbolics",
+  "time": 40,
+  "tier": "advanced",
+  "colors": {
+    "spectrum:cyan": 0,
+    "spectrum:magenta": 0,
+    "spectrum:yellow": 0,
+    "spectrum:white": 0,
+    "spectrum:black": 6
+  },
+  "experience": 0.5,
+  "pattern": [
+    " S ",
+    "SPS",
+    " S "
+  ],
+  "key": {
+    "P": "spectrum:black_pigment",
+    "S": "spectrum:polished_basalt"
+  },
+  "result": {
+    "id": "spectrum:black_symbolic_basalt",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/colored_symbolics/black"
+}

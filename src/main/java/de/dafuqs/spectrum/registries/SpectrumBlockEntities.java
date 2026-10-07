@@ -109,6 +109,7 @@ public class SpectrumBlockEntities {
 	
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationControllerBlockEntity>> PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationRoundelBlockEntity>> PRESERVATION_ROUNDEL = register("preservation_roundel", PreservationRoundelBlockEntity::new, SpectrumBlocks.PRESERVATION_ROUNDEL);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationSensorBlockEntity>> PRESERVATION_SENSOR = register("preservation_sensor", PreservationSensorBlockEntity::new, SpectrumBlocks.PRESERVATION_SENSOR);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationBlockDetectorBlockEntity>> PRESERVATION_BLOCK_DETECTOR = register("preservation_block_detector", PreservationBlockDetectorBlockEntity::new, SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<DeepLightBlockEntity>> DEEP_LIGHT = register("deep_light", DeepLightBlockEntity::new, SpectrumBlocks.DEEP_LIGHT_CHISELED_PRESERVATION_STONE);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PlayerTrackerBlockEntity>> PLAYER_TRACKING = register("player_tracking", PlayerTrackerBlockEntity::new, SpectrumBlocks.MANXI, SpectrumBlocks.PRESERVATION_ITEM_BOWL);

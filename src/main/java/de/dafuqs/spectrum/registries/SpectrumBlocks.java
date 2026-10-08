@@ -1589,7 +1589,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredWoodBlock> YELLOW_WOOD = registerColoredWood("yellow_wood", STRIPPED_YELLOW_WOOD, YELLOW_LOG, InkColors.YELLOW, SpectrumLootTableKeys.YELLOW_LOG_STRIPPING);
 	
 	public static DeferredBlock<TrapDoorBlock> registerColoredTrapdoor(String name, InkColor color) {
-		return register(blockWithItem(name, () -> new TrapDoorBlock(SpectrumBlockSetTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()))));
+		return register(blockWithItem(name, () -> new TrapDoorBlock(SpectrumBlockSetTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()).noOcclusion())));
 	}
 	
 	public static final DeferredBlock<TrapDoorBlock> BLACK_TRAPDOOR = registerColoredTrapdoor("black_trapdoor", InkColors.BLACK);
@@ -1610,7 +1610,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<TrapDoorBlock> YELLOW_TRAPDOOR = registerColoredTrapdoor("yellow_trapdoor", InkColors.YELLOW);
 	
 	public static DeferredBlock<DoorBlock> registerColoredDoor(String name, InkColor color) {
-		return register(blockWithItem(name, () -> new DoorBlock(SpectrumBlockSetTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()))));
+		return register(blockWithItem(name, () -> new DoorBlock(SpectrumBlockSetTypes.COLORED_WOOD, copyWithMapColor(OAK_WOOD, color.getMapColor()).noOcclusion())));
 	}
 	
 	public static final DeferredBlock<DoorBlock> BLACK_DOOR = registerColoredDoor("black_door", InkColors.BLACK);
@@ -2480,6 +2480,40 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(LARGE_MOONSTONE_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(MEDIUM_MOONSTONE_BUD.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(SMALL_MOONSTONE_BUD.get(), RenderType.cutout());
+		
+		ItemBlockRenderTypes.setRenderLayer(BLACK_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(BLUE_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIGHT_BLUE_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(BROWN_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(WHITE_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIGHT_GRAY_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GRAY_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(RED_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ORANGE_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(YELLOW_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIME_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GREEN_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(CYAN_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(PURPLE_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(MAGENTA_DOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(PINK_DOOR.get(), RenderType.cutout());
+		
+		ItemBlockRenderTypes.setRenderLayer(BLACK_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(BLUE_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIGHT_BLUE_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(BROWN_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(WHITE_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIGHT_GRAY_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GRAY_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(RED_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ORANGE_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(YELLOW_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIME_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GREEN_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(CYAN_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(PURPLE_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(MAGENTA_TRAPDOOR.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(PINK_TRAPDOOR.get(), RenderType.cutout());
 		
 		ItemBlockRenderTypes.setRenderLayer(PEDESTAL_BASIC_TOPAZ.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(PEDESTAL_BASIC_AMETHYST.get(), RenderType.cutout());

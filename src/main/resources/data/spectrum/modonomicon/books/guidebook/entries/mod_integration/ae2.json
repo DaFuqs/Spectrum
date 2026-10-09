@@ -134,7 +134,6 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "text": "book.spectrum.guidebook.mod_integration.ae2.page6.text",
-      "title": "container.spectrum.rei.anvil_crushing.title",
       "recipe_id": "spectrum:mod_integration/ae2/fusion_shrine/fluix_crystal"
     },
     {

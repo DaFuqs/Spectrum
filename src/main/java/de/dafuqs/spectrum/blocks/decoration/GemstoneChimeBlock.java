@@ -102,7 +102,7 @@ public class GemstoneChimeBlock extends Block {
 	//Mute with wool, Unmute with Empty
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		//If the hand contains an item version of what is in the block tag #minecraft:wool, switch block state to the muted variant and set isMuted to true
+		//If the hand contains an item version of what is in the block tag #c:wools, switch block state to the muted variant and set isMuted to true
 		
 		if (handStack.is(SpectrumItemTags.WOOLS)){
 			setMuted(state.setValue(IS_MUTED, true), world, pos);
@@ -114,6 +114,7 @@ public class GemstoneChimeBlock extends Block {
 		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	
 	}
+	//
 	static void setMuted(BlockState state, Level world, BlockPos pos){
 		world.setBlockAndUpdate(pos, state);
 	}

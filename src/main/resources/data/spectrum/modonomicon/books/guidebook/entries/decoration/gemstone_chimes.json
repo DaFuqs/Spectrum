@@ -28,6 +28,11 @@
       "text": "book.spectrum.guidebook.gemstone_chimes.page0.text"
     },
     {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.gemstone_chimes.muting.name",
+      "text": "book.spectrum.guidebook.gemstone_chimes.page1.text"
+    },
+    {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
       "recipe_id": "spectrum:pedestal/tier3/gemstone_chimes/topaz"

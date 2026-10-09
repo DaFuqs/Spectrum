@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/template_orientable_trapdoor_top",
+  "parent": "spectrum:improved_vanilla/colored_trapdoor_top",
   "textures": {
     "texture": "spectrum:block/lime_trapdoor"
   }

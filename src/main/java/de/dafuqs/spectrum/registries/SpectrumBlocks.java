@@ -982,10 +982,10 @@ public class SpectrumBlocks {
 		return Pair.of(sign, wallSign);
 	}
 	
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> EBONY_NOXWOOD_SIGN = registerSign("ebony_noxwood", SpectrumWoodTypes.EBONY_NOXWOOD, noxcap(MapColor.TERRACOTTA_BLACK));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> IVORY_NOXWOOD_SIGN = registerSign("ivory_noxwood", SpectrumWoodTypes.IVORY_NOXWOOD, noxcap(MapColor.QUARTZ));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> SLATE_NOXWOOD_SIGN = registerSign("slate_noxwood", SpectrumWoodTypes.SLATE_NOXWOOD, noxcap(MapColor.COLOR_GRAY));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> CHESTNUT_NOXWOOD_SIGN = registerSign("chestnut_noxwood", SpectrumWoodTypes.CHESTNUT_NOXWOOD, noxcap(MapColor.CRIMSON_NYLIUM));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> EBONY_NOXWOOD_SIGN = registerSign("ebony_noxwood", SpectrumWoodTypes.EBONY_NOXWOOD, noxcap(MapColor.TERRACOTTA_BLACK).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> IVORY_NOXWOOD_SIGN = registerSign("ivory_noxwood", SpectrumWoodTypes.IVORY_NOXWOOD, noxcap(MapColor.QUARTZ).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> SLATE_NOXWOOD_SIGN = registerSign("slate_noxwood", SpectrumWoodTypes.SLATE_NOXWOOD, noxcap(MapColor.COLOR_GRAY).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> CHESTNUT_NOXWOOD_SIGN = registerSign("chestnut_noxwood", SpectrumWoodTypes.CHESTNUT_NOXWOOD, noxcap(MapColor.CRIMSON_NYLIUM).noCollission());
 	
 	public static Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> registerHangingSign(String name, WoodType woodType, BlockBehaviour.Properties properties) {
 		DeferredBlock<CeilingHangingSignBlock> sign = register(block(name + "_hanging_sign", () -> new CeilingHangingSignBlock(woodType, properties)));
@@ -1037,7 +1037,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<WeepingGalaLanternBlock> WEEPING_GALA_LANTERN = register(blockWithItem("weeping_gala_lantern", () -> new WeepingGalaLanternBlock(galaWood(MapColor.COLOR_BROWN).lightLevel(state -> 13).noOcclusion().pushReaction(PushReaction.DESTROY))).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(PropertyDispatch.property(BlockStateProperties.HANGING).select(false, Variant.variant()).select(true, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R180))).with(PropertyDispatch.properties(DiagonalBlock.DIAGONAL, FlexLanternBlock.TALL).generate((diagonal, tall) -> SpectrumModelHelper.createModelVariant(SpectrumTexturedModelProviders.baseTransLantern(diagonal, tall).createWithSuffix(block, (diagonal ? "_diagonal" : "") + (tall ? "_tall" : "_small"), ctx.modelOutput))))).withItemModel((ctx, item) -> SpectrumModelHelper.registerItemModel(ctx, item, "_item")));
 	public static final DeferredBlock<Block> WEEPING_GALA_LAMP = register(redstoneLamp(blockWithItem("weeping_gala_lamp", () -> new FlammableRedstoneLampBlock(galaWood(MapColor.COLOR_BROWN).lightLevel(LANTERN_LIGHT_PROVIDER)))));
 	public static final DeferredBlock<Block> WEEPING_GALA_LIGHT = register(axisRotated(blockWithItem("weeping_gala_light", () -> new FlammableRotatedPillarBlock(galaWood(MapColor.COLOR_BROWN).lightLevel(state -> 15).noOcclusion())), SpectrumTexturedModelProviders.BASE_TRANS_LIGHT_CORE));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> WEEPING_GALA_SIGN = registerSign("weeping_gala", SpectrumWoodTypes.WEEPING_GALA, galaWood(MapColor.COLOR_BROWN));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> WEEPING_GALA_SIGN = registerSign("weeping_gala", SpectrumWoodTypes.WEEPING_GALA, galaWood(MapColor.COLOR_BROWN).noCollission());
 	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> WEEPING_GALA_HANGING_SIGN = registerHangingSign("weeping_gala", SpectrumWoodTypes.WEEPING_GALA, galaWood(MapColor.COLOR_BROWN));
 	
 	public static BlockBehaviour.Properties basalMarble() {
@@ -1630,22 +1630,22 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<DoorBlock> WHITE_DOOR = registerColoredDoor("white_door", InkColors.WHITE);
 	public static final DeferredBlock<DoorBlock> YELLOW_DOOR = registerColoredDoor("yellow_door", InkColors.YELLOW);
 	
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BLACK_SIGN = registerSign("black", SpectrumWoodTypes.BLACK, copyWithMapColor(OAK_WOOD, InkColors.BLACK.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BLUE_SIGN = registerSign("blue", SpectrumWoodTypes.BLUE, copyWithMapColor(OAK_WOOD, InkColors.BLUE.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BROWN_SIGN = registerSign("brown", SpectrumWoodTypes.BROWN, copyWithMapColor(OAK_WOOD, InkColors.BROWN.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> CYAN_SIGN = registerSign("cyan", SpectrumWoodTypes.CYAN, copyWithMapColor(OAK_WOOD, InkColors.CYAN.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> GRAY_SIGN = registerSign("gray", SpectrumWoodTypes.GRAY, copyWithMapColor(OAK_WOOD, InkColors.GRAY.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> GREEN_SIGN = registerSign("green", SpectrumWoodTypes.GREEN, copyWithMapColor(OAK_WOOD, InkColors.GREEN.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIGHT_BLUE_SIGN = registerSign("light_blue", SpectrumWoodTypes.LIGHT_BLUE, copyWithMapColor(OAK_WOOD, InkColors.LIGHT_BLUE.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIGHT_GRAY_SIGN = registerSign("light_gray", SpectrumWoodTypes.LIGHT_GRAY, copyWithMapColor(OAK_WOOD, InkColors.LIGHT_GRAY.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIME_SIGN = registerSign("lime", SpectrumWoodTypes.LIME, copyWithMapColor(OAK_WOOD, InkColors.LIME.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> MAGENTA_SIGN = registerSign("magenta", SpectrumWoodTypes.MAGENTA, copyWithMapColor(OAK_WOOD, InkColors.MAGENTA.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> ORANGE_SIGN = registerSign("orange", SpectrumWoodTypes.ORANGE, copyWithMapColor(OAK_WOOD, InkColors.ORANGE.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> PINK_SIGN = registerSign("pink", SpectrumWoodTypes.PINK, copyWithMapColor(OAK_WOOD, InkColors.PINK.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> PURPLE_SIGN = registerSign("purple", SpectrumWoodTypes.PURPLE, copyWithMapColor(OAK_WOOD, InkColors.PURPLE.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> RED_SIGN = registerSign("red", SpectrumWoodTypes.RED, copyWithMapColor(OAK_WOOD, InkColors.RED.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> WHITE_SIGN = registerSign("white", SpectrumWoodTypes.WHITE, copyWithMapColor(OAK_WOOD, InkColors.WHITE.getMapColor()));
-	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> YELLOW_SIGN = registerSign("yellow", SpectrumWoodTypes.YELLOW, copyWithMapColor(OAK_WOOD, InkColors.YELLOW.getMapColor()));
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BLACK_SIGN = registerSign("black", SpectrumWoodTypes.BLACK, copyWithMapColor(OAK_WOOD, InkColors.BLACK.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BLUE_SIGN = registerSign("blue", SpectrumWoodTypes.BLUE, copyWithMapColor(OAK_WOOD, InkColors.BLUE.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> BROWN_SIGN = registerSign("brown", SpectrumWoodTypes.BROWN, copyWithMapColor(OAK_WOOD, InkColors.BROWN.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> CYAN_SIGN = registerSign("cyan", SpectrumWoodTypes.CYAN, copyWithMapColor(OAK_WOOD, InkColors.CYAN.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> GRAY_SIGN = registerSign("gray", SpectrumWoodTypes.GRAY, copyWithMapColor(OAK_WOOD, InkColors.GRAY.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> GREEN_SIGN = registerSign("green", SpectrumWoodTypes.GREEN, copyWithMapColor(OAK_WOOD, InkColors.GREEN.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIGHT_BLUE_SIGN = registerSign("light_blue", SpectrumWoodTypes.LIGHT_BLUE, copyWithMapColor(OAK_WOOD, InkColors.LIGHT_BLUE.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIGHT_GRAY_SIGN = registerSign("light_gray", SpectrumWoodTypes.LIGHT_GRAY, copyWithMapColor(OAK_WOOD, InkColors.LIGHT_GRAY.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> LIME_SIGN = registerSign("lime", SpectrumWoodTypes.LIME, copyWithMapColor(OAK_WOOD, InkColors.LIME.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> MAGENTA_SIGN = registerSign("magenta", SpectrumWoodTypes.MAGENTA, copyWithMapColor(OAK_WOOD, InkColors.MAGENTA.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> ORANGE_SIGN = registerSign("orange", SpectrumWoodTypes.ORANGE, copyWithMapColor(OAK_WOOD, InkColors.ORANGE.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> PINK_SIGN = registerSign("pink", SpectrumWoodTypes.PINK, copyWithMapColor(OAK_WOOD, InkColors.PINK.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> PURPLE_SIGN = registerSign("purple", SpectrumWoodTypes.PURPLE, copyWithMapColor(OAK_WOOD, InkColors.PURPLE.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> RED_SIGN = registerSign("red", SpectrumWoodTypes.RED, copyWithMapColor(OAK_WOOD, InkColors.RED.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> WHITE_SIGN = registerSign("white", SpectrumWoodTypes.WHITE, copyWithMapColor(OAK_WOOD, InkColors.WHITE.getMapColor()).noCollission());
+	public static final Pair<DeferredBlock<StandingSignBlock>, DeferredBlock<WallSignBlock>> YELLOW_SIGN = registerSign("yellow", SpectrumWoodTypes.YELLOW, copyWithMapColor(OAK_WOOD, InkColors.YELLOW.getMapColor()).noCollission());
 	
 	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> BLACK_HANGING_SIGN = registerHangingSign("black", SpectrumWoodTypes.BLACK, copyWithMapColor(OAK_WOOD, InkColors.BLACK.getMapColor()));
 	public static final Pair<DeferredBlock<CeilingHangingSignBlock>, DeferredBlock<WallHangingSignBlock>> BLUE_HANGING_SIGN = registerHangingSign("blue", SpectrumWoodTypes.BLUE, copyWithMapColor(OAK_WOOD, InkColors.BLUE.getMapColor()));

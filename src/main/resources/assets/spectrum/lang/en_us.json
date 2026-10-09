@@ -2698,6 +2698,8 @@
   "book.spectrum.guidebook.gemstone_armor.page5.text": "Gives me a short burst of Speed and Invisibility when hit, allowing me to retreat. Perfect for ranged combat.",
   "book.spectrum.guidebook.gemstone_chimes.name": "Gemstone Chimes",
   "book.spectrum.guidebook.gemstone_chimes.page0.text": "Having tinkered with the gems long enough, I find myself able to shape these fragile resources in the finest of ways. Slowly swaying in the breeze, the chimes' sounds remind me of the beginning of my journey – the first time I set foot in a geode. I remember it well. What a time it was!\\\nEach chime emits the soothing sound of its corresponding gemstone.",
+  "book.spectrum.guidebook.gemstone_chimes.muting.name": "Chime Muting",
+  "book.spectrum.guidebook.gemstone_chimes.page1.text": "If for some reason it's getting on my nerves, I can silence them by interacting with a little bit of wool, and I can undo this with bare hands.",
   "book.spectrum.guidebook.gemstone_glass.name": "Gemstone Glass",
   "book.spectrum.guidebook.gemstone_glass.page0.text": "Gemstones are already slightly transparent by nature. What could be more natural than using them to make a kind of glass?\\\nI can also make matching Glass Panes from them.",
   "book.spectrum.guidebook.gemstone_glass.page1.text": "I can build them out of every gemstone I found.",

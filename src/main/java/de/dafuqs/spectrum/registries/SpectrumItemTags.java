@@ -11,6 +11,7 @@ public class SpectrumItemTags {
 	// "c" namespace
 	public static final TagKey<Item> SKULLS = conventional("skulls");
 	public static final TagKey<Item> FRUITS = conventional("foods/fruit");
+	public static final TagKey<Item> WOOLS = conventional("wools");
 	
 	// "spectrum" namespace
 	public static final TagKey<Item> FISHING_RODS = spectrum("fishing_rods");

@@ -1905,6 +1905,18 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> BLOODSTONE_BRICKS = register(simple(blockWithItem("bloodstone_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(PURE_BLOODSTONE_BLOCK.get())))));
 	public static final DeferredBlock<Block> MIXED_REFINED_CRYSTAL_BRICKS = register(simple(blockWithItem("mixed_refined_crystal_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(PURE_AZURITE_BLOCK.get())))));
 	
+	private static Supplier<BrushableBlock> suspiciousBlock(Supplier<? extends Block> original) {
+		return () -> new BrushableBlock(original.get(),
+				SoundEvents.BRUSH_SAND, SoundEvents.BRUSH_SAND_COMPLETED,
+				BlockBehaviour.Properties.ofFullCopy(original.get()).strength(0.25F).sound(SoundType.SUSPICIOUS_SAND).pushReaction(PushReaction.DESTROY)
+		);
+	}
+	
+	public static final DeferredBlock<BrushableBlock> SUSPICIOUS_SLUSH = register(simple(blockWithItem("suspicious_slush", suspiciousBlock(SLUSH))));
+	public static final DeferredBlock<BrushableBlock> SUSPICIOUS_SLUDGE = register(simple(blockWithItem("suspicious_sludge", suspiciousBlock(BLACK_SLUDGE))));
+	public static final DeferredBlock<BrushableBlock> SUSPICIOUS_ASH = register(simple(blockWithItem("suspicious_ash", suspiciousBlock(ASH))));
+	public static final DeferredBlock<BrushableBlock> SUSPICIOUS_ROT = register(simple(blockWithItem("suspicious_rot", suspiciousBlock(ROTTEN_GROUND))));
+	
 	static boolean never(BlockState state, BlockGetter world, BlockPos pos, EntityType<?> type) {
 		return false;
 	}

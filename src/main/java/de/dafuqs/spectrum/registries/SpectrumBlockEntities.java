@@ -132,6 +132,8 @@ public class SpectrumBlockEntities {
 		skullBlocksList.addAll(SpectrumWallSkullBlock.getMobWallHeads());
 		
 		event.modify(SpectrumBlockEntities.SKULL.get(), skullBlocksList.toArray(new Block[0]));
+		
+		event.modify(BlockEntityType.BRUSHABLE_BLOCK, SpectrumBlocks.SUSPICIOUS_ASH.get(), SpectrumBlocks.SUSPICIOUS_SLUDGE.get(), SpectrumBlocks.SUSPICIOUS_SLUSH.get(), SpectrumBlocks.SUSPICIOUS_ROT.get());
 	}
 	
 	public static void registerClient(FMLClientSetupEvent event) {

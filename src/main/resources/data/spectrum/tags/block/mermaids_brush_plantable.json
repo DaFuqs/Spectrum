@@ -5,6 +5,7 @@
     "minecraft:gravel",
     "minecraft:sand",
     "minecraft:clay",
-    "spectrum:slush"
+    "spectrum:slush",
+    "spectrum:suspicious_slush"
   ]
 }

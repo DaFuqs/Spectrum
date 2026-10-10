@@ -1068,6 +1068,11 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.VARIA_SPROUT);
 					entries.accept(SpectrumBlocks.JADEITE_LOTUS_STEM);
 					entries.accept(SpectrumBlocks.JADEITE_LOTUS_FLOWER);
+					
+					entries.accept(SpectrumBlocks.SUSPICIOUS_SLUSH);
+					entries.accept(SpectrumBlocks.SUSPICIOUS_SLUDGE);
+					entries.accept(SpectrumBlocks.SUSPICIOUS_ASH);
+					entries.accept(SpectrumBlocks.SUSPICIOUS_ROT);
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_DECORATION, Component.translatable("itemGroup.spectrum.decoration"))

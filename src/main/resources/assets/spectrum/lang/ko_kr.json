@@ -1720,6 +1720,7 @@
   "block.spectrum.preservation_controller": "보존 제어기",
   "block.spectrum.preservation_glass": "보존 유리",
   "block.spectrum.preservation_roundel": "보존 라운델",
+  "block.spectrum.preservation_sensor": "보존 센서",
   "block.spectrum.preservation_slab": "보존 반 블록",
   "block.spectrum.preservation_stairs": "보존 계단",
   "block.spectrum.preservation_stone": "보존석",
@@ -6090,22 +6091,6 @@
   "entity.spectrum.monstrosity.text17": "나의 집",
   "entity.spectrum.monstrosity.text18": "밀지 마",
 
-  "______done_until_here": "TODO:",
-  "advancements.spectrum.craft_energy_collector.title": "수신 양호",
-  "advancements.spectrum.craft_energy_collector.description": "정동에서 에너지를 수확할 수 있을 만큼 강력한 수집기를 만드세요",
-  "advancements.spectrum.place_energy_collector.title": "새로운 형태의 에너지",
-  "advancements.spectrum.place_energy_collector.description": "정동의 한가운데에 수집기를 설치하고 작동하는 것을 지켜보세요",
-  "advancements.spectrum.unused2.title": "끝내주는 시간",
-  "advancements.spectrum.meet_paintlich.title": "시간이 새겨지다",
-  "advancements.spectrum.meet_paintlich.description": "어떤 누군가를 만나세요",
-  "advancements.spectrum.defeat_paintlich.title": "교차된 붓",
-  "advancements.spectrum.defeat_paintlich.description": "나이 든 유명 인사와의 가벼운 토론에서 승리하세요",
-
-  "book.spectrum.guidebook.mysterious_locket.page4.title": "로켓의 내용물",
-  "book.spectrum.guidebook.mysterious_locket.page4.text": "안에는 작은 쪽지도 들어있었다... 도대체 누구의 것이었을까?",
-  "book.spectrum.guidebook.mysterious_locket.page5.text": "이제 드레이톤의 언어를 이해하게 되었으니, 뒷면에 새겨진 문구를 해독하는 건 식은 죽 먹기다:\\\n\\\n*바보같이 굴지 마, 아스테라스. 달은 스스로 빛날 수 없어. 그저 태양빛을 반사할 뿐이지.*",
-  "book.spectrum.guidebook.mysterious_locket.page5.title": "신원 미상의 쪽지",
-
   "block.spectrum.tinting_station": "염색대",
   "block.spectrum.tinting_station.tooltip": "잉크 장비를 충전하고 염색 가능한 아이템을 칠합니다",
   "block.spectrum.twill": "직조기",
@@ -6139,5 +6124,21 @@
   "block.spectrum.omni_storage_node.tooltip": "송신 및 수집 노드를 위한 저장소 역할을 합니다",
   "block.spectrum.omni_gather_node": "§8파스텔 만물 수집 노드",
   "block.spectrum.omni_gather_node.tooltip": "송신, 제공 및 저장 노드로부터 아이템과 액체를 수집합니다",
-  "block.spectrum.omni_pastel_network_nodes.tooltip.placing": "무언가에 붙여서 배치해야 합니다. 아마도 작동할 겁니다."
+  "block.spectrum.omni_pastel_network_nodes.tooltip.placing": "무언가에 붙여서 배치해야 합니다. 아마도 작동할 겁니다.",
+
+  "______done_until_here": "TODO:",
+  "advancements.spectrum.craft_energy_collector.title": "수신 양호",
+  "advancements.spectrum.craft_energy_collector.description": "정동에서 에너지를 수확할 수 있을 만큼 강력한 수집기를 만드세요",
+  "advancements.spectrum.place_energy_collector.title": "새로운 형태의 에너지",
+  "advancements.spectrum.place_energy_collector.description": "정동의 한가운데에 수집기를 설치하고 작동하는 것을 지켜보세요",
+  "advancements.spectrum.unused2.title": "끝내주는 시간",
+  "advancements.spectrum.meet_paintlich.title": "시간이 새겨지다",
+  "advancements.spectrum.meet_paintlich.description": "어떤 누군가를 만나세요",
+  "advancements.spectrum.defeat_paintlich.title": "교차된 붓",
+  "advancements.spectrum.defeat_paintlich.description": "나이 든 유명 인사와의 가벼운 토론에서 승리하세요",
+
+  "book.spectrum.guidebook.mysterious_locket.page4.title": "로켓의 내용물",
+  "book.spectrum.guidebook.mysterious_locket.page4.text": "안에는 작은 쪽지도 들어있었다... 도대체 누구의 것이었을까?",
+  "book.spectrum.guidebook.mysterious_locket.page5.text": "이제 드레이톤의 언어를 이해하게 되었으니, 뒷면에 새겨진 문구를 해독하는 건 식은 죽 먹기다:\\\n\\\n*바보같이 굴지 마, 아스테라스. 달은 스스로 빛날 수 없어. 그저 태양빛을 반사할 뿐이지.*",
+  "book.spectrum.guidebook.mysterious_locket.page5.title": "신원 미상의 쪽지"
 }

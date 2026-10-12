@@ -2,18 +2,18 @@
   "variants": {
     "facing=east": {
       "model": "spectrum:block/twill",
-      "y": 180
+      "y": 90
     },
     "facing=north": {
-      "model": "spectrum:block/twill",
-      "y": 90
+      "model": "spectrum:block/twill"
     },
     "facing=south": {
       "model": "spectrum:block/twill",
-      "y": 270
+      "y": 180
     },
     "facing=west": {
-      "model": "spectrum:block/twill"
+      "model": "spectrum:block/twill",
+      "y": 270
     }
   }
 }

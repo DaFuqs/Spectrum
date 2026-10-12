@@ -1,19 +1,34 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "spectrum:block/tinting_station",
-      "y": 180
-    },
-    "facing=north": {
+    "short=false,facing=east": {
       "model": "spectrum:block/tinting_station",
       "y": 90
     },
-    "facing=south": {
+    "short=false,facing=north": {
+      "model": "spectrum:block/tinting_station"
+    },
+    "short=false,facing=south": {
+      "model": "spectrum:block/tinting_station",
+      "y": 180
+    },
+    "short=false,facing=west": {
       "model": "spectrum:block/tinting_station",
       "y": 270
     },
-    "facing=west": {
-      "model": "spectrum:block/tinting_station"
+    "short=true,facing=east": {
+      "model": "spectrum:block/tinting_station_slab",
+      "y": 90
+    },
+    "short=true,facing=north": {
+      "model": "spectrum:block/tinting_station_slab"
+    },
+    "short=true,facing=south": {
+      "model": "spectrum:block/tinting_station_slab",
+      "y": 180
+    },
+    "short=true,facing=west": {
+      "model": "spectrum:block/tinting_station_slab",
+      "y": 270
     }
   }
 }

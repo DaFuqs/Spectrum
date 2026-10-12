@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "skeledirge-DD",
+            "pokemon": "skeledirge",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "ultra-rare",
+            "level": "37-61",
+            "weight": 10.5,
+            "condition": {
+                "biomes": [
+                    "spectrum:dragonrot_swamp"
+                ]
+            }
+        }
+    ]
+}

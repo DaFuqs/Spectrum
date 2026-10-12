@@ -20,7 +20,7 @@
     "S": "spectrum:ivory_noxwood_slab",
     "G": "spectrum:ivory_noxcap_gills",
     "C": "spectrum:ivory_noxcap_block",
-    "I": "minecraft:quartz",
+    "I": "#c:gems/quartz",
     "H": "spectrum:shimmerstone_gem"
   },
   "result": {

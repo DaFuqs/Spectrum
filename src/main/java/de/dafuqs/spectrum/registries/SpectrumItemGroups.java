@@ -1532,6 +1532,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.PRESERVATION_GLASS);
 					entries.accept(SpectrumBlocks.TINTED_PRESERVATION_GLASS);
 					entries.accept(SpectrumBlocks.PRESERVATION_ROUNDEL);
+					entries.accept(SpectrumBlocks.PRESERVATION_SENSOR);
 					entries.accept(SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
 					entries.accept(SpectrumBlocks.DIKE_GATE_FOUNTAIN);
 					entries.accept(SpectrumBlocks.DIKE_GATE);
@@ -1564,7 +1565,7 @@ public class SpectrumItemGroups {
 					// todo: add model
 					entries.accept(SpectrumBlocks.TINTING_STATION);
 					// TODO: add model & finish impl
-					entries.accept(SpectrumBlocks.DAWNBRUSH);
+					entries.accept(SpectrumBlocks.DAYDREAMER);
 					entries.accept(SpectrumBlocks.TWILL);
 					entries.accept(SpectrumBlocks.VANTACLAST);
 				}).build();

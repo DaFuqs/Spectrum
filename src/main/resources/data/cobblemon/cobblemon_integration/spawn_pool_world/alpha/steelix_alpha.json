@@ -1,0 +1,56 @@
+{
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "steelix-alpha-DD",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon-herd",
+      "bucket": "boss",
+      "spawnablePositionType": "grounded",
+      "maxHerdSize": 4,
+      "levelRange": "32-100",
+      "weight": 40.0,
+      "condition": {
+                "biomes": [
+                    "#spectrum:in_deeper_down"
+                ]
+            },
+            "anticondition": {
+                "biomes": [
+                    "spectrum:black_langast"
+                ]
+            },
+      "herdablePokemon": [
+        {
+          "pokemon": "steelix held_item=cobblemon:steel_gem alpha=true",
+          "weight": 30.0,
+          "levelRange": "1-100",
+          "maxTimes": 1,
+          "isLeader": true,
+          "isFollower": false
+        },
+        {
+          "pokemon": "onix",
+          "weight": 80.0,
+          "levelRange": "17-36",
+          "levelRangeOffset": "-3-3",
+          "maxTimes": 7,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "steelix",
+          "weight": 120.0,
+          "levelRange": "36-47",
+          "levelRangeOffset": "-2-4",
+          "maxTimes": 5,
+          "isLeader": false,
+          "isFollower": true
+        }
+      ]
+    }
+  ]
+}

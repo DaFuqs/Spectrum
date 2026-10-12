@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "cryogonal-1S",
+            "pokemon": "cryogonal",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "22-57",
+            "weight": 25.5,
+            "condition": {
+                "biomes": [
+                    "spectrum:howling_spires"
+                ]
+            }
+        }
+    ]
+}

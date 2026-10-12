@@ -87,7 +87,6 @@ import net.minecraft.world.level.block.grower.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.levelgen.feature.*;
-import net.minecraft.world.level.levelgen.feature.stateproviders.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.phys.*;
@@ -144,7 +143,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> COLOR_PICKER = register(defaultWestHorizontalFacing(blockWithItem("color_picker", () -> new ColorPickerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<Block> TWILL = register(defaultWestHorizontalFacing(blockWithItem("twill", () -> new TwillBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<Block> VANTACLAST = register(defaultWestHorizontalFacing(blockWithItem("vantaclast", () -> new VantaclastBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
-	public static final DeferredBlock<Block> DAWNBRUSH = register(defaultWestHorizontalFacing(blockWithItem("dawnbrush", () -> new DawnbrushBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<Block> DAYDREAMER = register(defaultWestHorizontalFacing(blockWithItem("daydreamer", () -> new DaydreamerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
 	
 	// Ink Sinks
 	public static final DeferredBlock<Block> TINTING_STATION = register(defaultWestHorizontalFacing(blockWithItem("tinting_station", () -> new TintingStationBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
@@ -1772,6 +1771,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> PRESERVATION_GLASS = register(simple(blockWithItem("preservation_glass", () -> new TransparentBlock(preservationBlock().sound(SoundType.GLASS).noOcclusion().isRedstoneConductor(SpectrumBlocks::never).isSuffocating(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never)))));
 	public static final DeferredBlock<Block> TINTED_PRESERVATION_GLASS = register(simple(blockWithItem("tinted_preservation_glass", () -> new TintedGlassBlock(BlockBehaviour.Properties.ofFullCopy(PRESERVATION_GLASS.get()).pushReaction(PushReaction.NORMAL)))));
 	public static final DeferredBlock<Block> PRESERVATION_ROUNDEL = register(singleton(blockWithItem("preservation_roundel", () -> new PreservationRoundelBlock(preservationBlock().noOcclusion().forceSolidOn())), SpectrumTexturedModelProviders.ROUNDEL));
+	public static final DeferredBlock<Block> PRESERVATION_SENSOR = register(simple(blockWithItem("preservation_sensor", () -> new PreservationSensorBlock(preservationBlock()))));
 	public static final DeferredBlock<PreservationBlockDetectorBlock> PRESERVATION_BLOCK_DETECTOR = register(blockWithItem("preservation_block_detector", () -> new PreservationBlockDetectorBlock(preservationBlock())).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, SpectrumModelHelper.createModelVariant(SpectrumTexturedModelProviders.complexOrientable(b -> b, "_side", b -> b, "_top", b -> PRESERVATION_STONE.get(), "_top_generic", b -> b, "_front", b -> b, "_back", b -> b, "_side").create(block, ctx.modelOutput))).with(SpectrumModelHelper.createNorthDefaultFacingVariantMap())));
 	
 	private static BlockBehaviour.Properties shootingStar() {
@@ -2596,6 +2596,7 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(ZOMBIE_IDOL.get(), RenderType.translucent());
 		
 		ItemBlockRenderTypes.setRenderLayer(LIQUID_CRYSTAL_CAULDRON.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(TWILL.get(), RenderType.cutout());
 	}
 	
 }

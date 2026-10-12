@@ -11,7 +11,7 @@
     "YXY"
   ],
   "key": {
-    "S": "minecraft:quartz",
+    "S": "#c:gems/quartz",
     "X": "spectrum:polished_basalt",
     "Y": "spectrum:polished_calcite",
     "A": "spectrum:raw_azurite"

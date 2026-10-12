@@ -1,0 +1,29 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "onix-1S",
+            "pokemon": "onix",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "23-46",
+            "weight": 60.0,
+            "condition": {
+                "biomes": [
+                    "#spectrum:in_deeper_down"
+                ]
+            },
+            "anticondition": {
+                "biomes": [
+                    "spectrum:black_langast"
+                ]
+            }
+        }
+    ]
+}

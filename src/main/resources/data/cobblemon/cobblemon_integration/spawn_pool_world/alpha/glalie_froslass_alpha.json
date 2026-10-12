@@ -1,0 +1,69 @@
+{
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "glalie-froslass-alpha-DD",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon-herd",
+      "bucket": "boss",
+      "spawnablePositionType": "grounded",
+      "maxHerdSize": 6,
+      "levelRange": "40-100",
+      "weight": 40.0,
+      "condition": {
+                "biomes": [
+                    "spectrum:howling_spires"
+                ]
+            },
+      "herdablePokemon": [
+        {
+          "pokemon": "glalie held_item=cobblemon:ice_gem alpha=true",
+          "weight": 20.0,
+          "levelRange": "1-100",
+          "maxTimes": 1,
+          "isLeader": true,
+          "isFollower": false
+        },
+        {
+          "pokemon": "froslass held_item=cobblemon:ice_gem alpha=true",
+          "weight": 10.0,
+          "levelRange": "1-100",
+          "maxTimes": 1,
+          "isLeader": true,
+          "isFollower": false
+        },
+        {
+          "pokemon": "snorunt",
+          "weight": 80.0,
+          "levelRange": "8-27",
+          "levelRangeOffset": "-3-3",
+          "maxTimes": 7,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "glalie",
+          "weight": 80.0,
+          "levelRange": "44-44",
+          "levelRangeOffset": "-2-4",
+          "maxTimes": 2,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "froslass",
+          "weight": 40.0,
+          "levelRange": "44-44",
+          "levelRangeOffset": "-2-4",
+          "maxTimes": 2,
+          "isLeader": false,
+          "isFollower": true
+        }
+      ]
+    }
+  ]
+}

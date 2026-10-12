@@ -18,7 +18,7 @@
   "key": {
     "B": "minecraft:glass",
     "C": "spectrum:topaz_shard",
-    "Q": "minecraft:quartz",
+    "Q": "#c:gems/quartz",
     "S": "#minecraft:wooden_slabs"
   },
   "result": {

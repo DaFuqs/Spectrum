@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "toedscruel-1S",
+            "pokemon": "todescruel",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "35-46",
+            "weight": 20.5,
+            "condition": {
+                "biomes": [
+                    "spectrum:noxshroom_forest"
+                ]
+            }
+        }
+    ]
+}

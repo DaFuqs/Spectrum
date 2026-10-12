@@ -3,8 +3,8 @@
   "required_advancement": "spectrum:spectrum",
   "pattern": [
     "  R",
-    " F ",
-    "E  "
+    " E ",
+    "F  "
   ],
   "key": {
     "E": [
@@ -14,7 +14,7 @@
     ],
     "F": [
       {
-        "item": "minecraft:copper_ingot"
+        "item": "minecraft:gold_ingot"
       }
     ],
     "R": [

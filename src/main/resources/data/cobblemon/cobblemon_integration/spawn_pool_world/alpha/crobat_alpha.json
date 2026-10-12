@@ -1,0 +1,65 @@
+{
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "crobat-alpha-DD",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon-herd",
+      "bucket": "boss",
+      "spawnablePositionType": "grounded",
+      "maxHerdSize": 8,
+      "levelRange": "39-100",
+      "weight": 50.0,
+      "condition": {
+                "biomes": [
+                    "#spectrum:in_deeper_down"
+                ]
+            },
+            "anticondition": {
+                "biomes": [
+                    "spectrum:black_langast"
+                ]
+            },
+      "herdablePokemon": [
+        {
+          "pokemon": "crobat held_item=cobblemon:flying_gem alpha=true",
+          "weight": 30.0,
+          "levelRange": "1-100",
+          "maxTimes": 1,
+          "isLeader": true,
+          "isFollower": false
+        },
+        {
+          "pokemon": "zubat",
+          "weight": 80.0,
+          "levelRange": "4-22",
+          "levelRangeOffset": "-3-3",
+          "maxTimes": 7,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "golbat",
+          "weight": 70.0,
+          "levelRange": "24-42",
+          "levelRangeOffset": "-2-4",
+          "maxTimes": 5,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "crobat",
+          "weight": 50.0,
+          "levelRange": "42-49",
+          "levelRangeOffset": "-1-5",
+          "maxTimes": 3,
+          "isLeader": false,
+          "isFollower": true
+        }
+      ]
+    }
+  ]
+}

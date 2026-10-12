@@ -19,7 +19,7 @@
   "key": {
     "S": "spectrum:ivory_noxcap_stem",
     "G": "spectrum:ivory_noxcap_gills",
-    "I": "minecraft:quartz",
+    "I": "#c:gems/quartz",
     "X": "spectrum:shimmerstone_gem"
   },
   "result": {

@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "camerupt-DD",
+            "pokemon": "camerupt",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "33-51",
+            "weight": 30.0,
+            "condition": {
+                "biomes": [
+                    "spectrum:dragonrot_swamp"
+                ]
+            }
+        }
+    ]
+}

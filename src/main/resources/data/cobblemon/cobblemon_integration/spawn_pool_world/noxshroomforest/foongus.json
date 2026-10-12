@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "foongus-1S",
+            "pokemon": "foongus",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "21-32",
+            "weight": 35.5,
+            "condition": {
+                "biomes": [
+                    "spectrum:noxshroom_forest"
+                ]
+            }
+        }
+    ]
+}

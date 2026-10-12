@@ -47,7 +47,7 @@ public class InkPieWidget extends AbstractWidget {
 		
 		int centerX = getX() + width / 2;
 		int centerY = getY() + width / 2;
-		int radius = 22;
+		int radius = 20;
 		
 		// --- Smooth, double-precision rotation source ---
 		double time = Minecraft.getInstance().level.getGameTime();

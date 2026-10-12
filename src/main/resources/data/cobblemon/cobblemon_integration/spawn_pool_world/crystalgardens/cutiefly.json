@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "cutiefly-DD",
+            "pokemon": "cutiefly",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "12-21",
+            "weight": 70.0,
+            "condition": {
+                "biomes": [
+                    "spectrum:crystal_gardens"
+                ]
+            }
+        }
+    ]
+}

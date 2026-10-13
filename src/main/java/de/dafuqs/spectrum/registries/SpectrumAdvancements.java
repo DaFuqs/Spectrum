@@ -28,6 +28,7 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation REVEAL_STRATINE = locate("milestones/reveal_stratine");
 	public static final ResourceLocation REVEAL_FROSTBITE_RESOURCES = SpectrumCommon.locate("milestones/reveal_frostbite_resources");
 	public static final ResourceLocation REVEAL_INCANDESCENT_RESOURCES = SpectrumCommon.locate("milestones/reveal_incandescent_resources");
+	public static final ResourceLocation REVEAL_COLORED_GRASS = SpectrumCommon.locate("milestones/reveal_colored_grass");
 	
 	// Milestones with unlocks
 	public static final ResourceLocation UNLOCK_INK_USE = locate("milestones/unlock_ink_use");

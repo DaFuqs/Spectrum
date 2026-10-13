@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.api.ink.*;
-import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
+import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.components.*;
@@ -12,35 +12,33 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.event.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public class SpectrumColorProviders {
 	
-	public static ToggleableBlockColorProvider coloredLeavesBlockColorProvider;
-	public static ToggleableItemColorProvider coloredLeavesItemColorProvider;
+	public static @Nullable ToggleableBlockColorProvider coloredLeavesBlockColorProvider;
+	public static @Nullable ToggleableBlockColorProvider coloredGrassBlockColorProvider;
+	public static @Nullable ToggleableBlockColorProvider amaranthBlockColorProvider;
 	
-	public static ToggleableBlockColorProvider amaranthBushelBlockColorProvider;
-	public static ToggleableItemColorProvider amaranthBushelItemColorProvider;
-	public static ToggleableBlockColorProvider amaranthCropBlockColorProvider;
-	public static ToggleableItemColorProvider amaranthCropItemColorProvider;
+	public static @Nullable ToggleableItemColorProvider coloredLeavesItemColorProvider;
+	public static @Nullable ToggleableItemColorProvider coloredGrassItemColorProvider;
+	public static @Nullable ToggleableItemColorProvider amaranthItemColorProvider;
 	
 	public static void registerBlocks(RegisterColorHandlersEvent.Block event) {
 		// Biome Colors for colored leaves items and blocks
 		// They don't use it, but their decoy oak leaves do
 		
 		coloredLeavesBlockColorProvider = new ToggleableBlockColorProvider((blockState, blockAndTintGetter, blockPos, i) -> event.getBlockColors().getColor(Blocks.OAK_LEAVES.defaultBlockState(), blockAndTintGetter, blockPos, i));
-		
-		for (InkColor color : InkColors.all()) {
-			Block block = ColoredLeavesBlock.byColor(color);
-			event.register(coloredLeavesBlockColorProvider, block);
-		}
-		
-		amaranthCropBlockColorProvider = new ToggleableBlockColorProvider((blockState, blockAndTintGetter, blockPos, i) -> event.getBlockColors().getColor(Blocks.FERN.defaultBlockState(), blockAndTintGetter, blockPos, i));
-		amaranthBushelBlockColorProvider = new ToggleableBlockColorProvider((blockState, blockAndTintGetter, blockPos, i) -> event.getBlockColors().getColor(Blocks.FERN.defaultBlockState(), blockAndTintGetter, blockPos, i));
-		event.register(amaranthCropBlockColorProvider, SpectrumBlocks.AMARANTH.get());
-		event.register(amaranthBushelBlockColorProvider, SpectrumBlocks.AMARANTH_BUSHEL.get());
-		event.register(amaranthBushelBlockColorProvider, SpectrumBlocks.POTTED_AMARANTH_BUSHEL.get());
+		coloredGrassBlockColorProvider = new ToggleableBlockColorProvider((blockState, blockAndTintGetter, blockPos, i) -> event.getBlockColors().getColor(Blocks.GRASS_BLOCK.defaultBlockState(), blockAndTintGetter, blockPos, i));
+		amaranthBlockColorProvider = new ToggleableBlockColorProvider((blockState, blockAndTintGetter, blockPos, i) -> event.getBlockColors().getColor(Blocks.FERN.defaultBlockState(), blockAndTintGetter, blockPos, i));
+
+		event.register(coloredLeavesBlockColorProvider, ColoredLeavesBlock.all().toArray(new ColoredLeavesBlock[0]));
+		event.register(coloredGrassBlockColorProvider, ColoredGrassBlock.all().toArray(new ColoredGrassBlock[0]));
+		event.register(coloredGrassBlockColorProvider, ColoredShortGrassBlock.all().toArray(new ColoredShortGrassBlock[0]));
+		event.register(coloredGrassBlockColorProvider, ColoredTallGrassBlock.all().toArray(new ColoredTallGrassBlock[0]));
+		event.register(amaranthBlockColorProvider, SpectrumBlocks.AMARANTH.get(), SpectrumBlocks.AMARANTH_BUSHEL.get(), SpectrumBlocks.POTTED_AMARANTH_BUSHEL.get());
 		
 		event.register((blockState, blockAndTintGetter, blockPos, i) -> event.getBlockColors().getColor(Blocks.FERN.defaultBlockState(), blockAndTintGetter, blockPos, i), SpectrumBlocks.CLOVER.get(), SpectrumBlocks.FOUR_LEAF_CLOVER.get());
 		
@@ -57,13 +55,14 @@ public class SpectrumColorProviders {
 	
 	public static void registerItems(RegisterColorHandlersEvent.Item event) {
 		coloredLeavesItemColorProvider = new ToggleableItemColorProvider(event, Blocks.OAK_LEAVES.asItem().getDefaultInstance());
+		coloredGrassItemColorProvider = new ToggleableItemColorProvider(event, Blocks.GRASS_BLOCK.asItem().getDefaultInstance());
+		amaranthItemColorProvider = new ToggleableItemColorProvider(event, Blocks.FERN.asItem().getDefaultInstance());
+		
 		event.register(coloredLeavesItemColorProvider, ColoredLeavesBlock.allLeaves().toArray(new ColoredLeavesBlock[0]));
-		
-		amaranthBushelItemColorProvider = new ToggleableItemColorProvider(event, Blocks.FERN.asItem().getDefaultInstance());
-		event.register(amaranthBushelItemColorProvider, SpectrumBlocks.AMARANTH_BUSHEL);
-		
-		amaranthCropItemColorProvider = new ToggleableItemColorProvider(event, Blocks.LARGE_FERN.asItem().getDefaultInstance());
-		event.register(amaranthCropItemColorProvider, SpectrumBlocks.AMARANTH);
+		event.register(coloredGrassItemColorProvider, ColoredGrassBlock.all().toArray(new ColoredGrassBlock[0]));
+		event.register(coloredGrassItemColorProvider, ColoredShortGrassBlock.all().toArray(new ColoredShortGrassBlock[0]));
+		event.register(coloredGrassItemColorProvider, ColoredTallGrassBlock.all().toArray(new ColoredTallGrassBlock[0]));
+		event.register(amaranthItemColorProvider, SpectrumBlocks.AMARANTH_BUSHEL, SpectrumBlocks.AMARANTH);
 		
 		event.register((stack, tintIndex) -> {
 			if (tintIndex == 2)
@@ -121,12 +120,12 @@ public class SpectrumColorProviders {
 	
 	public static void resetToggleableProviders() {
 		coloredLeavesBlockColorProvider.setShouldApply(true);
-		coloredLeavesItemColorProvider.setShouldApply(true);
+		coloredGrassBlockColorProvider.setShouldApply(true);
+		amaranthBlockColorProvider.setShouldApply(true);
 		
-		amaranthBushelBlockColorProvider.setShouldApply(true);
-		amaranthBushelItemColorProvider.setShouldApply(true);
-		amaranthCropBlockColorProvider.setShouldApply(true);
-		amaranthCropItemColorProvider.setShouldApply(true);
+		coloredLeavesItemColorProvider.setShouldApply(true);
+		coloredGrassItemColorProvider.setShouldApply(true);
+		amaranthItemColorProvider.setShouldApply(true);
 	}
 	
 }

@@ -1706,6 +1706,48 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<ColoredGrassBlock> WHITE_GRASS_BLOCK = registerColoredGrassBlock("white_grass_block", InkColors.WHITE);
 	public static final DeferredBlock<ColoredGrassBlock> YELLOW_GRASS_BLOCK = registerColoredGrassBlock("yellow_grass_block", InkColors.YELLOW);
 	
+	public static DeferredBlock<ColoredShortGrassBlock> registerColoredShortGrass(String name, InkColor color) {
+		return register(blockWithItem(name, () -> new ColoredShortGrassBlock(copyWithMapColor(SHORT_GRASS, color.getMapColor()), color)));
+	}
+	
+	public static final DeferredBlock<ColoredShortGrassBlock> BLACK_SHORT_GRASS = registerColoredShortGrass("black_short_grass", InkColors.BLACK);
+	public static final DeferredBlock<ColoredShortGrassBlock> BLUE_SHORT_GRASS = registerColoredShortGrass("blue_short_grass", InkColors.BLUE);
+	public static final DeferredBlock<ColoredShortGrassBlock> BROWN_SHORT_GRASS = registerColoredShortGrass("brown_short_grass", InkColors.BROWN);
+	public static final DeferredBlock<ColoredShortGrassBlock> CYAN_SHORT_GRASS = registerColoredShortGrass("cyan_short_grass", InkColors.CYAN);
+	public static final DeferredBlock<ColoredShortGrassBlock> GRAY_SHORT_GRASS = registerColoredShortGrass("gray_short_grass", InkColors.GRAY);
+	public static final DeferredBlock<ColoredShortGrassBlock> GREEN_SHORT_GRASS = registerColoredShortGrass("green_short_grass", InkColors.GREEN);
+	public static final DeferredBlock<ColoredShortGrassBlock> LIGHT_BLUE_SHORT_GRASS = registerColoredShortGrass("light_blue_short_grass", InkColors.LIGHT_BLUE);
+	public static final DeferredBlock<ColoredShortGrassBlock> LIGHT_GRAY_SHORT_GRASS = registerColoredShortGrass("light_gray_short_grass", InkColors.LIGHT_GRAY);
+	public static final DeferredBlock<ColoredShortGrassBlock> LIME_SHORT_GRASS = registerColoredShortGrass("lime_short_grass", InkColors.LIME);
+	public static final DeferredBlock<ColoredShortGrassBlock> MAGENTA_SHORT_GRASS = registerColoredShortGrass("magenta_short_grass", InkColors.MAGENTA);
+	public static final DeferredBlock<ColoredShortGrassBlock> ORANGE_SHORT_GRASS = registerColoredShortGrass("orange_short_grass", InkColors.ORANGE);
+	public static final DeferredBlock<ColoredShortGrassBlock> PINK_SHORT_GRASS = registerColoredShortGrass("pink_short_grass", InkColors.PINK);
+	public static final DeferredBlock<ColoredShortGrassBlock> PURPLE_SHORT_GRASS = registerColoredShortGrass("purple_short_grass", InkColors.PURPLE);
+	public static final DeferredBlock<ColoredShortGrassBlock> RED_SHORT_GRASS = registerColoredShortGrass("red_short_grass", InkColors.RED);
+	public static final DeferredBlock<ColoredShortGrassBlock> WHITE_SHORT_GRASS = registerColoredShortGrass("white_short_grass", InkColors.WHITE);
+	public static final DeferredBlock<ColoredShortGrassBlock> YELLOW_SHORT_GRASS = registerColoredShortGrass("yellow_short_grass", InkColors.YELLOW);
+	
+	public static DeferredBlock<ColoredTallGrassBlock> registerColoredTallGrass(String name, InkColor color) {
+		return register(blockWithItem(name, () -> new ColoredTallGrassBlock(copyWithMapColor(TALL_GRASS, color.getMapColor()), color)));
+	}
+	
+	public static final DeferredBlock<ColoredTallGrassBlock> BLACK_TALL_GRASS = registerColoredTallGrass("black_tall_grass", InkColors.BLACK);
+	public static final DeferredBlock<ColoredTallGrassBlock> BLUE_TALL_GRASS = registerColoredTallGrass("blue_tall_grass", InkColors.BLUE);
+	public static final DeferredBlock<ColoredTallGrassBlock> BROWN_TALL_GRASS = registerColoredTallGrass("brown_tall_grass", InkColors.BROWN);
+	public static final DeferredBlock<ColoredTallGrassBlock> CYAN_TALL_GRASS = registerColoredTallGrass("cyan_tall_grass", InkColors.CYAN);
+	public static final DeferredBlock<ColoredTallGrassBlock> GRAY_TALL_GRASS = registerColoredTallGrass("gray_tall_grass", InkColors.GRAY);
+	public static final DeferredBlock<ColoredTallGrassBlock> GREEN_TALL_GRASS = registerColoredTallGrass("green_tall_grass", InkColors.GREEN);
+	public static final DeferredBlock<ColoredTallGrassBlock> LIGHT_BLUE_TALL_GRASS = registerColoredTallGrass("light_blue_tall_grass", InkColors.LIGHT_BLUE);
+	public static final DeferredBlock<ColoredTallGrassBlock> LIGHT_GRAY_TALL_GRASS = registerColoredTallGrass("light_gray_tall_grass", InkColors.LIGHT_GRAY);
+	public static final DeferredBlock<ColoredTallGrassBlock> LIME_TALL_GRASS = registerColoredTallGrass("lime_tall_grass", InkColors.LIME);
+	public static final DeferredBlock<ColoredTallGrassBlock> MAGENTA_TALL_GRASS = registerColoredTallGrass("magenta_tall_grass", InkColors.MAGENTA);
+	public static final DeferredBlock<ColoredTallGrassBlock> ORANGE_TALL_GRASS = registerColoredTallGrass("orange_tall_grass", InkColors.ORANGE);
+	public static final DeferredBlock<ColoredTallGrassBlock> PINK_TALL_GRASS = registerColoredTallGrass("pink_tall_grass", InkColors.PINK);
+	public static final DeferredBlock<ColoredTallGrassBlock> PURPLE_TALL_GRASS = registerColoredTallGrass("purple_tall_grass", InkColors.PURPLE);
+	public static final DeferredBlock<ColoredTallGrassBlock> RED_TALL_GRASS = registerColoredTallGrass("red_tall_grass", InkColors.RED);
+	public static final DeferredBlock<ColoredTallGrassBlock> WHITE_TALL_GRASS = registerColoredTallGrass("white_tall_grass", InkColors.WHITE);
+	public static final DeferredBlock<ColoredTallGrassBlock> YELLOW_TALL_GRASS = registerColoredTallGrass("yellow_tall_grass", InkColors.YELLOW);
+	
 	public static DeferredBlock<GlowBlock> registerGlowBlock(String name, InkColor color) {
 		return register(simple(blockWithItem(name, () -> new GlowBlock(settings(color.getMapColor(), SoundType.BASALT, 2.5F).requiresCorrectToolForDrops().lightLevel(state -> 1).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always), color))));
 	}
@@ -2809,6 +2851,40 @@ public class SpectrumBlocks {
 		
 		ItemBlockRenderTypes.setRenderLayer(LIQUID_CRYSTAL_CAULDRON.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TWILL.get(), RenderType.cutout());
+		
+		ItemBlockRenderTypes.setRenderLayer(BLACK_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(BLUE_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(BROWN_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(CYAN_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GRAY_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GREEN_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIGHT_BLUE_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIGHT_GRAY_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIME_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(MAGENTA_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ORANGE_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(PINK_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(PURPLE_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(RED_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(WHITE_SHORT_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(YELLOW_SHORT_GRASS.get(), RenderType.cutout());
+		
+		ItemBlockRenderTypes.setRenderLayer(BLACK_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(BLUE_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(BROWN_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(CYAN_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GRAY_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(GREEN_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIGHT_BLUE_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIGHT_GRAY_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(LIME_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(MAGENTA_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(ORANGE_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(PINK_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(PURPLE_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(RED_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(WHITE_TALL_GRASS.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(YELLOW_TALL_GRASS.get(), RenderType.cutout());
 	}
 	
 }

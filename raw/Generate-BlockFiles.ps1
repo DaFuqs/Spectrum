@@ -1,19 +1,19 @@
-﻿$new = @("black_trapdoor",
-"blue_trapdoor",
-"brown_trapdoor",
-"cyan_trapdoor",
-"gray_trapdoor",
-"green_trapdoor",
-"light_blue_trapdoor",
-"light_gray_trapdoor",
-"lime_trapdoor",
-"magenta_trapdoor",
-"orange_trapdoor",
-"pink_trapdoor",
-"purple_trapdoor",
-"red_trapdoor",
-"white_trapdoor",
-"yellow_trapdoor")
+﻿$new = @("black_tall_grass",
+"blue_tall_grass",
+"brown_tall_grass",
+"cyan_tall_grass",
+"gray_tall_grass",
+"green_tall_grass",
+"light_blue_tall_grass",
+"light_gray_tall_grass",
+"lime_tall_grass",
+"magenta_tall_grass",
+"orange_tall_grass",
+"pink_tall_grass",
+"purple_tall_grass",
+"red_tall_grass",
+"white_tall_grass",
+"yellow_tall_grass")
 
 enum BlockType {
     Default
@@ -1798,4 +1798,4 @@ Function Generate-BlockFiles {
     }
 }
 
-Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Trapdoor)
+Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::TallFlower)

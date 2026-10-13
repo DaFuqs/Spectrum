@@ -1,25 +1,25 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import com.mojang.serialization.*;
+import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.client.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
-import net.minecraft.core.registries.*;
-import net.minecraft.data.worldgen.placement.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.level.levelgen.feature.*;
-import net.minecraft.world.level.levelgen.feature.configurations.*;
-import net.minecraft.world.level.levelgen.placement.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ColoredGrassBlock extends SpreadingSnowyDirtBlock implements BonemealableBlock {
+public class ColoredGrassBlock extends SpreadingSnowyDirtBlock implements BonemealableBlock, RevelationAware {
 	
 	private static final Map<InkColor, ColoredGrassBlock> BLOCKS = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
@@ -28,10 +28,15 @@ public class ColoredGrassBlock extends SpreadingSnowyDirtBlock implements Boneme
 		super(settings);
 		this.color = color;
 		BLOCKS.put(color, this);
+		RevelationAware.register(this);
+	}
+	
+	public static Collection<ColoredGrassBlock> all() {
+		return BLOCKS.values();
 	}
 	
 	@Override
-	protected @NotNull MapCodec<ColoredGrassBlock> codec() {
+	protected MapCodec<ColoredGrassBlock> codec() {
 		return null;
 	}
 	
@@ -45,6 +50,40 @@ public class ColoredGrassBlock extends SpreadingSnowyDirtBlock implements Boneme
 	
 	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
 		// TODO
+	}
+	
+	@Override
+	public ResourceLocation getCloakAdvancementIdentifier() {
+		return SpectrumAdvancements.REVEAL_COLORED_GRASS;
+	}
+	
+	@Override
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
+		Map<BlockState, BlockState> blockStateCloaks = new Object2ObjectArrayMap<>();
+		blockStateCloaks.put(this.defaultBlockState().setValue(SNOWY, false), Blocks.GRASS_BLOCK.defaultBlockState().setValue(SnowyDirtBlock.SNOWY, false));
+		blockStateCloaks.put(this.defaultBlockState().setValue(SNOWY, true), Blocks.GRASS_BLOCK.defaultBlockState().setValue(SnowyDirtBlock.SNOWY, true));
+		return blockStateCloaks;
+	}
+	
+	@Override
+	public @Nullable Tuple<Item, Item> getItemCloak() {
+		return new Tuple<>(this.asItem(), Blocks.GRASS_BLOCK.asItem());
+	}
+	
+	@Override
+	public void onUncloak() {
+		if (SpectrumColorProviders.coloredGrassBlockColorProvider != null && SpectrumColorProviders.coloredGrassItemColorProvider != null) {
+			SpectrumColorProviders.coloredGrassBlockColorProvider.setShouldApply(false);
+			SpectrumColorProviders.coloredGrassItemColorProvider.setShouldApply(false);
+		}
+	}
+	
+	@Override
+	public void onCloak() {
+		if (SpectrumColorProviders.coloredGrassBlockColorProvider != null && SpectrumColorProviders.coloredGrassItemColorProvider != null) {
+			SpectrumColorProviders.coloredGrassBlockColorProvider.setShouldApply(true);
+			SpectrumColorProviders.coloredGrassItemColorProvider.setShouldApply(true);
+		}
 	}
 	
 	public BonemealableBlock.Type getType() {

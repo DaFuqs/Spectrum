@@ -1,0 +1,12 @@
+{
+  "advancement": "spectrum:milestones/reveal_colored_grass",
+  "block_states": {
+    "spectrum:red_grass_block[snowy=false]": "minecraft:grass_block[snowy=false]",
+    "spectrum:red_grass_block[snowy=true]": "minecraft:grass_block[snowy=true]",
+
+    "spectrum:red_short_grass": "minecraft:short_grass",
+
+    "spectrum:red_tall_grass[half=lower]": "minecraft:tall_grass[half=lower]",
+    "spectrum:red_tall_grass[half=upper]": "minecraft:tall_grass[half=upper]"
+  }
+}

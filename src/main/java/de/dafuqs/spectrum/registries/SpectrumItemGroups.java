@@ -829,6 +829,40 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.RED_GRASS_BLOCK);
 					entries.accept(SpectrumBlocks.BLACK_GRASS_BLOCK);
 					
+					entries.accept(SpectrumBlocks.WHITE_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.ORANGE_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.MAGENTA_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.YELLOW_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.LIME_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.PINK_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.GRAY_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.CYAN_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.PURPLE_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.BLUE_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.BROWN_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.GREEN_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.RED_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.BLACK_SHORT_GRASS);
+					
+					entries.accept(SpectrumBlocks.WHITE_TALL_GRASS);
+					entries.accept(SpectrumBlocks.ORANGE_TALL_GRASS);
+					entries.accept(SpectrumBlocks.MAGENTA_TALL_GRASS);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_TALL_GRASS);
+					entries.accept(SpectrumBlocks.YELLOW_TALL_GRASS);
+					entries.accept(SpectrumBlocks.LIME_TALL_GRASS);
+					entries.accept(SpectrumBlocks.PINK_TALL_GRASS);
+					entries.accept(SpectrumBlocks.GRAY_TALL_GRASS);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_TALL_GRASS);
+					entries.accept(SpectrumBlocks.CYAN_TALL_GRASS);
+					entries.accept(SpectrumBlocks.PURPLE_TALL_GRASS);
+					entries.accept(SpectrumBlocks.BLUE_TALL_GRASS);
+					entries.accept(SpectrumBlocks.BROWN_TALL_GRASS);
+					entries.accept(SpectrumBlocks.GREEN_TALL_GRASS);
+					entries.accept(SpectrumBlocks.RED_TALL_GRASS);
+					entries.accept(SpectrumBlocks.BLACK_TALL_GRASS);
+					
 					entries.accept(SpectrumBlocks.BLACKSLAG);
 					entries.accept(SpectrumBlocks.BLACKSLAG_SLAB);
 					entries.accept(SpectrumBlocks.BLACKSLAG_WALL);

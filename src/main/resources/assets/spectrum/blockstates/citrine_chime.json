@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "is_muted=false": {
       "model": "spectrum:block/citrine_chime"
+    },
+    "is_muted=true": {
+      "model": "spectrum:block/citrine_chime_muted"
     }
   }
 }

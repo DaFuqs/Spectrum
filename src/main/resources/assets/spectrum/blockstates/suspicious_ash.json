@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "dusted=0": {
+      "model": "spectrum:block/suspicious_ash_0"
+    },
+    "dusted=1": {
+      "model": "spectrum:block/suspicious_ash_1"
+    },
+    "dusted=2": {
+      "model": "spectrum:block/suspicious_ash_2"
+    },
+    "dusted=3": {
+      "model": "spectrum:block/suspicious_ash_3"
+    }
+  }
+}

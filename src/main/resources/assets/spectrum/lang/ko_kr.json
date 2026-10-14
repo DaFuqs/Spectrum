@@ -2698,6 +2698,8 @@
   "book.spectrum.guidebook.gemstone_armor.page5.text": "피격 시 짧은 시간 동안 신속과 투명 효과를 부여하여 신속하게 후퇴할 수 있게 해준다. 원거리 전투에 완벽하다.",
   "book.spectrum.guidebook.gemstone_chimes.name": "보석 차임",
   "book.spectrum.guidebook.gemstone_chimes.page0.text": "보석들을 가지고 오랫동안 뚝딱거리다 보니, 어느새 이 연약한 자원들을 아주 정교하게 다듬어 낼 수 있는 경지에 올랐다. 미풍에 부드럽게 흔들리는 차임 소리를 듣고 있자니 내 여정의 첫 시작인, 처음 정동에 발을 들였던 그 순간이 떠오른다. 아직도 생생하다. 정말 엄청난 순간이었지!\\\n각 차임은 그 재료가 된 보석 특유의 평온한 소리를 낸다.",
+  "book.spectrum.guidebook.gemstone_chimes.muting.name": "차임 음소거",
+  "book.spectrum.guidebook.gemstone_chimes.page1.text": "어떤 이유로든 그 소리가 신경 쓰인다면, 약간의 양털로 상호작용하여 그 소리를 잠재울 수 있고, 맨손으로 이를 되돌릴 수도 있다.",
   "book.spectrum.guidebook.gemstone_glass.name": "보석 유리",
   "book.spectrum.guidebook.gemstone_glass.page0.text": "보석들은 본래 약간 투명한 성질을 띠고 있다. 그렇다면 이걸 이용해 일종의 유리를 만들어 보는 것만큼 자연스러운 발상이 어디 있겠는가?\\\n당연히 그에 맞는 유리판도 만들 수 있다.",
   "book.spectrum.guidebook.gemstone_glass.page1.text": "내가 발견한 모든 종류의 보석을 이용해 만들어낼 수 있다.",

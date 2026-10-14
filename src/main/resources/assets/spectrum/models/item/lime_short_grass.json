@@ -1,3 +1,6 @@
 {
-    "parent": "spectrum:block/lime_short_grass"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spectrum:block/lime_short_grass"
+  }
 }

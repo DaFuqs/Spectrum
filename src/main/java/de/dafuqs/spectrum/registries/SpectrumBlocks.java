@@ -2885,6 +2885,23 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(RED_TALL_GRASS.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(WHITE_TALL_GRASS.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(YELLOW_TALL_GRASS.get(), RenderType.cutout());
+		
+		ItemBlockRenderTypes.setRenderLayer(BLACK_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(BLUE_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(BROWN_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(CYAN_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(GRAY_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(GREEN_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(LIGHT_BLUE_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(LIGHT_GRAY_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(LIME_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(MAGENTA_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(ORANGE_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(PINK_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(PURPLE_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(RED_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(WHITE_GRASS_BLOCK.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(YELLOW_GRASS_BLOCK.get(), RenderType.cutoutMipped());
 	}
 	
 }

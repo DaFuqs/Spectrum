@@ -27,9 +27,8 @@ public class SpectrumColorProviders {
 	public static @Nullable ToggleableItemColorProvider amaranthItemColorProvider;
 	
 	public static void registerBlocks(RegisterColorHandlersEvent.Block event) {
-		// Biome Colors for colored leaves items and blocks
-		// They don't use it, but their decoy oak leaves do
-		
+		// Biome Colors for colored leaves, grass, amaranth and items and blocks
+		// They don't use it, but their decoy blocks do
 		coloredLeavesBlockColorProvider = new ToggleableBlockColorProvider((blockState, blockAndTintGetter, blockPos, i) -> event.getBlockColors().getColor(Blocks.OAK_LEAVES.defaultBlockState(), blockAndTintGetter, blockPos, i));
 		coloredGrassBlockColorProvider = new ToggleableBlockColorProvider((blockState, blockAndTintGetter, blockPos, i) -> event.getBlockColors().getColor(Blocks.GRASS_BLOCK.defaultBlockState(), blockAndTintGetter, blockPos, i));
 		amaranthBlockColorProvider = new ToggleableBlockColorProvider((blockState, blockAndTintGetter, blockPos, i) -> event.getBlockColors().getColor(Blocks.FERN.defaultBlockState(), blockAndTintGetter, blockPos, i));

@@ -13,12 +13,17 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.common.*;
+import net.neoforged.neoforge.fluids.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
+	
+	@Shadow
+	protected abstract void setFluidTypeHeight(FluidType type, double height);
 	
 	@ModifyVariable(method = "makeStuckInBlock", at = @At(value = "LOAD"), argsOnly = true)
 	private Vec3 spectrum$applyInexorableAntiBlockSlowdown(Vec3 multiplier) {
@@ -90,4 +95,14 @@ public abstract class EntityMixin {
 		
 		return original;
 	}
+	
+	// fixes weirdness with entities like fish not being able to swim in liquid crystal
+	// TODO: test and remove in MC 26.1 since Neo patched that in https://github.com/neoforged/NeoForge/commit/ad038e822a142901aeb33b0eedde0a892588b662
+	@Inject(method = "setFluidTypeHeight(Lnet/neoforged/neoforge/fluids/FluidType;D)V", at = @At("HEAD"))
+	protected final void spectrum$considerLiquidCrystalWater(FluidType type, double height, CallbackInfo ci) {
+		if(type == SpectrumFluids.LIQUID_CRYSTAL_TYPE.get()) {
+			this.setFluidTypeHeight(NeoForgeMod.WATER_TYPE.value(), height);
+		}
+	}
+	
 }

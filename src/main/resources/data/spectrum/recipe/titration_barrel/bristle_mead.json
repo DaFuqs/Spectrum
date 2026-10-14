@@ -114,8 +114,7 @@
   "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
   "neoforge:conditions": [
     {
-      "type": "neoforge:tag_empty",
-      "registry": "minecraft:fluid",
+      "type": "spectrum:fluid_tag_empty",
       "tag": "c:honey"
     }
   ]

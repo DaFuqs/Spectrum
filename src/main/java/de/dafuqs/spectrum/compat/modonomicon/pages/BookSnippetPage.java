@@ -20,8 +20,9 @@ public class BookSnippetPage extends BookTextPage {
 	private final int textureY;
 	private final int textureWidth;
 	private final int textureHeight;
+	private final boolean centerText;
 	
-	public BookSnippetPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, BookCondition condition, ResourceLocation resourcePath, int resourceWidth, int resourceHeight, int textureX, int textureY, int textureWidth, int textureHeight) {
+	public BookSnippetPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, BookCondition condition, ResourceLocation resourcePath, int resourceWidth, int resourceHeight, int textureX, int textureY, int textureWidth, int textureHeight, boolean centerText) {
 		super(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition);
 		this.resourcePath = resourcePath;
 		this.resourceWidth = resourceWidth;
@@ -30,6 +31,7 @@ public class BookSnippetPage extends BookTextPage {
 		this.textureY = textureY;
 		this.textureWidth = textureWidth;
 		this.textureHeight = textureHeight;
+		this.centerText = centerText;
 	}
 	
 	public static BookSnippetPage fromJson(ResourceLocation entryId, JsonObject json, HolderLookup.Provider provider) {
@@ -48,7 +50,21 @@ public class BookSnippetPage extends BookTextPage {
 		var textureY = GsonHelper.getAsInt(json, "texture_y");
 		var textureWidth = GsonHelper.getAsInt(json, "texture_width");
 		var textureHeight = GsonHelper.getAsInt(json, "texture_height");
-		return new BookSnippetPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, resourcePath, resourceWidth, resourceHeight, textureX, textureY, textureWidth, textureHeight);
+		boolean centerText = GsonHelper.getAsBoolean(json, "center_text", true);
+		return new BookSnippetPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, resourcePath, resourceWidth, resourceHeight, textureX, textureY, textureWidth, textureHeight, centerText);
+	}
+	
+	@Override
+	public void toNetwork(RegistryFriendlyByteBuf buffer) {
+		super.toNetwork(buffer);
+		buffer.writeResourceLocation(resourcePath);
+		buffer.writeVarInt(resourceWidth);
+		buffer.writeVarInt(resourceHeight);
+		buffer.writeVarInt(textureX);
+		buffer.writeVarInt(textureY);
+		buffer.writeVarInt(textureWidth);
+		buffer.writeVarInt(textureHeight);
+		buffer.writeBoolean(centerText);
 	}
 	
 	public static BookSnippetPage fromNetwork(RegistryFriendlyByteBuf buffer) {
@@ -65,7 +81,8 @@ public class BookSnippetPage extends BookTextPage {
 		var textureY = buffer.readVarInt();
 		var textureWidth = buffer.readVarInt();
 		var textureHeight = buffer.readVarInt();
-		return new BookSnippetPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, resourcePath, resourceWidth, resourceHeight, textureX, textureY, textureWidth, textureHeight);
+		var centerText = buffer.readBoolean();
+		return new BookSnippetPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, resourcePath, resourceWidth, resourceHeight, textureX, textureY, textureWidth, textureHeight, centerText);
 	}
 	
 	public ResourceLocation getResourcePath() {
@@ -96,22 +113,13 @@ public class BookSnippetPage extends BookTextPage {
 		return textureHeight;
 	}
 	
+	public boolean centerText() {
+		return centerText;
+	}
 	
 	@Override
 	public ResourceLocation getType() {
 		return ModonomiconCompat.SNIPPET_PAGE;
-	}
-	
-	@Override
-	public void toNetwork(RegistryFriendlyByteBuf buffer) {
-		super.toNetwork(buffer);
-		buffer.writeResourceLocation(resourcePath);
-		buffer.writeVarInt(resourceWidth);
-		buffer.writeVarInt(resourceHeight);
-		buffer.writeVarInt(textureX);
-		buffer.writeVarInt(textureY);
-		buffer.writeVarInt(textureWidth);
-		buffer.writeVarInt(textureHeight);
 	}
 	
 }

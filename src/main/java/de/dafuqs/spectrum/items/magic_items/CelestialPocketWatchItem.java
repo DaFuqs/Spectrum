@@ -33,7 +33,7 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 	}
 	
 	@Override
-	public List<InkColor> getUsedColors() {
+	public List<InkColor> getUsedColors(ItemStack stack) {
 		return List.of(COST.color());
 	}
 	
@@ -99,7 +99,7 @@ public class CelestialPocketWatchItem extends Item implements InkPowered {
 			}
 		}
 		
-		addInkPoweredTooltip(tooltip);
+		addInkPoweredTooltip(stack, tooltip);
 	}
 	
 }

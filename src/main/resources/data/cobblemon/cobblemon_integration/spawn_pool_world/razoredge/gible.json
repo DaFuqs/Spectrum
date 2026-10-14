@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "gible-1S",
+            "pokemon": "gible",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "ultra-rare",
+            "level": "18-28",
+            "weight": 15.5,
+            "condition": {
+                "biomes": [
+                    "spectrum:razor_edge"
+                ]
+            }
+        }
+    ]
+}

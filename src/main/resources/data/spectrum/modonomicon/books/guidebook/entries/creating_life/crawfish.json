@@ -1,0 +1,27 @@
+{
+  "name": "item.spectrum.crawfish",
+  "icon": {
+    "item": "spectrum:crawfish"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_crawfish"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": -3,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "item.spectrum.crawfish",
+      "item": {
+        "item": "spectrum:crawfish"
+      },
+      "text": "book.spectrum.guidebook.crawfish.about.text"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "block.spectrum.vantaclast",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/vantaclast"
+  },
+  "icon": {
+    "item": "spectrum:vantaclast"
+  },
+  "category": "spectrum:ink",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": -3,
+  "y": 1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.vantaclast.about.text",
+      "title": "block.spectrum.vantaclast"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "container.spectrum.rei.pedestal_recipe",
+      "recipe_id": "spectrum:pedestal/tier2/vantaclast",
+      "text": "book.spectrum.guidebook.vantaclast.recipe.text"
+    }
+  ]
+}

@@ -50,7 +50,7 @@ public class VantaclastBlockEntity extends InkGeneratorBlockEntity {
 					new ColoredTransmission(
 							new Vec3(posToTest.getX() + 0.5D, posToTest.getY() + 0.5D, posToTest.getZ() + 0.5D),
 							new BlockPositionSource(worldPosition), 8,
-							inkColor.getColorInt())
+							inkColor.getColorARGB())
 			);
 			
 			level.setBlockAndUpdate(posToTest, SpectrumBlocks.BLACK_MATERIA.get().defaultBlockState());

@@ -1,0 +1,31 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "carbink-1S",
+            "pokemon": "carbink",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "23-40",
+            "weight": 65.0,
+            "condition": {
+                "biomes": [
+                    "#spectrum:in_deeper_down"
+                ],
+                "neededNearbyBlocks":
+                 [ "spectrum:moonstone_block" ]
+            },
+            "anticondition": {
+                "biomes": [
+                    "spectrum:black_langast"
+                ]
+            }
+        }
+    ]
+}

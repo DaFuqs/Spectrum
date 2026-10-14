@@ -31,6 +31,7 @@ public class UnlockToastManager {
 		put(SpectrumAdvancements.FOURTH_BREWING_SLOT, new Tuple<>(() -> SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultInstance(), "fourth_potion_reagent_unlocked"));
 		put(SpectrumAdvancements.MIDGAME, new Tuple<>(() -> SpectrumBlocks.PEDESTAL_ONYX.asItem().getDefaultInstance(), "second_advancement_tree_unlocked"));
 		put(SpectrumAdvancements.LATEGAME, new Tuple<>(() -> SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultInstance(), "third_advancement_tree_unlocked"));
+		put(SpectrumAdvancements.ENDGAME, new Tuple<>(() -> SpectrumItems.MYSTERIOUS_LOCKET.asItem().getDefaultInstance(), "fourth_advancement_tree_unlocked"));
 		put(SpectrumAdvancements.ASCEND_KINDLING, new Tuple<>(() -> SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultInstance(), "ascend_kindling"));
 		put(SpectrumAdvancements.VIVISECT_KINDLING, new Tuple<>(() -> SpectrumItems.DIVINATION_HEART.get().getDefaultInstance(), "vivisect_kindling"));
 		put(SpectrumAdvancements.PAINTBRUSH_COLORING, new Tuple<>(() -> SpectrumItems.PAINTBRUSH.get().getDefaultInstance(), "block_coloring_unlocked"));

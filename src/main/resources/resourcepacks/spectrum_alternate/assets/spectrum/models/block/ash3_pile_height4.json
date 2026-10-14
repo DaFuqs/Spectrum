@@ -1,7 +1,0 @@
-{
-  "parent": "block/snow_height4",
-  "textures": {
-    "particle": "spectrum:block/ash3",
-    "texture": "spectrum:block/ash3"
-  }
-}

@@ -73,7 +73,7 @@ public class ColorEverpromiseRibbonRecipe extends CustomRecipe {
 		
 		Component text = ribbon.getHoverName();
 		if (text instanceof MutableComponent mutableText) {
-			TextColor newColor = TextColor.fromRgb(pigment.getInkColor().getColorInt());
+			TextColor newColor = TextColor.fromRgb(pigment.getInkColor().getColorRGB());
 			Component newName = mutableText.setStyle(mutableText.getStyle().withColor(newColor));
 			ribbon.set(DataComponents.CUSTOM_NAME, newName);
 		}

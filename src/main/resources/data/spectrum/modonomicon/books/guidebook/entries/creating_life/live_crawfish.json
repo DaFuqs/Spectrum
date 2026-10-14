@@ -1,0 +1,35 @@
+{
+  "name": "book.spectrum.guidebook.live_crawfish.name",
+  "icon": {
+    "item": "spectrum:crawfish"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/entity_interact/crawfish"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/crawfish"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 5,
+  "y": -3,
+  "pages": [
+    {
+      "type": "modonomicon:entity",
+      "entity_id": "spectrum:crawfish",
+      "scale": 1.0,
+      "name": "book.spectrum.guidebook.live_crawfish.name",
+      "text": "book.spectrum.guidebook.live_crawfish.entity.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.live_crawfish.behavior.title",
+      "text": "book.spectrum.guidebook.live_crawfish.behavior.text"
+    }
+  ]
+}

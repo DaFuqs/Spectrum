@@ -45,7 +45,8 @@ public class FluidLogging {
 		}
 		
 		public FluidState getFluidState() {
-			return this.fluid.get().defaultFluidState();
+			Fluid fluid = this.fluid.get();
+			return fluid instanceof FlowingFluid flowingFluid ? flowingFluid.getSource(false) : fluid.defaultFluidState();
 		}
 		
 		public int getLuminance() {

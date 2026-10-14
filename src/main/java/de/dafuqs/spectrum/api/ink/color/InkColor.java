@@ -8,6 +8,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.resources.*;
 import net.minecraft.tags.*;
+import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import org.joml.*;
 import org.jspecify.annotations.*;
@@ -106,8 +107,17 @@ public class InkColor {
 		return this.colorVec;
 	}
 	
+	@Deprecated(forRemoval = true)
 	public int getColorInt() {
 		return this.colorInt;
+	}
+	
+	public int getColorARGB() {
+		return this.colorInt;
+	}
+	
+	public int getColorRGB() {
+		return FastColor.ARGB32.opaque(this.colorInt);
 	}
 	
 	public int getTextColorInt() {

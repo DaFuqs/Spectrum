@@ -71,7 +71,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		}
 		
 		if (crystallarieum.canWork && crystallarieum.currentRecipe != null) {
-			ParticleOptions particleEffect = ColoredSparkleRisingParticleEffect.of(crystallarieum.currentRecipe.value().getInkColor().getColorInt());
+			ParticleOptions particleEffect = ColoredSparkleRisingParticleEffect.of(crystallarieum.currentRecipe.value().getInkColor().getColorARGB());
 			
 			int amount = 1 + crystallarieum.currentRecipe.value().getInkCostTier();
 			if (Support.getIntFromDecimalWithChance(amount / 20.0, world.getRandom()) > 0) {

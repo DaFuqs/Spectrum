@@ -4,7 +4,17 @@
   "use_up_base_ingredient": true,
   "required_experience": 10,
   "color": 11665152,
-  "ingredient1": "spectrum:knowledge_gem",
+  "ingredient1": {
+    "item": "spectrum:knowledge_gem",
+    "predicates": {
+      "spectrum:stored_experience": {
+        "min": 10
+      }
+    },
+    "preview_components": {
+      "spectrum:stored_experience": 10
+    }
+  },
   "ingredient2": "spectrum:purple_pigment",
   "ingredient3": "spectrum:lime_pigment",
   "result": {

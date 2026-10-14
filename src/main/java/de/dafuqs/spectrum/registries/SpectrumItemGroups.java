@@ -671,6 +671,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
 					entries.accept(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
 					entries.accept(SpectrumItems.DRAGONROT_BUCKET);
+					
+					//entries.accept(SpectrumItems.SILVER_SCALE); // TODO: readd when they got textures & uses
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_PURE_RESOURCES, Component.translatable("itemGroup.spectrum.pure_resources"))
@@ -1473,8 +1475,11 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.ERASER_SPAWN_EGG);
 					entries.accept(SpectrumItems.MARROW_SPAWN_EGG);
 					entries.accept(SpectrumItems.SPLINTERSPAWN_SPAWN_EGG);
+					entries.accept(SpectrumItems.KOI_SPAWN_EGG);
+					entries.accept(SpectrumItems.CRAWFISH_SPAWN_EGG);
 					
 					entries.accept(SpectrumItems.BUCKET_OF_ERASER);
+					entries.accept(SpectrumItems.BUCKET_OF_KOI);
 					
 					entries.accept(SpectrumBlocks.SPLINTERSPAWN_INFESTED_PYRITE);
 					entries.accept(SpectrumBlocks.SPLINTERSPAWN_INFESTED_SHALE_CLAY);
@@ -1527,6 +1532,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.PRESERVATION_GLASS);
 					entries.accept(SpectrumBlocks.TINTED_PRESERVATION_GLASS);
 					entries.accept(SpectrumBlocks.PRESERVATION_ROUNDEL);
+					entries.accept(SpectrumBlocks.PRESERVATION_SENSOR);
 					entries.accept(SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
 					entries.accept(SpectrumBlocks.DIKE_GATE_FOUNTAIN);
 					entries.accept(SpectrumBlocks.DIKE_GATE);
@@ -1556,12 +1562,12 @@ public class SpectrumItemGroups {
 					
 					entries.accept(SpectrumItems.DIVINATION_HEART);
 					
-					// TODO: Finish impl
-					entries.accept(SpectrumBlocks.DAWNBRUSH);
+					// todo: add model
+					entries.accept(SpectrumBlocks.TINTING_STATION);
+					// TODO: add model & finish impl
+					entries.accept(SpectrumBlocks.DAYDREAMER);
 					entries.accept(SpectrumBlocks.TWILL);
 					entries.accept(SpectrumBlocks.VANTACLAST);
-					
-					entries.accept(SpectrumBlocks.TINTING_STATION);
 				}).build();
 	}
 	

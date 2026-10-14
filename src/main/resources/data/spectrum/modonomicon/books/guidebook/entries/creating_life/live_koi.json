@@ -1,0 +1,30 @@
+{
+  "name": "book.spectrum.guidebook.live_koi.name",
+  "icon": {
+    "item": "spectrum:bucket_of_koi"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/entity_interact/koi"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/koi"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 5,
+  "y": -2,
+  "pages": [
+    {
+      "type": "modonomicon:entity",
+      "name": "book.spectrum.guidebook.live_koi.name",
+      "entity_id": "spectrum:koi",
+      "scale": 1.0,
+      "text": "book.spectrum.guidebook.live_koi.entity.text"
+    }
+  ]
+}

@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.lighting.*;
 
-public class BlackslagVegetationBlock extends SnowyDirtBlock {
+public class BlackslagVegetationBlock extends SnowyDirtBlock implements OvergrownBlock {
 	
 	public static final MapCodec<BlackslagVegetationBlock> CODEC = simpleCodec(BlackslagVegetationBlock::new);
 	

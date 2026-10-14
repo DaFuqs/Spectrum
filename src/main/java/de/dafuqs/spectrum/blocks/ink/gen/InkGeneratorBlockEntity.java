@@ -42,7 +42,7 @@ public abstract class InkGeneratorBlockEntity extends BaseInkBlockEntity<TotalCa
 	
 	@Override
 	protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
-		return new BaseInkScreenHandler(syncId, playerInventory, this, this.selectedColor);
+		return new InkStorageScreenHandler(syncId, playerInventory, this, this.selectedColor);
 	}
 	
 	public boolean shouldTickLogic(Level world) {

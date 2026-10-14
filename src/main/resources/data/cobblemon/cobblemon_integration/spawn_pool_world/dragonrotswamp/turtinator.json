@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "turtonator-DD",
+            "pokemon": "turtonator",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "32-61",
+            "weight": 40.0,
+            "condition": {
+                "biomes": [
+                    "spectrum:dragonrot_swamp"
+                ]
+            }
+        }
+    ]
+}

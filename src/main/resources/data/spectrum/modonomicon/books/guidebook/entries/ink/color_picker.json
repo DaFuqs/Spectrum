@@ -9,14 +9,10 @@
   },
   "category": "spectrum:ink",
   "hide_while_locked": true,
-  "parents": [
-    {
-      "entry": "spectrum:ink/ink"
-    }
-  ],
+  "parents": [],
   "background_u_index": 0,
-  "background_v_index": 1,
-  "x": 3,
+  "background_v_index": 0,
+  "x": -4,
   "y": 0,
   "pages": [
     {

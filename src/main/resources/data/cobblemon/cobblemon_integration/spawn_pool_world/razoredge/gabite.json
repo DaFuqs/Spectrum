@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "gabite-1S",
+            "pokemon": "gabite",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "ultra-rare",
+            "level": "26-39",
+            "weight": 12.5,
+            "condition": {
+                "biomes": [
+                    "spectrum:razor_edge"
+                ]
+            }
+        }
+    ]
+}

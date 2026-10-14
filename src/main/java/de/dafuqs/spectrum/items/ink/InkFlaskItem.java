@@ -74,6 +74,6 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 		
 		var color = storage.getStoredColor();
 		var progress = Support.getSensiblePercent(storage.getCurrentTotal(), storage.getMaxTotal(), 14);
-		return new BarSignature(1, 13, 14, progress, 1, color.getColorInt(), 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
+		return new BarSignature(1, 13, 14, progress, 1, color.getColorARGB(), 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
 }

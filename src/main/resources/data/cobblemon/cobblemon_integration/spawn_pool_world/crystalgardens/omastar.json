@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "omastar-DD",
+            "pokemon": "omastar",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "40-61",
+            "weight": 30.0,
+            "condition": {
+                "biomes": [
+                    "spectrum:crystal_gardens"
+                ]
+            }
+        }
+    ]
+}

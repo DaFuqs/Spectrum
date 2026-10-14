@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "haxorus-1S",
+            "pokemon": "haxorus",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "rare",
+            "level": "48-58",
+            "weight": 12.5,
+            "condition": {
+                "biomes": [
+                    "spectrum:razor_edge"
+                ]
+            }
+        }
+    ]
+}

@@ -30,6 +30,12 @@
         "id": "spectrum:aloe_leaf"
       },
       "text": "book.spectrum.guidebook.aloe.page1.text"
+    },
+    {
+      "type": "spectrum:cinderhearth_smelting",
+      "recipe_id": "spectrum:cinderhearth/aloe_to_slimeball",
+      "title": "book.spectrum.guidebook.aloe.page2.title",
+      "text": "book.spectrum.guidebook.aloe.page2.text"
     }
   ]
 }

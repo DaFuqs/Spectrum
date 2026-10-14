@@ -223,6 +223,8 @@ public class SpectrumCommon {
 		SpectrumEventListeners.register();
 		logInfo("Registering Tree Decorator Types...");
 		SpectrumTreeDecoratorTypes.register(modBus);
+		logInfo("Registering Cat Variants...");
+		SpectrumCatVariants.register(modBus);
 		
 		logInfo("Registering Attachments...");
 		SpectrumAttachmentTypes.register(modBus);

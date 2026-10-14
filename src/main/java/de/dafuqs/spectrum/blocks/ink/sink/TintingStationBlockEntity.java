@@ -83,7 +83,7 @@ public class TintingStationBlockEntity extends InkSinkBlockEntity implements Men
 								
 								PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) this.getLevel(),
 										new Vec3(this.getBlockPos().getX() + 0.5, this.getBlockPos().getY() + 0.7, this.getBlockPos().getZ() + 0.5),
-										ColoredFluidRisingParticleEffect.of(selectedInkColor.getColorInt()),
+										ColoredFluidRisingParticleEffect.of(selectedInkColor.getColorARGB()),
 										5,
 										new Vec3(0.22, 0.0, 0.22),
 										new Vec3(0.0, 0.1, 0.0)
@@ -123,7 +123,7 @@ public class TintingStationBlockEntity extends InkSinkBlockEntity implements Men
 			i1++;
 		}
 		
-		int j3 = inkColor.getColorInt();
+		int j3 = inkColor.getColorARGB();
 		int i2 = FastColor.ARGB32.red(j3);
 		int j2 = FastColor.ARGB32.green(j3);
 		int k2 = FastColor.ARGB32.blue(j3);
@@ -152,7 +152,7 @@ public class TintingStationBlockEntity extends InkSinkBlockEntity implements Men
 		if(pc == null) {
 			return ItemStack.EMPTY;
 		}
-		int newColor = inkColor.getColorInt();
+		int newColor = inkColor.getColorARGB();
 		if(pc.customColor().isPresent() && pc.customColor().get() == newColor) {
 			return ItemStack.EMPTY;
 		}

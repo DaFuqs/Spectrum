@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "spectrum:block/planed_calcite",
-    "top": "spectrum:block/planed_calcite",
-    "side": "spectrum:block/planed_calcite"
-  }
-}

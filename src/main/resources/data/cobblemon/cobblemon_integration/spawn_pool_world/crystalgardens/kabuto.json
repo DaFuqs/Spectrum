@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "kabuto-DD",
+            "pokemon": "kabuto",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "11-42",
+            "weight": 60.0,
+            "condition": {
+                "biomes": [
+                    "spectrum:crystal_gardens"
+                ]
+            }
+        }
+    ]
+}

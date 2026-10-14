@@ -7,6 +7,10 @@
   "chance": 0.05,
   "entities": [
     {
+      "entity_type": "spectrum:crawfish",
+      "weight": 20
+    },
+    {
       "entity_type": "minecraft:cod",
       "weight": 5
     },

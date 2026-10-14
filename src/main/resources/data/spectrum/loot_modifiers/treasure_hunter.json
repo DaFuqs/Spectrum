@@ -734,6 +734,24 @@
       },
       "drop_chance_per_level": 0.02
     },
+    {
+      "entity": {
+        "type": "spectrum:koi"
+      },
+      "head_stack": {
+        "id": "spectrum:koi_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
+    {
+      "entity": {
+        "type": "spectrum:crawfish"
+      },
+      "head_stack": {
+        "id": "spectrum:crawfish_head"
+      },
+      "drop_chance_per_level": 0.02
+    },
     
     
     {

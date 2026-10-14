@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "togepi-DD",
+            "pokemon": "togepi",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "13-24",
+            "weight": 40.0,
+            "condition": {
+                "biomes": [
+                    "spectrum:crystal_gardens"
+                ]
+            }
+        }
+    ]
+}

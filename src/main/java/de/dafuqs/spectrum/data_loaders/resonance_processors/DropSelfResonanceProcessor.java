@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -39,7 +40,7 @@ public class DropSelfResonanceProcessor extends ResonanceProcessor {
 	}
 	
 	@Override
-	public Optional<List<ItemStack>> process(BlockState state, BlockEntity blockEntity, List<ItemStack> droppedStacks) {
+	public Optional<List<ItemStack>> process(BlockState state, @Nullable BlockEntity blockEntity, List<ItemStack> droppedStacks) {
 		if (blockPredicate.test(state)) {
 			ResonanceProcessor.preventNextXPDrop = true;
 			return Optional.of(dropSelf(state, blockEntity, droppedStacks));
@@ -77,13 +78,13 @@ public class DropSelfResonanceProcessor extends ResonanceProcessor {
 		}
 	}
 	
-	private List<ItemStack> dropSelf(BlockState minedState, BlockEntity blockEntity, List<ItemStack> droppedStacks) {
+	private List<ItemStack> dropSelf(BlockState minedState, @Nullable BlockEntity blockEntity, List<ItemStack> droppedStacks) {
 		ItemStack selfStack = minedState.getBlock().asItem().getDefaultInstance();
 		
 		if (!statePropertiesToCopy.isEmpty()) {
 			copyBlockStateTags(minedState, selfStack);
 		}
-		if (!nbtToCopy.isEmpty()) {
+		if (!nbtToCopy.isEmpty() && blockEntity != null) {
 			copyNbt(blockEntity, selfStack);
 		}
 		

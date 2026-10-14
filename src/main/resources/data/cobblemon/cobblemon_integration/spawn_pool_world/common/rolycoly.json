@@ -1,0 +1,29 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "rolycoly-1S",
+            "pokemon": "rolycoly",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "12-23",
+            "weight": 30.0,
+            "condition": {
+                "biomes": [
+                    "#spectrum:in_deeper_down"
+                ]
+            },
+            "anticondition": {
+                "biomes": [
+                    "spectrum:black_langast"
+                ]
+            }
+        }
+    ]
+}

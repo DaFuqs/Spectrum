@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "snorunt-1S",
+            "pokemon": "snorunt",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "17-42",
+            "weight": 60.5,
+            "condition": {
+                "biomes": [
+                    "spectrum:howling_spires"
+                ]
+            }
+        }
+    ]
+}

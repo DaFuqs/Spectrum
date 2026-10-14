@@ -1,0 +1,29 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "sandile-1S",
+            "pokemon": "sandile",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "uncommon",
+            "level": "16-29",
+            "weight": 32.5,
+            "condition": {
+                "biomes": [
+                    "#spectrum:in_deeper_down"
+                ]
+            },
+            "anticondition": {
+                "biomes": [
+                    "spectrum:black_langast"
+                ]
+            }
+        }
+    ]
+}

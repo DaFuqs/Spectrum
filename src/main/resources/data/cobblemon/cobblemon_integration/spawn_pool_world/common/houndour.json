@@ -1,0 +1,29 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "houndour-1S",
+            "pokemon": "houndour",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "14-31",
+            "weight": 22.5,
+            "condition": {
+                "biomes": [
+                    "#spectrum:in_deeper_down"
+                ]
+            },
+            "anticondition": {
+                "biomes": [
+                    "spectrum:black_langast"
+                ]
+            }
+        }
+    ]
+}

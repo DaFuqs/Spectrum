@@ -127,6 +127,6 @@ public class InkDrainCurioItem extends SpectrumCurioItem implements InkStorageIt
 	
 	@Override
 	public int getBackgroundColor(@Nullable Player player, ItemStack stack, float tickDelta) {
-		return inkColor.getColorInt();
+		return inkColor.getColorARGB();
 	}
 }

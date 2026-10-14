@@ -1,0 +1,60 @@
+{
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "togekiss-alpha-DD",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon-herd",
+      "bucket": "boss",
+      "spawnablePositionType": "grounded",
+      "maxHerdSize": 8,
+      "levelRange": "34-100",
+      "weight": 30.0,
+      "condition": {
+                "biomes": [
+                    "spectrum:crystal_gardens"
+                ]
+            },
+      "herdablePokemon": [
+        {
+          "pokemon": "togekiss held_item=cobblemon:flying_gem alpha=true",
+          "weight": 30.0,
+          "levelRange": "1-100",
+          "maxTimes": 1,
+          "isLeader": true,
+          "isFollower": false
+        },
+        {
+          "pokemon": "togepi",
+          "weight": 30.0,
+          "levelRange": "4-22",
+          "levelRangeOffset": "-3-3",
+          "maxTimes": 3,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "togetic",
+          "weight": 50.0,
+          "levelRange": "22-37",
+          "levelRangeOffset": "-2-4",
+          "maxTimes": 7,
+          "isLeader": false,
+          "isFollower": true
+        },
+        {
+          "pokemon": "togekiss",
+          "weight": 40.0,
+          "levelRange": "37-50",
+          "levelRangeOffset": "-1-5",
+          "maxTimes": 5,
+          "isLeader": false,
+          "isFollower": true
+        }
+      ]
+    }
+  ]
+}

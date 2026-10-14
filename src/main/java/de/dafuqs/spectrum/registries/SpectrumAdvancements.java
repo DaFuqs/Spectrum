@@ -121,8 +121,9 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation CREATE_MIDNIGHT_ABERRATION = SpectrumCommon.locate("midgame/create_midnight_aberration");
 	public static final ResourceLocation ENTER_DIMENSION = SpectrumCommon.locate("midgame/enter_dimension");
 	public static final ResourceLocation FIND_EXCAVATION_SITE = SpectrumCommon.locate("lategame/find_excavation_site");
-	public static final ResourceLocation LATEGAME = SpectrumCommon.locate("lategame/spectrum_lategame");
 	public static final ResourceLocation MIDGAME = SpectrumCommon.locate("midgame/spectrum_midgame");
+	public static final ResourceLocation LATEGAME = SpectrumCommon.locate("lategame/spectrum_lategame");
+	public static final ResourceLocation ENDGAME = SpectrumCommon.locate("endgame/spectrum_endgame");
 	public static final ResourceLocation BREAK_DECAYED_BEDROCK = locate("midgame/break_decayed_bedrock");
 	public static final ResourceLocation MYSTERIOUS_LOCKET_SOCKETING = SpectrumCommon.locate("unlocks/mysterious_locket_socketing");
 	public static final ResourceLocation PLUCK_RESPLENDENT_FEATHER = SpectrumCommon.locate("pluck_resplendent_feather");

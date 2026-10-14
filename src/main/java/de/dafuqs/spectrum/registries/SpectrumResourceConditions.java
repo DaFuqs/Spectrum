@@ -4,6 +4,11 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.material.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.neoforge.common.conditions.*;
 import net.neoforged.neoforge.registries.*;
@@ -14,6 +19,7 @@ public class SpectrumResourceConditions {
 	
 	public static void register(IEventBus modBus) {
 		REGISTRAR.register("integration_pack_active", () -> IntegrationPackActiveResourceCondition.CODEC);
+		REGISTRAR.register("fluid_tag_empty", () -> FluidTagEmptyCondition.CODEC);
 		//REGISTRAR.register("registered", () -> Registered.CODEC);
 		
 		REGISTRAR.register(modBus);
@@ -36,47 +42,26 @@ public class SpectrumResourceConditions {
 		}
 	}
 	
-	
-	/*public record Registered(ResourceLocation registry, ResourceLocation value) implements ICondition {
-		public static final MapCodec<Registered> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-						ResourceLocation.CODEC.fieldOf("registry").orElse(Registries.ITEM.location()).forGetter(Registered::registry),
-						ResourceLocation.CODEC.fieldOf("value").forGetter(Registered::value))
-				.apply(instance, Registered::new));
+	public record FluidTagEmptyCondition(TagKey<Fluid> tag) implements ICondition {
+		public static final MapCodec<FluidTagEmptyCondition> CODEC = RecordCodecBuilder.mapCodec(
+				builder -> builder
+						.group(ResourceLocation.CODEC.xmap(loc -> TagKey.create(Registries.FLUID, loc), TagKey::location).fieldOf("tag").forGetter(FluidTagEmptyCondition::tag))
+						.apply(builder, FluidTagEmptyCondition::new));
 		
 		@Override
-		public boolean test(IContext context) {
-			return registryEntryRegistered(context, this.registry(), this.value());
+		public boolean test(ICondition.IContext context) {
+			return context.getTag(tag).isEmpty();
 		}
 		
 		@Override
 		public MapCodec<? extends ICondition> codec() {
-			return Registered.CODEC;
+			return CODEC;
 		}
 		
-		public static boolean registryEntryRegistered(IContext context, ResourceLocation registryId, ResourceLocation value) {
-			ResourceKey<Registry<Registry<?>>> registryKey = ResourceKey.createRegistryKey(registryId);
-			
-			// TODO: cursed as of 1.21.1
-			// In 1.21.11+ context has info about registries, so this can be cleaned up and the accessors removed
-			// also the `neoforge:registered` condition exists there
-			ConditionContextAccessor conditionContextAccessor = (ConditionContextAccessor) context;
-			TagManager tagManager = conditionContextAccessor.getTagManager();
-			TagManagerAccessor tagManagerAccessor = (TagManagerAccessor) tagManager;
-			Optional<Registry<Registry<?>>> registry = tagManagerAccessor.getRegistryAccess().registry(registryKey);
-			if (registry == null) {
-				return false;
-			}
-			
-			return registry.get().containsKey(value);
+		@Override
+		public String toString() {
+			return "fluid_tag_empty(\"" + tag.location() + "\")";
 		}
-		
-		public ResourceLocation registry() {
-			return this.registry;
-		}
-		
-		public ResourceLocation value() {
-			return this.value;
-		}
-	}*/
+	}
 	
 }

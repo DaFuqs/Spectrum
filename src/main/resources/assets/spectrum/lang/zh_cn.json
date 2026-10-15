@@ -2582,6 +2582,7 @@
   "biome.spectrum.howling_spires": "呼啸尖峰",
 
   "effect.spectrum.immunity": "免疫",
+  "effect.spectrum.immunity.desc": "移除所有负面状态效果，并免疫负面状态效果。",
   "effect.spectrum.another_roll": "重骰",
   "effect.spectrum.another_roll.desc": "影响幸运、抢夺和其他基于运气的附魔掉落。",
   "effect.spectrum.scarred": "重伤",
@@ -4037,8 +4038,6 @@
   "book.spectrum.guidebook.crafting_tablet.page1.title": "基座自动化",
   "book.spectrum.guidebook.crafting_tablet.page1.text": "总有一天，我需要频繁反复合成某样材料，以至于想过搞自动化。或许我也会变成某种流水生产线每个物品都搞自动生产的肝帝人皇。\\\n\\\n[七彩基座](entry://general/pedestal)有专门放置合成模板的槽位。使用漏斗或者类似的器件填充基座的时候，物品会按照合成模板中配方的指示均匀地落在对应的槽位上。",
 
-  "book.spectrum.guidebook.crawfish.about.text": "看看我上次钓鱼钓上来了什么！这其实不是鱼，而是一种**甲壳动物**。\\\n\\\n它们似乎即使在最泥泞的池塘里也能活得好好的。",
-
   "book.spectrum.guidebook.creating_enchanted_books.name": "制作附魔书",
   "book.spectrum.guidebook.creating_enchanted_books.page0.text": "[附魔基座](entry://enchanting/enchanter)可以消耗[颜料](entry://general/pigment)，原材料与经验对[#](bb00bb)普通书本[#]()添加附魔。 \\\n\\\n虽然经验开销略高于附魔台，但我可以对附魔的附魔进行更为细致入微的选取。",
   "book.spectrum.guidebook.creating_enchanted_books.page1.text": "我也可以用这个方式为我的魔法工具附魔。",
@@ -4299,6 +4298,14 @@
   "book.spectrum.guidebook.progression_sharing.leave_all_parties.title": "脱离同步",
   "book.spectrum.guidebook.progression_sharing.leave_all_parties.text": "切断所有精神联结。",
 
+  "book.spectrum.guidebook.tinting_station.about.text": "",
+  "book.spectrum.guidebook.tinting_station.recipe.text": "*The perfect way to give my creativity free rein.*",
+  "book.spectrum.guidebook.vantaclast.about.text": "",
+  "book.spectrum.guidebook.vantaclast.recipe.text": "",
+  "book.spectrum.guidebook.daydreamer.about.text": "",
+  "book.spectrum.guidebook.daydreamer.recipe.text": "",
+  "book.spectrum.guidebook.twill.about.text": "",
+  "book.spectrum.guidebook.twill.recipe.text": "",
 
   "book.spectrum.guidebook.gemstone_armor.name": "宝石晶套装",
   "book.spectrum.guidebook.gemstone_armor.page0.text": "我花了大量时间打磨出属于自己的战斗风格。\\\n为了最好地配合这套风格，我设计了一整套配套装备。\\\n\\\n缺点也很明显，制作这套装备的材料非常脆弱。因此装备的耐久性相对较低。",
@@ -4314,6 +4321,9 @@
 
   "book.spectrum.guidebook.gemstone_chimes.name": "宝石晶风铃",
   "book.spectrum.guidebook.gemstone_chimes.page0.text": "在与宝石长久相处后，我终于能以最精细的方式雕琢这些脆弱的资源。风铃在微风中摇曳时回响的声音让我回忆起第一次驻足晶洞时懵懂的起点。那真是美好的时光！\\\n每一种风铃都会发出对应宝石独有的舒缓音色。",
+
+  "book.spectrum.guidebook.gemstone_chimes.muting.name": "风铃静音",
+  "book.spectrum.guidebook.gemstone_chimes.page1.text": "风铃吵得我很心烦，只需拿一点羊毛对着它点一下就能静音，徒手就可以恢复声响。",
 
   "book.spectrum.guidebook.gemstone_glass.name": "宝石晶玻璃",
   "book.spectrum.guidebook.gemstone_glass.page0.text": "宝石晶天生就带点透明，何不用于制作玻璃呢?",

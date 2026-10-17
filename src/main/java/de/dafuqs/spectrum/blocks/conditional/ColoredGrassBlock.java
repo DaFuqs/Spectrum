@@ -8,6 +8,8 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.data.worldgen.placement.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
@@ -15,6 +17,9 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.levelgen.feature.*;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
+import net.minecraft.world.level.levelgen.placement.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -49,7 +54,40 @@ public class ColoredGrassBlock extends SpreadingSnowyDirtBlock implements Boneme
 	}
 	
 	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-		// TODO
+		BlockPos abovePos = pos.above();
+		BlockState shortGrass = ColoredShortGrassBlock.byColor(this.color).defaultBlockState();
+		
+		outer:
+		for (int i = 0; i < 128; i++) {
+			BlockPos currPos = abovePos;
+			
+			for (int j = 0; j < i / 16; j++) {
+				currPos = currPos.offset(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1);
+				if (!level.getBlockState(currPos.below()).is(this) || level.getBlockState(currPos).isCollisionShapeFullBlock(level, currPos)) {
+					continue outer;
+				}
+			}
+			
+			BlockState currState = level.getBlockState(currPos);
+			if (currState.is(shortGrass.getBlock()) && random.nextInt(10) == 0) {
+				((ColoredShortGrassBlock)shortGrass.getBlock()).performBonemeal(level, random, currPos, currState);
+			}
+			
+			if (currState.isAir()) {
+				Holder<PlacedFeature> holder;
+				if (random.nextInt(8) == 0) {
+					List<ConfiguredFeature<?, ?>> list = level.getBiome(currPos).value().getGenerationSettings().getFlowerFeatures();
+					if (list.isEmpty()) {
+						continue;
+					}
+					
+					holder = ((RandomPatchConfiguration)list.get(0).config()).feature();
+					holder.value().place(level, level.getChunkSource().getGenerator(), random, currPos);
+					continue;
+				}
+				level.setBlockAndUpdate(currPos, shortGrass);
+			}
+		}
 	}
 	
 	@Override

@@ -56,4 +56,12 @@ public class ColoredShortGrassBlock extends TallGrassBlock implements Revelation
 		return new Tuple<>(this.asItem(), Blocks.SHORT_GRASS.asItem());
 	}
 	
+	@Override
+	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+		DoublePlantBlock tallGrass = ColoredTallGrassBlock.byColor(this.color);
+		if (tallGrass.defaultBlockState().canSurvive(level, pos) && level.isEmptyBlock(pos.above())) {
+			DoublePlantBlock.placeAt(level, tallGrass.defaultBlockState(), pos, Block.UPDATE_CLIENTS);
+		}
+	}
+	
 }

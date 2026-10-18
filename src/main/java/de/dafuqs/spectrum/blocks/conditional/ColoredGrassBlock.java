@@ -56,6 +56,7 @@ public class ColoredGrassBlock extends SpreadingSnowyDirtBlock implements Boneme
 	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
 		BlockPos abovePos = pos.above();
 		BlockState shortGrass = ColoredShortGrassBlock.byColor(this.color).defaultBlockState();
+		ColoredShortGrassBlock shortGrassBlock = (ColoredShortGrassBlock)shortGrass.getBlock();
 		
 		outer:
 		for (int i = 0; i < 128; i++) {
@@ -69,8 +70,8 @@ public class ColoredGrassBlock extends SpreadingSnowyDirtBlock implements Boneme
 			}
 			
 			BlockState currState = level.getBlockState(currPos);
-			if (currState.is(shortGrass.getBlock()) && random.nextInt(10) == 0) {
-				((ColoredShortGrassBlock)shortGrass.getBlock()).performBonemeal(level, random, currPos, currState);
+			if (currState.is(shortGrassBlock) && random.nextInt(10) == 0) {
+				shortGrassBlock.performBonemeal(level, random, currPos, currState);
 			}
 			
 			if (currState.isAir()) {

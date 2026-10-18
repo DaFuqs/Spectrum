@@ -1,15 +1,19 @@
 {
   "criteria": {
-    "built_basic_pedestal_structure": {
-      "trigger": "revelationary:advancement_gotten",
+    "collected_colored_spore_blossom": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "advancement_identifier": "spectrum:build_basic_pedestal_structure"
+        "items": [
+          {
+            "items": "#spectrum:colored_spore_blossoms"
+          }
+        ]
       }
     },
-    "collected_pigment": {
+    "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:collect_pigment"
+        "advancement_identifier": "spectrum:spectrum"
       }
     }
   }

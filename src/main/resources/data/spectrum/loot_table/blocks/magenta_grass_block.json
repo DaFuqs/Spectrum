@@ -64,5 +64,5 @@
       "rolls": 1
     }
   ],
-  "random_sequence": "minecraft:blocks/grass_block"
+  "random_sequence": "spectrum:blocks/magenta_grass_block"
 }

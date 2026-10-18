@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "spectrum:yellow_grass_block"
+              "name": "spectrum:green_grass_block"
             },
             {
               "type": "minecraft:item",
@@ -64,5 +64,5 @@
       "rolls": 1
     }
   ],
-  "random_sequence": "minecraft:blocks/grass_block"
+  "random_sequence": "spectrum:blocks/green_grass_block"
 }

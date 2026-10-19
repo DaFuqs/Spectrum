@@ -24,7 +24,7 @@ public class ColoredWoodBlock extends StrippingLootPillarBlock implements Revela
 	private static final Map<InkColor, ColoredWoodBlock> WOOD = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredWoodBlock(Properties settings, Supplier<? extends ColoredStrippedWoodBlockSpectrum> strippedBlock, InkColor color, ResourceKey<LootTable> strippingLootTableKey) {
+	public ColoredWoodBlock(Properties settings, Supplier<? extends ColoredStrippedWoodBlock> strippedBlock, InkColor color, ResourceKey<LootTable> strippingLootTableKey) {
 		super(settings, strippedBlock, strippingLootTableKey);
 		this.color = color;
 		WOOD.put(color, this);

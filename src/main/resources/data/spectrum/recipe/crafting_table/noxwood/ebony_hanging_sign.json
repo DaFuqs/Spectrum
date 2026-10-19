@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "hanging_sign",
+  "key": {
+    "#": {
+      "item": "spectrum:stripped_ebony_noxcap_stem"
+    },
+    "X": {
+      "item": "minecraft:chain"
+    }
+  },
+  "pattern": [
+    "X X",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "spectrum:ebony_noxwood_hanging_sign"
+  }
+}

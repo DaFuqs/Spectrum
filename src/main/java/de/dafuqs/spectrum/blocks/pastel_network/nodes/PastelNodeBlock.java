@@ -183,7 +183,7 @@ public class PastelNodeBlock extends SpectrumDirectionalBlock implements EntityB
 			return ItemInteractionResult.sidedSuccess(level.isClientSide());
 		}
 		
-		if (tryColorUsingStackInHand(stack, level, pos, player, hand)) {
+		if (tryColorUsingStackInHand(stack, level, pos, player)) {
 			return ItemInteractionResult.sidedSuccess(level.isClientSide());
 		}
 		

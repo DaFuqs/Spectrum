@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:improved_vanilla/colored_trapdoor_bottom",
+  "textures": {
+    "texture": "spectrum:block/cyan_trapdoor"
+  }
+}

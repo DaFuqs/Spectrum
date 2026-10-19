@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -54,7 +55,7 @@ public class VariantHelper {
 			String path = id.getPath();
 			
 			// Option 1: try replacing an existing color
-			// "red_concrete"      -> "light_blue_concrete"
+			// "red_concrete" -> "light_blue_concrete"
 			// "light_blue_planks" -> "orange_planks"
 			for (InkColor existingColor : SpectrumRegistries.INK_COLOR) {
 				String existing = existingColor.getID().getPath();
@@ -75,6 +76,12 @@ public class VariantHelper {
 			// Option 2: prefix the color ("concrete" => "light_blue_concrete")
 			T newObj = lookup.apply(ResourceLocation.fromNamespaceAndPath(id.getNamespace(), color.getID().getPath() + "_" + path));
 			if(newObj != defaultToIgnore && !newObj.equals(original)) {
+				return newObj;
+			}
+			
+			// maybe there is a colored spectrum variant?
+			newObj = lookup.apply(SpectrumCommon.locate(color.getID().getPath() + "_" + path));
+			if (newObj != defaultToIgnore && !newObj.equals(original)) {
 				return newObj;
 			}
 			

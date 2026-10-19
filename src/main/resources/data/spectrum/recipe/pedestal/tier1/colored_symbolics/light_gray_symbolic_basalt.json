@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "symbolics",
+  "time": 40,
+  "tier": "complex",
+  "colors": {
+    "spectrum:cyan": 0,
+    "spectrum:magenta": 0,
+    "spectrum:yellow": 0,
+    "spectrum:white": 4,
+    "spectrum:black": 2
+  },
+  "experience": 0.5,
+  "pattern": [
+    " S ",
+    "SPS",
+    " S "
+  ],
+  "key": {
+    "P": "spectrum:light_gray_pigment",
+    "S": "spectrum:polished_basalt"
+  },
+  "result": {
+    "id": "spectrum:light_gray_symbolic_basalt",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/colored_symbolics/light_gray"
+}

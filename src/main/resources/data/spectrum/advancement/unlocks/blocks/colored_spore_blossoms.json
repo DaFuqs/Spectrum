@@ -1,15 +1,24 @@
 {
   "criteria": {
-    "built_basic_pedestal_structure": {
-      "trigger": "revelationary:advancement_gotten",
+    "colored_spore_blossom": {
+      "trigger": "spectrum:block_colored",
       "conditions": {
-        "advancement_identifier": "spectrum:build_basic_pedestal_structure"
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "#spectrum:colored_spore_blossoms"
+              }
+            }
+          }
+        ]
       }
     },
-    "collected_pigment": {
+    "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:collect_pigment"
+        "advancement_identifier": "spectrum:spectrum"
       }
     }
   }

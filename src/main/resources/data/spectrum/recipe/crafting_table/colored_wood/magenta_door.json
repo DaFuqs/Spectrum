@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_door",
+  "key": {
+    "#": {
+      "item": "spectrum:magenta_planks"
+    }
+  },
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "result": {
+    "id": "spectrum:magenta_door",
+    "count": 3
+  }
+}

@@ -33,7 +33,6 @@ import java.util.*;
 
 public class InkProjectileEntity extends MagicProjectileEntity {
 	
-	private static final int COLOR_SPLAT_RANGE = 2;
 	private static final int SPELL_POTENCY = 2;
 	private static final float DAMAGE_PER_POTENCY = 0.5F;
 	
@@ -179,19 +178,29 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.getRandom().nextFloat() * 0.2F + 0.9F));
 		
 		InkColor inkColor = this.getInkColor();
-		for (BlockPos blockPos : BlockPos.withinManhattan(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
+		for (BlockPos blockPos : BlockPos.withinManhattan(blockHitResult.getBlockPos(), SPELL_POTENCY, SPELL_POTENCY, SPELL_POTENCY)) {
+			if(blockPos.distSqr(blockHitResult.getBlockPos()) > SPELL_POTENCY * 2.5F) {
+				continue;
+			}
 			Optional<DyeColor> dyeColor = inkColor.getDyeColor();
 			if (this.level().getBlockState(blockPos).getBlock() instanceof ColorableBlock colorableBlock) {
 				if (!GenericClaimModsCompat.canModify(this.level(), blockPos, this.getOwner())) {
 					continue;
 				}
-				colorableBlock.color(this.level(), blockPos, dyeColor, getOwner());
+				if(colorableBlock.color(this.level(), blockPos, dyeColor, getOwner())) {
+					if(getOwner() instanceof ServerPlayer serverPlayer) {
+						SpectrumAdvancementCriteria.BLOCK_COLORED.trigger(serverPlayer, blockPos, ItemStack.EMPTY);
+					}
+				}
 				continue;
 			}
 			if (dyeColor.isPresent()) {
-				@Nullable BlockState coloredBlockState = VariantHelper.getColoredBlockState(this.level(), blockPos, inkColor);
+				BlockState coloredBlockState = VariantHelper.getColoredBlockState(this.level(), blockPos, inkColor);
 				if (coloredBlockState != null) {
 					this.level().setBlockAndUpdate(blockPos, coloredBlockState);
+					if(getOwner() instanceof ServerPlayer serverPlayer) {
+						SpectrumAdvancementCriteria.BLOCK_COLORED.trigger(serverPlayer, blockPos, ItemStack.EMPTY);
+					}
 				}
 			}
 		}

@@ -25,26 +25,26 @@ import net.neoforged.neoforge.common.loot.*;
 
 import java.util.*;
 
-public class TreasureHunterLootModifier extends LootModifier {
+public class TrophyHunterLootModifier extends LootModifier {
 	
 	public record Entry(EntityPredicate predicate, ItemStack headStack, float chance) {
 		
-		public static final MapCodec<TreasureHunterLootModifier.Entry> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+		public static final MapCodec<TrophyHunterLootModifier.Entry> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 				EntityPredicate.CODEC.fieldOf("entity").forGetter(m -> m.predicate),
 				ItemStack.CODEC.fieldOf("head_stack").forGetter(m -> m.headStack),
 				Codec.FLOAT.fieldOf("drop_chance_per_level").forGetter(m -> m.chance)
-		).apply(instance, TreasureHunterLootModifier.Entry::new));
+		).apply(instance, TrophyHunterLootModifier.Entry::new));
 		
 	}
 	
-	public static final MapCodec<TreasureHunterLootModifier> CODEC = RecordCodecBuilder.mapCodec(i ->
+	public static final MapCodec<TrophyHunterLootModifier> CODEC = RecordCodecBuilder.mapCodec(i ->
 			LootModifier.codecStart(i).and(
 					Entry.CODEC.codec().listOf().fieldOf("entries").forGetter(o -> o.entries)
-			).apply(i, TreasureHunterLootModifier::new));
+			).apply(i, TrophyHunterLootModifier::new));
 	
-	protected List<TreasureHunterLootModifier.Entry> entries;
+	protected List<TrophyHunterLootModifier.Entry> entries;
 	
-	protected TreasureHunterLootModifier(LootItemCondition[] conditionsIn, List<TreasureHunterLootModifier.Entry> entries) {
+	protected TrophyHunterLootModifier(LootItemCondition[] conditionsIn, List<TrophyHunterLootModifier.Entry> entries) {
 		super(conditionsIn);
 		this.entries = entries;
 	}
@@ -69,7 +69,7 @@ public class TreasureHunterLootModifier extends LootModifier {
 		} else {
 			ItemStack damageSourceWeapon = damageSource.getWeaponItem();
 			if (damageSourceWeapon != null) {
-				treasureHunterLevel = SpectrumEnchantmentHelper.getLevel(killed.registryAccess(), SpectrumEnchantmentKeys.TREASURE_HUNTER, damageSourceWeapon);
+				treasureHunterLevel = SpectrumEnchantmentHelper.getLevel(killed.registryAccess(), SpectrumEnchantmentKeys.TROPHY_HUNTER, damageSourceWeapon);
 			}
 		}
 		
@@ -87,7 +87,7 @@ public class TreasureHunterLootModifier extends LootModifier {
 					continue;
 				}
 				
-				original.add(e.headStack);
+				original.add(e.headStack.copy());
 				if (player instanceof ServerPlayer sp) {
 					SpectrumAdvancementCriteria.LOOT_FUNCTION_TRIGGER.trigger(sp, SpectrumCommon.locate("mob_head"));
 					SpectrumAdvancementCriteria.LOOT_FUNCTION_TRIGGER.trigger(sp, BuiltInRegistries.ITEM.getKey(e.headStack.getItem()));

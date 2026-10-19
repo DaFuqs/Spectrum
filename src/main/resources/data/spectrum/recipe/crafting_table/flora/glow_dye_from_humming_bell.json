@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "pigment_to_dye",
+  "group": "flowers_to_dye",
   "ingredients": [
     {
       "item": "spectrum:humming_bell"

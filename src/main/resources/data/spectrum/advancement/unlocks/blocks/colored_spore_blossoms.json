@@ -1,11 +1,16 @@
 {
   "criteria": {
-    "collected_colored_spore_blossom": {
-      "trigger": "minecraft:inventory_changed",
+    "colored_spore_blossom": {
+      "trigger": "spectrum:block_colored",
       "conditions": {
-        "items": [
+        "location": [
           {
-            "items": "#spectrum:colored_spore_blossoms"
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "#spectrum:colored_spore_blossoms"
+              }
+            }
           }
         ]
       }

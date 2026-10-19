@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "spectrum:block/preservation_sensor"
+    },
+    "powered=true": {
+      "model": "spectrum:block/preservation_sensor_on"
+    }
+  }
+}

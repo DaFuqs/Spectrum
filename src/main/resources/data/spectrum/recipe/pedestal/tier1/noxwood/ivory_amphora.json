@@ -19,7 +19,7 @@
   "key": {
     "S": "spectrum:ivory_noxwood_slab",
     "P": "spectrum:ivory_noxwood_planks",
-    "I": "minecraft:quartz",
+    "I": "#c:gems/quartz",
     "A": "minecraft:paper"
   },
   "result": {

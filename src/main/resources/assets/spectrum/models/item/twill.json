@@ -1,7 +1,5 @@
 {
-	"format_version": "26.3",
-	"credit": "Made with Blockbench",
-	"parent": "spectrum:block/twill",
+  "parent": "spectrum:block/twill",
   "gui_light": "front",
 	"elements": [
 		{
@@ -16,16 +14,11 @@
 		},
 		{
 			"name": "roots",
-			"from": [0.5, 6.25, 1.5],
+			"from": [0.5, 9.25, 1.5],
 			"to": [15.5, 9.25, 14.5],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 6.25, 7]},
 			"faces": {
-				"north": {"uv": [10, 6.75, 13.5, 7.4375], "texture": "#0"},
-				"east": {"uv": [10, 7.5, 13.3125, 8.25], "texture": "#0"},
-				"south": {"uv": [10, 6, 13.5, 6.6875], "texture": "#0"},
-				"west": {"uv": [10, 8.3125, 13.25, 9.0625], "texture": "#0"},
-				"up": {"uv": [10, 0, 13.5, 3], "texture": "#0"},
-				"down": {"uv": [10, 3, 13.5, 6], "texture": "#0"}
+				"up": {"uv": [10, 0, 13.5, 3], "texture": "#0"}
 			}
 		},
 		{

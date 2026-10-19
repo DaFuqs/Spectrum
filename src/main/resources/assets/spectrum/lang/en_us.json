@@ -1730,6 +1730,7 @@
   "block.spectrum.preservation_controller": "Preservation Controller",
   "block.spectrum.preservation_glass": "Preservation Glass",
   "block.spectrum.preservation_roundel": "Preservation Roundel",
+  "block.spectrum.preservation_sensor": "Preservation Sensor",
   "block.spectrum.preservation_slab": "Preservation Slab",
   "block.spectrum.preservation_stairs": "Preservation Stairs",
   "block.spectrum.preservation_stone": "Preservation Stone",
@@ -2838,6 +2839,8 @@
   "book.spectrum.guidebook.gemstone_armor.page5.text": "Gives me a short burst of Speed and Invisibility when hit, allowing me to retreat. Perfect for ranged combat.",
   "book.spectrum.guidebook.gemstone_chimes.name": "Gemstone Chimes",
   "book.spectrum.guidebook.gemstone_chimes.page0.text": "Having tinkered with the gems long enough, I find myself able to shape these fragile resources in the finest of ways. Slowly swaying in the breeze, the chimes' sounds remind me of the beginning of my journey – the first time I set foot in a geode. I remember it well. What a time it was!\\\nEach chime emits the soothing sound of its corresponding gemstone.",
+  "book.spectrum.guidebook.gemstone_chimes.muting.name": "Chime Muting",
+  "book.spectrum.guidebook.gemstone_chimes.page1.text": "If for some reason it's getting on my nerves, I can silence them by interacting with a little bit of wool, and I can undo this with bare hands.",
   "book.spectrum.guidebook.gemstone_glass.name": "Gemstone Glass",
   "book.spectrum.guidebook.gemstone_glass.page0.text": "Gemstones are already slightly transparent by nature. What could be more natural than using them to make a kind of glass?\\\nI can also make matching Glass Panes from them.",
   "book.spectrum.guidebook.gemstone_glass.page1.text": "I can build them out of every gemstone I found.",
@@ -6232,22 +6235,6 @@
   "entity.spectrum.monstrosity.text17": "MY HOME",
   "entity.spectrum.monstrosity.text18": "DONT PUSH",
 
-  "______done_until_here": "TODO:",
-  "advancements.spectrum.craft_energy_collector.title": "Roger That",
-  "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from a geodes",
-  "advancements.spectrum.place_energy_collector.title": "A new Form of Energy",
-  "advancements.spectrum.place_energy_collector.description": "Place the collector in the center of a geode and watch it work",
-  "advancements.spectrum.unused2.title": "Having a Blast",
-  "advancements.spectrum.meet_paintlich.title": "Marked by Time",
-  "advancements.spectrum.meet_paintlich.description": "Meet a Certain Someone",
-  "advancements.spectrum.defeat_paintlich.title": "Crossed Paintbrushes",
-  "advancements.spectrum.defeat_paintlich.description": "Win a light-hearted discussion with an Aging Celebrity",
-
-  "book.spectrum.guidebook.mysterious_locket.page4.title": "The Locket's Contents",
-  "book.spectrum.guidebook.mysterious_locket.page4.text": "There also was a little note inside... who could it have belonged to?",
-  "book.spectrum.guidebook.mysterious_locket.page5.text": "Now that I understand the Dreiton language, it is easy for me to decipher the inscription on the back:\\\n\\\n*Don't be silly, Asteras – the moon cannot shine, it can only reflect the light of the sun.*",
-  "book.spectrum.guidebook.mysterious_locket.page5.title": "The unidentified Note",
-
   "block.spectrum.tinting_station": "Tinting Station",
   "block.spectrum.tinting_station.tooltip": "Fills Ink equipment and recolors items that have color variants",
   "block.spectrum.twill": "Twill",
@@ -6321,6 +6308,21 @@
   "book.spectrum.guidebook.symbolics.page0.text": "I was watching a bee when I got inspiration for an art project! The colors of my [Pigments](entry://general/pigment) are fairly striking, and show up well on both [#](bb00bb)Basalt[#]() and [#](bb00bb)Calcite[#](). \\\n I flattened the surface of some standard Polished blocks and painted what came naturally. The result is these colorful symbols. \\\n\\\n...do they mean something?",
   "book.spectrum.guidebook.symbolics.page1.title": "So many options!",
   "book.spectrum.guidebook.symbolics.page2.text": "There's a lot of pigment in one jar. I can get four blocks from each one!",
-  "book.spectrum.guidebook.symbolics.page3.text": "The gemstone powder helps the colors pop more."
+  "book.spectrum.guidebook.symbolics.page3.text": "The gemstone powder helps the colors pop more.",
 
+  "______done_until_here": "TODO:",
+  "advancements.spectrum.craft_energy_collector.title": "Roger That",
+  "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from a geodes",
+  "advancements.spectrum.place_energy_collector.title": "A new Form of Energy",
+  "advancements.spectrum.place_energy_collector.description": "Place the collector in the center of a geode and watch it work",
+  "advancements.spectrum.unused2.title": "Having a Blast",
+  "advancements.spectrum.meet_paintlich.title": "Marked by Time",
+  "advancements.spectrum.meet_paintlich.description": "Meet a Certain Someone",
+  "advancements.spectrum.defeat_paintlich.title": "Crossed Paintbrushes",
+  "advancements.spectrum.defeat_paintlich.description": "Win a light-hearted discussion with an Aging Celebrity",
+
+  "book.spectrum.guidebook.mysterious_locket.page4.title": "The Locket's Contents",
+  "book.spectrum.guidebook.mysterious_locket.page4.text": "There also was a little note inside... who could it have belonged to?",
+  "book.spectrum.guidebook.mysterious_locket.page5.text": "Now that I understand the Dreiton language, it is easy for me to decipher the inscription on the back:\\\n\\\n*Don't be silly, Asteras – the moon cannot shine, it can only reflect the light of the sun.*",
+  "book.spectrum.guidebook.mysterious_locket.page5.title": "The unidentified Note"
 }

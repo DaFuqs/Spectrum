@@ -24,7 +24,7 @@ public class InkStorageScreen extends BaseInkScreen<InkStorageScreenHandler> {
 	protected void init() {
 		super.init();
 		
-		this.colorSelectionWidget = new ColorSelectionWidget(getGuiLeft() + 113 - 16, getGuiTop() + 55, getGuiLeft() + 139 - 16, getGuiTop() + 25, this.menu.getBlockEntity());
+		this.colorSelectionWidget = new ColorSelectionWidget(getGuiLeft() + 113 - 17, getGuiTop() + 55, getGuiLeft() + 139 - 17, getGuiTop() + 25, this.menu.getBlockEntity());
 		this.colorSelectionWidget.setChangedListener(this);
 		addRenderableWidget(this.colorSelectionWidget);
 		

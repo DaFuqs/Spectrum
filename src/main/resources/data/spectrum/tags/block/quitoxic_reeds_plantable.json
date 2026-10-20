@@ -3,6 +3,8 @@
     "#spectrum:quitoxic_reeds_consumable",
     "minecraft:coarse_dirt",
     "spectrum:slush",
-    "spectrum:rotten_ground"
+    "spectrum:suspicious_slush",
+    "spectrum:rotten_ground",
+    "spectrum:suspicious_rot"
   ]
 }

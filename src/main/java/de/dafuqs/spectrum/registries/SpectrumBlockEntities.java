@@ -135,7 +135,7 @@ public class SpectrumBlockEntities {
 		skullBlocksList.addAll(SpectrumWallSkullBlock.getMobWallHeads());
 		
 		event.modify(SpectrumBlockEntities.SKULL.get(), skullBlocksList.toArray(new Block[0]));
-		
+		event.modify(BlockEntityType.BRUSHABLE_BLOCK, SpectrumBlocks.SUSPICIOUS_ASH.get(), SpectrumBlocks.SUSPICIOUS_SLUDGE.get(), SpectrumBlocks.SUSPICIOUS_SLUSH.get(), SpectrumBlocks.SUSPICIOUS_ROT.get());
 		event.modify(BlockEntityType.SIGN,
 				SpectrumBlocks.BLACK_SIGN.getFirst().get(), SpectrumBlocks.BLACK_SIGN.getSecond().get(),
 				SpectrumBlocks.BLUE_SIGN.getFirst().get(), SpectrumBlocks.BLUE_SIGN.getSecond().get(),

@@ -1744,12 +1744,15 @@ public class SpectrumItemGroups {
 					
 					entries.accept(SpectrumItems.DIVINATION_HEART);
 					
-					// todo: add model
+					// TODO: add model, guidebook entries & finish impl
 					entries.accept(SpectrumBlocks.TINTING_STATION);
-					// TODO: add model & finish impl
 					entries.accept(SpectrumBlocks.DAYDREAMER);
 					entries.accept(SpectrumBlocks.TWILL);
 					entries.accept(SpectrumBlocks.VANTACLAST);
+					
+					// TODO: add secret unlocks & recipes
+					entries.accept(SpectrumBlocks.BRIGHT_TWILL);
+					entries.accept(SpectrumBlocks.VINTAGE_COLOR_PICKER);
 				}).build();
 	}
 	

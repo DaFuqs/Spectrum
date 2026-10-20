@@ -1220,6 +1220,7 @@
   ],
   "spectrum:green": [
     "spectrum:color_picker",
+    "spectrum:vintage_color_picker",
     "spectrum:crystal_apothecary",
     "spectrum:vegetal_block",
     "spectrum:dragonbone",

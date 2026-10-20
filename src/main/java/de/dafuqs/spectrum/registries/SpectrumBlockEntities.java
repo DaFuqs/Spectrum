@@ -68,8 +68,8 @@ public class SpectrumBlockEntities {
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CrystalApothecaryBlockEntity>> CRYSTAL_APOTHECARY = register("crystal_apothecary", CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY);
 	
 	// Ink Generators
-	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ColorPickerBlockEntity>> COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER);
-	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<TwillBlockEntity>> TWILL = register("twill", TwillBlockEntity::new, SpectrumBlocks.TWILL);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ColorPickerBlockEntity>> COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER, SpectrumBlocks.VINTAGE_COLOR_PICKER);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<TwillBlockEntity>> TWILL = register("twill", TwillBlockEntity::new, SpectrumBlocks.TWILL, SpectrumBlocks.BRIGHT_TWILL);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<VantaclastBlockEntity>> VANTACLAST = register("vantaclast", VantaclastBlockEntity::new, SpectrumBlocks.VANTACLAST);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<DaydreamerBlockEntity>> DAYDREAMER = register("daydreamer", DaydreamerBlockEntity::new, SpectrumBlocks.DAYDREAMER);
 	

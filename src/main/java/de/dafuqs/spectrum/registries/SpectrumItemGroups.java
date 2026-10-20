@@ -1080,9 +1080,9 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.JADEITE_LOTUS_FLOWER);
 					
 					entries.accept(SpectrumBlocks.SUSPICIOUS_SLUSH);
-					entries.accept(SpectrumBlocks.SUSPICIOUS_SLUDGE);
+					entries.accept(SpectrumBlocks.SUSPICIOUS_BLACK_SLUDGE);
 					entries.accept(SpectrumBlocks.SUSPICIOUS_ASH);
-					entries.accept(SpectrumBlocks.SUSPICIOUS_ROT);
+					entries.accept(SpectrumBlocks.SUSPICIOUS_ROTTEN_GROUND);
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_DECORATION, Component.translatable("itemGroup.spectrum.decoration"))

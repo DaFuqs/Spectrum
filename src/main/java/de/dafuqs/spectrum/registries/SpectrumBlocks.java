@@ -2125,9 +2125,9 @@ public class SpectrumBlocks {
 	}
 	
 	public static final DeferredBlock<BrushableBlock> SUSPICIOUS_SLUSH = register(simple(blockWithItem("suspicious_slush", suspiciousBlock(SLUSH))));
-	public static final DeferredBlock<BrushableBlock> SUSPICIOUS_SLUDGE = register(simple(blockWithItem("suspicious_sludge", suspiciousBlock(BLACK_SLUDGE))));
+	public static final DeferredBlock<BrushableBlock> SUSPICIOUS_BLACK_SLUDGE = register(simple(blockWithItem("suspicious_black_sludge", suspiciousBlock(BLACK_SLUDGE))));
 	public static final DeferredBlock<BrushableBlock> SUSPICIOUS_ASH = register(simple(blockWithItem("suspicious_ash", suspiciousBlock(ASH))));
-	public static final DeferredBlock<BrushableBlock> SUSPICIOUS_ROT = register(simple(blockWithItem("suspicious_rot", suspiciousBlock(ROTTEN_GROUND))));
+	public static final DeferredBlock<BrushableBlock> SUSPICIOUS_ROTTEN_GROUND = register(simple(blockWithItem("suspicious_rotten_ground", suspiciousBlock(ROTTEN_GROUND))));
 	
 	static boolean never(BlockState state, BlockGetter world, BlockPos pos, EntityType<?> type) {
 		return false;

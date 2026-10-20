@@ -3,8 +3,8 @@
     "minecraft:suspicious_sand",
     "minecraft:suspicious_gravel",
     "spectrum:suspicious_ash",
-    "spectrum:suspicious_rot",
-    "spectrum:suspicious_sludge",
+    "spectrum:suspicious_rotten_ground",
+    "spectrum:suspicious_black_sludge",
     "spectrum:suspicious_slush",
     {
       "id": "the_bumblezone:pile_of_pollen_suspicious",

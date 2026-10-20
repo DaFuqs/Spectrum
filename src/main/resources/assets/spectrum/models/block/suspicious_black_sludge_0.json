@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "spectrum:block/suspicious_sludge_0"
+    "all": "spectrum:block/suspicious_black_sludge_0"
   }
 }

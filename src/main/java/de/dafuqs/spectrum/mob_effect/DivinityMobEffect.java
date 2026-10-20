@@ -35,18 +35,13 @@ public class DivinityMobEffect extends MobEffect {
 			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.level(), entity.position(), ColoredCraftingParticleEffect.RED, VectorPattern.EIGHT, 0.2);
 		}
 		
-		boolean healAndSaturate = SAVED_DURATION % 80 == 0;
-		
 		if (entity instanceof Player player) {
 			if (!world.isClientSide()) {
 				SpectrumAdvancementCriteria.DIVINITY_TICK.trigger((ServerPlayer) player);
 			}
-			if (healAndSaturate) {
-				player.getFoodData().eat(1 + amplifier, 0.25F);
-			}
 		}
 		
-		if (healAndSaturate) {
+		if (SAVED_DURATION % 80 == 0) {
 			entity.heal(amplifier / 2F);
 		}
 		

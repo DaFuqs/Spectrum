@@ -87,6 +87,12 @@
         },
         {
           "id": "spectrum:weeping_gala_light"
+        },
+        {
+          "id": "spectrum:weeping_gala_sign"
+        },
+        {
+          "id": "spectrum:weeping_gala_hanging_sign"
         }
       ],
       "text": "book.spectrum.guidebook.weeping_gala.page1.text"

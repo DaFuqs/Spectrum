@@ -2,10 +2,7 @@
 
 $c | Foreach-Object {
 @"
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier2/colored_spore_blossoms/$_"
-    },
+"$_`_hanging_sign",
 "@
 
 }

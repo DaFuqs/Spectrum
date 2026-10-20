@@ -88,7 +88,7 @@ public class PyriteRipperBlock extends SpectrumDirectionalBlock {
 	}
 
 	@Override
-	public @Nullable VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return state.getValue(MIRRORED) ? SHAPES_MIRRORED.get(state.getValue(FACING)) : SHAPES.get(state.getValue(FACING));
 	}
 	

@@ -56,7 +56,7 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
         if (world.isClientSide()) {
             return ItemInteractionResult.SUCCESS;
         } else {
-            if (!tryColorUsingStackInHand(handStack, world, pos, player, hand)) {
+            if (!tryColorUsingStackInHand(handStack, world, pos, player)) {
                 toggleSendingMode(world, pos, state);
             }
             return ItemInteractionResult.CONSUME;

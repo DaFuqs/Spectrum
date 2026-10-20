@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
@@ -127,6 +128,9 @@ public class PaintbrushItem extends Item implements SignApplicator {
 		if (state.getBlock() instanceof ColorableBlock colorableBlock) {
 			if (!colorableBlock.isColor(world, pos, dyeColor)) {
 				if (payBlockColorCost(context.getPlayer(), inkColor.get()) && colorableBlock.color(world, pos, dyeColor, context.getPlayer())) {
+					if (context.getPlayer() instanceof ServerPlayer serverPlayer) {
+						SpectrumAdvancementCriteria.BLOCK_COLORED.trigger(serverPlayer, pos, context.getItemInHand());
+					}
 					context.getLevel().playSound(null, context.getClickedPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundSource.BLOCKS, 1.0F, 1.0F);
 				} else {
 					context.getLevel().playSound(null, context.getClickedPos(), SpectrumSoundEvents.USE_FAIL, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -135,7 +139,11 @@ public class PaintbrushItem extends Item implements SignApplicator {
 			return true;
 		}
 		
-		return cursedColor(context);
+		boolean cusedColored = cursedColor(context);
+		if(cusedColored && context.getPlayer() instanceof ServerPlayer serverPlayer) {
+			SpectrumAdvancementCriteria.BLOCK_COLORED.trigger(serverPlayer, pos, context.getItemInHand());
+		}
+		return cusedColored;
 	}
 	
 	private boolean cursedColor(UseOnContext context) {
@@ -150,7 +158,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 		}
 		
 		InkColor inkColor = optionalInkColor.get();
-		@Nullable BlockState newBlockState = VariantHelper.getColoredBlockState(context.getLevel(), context.getClickedPos(), inkColor);
+		BlockState newBlockState = VariantHelper.getColoredBlockState(context.getLevel(), context.getClickedPos(), inkColor);
 		if (newBlockState == null) {
 			return false;
 		}

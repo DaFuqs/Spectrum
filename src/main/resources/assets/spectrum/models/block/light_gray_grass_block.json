@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/grass_block",
+  "textures": {
+    "top": "spectrum:block/light_gray_grass_block_top",
+    "overlay": "spectrum:block/light_gray_grass_block_side_overlay"
+  }
+}

@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.registries;
 
+import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
 import de.dafuqs.spectrum.blocks.block_flooder.*;
@@ -109,6 +111,7 @@ public class SpectrumBlockEntities {
 	
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationControllerBlockEntity>> PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationRoundelBlockEntity>> PRESERVATION_ROUNDEL = register("preservation_roundel", PreservationRoundelBlockEntity::new, SpectrumBlocks.PRESERVATION_ROUNDEL);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationSensorBlockEntity>> PRESERVATION_SENSOR = register("preservation_sensor", PreservationSensorBlockEntity::new, SpectrumBlocks.PRESERVATION_SENSOR);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationBlockDetectorBlockEntity>> PRESERVATION_BLOCK_DETECTOR = register("preservation_block_detector", PreservationBlockDetectorBlockEntity::new, SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<DeepLightBlockEntity>> DEEP_LIGHT = register("deep_light", DeepLightBlockEntity::new, SpectrumBlocks.DEEP_LIGHT_CHISELED_PRESERVATION_STONE);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PlayerTrackerBlockEntity>> PLAYER_TRACKING = register("player_tracking", PlayerTrackerBlockEntity::new, SpectrumBlocks.MANXI, SpectrumBlocks.PRESERVATION_ITEM_BOWL);
@@ -132,8 +135,58 @@ public class SpectrumBlockEntities {
 		skullBlocksList.addAll(SpectrumWallSkullBlock.getMobWallHeads());
 		
 		event.modify(SpectrumBlockEntities.SKULL.get(), skullBlocksList.toArray(new Block[0]));
-		
 		event.modify(BlockEntityType.BRUSHABLE_BLOCK, SpectrumBlocks.SUSPICIOUS_ASH.get(), SpectrumBlocks.SUSPICIOUS_SLUDGE.get(), SpectrumBlocks.SUSPICIOUS_SLUSH.get(), SpectrumBlocks.SUSPICIOUS_ROT.get());
+		event.modify(BlockEntityType.SIGN,
+				SpectrumBlocks.BLACK_SIGN.getFirst().get(), SpectrumBlocks.BLACK_SIGN.getSecond().get(),
+				SpectrumBlocks.BLUE_SIGN.getFirst().get(), SpectrumBlocks.BLUE_SIGN.getSecond().get(),
+				SpectrumBlocks.BROWN_SIGN.getFirst().get(), SpectrumBlocks.BROWN_SIGN.getSecond().get(),
+				SpectrumBlocks.CYAN_SIGN.getFirst().get(), SpectrumBlocks.CYAN_SIGN.getSecond().get(),
+				SpectrumBlocks.GRAY_SIGN.getFirst().get(), SpectrumBlocks.GRAY_SIGN.getSecond().get(),
+				SpectrumBlocks.GREEN_SIGN.getFirst().get(), SpectrumBlocks.GREEN_SIGN.getSecond().get(),
+				SpectrumBlocks.LIGHT_BLUE_SIGN.getFirst().get(), SpectrumBlocks.LIGHT_BLUE_SIGN.getSecond().get(),
+				SpectrumBlocks.LIGHT_GRAY_SIGN.getFirst().get(), SpectrumBlocks.LIGHT_GRAY_SIGN.getSecond().get(),
+				SpectrumBlocks.LIME_SIGN.getFirst().get(), SpectrumBlocks.LIME_SIGN.getSecond().get(),
+				SpectrumBlocks.MAGENTA_SIGN.getFirst().get(), SpectrumBlocks.MAGENTA_SIGN.getSecond().get(),
+				SpectrumBlocks.ORANGE_SIGN.getFirst().get(), SpectrumBlocks.ORANGE_SIGN.getSecond().get(),
+				SpectrumBlocks.PINK_SIGN.getFirst().get(), SpectrumBlocks.PINK_SIGN.getSecond().get(),
+				SpectrumBlocks.PURPLE_SIGN.getFirst().get(), SpectrumBlocks.PURPLE_SIGN.getSecond().get(),
+				SpectrumBlocks.RED_SIGN.getFirst().get(), SpectrumBlocks.RED_SIGN.getSecond().get(),
+				SpectrumBlocks.WHITE_SIGN.getFirst().get(), SpectrumBlocks.WHITE_SIGN.getSecond().get(),
+				SpectrumBlocks.YELLOW_SIGN.getFirst().get(), SpectrumBlocks.YELLOW_SIGN.getSecond().get(),
+				
+				SpectrumBlocks.EBONY_NOXWOOD_SIGN.getFirst().get(), SpectrumBlocks.EBONY_NOXWOOD_SIGN.getSecond().get(),
+				SpectrumBlocks.IVORY_NOXWOOD_SIGN.getFirst().get(), SpectrumBlocks.IVORY_NOXWOOD_SIGN.getSecond().get(),
+				SpectrumBlocks.SLATE_NOXWOOD_SIGN.getFirst().get(), SpectrumBlocks.SLATE_NOXWOOD_SIGN.getSecond().get(),
+				SpectrumBlocks.CHESTNUT_NOXWOOD_SIGN.getFirst().get(), SpectrumBlocks.CHESTNUT_NOXWOOD_SIGN.getSecond().get(),
+				
+				SpectrumBlocks.WEEPING_GALA_SIGN.getFirst().get(), SpectrumBlocks.WEEPING_GALA_SIGN.getSecond().get()
+		);
+		
+		event.modify(BlockEntityType.HANGING_SIGN,
+				SpectrumBlocks.BLACK_HANGING_SIGN.getFirst().get(), SpectrumBlocks.BLACK_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.BLUE_HANGING_SIGN.getFirst().get(), SpectrumBlocks.BLUE_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.BROWN_HANGING_SIGN.getFirst().get(), SpectrumBlocks.BROWN_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.CYAN_HANGING_SIGN.getFirst().get(), SpectrumBlocks.CYAN_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.GRAY_HANGING_SIGN.getFirst().get(), SpectrumBlocks.GRAY_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.GREEN_HANGING_SIGN.getFirst().get(), SpectrumBlocks.GREEN_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.LIGHT_BLUE_HANGING_SIGN.getFirst().get(), SpectrumBlocks.LIGHT_BLUE_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.LIGHT_GRAY_HANGING_SIGN.getFirst().get(), SpectrumBlocks.LIGHT_GRAY_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.LIME_HANGING_SIGN.getFirst().get(), SpectrumBlocks.LIME_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.MAGENTA_HANGING_SIGN.getFirst().get(), SpectrumBlocks.MAGENTA_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.ORANGE_HANGING_SIGN.getFirst().get(), SpectrumBlocks.ORANGE_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.PINK_HANGING_SIGN.getFirst().get(), SpectrumBlocks.PINK_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.PURPLE_HANGING_SIGN.getFirst().get(), SpectrumBlocks.PURPLE_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.RED_HANGING_SIGN.getFirst().get(), SpectrumBlocks.RED_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.WHITE_HANGING_SIGN.getFirst().get(), SpectrumBlocks.WHITE_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.YELLOW_HANGING_SIGN.getFirst().get(), SpectrumBlocks.YELLOW_HANGING_SIGN.getSecond().get(),
+				
+				SpectrumBlocks.EBONY_NOXWOOD_HANGING_SIGN.getFirst().get(), SpectrumBlocks.EBONY_NOXWOOD_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.IVORY_NOXWOOD_HANGING_SIGN.getFirst().get(), SpectrumBlocks.IVORY_NOXWOOD_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.SLATE_NOXWOOD_HANGING_SIGN.getFirst().get(), SpectrumBlocks.SLATE_NOXWOOD_HANGING_SIGN.getSecond().get(),
+				SpectrumBlocks.CHESTNUT_NOXWOOD_HANGING_SIGN.getFirst().get(), SpectrumBlocks.CHESTNUT_NOXWOOD_HANGING_SIGN.getSecond().get(),
+				
+				SpectrumBlocks.WEEPING_GALA_HANGING_SIGN.getFirst().get(), SpectrumBlocks.WEEPING_GALA_HANGING_SIGN.getSecond().get()
+		);
 	}
 	
 	public static void registerClient(FMLClientSetupEvent event) {

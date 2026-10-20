@@ -632,7 +632,7 @@ public class SpectrumEventListeners {
 			if (!shouldDropHead && source.getEntity() instanceof LivingEntity livingAttacker) {
 				int damageSourceTreasureHunt = SpectrumEnchantmentHelper.getEquipmentLevel(
 						serverWorld.registryAccess(),
-						SpectrumEnchantmentKeys.TREASURE_HUNTER,
+						SpectrumEnchantmentKeys.TROPHY_HUNTER,
 						livingAttacker);
 				
 				shouldDropHead = damageSourceTreasureHunt > 0 && serverWorld.getRandom().nextFloat() < 0.2 * damageSourceTreasureHunt;

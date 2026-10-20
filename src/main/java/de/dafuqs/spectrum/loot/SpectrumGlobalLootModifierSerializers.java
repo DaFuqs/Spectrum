@@ -13,7 +13,7 @@ public class SpectrumGlobalLootModifierSerializers {
 	
 	public static void register(IEventBus modBus) {
 		REGISTRAR.register("sniffer_digging_additions", () -> SnifferDiggingAdditionsLootModifier.CODEC);
-		REGISTRAR.register("treasure_hunter", () -> TreasureHunterLootModifier.CODEC);
+		REGISTRAR.register("trophy_hunter", () -> TrophyHunterLootModifier.CODEC);
 		
 		REGISTRAR.register(modBus);
 	}

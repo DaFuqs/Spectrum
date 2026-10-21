@@ -67,9 +67,9 @@ public class SleepMobEffect extends MobEffect {
 	public static float getSleepScaling(@Nullable LivingEntity entity) {
 		if (entity == null) return -1;
 		var potency = getGeneralSleepResistanceIfEntityHasSoporificEffect(entity);
-		
-		if (potency == -1 || potency >= 1)
+		if (potency == -1) {
 			return -1;
+		}
 		
 		// Converts a range of [0, infinity] to [0, 2]
 		// Also accounts for a smaller resist meaning stronger sleep

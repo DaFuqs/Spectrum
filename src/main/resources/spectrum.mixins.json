@@ -46,6 +46,7 @@
     "MobEntityMixin",
     "NoteBlockMixin",
     "PistonBlockMixin",
+    "PlayerEntityMixin",
     "PlayerInventoryMixin",
     "PotionItemMixin",
     "RandomChanceLootConditionMixin",

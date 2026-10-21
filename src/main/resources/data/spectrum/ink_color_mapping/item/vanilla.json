@@ -79,7 +79,8 @@
     "minecraft:warped_fungus",
     "minecraft:stone_bricks",
     "minecraft:iron_block",
-    "minecraft:crimson_fungus"
+    "minecraft:crimson_fungus",
+    "minecraft:mud"
   ],
   "spectrum:cyan": [
     "minecraft:cyan_wool",
@@ -102,7 +103,10 @@
     "minecraft:wither_skeleton_skull",
     "minecraft:creeper_head",
     "minecraft:player_head",
-    "minecraft:piglin_head"
+    "minecraft:piglin_head",
+    "spectrum:koi_head",
+    "spectrum:crawfish_head",
+    "minecraft:bone_meal"
   ],
   "spectrum:green": [
     "minecraft:green_wool",

@@ -145,6 +145,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> VINTAGE_COLOR_PICKER = register(defaultWestHorizontalFacing(blockWithItem("vintage_color_picker", () -> new ColorPickerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<Block> TWILL = register(defaultWestHorizontalFacing(blockWithItem("twill", () -> new TwillBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<Block> BRIGHT_TWILL = register(defaultWestHorizontalFacing(blockWithItem("bright_twill", () -> new TwillBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
+	public static final DeferredBlock<Block> JADE_TWILL = register(defaultWestHorizontalFacing(blockWithItem("jade_twill", () -> new TwillBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<Block> VANTACLAST = register(defaultWestHorizontalFacing(blockWithItem("vantaclast", () -> new VantaclastBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<Block> DAYDREAMER = register(defaultWestHorizontalFacing(blockWithItem("daydreamer", () -> new DaydreamerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, SoundType.CALCITE)), () -> IS.of()), ModelLocationUtils::getModelLocation));
 	
@@ -2868,6 +2869,7 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(LIQUID_CRYSTAL_CAULDRON.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TWILL.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(BRIGHT_TWILL.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(JADE_TWILL.get(), RenderType.cutout());
 		
 		ItemBlockRenderTypes.setRenderLayer(BLACK_SHORT_GRASS.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(BLUE_SHORT_GRASS.get(), RenderType.cutout());

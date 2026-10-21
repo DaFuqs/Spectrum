@@ -1752,6 +1752,7 @@ public class SpectrumItemGroups {
 					
 					// TODO: add secret unlocks & recipes
 					entries.accept(SpectrumBlocks.BRIGHT_TWILL);
+					entries.accept(SpectrumBlocks.JADE_TWILL);
 					entries.accept(SpectrumBlocks.VINTAGE_COLOR_PICKER);
 				}).build();
 	}

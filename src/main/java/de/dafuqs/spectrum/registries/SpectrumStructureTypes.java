@@ -12,9 +12,11 @@ public class SpectrumStructureTypes {
 	private static final DeferredRegister<StructureType<?>> REGISTRAR = DeferredRegister.create(Registries.STRUCTURE_TYPE, SpectrumCommon.MOD_ID);
 	
 	public static StructureType<UndergroundJigsawStructure> UNDERGROUND_JIGSAW = () -> UndergroundJigsawStructure.CODEC;
+	public static StructureType<ConservatoryEntranceStructure> CONSERVATORY_ENTRANCE = () -> ConservatoryEntranceStructure.CODEC;
 	
 	public static void register(IEventBus bus) {
 		REGISTRAR.register("underground_jigsaw", () -> UNDERGROUND_JIGSAW);
+		REGISTRAR.register("conservatory_entrance", () -> CONSERVATORY_ENTRANCE);
 		
 		REGISTRAR.register(bus);
 	}

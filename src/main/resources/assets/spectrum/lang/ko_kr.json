@@ -6244,6 +6244,7 @@
   "block.spectrum.tinting_station.tooltip": "잉크 장비를 충전하고 염색 가능한 아이템을 칠합니다",
   "block.spectrum.twill": "직조기",
   "block.spectrum.bright_twill": "밝은 직조기",
+  "block.spectrum.jade_twill": "비취 직조기",
   "block.spectrum.twill.tooltip": "허공에서 미세한 안료 파편들을 낚아채어 잉크를 만듭니다",
   "block.spectrum.twill.tooltip2": "색깔 나무 근처에 배치해야 합니다",
   "block.spectrum.vantaclast": "색채분해기",

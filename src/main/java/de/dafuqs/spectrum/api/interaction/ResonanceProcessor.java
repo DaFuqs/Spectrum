@@ -26,7 +26,7 @@ public abstract class ResonanceProcessor {
 	
 	public abstract Optional<List<ItemStack>> process(BlockState state, @Nullable BlockEntity blockEntity, List<ItemStack> droppedStacks);
 	
-	public static List<ItemStack> applyResonance(RegistryAccess drm, BlockState minedState, BlockEntity blockEntity, List<ItemStack> original) {
+	public static List<ItemStack> applyResonance(RegistryAccess drm, BlockState minedState, @Nullable BlockEntity blockEntity, List<ItemStack> original) {
 		Registry<ResonanceProcessor> resonanceProcessors = drm.registryOrThrow(SpectrumRegistryKeys.RESONANCE_PROCESSOR);
 		for(ResonanceProcessor processor : resonanceProcessors) {
 			// since droppedStacks can be immutable (e.g. empty lists) we should always return a new list,

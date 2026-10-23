@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/craft_moonstone_pedestal",
   "display": {
     "icon": {
-      "id": "spectrum:moonstone_chiseled_calcite"
+      "id": "spectrum:moonstone_engraved_calcite"
     },
     "hidden": true,
     "title": {

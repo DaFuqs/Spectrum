@@ -108,6 +108,8 @@ import static net.minecraft.world.level.block.Blocks.*;
 @SuppressWarnings({"unused"})
 public class SpectrumBlocks {
 	
+	public static final DeferredRegister.Blocks REGISTRAR = DeferredRegister.createBlocks(MOD_ID);
+	
 	private static BlockBehaviour.Properties settings(MapColor mapColor, SoundType blockSoundGroup, float strength) {
 		return BlockBehaviour.Properties.of().mapColor(mapColor).sound(blockSoundGroup).strength(strength);
 	}
@@ -119,9 +121,6 @@ public class SpectrumBlocks {
 	private static BlockBehaviour.Properties craftingBlock(MapColor mapColor, SoundType blockSoundGroup) {
 		return settings(mapColor, blockSoundGroup, 5.0F, 8.0F).isRedstoneConductor(SpectrumBlocks::never).isViewBlocking(SpectrumBlocks::never).noOcclusion().requiresCorrectToolForDrops();
 	}
-	
-	public static final DeferredRegister.Blocks REGISTRAR = DeferredRegister.createBlocks(MOD_ID);
-	private static final DeferredWorkQueue CLIENT_QUEUE = new DeferredWorkQueue("spectrum_client");
 	
 	public static final DeferredBlock<Block> PEDESTAL_BASIC_TOPAZ = register(pedestal(blockWithItem("pedestal_basic_topaz", () -> new PedestalBlock(craftingBlock(MapColor.DIAMOND, SpectrumSoundTypes.TOPAZ_BLOCK), BuiltinPedestalVariant.BASIC_TOPAZ), block -> new PedestalBlockItem(block, IS.of(), BuiltinPedestalVariant.BASIC_TOPAZ, "item.spectrum.pedestal.tooltip.basic_topaz"))));
 	public static final DeferredBlock<Block> PEDESTAL_BASIC_AMETHYST = register(pedestal(blockWithItem("pedestal_basic_amethyst", () -> new PedestalBlock(craftingBlock(MapColor.COLOR_PURPLE, SoundType.AMETHYST), BuiltinPedestalVariant.BASIC_AMETHYST), block -> new PedestalBlockItem(block, IS.of(), BuiltinPedestalVariant.BASIC_AMETHYST, "item.spectrum.pedestal.tooltip.basic_amethyst"))));
@@ -431,8 +430,8 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> AMETHYST_CHISELED_BASALT = register(simple(blockWithItem("amethyst_chiseled_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 5)))));
 	public static final DeferredBlock<Block> CITRINE_CHISELED_BASALT = register(simple(blockWithItem("citrine_chiseled_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 7)))));
 	public static final DeferredBlock<Block> ONYX_CHISELED_BASALT = register(simple(blockWithItem("onyx_chiseled_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 3)))));
-	public static final DeferredBlock<Block> MOONSTONE_CHISELED_BASALT = register(moonstoneChiseled(blockWithItem("moonstone_chiseled_basalt", () -> new SpectrumCounterDirectionalPlacedBlock(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 12))), SpectrumTextures.BASALT_CAP));
-
+	public static final DeferredBlock<Block> MOONSTONE_CHISELED_BASALT = register(simple(blockWithItem("moonstone_chiseled_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 12)))));
+	
 	public static final DeferredBlock<Block> CALCITE_STAIRS = register(blockWithItem("calcite_stairs", () -> new StairBlock(CALCITE.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(CALCITE))));
 	public static final DeferredBlock<Block> CALCITE_SLAB = register(blockWithItem("calcite_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE))));
 	public static final DeferredBlock<Block> CALCITE_WALL = register(blockWithItem("calcite_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE))));
@@ -465,7 +464,19 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> AMETHYST_CHISELED_CALCITE = register(simple(blockWithItem("amethyst_chiseled_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 5)))));
 	public static final DeferredBlock<Block> CITRINE_CHISELED_CALCITE = register(simple(blockWithItem("citrine_chiseled_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 7)))));
 	public static final DeferredBlock<Block> ONYX_CHISELED_CALCITE = register(simple(blockWithItem("onyx_chiseled_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 3)))));
-	public static final DeferredBlock<Block> MOONSTONE_CHISELED_CALCITE = register(moonstoneChiseled(blockWithItem("moonstone_chiseled_calcite", () -> new SpectrumCounterDirectionalPlacedBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 12))), SpectrumTextures.CALCITE_CAP));
+	public static final DeferredBlock<Block> MOONSTONE_CHISELED_CALCITE = register(simple(blockWithItem("moonstone_chiseled_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 12)))));
+	
+	//public static final DeferredBlock<Block> TOPAZ_ENGRAVED_CALCITE = register(simple(blockWithItem("onyx_engraved_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 3)))));
+	//public static final DeferredBlock<Block> AMETHYST_ENGRAVED_CALCITE = register(simple(blockWithItem("onyx_engraved_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 3)))));
+	//public static final DeferredBlock<Block> CITRINE_ENGRAVED_CALCITE = register(simple(blockWithItem("onyx_engraved_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 3)))));
+	public static final DeferredBlock<Block> ONYX_ENGRAVED_CALCITE = register(simple(blockWithItem("onyx_engraved_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 3)))));
+	public static final DeferredBlock<Block> MOONSTONE_ENGRAVED_CALCITE = register(moonstoneChiseled(blockWithItem("moonstone_engraved_calcite", () -> new SpectrumCounterDirectionalPlacedBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 12))), SpectrumTextures.CALCITE_CAP));
+	
+	//public static final DeferredBlock<Block> TOPAZ_ENGRAVED_BASALT = register(simple(blockWithItem("onyx_engraved_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 3)))));
+	//public static final DeferredBlock<Block> AMETHYST_ENGRAVED_BASALT = register(simple(blockWithItem("onyx_engraved_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 3)))));
+	//public static final DeferredBlock<Block> CITRINE_ENGRAVED_BASALT = register(simple(blockWithItem("onyx_engraved_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 3)))));
+	public static final DeferredBlock<Block> ONYX_ENGRAVED_BASALT = register(simple(blockWithItem("onyx_engraved_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 3)))));
+	public static final DeferredBlock<Block> MOONSTONE_ENGRAVED_BASALT = register(moonstoneChiseled(blockWithItem("moonstone_engraved_basalt", () -> new SpectrumCounterDirectionalPlacedBlock(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 12))), SpectrumTextures.BASALT_CAP));
 	
 	public static final DeferredBlock<Block> WHITE_SYMBOLIC_CALCITE = register(simple(blockWithItem("white_symbolic_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 7)))));
 	public static final DeferredBlock<Block> LIGHT_GRAY_SYMBOLIC_CALCITE = register(simple(blockWithItem("light_gray_symbolic_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 7)))));
@@ -1437,6 +1448,12 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> POLISHED_CITRINE = register(simple(blockWithItem("polished_citrine", () -> new Block(polishedGemBlock(MapColor.COLOR_YELLOW, SpectrumSoundTypes.CITRINE_BLOCK)))));
 	public static final DeferredBlock<Block> POLISHED_ONYX = register(simple(blockWithItem("polished_onyx", () -> new Block(polishedGemBlock(MapColor.COLOR_BLACK, SpectrumSoundTypes.ONYX_BLOCK)))));
 	public static final DeferredBlock<Block> POLISHED_MOONSTONE = register(simple(blockWithItem("polished_moonstone", () -> new Block(polishedGemBlock(MapColor.SNOW, SpectrumSoundTypes.MOONSTONE_BLOCK)))));
+	
+	public static final DeferredBlock<Block> CHISELED_TOPAZ = register(simple(blockWithItem("chiseled_topaz", () -> new Block(polishedGemBlock(MapColor.COLOR_CYAN, SpectrumSoundTypes.TOPAZ_BLOCK)))));
+	public static final DeferredBlock<Block> CHISELED_AMETHYST = register(simple(blockWithItem("chiseled_amethyst", () -> new Block(polishedGemBlock(MapColor.COLOR_MAGENTA, SoundType.AMETHYST)))));
+	public static final DeferredBlock<Block> CHISELED_CITRINE = register(simple(blockWithItem("chiseled_citrine", () -> new Block(polishedGemBlock(MapColor.COLOR_YELLOW, SpectrumSoundTypes.CITRINE_BLOCK)))));
+	public static final DeferredBlock<Block> CHISELED_ONYX = register(simple(blockWithItem("chiseled_onyx", () -> new Block(polishedGemBlock(MapColor.COLOR_BLACK, SpectrumSoundTypes.ONYX_BLOCK)))));
+	public static final DeferredBlock<Block> CHISELED_MOONSTONE = register(simple(blockWithItem("chiseled_moonstone", () -> new Block(polishedGemBlock(MapColor.SNOW, SpectrumSoundTypes.MOONSTONE_BLOCK)))));
 	
 	public static final DeferredBlock<Block> TOPAZ_PILLAR = register(singleton(blockWithItem("topaz_pillar", () -> new Block(polishedGemBlock(MapColor.COLOR_CYAN, SpectrumSoundTypes.TOPAZ_BLOCK))), TexturedModel.TOP_BOTTOM_WITH_WALL));
 	public static final DeferredBlock<Block> AMETHYST_PILLAR = register(singleton(blockWithItem("amethyst_pillar", () -> new Block(polishedGemBlock(MapColor.COLOR_MAGENTA, SoundType.AMETHYST))), TexturedModel.TOP_BOTTOM_WITH_WALL));

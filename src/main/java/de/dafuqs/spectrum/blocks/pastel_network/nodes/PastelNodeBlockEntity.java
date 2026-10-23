@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 import com.google.common.base.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
@@ -50,7 +51,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected UUID nodeId = UUID.randomUUID();
 	protected Optional<UUID> networkUUID = Optional.empty();
 	protected Optional<Holder.Reference<PastelUpgradeSignature>> outerRing, innerRing, redstoneRing;
-	protected Optional<DyeColor> color = Optional.empty();
+	protected Optional<InkColor> color = Optional.empty();
 	
 	protected long lastTransferTick = 0;
 	protected long cachedRedstonePowerTick = 0;
@@ -348,7 +349,10 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 				}
 			}
 		}
-		this.color = nbt.contains("color_id", Tag.TAG_INT) ? Optional.of(DyeColor.byId(nbt.getInt("color_id"))) : Optional.empty();
+		
+		if(nbt.contains("color_id", Tag.TAG_STRING)) {
+			this.color = Optional.ofNullable(SpectrumRegistries.INK_COLOR.get(ResourceLocation.tryParse(nbt.getString("color_id"))));
+		}
 		
 		this.outerRing = Optional.empty();
 		this.innerRing = Optional.empty();
@@ -382,12 +386,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		if (creationStamp != -1) {
 			nbt.putLong("creation_timestamp", creationStamp);
 		}
-		if (this.networkUUID.isPresent()) {
-			nbt.putUUID("network_uuid", this.networkUUID.get());
-		}
-		if (this.color.isPresent()) {
-			nbt.putInt("color_id", this.color.get().getId());
-		}
+		this.networkUUID.ifPresent(uuid -> nbt.putUUID("network_uuid", uuid));
+		this.getColor().ifPresent(inkColor -> nbt.putString("color_id", inkColor.getID().toString()));
+		
 		nbt.putUUID("node_id", this.nodeId);
 		nbt.putBoolean("triggered", this.triggered);
 		nbt.putBoolean("waiting", this.waiting);
@@ -571,11 +572,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 		return connectionState;
 	}
 	
-	public Optional<DyeColor> getColor() {
+	public Optional<InkColor> getColor() {
 		return this.color;
 	}
 	
-	public boolean setColor(Optional<DyeColor> color, @Nullable Entity user) {
+	public boolean setColor(Optional<InkColor> color, @Nullable Entity user) {
 		if (this.color == color)
 			return false;
 		
@@ -699,8 +700,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	}
 	
 	public int getPastelNetworkColor() {
-		Optional<DyeColor> color = getColor();
-		return color.isPresent() ? color.get().getTextureDiffuseColor() : SpectrumColorHelper.getRandomColor(getNodeId().hashCode());
+		return getColor()
+				.map(InkColor::getColorRGB)
+				.orElseGet(() -> SpectrumColorHelper.getRandomColor(getNodeId().hashCode()));
 	}
 	
 	public enum ConnectionState {

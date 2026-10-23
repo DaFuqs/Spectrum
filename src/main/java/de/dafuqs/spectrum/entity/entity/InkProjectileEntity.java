@@ -24,12 +24,15 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class InkProjectileEntity extends MagicProjectileEntity {
 	
@@ -182,27 +185,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 			if(blockPos.distSqr(blockHitResult.getBlockPos()) > SPELL_POTENCY * 2.5F) {
 				continue;
 			}
-			Optional<DyeColor> dyeColor = inkColor.getDyeColor();
-			if (this.level().getBlockState(blockPos).getBlock() instanceof ColorableBlock colorableBlock) {
-				if (!GenericClaimModsCompat.canModify(this.level(), blockPos, this.getOwner())) {
-					continue;
-				}
-				if(colorableBlock.color(this.level(), blockPos, dyeColor, getOwner())) {
-					if(getOwner() instanceof ServerPlayer serverPlayer) {
-						SpectrumAdvancementCriteria.BLOCK_COLORED.trigger(serverPlayer, blockPos, ItemStack.EMPTY);
-					}
-				}
-				continue;
-			}
-			if (dyeColor.isPresent()) {
-				BlockState coloredBlockState = VariantHelper.getColoredBlockState(this.level(), blockPos, inkColor);
-				if (coloredBlockState != null) {
-					this.level().setBlockAndUpdate(blockPos, coloredBlockState);
-					if(getOwner() instanceof ServerPlayer serverPlayer) {
-						SpectrumAdvancementCriteria.BLOCK_COLORED.trigger(serverPlayer, blockPos, ItemStack.EMPTY);
-					}
-				}
-			}
+			VariantHelper.colorBlockPos(level(), blockPos, inkColor, getOwner(), entity -> true);
 		}
 		
 		affectEntitiesInRange(this.getOwner());

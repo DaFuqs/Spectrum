@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.pastel_network.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
@@ -213,16 +214,13 @@ public class PastelNodeBlock extends SpectrumDirectionalBlock implements EntityB
 	}
 	
 	private static void sendDebugMessage(Level world, BlockPos pos, Player player, PastelNodeBlockEntity blockEntity) {
-		if (blockEntity != null) {
-			Optional<? extends PastelNetwork<?>> network = blockEntity.networkUUID.isPresent() ? Pastel.getInstance(world.isClientSide()).getNetwork(blockEntity.networkUUID.get()) : Optional.empty();
-			String prefix = world.isClientSide() ? "C (" : "S (";
-			Optional<DyeColor> color = blockEntity.getColor();
-			String colorString = color.isEmpty() ? "<uncolored>" : color.get().toString();
-			if (network.isEmpty()) {
-				player.sendSystemMessage(Component.literal(prefix + colorString + "): No connected network :("));
-			} else {
-				player.sendSystemMessage(Component.literal(prefix + colorString + "): " + network.get().getNodeDebugText()));
-			}
+		Optional<? extends PastelNetwork<?>> network = blockEntity.networkUUID.isPresent() ? Pastel.getInstance(world.isClientSide()).getNetwork(blockEntity.networkUUID.get()) : Optional.empty();
+		String prefix = world.isClientSide() ? "C (" : "S (";
+		String colorString = blockEntity.getColor().map(inkColor -> inkColor.getName().getString()).orElse("<uncolored>");
+		if (network.isEmpty()) {
+			player.sendSystemMessage(Component.literal(prefix + colorString + "): No connected network :("));
+		} else {
+			player.sendSystemMessage(Component.literal(prefix + colorString + "): " + network.get().getNodeDebugText()));
 		}
 	}
 
@@ -245,14 +243,14 @@ public class PastelNodeBlock extends SpectrumDirectionalBlock implements EntityB
 	}
 	
 	@Override
-	public boolean color(Level world, BlockPos pos, Optional<DyeColor> color, @Nullable Entity user) {
+	public boolean color(Level world, BlockPos pos, Optional<InkColor> color, @Nullable Entity user) {
 		if (!(user instanceof Player player)) {
 			return false;
 		}
 		if (!AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.PASTEL_NODE_COLORING)) {
 			return false;
 		}
-		@Nullable PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
+		PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
 		if (blockEntity == null) {
 			return false;
 		}
@@ -260,8 +258,8 @@ public class PastelNodeBlock extends SpectrumDirectionalBlock implements EntityB
 	}
 	
 	@Override
-	public Optional<DyeColor> getColor(Level world, BlockPos pos) {
-		@Nullable PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
+	public Optional<InkColor> getColor(Level world, BlockPos pos) {
+		PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
 		if (blockEntity == null) {
 			return Optional.empty();
 		}

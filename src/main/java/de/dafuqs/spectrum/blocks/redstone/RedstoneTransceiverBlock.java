@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.redstone;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -141,20 +142,24 @@ public class RedstoneTransceiverBlock extends DiodeBlock implements EntityBlock,
 	}
 	
 	@Override
-	public boolean color(Level world, BlockPos pos, Optional<DyeColor> color, @Nullable Entity user) {
+	public boolean color(Level world, BlockPos pos, Optional<InkColor> color, @Nullable Entity user) {
 		if (color.isEmpty()) {
 			return false;
 		}
 		if (getColor(world, pos) == color) {
 			return false;
 		}
-		world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(CHANNEL, color.get()));
-		return true;
+		Optional<DyeColor> dyeColor = color.get().getDyeColor();
+		if(dyeColor.isPresent()) {
+			world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(CHANNEL, dyeColor.get()));
+			return true;
+		}
+		return false;
 	}
 	
 	@Override
-	public Optional<DyeColor> getColor(Level world, BlockPos pos) {
-		return Optional.of(world.getBlockState(pos).getValue(CHANNEL));
+	public Optional<InkColor> getColor(Level world, BlockPos pos) {
+		return Optional.ofNullable(InkColor.ofDyeColor(world.getBlockState(pos).getValue(CHANNEL)));
 	}
 	
 }

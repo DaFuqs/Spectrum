@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
@@ -9,6 +10,7 @@ import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;

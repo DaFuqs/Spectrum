@@ -1,16 +1,22 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.compat.claims.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
@@ -22,6 +28,49 @@ public class VariantHelper {
 	private static final Map<Block, Map<InkColor, Block>> COLORED_STATE_CACHE = new HashMap<>();
 	private static final Map<Item, Map<InkColor, Item>> COLORED_ITEM_CACHE = new HashMap<>();
 	private static final Map<Block, Block> REPAIRED_STATE_CACHE = new HashMap<>();
+	
+	public static boolean colorBlockPos(Level level, BlockPos blockPos, InkColor inkColor, @Nullable Entity player, Predicate<@Nullable Entity> condition) {
+		BlockState prevState = level.getBlockState(blockPos);
+		Block prevBlock = prevState.getBlock();
+		
+		if (prevBlock instanceof ColorableBlock colorableBlock) {
+			if (!GenericClaimModsCompat.canModify(level, blockPos, player)) {
+				return false;
+			}
+			if(!condition.test(player)) {
+				return false;
+			}
+			
+			if(!colorableBlock.color(level, blockPos, Optional.of(inkColor), player)) {
+				return false;
+			}
+		} else {
+			BlockState coloredBlockState = VariantHelper.getColoredBlockState(level, blockPos, inkColor);
+			if (coloredBlockState == null || !condition.test(player)) {
+				return false;
+			}
+			
+			// special handling for DoublePlantBlock (Grass, Flowers, ...)
+			if (prevBlock instanceof DoublePlantBlock doublePlantBlock) {
+				if (prevState.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER) {
+					if (level.getBlockState(blockPos.above()).is(doublePlantBlock)) {
+						level.setBlock(blockPos.above(), coloredBlockState.setValue(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER), Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE);
+					}
+				} else {
+					if (level.getBlockState(blockPos.below()).is(doublePlantBlock)) {
+						level.setBlock(blockPos.below(), coloredBlockState.setValue(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER), Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE);
+					}
+				}
+			}
+			level.setBlockAndUpdate(blockPos, coloredBlockState);
+		}
+		
+		if(player instanceof ServerPlayer serverPlayer) {
+			SpectrumAdvancementCriteria.BLOCK_COLORED.trigger(serverPlayer, blockPos, ItemStack.EMPTY);
+		}
+			
+		return true;
+	}
 	
 	public static @Nullable BlockState getColoredBlockState(Level world, BlockPos pos, InkColor newColor) {
 		if (world.getBlockEntity(pos) != null) {

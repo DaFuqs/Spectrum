@@ -10,8 +10,10 @@ import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.blocks.portal.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
+import de.dafuqs.spectrum.dimensions.*;
 import de.dafuqs.spectrum.entity.spawners.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -61,6 +63,8 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.gameevent.*;
+import net.minecraft.world.level.levelgen.structure.*;
+import net.minecraft.world.level.portal.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.bus.api.*;
@@ -86,6 +90,7 @@ import top.theillusivec4.curios.api.type.capability.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
+import java.util.function.*;
 
 @EventBusSubscriber(modid = SpectrumCommon.MOD_ID)
 public class SpectrumEventListeners {
@@ -314,16 +319,56 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	public static void damagePlayersOutOfBoundsInDD(PlayerTickEvent.Post event) {
+	public static void damagePlayersOutOfDimensionBounds(PlayerTickEvent.Post event) {
 		if(event.getEntity() instanceof ServerPlayer player) {
-			Level world = player.level();
-			if (!player.isCreative() && !player.isSpectator() && world.dimension() == SpectrumDimensionKeys.DIMENSION_KEY && player.getY() > world.getMaxBuildHeight()) {
-				player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
-				if (player.isDeadOrDying()) {
-					Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");
+			Level level = player.level();
+			if (!player.isCreative() && !player.isSpectator()) {
+				ResourceKey<Level> dimensionKey = level.dimension();
+				boolean isDeeperDown = dimensionKey.equals(SpectrumDimensionKeys.DEEPER_DOWN_KEY);
+				boolean isConservatory = dimensionKey.equals(SpectrumDimensionKeys.CONSERVATORY_KEY);
+				
+				if(isDeeperDown) {
+					if(player.getY() < level.getMaxBuildHeight()) {
+						return;
+					}
+					player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
+					if (player.isDeadOrDying()) {
+						Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_deeper_down_bounds", "get_rekt");
+					}
+				} else if(isConservatory) {
+					if((player.getY() < level.getMaxBuildHeight() || !ConservatoryDataStore.getInstance(level.getServer()).isPlayerOutsideConservatoryBounds(level, player))) {
+						return;
+					}
+					player.hurt(player.damageSources().fellOutOfWorld(), 10.0F);
+					if (player.isDeadOrDying()) {
+						Support.grantAdvancementCriterion(player, "lategame/get_killed_while_out_of_conservatory_bounds", "get_rekt");
+					}
 				}
 			}
 		}
+	}
+	
+	@SubscribeEvent
+	public static void onChorusFruitTeleport(EntityTeleportEvent.ChorusFruit event) {
+		if(!(event.getEntityLiving() instanceof ServerPlayer player)) {
+			return;
+		}
+		
+		ServerLevel currentLevel = (ServerLevel) player.level();
+		BlockPos playerPos = player.blockPosition();
+		StructureStart structureStart = currentLevel.structureManager().getStructureWithPieceAt(playerPos, structureHolder -> structureHolder.is(SpectrumStructureTags.END_CITIES));
+		// yes, this can and will be null outside any structure
+		if(structureStart.getStructure() == null) {
+			return;
+		}
+		
+		BoundingBox boundingBox = structureStart.getBoundingBox();
+		if(boundingBox.isInside(playerPos.below(5))) {
+			return;
+		}
+		
+		// we are at the bottom of an end city, whee!
+		ConservatoryDataStore.teleportToConservatory(boundingBox.getCenter(), currentLevel, player, SpectrumStructureIDs.END_TEST);
 	}
 	
 	@SubscribeEvent
@@ -370,10 +415,9 @@ public class SpectrumEventListeners {
 			LastKillAttachmentType.rememberKillTick(livinSource, livinSource.level().getGameTime());
 			
 			MobEffectInstance frenzy = livinSource.getEffect(SpectrumMobEffects.FRENZY);
+			// A mixin in Vestiges https://www.curseforge.com/minecraft/mc-mods/vestiges-of-the-present/
+			// returned a dummy status effect for any getEffect() calls
 			if (frenzy != null && frenzy.getEffect() instanceof FrenzyMobEffect frenzyMobEffect) {
-				// I assume some mod scrambled effects? We once had an issue with
-				// java.lang.ClassCastException: class net.minecraft.world.effect.HealOrHarmMobEffect cannot be cast to class de.dafuqs.spectrum.mob_effect.FrenzyMobEffect
-				// in combination with Vestiges https://www.curseforge.com/minecraft/mc-mods/vestiges-of-the-present/
 				frenzyMobEffect.onKill(livinSource, frenzy.getAmplifier());
 			}
 		}
@@ -1008,7 +1052,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void onEntityJoinLevel(EntityJoinLevelEvent event) {
+	private static void onEntityJoinLevel(FinalizeSpawnEvent event) {
 		event.getEntity().gameEvent(SpectrumGameEvents.ENTITY_SPAWNED);
 	}
 	

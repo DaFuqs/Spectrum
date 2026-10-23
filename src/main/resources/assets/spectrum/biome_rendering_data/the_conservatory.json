@@ -1,0 +1,17 @@
+{
+  "biome": "spectrum:the_conservatory",
+  "environmental_data": {
+    "ultradark": false,
+    "environmental_lighting_multiplier": 0.75,
+    "fog_brightness_multiplier": 0.75,
+    "fog_near_multiplier": 0.5,
+    "fog_far_multiplier": 0.5
+  },
+  "color_grading": {
+    "saturation": 0.75,
+    "rubedo": 0,
+    "temperature": 55,
+    "threshold": 0.7,
+    "bloom": 0.2
+  }
+}

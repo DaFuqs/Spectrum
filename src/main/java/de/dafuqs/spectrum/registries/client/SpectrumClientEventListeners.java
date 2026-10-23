@@ -12,7 +12,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.client.*;
-import de.dafuqs.spectrum.deeper_down.client.*;
+import de.dafuqs.spectrum.dimensions.client.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tooltip.*;
@@ -37,7 +37,6 @@ import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.network.chat.*;
-import net.minecraft.resources.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -128,7 +127,7 @@ public class SpectrumClientEventListeners {
 	
 	@SubscribeEvent
 	private static void registerDimensionSpecialEffectsEvent(RegisterDimensionSpecialEffectsEvent event) {
-		event.register(SpectrumDimensionKeys.DIMENSION_EFFECTS_ID, new DeeperDownDimensionEffects());
+		event.register(SpectrumDimensionKeys.DEEPER_DOWN_SPECIAL_EFFECTS_ID, new DeeperDownDimensionSpecialEffects());
 	}
 	
 	@SubscribeEvent

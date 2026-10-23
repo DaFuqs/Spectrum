@@ -42,6 +42,7 @@ import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pastel_network.payloads.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
+import de.dafuqs.spectrum.blocks.portal.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.redstone.*;
@@ -1387,6 +1388,7 @@ public class SpectrumBlocks {
 	
 	public static final DeferredBlock<Block> STUCK_STORM_STONE = register(defaultWestHorizontalFacing(block("stuck_storm_stone", () -> new StuckStormStoneBlock(settings(MapColor.NONE, SoundType.SMALL_AMETHYST_BUD, 0.0F).noCollission().noOcclusion().isSuffocating(SpectrumBlocks::never).noTerrainParticles().isViewBlocking(SpectrumBlocks::never).replaceable())), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<DeeperDownPortalBlock> DEEPER_DOWN_PORTAL = register(block("deeper_down_portal", () -> new DeeperDownPortalBlock(settings(MapColor.COLOR_BLACK, SoundType.EMPTY, -1.0F, 3600000.0F).isValidSpawn(Blocks::never).pushReaction(PushReaction.BLOCK).lightLevel(state -> 8).noLootTable())).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(DeeperDownPortalBlock.FACING_UP, ModelLocationUtils.getModelLocation(block, "_up"), ModelLocationUtils.getModelLocation(block)))));
+	public static final DeferredBlock<ConservatoryPortalBlock> CONSERVATORY_PORTAL = register(block("conservatory_portal", () -> new ConservatoryPortalBlock(settings(MapColor.COLOR_BLACK, SoundType.EMPTY, -1.0F, 3600000.0F).isValidSpawn(Blocks::never).pushReaction(PushReaction.BLOCK).lightLevel(state -> 8).noLootTable())).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createBooleanModelMap(DeeperDownPortalBlock.FACING_UP, ModelLocationUtils.getModelLocation(block, "_up"), ModelLocationUtils.getModelLocation(block)))));
 	
 	private static BlockBehaviour.Properties upgrade() {
 		return BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT.get()).forceSolidOn();
@@ -1962,7 +1964,6 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> PRESERVATION_BRICKS = register(simple(blockWithItem("preservation_bricks", () -> new Block(preservationBlock()))));
 	public static final DeferredBlock<Block> SHIMMERING_PRESERVATION_BRICKS = register(blockWithItem("shimmering_preservation_bricks", () -> new Block(preservationBlock().lightLevel(s -> 5))).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block, createModelVariant(TexturedModel.CUBE.create(block, ctx.modelOutput)), createModelVariant(SpectrumTexturedModelProviders.cubeAll(b -> b, "_fast").createWithSuffix(block, "_fast", ctx.modelOutput)), createModelVariant(SpectrumTexturedModelProviders.cubeAll(b -> b, "_slow").createWithSuffix(block, "_slow", ctx.modelOutput)))));
 	
-	public static final DeferredBlock<StatueBlock> COURIER_STATUE = register(blockWithItem("courier_statue", () -> new StatueBlock(preservationBlock())).withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_top")).withBlockModel((ctx, block) -> MultiVariantGenerator.multiVariant(block).with(SpectrumModelHelper.createNorthDefaultHorizontalFacingVariantMap()).with(PropertyDispatch.property(StatueBlock.HALF).select(DoubleBlockHalf.LOWER, SpectrumModelHelper.createModelVariant(block, "_bottom")).select(DoubleBlockHalf.UPPER, SpectrumModelHelper.createModelVariant(block, "_top")))));
 	public static final DeferredBlock<ManxiBlock> MANXI = register(singletonWithSoup(block("manxi", () -> new ManxiBlock(preservationBlock().noOcclusion().noCollission().noLootTable())), b -> SpectrumModelTemplates.MOB_HEAD));
 	
 	public static final DeferredBlock<Block> BLACK_CHISELED_PRESERVATION_STONE = register(singleton(blockWithItem("black_chiseled_preservation_stone", () -> new Block(preservationBlock())), TexturedModel.COLUMN_ALT));
@@ -2813,7 +2814,6 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(DREAM_GATE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(INVISIBLE_WALL.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(PRESERVATION_ITEM_BOWL.get(), RenderType.cutout());
-		ItemBlockRenderTypes.setRenderLayer(COURIER_STATUE.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(PRESERVATION_GLASS.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(TINTED_PRESERVATION_GLASS.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(GLISTERING_SHOOTING_STAR.get(), RenderType.cutout());

@@ -24,8 +24,8 @@ public class EnchanterRecipe extends GatedSpectrumRecipe<RecipeInput> {
 	protected final List<Ingredient> inputs; // first input is the center, all others around clockwise
 	protected final ItemStack output;
 	
-	protected final int requiredExperience;
 	protected final int craftingTime;
+	protected final int requiredExperience;
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
 	// copy all modified components from the first stack in the ingredients to the output stack
 	protected final boolean copyComponents;
@@ -35,8 +35,8 @@ public class EnchanterRecipe extends GatedSpectrumRecipe<RecipeInput> {
 		
 		this.inputs = inputs;
 		this.output = output;
-		this.requiredExperience = requiredExperience;
 		this.craftingTime = craftingTime;
+		this.requiredExperience = requiredExperience;
 		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
 		this.copyComponents = copyComponents;
 		
@@ -145,8 +145,8 @@ public class EnchanterRecipe extends GatedSpectrumRecipe<RecipeInput> {
 				ItemStack.CODEC.listOf().optionalFieldOf("additional_recipe_viewer_results", List.of()).forGetter(recipe -> recipe.additionalResults),
 				Ingredient.CODEC_NONEMPTY.listOf().optionalFieldOf("ingredients", List.of()).forGetter(recipe -> recipe.inputs),
 				ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.output),
-				Codec.INT.optionalFieldOf("required_experience", 0).forGetter(recipe -> recipe.requiredExperience),
 				Codec.INT.optionalFieldOf("time", 200).forGetter(recipe -> recipe.craftingTime),
+				Codec.INT.optionalFieldOf("required_experience", 0).forGetter(recipe -> recipe.requiredExperience),
 				Codec.BOOL.optionalFieldOf("disable_yield_and_efficiency_upgrades", false).forGetter(recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades),
 				Codec.BOOL.optionalFieldOf("copy_components", false).forGetter(recipe -> recipe.copyComponents)
 		).apply(i, EnchanterRecipe::new));
@@ -158,8 +158,8 @@ public class EnchanterRecipe extends GatedSpectrumRecipe<RecipeInput> {
 				ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.additionalResults,
 				Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), recipe -> recipe.inputs,
 				ItemStack.STREAM_CODEC, recipe -> recipe.output,
-				ByteBufCodecs.VAR_INT, recipe -> recipe.requiredExperience,
 				ByteBufCodecs.VAR_INT, recipe -> recipe.craftingTime,
+				ByteBufCodecs.VAR_INT, recipe -> recipe.requiredExperience,
 				ByteBufCodecs.BOOL, recipe -> recipe.noBenefitsFromYieldAndEfficiencyUpgrades,
 				ByteBufCodecs.BOOL, recipe -> recipe.copyComponents,
 				EnchanterRecipe::new

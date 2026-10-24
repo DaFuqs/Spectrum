@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:gated_crafting_shaped",
+  "required_advancement": "spectrum:hidden/collect_shards/topaz",
+  "pattern": [
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": [
+      {
+        "item": "spectrum:polished_topaz"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:chiseled_topaz",
+    "count": 4
+  }
+}

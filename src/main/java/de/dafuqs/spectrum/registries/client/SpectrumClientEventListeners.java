@@ -179,6 +179,8 @@ public class SpectrumClientEventListeners {
 	
 	@SubscribeEvent
 	private static void afterClientTick(ClientTickEvent.Post event) {
+		HudRenderers.hoveredCapability = null;
+		
 		Minecraft client = Minecraft.getInstance();
 		ClientLevel world = client.level;
 		Entity cameraEntity = client.getCameraEntity();
@@ -303,8 +305,6 @@ public class SpectrumClientEventListeners {
 	
 	@SubscribeEvent
 	private static void onRenderBlockOutlines(RenderHighlightEvent.Block event) {
-		HudRenderers.hoveredCapability = null;
-		
 		Minecraft client = Minecraft.getInstance();
 		if (client.player == null) {
 			return;

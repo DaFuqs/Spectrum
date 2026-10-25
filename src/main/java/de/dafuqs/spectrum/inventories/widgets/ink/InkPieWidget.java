@@ -50,9 +50,9 @@ public class InkPieWidget extends AbstractWidget {
 		int radius = 20;
 		
 		// --- Smooth, double-precision rotation source ---
-		double time = Minecraft.getInstance().level.getGameTime();
-		double base = time % TICKS_PER_ROTATION;
-		double startRad = -(base / TICKS_PER_ROTATION) * Math.PI;
+		double time = Minecraft.getInstance().level.getGameTime() + partialTick;
+		double base = (time % TICKS_PER_ROTATION) / TICKS_PER_ROTATION;
+		double startRad = -base * 2.0 * Math.PI;
 		
 		for (InkColor color : InkColors.all()) {
 			long currentInk = inkStorage.getEnergy(color);

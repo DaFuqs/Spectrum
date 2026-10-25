@@ -19,6 +19,7 @@ import net.minecraft.util.*;
 public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<PastelNodeBlockEntity> {
 	
 	private static final long REAL_DAY_LENGTH = 86400 * 20;
+	private static final double FULL_ROTATION = Math.PI * 2.0;
 	
 	public static final ModelResourceLocation CRYSTAL_CONNECTION = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/connection_node_crystal"));
 	public static final ModelResourceLocation CRYSTAL_PROVIDER = ModelResourceLocation.standalone(SpectrumCommon.locate("technical/provider_node_crystal"));
@@ -50,7 +51,7 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 		
 		switch (node.getState()) {
 			case CONNECTED -> {
-				node.rotationTarget = mod(time / (Math.PI * 3));
+				node.rotationTarget = unwrapRotationTarget(node.crystalRotation, time / (Math.PI * 3));
 				node.heightTarget = (float) Math.sin(time / 19F) / 10F + heightMod;
 				node.alphaTarget = 1F;
 			}
@@ -59,12 +60,12 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 				node.alphaTarget = 0;
 			}
 			case ACTIVE -> {
-				node.rotationTarget = mod(time / (Math.PI * 1));
+				node.rotationTarget = unwrapRotationTarget(node.crystalRotation, time / Math.PI);
 				node.heightTarget = (float) Math.sin(time / 19F) / 10F + heightMod;
 				node.alphaTarget = 1F;
 			}
 			case INACTIVE -> {
-				node.rotationTarget = mod(time / (Math.PI * 7));
+				node.rotationTarget = unwrapRotationTarget(node.crystalRotation, time / (Math.PI * 7));
 				node.heightTarget = (float) Math.sin(time / 19F) / 20F + heightMod / 2F;
 				node.alphaTarget = 0.275F;
 			}
@@ -148,8 +149,9 @@ public class PastelNodeBlockEntityRenderer implements BlockEntityRenderer<Pastel
 		matrices.popPose();
 	}
 	
-	private float mod(double in) {
-		return (float) (in % (Math.PI * 2));
+	private float unwrapRotationTarget(float currentRotation, double targetRotation) {
+		double wrappedTarget = targetRotation % FULL_ROTATION;
+		return (float) (wrappedTarget + FULL_ROTATION * Math.rint((currentRotation - wrappedTarget) / FULL_ROTATION));
 	}
 
 }

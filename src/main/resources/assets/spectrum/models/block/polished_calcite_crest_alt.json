@@ -1,6 +1,7 @@
 {
 	"textures": {
 		"bottom": "spectrum:block/polished_calcite_crest_top",
+		"particle": "spectrum:block/polished_calcite_crest_side",
 		"side": "spectrum:block/polished_calcite_crest_side"
 	},
 	"elements": [

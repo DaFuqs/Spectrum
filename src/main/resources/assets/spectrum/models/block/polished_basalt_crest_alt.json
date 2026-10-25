@@ -1,7 +1,8 @@
 {
 	"textures": {
 		"bottom": "spectrum:block/polished_basalt_crest_top",
-		"side": "spectrum:block/polished_basalt_crest_side"
+		"side": "spectrum:block/polished_basalt_crest_side",
+    "particle": "spectrum:block/polished_basalt_crest_side"
 	},
 	"elements": [
 		{

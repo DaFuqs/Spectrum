@@ -6,9 +6,7 @@
   "colors": {
     "spectrum:magenta": 4,
     "spectrum:yellow": 2,
-    "spectrum:cyan": 0,
-    "spectrum:black": 1,
-    "spectrum:white": 0
+    "spectrum:black": 1
   },
   "experience": 2.0,
   "pattern": [

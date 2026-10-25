@@ -4,9 +4,6 @@
   "time": 40,
   "tier": "complex",
   "colors": {
-    "spectrum:cyan": 0,
-    "spectrum:magenta": 0,
-    "spectrum:yellow": 0,
     "spectrum:white": 2,
     "spectrum:black": 4
   },

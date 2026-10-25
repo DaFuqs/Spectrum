@@ -4,10 +4,7 @@
   "tier": "basic",
   "colors": {
     "spectrum:magenta": 4,
-    "spectrum:yellow": 0,
-    "spectrum:cyan": 4,
-    "spectrum:black": 0,
-    "spectrum:white": 0
+    "spectrum:cyan": 4
   },
   "experience": 2.0,
   "pattern": [

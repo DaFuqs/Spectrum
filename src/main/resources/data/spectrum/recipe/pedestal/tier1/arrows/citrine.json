@@ -3,13 +3,7 @@
   "group": "glass_arrows",
   "time": 200,
   "tier": "basic",
-  "colors": {
-    "spectrum:magenta": 0,
-    "spectrum:yellow": 0,
-    "spectrum:cyan": 0,
-    "spectrum:black": 0,
-    "spectrum:white": 0
-  },
+  "colors": {},
   "experience": 1.0,
   "pattern": [
     "TMT",

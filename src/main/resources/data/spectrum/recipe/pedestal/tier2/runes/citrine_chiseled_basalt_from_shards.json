@@ -2,10 +2,10 @@
   "type": "spectrum:pedestal",
   "group": "gemstone_chiseled_blocks",
   "time": 80,
-  "tier": "basic",
+  "tier": "simple",
   "colors": {
-    "spectrum:magenta": 1,
-    "spectrum:yellow": 0,
+    "spectrum:magenta": 0,
+    "spectrum:yellow": 1,
     "spectrum:cyan": 0,
     "spectrum:black": 0,
     "spectrum:white": 0
@@ -18,11 +18,11 @@
   ],
   "key": {
     "W": "spectrum:polished_basalt",
-    "X": "minecraft:amethyst_shard"
+    "X": "spectrum:citrine_shard"
   },
   "result": {
-    "id": "spectrum:amethyst_chiseled_basalt",
+    "id": "spectrum:citrine_chiseled_basalt",
     "count": 1
   },
-  "required_advancement": "spectrum:create_onyx_shard"
+  "required_advancement": "spectrum:build_basic_pedestal_structure"
 }

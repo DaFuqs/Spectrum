@@ -24,5 +24,5 @@
     "id": "spectrum:onyx_chiseled_basalt",
     "count": 8
   },
-  "required_advancement": "spectrum:create_onyx_shard"
+  "required_advancement": "spectrum:build_basic_pedestal_structure"
 }

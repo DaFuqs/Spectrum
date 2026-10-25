@@ -23,7 +23,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.midgame_runes.name",
-      "recipe_id": "spectrum:pedestal/tier3/runes/onyx_engraved_calcite_from_shards",
+      "recipe_id": "spectrum:pedestal/tier3/runes/onyx_engraved_calcite_from_blocks",
       "text": "book.spectrum.guidebook.midgame_runes.about.text"
     },
     {

@@ -23,7 +23,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.lategame_runes.name",
-      "recipe_id": "spectrum:pedestal/tier4/runes/moonstone_engraved_calcite_from_shards",
+      "recipe_id": "spectrum:pedestal/tier4/runes/moonstone_engraved_calcite_from_blocks",
       "text": "book.spectrum.guidebook.lategame_runes.about.text"
     },
     {

@@ -1,14 +1,10 @@
 {
   "type": "spectrum:pedestal",
-  "group": "gemstone_chiseled_blocks",
-  "time": 80,
+  "group": "onyx_engraved_blocks",
+  "time": 160,
   "tier": "advanced",
   "colors": {
-    "spectrum:magenta": 0,
-    "spectrum:yellow": 0,
-    "spectrum:cyan": 0,
-    "spectrum:black": 1,
-    "spectrum:white": 0
+    "spectrum:black": 1
   },
   "experience": 1.0,
   "pattern": [
@@ -18,11 +14,11 @@
   ],
   "key": {
     "W": "spectrum:polished_basalt",
-    "X": "spectrum:onyx_shard"
+    "X": "spectrum:onyx_block"
   },
   "result": {
     "id": "spectrum:onyx_engraved_basalt",
     "count": 1
   },
-  "required_advancement": "spectrum:create_onyx_shard"
+  "required_advancement": "spectrum:midgame/build_advanced_pedestal_structure"
 }

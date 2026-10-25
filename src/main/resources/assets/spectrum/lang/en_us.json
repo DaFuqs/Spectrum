@@ -2876,7 +2876,7 @@
   "book.spectrum.guidebook.midgame_runes.about.text": "Energy pulsates through these stones.",
   "book.spectrum.guidebook.midgame_runes.flavor.text": "*When something needs a bit more oomph (both visually and functionally).*",
   "book.spectrum.guidebook.lategame_runes.name": "Moonstone Engraved Blocks",
-  "book.spectrum.guidebook.lategame_runes.about.text": "I can't even get started here without a good amount of moonstone powder.",
+  "book.spectrum.guidebook.lategame_runes.about.text": "I can't even get started here without a good amount of [](item://spectrum:moonstone_powder).",
   "book.spectrum.guidebook.lategame_runes.flavor.text": "*Just standing on one of these gives me goosebumps.*",
   "book.spectrum.guidebook.gemstone_deco.name": "Gemstone Decorations",
   "book.spectrum.guidebook.gemstone_deco.page0.text": "The gems have an exceptionally beautiful appearance.\\\nHowever, the look of the raw clusters, as I know them from the geodes, seems a little too natural for my edgier builds. As a full block, however, they are beautiful too and fit right in.\\\n\\\nIf I run out of gems at some point, I can easily break the polished ones up again.",

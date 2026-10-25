@@ -1,16 +1,16 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:gated_crafting_shaped",
   "group": "gemstone_bricks",
-  "time": 40,
-  "tier": "basic",
-  "colors": {},
-  "experience": 0.0,
   "pattern": [
     "XX",
     "XX"
   ],
   "key": {
-    "X": "spectrum:citrine_block"
+    "X": [
+      {
+        "item": "spectrum:citrine_block"
+      }
+    ]
   },
   "result": {
     "id": "spectrum:citrine_bricks",

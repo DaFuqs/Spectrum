@@ -36,12 +36,20 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "block.spectrum.topaz_pillar",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/topaz"
       },
-      "recipe_id_1": "spectrum:crafting_table/gem_blocks/topaz_pillar"
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/chiseled_topaz",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/topaz_pillar"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/topaz"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/topaz_bricks"
     },
     {
       "type": "modonomicon:crafting_recipe",
@@ -59,8 +67,16 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/amethyst"
       },
-      "title1": "block.spectrum.amethyst_pillar",
-      "recipe_id_1": "spectrum:crafting_table/gem_blocks/amethyst_pillar"
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/chiseled_amethyst",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/amethyst_pillar"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/amethyst"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/amethyst_bricks"
     },
     {
       "type": "modonomicon:crafting_recipe",
@@ -78,8 +94,16 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/citrine"
       },
-      "title1": "block.spectrum.citrine_pillar",
-      "recipe_id_1": "spectrum:crafting_table/gem_blocks/citrine_pillar"
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/chiseled_citrine",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/citrine_pillar"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/citrine"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/citrine_bricks"
     },
     {
       "type": "modonomicon:crafting_recipe",
@@ -97,8 +121,16 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:create_onyx_shard"
       },
-      "title1": "block.spectrum.onyx_pillar",
-      "recipe_id_1": "spectrum:crafting_table/gem_blocks/onyx_pillar"
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/chiseled_onyx",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/onyx_pillar"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:create_onyx_shard"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/onyx_bricks"
     },
     {
       "type": "modonomicon:crafting_recipe",
@@ -116,53 +148,56 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_moonstone"
       },
-      "title1": "block.spectrum.moonstone_pillar",
-      "recipe_id_1": "spectrum:crafting_table/gem_blocks/moonstone_pillar"
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/chiseled_moonstone",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/moonstone_pillar"
     },
     {
-      "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.gemstone_deco.bricks.title",
-      "text": "book.spectrum.guidebook.gemstone_deco.bricks.text"
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_moonstone"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/moonstone_bricks"
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier1/bricks/topaz"
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_moonstone"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/mixed_gemstone_bricks"
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier1/bricks/amethyst"
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:grow_bloodstone_in_crystallarieum"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/bloodstone_bricks"
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier1/bricks/citrine"
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/grow_azurite_in_crystallarieum"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/azurite_bricks"
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier1/bricks/onyx"
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/grow_malachite_in_crystallarieum"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/malachite_bricks"
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier1/bricks/moonstone"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier1/bricks/mixed_gemstone_bricks"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier1/bricks/bloodstone"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier1/bricks/azurite"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier1/bricks/malachite"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id": "spectrum:pedestal/tier1/bricks/mixed_refined_crystal_bricks"
+      "type": "modonomicon:crafting_recipe",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_all_refined_rgb_resources"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/mixed_refined_crystal_bricks"
     }
   ]
 }

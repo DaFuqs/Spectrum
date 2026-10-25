@@ -2875,8 +2875,6 @@
   "book.spectrum.guidebook.gemstone_runes.page2.title": "Alternative Recipe",
   "book.spectrum.guidebook.gemstone_deco.name": "Gemstone Decorations",
   "book.spectrum.guidebook.gemstone_deco.page0.text": "The gems have an exceptionally beautiful appearance.\\\nHowever, the look of the raw clusters, as I know them from the geodes, seems a little too natural for my edgier builds. As a full block, however, they are beautiful too and fit right in.\\\n\\\nIf I run out of gems at some point, I can easily break the polished ones up again.",
-  "book.spectrum.guidebook.gemstone_deco.bricks.title": "Gemstone Bricks",
-  "book.spectrum.guidebook.gemstone_deco.bricks.text": "I thought: *what if they still looked pretty, but in brick form*?\\\n\\\nWorks in both the Pedestal and the [](item://minecraft:stonecutter).",
   "book.spectrum.guidebook.geodes.name": "Geodes",
   "book.spectrum.guidebook.geodes.page0.text": "I was told about a strange occurrence underground, but this picture is the only clue I have at the moment.",
   "book.spectrum.guidebook.geodes.page1.text": "Breaking Clusters gives me Gemstone Shards, which seem to inherit most of the original properties.\\\nEach type of gem seems to represent a different type of fundamental property.\\\n\\\nLooks like different heights encourage the formation of certain types. To find them all, it will make sense to search in different places.",

@@ -1094,6 +1094,12 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.POLISHED_ONYX);
 					entries.accept(SpectrumBlocks.POLISHED_MOONSTONE);
 					
+					entries.accept(SpectrumBlocks.CHISELED_TOPAZ);
+					entries.accept(SpectrumBlocks.CHISELED_AMETHYST);
+					entries.accept(SpectrumBlocks.CHISELED_CITRINE);
+					entries.accept(SpectrumBlocks.CHISELED_ONYX);
+					entries.accept(SpectrumBlocks.CHISELED_MOONSTONE);
+					
 					entries.accept(SpectrumBlocks.TOPAZ_BRICKS);
 					entries.accept(SpectrumBlocks.AMETHYST_BRICKS);
 					entries.accept(SpectrumBlocks.CITRINE_BRICKS);
@@ -1137,11 +1143,17 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.CITRINE_CHISELED_BASALT);
 					entries.accept(SpectrumBlocks.ONYX_CHISELED_BASALT);
 					entries.accept(SpectrumBlocks.MOONSTONE_CHISELED_BASALT);
+					
 					entries.accept(SpectrumBlocks.TOPAZ_CHISELED_CALCITE);
 					entries.accept(SpectrumBlocks.AMETHYST_CHISELED_CALCITE);
 					entries.accept(SpectrumBlocks.CITRINE_CHISELED_CALCITE);
 					entries.accept(SpectrumBlocks.ONYX_CHISELED_CALCITE);
 					entries.accept(SpectrumBlocks.MOONSTONE_CHISELED_CALCITE);
+					
+					entries.accept(SpectrumBlocks.ONYX_ENGRAVED_CALCITE);
+					entries.accept(SpectrumBlocks.MOONSTONE_ENGRAVED_CALCITE);
+					entries.accept(SpectrumBlocks.ONYX_ENGRAVED_BASALT);
+					entries.accept(SpectrumBlocks.MOONSTONE_ENGRAVED_BASALT);
 					
 					entries.accept(SpectrumBlocks.TOPAZ_GLASS);
 					entries.accept(SpectrumBlocks.AMETHYST_GLASS);

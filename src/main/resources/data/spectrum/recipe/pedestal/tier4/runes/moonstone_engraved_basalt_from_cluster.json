@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "moonstone_engraved_blocks",
+  "time": 320,
+  "tier": "complex",
+  "colors": {
+    "spectrum:white": 4
+  },
+  "experience": 1.0,
+  "pattern": [
+    "WWW",
+    "XCX",
+    "WWW"
+  ],
+  "key": {
+    "W": "spectrum:polished_basalt",
+    "X": "spectrum:moonstone_block",
+    "C": "spectrum:moonstone_cluster"
+  },
+  "result": {
+    "id": "spectrum:moonstone_engraved_basalt",
+    "count": 8
+  },
+  "required_advancement": "spectrum:lategame/collect_moonstone"
+}

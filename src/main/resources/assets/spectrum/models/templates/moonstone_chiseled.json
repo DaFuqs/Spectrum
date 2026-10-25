@@ -3,7 +3,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"textures": {
-		"line": "spectrum:block/moonstone_chiseled_basalt",
+		"line": "spectrum:block/moonstone_engraved_basalt",
 		"particle": "spectrum:block/basalt_cap",
 		"side": "spectrum:block/basalt_cap"
 	},

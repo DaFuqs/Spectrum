@@ -35,6 +35,7 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> TRINKETS = spectrum("trinkets");
 	public static final TagKey<Item> STORES_ITEMS_ADDED_TO_INVENTORY = spectrum("stores_items_added_to_inventory"); // TODO: this might be fun as an item component / enchantment actually
 	public static final TagKey<Item> COLORING_BLACKLISTED = spectrum("coloring_blacklisted");
+	public static final TagKey<Item> EXEMPT_FROM_RECIPE_DEBUG_CHECK = spectrum("exempt_from_recipe_debug_check");
 	
 	private static TagKey<Item> spectrum(String id) {
 		return TagKey.create(Registries.ITEM, SpectrumCommon.locate(id));

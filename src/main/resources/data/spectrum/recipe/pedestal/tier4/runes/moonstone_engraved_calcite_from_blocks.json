@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "moonstone_engraved_blocks",
+  "time": 320,
+  "tier": "complex",
+  "colors": {
+    "spectrum:white": 1
+  },
+  "experience": 1.0,
+  "pattern": [
+    "WWW",
+    "XXX",
+    "WWW"
+  ],
+  "key": {
+    "W": "spectrum:polished_calcite",
+    "X": "spectrum:moonstone_block"
+  },
+  "result": {
+    "id": "spectrum:moonstone_engraved_calcite",
+    "count": 1
+  },
+  "required_advancement": "spectrum:lategame/collect_moonstone"
+}

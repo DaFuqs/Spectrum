@@ -15,7 +15,7 @@ public class SpectrumMultiblocks {
 	public static final ResourceLocation PEDESTAL_ADVANCED = SpectrumCommon.locate("pedestal_advanced");
 	public static final Component PEDESTAL_COMPLEX_TEXT = Component.translatable("multiblock.spectrum.pedestal_complex");
 	public static final ResourceLocation PEDESTAL_COMPLEX = SpectrumCommon.locate("pedestal_complex");
-	public static final ResourceLocation PEDESTAL_COMPLEX_WITHOUT_MOONSTONE = SpectrumCommon.locate("pedestal_complex_without_moonstone");
+	public static final ResourceLocation PEDESTAL_COMPLEX_WITHOUT_ENGRAVINGS = SpectrumCommon.locate("pedestal_complex_without_engravings");
 	
 	public static final Component FUSION_SHRINE_TEXT = Component.translatable("multiblock.spectrum.fusion_shrine");
 	public static final ResourceLocation FUSION_SHRINE = SpectrumCommon.locate("fusion_shrine");

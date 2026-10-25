@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:gated_crafting_shaped",
+  "group": "gemstone_bricks",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": [
+      {
+        "item": "spectrum:pure_azurite_block"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:azurite_bricks",
+    "count": 4
+  },
+  "required_advancement": "spectrum:midgame/grow_azurite_in_crystallarieum"
+}

@@ -23,7 +23,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id": "spectrum:pedestal/tier2/daydreamer",
+      "recipe_id": "spectrum:pedestal/tier4/daydreamer",
       "text": "book.spectrum.guidebook.daydreamer.recipe.text"
     }
   ]

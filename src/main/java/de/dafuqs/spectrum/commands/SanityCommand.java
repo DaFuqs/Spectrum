@@ -45,7 +45,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.storage.loot.*;
 import org.apache.commons.lang3.*;
-import org.jspecify.annotations.*;
 
 import java.util.*;
 
@@ -109,14 +108,18 @@ public class SanityCommand {
 			if (registryKey.location().getNamespace().equals(modId)) {
 				Block block = entry.getValue();
 				
-				if (block instanceof PlacedItemBlock) {
-					continue; // that one always drops itself via code
-				}
-				if (block instanceof SpectrumBuddingBlock) {
-					continue; // does not have any drop by default
-				}
-				if (block instanceof WeepingGalaFrondsBlock) {
-					continue; // Fronds do not drop anything by default
+				switch (block) {
+					case PlacedItemBlock ignored -> {
+						continue; // that one always drops itself via code
+					}
+					case SpectrumBuddingBlock ignored -> {
+						continue; // does not have any drop by default
+					}
+					case WeepingGalaFrondsBlock ignored -> {
+						continue; // Fronds do not drop anything by default
+					}
+					default -> {
+					}
 				}
 				
 				BlockState blockState = entry.getValue().defaultBlockState();
@@ -233,6 +236,36 @@ public class SanityCommand {
 			}
 		}
 		
+		Set<Item> modItems = new HashSet<>();
+		
+		// Items that are meant to be enchantable but not really
+		for (Map.Entry<ResourceKey<Item>, Item> item : BuiltInRegistries.ITEM.entrySet()) {
+			if (!item.getKey().location().getNamespace().equals(modId)) {
+				continue;
+			}
+			
+			Item i = item.getValue();
+			modItems.add(i);
+			
+			ItemStack defaultStack = i.getDefaultInstance();
+			boolean isEnchantable = i.isEnchantable(defaultStack);
+			int enchantmentValue = i.getEnchantmentValue(defaultStack);
+			if(isEnchantable) {
+				if(enchantmentValue <= 0) {
+					SpectrumCommon.logWarning("[SANITY: Enchantability] " + item.getValue().getDescriptionId() + " is enchantable, but has an enchantment value of " + enchantmentValue);
+				}
+			}
+			if(enchantmentValue > 0) {
+				if(!isEnchantable) {
+					if(i == SpectrumItems.GILDED_BOOK.get()) {
+						continue;
+					}
+					SpectrumCommon.logWarning("[SANITY: Enchantability] " + item.getValue().getDescriptionId() + " is has a positive enchantment value, but its default instance is not enchantable");
+				}
+			}
+		}
+		
+		
 		// recipe groups without localization
 		Set<String> recipeGroups = new HashSet<>();
 		recipeManager.getRecipeIds().forEach(identifier -> {
@@ -245,6 +278,8 @@ public class SanityCommand {
 					}
 				}
 			}
+			
+			modItems.remove(recipe.get().value().getResultItem(source.registryAccess()).getItem());
 		});
 		for (String recipeGroup : recipeGroups) {
 			if (!Language.getInstance().has("recipeGroup.spectrum." + recipeGroup)) {
@@ -269,41 +304,22 @@ public class SanityCommand {
 		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, "Enchantment Upgrade", recipeManager, registryManager);
 		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.SPIRIT_INSTILLING, "Spirit Instiller", recipeManager, registryManager);
 		
-		// Items that are meant to be enchantable but not really
-		for (Map.Entry<ResourceKey<Item>, Item> item : BuiltInRegistries.ITEM.entrySet()) {
-			if (!item.getKey().location().getNamespace().equals(modId)) {
-				continue;
-			}
-			
-			Item i = item.getValue();
-			
-			ItemStack defaultStack = i.getDefaultInstance();
-			boolean isEnchantable = i.isEnchantable(defaultStack);
-			int enchantmentValue = i.getEnchantmentValue(defaultStack);
-			if(isEnchantable) {
-				if(enchantmentValue <= 0) {
-					SpectrumCommon.logWarning("[SANITY: Enchantability] " + item.getValue().getDescriptionId() + " is enchantable, but has an enchantment value of " + enchantmentValue);
-				}
-			}
-			if(enchantmentValue > 0) {
-				if(!isEnchantable) {
-					if(i == SpectrumItems.GILDED_BOOK.get()) {
-						continue;
-					}
-					SpectrumCommon.logWarning("[SANITY: Enchantability] " + item.getValue().getDescriptionId() + " is has a positive enchantment value, but its default instance is not enchantable");
-				}
+		// Items without crafting recipes
+		for(Item itemWithoutRecipe : modItems) {
+			if(!itemWithoutRecipe.builtInRegistryHolder().is(SpectrumItemTags.EXEMPT_FROM_RECIPE_DEBUG_CHECK)) {
+				SpectrumCommon.logWarning("[SANITY: Recipes] " + itemWithoutRecipe.getDescriptionId() + " does not have a recipe");
 			}
 		}
 		
 		// Impossible to unlock block cloaks
 		for (Map.Entry<ResourceLocation, List<BlockState>> cloaks : RevelationRegistry.getBlockStateEntries().entrySet()) {
 			if (advancementLoader.get(cloaks.getKey()) == null) {
-				SpectrumCommon.logWarning("[SANITY: Block Cloaks] Advancement '" + cloaks.getKey().toString() + "' for block cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());
+				SpectrumCommon.logWarning("[SANITY: Block Cloaks] Advancement '" + cloaks.getKey() + "' for block cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());
 			}
 		}
 		for (Map.Entry<ResourceLocation, List<Item>> cloaks : RevelationRegistry.getItemEntries().entrySet()) {
 			if (advancementLoader.get(cloaks.getKey()) == null) {
-				SpectrumCommon.logWarning("[SANITY: Item Cloaks] Advancement '" + cloaks.getKey().toString() + "' for item cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());
+				SpectrumCommon.logWarning("[SANITY: Item Cloaks] Advancement '" + cloaks.getKey() + "' for item cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());
 			}
 		}
 		
@@ -466,7 +482,7 @@ public class SanityCommand {
 		for (Map.Entry<ResourceKey<Item>, Item> item : BuiltInRegistries.ITEM.entrySet()) {
 			if (item.getValue() instanceof SpectrumCurioItem trinketItem) {
 				ResourceLocation advancementIdentifier = trinketItem.getUnlockIdentifier();
-				@Nullable AdvancementHolder advancementCriterionAdvancement = advancementLoader.get(advancementIdentifier);
+				AdvancementHolder advancementCriterionAdvancement = advancementLoader.get(advancementIdentifier);
 				if (advancementCriterionAdvancement == null) {
 					SpectrumCommon.logWarning("[SANITY: Trinkets] Trinket '" + item.getKey().location() + "' references advancement '" + advancementIdentifier + "' that does not exist");
 				}

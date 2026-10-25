@@ -5,7 +5,7 @@
     "advancement_id": "spectrum:place_pedestal"
   },
   "icon": {
-    "item": "spectrum:polished_citrine"
+    "item": "spectrum:chiseled_citrine"
   },
   "category": "spectrum:decoration",
   "hide_while_locked": true,
@@ -16,8 +16,8 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": -1,
-  "y": 1,
+  "x": -2,
+  "y": 3,
   "pages": [
     {
       "type": "modonomicon:text",

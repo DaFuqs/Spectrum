@@ -1,0 +1,36 @@
+{
+  "name": "book.spectrum.guidebook.midgame_runes.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/build_advanced_pedestal_structure"
+  },
+  "icon": {
+    "item": "spectrum:onyx_engraved_calcite"
+  },
+  "category": "spectrum:decoration",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:decoration/earlygame_runes",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": -2,
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.midgame_runes.name",
+      "recipe_id": "spectrum:pedestal/tier3/runes/onyx_engraved_calcite_from_shards",
+      "text": "book.spectrum.guidebook.midgame_runes.about.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.earlygame_runes.page2.title",
+      "recipe_id": "spectrum:pedestal/tier3/runes/onyx_engraved_basalt_from_cluster",
+      "text": "book.spectrum.guidebook.midgame_runes.flavor.text"
+    }
+  ]
+}

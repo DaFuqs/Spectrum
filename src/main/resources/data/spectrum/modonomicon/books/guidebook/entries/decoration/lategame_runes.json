@@ -1,0 +1,36 @@
+{
+  "name": "book.spectrum.guidebook.lategame_runes.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/collect_moonstone"
+  },
+  "icon": {
+    "item": "spectrum:moonstone_engraved_calcite"
+  },
+  "category": "spectrum:decoration",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:decoration/midgame_runes",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": -3,
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.lategame_runes.name",
+      "recipe_id": "spectrum:pedestal/tier4/runes/moonstone_engraved_calcite_from_shards",
+      "text": "book.spectrum.guidebook.lategame_runes.about.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.earlygame_runes.page2.title",
+      "recipe_id": "spectrum:pedestal/tier4/runes/moonstone_engraved_basalt_from_cluster",
+      "text": "book.spectrum.guidebook.lategame_runes.flavor.text"
+    }
+  ]
+}

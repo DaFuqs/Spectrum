@@ -29,7 +29,7 @@
     {
       "type": "modonomicon:multiblock",
       "multiblock_name": "multiblock.spectrum.pedestal_complex",
-      "multiblock_id": "spectrum:pedestal_complex_without_moonstone",
+      "multiblock_id": "spectrum:pedestal_complex_without_engravings",
       "show_visualize_button": true,
       "text": "book.spectrum.guidebook.pedestal_upgrade_moonstone.dimensions"
     },

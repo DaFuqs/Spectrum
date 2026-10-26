@@ -11,7 +11,7 @@ public class DirectionalSolidBlock extends Block {
 	
 	public static final MapCodec<DirectionalSolidBlock> CODEC = simpleCodec(DirectionalSolidBlock::new);
 	
-	public static final DirectionProperty FACING = BlockStateProperties.FACING;
+	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	
 	public DirectionalSolidBlock(Properties properties) {
 		super(properties);

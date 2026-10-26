@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "spectrum:block/neolith_block"
+    "bottom": "spectrum:block/neolith_block_bottom",
+    "side": "spectrum:block/neolith_block_side",
+    "top": "spectrum:block/neolith_block_top"
   }
 }

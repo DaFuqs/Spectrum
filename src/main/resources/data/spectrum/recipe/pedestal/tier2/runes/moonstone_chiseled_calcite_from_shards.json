@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "gemstone_chiseled_blocks",
+  "time": 80,
+  "tier": "complex",
+  "colors": {
+    "spectrum:white": 1
+  },
+  "experience": 1.0,
+  "pattern": [
+    "WXW",
+    "XXX",
+    "WXW"
+  ],
+  "key": {
+    "W": "spectrum:polished_calcite",
+    "X": "spectrum:moonstone_shard"
+  },
+  "result": {
+    "id": "spectrum:moonstone_chiseled_calcite",
+    "count": 1
+  },
+  "required_advancement": "spectrum:lategame/collect_moonstone"
+}

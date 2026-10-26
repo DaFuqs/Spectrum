@@ -26,10 +26,10 @@
       "title": "book.spectrum.guidebook.pedestal_upgrade_moonstone.name",
       "items": [
         {
-          "id": "spectrum:moonstone_chiseled_basalt"
+          "id": "spectrum:moonstone_engraved_basalt"
         },
         {
-          "id": "spectrum:moonstone_chiseled_calcite"
+          "id": "spectrum:moonstone_engraved_calcite"
         }
       ],
       "text": "book.spectrum.guidebook.pedestal_upgrade_moonstone_2.page0.text"

@@ -3,8 +3,11 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.blocks.conditional.*;
 import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.core.*;
 import net.minecraft.resources.*;
+import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
@@ -70,4 +73,12 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 		return SAPLINGS.values();
 	}
 	
+	@Override
+	public void advanceTree(ServerLevel level, BlockPos pos, BlockState state, RandomSource random) {
+		if(level.getBlockState(pos.below()).is(ColoredGrassBlock.byColor(this.color))) {
+			this.treeGrower.growTree(level, level.getChunkSource().getGenerator(), pos, state, random);
+			return;
+		}
+		super.advanceTree(level, pos, state, random);
+	}
 }

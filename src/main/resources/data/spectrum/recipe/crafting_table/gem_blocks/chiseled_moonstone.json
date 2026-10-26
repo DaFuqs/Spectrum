@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:gated_crafting_shaped",
+  "required_advancement": "spectrum:lategame/collect_moonstone",
+  "pattern": [
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": [
+      {
+        "item": "spectrum:polished_moonstone"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:chiseled_moonstone",
+    "count": 4
+  }
+}

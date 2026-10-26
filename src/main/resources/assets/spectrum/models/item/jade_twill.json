@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:item/twill",
+  "textures": {
+    "0": "spectrum:block/jade_twill"
+  }
+}

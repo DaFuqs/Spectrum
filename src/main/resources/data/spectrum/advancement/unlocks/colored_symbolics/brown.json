@@ -1,0 +1,10 @@
+{
+  "criteria": {
+    "has_brown_pigment": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/brown"
+      }
+    }
+  }
+}

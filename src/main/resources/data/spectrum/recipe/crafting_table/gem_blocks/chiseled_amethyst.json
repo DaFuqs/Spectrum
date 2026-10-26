@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:gated_crafting_shaped",
+  "required_advancement": "spectrum:hidden/collect_shards/amethyst",
+  "pattern": [
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": [
+      {
+        "item": "spectrum:polished_amethyst"
+      }
+    ]
+  },
+  "result": {
+    "id": "spectrum:chiseled_amethyst",
+    "count": 4
+  }
+}

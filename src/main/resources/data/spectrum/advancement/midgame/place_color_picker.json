@@ -17,15 +17,19 @@
       "conditions": {
         "location": [
           {
-            "condition": "minecraft:block_state_property",
-            "block": "spectrum:color_picker"
+            "condition": "minecraft:any_of",
+            "terms": [
+              {
+                "condition": "minecraft:block_state_property",
+                "block": "spectrum:color_picker"
+              },
+              {
+                "condition": "minecraft:block_state_property",
+                "block": "spectrum:vintage_color_picker"
+              }
+            ]
           }
-        ],
-        "item": {
-          "items": [
-            "spectrum:color_picker"
-          ]
-        }
+        ]
       }
     },
     "gotten_previous": {

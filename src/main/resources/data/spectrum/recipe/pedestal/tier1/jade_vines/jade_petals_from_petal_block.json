@@ -3,13 +3,7 @@
   "group": "jade_decorations",
   "time": 40,
   "tier": "basic",
-  "colors": {
-    "spectrum:cyan": 0,
-    "spectrum:magenta": 0,
-    "spectrum:yellow": 0,
-    "spectrum:white": 0,
-    "spectrum:black": 0
-  },
+  "colors": {},
   "experience": 0.0,
   "ingredients": [
     "spectrum:jade_vine_petal_block"

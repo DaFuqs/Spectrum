@@ -1,0 +1,82 @@
+{
+  "name": "book.spectrum.guidebook.earlygame_runes.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:build_basic_pedestal_structure"
+  },
+  "icon": {
+    "item": "spectrum:citrine_chiseled_calcite"
+  },
+  "category": "spectrum:decoration",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:decoration/shards",
+      "line_reversed": true
+    },
+    {
+      "entry": "spectrum:decoration/block_variants",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": -1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.earlygame_runes.name",
+      "text": "book.spectrum.guidebook.earlygame_runes.about.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.earlygame_runes.crafting.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/runes/topaz_chiseled_calcite_from_shards"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.earlygame_runes.page2.title",
+      "recipe_id": "spectrum:pedestal/tier2/runes/topaz_chiseled_basalt_from_cluster"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/runes/amethyst_chiseled_calcite_from_shards"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.earlygame_runes.page2.title",
+      "recipe_id": "spectrum:pedestal/tier2/runes/amethyst_chiseled_basalt_from_cluster"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/runes/citrine_chiseled_calcite_from_shards"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.earlygame_runes.page2.title",
+      "recipe_id": "spectrum:pedestal/tier2/runes/citrine_chiseled_basalt_from_cluster"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/runes/onyx_chiseled_calcite_from_shards"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.earlygame_runes.page2.title",
+      "recipe_id": "spectrum:pedestal/tier2/runes/onyx_chiseled_basalt_from_cluster"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id": "spectrum:pedestal/tier2/runes/moonstone_chiseled_calcite_from_shards"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.earlygame_runes.page2.title",
+      "recipe_id": "spectrum:pedestal/tier2/runes/moonstone_chiseled_basalt_from_cluster"
+    }
+  ]
+}

@@ -961,6 +961,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.SLATE_NOXWOOD_LANTERN);
 					entries.accept(SpectrumBlocks.SLATE_NOXWOOD_LIGHT);
 					entries.accept(SpectrumBlocks.SLATE_NOXWOOD_LAMP);
+					entries.accept(SpectrumBlocks.SLATE_NOXWOOD_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.SLATE_NOXWOOD_HANGING_SIGN.getFirst());
 					entries.accept(SpectrumBlocks.EBONY_NOXSHROOM);
 					entries.accept(SpectrumBlocks.EBONY_NOXCAP_BLOCK);
 					entries.accept(SpectrumBlocks.EBONY_NOXCAP_STEM);
@@ -982,6 +984,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.EBONY_NOXWOOD_LANTERN);
 					entries.accept(SpectrumBlocks.EBONY_NOXWOOD_LIGHT);
 					entries.accept(SpectrumBlocks.EBONY_NOXWOOD_LAMP);
+					entries.accept(SpectrumBlocks.EBONY_NOXWOOD_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.EBONY_NOXWOOD_HANGING_SIGN.getFirst());
 					entries.accept(SpectrumBlocks.IVORY_NOXSHROOM);
 					entries.accept(SpectrumBlocks.IVORY_NOXCAP_BLOCK);
 					entries.accept(SpectrumBlocks.IVORY_NOXCAP_STEM);
@@ -1003,6 +1007,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.IVORY_NOXWOOD_LANTERN);
 					entries.accept(SpectrumBlocks.IVORY_NOXWOOD_LIGHT);
 					entries.accept(SpectrumBlocks.IVORY_NOXWOOD_LAMP);
+					entries.accept(SpectrumBlocks.IVORY_NOXWOOD_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.IVORY_NOXWOOD_HANGING_SIGN.getFirst());
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXSHROOM);
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXCAP_BLOCK);
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXCAP_STEM);
@@ -1024,6 +1030,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXWOOD_LANTERN);
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXWOOD_LIGHT);
 					entries.accept(SpectrumBlocks.CHESTNUT_NOXWOOD_LAMP);
+					entries.accept(SpectrumBlocks.CHESTNUT_NOXWOOD_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.CHESTNUT_NOXWOOD_HANGING_SIGN.getFirst());
 					
 					entries.accept(SpectrumBlocks.WEEPING_GALA_SPRIG);
 					entries.accept(SpectrumBlocks.WEEPING_GALA_LEAVES);
@@ -1046,6 +1054,8 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.WEEPING_GALA_LANTERN);
 					entries.accept(SpectrumBlocks.WEEPING_GALA_LAMP);
 					entries.accept(SpectrumBlocks.WEEPING_GALA_LIGHT);
+					entries.accept(SpectrumBlocks.WEEPING_GALA_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.WEEPING_GALA_HANGING_SIGN.getFirst());
 					
 					entries.accept(SpectrumBlocks.SMALL_RED_DRAGONJAG);
 					entries.accept(SpectrumBlocks.SMALL_YELLOW_DRAGONJAG);
@@ -1068,6 +1078,11 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.VARIA_SPROUT);
 					entries.accept(SpectrumBlocks.JADEITE_LOTUS_STEM);
 					entries.accept(SpectrumBlocks.JADEITE_LOTUS_FLOWER);
+					
+					entries.accept(SpectrumBlocks.SUSPICIOUS_SLUSH);
+					entries.accept(SpectrumBlocks.SUSPICIOUS_BLACK_SLUDGE);
+					entries.accept(SpectrumBlocks.SUSPICIOUS_ASH);
+					entries.accept(SpectrumBlocks.SUSPICIOUS_ROTTEN_GROUND);
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_DECORATION, Component.translatable("itemGroup.spectrum.decoration"))
@@ -1078,6 +1093,12 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.POLISHED_CITRINE);
 					entries.accept(SpectrumBlocks.POLISHED_ONYX);
 					entries.accept(SpectrumBlocks.POLISHED_MOONSTONE);
+					
+					entries.accept(SpectrumBlocks.CHISELED_TOPAZ);
+					entries.accept(SpectrumBlocks.CHISELED_AMETHYST);
+					entries.accept(SpectrumBlocks.CHISELED_CITRINE);
+					entries.accept(SpectrumBlocks.CHISELED_ONYX);
+					entries.accept(SpectrumBlocks.CHISELED_MOONSTONE);
 					
 					entries.accept(SpectrumBlocks.TOPAZ_BRICKS);
 					entries.accept(SpectrumBlocks.AMETHYST_BRICKS);
@@ -1122,24 +1143,42 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.CITRINE_CHISELED_BASALT);
 					entries.accept(SpectrumBlocks.ONYX_CHISELED_BASALT);
 					entries.accept(SpectrumBlocks.MOONSTONE_CHISELED_BASALT);
+					
 					entries.accept(SpectrumBlocks.TOPAZ_CHISELED_CALCITE);
 					entries.accept(SpectrumBlocks.AMETHYST_CHISELED_CALCITE);
 					entries.accept(SpectrumBlocks.CITRINE_CHISELED_CALCITE);
 					entries.accept(SpectrumBlocks.ONYX_CHISELED_CALCITE);
 					entries.accept(SpectrumBlocks.MOONSTONE_CHISELED_CALCITE);
 					
+					entries.accept(SpectrumBlocks.ONYX_ENGRAVED_CALCITE);
+					entries.accept(SpectrumBlocks.MOONSTONE_ENGRAVED_CALCITE);
+					entries.accept(SpectrumBlocks.ONYX_ENGRAVED_BASALT);
+					entries.accept(SpectrumBlocks.MOONSTONE_ENGRAVED_BASALT);
+					
 					entries.accept(SpectrumBlocks.TOPAZ_GLASS);
 					entries.accept(SpectrumBlocks.AMETHYST_GLASS);
 					entries.accept(SpectrumBlocks.CITRINE_GLASS);
 					entries.accept(SpectrumBlocks.ONYX_GLASS);
 					entries.accept(SpectrumBlocks.MOONSTONE_GLASS);
-					entries.accept(SpectrumBlocks.RADIANT_GLASS);
 					
 					entries.accept(SpectrumBlocks.TOPAZ_GLASS_PANE);
 					entries.accept(SpectrumBlocks.AMETHYST_GLASS_PANE);
 					entries.accept(SpectrumBlocks.CITRINE_GLASS_PANE);
 					entries.accept(SpectrumBlocks.ONYX_GLASS_PANE);
 					entries.accept(SpectrumBlocks.MOONSTONE_GLASS_PANE);
+					
+					entries.accept(SpectrumBlocks.CHISELED_TOPAZ_GLASS);
+					entries.accept(SpectrumBlocks.CHISELED_AMETHYST_GLASS);
+					entries.accept(SpectrumBlocks.CHISELED_CITRINE_GLASS);
+					entries.accept(SpectrumBlocks.CHISELED_ONYX_GLASS);
+					entries.accept(SpectrumBlocks.CHISELED_MOONSTONE_GLASS);
+					entries.accept(SpectrumBlocks.CHISELED_TOPAZ_GLASS_PANE);
+					entries.accept(SpectrumBlocks.CHISELED_AMETHYST_GLASS_PANE);
+					entries.accept(SpectrumBlocks.CHISELED_CITRINE_GLASS_PANE);
+					entries.accept(SpectrumBlocks.CHISELED_ONYX_GLASS_PANE);
+					entries.accept(SpectrumBlocks.CHISELED_MOONSTONE_GLASS_PANE);
+					
+					entries.accept(SpectrumBlocks.RADIANT_GLASS);
 					entries.accept(SpectrumBlocks.RADIANT_GLASS_PANE);
 					
 					entries.accept(SpectrumBlocks.TOPAZ_CHIME);
@@ -1164,6 +1203,40 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.RESPLENDENT_CUSHION);
 					entries.accept(SpectrumBlocks.RESPLENDENT_CARPET);
 					entries.accept(SpectrumBlocks.RESPLENDENT_BED);
+					
+					entries.accept(SpectrumBlocks.WHITE_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.ORANGE_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.MAGENTA_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.YELLOW_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.LIME_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.PINK_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.GRAY_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.CYAN_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.PURPLE_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.BLUE_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.BROWN_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.GREEN_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.RED_SYMBOLIC_BASALT);
+					entries.accept(SpectrumBlocks.BLACK_SYMBOLIC_BASALT);
+					
+					entries.accept(SpectrumBlocks.WHITE_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.ORANGE_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.MAGENTA_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.YELLOW_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.LIME_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.PINK_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.GRAY_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.CYAN_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.PURPLE_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.BLUE_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.BROWN_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.GREEN_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.RED_SYMBOLIC_CALCITE);
+					entries.accept(SpectrumBlocks.BLACK_SYMBOLIC_CALCITE);
 					
 					entries.accept(SpectrumBlocks.WHITE_BLOCK);
 					entries.accept(SpectrumBlocks.ORANGE_BLOCK);
@@ -1247,6 +1320,58 @@ public class SpectrumItemGroups {
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_COLORED_WOOD, Component.translatable("itemGroup.spectrum.colored_wood"))
 				.styled(ItemGroupIDs.STYLE)
 				.entries((displayContext, entries) -> {
+					
+					entries.accept(SpectrumBlocks.WHITE_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.ORANGE_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.MAGENTA_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.YELLOW_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.LIME_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.PINK_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.GRAY_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.CYAN_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.PURPLE_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.BLUE_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.BROWN_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.GREEN_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.RED_GRASS_BLOCK);
+					entries.accept(SpectrumBlocks.BLACK_GRASS_BLOCK);
+					
+					entries.accept(SpectrumBlocks.WHITE_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.ORANGE_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.MAGENTA_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.YELLOW_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.LIME_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.PINK_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.GRAY_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.CYAN_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.PURPLE_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.BLUE_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.BROWN_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.GREEN_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.RED_SHORT_GRASS);
+					entries.accept(SpectrumBlocks.BLACK_SHORT_GRASS);
+					
+					entries.accept(SpectrumBlocks.WHITE_TALL_GRASS);
+					entries.accept(SpectrumBlocks.ORANGE_TALL_GRASS);
+					entries.accept(SpectrumBlocks.MAGENTA_TALL_GRASS);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_TALL_GRASS);
+					entries.accept(SpectrumBlocks.YELLOW_TALL_GRASS);
+					entries.accept(SpectrumBlocks.LIME_TALL_GRASS);
+					entries.accept(SpectrumBlocks.PINK_TALL_GRASS);
+					entries.accept(SpectrumBlocks.GRAY_TALL_GRASS);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_TALL_GRASS);
+					entries.accept(SpectrumBlocks.CYAN_TALL_GRASS);
+					entries.accept(SpectrumBlocks.PURPLE_TALL_GRASS);
+					entries.accept(SpectrumBlocks.BLUE_TALL_GRASS);
+					entries.accept(SpectrumBlocks.BROWN_TALL_GRASS);
+					entries.accept(SpectrumBlocks.GREEN_TALL_GRASS);
+					entries.accept(SpectrumBlocks.RED_TALL_GRASS);
+					entries.accept(SpectrumBlocks.BLACK_TALL_GRASS);
+					
 					entries.accept(SpectrumBlocks.WHITE_LOG);
 					entries.accept(SpectrumBlocks.ORANGE_LOG);
 					entries.accept(SpectrumBlocks.MAGENTA_LOG);
@@ -1439,6 +1564,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.GREEN_BUTTON);
 					entries.accept(SpectrumBlocks.RED_BUTTON);
 					entries.accept(SpectrumBlocks.BLACK_BUTTON);
+					
 					entries.accept(SpectrumBlocks.WHITE_SLAB);
 					entries.accept(SpectrumBlocks.ORANGE_SLAB);
 					entries.accept(SpectrumBlocks.MAGENTA_SLAB);
@@ -1455,6 +1581,74 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.GREEN_SLAB);
 					entries.accept(SpectrumBlocks.RED_SLAB);
 					entries.accept(SpectrumBlocks.BLACK_SLAB);
+					
+					entries.accept(SpectrumBlocks.WHITE_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.ORANGE_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.MAGENTA_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.YELLOW_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.LIME_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.PINK_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.GRAY_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.CYAN_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.PURPLE_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.BLUE_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.BROWN_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.GREEN_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.RED_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.BLACK_SIGN.getFirst());
+					
+					entries.accept(SpectrumBlocks.WHITE_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.ORANGE_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.MAGENTA_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.YELLOW_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.LIME_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.PINK_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.GRAY_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.CYAN_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.PURPLE_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.BLUE_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.BROWN_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.GREEN_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.RED_HANGING_SIGN.getFirst());
+					entries.accept(SpectrumBlocks.BLACK_HANGING_SIGN.getFirst());
+					
+					entries.accept(SpectrumBlocks.WHITE_DOOR);
+					entries.accept(SpectrumBlocks.ORANGE_DOOR);
+					entries.accept(SpectrumBlocks.MAGENTA_DOOR);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_DOOR);
+					entries.accept(SpectrumBlocks.YELLOW_DOOR);
+					entries.accept(SpectrumBlocks.LIME_DOOR);
+					entries.accept(SpectrumBlocks.PINK_DOOR);
+					entries.accept(SpectrumBlocks.GRAY_DOOR);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_DOOR);
+					entries.accept(SpectrumBlocks.CYAN_DOOR);
+					entries.accept(SpectrumBlocks.PURPLE_DOOR);
+					entries.accept(SpectrumBlocks.BLUE_DOOR);
+					entries.accept(SpectrumBlocks.BROWN_DOOR);
+					entries.accept(SpectrumBlocks.GREEN_DOOR);
+					entries.accept(SpectrumBlocks.RED_DOOR);
+					entries.accept(SpectrumBlocks.BLACK_DOOR);
+					
+					entries.accept(SpectrumBlocks.WHITE_TRAPDOOR);
+					entries.accept(SpectrumBlocks.ORANGE_TRAPDOOR);
+					entries.accept(SpectrumBlocks.MAGENTA_TRAPDOOR);
+					entries.accept(SpectrumBlocks.LIGHT_BLUE_TRAPDOOR);
+					entries.accept(SpectrumBlocks.YELLOW_TRAPDOOR);
+					entries.accept(SpectrumBlocks.LIME_TRAPDOOR);
+					entries.accept(SpectrumBlocks.PINK_TRAPDOOR);
+					entries.accept(SpectrumBlocks.GRAY_TRAPDOOR);
+					entries.accept(SpectrumBlocks.LIGHT_GRAY_TRAPDOOR);
+					entries.accept(SpectrumBlocks.CYAN_TRAPDOOR);
+					entries.accept(SpectrumBlocks.PURPLE_TRAPDOOR);
+					entries.accept(SpectrumBlocks.BLUE_TRAPDOOR);
+					entries.accept(SpectrumBlocks.BROWN_TRAPDOOR);
+					entries.accept(SpectrumBlocks.GREEN_TRAPDOOR);
+					entries.accept(SpectrumBlocks.RED_TRAPDOOR);
+					entries.accept(SpectrumBlocks.BLACK_TRAPDOOR);
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_MOB_HEADS, Component.translatable("itemGroup.spectrum.mob_heads"))
@@ -1562,12 +1756,16 @@ public class SpectrumItemGroups {
 					
 					entries.accept(SpectrumItems.DIVINATION_HEART);
 					
-					// todo: add model
+					// TODO: add model, guidebook entries & finish impl
 					entries.accept(SpectrumBlocks.TINTING_STATION);
-					// TODO: add model & finish impl
 					entries.accept(SpectrumBlocks.DAYDREAMER);
 					entries.accept(SpectrumBlocks.TWILL);
 					entries.accept(SpectrumBlocks.VANTACLAST);
+					
+					// TODO: add secret unlocks & recipes
+					entries.accept(SpectrumBlocks.BRIGHT_TWILL);
+					entries.accept(SpectrumBlocks.JADE_TWILL);
+					entries.accept(SpectrumBlocks.VINTAGE_COLOR_PICKER);
 				}).build();
 	}
 	

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "spectrum:block/vintage_color_picker",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "spectrum:block/vintage_color_picker"
+    },
+    "facing=south": {
+      "model": "spectrum:block/vintage_color_picker",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "spectrum:block/vintage_color_picker",
+      "y": 270
+    }
+  }
+}

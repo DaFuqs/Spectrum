@@ -35,7 +35,7 @@ public class MouseMixin {
 			return original;
 		
 		var potency = SleepMobEffect.getSleepScaling(player);
-		if (potency < 1.9)
+		if (potency == -1)
 			return original;
 		
 		return true;

@@ -4,10 +4,7 @@
   "tier": "simple",
   "colors": {
     "spectrum:magenta": 2,
-    "spectrum:yellow": 0,
-    "spectrum:cyan": 2,
-    "spectrum:black": 0,
-    "spectrum:white": 0
+    "spectrum:cyan": 2
   },
   "experience": 1.0,
   "ingredients": [

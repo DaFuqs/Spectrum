@@ -1,0 +1,52 @@
+{
+  "name": "book.spectrum.guidebook.colored_grass.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:color_grass"
+  },
+  "icon": {
+    "item": "spectrum:magenta_grass_block"
+  },
+  "category": "spectrum:decoration",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:decoration/paintbrush"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 10,
+  "y": 4,
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.colored_grass.name",
+      "items": [
+        {
+          "id": "spectrum:cyan_grass_block"
+        },
+        {
+          "id": "spectrum:magenta_grass_block"
+        },
+        {
+          "id": "spectrum:yellow_grass_block"
+        }
+      ],
+      "text": "book.spectrum.guidebook.colored_grass.blocks.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.colored_grass.bushels.title",
+      "items": [
+        {
+          "id": "spectrum:orange_short_grass"
+        },
+        {
+          "id": "spectrum:purple_tall_grass"
+        }
+      ],
+      "text": "book.spectrum.guidebook.colored_grass.bushels.text"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:block/color_picker",
+  "textures": {
+    "0": "spectrum:block/vintage_color_picker"
+  }
+}

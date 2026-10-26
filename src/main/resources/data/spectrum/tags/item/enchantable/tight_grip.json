@@ -1,6 +1,7 @@
 {
   "values": [
     "#minecraft:enchantable/sword",
+    "#minecraft:axes",
     {
       "id": "#malum:scythe",
       "required": false

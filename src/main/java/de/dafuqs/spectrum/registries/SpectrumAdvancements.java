@@ -28,6 +28,7 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation REVEAL_STRATINE = locate("milestones/reveal_stratine");
 	public static final ResourceLocation REVEAL_FROSTBITE_RESOURCES = SpectrumCommon.locate("milestones/reveal_frostbite_resources");
 	public static final ResourceLocation REVEAL_INCANDESCENT_RESOURCES = SpectrumCommon.locate("milestones/reveal_incandescent_resources");
+	public static final ResourceLocation REVEAL_COLORED_GRASS = SpectrumCommon.locate("milestones/reveal_colored_grass");
 	
 	// Milestones with unlocks
 	public static final ResourceLocation UNLOCK_INK_USE = locate("milestones/unlock_ink_use");
@@ -45,8 +46,8 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation PASTEL_NODE_COLORING = SpectrumCommon.locate("unlocks/pastel_network/unlock_pastel_node_coloring");
 	
 	// Paintbrush Abilities
-	public static final ResourceLocation PAINTBRUSH_COLORING = SpectrumCommon.locate("collect_pigment");
-	public static final ResourceLocation PAINTBRUSH_INK_SLINGING = SpectrumCommon.locate("midgame/fill_ink_container");
+	public static final ResourceLocation PAINTBRUSH_COLORING = SpectrumCommon.locate("milestones/unlock_paintbrush_coloring");
+	public static final ResourceLocation PAINTBRUSH_INK_SLINGING = SpectrumCommon.locate("milestones/unlock_paintbrush_ink_slinging");
 	
 	// Enchantments
 	public static final ResourceLocation ENCHANTMENTS_BIG_CATCH = SpectrumCommon.locate("unlocks/enchantments/big_catch");

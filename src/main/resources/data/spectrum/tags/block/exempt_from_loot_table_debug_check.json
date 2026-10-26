@@ -24,6 +24,11 @@
     "spectrum:primordial_fire",
     "spectrum:sag_leaf",
     "spectrum:sag_bubble",
-    "spectrum:small_sag_bubble"
+    "spectrum:small_sag_bubble",
+
+    "spectrum:suspicious_black_sludge",
+    "spectrum:suspicious_ash",
+    "spectrum:suspicious_slush",
+    "spectrum:suspicious_rotten_ground"
   ]
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:block/twill",
+	"textures": {
+    "0": "spectrum:block/bright_twill"
+	}
+}

@@ -1,6 +1,40 @@
 {
   "values": [
     "spectrum:chiseled_polished_basalt",
-    "spectrum:chiseled_polished_calcite"
+    "spectrum:chiseled_polished_calcite",
+
+    "spectrum:white_symbolic_basalt",
+    "spectrum:light_gray_symbolic_basalt",
+    "spectrum:gray_symbolic_basalt",
+    "spectrum:black_symbolic_basalt",
+    "spectrum:brown_symbolic_basalt",
+    "spectrum:red_symbolic_basalt",
+    "spectrum:orange_symbolic_basalt",
+    "spectrum:yellow_symbolic_basalt",
+    "spectrum:lime_symbolic_basalt",
+    "spectrum:green_symbolic_basalt",
+    "spectrum:cyan_symbolic_basalt",
+    "spectrum:light_blue_symbolic_basalt",
+    "spectrum:blue_symbolic_basalt",
+    "spectrum:purple_symbolic_basalt",
+    "spectrum:magenta_symbolic_basalt",
+    "spectrum:pink_symbolic_basalt",
+    "spectrum:white_symbolic_calcite",
+    "spectrum:light_gray_symbolic_calcite",
+    "spectrum:gray_symbolic_calcite",
+    "spectrum:black_symbolic_calcite",
+    "spectrum:brown_symbolic_calcite",
+    "spectrum:red_symbolic_calcite",
+    "spectrum:orange_symbolic_calcite",
+    "spectrum:yellow_symbolic_calcite",
+    "spectrum:lime_symbolic_calcite",
+    "spectrum:green_symbolic_calcite",
+    "spectrum:cyan_symbolic_calcite",
+    "spectrum:light_blue_symbolic_calcite",
+    "spectrum:blue_symbolic_calcite",
+    "spectrum:purple_symbolic_calcite",
+    "spectrum:magenta_symbolic_calcite",
+    "spectrum:pink_symbolic_calcite"
+
   ]
 }

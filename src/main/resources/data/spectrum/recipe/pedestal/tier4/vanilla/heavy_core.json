@@ -3,10 +3,7 @@
   "time": 1200,
   "tier": "complex",
   "colors": {
-    "spectrum:magenta": 0,
-    "spectrum:yellow": 0,
     "spectrum:cyan": 12,
-    "spectrum:black": 0,
     "spectrum:white": 4
   },
   "experience": 3.0,

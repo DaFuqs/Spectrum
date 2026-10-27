@@ -218,13 +218,14 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 		List<InkPoweredMobEffectInstance> effects = generateEffects(stack, potionMod, lastRecipe, random);
 		
-		ItemStack itemStack = new ItemStack(Items.TIPPED_ARROW, amount);
+		ItemStack itemStack;
 		if (effects.isEmpty()) {
-			itemStack = PotionContents.createItemStack(itemStack.getItem(), Potions.THICK);
+			itemStack = PotionContents.createItemStack(Items.TIPPED_ARROW, Potions.THICK);
 		} else {
-			itemStack = PotionContents.createItemStack(itemStack.getItem(), SpectrumPotions.PIGMENT_POTION);
+			itemStack = PotionContents.createItemStack(Items.TIPPED_ARROW, SpectrumPotions.PIGMENT_POTION);
 			setCustomPotionEffects(itemStack, potionMod, effects);
 		}
+		itemStack.setCount(amount);
 		
 		return itemStack;
 	}

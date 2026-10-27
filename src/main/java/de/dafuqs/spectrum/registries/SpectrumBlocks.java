@@ -1483,25 +1483,25 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<FlowerPotBlock> POTTED_VARIA_SPROUT = register(pottedPlantWithCustomTexture(block("potted_varia_sprout", () -> new FlowerPotBlock(VARIA_SPROUT.get(), pottedPlant().lightLevel(s -> 11).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), "_potted"));
 	public static final DeferredBlock<FlowerPotBlock> POTTED_HUMMING_BELL = register(pottedPlant(block("potted_humming_bell", () -> new FlowerPotBlock(HUMMING_BELL.get(), pottedPlant().lightLevel(s -> 9).hasPostProcess(SpectrumBlocks::always).emissiveRendering(SpectrumBlocks::always))), false));
 	
-	public static DeferredBlock<ColoredSaplingBlock> registerColoredSapling(String name, InkColor color, TreeGrower generator) {
-		return register(simplePlant(blockWithItem(name, () -> new ColoredSaplingBlock(copyWithMapColor(OAK_SAPLING, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color, generator))));
+	public static DeferredBlock<ColoredSaplingBlock> registerColoredSapling(String name, InkColor color, TreeGrower generator, TreeGrower tallGenerator) {
+		return register(simplePlant(blockWithItem(name, () -> new ColoredSaplingBlock(copyWithMapColor(OAK_SAPLING, color.getDyeColor().orElse(DyeColor.LIME).getMapColor()), color, generator, tallGenerator))));
 	}
-	public static final DeferredBlock<ColoredSaplingBlock> BLACK_SAPLING = registerColoredSapling("black_sapling", InkColors.BLACK, SpectrumTreeGrowers.BLACK_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> BLUE_SAPLING = registerColoredSapling("blue_sapling", InkColors.BLUE, SpectrumTreeGrowers.BLUE_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> BROWN_SAPLING = registerColoredSapling("brown_sapling", InkColors.BROWN, SpectrumTreeGrowers.BROWN_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> CYAN_SAPLING = registerColoredSapling("cyan_sapling", InkColors.CYAN, SpectrumTreeGrowers.CYAN_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> GRAY_SAPLING = registerColoredSapling("gray_sapling", InkColors.GRAY, SpectrumTreeGrowers.GRAY_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> GREEN_SAPLING = registerColoredSapling("green_sapling", InkColors.GREEN, SpectrumTreeGrowers.GREEN_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> LIGHT_BLUE_SAPLING = registerColoredSapling("light_blue_sapling", InkColors.LIGHT_BLUE, SpectrumTreeGrowers.LIGHT_BLUE_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> LIGHT_GRAY_SAPLING = registerColoredSapling("light_gray_sapling", InkColors.LIGHT_GRAY, SpectrumTreeGrowers.LIGHT_GRAY_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> LIME_SAPLING = registerColoredSapling("lime_sapling", InkColors.LIME, SpectrumTreeGrowers.LIME_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> MAGENTA_SAPLING = registerColoredSapling("magenta_sapling", InkColors.MAGENTA, SpectrumTreeGrowers.MAGENTA_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> ORANGE_SAPLING = registerColoredSapling("orange_sapling", InkColors.ORANGE, SpectrumTreeGrowers.ORANGE_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> PINK_SAPLING = registerColoredSapling("pink_sapling", InkColors.PINK, SpectrumTreeGrowers.PINK_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> PURPLE_SAPLING = registerColoredSapling("purple_sapling", InkColors.PURPLE, SpectrumTreeGrowers.PURPLE_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> RED_SAPLING = registerColoredSapling("red_sapling", InkColors.RED, SpectrumTreeGrowers.RED_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> WHITE_SAPLING = registerColoredSapling("white_sapling", InkColors.WHITE, SpectrumTreeGrowers.WHITE_COLORED_SAPLING_GENERATOR);
-	public static final DeferredBlock<ColoredSaplingBlock> YELLOW_SAPLING = registerColoredSapling("yellow_sapling", InkColors.YELLOW, SpectrumTreeGrowers.YELLOW_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> BLACK_SAPLING = registerColoredSapling("black_sapling", InkColors.BLACK, SpectrumTreeGrowers.BLACK_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_BLACK_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> BLUE_SAPLING = registerColoredSapling("blue_sapling", InkColors.BLUE, SpectrumTreeGrowers.BLUE_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_BLUE_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> BROWN_SAPLING = registerColoredSapling("brown_sapling", InkColors.BROWN, SpectrumTreeGrowers.BROWN_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_BROWN_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> CYAN_SAPLING = registerColoredSapling("cyan_sapling", InkColors.CYAN, SpectrumTreeGrowers.CYAN_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_CYAN_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> GRAY_SAPLING = registerColoredSapling("gray_sapling", InkColors.GRAY, SpectrumTreeGrowers.GRAY_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_GRAY_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> GREEN_SAPLING = registerColoredSapling("green_sapling", InkColors.GREEN, SpectrumTreeGrowers.GREEN_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_GREEN_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> LIGHT_BLUE_SAPLING = registerColoredSapling("light_blue_sapling", InkColors.LIGHT_BLUE, SpectrumTreeGrowers.LIGHT_BLUE_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_LIGHT_BLUE_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> LIGHT_GRAY_SAPLING = registerColoredSapling("light_gray_sapling", InkColors.LIGHT_GRAY, SpectrumTreeGrowers.LIGHT_GRAY_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_LIGHT_GRAY_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> LIME_SAPLING = registerColoredSapling("lime_sapling", InkColors.LIME, SpectrumTreeGrowers.LIME_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_LIME_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> MAGENTA_SAPLING = registerColoredSapling("magenta_sapling", InkColors.MAGENTA, SpectrumTreeGrowers.MAGENTA_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_MAGENTA_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> ORANGE_SAPLING = registerColoredSapling("orange_sapling", InkColors.ORANGE, SpectrumTreeGrowers.ORANGE_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_ORANGE_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> PINK_SAPLING = registerColoredSapling("pink_sapling", InkColors.PINK, SpectrumTreeGrowers.PINK_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_PINK_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> PURPLE_SAPLING = registerColoredSapling("purple_sapling", InkColors.PURPLE, SpectrumTreeGrowers.PURPLE_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_PURPLE_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> RED_SAPLING = registerColoredSapling("red_sapling", InkColors.RED, SpectrumTreeGrowers.RED_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_RED_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> WHITE_SAPLING = registerColoredSapling("white_sapling", InkColors.WHITE, SpectrumTreeGrowers.WHITE_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_WHITE_COLORED_SAPLING_GENERATOR);
+	public static final DeferredBlock<ColoredSaplingBlock> YELLOW_SAPLING = registerColoredSapling("yellow_sapling", InkColors.YELLOW, SpectrumTreeGrowers.YELLOW_COLORED_SAPLING_GENERATOR, SpectrumTreeGrowers.TALL_YELLOW_COLORED_SAPLING_GENERATOR);
 	
 	public static DeferredBlock<PottedColoredSaplingBlock> registerPottedColoredSapling(String name, DeferredBlock<ColoredSaplingBlock> saplingBlock) {
 		return register(pottedPlant(block(name, () -> new PottedColoredSaplingBlock(saplingBlock.get(), pottedPlant(), saplingBlock.get().getColor())), false));

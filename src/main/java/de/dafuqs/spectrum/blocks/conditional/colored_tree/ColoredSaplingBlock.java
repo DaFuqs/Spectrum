@@ -4,6 +4,8 @@ import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.worldgen.tree_decorators.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
@@ -19,18 +21,17 @@ import org.jspecify.annotations.*;
 import java.util.*;
 
 public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware, ColoredTree {
-
-	/*public static final MapCodec<ColoredSaplingBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-			createSettingsCodec(),
-			InkColor.CODEC.fieldOf("color").forGetter(ColoredSaplingBlock::getColor)
-	).apply(instance, ColoredSaplingBlock::new));*/
 	
 	private static final Map<InkColor, ColoredSaplingBlock> SAPLINGS = new Object2ObjectArrayMap<>();
 	protected final InkColor color;
 	
-	public ColoredSaplingBlock(Properties settings, InkColor color, TreeGrower saplingGenerator) {
-		super(saplingGenerator, settings);
+	protected final TreeGrower tallTreeGrower;
+	
+	public ColoredSaplingBlock(Properties settings, InkColor color, TreeGrower treeGrower, TreeGrower tallTreeGrower) {
+		super(treeGrower, settings);
 		this.color = color;
+		this.tallTreeGrower = tallTreeGrower;
+		
 		SAPLINGS.put(color, this);
 		RevelationAware.register(this);
 	}
@@ -76,7 +77,13 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 	@Override
 	public void advanceTree(ServerLevel level, BlockPos pos, BlockState state, RandomSource random) {
 		if(level.getBlockState(pos.below()).is(ColoredGrassBlock.byColor(this.color))) {
-			this.treeGrower.growTree(level, level.getChunkSource().getGenerator(), pos, state, random);
+			
+			if(level.getBlockState(pos.below(2)).is(SpectrumBlocks.VEGETAL_BLOCK)) {
+				this.tallTreeGrower.growTree(level, level.getChunkSource().getGenerator(), pos, state, random);
+			} else {
+				this.treeGrower.growTree(level, level.getChunkSource().getGenerator(), pos, state, random);
+			}
+			
 			return;
 		}
 		super.advanceTree(level, pos, state, random);

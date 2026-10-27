@@ -198,13 +198,13 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
         matrices.pop();
     }
     
-    public static RenderLayer getRenderLayer(SpectrumSkullType type) {
+    public static RenderLayer getRenderLayer(SkullBlock.SkullType type) {
         Identifier identifier = getTextureIdentifier(type);
         return RenderLayer.getEntityCutoutNoCullZOffset(identifier);
     }
     
-    protected static Identifier getTextureIdentifier(SpectrumSkullType type) {
-        return MODELS.get(type).getRight();
+    protected static Identifier getTextureIdentifier(SkullBlock.SkullType type) {
+        return MODELS.getOrDefault(type, MODELS.get(SpectrumSkullType.PIG)).getRight();
     }
 
 }

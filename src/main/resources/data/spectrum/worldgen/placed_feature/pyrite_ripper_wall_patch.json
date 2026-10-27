@@ -22,17 +22,6 @@
     },
     {
       "type": "minecraft:biome"
-    },
-    {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:not",
-        "predicate": {
-          "type": "exclusions_lib:overlaps_structure",
-          "structures": "#spectrum:no_wall_features",
-          "range": 6
-        }
-      }
     }
   ]
 }

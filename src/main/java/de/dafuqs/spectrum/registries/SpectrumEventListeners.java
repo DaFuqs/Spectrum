@@ -589,6 +589,21 @@ public class SpectrumEventListeners {
 		});
 	}
 	
+	@SubscribeEvent
+	private static void onPickupXP(PlayerXpEvent.PickupXp event) {
+		for (InteractionHand hand : InteractionHand.values()) {
+			ItemStack handStack = event.getEntity().getItemInHand(hand);
+			if (handStack.getItem() instanceof ExperienceStorageItem) {
+				ExperienceOrb orb = event.getOrb();
+				int orbXp = orb.getValue();
+				if (orbXp < 1) {
+					return;
+				}
+				orb.value = ExperienceStorageItem.addStoredExperience(event.getEntity().registryAccess(), handStack, orbXp);
+			}
+		}
+	}
+	
 	
 	public static void register() {
 		CrossbowShootingCallback.register((world, shooter, crossbow, projectile) -> {

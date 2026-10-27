@@ -1,0 +1,67 @@
+{
+	"format_version": "1.9.0",
+	"credit": "crazymachinefan",
+	"textures": {
+		"particle": "#base"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#base", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#base", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#base", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#base", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#base", "cullface": "up"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#base", "cullface": "down"}
+			}
+		},
+		{
+			"name": "overlay",
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#overlay", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#overlay", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#overlay", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#overlay", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#overlay", "cullface": "up"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#overlay", "cullface": "down"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -135, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, -135, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

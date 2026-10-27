@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:templates/symbolic_balcite_3",
+  "textures": {
+    "base": "spectrum:block/unpainted_symbolic_basalt",
+    "overlay": "spectrum:block/lime_symbolic_basalt"
+  }
+}

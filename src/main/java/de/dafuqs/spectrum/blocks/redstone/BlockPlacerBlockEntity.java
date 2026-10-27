@@ -10,12 +10,13 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import org.jspecify.annotations.*;
 
 import java.util.*;
 
 public class BlockPlacerBlockEntity extends DispenserBlockEntity implements PlayerOwned {
 	
-	private UUID ownerUUID;
+	private @Nullable UUID ownerUUID;
 	
 	public BlockPlacerBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.BLOCK_PLACER.get(), pos, state);
@@ -33,7 +34,7 @@ public class BlockPlacerBlockEntity extends DispenserBlockEntity implements Play
 	
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	

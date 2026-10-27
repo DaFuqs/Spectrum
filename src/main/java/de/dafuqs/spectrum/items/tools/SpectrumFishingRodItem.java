@@ -16,6 +16,7 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.material.*;
+import net.neoforged.neoforge.event.*;
 
 import java.util.*;
 
@@ -26,33 +27,38 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 	}
 	
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-		ItemStack itemStack = user.getItemInHand(hand);
+	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+		ItemStack itemStack = player.getItemInHand(hand);
 		
-		if (user.fishing != null) {
+		if (player.fishing != null) {
 			if (!world.isClientSide()) {
-				int damage = user.fishing.retrieve(itemStack);
-				itemStack.hurtAndBreak(damage, user, LivingEntity.getSlotForHand(hand));
+				int i = player.fishing.retrieve(itemStack);
+				ItemStack original = itemStack.copy();
+				itemStack.hurtAndBreak(i, player, LivingEntity.getSlotForHand(hand));
+				if (itemStack.isEmpty()) {
+					EventHooks.onPlayerDestroyItem(player, original, hand);
+				}
+				
 			}
 			
-			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.FISHING_BOBBER_RETRIEVE, SoundSource.NEUTRAL, 1.0F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
-			user.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
+			world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.FISHING_BOBBER_RETRIEVE, SoundSource.NEUTRAL, 1.0F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+			player.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
 		} else {
-			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.FISHING_BOBBER_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+			world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.FISHING_BOBBER_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
 			if (world instanceof ServerLevel serverWorld) {
 				var drm = world.registryAccess();
-				int luckBonus = EnchantmentHelper.getFishingLuckBonus(serverWorld, itemStack, user);
-				int waitTimeReductionTicks = (int) (EnchantmentHelper.getFishingTimeReduction(serverWorld, itemStack, user) * 20.0F);
+				int luckBonus = EnchantmentHelper.getFishingLuckBonus(serverWorld, itemStack, player);
+				int waitTimeReductionTicks = (int) (EnchantmentHelper.getFishingTimeReduction(serverWorld, itemStack, player) * 20.0F);
 				int exuberanceLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantmentKeys.EXUBERANCE, itemStack);
 				int bigCatchLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantmentKeys.BIG_CATCH, itemStack);
 				int serendipityReelLevel = SpectrumEnchantmentHelper.getLevel(drm, SpectrumEnchantmentKeys.SERENDIPITY_REEL, itemStack);
 				boolean inventoryInsertion = SpectrumEnchantmentHelper.hasEnchantment(drm, SpectrumEnchantmentKeys.INVENTORY_INSERTION, itemStack);
 				boolean shouldSmeltDrops = shouldSmeltDrops(itemStack);
-				spawnBobber(user, world, luckBonus, waitTimeReductionTicks, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, shouldSmeltDrops);
+				spawnBobber(player, world, luckBonus, waitTimeReductionTicks, exuberanceLevel, bigCatchLevel, serendipityReelLevel, inventoryInsertion, shouldSmeltDrops);
 			}
 			
-			user.awardStat(Stats.ITEM_USED.get(this));
-			user.gameEvent(GameEvent.ITEM_INTERACT_START);
+			player.awardStat(Stats.ITEM_USED.get(this));
+			player.gameEvent(GameEvent.ITEM_INTERACT_START);
 		}
 		
 		return InteractionResultHolder.sidedSuccess(itemStack, world.isClientSide());

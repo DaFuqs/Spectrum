@@ -33,6 +33,8 @@ import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.common.*;
+import net.neoforged.neoforge.event.entity.player.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
@@ -341,6 +343,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 	public int retrieve(ItemStack stack) {
 		Player playerEntity = this.getPlayerOwner();
 		if (!this.level().isClientSide() && playerEntity != null && !this.shouldStopFishing(playerEntity)) {
+			ItemFishedEvent event = null;
 			int i = 0;
 			if (this.hookedIn != null) {
 				this.pullEntity(this.hookedIn);
@@ -350,9 +353,11 @@ public abstract class SpectrumFishingHook extends FishingHook {
 				i = this.hookedIn instanceof ItemEntity ? 3 : 5;
 			} else if (this.nibble > 0) {
 				if (!tryCatchEntity(stack, playerEntity, (ServerLevel) this.level(), this.blockPosition())) {
-					int lootAmount = random.nextIntBetweenInclusive(1, (int) Math.pow(2, 1 + serendipityReelLevel) - 1);
-					for (int j = 0; j < lootAmount; j++) {
-						catchLoot(stack, playerEntity);
+					int lootRolls = random.nextIntBetweenInclusive(1, (int) Math.pow(2, 1 + serendipityReelLevel) - 1);
+					event = catchLoot(stack, playerEntity, lootRolls);
+					if (event.isCanceled()) {
+						this.discard();
+						return event.getRodDamage();
 					}
 				}
 				
@@ -364,7 +369,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 			}
 			
 			this.discard();
-			return i;
+			return event != null ? event.getRodDamage() : i;
 		} else {
 			return 0;
 		}
@@ -432,7 +437,7 @@ public abstract class SpectrumFishingHook extends FishingHook {
 		return false;
 	}
 	
-	protected void catchLoot(ItemStack usedItem, Player playerEntity) {
+	protected ItemFishedEvent catchLoot(ItemStack usedItem, Player playerEntity, int rolls) {
 		LootParams lootContextParameterSet = new LootParams.Builder((ServerLevel) playerEntity.level())
 				.withParameter(LootContextParams.ORIGIN, this.position())
 				.withParameter(LootContextParams.TOOL, usedItem)
@@ -440,10 +445,18 @@ public abstract class SpectrumFishingHook extends FishingHook {
 				.withParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, playerEntity)
 				.withLuck((float) this.luck + playerEntity.getLuck())
 				.create(SpectrumLootContextParamSets.FISHING);
-		
-		if (level().getServer() == null) return;
+				
 		LootTable lootTable = this.level().getServer().reloadableRegistries().getLootTable(SpectrumLootTableKeys.UNIVERSAL_FISHING);
-		List<ItemStack> fishedStacks = lootTable.getRandomItems(lootContextParameterSet);
+		List<ItemStack> fishedStacks = new ArrayList<>();
+		for (int j = 0; j < rolls; j++) {
+			fishedStacks.addAll(lootTable.getRandomItems(lootContextParameterSet));
+		}
+		ItemFishedEvent event = new ItemFishedEvent(fishedStacks, this.onGround() ? 2 : 1, this);
+		NeoForge.EVENT_BUS.post(event);
+		if (event.isCanceled()) {
+			return event;
+		}
+		
 		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayer) playerEntity, usedItem, this, null, fishedStacks);
 		
 		for (ItemStack itemStack : fishedStacks) {
@@ -485,6 +498,8 @@ public abstract class SpectrumFishingHook extends FishingHook {
 				}
 			}
 		}
+		
+		return event;
 	}
 	
 	public boolean isAblaze() {

@@ -469,13 +469,13 @@ public class SpectrumBlocks {
 	//public static final DeferredBlock<Block> TOPAZ_ENGRAVED_CALCITE = register(simple(blockWithItem("onyx_engraved_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 3)))));
 	//public static final DeferredBlock<Block> AMETHYST_ENGRAVED_CALCITE = register(simple(blockWithItem("onyx_engraved_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 3)))));
 	//public static final DeferredBlock<Block> CITRINE_ENGRAVED_CALCITE = register(simple(blockWithItem("onyx_engraved_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 3)))));
-	public static final DeferredBlock<Block> ONYX_ENGRAVED_CALCITE = register(simple(blockWithItem("onyx_engraved_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 3)))));
+	public static final DeferredBlock<GlazedTerracottaBlock> ONYX_ENGRAVED_CALCITE = register(simple(blockWithItem("onyx_engraved_calcite", () -> new GlazedTerracottaBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 3)))));
 	public static final DeferredBlock<Block> MOONSTONE_ENGRAVED_CALCITE = register(moonstoneChiseled(blockWithItem("moonstone_engraved_calcite", () -> new SpectrumCounterDirectionalPlacedBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 12))), SpectrumTextures.CALCITE_CAP));
 	
 	//public static final DeferredBlock<Block> TOPAZ_ENGRAVED_BASALT = register(simple(blockWithItem("onyx_engraved_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 3)))));
 	//public static final DeferredBlock<Block> AMETHYST_ENGRAVED_BASALT = register(simple(blockWithItem("onyx_engraved_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 3)))));
 	//public static final DeferredBlock<Block> CITRINE_ENGRAVED_BASALT = register(simple(blockWithItem("onyx_engraved_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 3)))));
-	public static final DeferredBlock<Block> ONYX_ENGRAVED_BASALT = register(simple(blockWithItem("onyx_engraved_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 3)))));
+	public static final DeferredBlock<GlazedTerracottaBlock> ONYX_ENGRAVED_BASALT = register(simple(blockWithItem("onyx_engraved_basalt", () -> new GlazedTerracottaBlock(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 3)))));
 	public static final DeferredBlock<Block> MOONSTONE_ENGRAVED_BASALT = register(moonstoneChiseled(blockWithItem("moonstone_engraved_basalt", () -> new SpectrumCounterDirectionalPlacedBlock(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get()).lightLevel(s -> 12))), SpectrumTextures.BASALT_CAP));
 	
 	public static final DeferredBlock<GlazedTerracottaBlock> WHITE_SYMBOLIC_CALCITE = register(blockWithItem("white_symbolic_calcite", () -> new GlazedTerracottaBlock(BlockBehaviour.Properties.ofFullCopy(CALCITE_BRICKS.get()).lightLevel(s -> 7).noOcclusion())));
@@ -2622,6 +2622,9 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(PURPLE_SYMBOLIC_CALCITE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(MAGENTA_SYMBOLIC_CALCITE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(PINK_SYMBOLIC_CALCITE.get(), RenderType.translucent());
+		
+		ItemBlockRenderTypes.setRenderLayer(ONYX_ENGRAVED_BASALT.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(ONYX_ENGRAVED_CALCITE.get(), RenderType.cutoutMipped());
 		
 		ItemBlockRenderTypes.setRenderLayer(PEDESTAL_BASIC_TOPAZ.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(PEDESTAL_BASIC_AMETHYST.get(), RenderType.cutout());

@@ -33,10 +33,9 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		super(settings);
 	}
 	
-	// The range grows with the players progression
-	// this way the item is not overpowered at the start
-	// but not useless at the end
-	// this way the player does not need to craft 5 tiers
+	// The range grows with the players' progression
+	// this way the item is not overpowered at the start, but not useless at the end.
+	// The player does not need to craft 5 tiers of staffs that each do basically feel the same
 	// of staffs that each do basically feel the same
 	public static int getRange(@Nullable Player playerEntity) {
 		if (playerEntity == null || playerEntity.isCreative()) {
@@ -73,7 +72,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 	}
 	
 	@Override
-	public InteractionResult useOn(UseOnContext context) {
+	public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
 		Player player = context.getPlayer();
 		Level world = context.getLevel();
 		BlockPos pos = context.getClickedPos();

@@ -229,22 +229,8 @@ public class SpectrumEventListeners {
 		
 	}
 	
-	@SubscribeEvent
-	public static InteractionResult triggerPrioritizedBlockInteraction(PlayerInteractEvent.RightClickBlock event) {
-		Player player = event.getEntity();
-		InteractionHand hand = event.getHand();
-		BlockHitResult hitResult = event.getHitVec();
-		ItemStack handStack = player.getItemInHand(hand);
-		
-		if (handStack.getItem() instanceof PrioritizedBlockInteraction) {
-			return handStack.useOn(new UseOnContext(player, hand, hitResult));
-		}
-		return InteractionResult.PASS;
-		
-	}
-	
 	//Curious: I'm basically checking the sleep timer when the player wakes up here
-	//Curious: Miraculously this works due to a single line in the Player class which is awesome
+	//Curious: Miraculously, this works due to a single line in the Player class which is awesome
 	@SubscribeEvent
 	public static void triggerWhispyCirclet(PlayerWakeUpEvent event) {
 		Player player = event.getEntity();

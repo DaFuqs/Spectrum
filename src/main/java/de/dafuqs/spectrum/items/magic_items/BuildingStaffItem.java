@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.ink.color.*;
-import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
@@ -18,7 +17,7 @@ import net.minecraft.world.phys.*;
 import org.jspecify.annotations.*;
 import oshi.util.tuples.*;
 
-public abstract class BuildingStaffItem extends Item implements PrioritizedBlockInteraction, InkPowered {
+public abstract class BuildingStaffItem extends Item implements InkPowered {
 	
 	public static final InkColor USED_COLOR = InkColors.CYAN;
 	

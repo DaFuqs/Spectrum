@@ -5,8 +5,7 @@ import net.minecraft.resources.*;
 
 import java.util.*;
 
-// TODO: rename
-public class WorthinessChecker {
+public class ContributorCapes {
 	
 	public enum CapeType {
 		LUCKY_STARS("lucky_stars"),
@@ -24,7 +23,7 @@ public class WorthinessChecker {
 	}
 	
 	public static class Players {
-		public static final UUID AZZY = UUID.fromString("f7957087-549e-4ca3-878e-48f36569dd3e");
+		// public static final UUID AZZY = UUID.fromString("f7957087-549e-4ca3-878e-48f36569dd3e"); // sadly a dead account. If it is ever going to be used again, we do not want the rogue player to have Azzy's cape
 		public static final UUID DAF = UUID.fromString("5010ad09-0229-4d70-8a2c-bc254821dcb3");
 		public static final UUID KRAK = UUID.fromString("6105cb83-5d33-4e45-8adb-f24ee0085bf5");
 		public static final UUID DRA = UUID.fromString("f962000a-ee12-40ea-abd5-e15f7492f039");
@@ -46,7 +45,6 @@ public class WorthinessChecker {
 	
 	static {
 		// Spectrum Devs
-		putPlayer(Players.AZZY, CapeType.LUNAR);
 		putPlayer(Players.DAF, CapeType.UNDERGROUND_ASTRONOMY);
 		
 		// Spectrum contributors, supporters & raffle winners

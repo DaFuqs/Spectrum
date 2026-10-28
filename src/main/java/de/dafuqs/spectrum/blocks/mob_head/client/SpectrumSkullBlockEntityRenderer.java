@@ -199,8 +199,12 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
     }
     
     public static RenderLayer getRenderLayer(SkullBlock.SkullType type) {
-        Identifier identifier = getTextureIdentifier(type);
-        return RenderLayer.getEntityCutoutNoCullZOffset(identifier);
+		try {
+			Identifier identifier = getTextureIdentifier(type);
+			return RenderLayer.getEntityCutoutNoCullZOffset(identifier);
+		}catch(Exception e) { // wtf
+			return RenderLayer.getEntityCutoutNoCull(EggLayingWoolyPigEntityRenderer.TEXTURE);
+		}
     }
     
     protected static Identifier getTextureIdentifier(SkullBlock.SkullType type) {

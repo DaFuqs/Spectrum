@@ -2986,6 +2986,7 @@
 
   "spectrum.recipe.fusion_shrine.explanation.draconic_twinsword": "小心使用",
   "spectrum.recipe.fusion_shrine.explanation.draconic_twinsword_reclaim": "以备你不慎丢失了另外一把",
+  "spectrum.recipe.fusion_shrine.explanation.onyx_shard_aberration": "自行提供黑暗之力，仍只能在午夜进行，不需要新月",
   "spectrum.recipe.fusion_shrine.explanation.soothing_bouquet": "须在午夜进行",
   "spectrum.recipe.fusion_shrine.explanation.onyx_shard": "须在新月时的午夜进行",
   "spectrum.recipe.fusion_shrine.explanation.decay_away": "须在晴天进行",
@@ -4447,10 +4448,10 @@
   "book.spectrum.guidebook.pylons.page0.text": "宝石晶洞总有种难以言说的灵气。看着这些水晶，映射着迷人的光影，实在是令人叹为观止。\\\n\\\n这些晶塔有望能截取一分那样的壮阔。尽管不如晶洞那么磅礴，它们也如指路明灯般矗立而闪耀着斑斓",
 
   "book.spectrum.guidebook.symbolics.name": "符号方块",
-  "book.spectrum.guidebook.symbolics.page0.text": "我观察蜜蜂的时候，灵光一闪想到了一个创作点子！我的[颜料](entry://general/pigment)色彩十分醒目，在[#](bb00bb)玄武岩[#]()和[#](bb00bb)方解石[#]()上都能清晰显现。\\\n我把一些磨制方块表面抛光平整，随性画上图案，就做出了这些色彩丰富的符号。\\\n\\\n...这些符号，会不会蕴含着什么含义?",
+  "book.spectrum.guidebook.symbolics.page0.text": "我观察蜜蜂的时候，突然冒出了一个创作灵感！我手上的[颜料](entry://general/pigment)色彩十分醒目，涂在[#](bb00bb)玄武岩[#]()和[#](bb00bb)方解石[#]()上效果都很不错。\\\n我把一些磨制方块的表面打磨平整，随性画上图案，就做出了这些花花绿绿的符号。\\\n\\\n...这些符号，会不会有什么特殊含义?",
   "book.spectrum.guidebook.symbolics.page1.title": "样式多种多样！",
   "book.spectrum.guidebook.symbolics.page2.text": "一罐颜料分量很足，每罐能做出四个方块！",
-  "book.spectrum.guidebook.symbolics.page3.text": "宝石粉末能让色彩变得更加鲜亮夺目。",
+  "book.spectrum.guidebook.symbolics.page3.text": "别看样子特别，它们本质上还是磨制方块，用来搭建建筑完全没问题。",
 
   "book.spectrum.guidebook.geodes.name": "晶洞",
   "book.spectrum.guidebook.geodes.page0.text": "有人跟我说过地下有一种奇异的地貌，但目前我只有这张图片作为线索。",
@@ -4983,9 +4984,11 @@
   "book.spectrum.guidebook.the_perfect_compound.page0.text": "[上一次实验](entry://general/failing)的成果让我渴望更多宝石晶的能量: 我还能从这些宝石晶中榨取多少能量?\\\n对了！[坚新石](entry://general/neolith)一定就是关键！它的力量或许能将所有宝石晶的力量融为一体，这件遗物将是我创造的顶点，独属于我的贤者之石，让我成为一个真正的神！",
   "book.spectrum.guidebook.the_perfect_compound.page1.text": "需要在白天且晴朗的天气下进行。\\\n\\\n这些魔法能量的融合会给我的融合圣坛带来前所未有的压力——场面也会非常的壮观。我最好把融合圣坛的周围加固并隔离开来。",
 
-  "book.spectrum.guidebook.midnight_aberration.description": "巨大的失败",
-  "book.spectrum.guidebook.midnight_aberration.page0.text": "*这颗畸形的宝石散发着令人不寒而栗的气息。*\\\n这玩意儿的结构看起来非常松散。难怪在我手上很快就会垮塌崩解。真是彻头彻尾的失败。我既*崩溃*又对自己感到失望。",
-  "book.spectrum.guidebook.midnight_aberration.page1.text": "尽管随之而来的混乱*绝对不是*我想要的结果，但有一说一，就算是失败的产物也蕴藏着巨大的能量。\\\n也正是这种强大的能量使得产物在我手上不断崩塌，如果不赶快使用，将全部化作为尘土。\\\n\\\n与此同时，制作过程中出现了一种侵蚀性的黑色液体，鉴于它的颜色，我将其命名为[午夜溶液](entry://general/midnight_solution)。",
+  "book.spectrum.guidebook.midnight_aberration.description": "一次惨重的失败",
+  "book.spectrum.guidebook.midnight_aberration.page0.text": "*这颗畸形的宝石散发着令人不寒而栗的气息。*\\\n这东西的结构看起来非常松散。难怪拿在手里没多久就散架了。真是彻头彻尾的失败。我既*沮丧*又对自己感到失望。",
+  "book.spectrum.guidebook.midnight_aberration.page1.text": "虽然这场失控的乱象*完全不是*我想要的结果，但有一说一，就算是失败的产物也蕴藏着巨大的能量。\\\n也正是这种强大的能量使得产物在我手上不断崩解，如果不赶快使用，将全部化作为尘土。\\\n\\\n过程中还冒出了那种极具侵蚀性的黑色液体。鉴于它的颜色，我将其命名为[午夜溶液](entry://general/midnight_solution)。",
+  "book.spectrum.guidebook.midnight_aberration.onyx_shards.title": "循环引用",
+  "book.spectrum.guidebook.midnight_aberration.netherite_ingot.title": "高效下界合金",
 
   "book.spectrum.guidebook.midnight_chip.page0.text": "死在午夜溶液中的生物会掉落形似[午夜像差](entry://general/midnight_aberration)的一小块碎片，只不过更锋利、也更凶戾。\\\n\\\n在午夜溶液中死亡的生物似乎也会[#](449900)像被玩家杀死一样掉落物品[#]()。",
   "book.spectrum.guidebook.midnight_chip.page1.text": "用这种残片可以生产更多的溶液来杀死更多生物...真是好阴暗的点子啊。",

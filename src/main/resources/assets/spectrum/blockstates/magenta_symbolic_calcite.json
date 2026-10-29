@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=south": {
+		"model": "spectrum:block/magenta_symbolic_calcite_1"
+    },
+	"facing=west": {
+		"model": "spectrum:block/magenta_symbolic_calcite_2"
+    },
+	"facing=north": {
+		"model": "spectrum:block/magenta_symbolic_calcite_3"
+    },
+	"facing=east": {
+		"model": "spectrum:block/magenta_symbolic_calcite_4"
+    }
+  }
+}

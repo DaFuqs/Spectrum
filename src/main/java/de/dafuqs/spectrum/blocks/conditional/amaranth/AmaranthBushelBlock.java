@@ -57,17 +57,17 @@ public class AmaranthBushelBlock extends FlowerBlock implements RevelationAware 
 	
 	@Override
 	public void onUncloak() {
-		if (SpectrumColorProviders.amaranthBushelBlockColorProvider != null && SpectrumColorProviders.amaranthBushelItemColorProvider != null) {
-			SpectrumColorProviders.amaranthBushelBlockColorProvider.setShouldApply(false);
-			SpectrumColorProviders.amaranthBushelItemColorProvider.setShouldApply(false);
+		if (SpectrumColorProviders.amaranthBlockColorProvider != null && SpectrumColorProviders.amaranthItemColorProvider != null) {
+			SpectrumColorProviders.amaranthBlockColorProvider.setShouldApply(false);
+			SpectrumColorProviders.amaranthItemColorProvider.setShouldApply(false);
 		}
 	}
 	
 	@Override
 	public void onCloak() {
-		if (SpectrumColorProviders.amaranthBushelBlockColorProvider != null && SpectrumColorProviders.amaranthBushelItemColorProvider != null) {
-			SpectrumColorProviders.amaranthBushelBlockColorProvider.setShouldApply(true);
-			SpectrumColorProviders.amaranthBushelItemColorProvider.setShouldApply(true);
+		if (SpectrumColorProviders.amaranthBlockColorProvider != null && SpectrumColorProviders.amaranthItemColorProvider != null) {
+			SpectrumColorProviders.amaranthBlockColorProvider.setShouldApply(true);
+			SpectrumColorProviders.amaranthItemColorProvider.setShouldApply(true);
 		}
 	}
 	

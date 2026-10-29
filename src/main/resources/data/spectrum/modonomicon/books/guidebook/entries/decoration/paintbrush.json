@@ -1,0 +1,23 @@
+{
+  "type": "modonomicon:entry_link",
+  "entry_to_open": "spectrum:general/paintbrush",
+  "name": "item.spectrum.paintbrush",
+  "icon": {
+    "item": "spectrum:paintbrush"
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:milestones/unlock_paintbrush_coloring"
+  },
+  "category": "spectrum:decoration",
+  "hide_while_locked": true,
+  "parents": [
+    {
+      "entry": "spectrum:decoration/pigment"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 10,
+  "y": 6
+}

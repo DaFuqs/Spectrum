@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.helpers;
 
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.items.*;
-import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import org.joml.*;
@@ -79,18 +79,6 @@ public class SpectrumColorHelper {
 	public static int colorVecToRGB(Vector3f color) {
 		Color colorObj = new Color(color.x, color.y, color.z);
 		return colorObj.getRGB();
-	}
-	
-	public static Optional<DyeColor> getDyeColorOfItemStack(ItemStack itemStack) {
-		if (!itemStack.isEmpty()) {
-			Item item = itemStack.getItem();
-			if (item instanceof DyeItem dyeItem) {
-				return Optional.of(dyeItem.getDyeColor());
-			} else if (item instanceof PigmentItem pigmentItem) {
-				return pigmentItem.getInkColor().getDyeColor();
-			}
-		}
-		return Optional.empty();
 	}
 	
 	public static int interpolate(Vector3f start, Vector3f end, float delta) {

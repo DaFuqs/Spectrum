@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "gemstone_glass",
+  "time": 20,
+  "tier": "complex",
+  "colors": {},
+  "experience": 0.1,
+  "pattern": [
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": "spectrum:chiseled_moonstone_glass"
+  },
+  "result": {
+    "id": "spectrum:chiseled_moonstone_glass_pane",
+    "count": 16
+  },
+  "required_advancement": "spectrum:lategame/collect_moonstone"
+}

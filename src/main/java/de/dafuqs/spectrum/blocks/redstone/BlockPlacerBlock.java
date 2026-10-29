@@ -97,12 +97,8 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements Entity
 			}
 			
 			try {
-				if (blockItem.place(new BlockPlacerPlacementContext(world, placementPos, frontFacing, horizontalPlacementDirection, stack, simulatedClickedFace, owner)).consumesAction()) {
-					if (owner != null && owner.getAbilities().instabuild) {
-						stack.shrink(1);
-					}
-				}
-				;
+				blockItem.place(new BlockPlacerPlacementContext(world, placementPos, frontFacing, horizontalPlacementDirection, stack, simulatedClickedFace, owner));
+				
 				world.levelEvent(LevelEvent.SOUND_DISPENSER_DISPENSE, pointer.pos(), 0);
 				world.levelEvent(LevelEvent.PARTICLES_SHOOT_SMOKE, pointer.pos(), frontFacing.get3DDataValue());
 				world.gameEvent(null, GameEvent.BLOCK_PLACE, placementPos);

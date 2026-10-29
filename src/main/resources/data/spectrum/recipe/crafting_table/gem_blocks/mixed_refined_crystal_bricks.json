@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "group": "gemstone_bricks",
+  "ingredients": [
+    {
+      "item": "spectrum:pure_azurite_block"
+    },
+    {
+      "item": "spectrum:pure_malachite_block"
+    },
+    {
+      "item": "spectrum:pure_bloodstone_block"
+    }
+  ],
+  "result": {
+    "id": "spectrum:mixed_refined_crystal_bricks",
+    "count": 16
+  },
+  "required_advancement": "spectrum:hidden/collect_all_refined_rgb_resources"
+}

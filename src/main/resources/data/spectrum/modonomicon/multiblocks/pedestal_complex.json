@@ -155,27 +155,27 @@
     },
     "O": {
       "type": "modonomicon:tag",
-      "display": "spectrum:onyx_chiseled_basalt",
+      "display": "spectrum:onyx_engraved_basalt",
       "tag": "#spectrum:structure/midgame_runes"
     },
     "m": {
       "type": "modonomicon:tag",
-      "display": "spectrum:moonstone_chiseled_basalt[facing=east]",
+      "display": "spectrum:moonstone_engraved_basalt[facing=east]",
       "tag": "#spectrum:structure/lategame_runes"
     },
     "n": {
       "type": "modonomicon:tag",
-      "display": "spectrum:moonstone_chiseled_basalt[facing=north]",
+      "display": "spectrum:moonstone_engraved_basalt[facing=north]",
       "tag": "#spectrum:structure/lategame_runes"
     },
     "M": {
       "type": "modonomicon:tag",
-      "display": "spectrum:moonstone_chiseled_basalt[facing=west]",
+      "display": "spectrum:moonstone_engraved_basalt[facing=west]",
       "tag": "#spectrum:structure/lategame_runes"
     },
     "N": {
       "type": "modonomicon:tag",
-      "display": "spectrum:moonstone_chiseled_basalt[facing=south]",
+      "display": "spectrum:moonstone_engraved_basalt[facing=south]",
       "tag": "#spectrum:structure/lategame_runes"
     },
     "P": {

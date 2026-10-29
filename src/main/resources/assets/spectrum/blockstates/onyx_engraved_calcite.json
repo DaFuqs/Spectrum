@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "spectrum:block/onyx_engraved_calcite_1"
+    },
+    "facing=west": {
+      "model": "spectrum:block/onyx_engraved_calcite_2"
+    },
+    "facing=north": {
+      "model": "spectrum:block/onyx_engraved_calcite_3"
+    },
+    "facing=east": {
+      "model": "spectrum:block/onyx_engraved_calcite_4"
+    }
+  }
+}

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.conditional.amaranth;
 
-import appeng.datagen.providers.tags.*;
 import com.mojang.serialization.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.*;
@@ -15,7 +14,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
-import net.neoforged.neoforge.common.util.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
@@ -87,17 +85,17 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 	
 	@Override
 	public void onUncloak() {
-		if (SpectrumColorProviders.amaranthCropBlockColorProvider != null && SpectrumColorProviders.amaranthCropItemColorProvider != null) {
-			SpectrumColorProviders.amaranthCropBlockColorProvider.setShouldApply(false);
-			SpectrumColorProviders.amaranthCropItemColorProvider.setShouldApply(false);
+		if (SpectrumColorProviders.amaranthBlockColorProvider != null && SpectrumColorProviders.amaranthItemColorProvider != null) {
+			SpectrumColorProviders.amaranthBlockColorProvider.setShouldApply(false);
+			SpectrumColorProviders.amaranthItemColorProvider.setShouldApply(false);
 		}
 	}
 	
 	@Override
 	public void onCloak() {
-		if (SpectrumColorProviders.amaranthCropBlockColorProvider != null && SpectrumColorProviders.amaranthCropItemColorProvider != null) {
-			SpectrumColorProviders.amaranthCropBlockColorProvider.setShouldApply(true);
-			SpectrumColorProviders.amaranthCropItemColorProvider.setShouldApply(true);
+		if (SpectrumColorProviders.amaranthBlockColorProvider != null && SpectrumColorProviders.amaranthItemColorProvider != null) {
+			SpectrumColorProviders.amaranthBlockColorProvider.setShouldApply(true);
+			SpectrumColorProviders.amaranthItemColorProvider.setShouldApply(true);
 		}
 	}
 	

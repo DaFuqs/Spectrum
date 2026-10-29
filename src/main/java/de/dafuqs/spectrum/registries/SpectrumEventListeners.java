@@ -229,22 +229,8 @@ public class SpectrumEventListeners {
 		
 	}
 	
-	@SubscribeEvent
-	public static InteractionResult triggerPrioritizedBlockInteraction(PlayerInteractEvent.RightClickBlock event) {
-		Player player = event.getEntity();
-		InteractionHand hand = event.getHand();
-		BlockHitResult hitResult = event.getHitVec();
-		ItemStack handStack = player.getItemInHand(hand);
-		
-		if (handStack.getItem() instanceof PrioritizedBlockInteraction) {
-			return handStack.useOn(new UseOnContext(player, hand, hitResult));
-		}
-		return InteractionResult.PASS;
-		
-	}
-	
 	//Curious: I'm basically checking the sleep timer when the player wakes up here
-	//Curious: Miraculously this works due to a single line in the Player class which is awesome
+	//Curious: Miraculously, this works due to a single line in the Player class which is awesome
 	@SubscribeEvent
 	public static void triggerWhispyCirclet(PlayerWakeUpEvent event) {
 		Player player = event.getEntity();
@@ -422,8 +408,13 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	private static void mobEffectRemoval(MobEffectEvent.Remove event) {
-		if(event.getCure() == null && event.getEffect().is(SpectrumMobEffects.FATAL_SLUMBER)) {
-			FATAL_SLUMBER_CURES.add(event.getEntity());
+		if(event.getEffect().is(SpectrumMobEffects.FATAL_SLUMBER)) {
+			if(event.getCure() == null) {
+				FATAL_SLUMBER_CURES.add(event.getEntity());
+			}
+			if (event.getEntity().isAlive() && event.getEntity() instanceof ServerPlayer serverPlayer && !serverPlayer.isCreative()) {
+				Support.grantAdvancementCriterion(serverPlayer, "lategame/survive_fatal_slumber", "survived_fatal_slumber");
+			}
 		}
 	}
 	
@@ -584,6 +575,21 @@ public class SpectrumEventListeners {
 		});
 	}
 	
+	@SubscribeEvent
+	private static void onPickupXP(PlayerXpEvent.PickupXp event) {
+		for (InteractionHand hand : InteractionHand.values()) {
+			ItemStack handStack = event.getEntity().getItemInHand(hand);
+			if (handStack.getItem() instanceof ExperienceStorageItem) {
+				ExperienceOrb orb = event.getOrb();
+				int orbXp = orb.getValue();
+				if (orbXp < 1) {
+					return;
+				}
+				orb.value = ExperienceStorageItem.addStoredExperience(event.getEntity().registryAccess(), handStack, orbXp);
+			}
+		}
+	}
+	
 	
 	public static void register() {
 		CrossbowShootingCallback.register((world, shooter, crossbow, projectile) -> {
@@ -632,7 +638,7 @@ public class SpectrumEventListeners {
 			if (!shouldDropHead && source.getEntity() instanceof LivingEntity livingAttacker) {
 				int damageSourceTreasureHunt = SpectrumEnchantmentHelper.getEquipmentLevel(
 						serverWorld.registryAccess(),
-						SpectrumEnchantmentKeys.TREASURE_HUNTER,
+						SpectrumEnchantmentKeys.TROPHY_HUNTER,
 						livingAttacker);
 				
 				shouldDropHead = damageSourceTreasureHunt > 0 && serverWorld.getRandom().nextFloat() < 0.2 * damageSourceTreasureHunt;
@@ -649,7 +655,7 @@ public class SpectrumEventListeners {
 	}
 	
 	@SubscribeEvent
-	private static void dropHealingWhenScarred(LivingHealEvent event) {
+	private static void preventHealingWhenScarred(LivingHealEvent event) {
 		if(event.getEntity().hasEffect(SpectrumMobEffects.SCARRED)) {
 			event.setCanceled(true);
 		}
@@ -718,15 +724,17 @@ public class SpectrumEventListeners {
 			float h = target.getHealth();
 			target.setHealth(h - amount);
 			target.getCombatTracker().recordDamage(source, amount);
-			if (target.isDeadOrDying()) {
-				var deathSound = ((LivingEntityAccessor) target).invokeGetDeathSound();
-				if (deathSound != null) {
-					target.makeSound(deathSound);
+			if (!target.checkTotemDeathProtection(source)) {
+				if (target.isDeadOrDying()) {
+					var deathSound = ((LivingEntityAccessor) target).invokeGetDeathSound();
+					if (deathSound != null) {
+						target.makeSound(deathSound);
+					}
+					target.die(source);
 				}
-				target.die(source);
+				event.setCanceled(true);
+				return;
 			}
-			event.setCanceled(true);
-			return;
 		}
 		
 		// If this entity is hit with a SplitDamageItem, damage() gets called recursively for each type of damage dealt

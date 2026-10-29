@@ -2,13 +2,7 @@
   "type": "spectrum:pedestal_shapeless",
   "time": 200,
   "tier": "simple",
-  "colors": {
-    "spectrum:cyan": 0,
-    "spectrum:magenta": 0,
-    "spectrum:yellow": 0,
-    "spectrum:white": 0,
-    "spectrum:black": 0
-  },
+  "colors": {},
   "experience": 8.0,
   "ingredients": [
     "spectrum:onyx_shard"

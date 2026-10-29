@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "id": "spectrum:purple_grass_block"
+    },
+    "title": {
+      "translate": "advancements.spectrum.color_grass.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.color_grass.description"
+    }
+  },
+  "parent": "spectrum:collect_pigment",
+  "criteria": {
+    "colored_grass": {
+      "trigger": "spectrum:block_colored",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "#spectrum:colored_grass_blocks"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_pigment"
+      }
+    }
+  }
+}

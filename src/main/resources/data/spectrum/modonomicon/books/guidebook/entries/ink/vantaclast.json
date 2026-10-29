@@ -23,7 +23,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "container.spectrum.rei.pedestal_recipe",
-      "recipe_id": "spectrum:pedestal/tier2/vantaclast",
+      "recipe_id": "spectrum:pedestal/tier3/vantaclast",
       "text": "book.spectrum.guidebook.vantaclast.recipe.text"
     }
   ]

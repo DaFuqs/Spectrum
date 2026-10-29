@@ -10,8 +10,11 @@ import net.minecraft.resources.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.material.*;
+import org.jetbrains.annotations.*;
 import org.joml.*;
 import org.jspecify.annotations.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
@@ -126,6 +129,10 @@ public class InkColor {
 	
 	public Vector3f getTextColorVec() {
 		return this.textColorVec;
+	}
+	
+	public MapColor getMapColor() {
+		return getDyeColor().orElse(DyeColor.MAGENTA).getMapColor();
 	}
 	
 	public ResourceLocation getRequiredAdvancement() {

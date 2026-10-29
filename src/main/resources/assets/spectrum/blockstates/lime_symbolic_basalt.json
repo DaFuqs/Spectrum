@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=south": {
+		"model": "spectrum:block/lime_symbolic_basalt_1"
+    },
+	"facing=west": {
+		"model": "spectrum:block/lime_symbolic_basalt_2"
+    },
+	"facing=north": {
+		"model": "spectrum:block/lime_symbolic_basalt_3"
+    },
+	"facing=east": {
+		"model": "spectrum:block/lime_symbolic_basalt_4"
+    }
+  }
+}

@@ -2504,7 +2504,6 @@
   "recipeGroup.spectrum.gemstone_glass": "宝石晶玻璃",
   "recipeGroup.spectrum.gemstone_chimes": "宝石晶风铃",
   "recipeGroup.spectrum.colored_saplings": "彩色树苗",
-  "recipeGroup.spectrum.colored_spore_blossoms": "彩色孢子花",
   "recipeGroup.spectrum.glowblocks": "发光方块",
   "recipeGroup.spectrum.semi_permeable_glass": "半穿透玻璃",
   "recipeGroup.spectrum.bedrock_tools": "基岩工具",
@@ -4294,17 +4293,13 @@
   "book.spectrum.guidebook.gemstone_powder.page1.text": "新晋艺术家的第一课便是学会调配正确的颜色。\\\n然而，我发现宝石晶粉末的混合似乎并不像我以为的那么容易。**这些粉末几乎无法相融**，最后只能得到一坨五颜六色的混杂物。\\\n\\\n或许我之后能想出个好点子?",
   "book.spectrum.guidebook.gemstone_powder.page2.text": "宝石晶粉末可以压缩便于存储或装饰。",
 
-  "book.spectrum.guidebook.gemstone_runes.name": "雕纹宝石晶岩石方块",
-  "book.spectrum.guidebook.gemstone_runes.page0.text": "可以肯定的是，只要[#](bb00bb)方解石[#]()和[#](bb00bb)玄武岩[#]()将晶洞牢牢包围住，就能锁住宝石晶的能量，但有时，历经几百年积累的能量似乎强大到足以在晶洞中撕开一道裂口。\\\n\\\n我把这一现象微型复刻了出来。",
-  "book.spectrum.guidebook.gemstone_runes.page1.text": "雕纹宝石晶岩石方块的材质取决于选用的宝石晶材料。可以用[磨制方解石或磨制玄武岩](entry://decoration/block_variants@chiseled_and_notched)作为合成原料。",
-  "book.spectrum.guidebook.gemstone_runes.page2.title": "替代配方",
-  "book.spectrum.guidebook.gemstone_runes.page2.text": "如果我有完整的宝石晶簇来进行合成，效率就高多了。",
+  "book.spectrum.guidebook.earlygame_runes.name": "雕纹宝石晶岩石方块",
+  "book.spectrum.guidebook.earlygame_runes.about.text": "可以肯定的是，只要[#](bb00bb)方解石[#]()和[#](bb00bb)玄武岩[#]()将晶洞牢牢包围住，就能锁住宝石晶的能量，但有时，历经几百年积累的能量似乎强大到足以在晶洞中撕开一道裂口。\\\n\\\n我把这一现象微型复刻了出来。",
+  "book.spectrum.guidebook.earlygame_runes.crafting.text": "雕纹宝石晶岩石方块的材质取决于选用的宝石晶材料。可以用[磨制方解石或磨制玄武岩](entry://decoration/block_variants@chiseled_and_notched)作为合成原料。\\\n\\\n如果我有完整的宝石晶簇来进行合成，效率就高多了。",
+  "book.spectrum.guidebook.earlygame_runes.page2.title": "替代配方",
 
   "book.spectrum.guidebook.gemstone_deco.name": "宝石晶块",
   "book.spectrum.guidebook.gemstone_deco.page0.text": "这些宝石晶的外观实在是绚烂夺目。\\\n不过，晶洞里的原始晶簇样式，对我偏狂野风格的建筑来说，又显得有点太自然了。但做成完整方块后就漂亮多了，而且显得非常搭。\\\n\\\n如果哪天宝石用完了，我也可以轻松把压缩后的宝石晶块重新还原打碎。",
-
-  "book.spectrum.guidebook.gemstone_deco.bricks.title": "宝石晶砖",
-  "book.spectrum.guidebook.gemstone_deco.bricks.text": "我当时就想: *要是把宝石做成砖块，还能一样好看吗*?\\\n\\\n结果还真行。在基座和[切石机](item://minecraft:stonecutter)里都能制作。",
 
   "book.spectrum.guidebook.pylons.name": "宝石晶塔",
   "book.spectrum.guidebook.pylons.page0.text": "宝石晶洞总有种难以言说的灵气。看着这些水晶，映射着迷人的光影，实在是令人叹为观止。\\\n\\\n这些晶塔有望能截取一分那样的壮阔。尽管不如晶洞那么磅礴，它们也如指路明灯般矗立而闪耀着斑斓",

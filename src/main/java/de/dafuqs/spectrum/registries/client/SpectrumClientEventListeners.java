@@ -18,6 +18,7 @@ import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.particle.render.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.render.armor.*;
@@ -175,10 +176,13 @@ public class SpectrumClientEventListeners {
 	@SubscribeEvent
 	private static void onLogout(ClientPlayerNetworkEvent.LoggingOut event) {
 		Pastel.clearClientInstance();
+		UnlockToastManager.clear();
 	}
 	
 	@SubscribeEvent
 	private static void afterClientTick(ClientTickEvent.Post event) {
+		HudRenderers.hoveredCapability = null;
+		
 		Minecraft client = Minecraft.getInstance();
 		ClientLevel world = client.level;
 		Entity cameraEntity = client.getCameraEntity();
@@ -303,8 +307,6 @@ public class SpectrumClientEventListeners {
 	
 	@SubscribeEvent
 	private static void onRenderBlockOutlines(RenderHighlightEvent.Block event) {
-		HudRenderers.hoveredCapability = null;
-		
 		Minecraft client = Minecraft.getInstance();
 		if (client.player == null) {
 			return;

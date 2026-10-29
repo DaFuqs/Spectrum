@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "spectrum:block/lime_tall_grass_top"
+  }
+}

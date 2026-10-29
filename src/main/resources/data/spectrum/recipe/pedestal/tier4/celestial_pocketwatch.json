@@ -4,9 +4,6 @@
   "tier": "complex",
   "colors": {
     "spectrum:magenta": 16,
-    "spectrum:yellow": 0,
-    "spectrum:cyan": 0,
-    "spectrum:black": 0,
     "spectrum:white": 4
   },
   "experience": 4.0,

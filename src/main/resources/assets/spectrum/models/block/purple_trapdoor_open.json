@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:improved_vanilla/colored_trapdoor_open",
+  "textures": {
+    "texture": "spectrum:block/purple_trapdoor"
+  }
+}

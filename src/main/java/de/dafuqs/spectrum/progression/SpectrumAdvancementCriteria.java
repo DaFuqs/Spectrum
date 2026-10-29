@@ -49,6 +49,7 @@ public class SpectrumAdvancementCriteria {
 	public static PreservationCheckCriterion PRESERVATION_CHECK = new PreservationCheckCriterion();
 	public static FluidDippingCriterion FLUID_DIPPING = new FluidDippingCriterion();
 	public static DeeperDownPortalOpeningCriterion DEEPER_DOWN_PORTAL_OPENING = new DeeperDownPortalOpeningCriterion();
+	public static BlockColoredCriterion BLOCK_COLORED = new BlockColoredCriterion();
 	
 	public static void register(IEventBus modBus) {
 		REGISTRAR.register(PedestalRecipeCalculatedCriterion.NAME, () -> PEDESTAL_RECIPE_CALCULATED);
@@ -89,6 +90,7 @@ public class SpectrumAdvancementCriteria {
 		REGISTRAR.register(PreservationCheckCriterion.NAME, () -> PRESERVATION_CHECK);
 		REGISTRAR.register(FluidDippingCriterion.NAME, () -> FLUID_DIPPING);
 		REGISTRAR.register(DeeperDownPortalOpeningCriterion.NAME, () -> DEEPER_DOWN_PORTAL_OPENING);
+		REGISTRAR.register(BlockColoredCriterion.NAME, () -> BLOCK_COLORED);
 		
 		REGISTRAR.register(modBus);
 	}

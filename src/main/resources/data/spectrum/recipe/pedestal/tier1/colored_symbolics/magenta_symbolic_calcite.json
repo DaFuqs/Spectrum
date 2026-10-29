@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "symbolics",
+  "time": 40,
+  "tier": "basic",
+  "colors": {
+    "spectrum:magenta": 6
+  },
+  "experience": 0.5,
+  "pattern": [
+    " S ",
+    "SPS",
+    " S "
+  ],
+  "key": {
+    "P": "spectrum:magenta_pigment",
+    "S": "spectrum:polished_calcite"
+  },
+  "result": {
+    "id": "spectrum:magenta_symbolic_calcite",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/colored_symbolics/magenta"
+}

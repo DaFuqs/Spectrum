@@ -19,12 +19,15 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.*;
 import org.jspecify.annotations.*;
+import org.spongepowered.asm.mixin.*;
 
 import java.util.*;
 
 public class ExplosionWithStack extends Explosion {
 	
 	public static final int BASE_EXPLOSION_LEVEL = 4;
+	@Unique
+	public static @Nullable Explosion spectrum$explosion = null;
 	
 	private final ItemStack stack;
 	

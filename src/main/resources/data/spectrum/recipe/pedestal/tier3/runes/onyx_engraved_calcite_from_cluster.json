@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "onyx_engraved_blocks",
+  "time": 160,
+  "tier": "advanced",
+  "colors": {
+    "spectrum:black": 4
+  },
+  "experience": 1.0,
+  "pattern": [
+    "WXW",
+    "XCX",
+    "WXW"
+  ],
+  "key": {
+    "W": "spectrum:polished_calcite",
+    "X": "spectrum:onyx_block",
+    "C": "spectrum:onyx_cluster"
+  },
+  "result": {
+    "id": "spectrum:onyx_engraved_calcite",
+    "count": 8
+  },
+  "required_advancement": "spectrum:midgame/build_advanced_pedestal_structure"
+}

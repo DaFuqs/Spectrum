@@ -846,7 +846,7 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 			return PedestalRecipeTier.COMPLEX;
 		}
 		
-		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_WITHOUT_MOONSTONE);
+		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_WITHOUT_ENGRAVINGS);
 		if (multiblock.validate(level, worldPosition.below(), Rotation.NONE)) {
 			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayer) this.getOwnerIfOnline(level), multiblock);
 			return PedestalRecipeTier.ADVANCED;

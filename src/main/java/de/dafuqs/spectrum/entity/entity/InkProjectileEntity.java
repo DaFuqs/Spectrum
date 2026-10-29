@@ -24,16 +24,18 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class InkProjectileEntity extends MagicProjectileEntity {
 	
-	private static final int COLOR_SPLAT_RANGE = 2;
 	private static final int SPELL_POTENCY = 2;
 	private static final float DAMAGE_PER_POTENCY = 0.5F;
 	
@@ -179,21 +181,11 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.getRandom().nextFloat() * 0.2F + 0.9F));
 		
 		InkColor inkColor = this.getInkColor();
-		for (BlockPos blockPos : BlockPos.withinManhattan(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
-			Optional<DyeColor> dyeColor = inkColor.getDyeColor();
-			if (this.level().getBlockState(blockPos).getBlock() instanceof ColorableBlock colorableBlock) {
-				if (!GenericClaimModsCompat.canModify(this.level(), blockPos, this.getOwner())) {
-					continue;
-				}
-				colorableBlock.color(this.level(), blockPos, dyeColor, getOwner());
+		for (BlockPos blockPos : BlockPos.withinManhattan(blockHitResult.getBlockPos(), SPELL_POTENCY, SPELL_POTENCY, SPELL_POTENCY)) {
+			if(blockPos.distSqr(blockHitResult.getBlockPos()) > SPELL_POTENCY * 2.5F) {
 				continue;
 			}
-			if (dyeColor.isPresent()) {
-				@Nullable BlockState coloredBlockState = VariantHelper.getColoredBlockState(this.level(), blockPos, inkColor);
-				if (coloredBlockState != null) {
-					this.level().setBlockAndUpdate(blockPos, coloredBlockState);
-				}
-			}
+			VariantHelper.colorBlockPos(level(), blockPos, inkColor, getOwner(), entity -> true);
 		}
 		
 		affectEntitiesInRange(this.getOwner());

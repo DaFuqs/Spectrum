@@ -6,8 +6,7 @@
     "spectrum:cyan": 4,
     "spectrum:magenta": 4,
     "spectrum:yellow": 4,
-    "spectrum:black": 4,
-    "spectrum:white": 0
+    "spectrum:black": 4
   },
   "experience": 2.0,
   "skip_recipe_remainders": true,

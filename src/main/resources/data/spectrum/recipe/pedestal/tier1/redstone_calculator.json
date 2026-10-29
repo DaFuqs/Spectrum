@@ -3,11 +3,7 @@
   "time": 200,
   "tier": "basic",
   "colors": {
-    "spectrum:cyan": 0,
-    "spectrum:magenta": 0,
-    "spectrum:yellow": 4,
-    "spectrum:white": 0,
-    "spectrum:black": 0
+    "spectrum:yellow": 4
   },
   "experience": 1.0,
   "pattern": [

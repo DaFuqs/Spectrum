@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "symbolics",
+  "time": 40,
+  "tier": "basic",
+  "colors": {
+    "spectrum:cyan": 2,
+    "spectrum:magenta": 1,
+    "spectrum:yellow": 3
+  },
+  "experience": 0.5,
+  "pattern": [
+    " S ",
+    "SPS",
+    " S "
+  ],
+  "key": {
+    "P": "spectrum:green_pigment",
+    "S": "spectrum:polished_calcite"
+  },
+  "result": {
+    "id": "spectrum:green_symbolic_calcite",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/colored_symbolics/green"
+}

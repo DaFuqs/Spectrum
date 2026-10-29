@@ -444,7 +444,7 @@ public class SpectrumFoodComponents {
 	public static final FoodProperties MELLOW_SHALLOT_SOUP = new FoodProperties.Builder()
 			.nutrition(7).saturationModifier(SAT_NORMAL)
 			.effect(() -> new MobEffectInstance(SpectrumMobEffects.EFFECT_PROLONGING, 600, 3), 1.0F)
-			.effect(() -> new MobEffectInstance(SpectrumMobEffects.IMMUNITY, 600, 0), 1.0F)
+			.effect(() -> new MobEffectInstance(SpectrumMobEffects.LAVA_GLIDING, 1200, 0), 1.0F)
 			.build();
 	
 	public static final FoodProperties NECTERED_VIOGNIER = new FoodProperties.Builder()

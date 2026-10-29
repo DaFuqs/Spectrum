@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "gemstone_glass",
+  "time": 20,
+  "tier": "basic",
+  "colors": {
+    "spectrum:magenta": 4
+  },
+  "experience": 1,
+  "pattern": [
+    "GPG",
+    "PGP",
+    "GPG"
+  ],
+  "key": {
+    "P": "minecraft:amethyst_shard",
+    "G": "minecraft:glass"
+  },
+  "result": {
+    "id": "spectrum:chiseled_amethyst_glass",
+    "count": 8
+  },
+  "required_advancement": "spectrum:hidden/collect_shards/amethyst"
+}

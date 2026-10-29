@@ -3,11 +3,7 @@
   "time": 800,
   "tier": "advanced",
   "colors": {
-    "spectrum:cyan": 0,
-    "spectrum:magenta": 0,
-    "spectrum:yellow": 8,
-    "spectrum:black": 0,
-    "spectrum:white": 0
+    "spectrum:yellow": 8
   },
   "experience": 4.0,
   "pattern": [

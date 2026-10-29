@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "spectrum:block/cyan_tall_grass_bottom"
+    },
+    "half=upper": {
+      "model": "spectrum:block/cyan_tall_grass_top"
+    }
+  }
+}

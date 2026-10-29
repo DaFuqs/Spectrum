@@ -6,8 +6,7 @@
     "spectrum:cyan": 4,
     "spectrum:magenta": 4,
     "spectrum:yellow": 8,
-    "spectrum:black": 2,
-    "spectrum:white": 0
+    "spectrum:black": 2
   },
   "experience": 8.0,
   "pattern": [

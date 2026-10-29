@@ -1,0 +1,7 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "spectrum:block/cyan_short_grass",
+    "particle": "spectrum:block/cyan_short_grass"
+  }
+}

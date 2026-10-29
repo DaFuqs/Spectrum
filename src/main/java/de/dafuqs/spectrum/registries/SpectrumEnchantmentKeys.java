@@ -26,7 +26,7 @@ public class SpectrumEnchantmentKeys {
 	public static final ResourceKey<Enchantment> SNIPING = of("sniping"); // Increases projectile speed => increased damage + range
 	public static final ResourceKey<Enchantment> STEADFAST = of("steadfast"); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
 	public static final ResourceKey<Enchantment> TIGHT_GRIP = of("tight_grip"); // Increases attack speed
-	public static final ResourceKey<Enchantment> TREASURE_HUNTER = of("treasure_hunter"); // Drops mob heads on kill
+	public static final ResourceKey<Enchantment> TROPHY_HUNTER = of("treasure_hunter"); // Drops mob heads on kill // TODO: rename internal id
 	public static final ResourceKey<Enchantment> VOIDING = of("voiding"); // Voids mined blocks
 	
 	private static ResourceKey<Enchantment> of(String name) {

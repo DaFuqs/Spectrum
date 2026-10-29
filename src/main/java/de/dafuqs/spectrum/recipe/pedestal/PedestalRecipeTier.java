@@ -79,7 +79,7 @@ public enum PedestalRecipeTier implements StringRepresentable {
 				if (AdvancementHelper.hasAdvancement(player, SpectrumAdvancements.BUILD_COMPLEX_PEDESTAL_STRUCTURE_WITHOUT_MOONSTONE)) {
 					return SpectrumMultiblocks.PEDESTAL_COMPLEX;
 				} else {
-					return SpectrumMultiblocks.PEDESTAL_COMPLEX_WITHOUT_MOONSTONE;
+					return SpectrumMultiblocks.PEDESTAL_COMPLEX_WITHOUT_ENGRAVINGS;
 				}
 			}
 			case ADVANCED -> {

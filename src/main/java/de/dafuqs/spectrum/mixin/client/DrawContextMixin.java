@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.world.item.*;
 import org.objectweb.asm.*;
 import org.spongepowered.asm.mixin.*;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 

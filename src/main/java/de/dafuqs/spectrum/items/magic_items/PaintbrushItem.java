@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
@@ -24,7 +23,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
-import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.fml.loading.*;
 import org.jspecify.annotations.*;
@@ -99,7 +97,11 @@ public class PaintbrushItem extends Item implements SignApplicator {
 	}
 	
 	public static void setColor(ItemStack stack, @Nullable InkColor color) {
-		stack.set(SpectrumDataComponentTypes.INK_COLOR, color);
+		if(color == null) {
+			stack.remove(SpectrumDataComponentTypes.INK_COLOR);
+		} else {
+			stack.set(SpectrumDataComponentTypes.INK_COLOR, color);
+		}
 	}
 	
 	public static Optional<InkColor> getColor(ItemStack stack) {
@@ -119,54 +121,22 @@ public class PaintbrushItem extends Item implements SignApplicator {
 		if (inkColor.isEmpty()) {
 			return false;
 		}
-		Optional<DyeColor> dyeColor = inkColor.get().getDyeColor();
 		
-		Level world = context.getLevel();
-		BlockPos pos = context.getClickedPos();
-		BlockState state = world.getBlockState(pos);
-		if (state.getBlock() instanceof ColorableBlock colorableBlock) {
-			if (!colorableBlock.isColor(world, pos, dyeColor)) {
-				if (payBlockColorCost(context.getPlayer(), inkColor.get()) && colorableBlock.color(world, pos, dyeColor, context.getPlayer())) {
-					context.getLevel().playSound(null, context.getClickedPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundSource.BLOCKS, 1.0F, 1.0F);
-				} else {
-					context.getLevel().playSound(null, context.getClickedPos(), SpectrumSoundEvents.USE_FAIL, SoundSource.BLOCKS, 1.0F, 1.0F);
-				}
-			}
-			return true;
+		boolean colored = false;
+		Level level = context.getLevel();
+		if (context.getPlayer() != null) {
+			InkColor inkColor1 = inkColor.get();
+			BlockPos pos = context.getClickedPos();
+			colored = VariantHelper.colorBlockPos(level, pos, inkColor1, context.getPlayer(), entity -> entity instanceof Player player && payBlockColorCost(player, inkColor1));
 		}
 		
-		return cursedColor(context);
-	}
-	
-	private boolean cursedColor(UseOnContext context) {
-		Level world = context.getLevel();
-		if (context.getPlayer() == null) {
-			return false;
-		}
-		
-		Optional<InkColor> optionalInkColor = getColor(context.getItemInHand());
-		if (optionalInkColor.isEmpty()) {
-			return false;
-		}
-		
-		InkColor inkColor = optionalInkColor.get();
-		@Nullable BlockState newBlockState = VariantHelper.getColoredBlockState(context.getLevel(), context.getClickedPos(), inkColor);
-		if (newBlockState == null) {
-			return false;
-		}
-		
-		if (payBlockColorCost(context.getPlayer(), inkColor)) {
-			if (!world.isClientSide()) {
-				world.setBlockAndUpdate(context.getClickedPos(), newBlockState);
-				world.playSound(null, context.getClickedPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundSource.BLOCKS, 1.0F, 1.0F);
-			}
-			return true;
+		if(colored) {
+			context.getLevel().playSound(null, context.getClickedPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundSource.BLOCKS, 1.0F, 1.0F);
 		} else {
-            if (world.isClientSide()) {
-                context.getPlayer().playSound(SpectrumSoundEvents.USE_FAIL, 1.0F, 1.0F);
-            }
+			context.getLevel().playSound(null, context.getClickedPos(), SpectrumSoundEvents.USE_FAIL, SoundSource.BLOCKS, 1.0F, 1.0F);
 		}
-		return false;
+		
+		return colored;
 	}
 	
 	private boolean payBlockColorCost(@Nullable Player player, InkColor inkColor) {

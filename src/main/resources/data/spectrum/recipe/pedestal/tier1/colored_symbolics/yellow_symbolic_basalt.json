@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "symbolics",
+  "time": 40,
+  "tier": "basic",
+  "colors": {
+    "spectrum:yellow": 6
+  },
+  "experience": 0.5,
+  "pattern": [
+    " S ",
+    "SPS",
+    " S "
+  ],
+  "key": {
+    "P": "spectrum:yellow_pigment",
+    "S": "spectrum:polished_basalt"
+  },
+  "result": {
+    "id": "spectrum:yellow_symbolic_basalt",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/colored_symbolics/yellow"
+}

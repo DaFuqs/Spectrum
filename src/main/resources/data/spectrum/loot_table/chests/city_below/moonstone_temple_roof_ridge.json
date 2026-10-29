@@ -33,6 +33,14 @@
         },
         {
           "type": "minecraft:item",
+          "name": "spectrum:onyx_chiseled_basalt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:moonstone_chiseled_basalt"
+        },
+        {
+          "type": "minecraft:item",
           "name": "spectrum:chiseled_polished_basalt",
           "weight": 5
         },

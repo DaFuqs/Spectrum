@@ -25,7 +25,6 @@ import java.util.function.*;
 @NullMarked
 public class WhispyCircletItem extends SpectrumCurioItem {
 	
-	public static final ResourceLocation ATTRIBUTE_ID = SpectrumCommon.locate("whispy_circlet_mental_presence");
 	public static final Predicate<MobEffectInstance> EFFECT_CLEAR_PREDICATE = instance -> {
 		Holder<MobEffect> holder = instance.getEffect();
 		return holder.value().getCategory() == MobEffectCategory.HARMFUL && !holder.is(SpectrumMobEffectTags.BYPASSES_WHISPY_CIRCLET);

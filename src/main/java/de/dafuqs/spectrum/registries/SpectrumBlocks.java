@@ -260,7 +260,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> CHISELED_POLISHED_BLACKSLAG = register(blockWithItem("chiseled_polished_blackslag", () -> new Block(blackslag(SoundType.DEEPSLATE_BRICKS))));
 	
 	public static final DeferredBlock<Block> POLISHED_BLACKSLAG_PILLAR = register(axisRotated(blockWithItem("polished_blackslag_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(BLACKSLAG_BRICKS.get()))), TexturedModel.createDefault(b -> SpectrumTextureMaps.sideEnd(b, "", CHISELED_POLISHED_BLACKSLAG.get(), ""), ModelTemplates.CUBE_COLUMN)));
-	public static final DeferredBlock<Block> ANCIENT_CHISELED_POLISHED_BLACKSLAG = register(simple(blockWithItem("ancient_chiseled_polished_blackslag", () -> new Block(blackslag(SoundType.DEEPSLATE_BRICKS)))));
+	public static final DeferredBlock<GlazedTerracottaBlock> ANCIENT_CHISELED_POLISHED_BLACKSLAG = register(simple(blockWithItem("ancient_chiseled_polished_blackslag", () -> new GlazedTerracottaBlock(blackslag(SoundType.DEEPSLATE_BRICKS)))));
 	
 	public static final DeferredBlock<Block> SHALE_CLAY = register(singleton(blockWithItem("shale_clay", () -> new ShaleClayBlock(Weathering.WeatheringLevel.UNAFFECTED, blackslag(SoundType.MUD_BRICKS))), TexturedModel.COLUMN));
 	public static final DeferredBlock<Block> TILLED_SHALE_CLAY = register(singleton(blockWithItem("tilled_shale_clay", () -> new ImmutableFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(SHALE_CLAY.get()), SHALE_CLAY.get().defaultBlockState())), SpectrumTexturedModelProviders.farmland(b -> SHALE_CLAY.get(), "_side", b -> b, "")));
@@ -408,7 +408,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> POLISHED_BASALT_WALL = register(blockWithItem("polished_basalt_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT.get()))));
 	public static final DeferredBlock<Block> POLISHED_BASALT_BUTTON = register(blockWithItem("polished_basalt_button", () -> new ButtonBlock(SpectrumBlockSetTypes.POLISHED_BASALT, 5, BlockBehaviour.Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY))));
 	public static final DeferredBlock<Block> POLISHED_BASALT_PRESSURE_PLATE = register(blockWithItem("polished_basalt_pressure_plate", () -> new PressurePlateBlock(SpectrumBlockSetTypes.POLISHED_BASALT, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).forceSolidOn().instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY))));
-	public static final DeferredBlock<Block> CHISELED_POLISHED_BASALT = register(blockWithItem("chiseled_polished_basalt", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT.get()))));
+	public static final DeferredBlock<GlazedTerracottaBlock> CHISELED_POLISHED_BASALT = register(blockWithItem("chiseled_polished_basalt", () -> new GlazedTerracottaBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT.get()))));
 	
 	public static final DeferredBlock<Block> POLISHED_BASALT_PILLAR = register(axisRotated(blockWithItem("polished_basalt_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT.get()))), TexturedModel.COLUMN));
 	public static final DeferredBlock<CardinalFacingBlock> POLISHED_BASALT_CREST = register(blockWithItem("polished_basalt_crest", () -> new CardinalFacingBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_BASALT.get()))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(ctx, block, TexturedModel.COLUMN).with(SpectrumModelHelper.createCardinalFacingVariantMap())));
@@ -442,7 +442,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> POLISHED_CALCITE_WALL = register(blockWithItem("polished_calcite_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_CALCITE.get()))));
 	public static final DeferredBlock<Block> POLISHED_CALCITE_BUTTON = register(blockWithItem("polished_calcite_button", () -> new ButtonBlock(SpectrumBlockSetTypes.POLISHED_CALCITE, 5, BlockBehaviour.Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY))));
 	public static final DeferredBlock<Block> POLISHED_CALCITE_PRESSURE_PLATE = register(blockWithItem("polished_calcite_pressure_plate", () -> new PressurePlateBlock(SpectrumBlockSetTypes.POLISHED_CALCITE, BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).forceSolidOn().instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY))));
-	public static final DeferredBlock<Block> CHISELED_POLISHED_CALCITE = register(blockWithItem("chiseled_polished_calcite", () -> new Block(BlockBehaviour.Properties.ofFullCopy(POLISHED_CALCITE.get()))));
+	public static final DeferredBlock<GlazedTerracottaBlock> CHISELED_POLISHED_CALCITE = register(blockWithItem("chiseled_polished_calcite", () -> new GlazedTerracottaBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_CALCITE.get()))));
 	
 	public static final DeferredBlock<Block> POLISHED_CALCITE_PILLAR = register(axisRotated(blockWithItem("polished_calcite_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_CALCITE.get()))), TexturedModel.COLUMN));
 	public static final DeferredBlock<CardinalFacingBlock> POLISHED_CALCITE_CREST = register(blockWithItem("polished_calcite_crest", () -> new CardinalFacingBlock(BlockBehaviour.Properties.ofFullCopy(POLISHED_CALCITE.get()))).withBlockModel((ctx, block) -> SpectrumModelHelper.createVariantsSupplier(ctx, block, TexturedModel.COLUMN).with(SpectrumModelHelper.createCardinalFacingVariantMap())));
@@ -2622,6 +2622,10 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(PURPLE_SYMBOLIC_CALCITE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(MAGENTA_SYMBOLIC_CALCITE.get(), RenderType.translucent());
 		ItemBlockRenderTypes.setRenderLayer(PINK_SYMBOLIC_CALCITE.get(), RenderType.translucent());
+		
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_POLISHED_CALCITE.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(CHISELED_POLISHED_BASALT.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(ANCIENT_CHISELED_POLISHED_BLACKSLAG.get(), RenderType.cutoutMipped());
 		
 		ItemBlockRenderTypes.setRenderLayer(ONYX_ENGRAVED_BASALT.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(ONYX_ENGRAVED_CALCITE.get(), RenderType.cutoutMipped());

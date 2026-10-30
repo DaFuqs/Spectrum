@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "spectrum:templates/symbolic_balcite_1",
   "textures": {
-    "all": "spectrum:block/ancient_chiseled_polished_blackslag"
+    "base": "spectrum:block/chiseled_polished_blackslag",
+    "overlay": "spectrum:block/ancient_chiseled_polished_blackslag_overlay"
   }
 }

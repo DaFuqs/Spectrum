@@ -28,10 +28,10 @@ public record EnvironmentalDataOverride(Predicate<Entity> predicate, ColorData c
 	public static final ColorData BLANK = new ColorData(new Vector3f(), 0);
 	public static final EnvironmentalDataOverride INACTIVE = new EnvironmentalDataOverride(null, BLANK, EnvironmentalData.NOOP, -999);
 	
-	public static EnvironmentalDataOverride fromArray(float[] override) {
+	public static EnvironmentalDataOverride fromArray(boolean ultradark, float[] override) {
 		return new EnvironmentalDataOverride(null,
 				new ColorData(new Vector3f(override[1], override[2], override[3]), override[0]),
-				new EnvironmentalData(override[4], override[5], override[6], override[7]),
+				new EnvironmentalData(ultradark, override[4], override[5], override[6], override[7]),
 				-999
 		);
 	}

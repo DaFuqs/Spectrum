@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.render.biome_rendering;
 
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.data_loaders.client.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
@@ -21,6 +20,7 @@ public class EnvironmentalRendering {
 	private static final InterpolationMemory<float[]> GRADING_QUEUE = new InterpolationMemory<>();
 	private static final InterpolationMemory<float[]> ENVIRONMENTAL_RENDERING_QUEUE = new InterpolationMemory<>();
 	private static final InterpolationMemory<EnvironmentalDataOverride> OVERRIDE_QUEUE = new InterpolationMemory<>();
+	private static boolean ULTRADARK = false;
 	
 	private static final Minecraft client = Minecraft.getInstance();
 	private static final Supplier<Float> delta = () -> client.getTimer().getGameTimeDeltaPartialTick(false);
@@ -66,7 +66,7 @@ public class EnvironmentalRendering {
 			ResourceKey<Biome> biome = getBiomeAtPos(center);
 			Pair<ColorGrading, EnvironmentalData> biomeRenderingData = BiomeRenderingDataLoader.get(biome);
 			GRADING_QUEUE.accept(biomeRenderingData.getFirst().asArray());
-			processAndAcceptEnvironmentalData(center, biomeRenderingData.getSecond().asArray());
+			processAndAcceptEnvironmentalData(center, biomeRenderingData.getSecond().ultradark(), biomeRenderingData.getSecond().asArray());
 			return;
 		}
 		
@@ -83,6 +83,7 @@ public class EnvironmentalRendering {
 		);
 		
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+		boolean ultradark = false;
 		while (cursor.advance()) {
 			pos.set(cursor.nextX(), cursor.nextY(), cursor.nextZ());
 			
@@ -90,13 +91,14 @@ public class EnvironmentalRendering {
 			Pair<ColorGrading, EnvironmentalData> biomeRenderingData = BiomeRenderingDataLoader.get(biome);
 			gradingStack.insert(biomeRenderingData.getFirst().asArray());
 			environmentalRenderingStack.insert(biomeRenderingData.getSecond().asArray());
+			ultradark = ultradark || biomeRenderingData.getSecond().ultradark();
 		}
 		
-		processAndAcceptEnvironmentalData(center, environmentalRenderingStack.get());
+		processAndAcceptEnvironmentalData(center, ultradark, environmentalRenderingStack.get());
 		GRADING_QUEUE.accept(gradingStack.get());
 	}
 	
-	private static void processAndAcceptEnvironmentalData(BlockPos ref, float[] env) {
+	private static void processAndAcceptEnvironmentalData(BlockPos ref, boolean ultradark, float[] env) {
 		float depthDarkening = 0F;
 		int topSpace = client.level.getMaxBuildHeight() - ref.getY();
 		depthDarkening += Mth.clampedLerp(0.334F, 0F, topSpace / 48F);
@@ -112,6 +114,7 @@ public class EnvironmentalRendering {
 		env[2] = Math.min(env[2], env[3]);
 		
 		ENVIRONMENTAL_RENDERING_QUEUE.accept(env);
+		ULTRADARK = ultradark;
 	}
 	
 	public static EnvironmentalData getCurrentEnvironmentalData() {
@@ -131,7 +134,7 @@ public class EnvironmentalRendering {
 		interpolated[2] = Mth.lerp(overrideDelta, interpolated[2], override[2]);
 		interpolated[3] = Mth.lerp(overrideDelta, interpolated[3], override[3]);
 		
-		return EnvironmentalData.fromArray(interpolated);
+		return EnvironmentalData.of(ULTRADARK, interpolated);
 	}
 	
 	public static void applyColor(ViewportEvent.ComputeFogColor event, EnvironmentalData environmentalData) {
@@ -168,7 +171,7 @@ public class EnvironmentalRendering {
 			interpolated[i] = Mth.lerp((overrideLoop + delta.get()) / 4F, lastOverride[i], currentOverride[i]);
 		}
 		
-		return EnvironmentalDataOverride.fromArray(interpolated);
+		return EnvironmentalDataOverride.fromArray(ULTRADARK, interpolated);
 	}
 	
 	private static ResourceKey<Biome> getBiomeAtPos(BlockPos pos) {
@@ -206,7 +209,7 @@ public class EnvironmentalRendering {
 		if (client.level == null)
 			return RenderState.INACTIVE;
 		
-		if (client.level.dimension().equals(SpectrumDimensionKeys.DIMENSION_KEY))
+		if (getCurrentEnvironmentalData().ultradark())
 			return RenderState.ULTRA_DARK;
 		
 		if (overrideActive || overrideActiveTicks > 0)

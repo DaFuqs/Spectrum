@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates/bedrock_portal_up",
+  "textures": {
+    "portal": "spectrum:block/deeper_down_portal"
+  }
+}

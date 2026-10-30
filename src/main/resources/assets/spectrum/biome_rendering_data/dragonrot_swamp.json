@@ -1,6 +1,7 @@
 {
   "biome": "spectrum:dragonrot_swamp",
   "environmental_data": {
+    "ultradark": true,
     "environmental_lighting_multiplier": 0.8,
     "fog_brightness_multiplier": 1.0,
     "fog_near_multiplier": 0.25,

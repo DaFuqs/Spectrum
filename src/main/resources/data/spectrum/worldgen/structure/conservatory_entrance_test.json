@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:conservatory_entrance",
+  "entries": [
+    {
+      "bottom": "spectrum:conservatory_entrance/top",
+      "middle": "spectrum:conservatory_entrance/middle",
+      "top": "spectrum:conservatory_entrance/bottom"
+    }
+  ],
+  "size": 2,
+  "max_distance_from_center": 80,
+  "biomes": "#spectrum:has_structure/pedestal_ruins",
+  "step": "strongholds",
+  "terrain_adaptation": "none",
+  "start_height": {
+    "type": "minecraft:uniform",
+    "min_inclusive": {
+      "above_bottom": 64
+    },
+    "max_inclusive": {
+      "above_bottom": 0
+    }
+  },
+  "bury_depth": {
+    "type": "minecraft:uniform",
+    "min_inclusive": 0,
+    "max_inclusive": 16
+  },
+  "placement_check_width": 8,
+  "placement_check_height": 8,
+  "spawn_overrides": {}
+}

@@ -2626,6 +2626,9 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(ONYX_ENGRAVED_BASALT.get(), RenderType.cutoutMipped());
 		ItemBlockRenderTypes.setRenderLayer(ONYX_ENGRAVED_CALCITE.get(), RenderType.cutoutMipped());
 		
+		ItemBlockRenderTypes.setRenderLayer(MOONSTONE_ENGRAVED_BASALT.get(), RenderType.cutoutMipped());
+		ItemBlockRenderTypes.setRenderLayer(MOONSTONE_ENGRAVED_CALCITE.get(), RenderType.cutoutMipped());
+		
 		ItemBlockRenderTypes.setRenderLayer(PEDESTAL_BASIC_TOPAZ.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(PEDESTAL_BASIC_AMETHYST.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(PEDESTAL_BASIC_CITRINE.get(), RenderType.cutout());

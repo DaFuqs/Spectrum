@@ -1,0 +1,7 @@
+{
+	"parent": "spectrum:templates/moonstone_engraved_basalt_base",
+	"textures": {
+		"base": "spectrum:block/polished_calcite",
+		"side": "spectrum:block/calcite_cap"
+  }
+}

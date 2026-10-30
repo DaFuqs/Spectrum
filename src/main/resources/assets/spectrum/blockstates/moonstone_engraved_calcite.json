@@ -1,30 +1,122 @@
 {
-  "variants": {
-    "facing=down": {
-      "model": "spectrum:block/moonstone_engraved_calcite",
-      "x": 180
+  "multipart": [
+    {
+      "when": {
+        "facing": "north"
+      },
+      "apply": {
+        "model": "spectrum:templates/moonstone_engraved_calcite_base",
+        "x": 90,
+        "uvlock": true
+      }
     },
-    "facing=east": {
-      "model": "spectrum:block/moonstone_engraved_calcite",
-      "x": 90,
-      "y": 90
+    {
+      "when": {
+        "facing": "east"
+      },
+      "apply": {
+        "model": "spectrum:templates/moonstone_engraved_calcite_base",
+        "x": 90,
+        "y": 90,
+        "uvlock": true
+      }
     },
-    "facing=north": {
-      "model": "spectrum:block/moonstone_engraved_calcite",
-      "x": 90
+    {
+      "when": {
+        "facing": "south"
+      },
+      "apply": {
+        "model": "spectrum:templates/moonstone_engraved_calcite_base",
+        "x": 90,
+        "y": 180,
+        "uvlock": true
+      }
     },
-    "facing=south": {
-      "model": "spectrum:block/moonstone_engraved_calcite",
-      "x": 90,
-      "y": 180
+    {
+      "when": {
+        "facing": "west"
+      },
+      "apply": {
+        "model": "spectrum:templates/moonstone_engraved_calcite_base",
+        "x": 90,
+        "y": 270,
+        "uvlock": true
+      }
     },
-    "facing=up": {
-      "model": "spectrum:block/moonstone_engraved_calcite"
+    {
+      "when": {
+        "facing": "up"
+      },
+      "apply": {
+        "model": "spectrum:templates/moonstone_engraved_calcite_base",
+        "uvlock": true
+      }
     },
-    "facing=west": {
-      "model": "spectrum:block/moonstone_engraved_calcite",
-      "x": 90,
-      "y": 270
+    {
+      "when": {
+        "facing": "down"
+      },
+      "apply": {
+        "model": "spectrum:templates/moonstone_engraved_calcite_base",
+        "x": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "facing": "north"
+      },
+      "apply": {
+        "model": "spectrum:block/moonstone_engraved_overlay",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east"
+      },
+      "apply": {
+        "model": "spectrum:block/moonstone_engraved_overlay",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south"
+      },
+      "apply": {
+        "model": "spectrum:block/moonstone_engraved_overlay",
+        "x": 90,
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west"
+      },
+      "apply": {
+        "model": "spectrum:block/moonstone_engraved_overlay",
+        "x": 90,
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "up"
+      },
+      "apply": {
+        "model": "spectrum:block/moonstone_engraved_overlay"
+      }
+    },
+    {
+      "when": {
+        "facing": "down"
+      },
+      "apply": {
+        "model": "spectrum:block/moonstone_engraved_overlay",
+        "x": 180
+      }
     }
-  }
+  ]
 }

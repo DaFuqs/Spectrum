@@ -27,8 +27,9 @@ public abstract class BidentBaseEntity extends ThrownTrident {
 	
 	@Override
 	public void setPickupItemStack(ItemStack stack) {
-		entityData.set(STACK, stack.copy());
-		super.setPickupItemStack(stack);
+		var copy = stack.copy();
+		entityData.set(STACK, copy);
+		super.setPickupItemStack(copy);
 		this.entityData.set(ID_LOYALTY, this.getLoyaltyFromItem(stack));
 		this.entityData.set(ID_FOIL, stack.hasFoil());
 	}

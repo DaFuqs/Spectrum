@@ -145,7 +145,7 @@ public class SpectrumItems {
 	public static final DeferredItem<WorkstaffItem> MALACHITE_WORKSTAFF = register("malachite_workstaff", () -> new WorkstaffItem(SpectrumToolTiers.MALACHITE, 1, -3.2F, IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<GreatswordItem> MALACHITE_ULTRA_GREATSWORD = register("malachite_ultra_greatsword", () -> new GreatswordItem(SpectrumToolTiers.MALACHITE, 7, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<MalachiteCrossbowItem> MALACHITE_CROSSBOW = register("malachite_crossbow", () -> new MalachiteCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireResistant().durability(SpectrumToolTiers.MALACHITE.getUses())));
-	public static final DeferredItem<MalachiteBidentItem> MALACHITE_BIDENT = register("malachite_bident", () -> new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.MALACHITE.getUses()), -2.4, 9, 0.25F, 0F, false));
+	public static final DeferredItem<MalachiteBidentItem> MALACHITE_BIDENT = register("malachite_bident", () -> new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.MALACHITE.getUses()), -2.4, 9, 0, 0.25F, 0F, false));
 	
 	// variants by socketing a moonstone core
 	public static final DeferredItem<GlassCrestWorkstaffItem> GLASS_CREST_WORKSTAFF = register("glass_crest_workstaff", () -> new GlassCrestWorkstaffItem(SpectrumToolTiers.GLASS_CREST, 1, -2.8F, IS.of(1, Rarity.UNCOMMON)));
@@ -172,7 +172,7 @@ public class SpectrumItems {
 	public static final DeferredItem<DreamflayerItem> DREAMFLAYER = register("dreamflayer", () -> new DreamflayerItem(SpectrumToolTiers.DREAMFLAYER, 3, -1.8F, IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<NightfallsBladeItem> NIGHTFALLS_BLADE = register("nightfalls_blade", () -> new NightfallsBladeItem(SpectrumToolTiers.NIGHTFALLS_BLADE, 3, -2.4F, IS.of(1, Rarity.UNCOMMON)));
 	public static final DeferredItem<DraconicTwinswordItem> DRACONIC_TWINSWORD = register("draconic_twinsword", () -> new DraconicTwinswordItem(SpectrumToolTiers.DRACONIC, IS.of(1, Rarity.RARE).attributes(DraconicTwinswordItem.createAttributes())));
-	public static final DeferredItem<DragonTalonItem> DRAGON_TALON = register("dragon_talon", () -> new DragonTalonItem(SpectrumToolTiers.DRACONIC, -3.0, -1.0, IS.of(1, Rarity.RARE).durability(SpectrumToolTiers.DRACONIC.getUses())));
+	public static final DeferredItem<DragonTalonItem> DRAGON_TALON = register("dragon_talon", () -> new DragonTalonItem(SpectrumToolTiers.DRACONIC, -3, -2, -1, IS.of(1, Rarity.RARE).durability(SpectrumToolTiers.DRACONIC.getUses())));
 	public static final DeferredItem<LightGreatswordItem> KNOTTED_SWORD = register("knotted_sword", () -> new LightGreatswordItem(SpectrumToolTiers.KNOTTED_SWORD, 3, -2.4F, 0.25F, 0.5F, 0xFFd4d6ff, IS.of(1, Rarity.UNCOMMON).durability(SpectrumToolTiers.KNOTTED_SWORD.getUses())));
 	public static final DeferredItem<NectarLanceItem> NECTAR_LANCE = register("nectar_lance", () -> new NectarLanceItem(SpectrumToolTiers.NECTAR_LANCE, 0, -2.4F, 0.5F, 1.5F, 0xFFf8e8ff, IS.of(1, Rarity.EPIC).durability(SpectrumToolTiers.NECTAR_LANCE.getUses())));
 	

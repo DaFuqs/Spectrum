@@ -346,13 +346,15 @@ public class DraconicTwinswordEntity extends BidentBaseEntity {
 	
 	private float getDamage(ItemStack stack) {
 		//TODO can we use a built in function for this?
-		var damage = new MutableDouble(0);
+		final var base = getOwner() instanceof Player player
+				? player.getAttributeBaseValue(Attributes.ATTACK_DAMAGE)
+				: 1;
+		var damage = new MutableDouble(base);
 		Optional<ResourceKey<Attribute>> key = Attributes.ATTACK_DAMAGE.unwrapKey();
 		if(key.isEmpty()) {
 			return 0;
 		}
 		
-		var base = Attributes.ATTACK_DAMAGE.value().getDefaultValue();
 		var modifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
 		modifiers.forEach(EquipmentSlot.MAINHAND, (attribute, modifier) -> {
 			if (attribute.is(key.get())) {

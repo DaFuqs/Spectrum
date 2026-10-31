@@ -212,7 +212,7 @@ public class PaintbrushItem extends Item implements SignApplicator {
 			
 			if (color.isPresent()
 					&& payBlockColorCost(user, color.get())
-					&& EntityColorProcessorRegistry.colorEntity(entity, color.get().getDyeColor(), entity instanceof Player player ? player : null)) {
+					&& EntityColorProcessorRegistry.colorEntity(entity, color, entity instanceof Player player ? player : null)) {
 				
 				entity.level().playSound(null, entity, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
 				return InteractionResult.sidedSuccess(world.isClientSide());

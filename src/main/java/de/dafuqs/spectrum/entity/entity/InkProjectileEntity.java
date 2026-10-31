@@ -1,10 +1,8 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
@@ -21,25 +19,19 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.phys.*;
-import org.jspecify.annotations.*;
 
 import java.util.*;
-import java.util.function.*;
 
 public class InkProjectileEntity extends MagicProjectileEntity {
 	
 	private static final int SPELL_POTENCY = 2;
 	private static final float DAMAGE_PER_POTENCY = 0.5F;
 	
-	private static final EntityDataAccessor<InkColor> COLOR = SynchedEntityData.defineId(InkProjectileEntity.class, SpectrumTrackedDataHandlerRegistry.INK_COLOR);
+	private static final EntityDataAccessor<InkColor> COLOR = SynchedEntityData.defineId(InkProjectileEntity.class, SpectrumEntityDataSerializers.INK_COLOR);
 	
 	public InkProjectileEntity(EntityType<InkProjectileEntity> type, Level world) {
 		super(type, world);
@@ -123,7 +115,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		Entity target = entityHitResult.getEntity();
 		Entity owner = this.getOwner();
 		
-		if (EntityColorProcessorRegistry.colorEntity(target, getInkColor().getDyeColor(), owner instanceof Player player ? player : null)) {
+		if (EntityColorProcessorRegistry.colorEntity(target, Optional.of(getInkColor()), owner instanceof Player player ? player : null)) {
 			target.level().playSound(null, target, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
 		}
 		
@@ -245,7 +237,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				continue;
 			}
 			
-			if (EntityColorProcessorRegistry.colorEntity(entity, getInkColor().getDyeColor(), owner instanceof Player player ? player : null)) {
+			if (EntityColorProcessorRegistry.colorEntity(entity, Optional.of(getInkColor()), owner instanceof Player player ? player : null)) {
 				entity.level().playSound(null, entity, SoundEvents.DYE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
 			}
 			

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.ink.color.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -32,9 +31,9 @@ import java.util.*;
 // funny little creatures always out for trouble
 public class LizardEntity extends TamableAnimal implements PackEntity<LizardEntity>, POIMemorized {
 	
-	protected static final EntityDataAccessor<Holder<LizardFrillVariant>> FRILL_VARIANT = SynchedEntityData.defineId(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_FRILL_VARIANT);
-	protected static final EntityDataAccessor<Holder<LizardHornVariant>> HORN_VARIANT = SynchedEntityData.defineId(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_HORN_VARIANT);
-	protected static final EntityDataAccessor<InkColor> COLOR = SynchedEntityData.defineId(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.INK_COLOR);
+	protected static final EntityDataAccessor<Holder<LizardFrillVariant>> FRILL_VARIANT = SynchedEntityData.defineId(LizardEntity.class, SpectrumEntityDataSerializers.LIZARD_FRILL_VARIANT);
+	protected static final EntityDataAccessor<Holder<LizardHornVariant>> HORN_VARIANT = SynchedEntityData.defineId(LizardEntity.class, SpectrumEntityDataSerializers.LIZARD_HORN_VARIANT);
+	protected static final EntityDataAccessor<InkColor> COLOR = SynchedEntityData.defineId(LizardEntity.class, SpectrumEntityDataSerializers.INK_COLOR);
 	
 	protected @Nullable LizardEntity leader;
 	protected int groupSize = 1;

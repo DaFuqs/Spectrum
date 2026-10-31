@@ -31,7 +31,6 @@ import net.neoforged.fml.config.*;
 import net.neoforged.fml.event.lifecycle.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.*;
-import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.*;
 import net.neoforged.neoforge.network.event.*;
@@ -158,7 +157,7 @@ public class SpectrumCommon {
 		SpectrumEntitySubPredicateTypes.register(modBus);
 		
 		logInfo("Registering Entities...");
-		SpectrumTrackedDataHandlerRegistry.register(modBus);
+		SpectrumEntityDataSerializers.register(modBus);
 		SpectrumEntityTypes.register(modBus);
 		
 		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");

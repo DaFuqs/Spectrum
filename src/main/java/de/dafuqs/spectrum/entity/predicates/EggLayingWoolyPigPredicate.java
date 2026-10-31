@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.entity.predicates;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.advancements.critereon.*;
@@ -13,12 +14,13 @@ import org.jspecify.annotations.*;
 
 import java.util.*;
 
-public record EggLayingWoolyPigPredicate(Optional<DyeColor> color, Optional<Boolean> hatless, Optional<Boolean> sheared) implements EntitySubPredicate {
+public record EggLayingWoolyPigPredicate(Optional<InkColor> color, Optional<Boolean> hatless, Optional<Boolean> sheared, Optional<Boolean> eatenColoredGrass) implements EntitySubPredicate {
 	
 	public static final MapCodec<EggLayingWoolyPigPredicate> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-			DyeColor.CODEC.optionalFieldOf("color").forGetter(EggLayingWoolyPigPredicate::color),
+			InkColor.CODEC.optionalFieldOf("color").forGetter(EggLayingWoolyPigPredicate::color),
 			Codec.BOOL.optionalFieldOf("hatless").forGetter(EggLayingWoolyPigPredicate::hatless),
-			Codec.BOOL.optionalFieldOf("sheared").forGetter(EggLayingWoolyPigPredicate::sheared)
+			Codec.BOOL.optionalFieldOf("sheared").forGetter(EggLayingWoolyPigPredicate::sheared),
+			Codec.BOOL.optionalFieldOf("has_eaten_colored_grass").forGetter(EggLayingWoolyPigPredicate::eatenColoredGrass)
 	).apply(instance, EggLayingWoolyPigPredicate::new));
 	
 	@Override
@@ -26,9 +28,10 @@ public record EggLayingWoolyPigPredicate(Optional<DyeColor> color, Optional<Bool
 		if (!(entity instanceof EggLayingWoolyPigEntity wooly)) {
 			return false;
 		} else {
-			return (this.color.isEmpty() || this.color.get() == wooly.getColor())
+			return (this.color.isEmpty() || this.color.equals(wooly.getColor()))
 					&& (this.hatless.isEmpty() || this.hatless.get() == wooly.isHatless())
-					&& (this.sheared.isEmpty() || this.sheared.get() == wooly.isSheared());
+					&& (this.sheared.isEmpty() || this.sheared.get() == wooly.isSheared())
+					&& (this.eatenColoredGrass.isEmpty() || this.eatenColoredGrass.get() == wooly.hasEatenColoredGrass());
 		}
 	}
 	

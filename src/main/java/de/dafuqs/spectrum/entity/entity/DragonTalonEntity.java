@@ -97,9 +97,11 @@ public class DragonTalonEntity extends BidentBaseEntity {
 	
 	private float getDamage(ItemStack stack) {
 		//TODO can we use a built in function for this?
-		var damage = new MutableDouble(0);
+		final var base = getOwner() instanceof Player player
+				? player.getAttributeBaseValue(Attributes.ATTACK_DAMAGE)
+				: 1;
+		var damage = new MutableDouble(base);
 		var key = Attributes.ATTACK_DAMAGE.unwrapKey().orElse(null);
-		var base = Attributes.ATTACK_DAMAGE.value().getDefaultValue();
 		var modifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
 		modifiers.forEach(EquipmentSlot.MAINHAND, (attribute, modifier) -> {
 			if (attribute.is(key)) {
@@ -273,12 +275,12 @@ public class DragonTalonEntity extends BidentBaseEntity {
 		}
 		return false;
 	}
-
+	
 	@Override
 	public @Nullable ItemEntity spawnAtLocation(ItemStack stack) {
 		return null;
 	}
-
+	
 	@Override
 	public @Nullable ItemEntity spawnAtLocation(ItemStack stack, float yOffset) {
 		return null;

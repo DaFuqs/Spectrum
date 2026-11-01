@@ -35,10 +35,11 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	private final boolean hasActiveAbilities;
 	private final float armorPierce, protPierce;
 	
-	public MalachiteBidentItem(Item.Properties settings, double attackSpeed, double damage, float armorPierce, float protPierce, boolean hasActiveAbilities) {
+	public MalachiteBidentItem(Item.Properties settings, double attackSpeed, double damage, double extraReach, float armorPierce, float protPierce, boolean hasActiveAbilities) {
 		super(settings.attributes(ItemAttributeModifiers.builder()
 				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, damage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
 				.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+				.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(SpectrumEntityAttributes.REACH_MODIFIER_ID, extraReach, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
 				.build()));
 		this.armorPierce = armorPierce;
 		this.protPierce = protPierce;

@@ -98,26 +98,38 @@ public class ParametricMiningDeviceBlock extends PlacedItemBlock {
 		
 		if ((level.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
 			ItemStack stack = blockEntity.getStack();
-			
 			Direction facing = state.getValue(FACING);
-			int powerLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), Enchantments.POWER, stack);
-			BlockPos explosionPos = pos.relative(facing.getOpposite(), (ExplosionWithStack.BASE_EXPLOSION_LEVEL + powerLevel) / 2);
+			explodeTowardsPosition(facing.getOpposite(), level, pos, player, stack);
+		}
+		
+		return InteractionResult.CONSUME;
+	}
+	
+	public static void explodeTowardsPosition(Direction direction, Level level, BlockPos pos, Player player, ItemStack stack) {
+		
+		int powerLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), Enchantments.POWER, stack);
+		
+		List<BlockPos> explosionPositions = new ArrayList<>();
+		for(int i = 0; i < powerLevel + 1; i++) {
+			explosionPositions.add(pos.relative(direction, 2 * i));
+		}
+		
+		for(BlockPos explosionPos : explosionPositions) {
 			Vec3 explosionCenter = Vec3.atCenterOf(explosionPos);
 			
 			level.removeBlock(pos, false);
-			// if explosions spawn inside a block they just destroy that block and nothing else
-			// so if that block is not explosion resistant, we yeet it
+			// if explosions spawn inside a block, they just destroy that block and nothing else,
+			// so if that block is not explosion-resistant, we yeet it
 			if (level.getBlockState(explosionPos).getBlock().getExplosionResistance() < 50) {
 				level.removeBlock(explosionPos, false);
 			}
 			ExplosionWithStack.explode((ServerLevel) level, player, stack, explosionCenter, false);
-			
-			if(ExplosionWithStack.shouldPreserveExplosive(level, stack)) {
-				level.addFreshEntity(new ItemEntity(level, explosionCenter.x, explosionCenter.y, explosionCenter.z, stack));
-			}
 		}
 		
-		return InteractionResult.CONSUME;
+		if(ExplosionWithStack.shouldPreserveExplosive(level, stack)) {
+			Vec3 dropPos = explosionPositions.getLast().getCenter();
+			level.addFreshEntity(new ItemEntity(level, dropPos.x(), dropPos.y(), dropPos.z(), stack));
+		}
 	}
 	
 }

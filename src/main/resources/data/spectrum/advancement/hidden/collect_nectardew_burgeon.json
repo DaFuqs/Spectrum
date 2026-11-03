@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "has_nectardew_burgeon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "spectrum:nectardew_burgeon"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -26,14 +26,14 @@ public class EnchantedBookUnsoulingRecipe extends PrimordialFireBurningRecipe {
 	}
 	
 	@Override
-	public boolean matches(RecipeInput inv, Level world) {
+	public boolean matches(SingleRecipeInput inv, Level world) {
 		ItemStack stack = inv.getItem(0);
 		Holder.Reference<Enchantment> soulSpeed = world.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolder(Enchantments.SOUL_SPEED).orElseThrow();
 		return stack.getEnchantments().keySet().contains(soulSpeed);
 	}
 	
 	@Override
-	public ItemStack assemble(RecipeInput inv, HolderLookup.Provider drm) {
+	public ItemStack assemble(SingleRecipeInput inv, HolderLookup.Provider drm) {
 		ItemStack stack = inv.getItem(0);
 		
 		Holder.Reference<Enchantment> soulSpeed = drm.asGetterLookup().get(Registries.ENCHANTMENT, Enchantments.SOUL_SPEED).orElseThrow();

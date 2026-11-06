@@ -25,6 +25,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.blocks.present.*;
+import de.dafuqs.spectrum.blocks.primordial_campfire.*;
 import de.dafuqs.spectrum.blocks.redstone.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
@@ -113,6 +114,7 @@ public class SpectrumBlockEntities {
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PreservationBlockDetectorBlockEntity>> PRESERVATION_BLOCK_DETECTOR = register("preservation_block_detector", PreservationBlockDetectorBlockEntity::new, SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<DeepLightBlockEntity>> DEEP_LIGHT = register("deep_light", DeepLightBlockEntity::new, SpectrumBlocks.DEEP_LIGHT_CHISELED_PRESERVATION_STONE);
 	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PlayerTrackerBlockEntity>> PLAYER_TRACKING = register("player_tracking", PlayerTrackerBlockEntity::new, SpectrumBlocks.MANXI, SpectrumBlocks.PRESERVATION_ITEM_BOWL);
+	public static DeferredHolder<BlockEntityType<?>, BlockEntityType<PrimordialCampfireBlockEntity>> PRIMORDIAL_CAMPFIRE = register("primordial_campfire", PrimordialCampfireBlockEntity::new, SpectrumBlocks.PRIMORDIAL_CAMPFIRE);
 	
 	@SafeVarargs
 	private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block>... blocks) {
@@ -188,29 +190,29 @@ public class SpectrumBlockEntities {
 	}
 	
 	public static void registerClient(FMLClientSetupEvent event) {
-		BlockEntityRenderers.register(SpectrumBlockEntities.PEDESTAL.get(), PedestalBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.BOTTOMLESS_BUNDLE.get(), BottomlessBundleBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.HEARTBOUND_CHEST.get(), HeartboundChestBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.COMPACTING_CHEST.get(), CompactingChestBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.FABRICATION_CHEST.get(), FabricationChestBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_CHEST.get(), SpectrumChestBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.BLACK_HOLE_CHEST.get(), BlackHoleChestBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.UPGRADE_BLOCK.get(), UpgradeBlockBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.FUSION_SHRINE.get(), FusionShrineBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.ENCHANTER.get(), EnchanterBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.ITEM_BOWL.get(), ItemBowlBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.ITEM_ROUNDEL.get(), ItemRoundelBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_ROUNDEL.get(), ItemRoundelBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.SKULL.get(), SpectrumSkullBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.SPIRIT_INSTILLER.get(), SpiritInstillerBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.JADE_VINE_ROOTS.get(), JadeVineRootsBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.CRYSTALLARIEUM.get(), CrystallarieumBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.COLOR_PICKER.get(), ColorPickerBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.PRESERVATION_CONTROLLER.get(), PreservationControllerBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.PROJECTOR.get(), ProjectorBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.DEEP_LIGHT.get(), DeepLightBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.PLAYER_TRACKING.get(), PlayerTrackingBlockEntityRenderer::new);
-		BlockEntityRenderers.register(SpectrumBlockEntities.PASTEL_NODE.get(), PastelNodeBlockEntityRenderer::new);
+		BlockEntityRenderers.register(PEDESTAL.get(), PedestalBlockEntityRenderer::new);
+		BlockEntityRenderers.register(BOTTOMLESS_BUNDLE.get(), BottomlessBundleBlockEntityRenderer::new);
+		BlockEntityRenderers.register(HEARTBOUND_CHEST.get(), HeartboundChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(COMPACTING_CHEST.get(), CompactingChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(FABRICATION_CHEST.get(), FabricationChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(PRESERVATION_CHEST.get(), SpectrumChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(BLACK_HOLE_CHEST.get(), BlackHoleChestBlockEntityRenderer::new);
+		BlockEntityRenderers.register(UPGRADE_BLOCK.get(), UpgradeBlockBlockEntityRenderer::new);
+		BlockEntityRenderers.register(FUSION_SHRINE.get(), FusionShrineBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ENCHANTER.get(), EnchanterBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ITEM_BOWL.get(), ItemBowlBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ITEM_ROUNDEL.get(), ItemRoundelBlockEntityRenderer::new);
+		BlockEntityRenderers.register(PRESERVATION_ROUNDEL.get(), ItemRoundelBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SKULL.get(), SpectrumSkullBlockEntityRenderer::new);
+		BlockEntityRenderers.register(SPIRIT_INSTILLER.get(), SpiritInstillerBlockEntityRenderer::new);
+		BlockEntityRenderers.register(JADE_VINE_ROOTS.get(), JadeVineRootsBlockEntityRenderer::new);
+		BlockEntityRenderers.register(CRYSTALLARIEUM.get(), CrystallarieumBlockEntityRenderer::new);
+		BlockEntityRenderers.register(COLOR_PICKER.get(), ColorPickerBlockEntityRenderer::new);
+		BlockEntityRenderers.register(PRESERVATION_CONTROLLER.get(), PreservationControllerBlockEntityRenderer::new);
+		BlockEntityRenderers.register(PROJECTOR.get(), ProjectorBlockEntityRenderer::new);
+		BlockEntityRenderers.register(PLAYER_TRACKING.get(), PlayerTrackingBlockEntityRenderer::new);
+		BlockEntityRenderers.register(PASTEL_NODE.get(), PastelNodeBlockEntityRenderer::new);
+		BlockEntityRenderers.register(PRIMORDIAL_CAMPFIRE.get(), PrimordialCampfireBlockEntityRenderer::new);
 	}
 	
 }

@@ -20,12 +20,12 @@ public class MemoryDementiaRecipe extends PrimordialFireBurningRecipe {
 	}
 	
 	@Override
-	public boolean matches(RecipeInput inv, Level world) {
+	public boolean matches(SingleRecipeInput inv, Level world) {
 		return inv.getItem(0).has(SpectrumDataComponentTypes.MEMORY);
 	}
 	
 	@Override
-	public ItemStack assemble(RecipeInput inv, HolderLookup.Provider drm) {
+	public ItemStack assemble(SingleRecipeInput inv, HolderLookup.Provider drm) {
 		ItemStack stack = inv.getItem(0);
 		stack.remove(SpectrumDataComponentTypes.MEMORY);
 		return stack;

@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "basic",
+  "colors": {
+    "spectrum:yellow": 8
+  },
+  "experience": 2.0,
+  "pattern": [
+    " S ",
+    "S#S",
+    "LLL"
+  ],
+  "key": {
+    "#": "spectrum:doombloom_seed",
+    "L": "#minecraft:logs",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "spectrum:primordial_campfire",
+    "count": 1
+  },
+  "required_advancement": "spectrum:hidden/interact_with_doombloom"
+}

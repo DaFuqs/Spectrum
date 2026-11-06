@@ -586,7 +586,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		if (blockEntity.currentRecipe.value() instanceof EnchanterRecipe recipe) {
 			return recipe.matches(blockEntity.virtualInventory.createInput(), world);
 		} else if (blockEntity.currentRecipe.value() instanceof EnchantmentUpgradeRecipe recipe) {
-			return recipe.matches(blockEntity.virtualInventory.createInput(), world);
+			return recipe.matches(blockEntity.virtualInventory.createInput(), world) && (blockEntity.canOwnerOverenchant || recipe.isInNormalRange(getLevel(blockEntity, recipe)));
 		}
 		return false;
 	}

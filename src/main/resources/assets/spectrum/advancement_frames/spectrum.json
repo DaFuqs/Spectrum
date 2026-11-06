@@ -128,6 +128,10 @@
     "frame": "spectrum:pile_of_poo"
   },
   {
+    "advancement": "spectrum:lategame/get_killed_while_out_of_conservatory_bounds",
+    "frame": "spectrum:pile_of_poo"
+  },
+  {
     "advancement": "spectrum:lategame/wear_both_gravity_trinkets",
     "frame": "spectrum:pile_of_poo"
   },

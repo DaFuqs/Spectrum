@@ -1751,7 +1751,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.YELLOW_CHISELED_PRESERVATION_STONE);
 					
 					entries.accept(SpectrumBlocks.INVISIBLE_WALL);
-					entries.accept(SpectrumBlocks.COURIER_STATUE);
 					entries.accept(SpectrumBlocks.PRESERVATION_CHEST);
 					
 					entries.accept(SpectrumItems.DIVINATION_HEART);

@@ -5,19 +5,20 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.config.*;
 import net.minecraft.util.*;
 
-public record EnvironmentalData(float environmentalLightingMultiplier, float fogBrightnessMultiplier, float nearFogDistanceMultiplier, float farFogDistanceMultiplier) {
+public record EnvironmentalData(boolean ultradark, float environmentalLightingMultiplier, float fogBrightnessMultiplier, float nearFogDistanceMultiplier, float farFogDistanceMultiplier) {
 	
-	public static final EnvironmentalData NOOP = new EnvironmentalData(1F, 1F, 1F, 1F);
+	public static final EnvironmentalData NOOP = new EnvironmentalData(false, 1F, 1F, 1F, 1F);
 	
 	public static final Codec<EnvironmentalData> CODEC = RecordCodecBuilder.create(i -> i.group(
+			Codec.BOOL.fieldOf("ultradark").forGetter(EnvironmentalData::ultradark),
 			Codec.FLOAT.fieldOf("environmental_lighting_multiplier").forGetter(EnvironmentalData::environmentalLightingMultiplier),
 			ExtraCodecs.POSITIVE_FLOAT.fieldOf("fog_brightness_multiplier").forGetter(EnvironmentalData::fogBrightnessMultiplier),
 			Codec.FLOAT.fieldOf("fog_near_multiplier").forGetter(EnvironmentalData::nearFogDistanceMultiplier),
 			Codec.FLOAT.fieldOf("fog_far_multiplier").forGetter(EnvironmentalData::farFogDistanceMultiplier)
 	).apply(i, EnvironmentalData::new));
 	
-	public static EnvironmentalData fromArray(float[] data) {
-		return new EnvironmentalData(data[0], data[1], data[2], data[3]);
+	public static EnvironmentalData of(boolean ultradark, float[] data) {
+		return new EnvironmentalData(ultradark, data[0], data[1], data[2], data[3]);
 	}
 	
 	public float[] asArray() {

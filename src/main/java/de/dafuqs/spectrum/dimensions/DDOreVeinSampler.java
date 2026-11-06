@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.deeper_down;
+package de.dafuqs.spectrum.dimensions;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.util.*;

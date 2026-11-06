@@ -15,6 +15,7 @@ public class SpectrumStructureTags {
 	public static final TagKey<Structure> MYSTERIOUS_COMPASS_LOCATED = of("mysterious_compass_located");
 	public static final TagKey<Structure> ON_SURVEILLANCE_MAPS = of("on_surveillance_maps");
 	public static final TagKey<Structure> UNLOCATABLE = of("unlocatable");
+	public static final TagKey<Structure> END_CITIES = of("end_cities");
 	
 	private static TagKey<Structure> of(String id) {
 		return TagKey.create(Registries.STRUCTURE, SpectrumCommon.locate(id));

@@ -275,6 +275,9 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.ENDER_HOPPER);
 					entries.accept(SpectrumBlocks.ENDER_DROPPER);
 					
+					entries.accept(SpectrumBlocks.PRIMORDIAL_CAMPFIRE);
+					entries.accept(SpectrumBlocks.PRIMORDIAL_BRAZIER);
+					
 					entries.accept(SpectrumBlocks.PARTICLE_SPAWNER);
 					
 					entries.accept(SpectrumBlocks.GLISTERING_MELON);

@@ -1740,6 +1740,7 @@
   "block.spectrum.primordial_fire": "Primordial Fire",
   "block.spectrum.primordial_torch": "Primordial Torch",
   "block.spectrum.primordial_campfire": "Primordial Campfire",
+  "block.spectrum.primordial_brazier": "Primordial Brazier",
   "block.spectrum.prismarine_cluster": "Prismarine Cluster",
   "block.spectrum.pristine_shooting_star": "Pristine Shooting Star",
   "block.spectrum.projectile_idol.tooltip": "§7Shoots a %s",

@@ -389,6 +389,7 @@ public class SpectrumBlocks {
 	public static final DeferredBlock<Block> PRIMORDIAL_WALL_TORCH = register(defaultEastHorizontalFacing(block("primordial_wall_torch", () -> new WallTorchBlock(SpectrumParticleTypes.PRIMORDIAL_FLAME, BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_WALL_TORCH).lightLevel(s -> 13))), ModelLocationUtils::getModelLocation));
 	public static final DeferredBlock<TorchBlock> PRIMORDIAL_TORCH = register(singletonWithSoup(blockWithItem("primordial_torch", () -> new TorchBlock(SpectrumParticleTypes.PRIMORDIAL_FLAME, BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_TORCH).lightLevel(s -> 13)), block -> new StandingAndWallBlockItem(block, PRIMORDIAL_WALL_TORCH.get(), IS.of(), Direction.DOWN)), ModelLocationUtils::getModelLocation).withItemModel(SpectrumModelHelper::registerItemModel));
 	public static final DeferredBlock<PrimordialCampfireBlock> PRIMORDIAL_CAMPFIRE = register(blockWithItem("primordial_campfire", () -> new PrimordialCampfireBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).lightLevel(value -> value.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion().ignitedByLava())));
+	public static final DeferredBlock<PrimordialBrazierBlock> PRIMORDIAL_BRAZIER = register(blockWithItem("primordial_brazier", () -> new PrimordialBrazierBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).strength(2.0F).sound(SoundType.METAL).lightLevel(value -> value.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion())));
 	
 	public static <T extends Block> BlockRegistrar<T> moonstoneChiseled(BlockRegistrar<T> registrar, ResourceLocation capTexture) {
 		return registrar.withBlockItemModel((ctx, block) -> SpectrumModelHelper.registerParentedItemModel(ctx, block, block, "_down")).withBlockModel((ctx, block) -> {
@@ -2985,6 +2986,7 @@ public class SpectrumBlocks {
 		ItemBlockRenderTypes.setRenderLayer(YELLOW_GRASS_BLOCK.get(), RenderType.cutoutMipped());
 		
 		ItemBlockRenderTypes.setRenderLayer(PRIMORDIAL_CAMPFIRE.get(), RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(PRIMORDIAL_BRAZIER.get(), RenderType.cutout());
 	}
 	
 }

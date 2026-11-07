@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "inverted=false,lit=false": {
+      "model": "spectrum:block/primordial_brazier"
+    },
+    "inverted=false,lit=true": {
+      "model": "spectrum:block/primordial_brazier_lit"
+    },
+    "inverted=true,lit=false": {
+      "model": "spectrum:block/primordial_brazier_lit"
+    },
+    "inverted=true,lit=true": {
+      "model": "spectrum:block/primordial_brazier"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
+import net.minecraft.world.level.block.state.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.fml.loading.*;
 import org.jspecify.annotations.*;
@@ -110,6 +112,11 @@ public class PaintbrushItem extends Item implements SignApplicator {
 	
 	@Override
 	public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
+		BlockState state = context.getLevel().getBlockState(context.getClickedPos());
+		if(state.getBlock() instanceof PaintbrushTriggered paintbrushTriggered) {
+			return paintbrushTriggered.checkAndDoPaintbrushTrigger(state, context.getLevel(), context.getClickedPos(), context.getPlayer(), context.getHand()).result();
+		}
+		
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
 			return InteractionResult.sidedSuccess(context.getLevel().isClientSide());
 		}

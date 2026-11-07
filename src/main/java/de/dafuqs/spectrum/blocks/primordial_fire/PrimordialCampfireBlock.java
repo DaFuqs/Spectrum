@@ -39,9 +39,8 @@ public class PrimordialCampfireBlock extends CampfireBlock {
 		}
 	}
 	
-	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(LIT);
+		builder.add(LIT, SIGNAL_FIRE, WATERLOGGED, FACING);
 	}
 	
 	@Override

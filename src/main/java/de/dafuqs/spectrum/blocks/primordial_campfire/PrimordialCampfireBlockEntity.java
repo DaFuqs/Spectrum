@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.primordial_campfire;
 
+import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -75,7 +76,7 @@ public class PrimordialCampfireBlockEntity extends BlockEntity {
 		for(int i = 0; i < blockEntity.items.size(); ++i) {
 			if (blockEntity.cookingProgress[i] > 0) {
 				flag = true;
-				blockEntity.cookingProgress[i] = Mth.clamp(blockEntity.cookingProgress[i] - 2, 0, blockEntity.cookingTime[i]);
+				blockEntity.cookingProgress[i] = Mth.clamp(blockEntity.cookingProgress[i] - BURN_COOL_SPEED, 0, blockEntity.cookingTime[i]);
 			}
 		}
 		
@@ -89,7 +90,7 @@ public class PrimordialCampfireBlockEntity extends BlockEntity {
 		RandomSource randomsource = level.random;
 		if (randomsource.nextFloat() < 0.11F) {
 			for(int i = 0; i < randomsource.nextInt(2) + 2; ++i) {
-				CampfireBlock.makeParticles(level, pos, state.getValue(CampfireBlock.SIGNAL_FIRE), false);
+				PrimordialCampfireBlock.makeParticles(level, pos, state.getValue(CampfireBlock.SIGNAL_FIRE), false);
 			}
 		}
 		
@@ -104,7 +105,7 @@ public class PrimordialCampfireBlockEntity extends BlockEntity {
 				double d2 = (double)pos.getZ() + (double)0.5F - (double)((float)direction.getStepZ() * f) + (double)((float)direction.getClockWise().getStepZ() * f);
 				
 				for(int k = 0; k < 4; ++k) {
-					level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0F, 5.0E-4, 0.0F);
+					level.addParticle(SpectrumParticleTypes.PRIMORDIAL_SMOKE, d0, d1, d2, 0.0F, 5.0E-4, 0.0F);
 				}
 			}
 		}

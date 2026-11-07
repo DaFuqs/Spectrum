@@ -48,7 +48,7 @@ public class PrimordialFireBlock extends BaseFireBlock {
 	private static final VoxelShape SOUTH_SHAPE = Block.box(0.0, 0.0, 15.0, 16.0, 16.0, 16.0);
 	
 	private final Map<BlockState, VoxelShape> shapesByState;
-	private static final float DAMAGE = 0.2F;
+	public static final float DAMAGE = 0.2F;
 	
 	public PrimordialFireBlock(Properties settings) {
 		super(settings, DAMAGE);

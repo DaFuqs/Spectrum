@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.blocks.primordial_campfire;
 
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -31,10 +33,10 @@ import java.util.*;
 
 public class PrimordialCampfireBlock extends CampfireBlock {
 	
-	private static final int RECIPE_COOK_TIME = 100;
+	private static final int RECIPE_COOK_TIME = 300;
 	
 	public PrimordialCampfireBlock(Properties properties) {
-		super(false, 1, properties);
+		super(false, 4, properties);
 	}
 	
 	@Override
@@ -106,6 +108,15 @@ public class PrimordialCampfireBlock extends CampfireBlock {
 		}
 		
 		level.gameEvent(entity, GameEvent.BLOCK_CHANGE, pos);
+	}
+	
+	public static void makeParticles(Level level, BlockPos pos, boolean isSignalFire, boolean spawnExtraSmoke) {
+		RandomSource randomsource = level.getRandom();
+		SimpleParticleType simpleparticletype = isSignalFire ? SpectrumParticleTypes.PRIMORDIAL_SIGNAL_SMOKE : SpectrumParticleTypes.PRIMORDIAL_COSY_SMOKE;
+		level.addAlwaysVisibleParticle(simpleparticletype, true, (double)pos.getX() + (double)0.5F + randomsource.nextDouble() / (double)3.0F * (double)(randomsource.nextBoolean() ? 1 : -1), (double)pos.getY() + randomsource.nextDouble() + randomsource.nextDouble(), (double)pos.getZ() + (double)0.5F + randomsource.nextDouble() / (double)3.0F * (double)(randomsource.nextBoolean() ? 1 : -1), (double)0.0F, 0.07, (double)0.0F);
+		if (spawnExtraSmoke) {
+			level.addParticle(SpectrumParticleTypes.PRIMORDIAL_SMOKE, (double)pos.getX() + (double)0.5F + randomsource.nextDouble() / (double)4.0F * (double)(randomsource.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4, (double)pos.getZ() + (double)0.5F + randomsource.nextDouble() / (double)4.0F * (double)(randomsource.nextBoolean() ? 1 : -1), (double)0.0F, 0.005, (double)0.0F);
+		}
 	}
 	
 	@Override

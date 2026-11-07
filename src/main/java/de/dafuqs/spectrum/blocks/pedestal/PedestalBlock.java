@@ -94,17 +94,10 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		ItemInteractionResult actionResult = checkAndDoPaintbrushTrigger(state, world, pos, player, hand, hit);
-		if (actionResult.consumesAction()) {
-			return actionResult;
-		}
-
-        if (world.isClientSide()) {
-            return ItemInteractionResult.SUCCESS;
-        } else {
+        if (!world.isClientSide()) {
             this.openScreen(world, pos, player);
-            return ItemInteractionResult.CONSUME;
         }
+		return ItemInteractionResult.sidedSuccess(world.isClientSide);
 	}
 	
 	protected void openScreen(Level world, BlockPos pos, Player player) {
@@ -217,7 +210,7 @@ public class PedestalBlock extends BaseEntityBlock implements RedstonePoweredBlo
 	}
 	
 	@Override
-	public ItemInteractionResult onPaintBrushTrigger(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	public ItemInteractionResult onPaintBrushTrigger(BlockState state, Level world, BlockPos pos, @Nullable Player player, InteractionHand hand) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
 			if (pedestalBlockEntity.propertyDelegate.craftingTime > 0) {

@@ -1,21 +1,16 @@
-package de.dafuqs.spectrum.blocks.primordial_campfire;
+package de.dafuqs.spectrum.blocks.primordial_fire;
 
-import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.sounds.*;
-import net.minecraft.stats.*;
-import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
-import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.context.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
@@ -24,9 +19,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.*;
 import net.minecraft.world.level.material.*;
-import net.minecraft.world.level.pathfinder.*;
 import net.minecraft.world.phys.*;
-import net.minecraft.world.phys.shapes.*;
 
 import javax.annotation.*;
 import java.util.*;
@@ -44,6 +37,11 @@ public class PrimordialCampfireBlock extends CampfireBlock {
 		if (state.getValue(LIT) && entity instanceof LivingEntity) {
 			entity.hurt(SpectrumDamageTypes.primordialFire(level), 4);
 		}
+	}
+	
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(LIT);
 	}
 	
 	@Override

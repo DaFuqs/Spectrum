@@ -1,11 +1,10 @@
-package de.dafuqs.spectrum.blocks.primordial_campfire;
+package de.dafuqs.spectrum.blocks.primordial_fire;
 
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
-import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.util.*;

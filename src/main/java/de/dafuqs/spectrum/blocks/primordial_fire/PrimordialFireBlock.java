@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.primordial_fire;
 
 import com.google.common.collect.*;
 import com.mojang.serialization.*;

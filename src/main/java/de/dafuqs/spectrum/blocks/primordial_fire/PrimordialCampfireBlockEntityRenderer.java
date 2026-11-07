@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.primordial_campfire;
+package de.dafuqs.spectrum.blocks.primordial_fire;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.*;
 
 public class PrimordialCampfireBlockEntityRenderer implements BlockEntityRenderer<PrimordialCampfireBlockEntity> {
 	

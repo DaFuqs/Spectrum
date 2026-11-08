@@ -185,7 +185,7 @@ public class PedestalScreenHandler extends RecipeBookMenu<RecipeInput, Recipe<Re
 		ItemStack clickedStackCopy = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		
-		blockEntity.setInventoryChanged();
+		blockEntity.inventoryChanged();
 		
 		if (slot.hasItem()) {
 			ItemStack clickedStack = slot.getItem();

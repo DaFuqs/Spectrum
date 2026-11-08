@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
@@ -94,8 +95,8 @@ public class ItemBowlBlock extends InWorldInteractionBlock {
 	public static void updateConnectedMultiBlocks(Level world, BlockPos pos) {
 		for (Vec3i offset : POSSIBLE_CRAFTER_OFFSETS) {
 			BlockEntity blockEntity = world.getBlockEntity(pos.offset(offset));
-			if (blockEntity instanceof InWorldInteractionBlockEntity inWorldInteractionBlockEntity) {
-				inWorldInteractionBlockEntity.inventoryChanged();
+			if (blockEntity instanceof MultiblockCrafter multiblock) {
+				multiblock.inventoryChanged();
 				break;
 			}
 		}

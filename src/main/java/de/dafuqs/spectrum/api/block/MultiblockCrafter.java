@@ -77,4 +77,6 @@ public interface MultiblockCrafter extends Upgradeable, PlayerOwned {
 		world.addFreshEntity(itemEntity);
 	}
 	
+	void inventoryChanged();
+	
 }

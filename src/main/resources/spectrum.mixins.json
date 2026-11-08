@@ -110,7 +110,8 @@
     "client.SoundSystemMixin",
     "client.TranslucentBlockMixin",
     "client.accessors.ParticleManagerAccessor",
-    "client.accessors.SourceAccessor"
+    "client.accessors.SourceAccessor",
+    "client.compat.modonomicon.present.BookCraftingRecipePageRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

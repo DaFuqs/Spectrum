@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.*;
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.attachment_types.*;
 import de.dafuqs.spectrum.inventories.widgets.ink.*;
@@ -16,6 +17,8 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.*;
 import org.jspecify.annotations.*;
+
+import java.util.*;
 
 
 public class HudRenderers {
@@ -35,7 +38,7 @@ public class HudRenderers {
 	// PAINTBRUSH INFO
 	public static final ResourceLocation PAINTBRUSH_INFO_OVERLAY_ID = SpectrumCommon.locate("paintbrush_info");
 	public static @Nullable InkCapability hoveredCapability = null;
-	
+	public static @Nullable PaintbrushHoverInfo paintbrushHoverInfo = null;
 	
 	public static void register(RegisterGuiLayersEvent event) {
 		event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, AZURE_DIKE_OVERLAY_ID, new AzureDikeLayer());
@@ -65,6 +68,22 @@ public class HudRenderers {
 				StackedInkBarWidget stackedInkBarWidget = new StackedInkBarWidget(80, -21, () -> hoveredCapability).setThickOutline();
 				stackedInkBarWidget.render(guiGraphics, 0, 0, partialTick);
 				poseStack.popPose();
+			}
+			if(paintbrushHoverInfo != null) {
+				List<Component> info = paintbrushHoverInfo.getPaintbrushHoverInfo(Minecraft.getInstance().player.isCreative() && Minecraft.getInstance().options.advancedItemTooltips);
+				if(!info.isEmpty()) {
+					Minecraft client = Minecraft.getInstance();
+					Window window = client.getWindow();
+					int x = window.getGuiScaledWidth() / 2 + 3;
+					int y = window.getGuiScaledHeight() / 2 + (hoveredCapability == null ? 3 : 46);
+					
+					var textRenderer = client.font;
+					int i = 0;
+					for(Component c : info) {
+						drawContext.drawString(textRenderer, c, x + 18, y + 19 * i, 0xDDDDDD, false);
+						i++;
+					}
+				}
 			}
 		}
 	}
@@ -106,7 +125,7 @@ public class HudRenderers {
 				
 				ResourceLocation texture = AzureDikeAttachmentType.AZURE_DIKE_BAR_TEXTURE;
 				
-				y += hasArmor ? -10 : 0; // TODO: verify
+				y += hasArmor ? -10 : 0;
 				
 				RenderSystem.enableBlend();
 				

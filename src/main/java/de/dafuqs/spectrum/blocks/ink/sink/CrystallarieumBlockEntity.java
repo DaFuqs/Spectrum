@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
@@ -14,6 +15,7 @@ import de.dafuqs.spectrum.render.animation.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.entity.item.*;
@@ -24,10 +26,11 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.fluids.capability.templates.*;
 import org.jspecify.annotations.*;
+import vazkii.botania.common.helper.*;
 
 import java.util.*;
 
-public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, InkStorageBlockEntity<IndividualCappedInkStorage>, SpectrumFluidTank.Callback {
+public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, InkStorageBlockEntity<IndividualCappedInkStorage>, SpectrumFluidTank.Callback, PaintbrushHoverInfo {
 	
 	private final static FlowAnimator.Factory<CrystallarieumBlockEntity> FACTORY;
 	
@@ -133,10 +136,10 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		int inkCostBase = recipe.value().getInkCost();
 		if(inkCostBase > 0) {
 			float consumedInkFloat = inkCostBase * crystallarieum.currentAdditive.growthAccelerationMod() * crystallarieum.currentAdditive.inkConsumptionMod();
-			int inkToConsume = Support.getIntFromDecimalWithChance(consumedInkFloat, level.getRandom());
+			int inkToConsume = Math.max(1, Support.getIntFromDecimalWithChance(consumedInkFloat, level.getRandom()));
 			if (crystallarieum.inkStorage.drainEnergy(recipe.value().getInkColor(), inkToConsume) < inkToConsume) {
-				crystallarieum.canWork = false;
 				crystallarieum.setInkDirty();
+				crystallarieum.canWork = false;
 				crystallarieum.updateInClientWorld();
 				return;
 			}
@@ -388,6 +391,22 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	@Override
 	public void onFluidContentsChanged() {
 		this.inventoryChanged();
+	}
+	
+	@Override
+	public List<Component> getPaintbrushHoverInfo(boolean includeDebugInfo) {
+		if(currentRecipe == null) {
+			return List.of(Component.translatable("spectrum.hover.no_valid_recipe"));
+		}
+		if(currentAdditive == CrystallarieumAdditive.EMPTY && !currentRecipe.value().growsWithoutAdditive()) {
+			return List.of(Component.translatable("spectrum.hover.missing_additive"));
+		}
+		if(!canWork) {
+			return List.of(Component.translatable("spectrum.hover.missing_something" , currentRecipe.value().getInkColor().getColoredInkName()));
+		}
+		return List.of(
+			Component.translatable("spectrum.hover.progress_percent", Support.getSensiblePercentString(this.currentGrowthStageTicks, currentRecipe.value().getSecondsPerGrowthStage() * SECOND))
+		);
 	}
 	
 }

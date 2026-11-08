@@ -6343,6 +6343,11 @@
   "book.spectrum.guidebook.symbolics.page2.text": "There's a lot of pigment in one jar. I can get four blocks from each one!",
   "book.spectrum.guidebook.symbolics.page3.text": "Despite the looks, these are basically just Polished blocks. They work fine as the base of a structure.",
 
+  "spectrum.hover.no_valid_recipe": "❌ No valid recipe",
+  "spectrum.hover.missing_additive": "❌ Missing Additive",
+  "spectrum.hover.missing_something": "⏸ Missing %s",
+  "spectrum.hover.progress_percent": "▶ Progress: %s%%",
+
   "______done_until_here": "TODO:",
   "advancements.spectrum.craft_energy_collector.title": "Roger That",
   "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from a geodes",

@@ -4,6 +4,7 @@ import com.mojang.blaze3d.shaders.*;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.interaction.*;
@@ -182,6 +183,7 @@ public class SpectrumClientEventListeners {
 	@SubscribeEvent
 	private static void afterClientTick(ClientTickEvent.Post event) {
 		HudRenderers.hoveredCapability = null;
+		HudRenderers.paintbrushHoverInfo = null;
 		
 		Minecraft client = Minecraft.getInstance();
 		ClientLevel world = client.level;
@@ -316,17 +318,19 @@ public class SpectrumClientEventListeners {
 		
 		for (ItemStack handStack : client.player.getHandSlots()) {
 			switch (handStack.getItem()) {
-				case PaintbrushItem paintbrushItem:
+				case PaintbrushItem ignored:
 					InkCapability inkCapability = client.level.getCapability(InkCapabilities.BLOCK, target.getBlockPos());
 					if (inkCapability != null) {
 						HudRenderers.hoveredCapability = inkCapability;
-						return;
 					}
-					break;
-				case ConstructorsStaffItem constructorsStaffItem:
+					if (client.level.getBlockEntity(target.getBlockPos()) instanceof PaintbrushHoverInfo paintbrushHoverInfo) {
+						HudRenderers.paintbrushHoverInfo = paintbrushHoverInfo;
+					}
+					return;
+				case ConstructorsStaffItem ignored:
 					event.setCanceled(renderPlacementStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), target));
 					return;
-				case ExchangeStaffItem exchangeStaffItem:
+				case ExchangeStaffItem ignored:
 					event.setCanceled(renderExchangeStaffOutline(client, event.getPoseStack(), camera, camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, event.getMultiBufferSource(), handStack, target));
 					return;
 				default:

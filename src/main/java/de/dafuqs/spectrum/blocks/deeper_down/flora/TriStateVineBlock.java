@@ -191,6 +191,10 @@ public abstract class TriStateVineBlock extends BushBlock implements Bonemealabl
 			world.scheduleTick(pos, this, 1);
 		}
 		
+		if (direction == Direction.DOWN && neighborState.getBlock() == state.getBlock()) {
+			world.setBlock(pos, state.setValue(LIFE_STAGE, LifeStage.STALK), 3);
+		}
+		
 		return state;
 	}
 	

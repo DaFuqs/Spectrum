@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 800,
+  "tier": "simple",
+  "colors": {
+    "spectrum:yellow": 8,
+    "spectrum:black": 2
+  },
+  "experience": 2.0,
+  "pattern": [
+    "GIG",
+    "IDI",
+    "GRG"
+  ],
+  "key": {
+    "D": "spectrum:doombloom_seed",
+    "G": "minecraft:gold_ingot",
+    "I": "minecraft:iron_ingot",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "spectrum:primordial_brazier",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/blocks/primordial_brazier"
+}

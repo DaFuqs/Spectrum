@@ -68,7 +68,6 @@ public interface ItemProjectileBehavior {
 	 * @param hitResult  The EntityHitResult. Contains the entity hit and position
 	 * @return The stack that should be dropped. If the stack has a count > 0, it automatically gets dropped at the position of the impact. If the item should get consumed, decrement the stack from the parameters and return it here
 	 */
-	// TODO: check and use return value
 	ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult);
 	
 	/**
@@ -80,7 +79,6 @@ public interface ItemProjectileBehavior {
 	 * @param hitResult  The EntityHitResult. Contains the entity hit and position
 	 * @return The stack that should be dropped. If the stack has a count > 0, it automatically gets dropped at the position of the impact. If the item should get consumed, decrement the stack from the parameters and return it here
 	 */
-	// TODO: check and use return value
 	ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult);
 	
 	static ItemProjectileBehavior damaging(float damage, boolean destroyItemOnHit) {
@@ -100,7 +98,7 @@ public interface ItemProjectileBehavior {
 	class Default implements ItemProjectileBehavior {
 		
 		@Override
-		public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, EntityHitResult hitResult) {
+		public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
 			Entity target = hitResult.getEntity();
 			
 			if (target instanceof Player player && (player.isCreative() || player.isSpectator())) {
@@ -141,16 +139,14 @@ public interface ItemProjectileBehavior {
 		}
 		
 		@Override
-		public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, BlockHitResult hitResult) {
+		public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
 			Level world = projectile.level();
 			BlockPos hitPos = hitResult.getBlockPos();
 			
-			hitResult.withDirection(hitResult.getDirection());
 			Direction facing = hitResult.getDirection().getOpposite();
-			BlockPos placementPos = hitPos.relative(facing.getOpposite());
-			Direction placementDirection = world.isEmptyBlock(placementPos.below()) ? facing : Direction.UP;
+			Direction placementDirection = world.isEmptyBlock(hitPos.below()) ? facing : Direction.UP;
 			
-			if (!GenericClaimModsCompat.canPlaceBlock(world, placementPos, owner)) {
+			if (!GenericClaimModsCompat.canPlaceBlock(world, hitPos, owner)) {
 				return stack;
 			}
 			
@@ -158,7 +154,7 @@ public interface ItemProjectileBehavior {
 				if (stack.getItem() instanceof BlockItem blockItem) {
 					blockItem.place(new ItemProjectileBehavior.ItemProjectilePlacementContext(world, projectile, hitResult));
 				} else {
-					stack.useOn(new DirectionalPlaceContext(world, placementPos, facing, stack, placementDirection));
+					stack.useOn(new DirectionalPlaceContext(world, hitPos, facing, stack, placementDirection));
 				}
 			} catch (Exception e) {
 				SpectrumCommon.logError("Item Projectile failed to use item " + stack.getItem().getDescription());
@@ -171,7 +167,7 @@ public interface ItemProjectileBehavior {
 	
 	abstract class Damaging implements ItemProjectileBehavior {
 		@Override
-		public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, EntityHitResult hitResult) {
+		public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
 			Entity target = hitResult.getEntity();
 			
 			if (owner instanceof LivingEntity livingOwner) {
@@ -203,10 +199,10 @@ public interface ItemProjectileBehavior {
 		
 		public abstract boolean destroyItemOnHit();
 		
-		public abstract boolean dealDamage(ThrowableItemProjectile projectile, Entity owner, Entity target);
+		public abstract boolean dealDamage(ThrowableItemProjectile projectile, @Nullable Entity owner, Entity target);
 		
 		@Override
-		public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, BlockHitResult hitResult) {
+		public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
 			if (destroyItemOnHit()) {
 				stack.shrink(1);
 			}

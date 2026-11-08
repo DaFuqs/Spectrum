@@ -105,8 +105,7 @@ public class ParametricMiningDeviceBlock extends PlacedItemBlock {
 		return InteractionResult.CONSUME;
 	}
 	
-	public static void explodeTowardsPosition(Direction direction, Level level, BlockPos pos, Player player, ItemStack stack) {
-		
+	public static void explodeTowardsPosition(Direction direction, Level level, BlockPos pos, @Nullable Player player, ItemStack stack) {
 		int powerLevel = SpectrumEnchantmentHelper.getLevel(level.registryAccess(), Enchantments.POWER, stack);
 		
 		List<BlockPos> explosionPositions = new ArrayList<>();
@@ -127,8 +126,12 @@ public class ParametricMiningDeviceBlock extends PlacedItemBlock {
 		}
 		
 		if(ExplosionWithStack.shouldPreserveExplosive(level, stack)) {
-			Vec3 dropPos = explosionPositions.getLast().getCenter();
-			level.addFreshEntity(new ItemEntity(level, dropPos.x(), dropPos.y(), dropPos.z(), stack));
+			if(SpectrumEnchantmentHelper.hasEnchantment(level.registryAccess(), Enchantments.LOYALTY, stack) && player != null) {
+				player.getInventory().add(stack);
+			} else {
+				Vec3 dropPos = explosionPositions.getLast().getCenter();
+				level.addFreshEntity(new ItemEntity(level, dropPos.x(), dropPos.y(), dropPos.z(), stack));
+			}
 		}
 	}
 	

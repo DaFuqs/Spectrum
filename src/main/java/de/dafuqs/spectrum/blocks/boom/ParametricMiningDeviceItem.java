@@ -59,7 +59,7 @@ public class ParametricMiningDeviceItem extends BlockItem implements Preenchante
 	
 	@Override
 	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-		return super.supportsEnchantment(stack, enchantment) || enchantment.is(SpectrumEnchantmentTags.ON_ARCANE_CHARGES);
+		return super.supportsEnchantment(stack, enchantment) || enchantment.is(SpectrumEnchantmentTags.ON_ARCANE_CHARGES) || enchantment.is(Enchantments.LOYALTY);
 	}
 	
 	@Override

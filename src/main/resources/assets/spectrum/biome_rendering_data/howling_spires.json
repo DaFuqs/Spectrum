@@ -1,6 +1,7 @@
 {
   "biome": "spectrum:howling_spires",
   "environmental_data": {
+    "ultradark": true,
     "environmental_lighting_multiplier": 0.9,
     "fog_brightness_multiplier": 1.0,
     "fog_near_multiplier": 0.2,

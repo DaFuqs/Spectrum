@@ -78,10 +78,9 @@ public class HudRenderers {
 					int y = window.getGuiScaledHeight() / 2 + (hoveredCapability == null ? 3 : 46);
 					
 					var textRenderer = client.font;
-					int i = 0;
 					for(Component c : info) {
-						drawContext.drawString(textRenderer, c, x + 18, y + 19 * i, 0xDDDDDD, false);
-						i++;
+						drawContext.drawString(textRenderer, c, x + 18, y, 0xDDDDDD, false);
+						y += textRenderer.lineHeight + 2;
 					}
 				}
 			}

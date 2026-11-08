@@ -21,6 +21,7 @@ import net.minecraft.advancements.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.stats.*;
@@ -40,7 +41,7 @@ import org.jspecify.annotations.*;
 
 import java.util.*;
 
-public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter, WorldlyContainer {
+public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter, WorldlyContainer, PaintbrushHoverInfo {
 	
 	public static final String ITEM_TRANS = "container.spectrum.rei.enchantment_upgrade.required_item_count";
 	public static final String LEVEL_TRANS = "container.spectrum.rei.enchantment_upgrade.level";
@@ -196,6 +197,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 					}
 				}
 				enchanter.setChanged();
+				enchanter.updateInClientWorld();
 			} else if (enchanter.currentItemProcessingTime > -1) {
 				int speedTicks = Support.getIntFromDecimalWithChance(enchanter.upgrades.getEffectiveValue(UpgradeType.SPEED), level.getRandom());
 				enchanter.craftingTime += speedTicks;
@@ -453,9 +455,13 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		return -1;
 	}
 	
-	public static int getExperienceWithMod(int experience, double mod, RandomSource random) {
-		double modNormalized = 1.0 / (1.0 + Math.log10(mod));
-		return Support.getIntFromDecimalWithChance(experience * modNormalized, random);
+	protected int getExperienceWithMod(int experience, RandomSource random, boolean roundUp) {
+		double modNormalized = 1.0 / (1.0 + Math.log10(this.upgrades.getEffectiveValue(UpgradeType.EXPERIENCE)));
+		if(roundUp) {
+			return (int) Math.ceil(experience * modNormalized);
+		} else {
+			return Support.getIntFromDecimalWithChance(experience * modNormalized, random);
+		}
 	}
 	
 	public static void craftEnchanterRecipe(Level world, EnchanterBlockEntity enchanterBlockEntity, EnchanterRecipe enchanterRecipe) {
@@ -746,7 +752,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		if (level != null && experienceProviderStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
 			int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
 			if (currentStoredExperience > 0) {
-				int amountAfterExperienceMod = getExperienceWithMod(amount, this.upgrades.getEffectiveValue(UpgradeType.EXPERIENCE), level.getRandom());
+				int amountAfterExperienceMod = getExperienceWithMod(amount, level.getRandom(), false);
 				int drainedExperience = Math.min(currentStoredExperience, amountAfterExperienceMod);
 				
 				if (experienceStorageItem instanceof KnowledgeGemItem knowledgeGemItem) {
@@ -845,4 +851,24 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		return true;
 	}
 	
+	@Override
+	public List<Component> getPaintbrushHoverInfo(boolean includeDebugInfo) {
+		if(currentRecipe != null && currentRecipe.value() instanceof EnchantmentUpgradeRecipe r) {
+			return List.of(
+					Component.literal("Consuming XP: " + getExperienceWithMod(r.getRequiredXPForSourceLevel(getLevel(this, r)), level.getRandom(), true)),
+					Component.translatable("spectrum.hover.progress_percent", Support.getSensiblePercentString(craftingTime, craftingTimeTotal))
+			);
+		} else if(currentRecipe != null && currentRecipe.value() instanceof EnchanterRecipe r) {
+			return List.of(
+					Component.literal("Consuming XP: " + getExperienceWithMod(r.getRequiredExperience(), level.getRandom(), true)),
+					Component.translatable("spectrum.hover.progress_percent", Support.getSensiblePercentString(craftingTime, craftingTimeTotal))
+			);
+		} else if(currentItemProcessingTime != -1) {
+			return List.of(
+					Component.literal("Consuming XP: " + getExperienceWithMod(currentItemProcessingTime / REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT, level.getRandom(), true)),
+					Component.translatable("spectrum.hover.progress_percent", Support.getSensiblePercentString(craftingTime, currentItemProcessingTime))
+			);
+		}
+		return List.of();
+	}
 }

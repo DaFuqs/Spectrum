@@ -1,24 +1,26 @@
 {
   "type": "spectrum:pedestal",
-  "group": "chalk_glow_chalk",
+  "group": "chalk_chalk",
   "time": 400,
   "tier": "basic",
   "colors": {},
   "experience": 0.25,
   "pattern": [
-    "DDD",
-    "GCG",
-    "DDD"
+    " D ",
+    "DCD",
+    " D "
   ],
   "key": {
     "C": "minecraft:calcite",
-    "D": "spectrum:white_pigment",
-    "G": "minecraft:glow_ink_sac"
+    "D": "spectrum:white_pigment"
   },
   "result": {
-    "id": "chalk:glow_chalk",
+    "id": "chalk:chalk",
     "components": {
-      "unbreakable": {}
+      "minecraft:unbreakable": {},
+      "minecraft:dyed_color": {
+        "rgb": 16777215
+      }
     }
   },
   "required_advancement": "spectrum:hidden/collect_pigment/white",

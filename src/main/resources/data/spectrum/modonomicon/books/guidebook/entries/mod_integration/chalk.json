@@ -37,28 +37,6 @@
       },
       "text": "book.spectrum.guidebook.mod_integration.chalk.page1.text",
       "title": "book.spectrum.guidebook.mod_integration.chalk.page1.title",
-      "recipe_id": "spectrum:mod_integration/chalk/pedestal/chalk"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_pigment"
-      },
-      "text": "book.spectrum.guidebook.mod_integration.chalk.page2.text",
-      "title": "book.spectrum.guidebook.mod_integration.chalk.page2.title",
-      "recipe_id": "spectrum:mod_integration/chalk/pedestal/glow_chalk"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_pigment"
-      },
-      "flag": "mod:chalk-colorful-addon",
-      "text": "book.spectrum.guidebook.mod_integration.chalk.page3.text",
-      "title": "book.spectrum.guidebook.mod_integration.chalk.page3.title",
-      "skip_recipe_unlock_check": true,
       "recipe_id": "spectrum:mod_integration/chalk/pedestal/red_chalk"
     }
   ]

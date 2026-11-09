@@ -15,16 +15,19 @@
     "D": "spectrum:light_blue_pigment"
   },
   "result": {
-    "id": "chalk:light_blue_chalk",
+    "id": "chalk:blue_chalk",
     "components": {
-      "unbreakable": {}
+      "minecraft:unbreakable": {},
+      "minecraft:dyed_color": {
+        "rgb": 8036095
+      }
     }
   },
   "required_advancement": "spectrum:hidden/collect_pigment/light_blue",
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "chalk-colorful-addon"
+      "modid": "chalk"
     }
   ]
 }

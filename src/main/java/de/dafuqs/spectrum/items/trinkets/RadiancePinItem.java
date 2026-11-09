@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
@@ -42,7 +43,6 @@ public class RadiancePinItem extends SpectrumCurioItem {
 		} else {
 			tooltip.add(Component.translatable("item.spectrum.radiance_pin.tooltip").withStyle(ChatFormatting.GRAY));
 		}
-		
 	}
 	
 	@Override
@@ -66,6 +66,7 @@ public class RadiancePinItem extends SpectrumCurioItem {
 
 				if (currentState.isAir() || currentState.is(SpectrumBlocks.TRANSIENT_LIGHT)) {
 					BlockState placementState = persistent ? SpectrumBlocks.PERSISTENT_LIGHT.get().defaultBlockState() : SpectrumBlocks.TRANSIENT_LIGHT.get().defaultBlockState();
+					placementState = placementState.setValue(PersistentLightBlock.LEVEL, 15);
 					world.setBlockAndUpdate(pos, placementState);
 					sendSmallLightCreatedParticle((ServerLevel) world, pos);
 					world.playSound(null, entity.getX() + 0.5, entity.getY() + 0.5, entity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundSource.PLAYERS, 0.08F, 0.9F + world.getRandom().nextFloat() * 0.2F);

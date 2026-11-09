@@ -34,11 +34,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
-        "item": "spectrum:lagoon_rod"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:serendipity_reel": 2
+        "item": "spectrum:lagoon_rod",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:serendipity_reel": 2
+          }
         }
       },
       "text": "book.spectrum.guidebook.serendipity_reel.page1.text"

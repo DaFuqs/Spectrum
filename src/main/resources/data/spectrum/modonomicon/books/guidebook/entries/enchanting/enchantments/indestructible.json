@@ -25,11 +25,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
-        "item": "spectrum:multitool"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:indestructible": 1
+        "item": "spectrum:multitool",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:indestructible": 1
+          }
         }
       },
       "text": "book.spectrum.guidebook.indestructible.page1.text"

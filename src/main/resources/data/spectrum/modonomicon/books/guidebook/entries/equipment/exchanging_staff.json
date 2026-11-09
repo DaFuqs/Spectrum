@@ -34,11 +34,11 @@
       },
       "title": "enchantment.minecraft.fortune",
       "item": {
-        "item": "spectrum:exchanging_staff"
-      },
-      "components": {
-        "enchantments": {
-          "minecraft:fortune": 3
+        "item": "spectrum:exchanging_staff",
+        "components": {
+          "minecraft:enchantments": {
+            "minecraft:fortune": 3
+          }
         }
       },
       "text": "book.spectrum.guidebook.exchanging_staff.page2.text"
@@ -51,11 +51,11 @@
       },
       "title": "enchantment.minecraft.silk_touch",
       "item": {
-        "item": "spectrum:exchanging_staff"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:silk_touch": 1
+        "item": "spectrum:exchanging_staff",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:silk_touch": 1
+          }
         }
       },
       "text": "book.spectrum.guidebook.exchanging_staff.page3.text"
@@ -68,11 +68,11 @@
       },
       "title": "enchantment.spectrum.resonance",
       "item": {
-        "item": "spectrum:exchanging_staff"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:resonance": 1
+        "item": "spectrum:exchanging_staff",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:resonance": 1
+          }
         }
       },
       "text": "book.spectrum.guidebook.exchanging_staff.page4.text"

@@ -39,11 +39,11 @@
       },
       "title": "enchantment.minecraft.power",
       "item": {
-        "item": "spectrum:seven_league_boots"
-      },
-      "components": {
-        "enchantments": {
-          "minecraft:power": 5
+        "item": "spectrum:seven_league_boots",
+        "components": {
+          "minecraft:enchantments": {
+            "minecraft:power": 5
+          }
         }
       },
       "text": "book.spectrum.guidebook.seven_league_boots.page2.text"

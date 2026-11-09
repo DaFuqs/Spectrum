@@ -37,11 +37,11 @@
       },
       "title": "enchantment.minecraft.unbreaking",
       "item": {
-        "item": "spectrum:ender_splice"
-      },
-      "components": {
-        "enchantments": {
-          "minecraft:unbreaking": 3
+        "item": "spectrum:ender_splice",
+        "components": {
+          "minecraft:enchantments": {
+            "minecraft:unbreaking": 3
+          }
         }
       },
       "text": "book.spectrum.guidebook.ender_splice.page2.text"
@@ -54,11 +54,11 @@
       },
       "title": "enchantment.spectrum.resonance",
       "item": {
-        "item": "spectrum:ender_splice"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:resonance": 1
+        "item": "spectrum:ender_splice",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:resonance": 1
+          }
         }
       },
       "text": "book.spectrum.guidebook.ender_splice.page3.text"

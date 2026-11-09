@@ -34,11 +34,11 @@
       },
       "title": "enchantment.minecraft.efficiency",
       "item": {
-        "item": "spectrum:natures_staff"
-      },
-      "components": {
-        "enchantments": {
-          "minecraft:efficiency": 5
+        "item": "spectrum:natures_staff",
+        "components": {
+          "minecraft:enchantments": {
+            "minecraft:efficiency": 5
+          }
         }
       },
       "text": "book.spectrum.guidebook.natures_staff.page2.text"

@@ -30,6 +30,19 @@
       "title": "container.spectrum.rei.fusion_recipe",
       "recipe_id": "spectrum:fusion_shrine/trinkets/radiance_pin",
       "text": "book.spectrum.guidebook.radiance_pin.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "enchantment.minecraft.infinity",
+      "item": {
+        "item": "spectrum:radiance_pin",
+        "components": {
+          "minecraft:enchantments": {
+            "minecraft:infinity": 1
+          }
+        }
+      },
+      "text": "book.spectrum.guidebook.radiance_pin.infinity.text"
     }
   ]
 }

@@ -25,11 +25,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
-        "item": "minecraft:iron_pickaxe"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:inertia": 3
+        "item": "minecraft:iron_pickaxe",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:inertia": 3
+          }
         }
       },
       "text": "book.spectrum.guidebook.inertia.page1.text"

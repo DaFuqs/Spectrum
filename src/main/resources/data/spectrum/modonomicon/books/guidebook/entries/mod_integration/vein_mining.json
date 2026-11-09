@@ -28,11 +28,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.mod_integration.vein_mining.name",
       "item": {
-        "item": "spectrum:multitool"
-      },
-      "components": {
-        "enchantments": {
-          "veinmining:vein_mining": 1
+        "item": "spectrum:multitool",
+        "components": {
+          "minecraft:enchantments": {
+            "veinmining:vein_mining": 1
+          }
         }
       },
       "text": "book.spectrum.guidebook.mod_integration.vein_mining.page0.text"

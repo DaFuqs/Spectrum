@@ -50,11 +50,11 @@
       },
       "title": "enchantment.minecraft.power",
       "item": {
-        "item": "spectrum:bottomless_bundle"
-      },
-      "components": {
-        "enchantments": {
-          "minecraft:power": 5
+        "item": "spectrum:bottomless_bundle",
+        "components": {
+          "minecraft:enchantments": {
+            "minecraft:power": 5
+          }
         }
       },
       "text": "book.spectrum.guidebook.bottomless_bundle.page4.text"
@@ -67,11 +67,11 @@
       },
       "title": "enchantment.spectrum.voiding",
       "item": {
-        "item": "spectrum:bottomless_bundle"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:voiding": 1
+        "item": "spectrum:bottomless_bundle",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:voiding": 1
+          }
         }
       },
       "text": "book.spectrum.guidebook.bottomless_bundle.page5.text"

@@ -25,11 +25,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
-        "item": "spectrum:multitool"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:exuberance": 5
+        "item": "spectrum:multitool",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:exuberance": 5
+          }
         }
       },
       "text": "book.spectrum.guidebook.exuberance.page1.text"

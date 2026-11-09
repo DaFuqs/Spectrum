@@ -6008,6 +6008,7 @@
   "curios.modifiers.palette": "When worn as palette:",
   "curios.modifiers.pin": "When worn as pin:",
 
+  "config.spectrum.block_flooder_fallback_block": "Block Flooder Fallback Block",
   "config.spectrum.add_item_tooltips": "Add advanced tooltips for Spawners, Signs, Skulk Shriekers and much more",
   "config.spectrum.bedrock_anvil_can_exceed_max_vanilla_enchantment_level": "Bedrock Anvil can Exceed Enchantment Max Levels",
   "config.spectrum.bedrock_armor_boots_protection": "Bedrock Boots Protection",

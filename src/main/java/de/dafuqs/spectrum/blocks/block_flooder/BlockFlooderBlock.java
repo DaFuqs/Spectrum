@@ -4,9 +4,12 @@ import com.google.common.collect.*;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.compat.claims.*;
+import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
+import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
@@ -41,7 +44,6 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 	}};
 	public static final List<TagKey<Block>> exchangeBlockTags = ImmutableList.copyOf(exchangeableBlocks.keySet()); // for quick lookup
 	public final short MAX_DISTANCE = 10;
-	public final BlockState DEFAULT_BLOCK_STATE = Blocks.COBBLESTONE.defaultBlockState();
 	
 	public BlockFlooderBlock(Properties settings) {
 		super(settings);
@@ -87,7 +89,7 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 		if (blockEntity instanceof BlockFlooderBlockEntity blockFlooderBlockEntity) {
 			Player owner = PlayerOwned.getPlayerIfOnline(world, blockFlooderBlockEntity.getOwnerUUID());
 			if (owner == null) {
-				world.setBlockAndUpdate(pos, DEFAULT_BLOCK_STATE);
+				world.setBlockAndUpdate(pos, SpectrumConfig.CONFIG.blockFlooderFallbackBlock(world.registryAccess()));
 				return false;
 			}
 			
@@ -149,7 +151,7 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 						// and turn this to the leftover block state
 						blockFlooderBlockEntity.setTargetBlockState(maxBlock.defaultBlockState());
 					} else {
-						blockFlooderBlockEntity.setTargetBlockState(DEFAULT_BLOCK_STATE);
+						blockFlooderBlockEntity.setTargetBlockState(SpectrumConfig.CONFIG.blockFlooderFallbackBlock(world.registryAccess()));
 					}
 				}
 			}

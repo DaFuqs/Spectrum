@@ -15,10 +15,13 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.*;
+import net.minecraft.world.phys.shapes.*;
 import net.minecraft.world.ticks.*;
 
 public class RedstoneCalculatorBlock extends DiodeBlock implements EntityBlock {
 	
+	private static final int MIN_POWER = 0;
+	private static final int MAX_POWER = 15;
 	public static final MapCodec<RedstoneCalculatorBlock> CODEC = simpleCodec(RedstoneCalculatorBlock::new);
 	
 	public static final EnumProperty<CalculationMode> CALCULATION_MODE = EnumProperty.create("calculation_mode", CalculationMode.class);
@@ -75,7 +78,7 @@ public class RedstoneCalculatorBlock extends DiodeBlock implements EntityBlock {
 	}
 	
 	private void update(Level world, BlockPos pos, BlockState state) {
-		int newSignal = this.calculateOutputSignal(world, pos, state);
+		int newSignal = this.calculateOutputSignalClamped(world, pos, state);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		int previousSignal = 0;
 		if (blockEntity instanceof RedstoneCalculatorBlockEntity redstoneCalculatorBlockEntity) {
@@ -100,7 +103,7 @@ public class RedstoneCalculatorBlock extends DiodeBlock implements EntityBlock {
 	protected void checkTickOnNeighbor(Level world, BlockPos pos, BlockState state) {
 		if (!world.getBlockTicks().willTickThisTick(pos, this)) {
 			int previousSignal = world.getBlockEntity(pos) instanceof RedstoneCalculatorBlockEntity redstoneCalculatorBlockEntity ? redstoneCalculatorBlockEntity.getOutputSignal() : 0;
-			int newSignal = this.calculateOutputSignal(world, pos, state);
+			int newSignal = this.calculateOutputSignalClamped(world, pos, state);
 			
 			if (newSignal != previousSignal) {
 				TickPriority tickPriority = this.shouldPrioritize(world, pos, state) ? TickPriority.HIGH : TickPriority.NORMAL;
@@ -109,6 +112,11 @@ public class RedstoneCalculatorBlock extends DiodeBlock implements EntityBlock {
 		}
 	}
 	
+	private int calculateOutputSignalClamped(Level world, BlockPos pos, BlockState state) {
+		return Math.clamp(this.calculateOutputSignal(world, pos, state), MIN_POWER, MAX_POWER);
+	}
+	
+	@Deprecated
 	private int calculateOutputSignal(Level world, BlockPos pos, BlockState state) {
 		int power = this.getInputSignal(world, pos, state);
 		int powerSides = this.getAlternateSignal(world, pos, state);

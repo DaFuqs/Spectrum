@@ -202,13 +202,12 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	private static void entityTick(EntityTickEvent.Post event) {
-		var entity = event.getEntity();
-		
-		if (entity instanceof LivingEntity living) {
+		if (event.getEntity() instanceof LivingEntity living) {
 			PrimordialFireAttachmentType.tick(living);
 			
-			if (living.level().isClientSide())
+			if (living.level().isClientSide()) {
 				return;
+			}
 			AzureDikeAttachmentType azureDikeAttachment = living.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
 			azureDikeAttachment.serverTick(living);
 		}
@@ -216,17 +215,16 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	public static InteractionResult triggerPrioritizedEntityInteraction(PlayerInteractEvent.EntityInteract event){
-		
 		Player player = event.getEntity();
 		Entity entity = event.getTarget();
 		InteractionHand hand = event.getHand();
 		ItemStack handStack = player.getItemInHand(hand);
 		
 		if (handStack.getItem() instanceof PrioritizedEntityInteraction && entity instanceof LivingEntity livingEntity) {
-			return handStack.interactLivingEntity(player, livingEntity, hand);
+			event.setCanceled(true);
+			event.setCancellationResult(handStack.interactLivingEntity(player, livingEntity, hand));
 		}
 		return InteractionResult.PASS;
-		
 	}
 	
 	//Curious: I'm basically checking the sleep timer when the player wakes up here
@@ -239,7 +237,6 @@ public class SpectrumEventListeners {
 			player.setHealth(player.getMaxHealth());
 			MobEffectHelper.clearEffects(player, WhispyCircletItem.EFFECT_CLEAR_PREDICATE);
 		}
-		
 	}
 	
 	@SubscribeEvent

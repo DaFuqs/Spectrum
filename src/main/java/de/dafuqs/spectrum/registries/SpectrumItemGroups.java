@@ -121,6 +121,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.SEVEN_LEAGUE_BOOTS.get(), Map.of(Enchantments.POWER, 5)));
 					entries.accept(SpectrumItems.COTTON_CLOUD_BOOTS);
 					entries.accept(SpectrumItems.RADIANCE_PIN);
+					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.RADIANCE_PIN.get(), Map.of(Enchantments.INFINITY, 1)));
 					entries.accept(SpectrumItems.TOTEM_PENDANT);
 					entries.accept(SpectrumItems.TAKE_OFF_BELT);
 					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.TAKE_OFF_BELT.get(), Map.of(Enchantments.POWER, 5, Enchantments.FEATHER_FALLING, 4)));

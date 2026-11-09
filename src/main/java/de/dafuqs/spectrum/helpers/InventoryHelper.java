@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
+import net.minecraft.util.datafix.fixes.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -27,7 +28,7 @@ public class InventoryHelper {
 	}
 	
 	public static boolean decrementInPlayerInventory(Player playerEntity, ItemStack stackToRemove) {
-		if (playerEntity.isCreative()) {
+		if (playerEntity.hasInfiniteMaterials()) {
 			return true;
 		}
 		
@@ -67,6 +68,11 @@ public class InventoryHelper {
 				amountToRemove -= itemProvider.provideItems(playerEntity, matchingStack, stackToRemove.getItem(), amountToRemove);
 			} else {
 				int currentRemove = Math.min(matchingStack.getCount(), amountToRemove);
+				
+				ItemStack remainder = matchingStack.getCraftingRemainingItem();
+				if (!remainder.isEmpty()) {
+					playerEntity.getInventory().placeItemBackInInventory(remainder);
+				}
 				matchingStack.shrink(currentRemove);
 				amountToRemove -= currentRemove;
 				if (amountToRemove <= 0) {

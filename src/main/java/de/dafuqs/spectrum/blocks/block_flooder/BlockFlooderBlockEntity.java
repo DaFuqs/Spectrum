@@ -19,6 +19,8 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 	
 	private @Nullable BlockPos sourcePos;
 	private BlockState targetBlockState = Blocks.AIR.defaultBlockState();
+	private boolean hasSpread = false;
+	private boolean targetStateForced = false;
 	
 	public BlockFlooderBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.BLOCK_FLOODER.get(), pos, state);
@@ -43,6 +45,8 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(nbt, registryLookup);
 		
+		this.hasSpread = nbt.getBoolean("has_spread");
+		this.targetStateForced = nbt.getBoolean("target_state_forced");
 		this.ownerUUID = PlayerOwnedWithName.readOwnerUUID(nbt);
 		if (nbt.contains("SourcePositionX") && nbt.contains("SourcePositionY") && nbt.contains("SourcePositionZ")) {
 			this.sourcePos = new BlockPos(nbt.getInt("SourcePositionX"), nbt.getInt("SourcePositionY"), nbt.getInt("SourcePositionZ"));
@@ -53,6 +57,8 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(nbt, registryLookup);
 		
+		nbt.putBoolean("has_spread", this.hasSpread);
+		nbt.putBoolean("target_state_forced", this.targetStateForced);
 		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		if (this.sourcePos != null) {
 			nbt.putInt("SourcePositionX", this.sourcePos.getX());
@@ -73,7 +79,7 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 		this.sourcePos = sourcePos;
 	}
 	
-	public @Nullable BlockState getTargetBlockState() {
+	public BlockState getTargetBlockState() {
 		return targetBlockState;
 	}
 	
@@ -81,4 +87,19 @@ public class BlockFlooderBlockEntity extends BlockEntity {
 		this.targetBlockState = targetBlockState;
 	}
 	
+	public boolean hasSpread() {
+		return hasSpread;
+	}
+	
+	public void setHasSpread(boolean hasSpread) {
+		this.hasSpread = hasSpread;
+	}
+	
+	public boolean isTargetStateForced() {
+		return targetStateForced;
+	}
+	
+	public void setTargetStateForced(boolean targetStateForced) {
+		this.targetStateForced = targetStateForced;
+	}
 }

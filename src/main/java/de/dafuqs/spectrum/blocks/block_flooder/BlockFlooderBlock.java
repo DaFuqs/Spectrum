@@ -5,19 +5,25 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
-import org.jspecify.annotations.*;
+import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.parameters.*;
+import org.jspecify.annotations.Nullable;
 
 import java.util.*;
+import java.util.function.*;
 
 public class BlockFlooderBlock extends BaseEntityBlock {
 	
@@ -26,6 +32,7 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 	// when replacing blocks there may be cases when there is a good reason to use replacement blocks
 	// like using dirt instead of grass, because grass will be growing anyway and silk touching grass
 	// is absolutely not worth it / fun
+	// TODO: merge with staff replacements
 	public static final HashMap<TagKey<Block>, Block> exchangeableBlocks = new HashMap<>() {{
 		put(BlockTags.DIRT, Blocks.DIRT); // grass, podzol, mycelium, ...
 		put(BlockTags.BASE_STONE_OVERWORLD, Blocks.STONE);
@@ -69,7 +76,7 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
 	}
-
+	
 	@Override
 	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new BlockFlooderBlockEntity(pos, state);
@@ -80,114 +87,109 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 		if (blockEntity instanceof BlockFlooderBlockEntity blockFlooderBlockEntity) {
 			Player owner = PlayerOwned.getPlayerIfOnline(world, blockFlooderBlockEntity.getOwnerUUID());
 			if (owner == null) {
-				world.setBlock(pos, DEFAULT_BLOCK_STATE, 3);
+				world.setBlockAndUpdate(pos, DEFAULT_BLOCK_STATE);
 				return false;
 			}
 			
 			Map<Block, Integer> neighboringBlockAmounts = new HashMap<>();
 			for (Direction direction : Direction.values()) {
-				BlockPos targetBlockPos = pos.relative(direction);
-				BlockState currentBlockState = world.getBlockState(targetBlockPos);
-				BlockEntity currentBlockEntity = world.getBlockEntity(targetBlockPos);
+				BlockPos offsetPos = pos.relative(direction);
+				BlockState offsetState = world.getBlockState(offsetPos);
+				BlockEntity offsetBlockEntity = world.getBlockEntity(offsetPos);
 				
-				if (!currentBlockState.is(this) && currentBlockEntity == null) {
-					if (isReplaceableBlock(world, targetBlockPos)) {
-						Vec3i nextPos = new Vec3i(targetBlockPos.relative(direction).getX(), targetBlockPos.relative(direction).getY(), targetBlockPos.relative(direction).getZ());
-						if (blockFlooderBlockEntity.getSourcePos().closerThan(nextPos, MAX_DISTANCE)
-								&& GenericClaimModsCompat.canPlaceBlock(world, targetBlockPos, owner)
-								&& shouldPropagateTo(world, targetBlockPos)) {
-							
-							world.setBlock(targetBlockPos, state, 3);
-							if (world.getBlockEntity(targetBlockPos) instanceof BlockFlooderBlockEntity neighboringBlockFlooderBlockEntity) {
-								neighboringBlockFlooderBlockEntity.setOwnerUUID(blockFlooderBlockEntity.getOwnerUUID());
-								neighboringBlockFlooderBlockEntity.setSourcePos(blockFlooderBlockEntity.getSourcePos());
-							}
-						}
-					} else {
-						Block currentBlock = currentBlockState.getBlock();
-						
-						if (currentBlockState.isRedstoneConductor(world, targetBlockPos)) {
-							if (neighboringBlockAmounts.containsKey(currentBlock)) {
-								neighboringBlockAmounts.put(currentBlock, neighboringBlockAmounts.get(currentBlock) + 1);
-							} else {
-								neighboringBlockAmounts.put(currentBlock, 1);
-							}
-						}
-					}
+				if (offsetBlockEntity != null || offsetState.is(this)) {
+					continue;
 				}
-			}
-			
-			if (!neighboringBlockAmounts.isEmpty()) {
-				int max = 0;
-				Block maxBlock = null;
 				
-				for (Map.Entry<Block, Integer> entry : neighboringBlockAmounts.entrySet()) {
-					Block currentBlock = entry.getKey();
-					int currentOccurrences = entry.getValue();
-					Item blockItem = currentBlock.asItem();
-					
-					if (blockItem != Items.AIR) {
-						if (currentOccurrences > max || (currentOccurrences == max && random.nextBoolean())) {
-							ItemStack currentItemStack = new ItemStack(blockItem);
-							if (owner.isCreative() || owner.getInventory().contains(currentItemStack) && currentBlock.defaultBlockState().canSurvive(world, pos)) {
-								maxBlock = currentBlock;
-							} else {
-								Optional<TagKey<Block>> tag = Support.getFirstMatchingBlockTag(currentBlock.defaultBlockState(), exchangeBlockTags);
-								if (tag.isPresent()) {
-									currentBlock = exchangeableBlocks.get(tag.get());
-									blockItem = currentBlock.asItem();
-									if (blockItem != Items.AIR) {
-										currentItemStack = new ItemStack(blockItem);
-										if (owner.isCreative() || owner.getInventory().contains(currentItemStack) && currentBlock.defaultBlockState().canSurvive(world, pos)) {
-											maxBlock = currentBlock;
-										}
-									}
+				if (isReplaceableBlock(world, offsetPos)) {
+					// air neighbor => spread
+					if (blockFlooderBlockEntity.getSourcePos().closerThan(offsetPos.relative(direction), MAX_DISTANCE)
+							&& GenericClaimModsCompat.canPlaceBlock(world, offsetPos, owner)
+							&& shouldPropagateTo(world, offsetPos)) {
+						
+						world.setBlockAndUpdate(offsetPos, state);
+						if (world.getBlockEntity(offsetPos) instanceof BlockFlooderBlockEntity neighboringBlockFlooderBlockEntity) {
+							neighboringBlockFlooderBlockEntity.setOwnerUUID(blockFlooderBlockEntity.getOwnerUUID());
+							neighboringBlockFlooderBlockEntity.setSourcePos(blockFlooderBlockEntity.getSourcePos());
+							if (blockFlooderBlockEntity.isTargetStateForced()) {
+								Block b = removeFromPlayerInventory(owner, blockFlooderBlockEntity.getTargetBlockState().getBlock());
+								if (b != null) {
+									neighboringBlockFlooderBlockEntity.setTargetStateForced(true);
+									neighboringBlockFlooderBlockEntity.setTargetBlockState(b.defaultBlockState());
 								}
 							}
 						}
 					}
-				}
-				
-				if (maxBlock != null) {
-					// and turn this to the leftover block state
-					blockFlooderBlockEntity.setTargetBlockState(maxBlock.defaultBlockState());
 				} else {
-					blockFlooderBlockEntity.setTargetBlockState(DEFAULT_BLOCK_STATE);
+					// set neighbor => remind
+					if (offsetState.isRedstoneConductor(world, offsetPos)) {
+						Block offsetBlock = offsetState.getBlock();
+						neighboringBlockAmounts.put(offsetBlock, neighboringBlockAmounts.getOrDefault(offsetBlock, 0) + 1);
+					}
+				}
+			}
+			
+			if (blockFlooderBlockEntity.isTargetStateForced()) {
+				return true;
+			}
+			
+			if (!neighboringBlockAmounts.isEmpty()) {
+				List<Block> mostFrequentBlocks = neighboringBlockAmounts.entrySet().stream()
+						.filter(blockIntegerEntry -> !blockIntegerEntry.getKey().defaultBlockState().isAir())
+						.sorted((o1, o2) -> {
+					if(o1.getValue().equals(o2.getValue())) {
+						return (random.nextBoolean() ? o1 : o2).getValue();
+					}
+					return o1.getValue().compareTo(o2.getValue());
+				}).map(Map.Entry::getKey).toList();
+				
+				for (Block currentBlock : mostFrequentBlocks) {
+					Block maxBlock = currentBlock.defaultBlockState().canSurvive(world, pos) ? removeFromPlayerInventory(owner, currentBlock) : null;
+					if (maxBlock != null) {
+						// and turn this to the leftover block state
+						blockFlooderBlockEntity.setTargetBlockState(maxBlock.defaultBlockState());
+					} else {
+						blockFlooderBlockEntity.setTargetBlockState(DEFAULT_BLOCK_STATE);
+					}
 				}
 			}
 		}
 		return true;
 	}
 	
+	public static @Nullable Block removeFromPlayerInventory(Player owner, Block currentBlock) {
+		Item blockItem = currentBlock.asItem();
+		if (blockItem != Items.AIR && InventoryHelper.decrementInPlayerInventory(owner, new ItemStack(blockItem))) {
+			return currentBlock;
+		}
+		
+		Optional<TagKey<Block>> tag = Support.getFirstMatchingBlockTag(currentBlock.defaultBlockState(), exchangeBlockTags);
+		if (tag.isPresent()) {
+			currentBlock = exchangeableBlocks.get(tag.get());
+			blockItem = currentBlock.asItem();
+			if (blockItem != Items.AIR && InventoryHelper.decrementInPlayerInventory(owner, new ItemStack(blockItem))) {
+				return currentBlock;
+			}
+		}
+		return null;
+	}
+	
 	@Override
 	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.tick(state, world, pos, random);
 		
-		if (!world.isClientSide()) {
-			if (world.getBlockEntity(pos) instanceof BlockFlooderBlockEntity blockFlooderBlockEntity) {
-				BlockState targetState = blockFlooderBlockEntity.getTargetBlockState();
-				if (targetState == null || targetState.isAir()) {
-					boolean scheduleUpdate = calculateTargetBlockAndPropagate(state, world, pos, world.getRandom());
-					if (scheduleUpdate) {
-						world.scheduleTick(pos, state.getBlock(), 2 + random.nextInt(5));
-					}
-				} else {
-					Player owner = PlayerOwned.getPlayerIfOnline(world, blockFlooderBlockEntity.getOwnerUUID());
-					if(owner == null) {
-						return;
-					}
-					
-					world.setBlock(pos, targetState, 3);
-					if (!owner.isCreative()) {
-						List<ItemStack> remainders = InventoryHelper.decrementInInventoryAndReturnRemainders(new ItemStack(targetState.getBlock().asItem()), owner.getInventory());
-						for (ItemStack remainder : remainders) {
-							owner.getInventory().placeItemBackInInventory(remainder);
-						}
-					}
+		if (!world.isClientSide() && world.getBlockEntity(pos) instanceof BlockFlooderBlockEntity blockEntity) {
+			BlockState targetState = blockEntity.getTargetBlockState();
+			if (blockEntity.hasSpread()) {
+				world.setBlockAndUpdate(pos, targetState);
+			} else {
+				boolean scheduleUpdate = calculateTargetBlockAndPropagate(state, world, pos, world.getRandom());
+				blockEntity.setHasSpread(true);
+				if (scheduleUpdate) {
+					world.scheduleTick(pos, state.getBlock(), 2 + random.nextInt(5));
 				}
 			}
 		}
-		
 	}
 	
 	private boolean shouldPropagateTo(Level world, BlockPos targetBlockPos) {
@@ -205,6 +207,14 @@ public class BlockFlooderBlock extends BaseEntityBlock {
 			return (count >= 4);
 		}
 		return false;
+	}
+	
+	@Override
+	public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
+		if(builder.getParameter(LootContextParams.BLOCK_ENTITY) instanceof BlockFlooderBlockEntity blockEntity) {
+			return List.of(new ItemStack(blockEntity.getTargetBlockState().getBlock().asItem()));
+		}
+		return super.getDrops(state, builder);
 	}
 	
 }

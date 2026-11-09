@@ -1,34 +1,41 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
 import net.minecraft.core.*;
+import net.minecraft.core.component.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.material.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 import net.neoforged.api.distmarker.*;
 
-public class PersistentLightBlock extends LightBlock {
+import java.util.function.*;
+
+// We can't inherit from LightBlock:
+// turns out the waterloggable property of LightBlock stops flowing water from replacing these
+public class PersistentLightBlock extends Block {
+	
+	public static final MapCodec<LightBlock> CODEC = simpleCodec(LightBlock::new);
+	public static final IntegerProperty LEVEL = BlockStateProperties.LEVEL;
+	public static final ToIntFunction<BlockState> LIGHT_EMISSION = (state) -> (Integer)state.getValue(LEVEL);
 	
 	public PersistentLightBlock(Properties settings) {
 		super(settings);
 	}
-
-//	@Override
-//	public MapCodec<? extends WandLightBlock> getCodec() {
-//		//TODO: Make the codec
-//		return null;
-//	}
 	
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
@@ -70,6 +77,21 @@ public class PersistentLightBlock extends LightBlock {
 	@Override
 	public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
 		return new ItemStack(SpectrumItems.RADIANCE_STAFF.get());
+	}
+	
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(LEVEL);
+	}
+	
+	@Override
+	protected RenderShape getRenderShape(BlockState state) {
+		return RenderShape.INVISIBLE;
+	}
+	
+	@Override
+	protected float getShadeBrightness(BlockState state, BlockGetter level, BlockPos pos) {
+		return 1.0F;
 	}
 	
 }

@@ -62,18 +62,10 @@ public class RadiancePinItem extends SpectrumCurioItem {
 			
 			if (!world.isOutsideBuildHeight(pos) && world.getMaxLocalRawBrightness(pos) <= MAX_LIGHT_LEVEL) {
 				BlockState currentState = world.getBlockState(pos);
-				boolean placePersistentLight = SpectrumEnchantmentHelper.hasEnchantment(world.registryAccess(), Enchantments.INFINITY, stack);
-				BlockState placementState = null;
-				
-				if (currentState.isAir()) {
-					placementState = getPlacementState(false, placePersistentLight);
-				} else if (currentState.equals(Blocks.WATER.defaultBlockState())) {
-					placementState = getPlacementState(true, placePersistentLight);
-				} else if (currentState.is(SpectrumBlocks.TRANSIENT_LIGHT)) {
-					placementState = getPlacementState(currentState.getValue(LightBlock.WATERLOGGED), placePersistentLight);
-				}
-				
-				if (placementState !=  null) {
+				boolean persistent = SpectrumEnchantmentHelper.hasEnchantment(world.registryAccess(), Enchantments.INFINITY, stack);
+
+				if (currentState.isAir() || currentState.is(SpectrumBlocks.TRANSIENT_LIGHT)) {
+					BlockState placementState = persistent ? SpectrumBlocks.PERSISTENT_LIGHT.get().defaultBlockState() : SpectrumBlocks.TRANSIENT_LIGHT.get().defaultBlockState();
 					world.setBlockAndUpdate(pos, placementState);
 					sendSmallLightCreatedParticle((ServerLevel) world, pos);
 					world.playSound(null, entity.getX() + 0.5, entity.getY() + 0.5, entity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundSource.PLAYERS, 0.08F, 0.9F + world.getRandom().nextFloat() * 0.2F);
@@ -94,15 +86,5 @@ public class RadiancePinItem extends SpectrumCurioItem {
 	public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
 		return super.supportsEnchantment(stack, enchantment) || enchantment.is(Enchantments.INFINITY);
 	}
-	
-	private BlockState getPlacementState(boolean waterlogged, boolean persistent) {
-		Block b = persistent ? SpectrumBlocks.PERSISTENT_LIGHT.get() : SpectrumBlocks.TRANSIENT_LIGHT.get();
-		BlockState s = b.defaultBlockState();
-		if(waterlogged) {
-			s = s.setValue(LightBlock.WATERLOGGED, true);
-		}
-		return s;
-	}
-	
 	
 }

@@ -72,20 +72,4 @@ public class PersistentLightBlock extends LightBlock {
 		return new ItemStack(SpectrumItems.RADIANCE_STAFF.get());
 	}
 	
-	// DODO: move to interaction event and remove
-	/*@Override
-	public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-		if (!world.isClientSide) {
-			BlockState newState = state.cycle(LEVEL);
-			if (newState.getValue(LEVEL) == 0) { // lights with a level of 0 are absolutely
-				newState = newState.cycle(LEVEL);
-			}
-			world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundSource.PLAYERS, 1.0F, (float) (0.75 + 0.05 * newState.getValue(LEVEL)));
-			world.setBlock(pos, newState, Block.UPDATE_CLIENTS);
-			return InteractionResult.SUCCESS;
-		} else {
-			return InteractionResult.CONSUME;
-		}
-	}*/
-	
 }

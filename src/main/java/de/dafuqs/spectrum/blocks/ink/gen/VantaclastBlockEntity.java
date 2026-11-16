@@ -1,12 +1,19 @@
 package de.dafuqs.spectrum.blocks.ink.gen;
 
 import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.api.ink.storage.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
+import de.dafuqs.spectrum.blocks.fluid.*;
+import de.dafuqs.spectrum.blocks.pedestal.*;
+import de.dafuqs.spectrum.components.*;
 import de.dafuqs.spectrum.config.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
+import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
+import net.minecraft.nbt.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -21,6 +28,8 @@ public class VantaclastBlockEntity extends InkGeneratorBlockEntity {
 	public static final int MAX_BLOCK_CHECK_DISTANCE_HORIZONTAL = 16;
 	public static final int MAX_BLOCK_CHECK_DISTANCE_UP = 6;
 	public static final long GENERATED_INK_PER_VALID_BLOCK = (long) Math.pow(2, 16);
+	
+	private long lastConvertedBlockTick = -1L;
 	
 	public VantaclastBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.VANTACLAST.get(), blockPos, blockState, 3, 1);
@@ -48,12 +57,21 @@ public class VantaclastBlockEntity extends InkGeneratorBlockEntity {
 			ColorTransmissionPayload.playColorTransmissionParticle(
 					(ServerLevel) level,
 					new ColoredTransmission(
-							new Vec3(posToTest.getX() + 0.5D, posToTest.getY() + 0.5D, posToTest.getZ() + 0.5D),
+							Vec3.atCenterOf(posToTest),
 							new BlockPositionSource(worldPosition), 8,
 							inkColor.getColorARGB())
 			);
+			PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) level,
+					new Vec3(worldPosition.getX() + 0.5, worldPosition.getY() + 0.7, worldPosition.getZ() + 0.5),
+					ColoredFluidRisingParticleEffect.of(inkColor.getColorARGB()),
+					5,
+					new Vec3(0.22, 0.0, 0.22),
+					new Vec3(0.0, 0.1, 0.0)
+			);
 			
 			level.setBlockAndUpdate(posToTest, SpectrumBlocks.BLACK_MATERIA.get().defaultBlockState());
+			
+			lastConvertedBlockTick = level.getGameTime();
 			
 			return true;
 		}
@@ -63,6 +81,21 @@ public class VantaclastBlockEntity extends InkGeneratorBlockEntity {
 	@Override
 	public boolean pauseWhenInactive() {
 		return false;
+	}
+	
+	@Override
+	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.saveAdditional(nbt, registryLookup);
+		nbt.putLong("last_converted_block_tick", lastConvertedBlockTick);
+	}
+	@Override
+	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+		super.loadAdditional(nbt, registryLookup);
+		this.lastConvertedBlockTick = nbt.getLong("last_converted_block_tick");
+	}
+	
+	public long getLastConvertedBlockTick() {
+		return lastConvertedBlockTick;
 	}
 	
 }

@@ -208,6 +208,7 @@ public class SpectrumBlockEntities {
 		BlockEntityRenderers.register(JADE_VINE_ROOTS.get(), JadeVineRootsBlockEntityRenderer::new);
 		BlockEntityRenderers.register(CRYSTALLARIEUM.get(), CrystallarieumBlockEntityRenderer::new);
 		BlockEntityRenderers.register(COLOR_PICKER.get(), ColorPickerBlockEntityRenderer::new);
+		BlockEntityRenderers.register(VANTACLAST.get(), VantaclastBlockEntityRenderer::new);
 		BlockEntityRenderers.register(PRESERVATION_CONTROLLER.get(), PreservationControllerBlockEntityRenderer::new);
 		BlockEntityRenderers.register(PROJECTOR.get(), ProjectorBlockEntityRenderer::new);
 		BlockEntityRenderers.register(PLAYER_TRACKING.get(), PlayerTrackingBlockEntityRenderer::new);

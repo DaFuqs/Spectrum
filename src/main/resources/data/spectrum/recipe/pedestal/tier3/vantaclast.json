@@ -10,17 +10,15 @@
   },
   "experience": 2.0,
   "pattern": [
-    "CMY",
-    "PXP",
+    "XXX",
+    "PMP",
     "PBP"
   ],
   "key": {
-    "C": "spectrum:cyan_pigment",
-    "M": "spectrum:magenta_pigment",
-    "Y": "spectrum:yellow_pigment",
+    "X": "spectrum:midnight_chip",
+    "M": "spectrum:midnight_solution_bucket",
     "B": "spectrum:polished_basalt",
-    "P": "spectrum:polished_calcite",
-    "X": "spectrum:midnight_chip"
+    "P": "spectrum:polished_calcite"
   },
   "result": {
     "id": "spectrum:vantaclast",

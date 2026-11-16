@@ -2987,6 +2987,8 @@ public class SpectrumBlocks {
 		
 		ItemBlockRenderTypes.setRenderLayer(PRIMORDIAL_CAMPFIRE.get(), RenderType.cutout());
 		ItemBlockRenderTypes.setRenderLayer(PRIMORDIAL_BRAZIER.get(), RenderType.cutout());
+		
+		ItemBlockRenderTypes.setRenderLayer(VANTACLAST.get(), RenderType.cutout());
 	}
 	
 }

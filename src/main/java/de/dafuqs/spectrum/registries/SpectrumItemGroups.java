@@ -1760,16 +1760,13 @@ public class SpectrumItemGroups {
 					
 					entries.accept(SpectrumItems.DIVINATION_HEART);
 					
-					// TODO: add model, guidebook entries & finish impl
-					entries.accept(SpectrumBlocks.TINTING_STATION);
-					entries.accept(SpectrumBlocks.DAYDREAMER);
-					entries.accept(SpectrumBlocks.TWILL);
-					entries.accept(SpectrumBlocks.VANTACLAST);
-					
-					// TODO: add secret unlocks & recipes
-					entries.accept(SpectrumBlocks.BRIGHT_TWILL);
-					entries.accept(SpectrumBlocks.JADE_TWILL);
-					entries.accept(SpectrumBlocks.VINTAGE_COLOR_PICKER);
+					entries.accept(SpectrumBlocks.VINTAGE_COLOR_PICKER); // TODO: secret unlock & recipe
+					entries.accept(SpectrumBlocks.TINTING_STATION); // TODO: gui
+					entries.accept(SpectrumBlocks.DAYDREAMER); // TODO: unlock, balancing
+					entries.accept(SpectrumBlocks.TWILL); // TODO: unlock, balancing
+					entries.accept(SpectrumBlocks.BRIGHT_TWILL); // TODO: secret unlock & recipe
+					entries.accept(SpectrumBlocks.JADE_TWILL); // TODO: secret unlock & recipe
+					entries.accept(SpectrumBlocks.VANTACLAST); // TODO: unlock, balancing
 				}).build();
 	}
 	

@@ -97,9 +97,9 @@ public class DaydreamerBlockEntity extends InkGeneratorBlockEntity {
 		// build output
 		List<InkAmount> result = new ArrayList<>();
 		for (var e : weights.entrySet()) {
-			float w = e.getValue();
+			long w = (long) (e.getValue() * multiplier);
 			if (w <= 0f) continue;
-			result.add(new InkAmount(e.getKey(), (long) (w * multiplier)));
+			result.add(new InkAmount(e.getKey(), w));
 		}
 		
 		return result;

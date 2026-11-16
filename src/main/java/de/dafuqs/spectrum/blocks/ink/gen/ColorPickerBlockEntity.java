@@ -112,4 +112,9 @@ public class ColorPickerBlockEntity extends InkGeneratorBlockEntity implements M
 		return super.canPlaceItem(slot, stack);
 	}
 	
+	@Override
+	public boolean pauseWhenInactive() {
+		return true;
+	}
+	
 }

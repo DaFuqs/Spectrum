@@ -47,4 +47,9 @@ public abstract class InkSinkBlockEntity extends BaseInkBlockEntity<IndividualCa
 		BaseInkScreenHandler.ScreenOpeningData.STREAM_CODEC.encode(buffer, new BaseInkScreenHandler.ScreenOpeningData(this.worldPosition, this.selectedColor));
 	}
 	
+	@Override
+	public boolean pauseWhenInactive() {
+		return true;
+	}
+	
 }

@@ -60,4 +60,9 @@ public class VantaclastBlockEntity extends InkGeneratorBlockEntity {
 		return false;
 	}
 	
+	@Override
+	public boolean pauseWhenInactive() {
+		return false;
+	}
+	
 }

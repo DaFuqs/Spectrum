@@ -20,17 +20,19 @@ public class ColorPickerBlockEntityRenderer<T extends ColorPickerBlockEntity> im
 		// The item on top
 		ItemStack stack = blockEntity.getItem(0);
 		ItemStack stack2 = blockEntity.getItem(1);
+		
 		// lying on top
-		if (!stack.isEmpty()) {
+		if (!stack2.isEmpty()) {
 			poseStack.pushPose();
-			poseStack.translate(0.5, 0.7, 0.6);
-			poseStack.mulPose(Axis.XP.rotationDegrees(270));
-			poseStack.mulPose(Axis.YP.rotationDegrees(180));
-			Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.GROUND, light, overlay, poseStack, vertexConsumerProvider, blockEntity.getLevel(), 0);
+			poseStack.translate(0.5, 0.7, 0.5);
+			//poseStack.mulPose(Axis.XP.rotationDegrees(270));
+			//poseStack.mulPose(Axis.YP.rotationDegrees(180));
+			Minecraft.getInstance().getItemRenderer().renderStatic(stack2, ItemDisplayContext.GROUND, light, overlay, poseStack, vertexConsumerProvider, blockEntity.getLevel(), 0);
 			poseStack.popPose();
 		}
+		
 		// floating in air
-		if (!stack2.isEmpty()) {
+		if (!stack.isEmpty()) {
 			poseStack.pushPose();
 			
 			float time = blockEntity.getLevel().getGameTime() % 50000 + tickDelta;
@@ -39,7 +41,7 @@ public class ColorPickerBlockEntityRenderer<T extends ColorPickerBlockEntity> im
 			poseStack.translate(0.5, 1.0 + height, 0.5);
 			poseStack.mulPose(client.getBlockEntityRenderDispatcher().camera.rotation());
 			poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
-			Minecraft.getInstance().getItemRenderer().renderStatic(stack2, ItemDisplayContext.GROUND, light, overlay, poseStack, vertexConsumerProvider, blockEntity.getLevel(), 0);
+			Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.GROUND, light, overlay, poseStack, vertexConsumerProvider, blockEntity.getLevel(), 0);
 			poseStack.popPose();
 		}
 	}

@@ -22,7 +22,7 @@ public record InkAmount(InkColor color, long amount) implements WeightedEntry {
 	
 	@Override
 	public Weight getWeight() {
-		return Weight.of((int) (amount >> 4));
+		return Weight.of((int) (amount));
 	}
 	
 }

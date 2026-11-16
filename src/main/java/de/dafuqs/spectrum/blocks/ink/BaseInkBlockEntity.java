@@ -200,7 +200,7 @@ public abstract class BaseInkBlockEntity<T extends InkStorage> extends BaseConta
 			if(blockEntity.tickLogic(level)) {
 				blockEntity.setInkDirty();
 			} else {
-				blockEntity.paused = true;
+				blockEntity.paused = blockEntity.pauseWhenInactive();
 			}
 		}
 	}
@@ -213,5 +213,7 @@ public abstract class BaseInkBlockEntity<T extends InkStorage> extends BaseConta
 	public abstract boolean shouldTickLogic(Level world);
 	
 	public abstract boolean tickLogic(Level level);
+	
+	public abstract boolean pauseWhenInactive();
 	
 }

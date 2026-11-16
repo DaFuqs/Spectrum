@@ -199,7 +199,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.loadAdditional(nbt, registryLookup);
 		
-		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("InkStorage")).ifPresent(storage ->
+		CodecHelper.fromNbt(InkStorageComponent.CODEC, nbt.get("ink_storage")).ifPresent(storage ->
 				this.inkStorage = new IndividualCappedInkStorage(storage.maxPerColor(), storage.storedEnergy()));
 		if (nbt.contains("Looper", Tag.TAG_COMPOUND)) {
 			this.tickLooper = TickLooper.fromNbt(nbt.getCompound("Looper"));
@@ -220,7 +220,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
 		super.saveAdditional(nbt, registryLookup);
 		
-		CodecHelper.writeNbt(nbt, "InkStorage", InkStorageComponent.CODEC, new InkStorageComponent(this.inkStorage));
+		CodecHelper.writeNbt(nbt, "ink_storage", InkStorageComponent.CODEC, new InkStorageComponent(this.inkStorage));
 		nbt.put("Looper", this.tickLooper.toNbt());
 		
 		this.tank.writeToNBT(registryLookup, nbt);

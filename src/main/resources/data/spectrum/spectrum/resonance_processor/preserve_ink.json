@@ -4,7 +4,6 @@
     "blocks": "#spectrum:ink_storages"
   },
   "nbt_to_copy": [
-    "ink_storage",
-    "InkStorage"
+    "ink_storage"
   ]
 }

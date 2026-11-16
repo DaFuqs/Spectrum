@@ -2,11 +2,16 @@ package de.dafuqs.spectrum.blocks.ink.gen;
 
 import de.dafuqs.spectrum.api.ink.*;
 import de.dafuqs.spectrum.api.ink.color.*;
+import de.dafuqs.spectrum.networking.s2c_payloads.*;
+import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.server.level.*;
+import net.minecraft.util.random.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.*;
 
 import java.util.*;
 
@@ -28,6 +33,18 @@ public class DaydreamerBlockEntity extends InkGeneratorBlockEntity {
 		for(InkAmount inkAmount : generatedEnergy) {
 			this.inkStorage.addEnergy(inkAmount.color(), inkAmount.amount());
 		}
+		
+		Optional<InkAmount> particleInk = WeightedRandom.getRandomItem(level.getRandom(), generatedEnergy);
+		if(particleInk.isPresent()) {
+			PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity((ServerLevel) level,
+					new Vec3(worldPosition.getX() + 0.5, worldPosition.getY() + 0.7, worldPosition.getZ() + 0.5),
+					ColoredFluidRisingParticleEffect.of(particleInk.get().color().getColorARGB()),
+					5,
+					new Vec3(0.22, 0.0, 0.22),
+					new Vec3(0.0, 0.1, 0.0)
+			);
+		}
+		
 		return true;
 	}
 	
@@ -96,6 +113,11 @@ public class DaydreamerBlockEntity extends InkGeneratorBlockEntity {
 	
 	private static float ease(float x) {
 		return x * x * (3 - 2 * x);
+	}
+	
+	@Override
+	public boolean pauseWhenInactive() {
+		return false;
 	}
 	
 }

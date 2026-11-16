@@ -24,8 +24,8 @@ public class TintingStationScreenHandler extends BaseInkScreenHandler {
 	
 	@Override
 	public void addBlockEntitySlots() {
-		this.addSlot(new Slot(blockEntity, 0, 26, 33));
-		this.addSlot(new InkStorageSlot(blockEntity, 1, 133, 33));
+		this.addSlot(new Slot(blockEntity, TintingStationBlockEntity.INPUT_SLOT_ID, 40, 33));
+		this.addSlot(new InkStorageSlot(blockEntity, TintingStationBlockEntity.OUTPUT_SLOT_ID, 102, 33));
 	}
 	
 }

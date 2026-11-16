@@ -1762,11 +1762,11 @@ public class SpectrumItemGroups {
 					
 					entries.accept(SpectrumBlocks.VINTAGE_COLOR_PICKER); // TODO: secret unlock & recipe
 					entries.accept(SpectrumBlocks.TINTING_STATION); // TODO: gui
-					entries.accept(SpectrumBlocks.DAYDREAMER); // TODO: unlock, balancing
-					entries.accept(SpectrumBlocks.TWILL); // TODO: unlock, balancing
+					entries.accept(SpectrumBlocks.DAYDREAMER); // TODO: unlock
+					entries.accept(SpectrumBlocks.TWILL); // TODO: unlock
 					entries.accept(SpectrumBlocks.BRIGHT_TWILL); // TODO: secret unlock & recipe
 					entries.accept(SpectrumBlocks.JADE_TWILL); // TODO: secret unlock & recipe
-					entries.accept(SpectrumBlocks.VANTACLAST); // TODO: unlock, balancing
+					entries.accept(SpectrumBlocks.VANTACLAST); // TODO: unlock
 				}).build();
 	}
 	

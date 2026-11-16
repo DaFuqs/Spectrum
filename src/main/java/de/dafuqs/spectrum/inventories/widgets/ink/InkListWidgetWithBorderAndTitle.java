@@ -17,7 +17,7 @@ public class InkListWidgetWithBorderAndTitle extends InkListWidget {
 	protected static final ResourceLocation BACKGROUND_SPRITE = SpectrumCommon.locate("widget/ink_list");
 	protected static final ResourceLocation INK_SPRITE = SpectrumCommon.locate("widget/ink_text");
 	protected static final int TITLE_HEIGHT = 18;
-	protected static final int PADDING = 5;
+	protected static final int PADDING = 6;
 	
 	public InkListWidgetWithBorderAndTitle(int x, int y, Supplier<InkCapability> inkCapability) {
 		super(x, y, inkCapability, 4, 1);

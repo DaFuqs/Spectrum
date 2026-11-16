@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.inventories.widgets.ink;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.ink.capability.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import de.dafuqs.spectrum.api.ink.storage.*;
@@ -8,14 +9,20 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.narration.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.*;
+import org.joml.*;
 import org.jspecify.annotations.*;
 
+import java.lang.Math;
 import java.util.*;
 import java.util.function.*;
 
 public class InkListWidget extends AbstractWidget {
 	
 	protected static final int CHART_HEIGHT = 40;
+	private static final float BACKGROUND_TINT_STRENGTH = 0.5F;
+	protected static final ResourceLocation BACKGROUND_SPRITE = SpectrumCommon.locate("widget/stacked_ink_bar");
+	
 	protected final int widthPerColor;
 	protected final int spaceBetweenColors;
 	protected final Collection<InkColor> colors;
@@ -56,6 +63,12 @@ public class InkListWidget extends AbstractWidget {
 		long maxPerColor = inkStorage.getMaxPerColor();
 		int currentX = x;
 		for (InkColor color : colors) {
+			Vector3f colorVecTint = color.getColorVec(BACKGROUND_TINT_STRENGTH);
+			guiGraphics.blitSprite(BACKGROUND_SPRITE, currentX - 1, y - 1, 6, 42);
+			guiGraphics.setColor(colorVecTint.x, colorVecTint.y, colorVecTint.z, 1.0F);
+			guiGraphics.blitSprite(BACKGROUND_SPRITE, 6, 42, 1, 1, currentX, y, 4, 40);
+			guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+			
 			long amount = inkStorage.getEnergy(color);
 			if (amount > 0) {
 				int h = Math.max(1, (int) Math.floor(((float) amount / ((float) maxPerColor / CHART_HEIGHT))));

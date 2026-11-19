@@ -133,7 +133,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		
 		// check the crafting conditions from time to time
 		// good for performance because of the many checks
-		if (fusionShrine.craftingTime % 60 == 0) {
+		if (fusionShrine.craftingTime % 120 == 0) {
 			Player lastInteractedPlayer = fusionShrine.getOwnerIfOnline(level);
 			
 			boolean recipeConditionsMet = recipe.value().canPlayerCraft(lastInteractedPlayer) && recipe.value().areConditionMetCurrently((ServerLevel) level, pos);

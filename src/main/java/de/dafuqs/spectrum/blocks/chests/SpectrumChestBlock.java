@@ -31,17 +31,7 @@ public abstract class SpectrumChestBlock extends BaseEntityBlock {
 	}
 	
 	public static boolean isChestBlocked(LevelAccessor world, BlockPos pos) {
-		var up = pos.above();
-		if (world.getBlockState(up).isRedstoneConductor(world, up))
-			return true;
-		
-		for (var catEntity : world.getEntitiesOfClass(Cat.class, new AABB(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1))) {
-			if (catEntity.isInSittingPose()) {
-				return true;
-			}
-		}
-		
-		return false;
+		return ChestBlock.isChestBlockedAt(world, pos);
 	}
 	
 	@Override

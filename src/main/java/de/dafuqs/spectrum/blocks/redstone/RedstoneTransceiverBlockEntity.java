@@ -34,9 +34,6 @@ public class RedstoneTransceiverBlockEntity extends BlockEntity implements Wirel
 	}
 	
 	private static boolean isSender(BlockState state) {
-		if(!state.is(SpectrumBlocks.REDSTONE_TRANSCEIVER)) {
-			return false;
-		}
 		return state.getValue(RedstoneTransceiverBlock.SENDER);
 	}
 	

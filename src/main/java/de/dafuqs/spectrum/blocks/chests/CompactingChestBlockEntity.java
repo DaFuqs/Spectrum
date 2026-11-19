@@ -34,7 +34,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	private @Nullable ItemStack lastCraftedStack; // cache
 	
 	protected boolean isOpen;
-	protected boolean shouldCraft;
+	protected boolean shouldCraft = true;
 	protected long craftingTimeStamp;
 	
 	protected @Nullable FlowAnimator animator;

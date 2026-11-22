@@ -739,6 +739,10 @@
       {
         "name": "spectrum:music/proper_motions_mutilated",
         "stream": true
+      },
+      {
+        "name": "spectrum:music/radiarc_palace_gardens",
+        "stream": true
       }
     ]
   },
@@ -746,6 +750,14 @@
     "sounds": [
       {
         "name": "spectrum:music/le_fishe_au_chocolat",
+        "stream": true
+      }
+    ]
+  },
+  "music.radiarc_it_ll_be_alright": {
+    "sounds": [
+      {
+        "name": "spectrum:music/radiarc_it_ll_be_alright",
         "stream": true
       }
     ]

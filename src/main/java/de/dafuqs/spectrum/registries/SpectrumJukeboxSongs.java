@@ -12,6 +12,7 @@ public class SpectrumJukeboxSongs {
 	public static final ResourceKey<JukeboxSong> DISCOVERY = of("discovery");
 	public static final ResourceKey<JukeboxSong> DIVINITY = of("divinity");
 	public static final ResourceKey<JukeboxSong> LE_FISHE_AU_CHOCOLAT = of("le_fishe_au_chocolat");
+	public static final ResourceKey<JukeboxSong> IT_LL_BE_ALRIGHT = of("it_ll_be_alright");
 	
 	private static ResourceKey<JukeboxSong> of(String id) {
 		return ResourceKey.create(Registries.JUKEBOX_SONG, SpectrumCommon.locate(id));

@@ -441,6 +441,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> MUSIC_DISC_DISCOVERY = register("music_disc_discovery", () -> new Item(IS.of(1, Rarity.RARE).jukeboxPlayable(SpectrumJukeboxSongs.DISCOVERY)));
 	public static final DeferredItem<Item> MUSIC_DISC_CREDITS = register("music_disc_credits", () -> new Item(IS.of(1, Rarity.RARE).jukeboxPlayable(SpectrumJukeboxSongs.CREDITS)));
 	public static final DeferredItem<Item> MUSIC_DISC_DIVINITY = register("music_disc_divinity", () -> new Item(IS.of(1, Rarity.RARE).jukeboxPlayable(SpectrumJukeboxSongs.DIVINITY)));
+	public static final DeferredItem<Item> MUSIC_DISC_ALRIGHT = register("music_disc_alright", () -> new Item(IS.of(1, Rarity.RARE).jukeboxPlayable(SpectrumJukeboxSongs.IT_LL_BE_ALRIGHT)));
 	
 	// Item Frames
 	public static final DeferredItem<Item> PHANTOM_FRAME = register("phantom_frame", () -> new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME.get(), IS.of()));

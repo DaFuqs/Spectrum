@@ -345,6 +345,11 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.WITHER_IDOL);
 					entries.accept(SpectrumBlocks.WITHER_SKELETON_IDOL);
 					entries.accept(SpectrumBlocks.ZOMBIE_IDOL);
+					
+					entries.accept(SpectrumItems.MUSIC_DISC_DISCOVERY);
+					entries.accept(SpectrumItems.MUSIC_DISC_CREDITS);
+					entries.accept(SpectrumItems.MUSIC_DISC_DIVINITY);
+					entries.accept(SpectrumItems.MUSIC_DISC_ALRIGHT);
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_CUISINE, Component.translatable("itemGroup.spectrum.cuisine"))
@@ -1315,9 +1320,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.VELVET_ASTROLOGER_BANNER_PATTERN);
 					entries.accept(SpectrumItems.POISONBLOOM_BANNER_PATTERN);
 					entries.accept(SpectrumItems.DEEP_LIGHT_BANNER_PATTERN);
-					entries.accept(SpectrumItems.MUSIC_DISC_DISCOVERY);
-					entries.accept(SpectrumItems.MUSIC_DISC_CREDITS);
-					entries.accept(SpectrumItems.MUSIC_DISC_DIVINITY);
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_COLORED_WOOD, Component.translatable("itemGroup.spectrum.colored_wood"))

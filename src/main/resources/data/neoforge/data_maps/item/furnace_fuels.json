@@ -12,6 +12,9 @@
     "spectrum:pure_coal": {
       "burn_time": 32000
     },
+    "spectrum:pure_coal_block": {
+      "burn_time": 320000
+    },
     "spectrum:wet_lava_sponge": {
       "burn_time": 12800
     },

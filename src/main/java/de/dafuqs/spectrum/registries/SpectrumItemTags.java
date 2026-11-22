@@ -37,6 +37,7 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> COLORING_BLACKLISTED = spectrum("coloring_blacklisted");
 	public static final TagKey<Item> EXEMPT_FROM_RECIPE_DEBUG_CHECK = spectrum("exempt_from_recipe_debug_check");
 	public static final TagKey<Item> COLOR_PICKERS = spectrum("color_pickers");
+	public static final TagKey<Item> SHOOTING_STAR_HARDENER = spectrum("shooting_star_hardener");
 	
 	private static TagKey<Item> spectrum(String id) {
 		return TagKey.create(Registries.ITEM, SpectrumCommon.locate(id));

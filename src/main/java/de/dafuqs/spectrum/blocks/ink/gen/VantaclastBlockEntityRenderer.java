@@ -12,10 +12,10 @@ import java.util.Random;
 
 public class VantaclastBlockEntityRenderer<T extends VantaclastBlockEntity> implements BlockEntityRenderer<T> {
 
-	private static final float MESH_BASE_Y = 0.5F;
+	private static final float MESH_BASE_Y = 0.54F;
 	private static final float MESH_HALF_SIZE = 0.2F;
 	private static final float MESH_BASE_HEIGHT = -0.05F;
-	private static final float MESH_WAVE_AMPLITUDE = 0.05F;
+	private static final float MESH_WAVE_AMPLITUDE = 0.04F;
 	private static final double MESH_WAVE_X_TIME_SCALE = 31.0;
 	private static final double MESH_WAVE_Z_TIME_SCALE = 39.0;
 	private static final float MESH_WAVE_X_SPATIAL_SCALE = 35.0F;

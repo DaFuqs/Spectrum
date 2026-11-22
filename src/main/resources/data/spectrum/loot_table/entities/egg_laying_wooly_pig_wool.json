@@ -10,22 +10,6 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "minecraft:white_wool",
-              "conditions": [
-                {
-                  "condition": "minecraft:entity_properties",
-                  "entity": "this",
-                  "predicate": {
-                    "type_specific": {
-                      "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "white"
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "type": "minecraft:item",
               "name": "minecraft:orange_wool",
               "conditions": [
                 {
@@ -34,7 +18,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "orange"
+                      "color": "spectrum:orange"
                     }
                   }
                 }
@@ -50,7 +34,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "magenta"
+                      "color": "spectrum:magenta"
                     }
                   }
                 }
@@ -66,7 +50,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "light_blue"
+                      "color": "spectrum:light_blue"
                     }
                   }
                 }
@@ -82,7 +66,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "yellow"
+                      "color": "spectrum:yellow"
                     }
                   }
                 }
@@ -98,7 +82,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "lime"
+                      "color": "spectrum:lime"
                     }
                   }
                 }
@@ -114,7 +98,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "pink"
+                      "color": "spectrum:pink"
                     }
                   }
                 }
@@ -130,7 +114,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "gray"
+                      "color": "spectrum:gray"
                     }
                   }
                 }
@@ -146,7 +130,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "light_gray"
+                      "color": "spectrum:light_gray"
                     }
                   }
                 }
@@ -162,7 +146,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "cyan"
+                      "color": "spectrum:cyan"
                     }
                   }
                 }
@@ -178,7 +162,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "purple"
+                      "color": "spectrum:purple"
                     }
                   }
                 }
@@ -194,7 +178,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "blue"
+                      "color": "spectrum:blue"
                     }
                   }
                 }
@@ -210,7 +194,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "brown"
+                      "color": "spectrum:brown"
                     }
                   }
                 }
@@ -226,7 +210,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "green"
+                      "color": "spectrum:green"
                     }
                   }
                 }
@@ -242,7 +226,7 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "red"
+                      "color": "spectrum:red"
                     }
                   }
                 }
@@ -258,11 +242,15 @@
                   "predicate": {
                     "type_specific": {
                       "type": "spectrum:egg_laying_wooly_pig",
-                      "color": "black"
+                      "color": "spectrum:black"
                     }
                   }
                 }
               ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:white_wool"
             }
           ]
         }

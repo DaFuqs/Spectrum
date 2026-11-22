@@ -629,6 +629,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.STARDUST_BLOCK);
 					entries.accept(SpectrumItems.STAR_FRAGMENT);
 					entries.accept(SpectrumBlocks.RADIATING_ENDER);
+					entries.accept(SpectrumItems.PRISM_SCALE);
 					
 					entries.accept(SpectrumItems.WHITE_PIGMENT);
 					entries.accept(SpectrumItems.ORANGE_PIGMENT);
@@ -675,8 +676,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
 					entries.accept(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
 					entries.accept(SpectrumItems.DRAGONROT_BUCKET);
-					
-					//entries.accept(SpectrumItems.SILVER_SCALE); // TODO: readd when they got textures & uses
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_PURE_RESOURCES, Component.translatable("itemGroup.spectrum.pure_resources"))

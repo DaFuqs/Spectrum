@@ -29,6 +29,7 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation REVEAL_FROSTBITE_RESOURCES = SpectrumCommon.locate("milestones/reveal_frostbite_resources");
 	public static final ResourceLocation REVEAL_INCANDESCENT_RESOURCES = SpectrumCommon.locate("milestones/reveal_incandescent_resources");
 	public static final ResourceLocation REVEAL_COLORED_GRASS = SpectrumCommon.locate("milestones/reveal_colored_grass");
+	public static final ResourceLocation REVEAL_PRISM_SCALE = SpectrumCommon.locate("milestones/reveal_prism_scale");
 	
 	// Milestones with unlocks
 	public static final ResourceLocation UNLOCK_INK_USE = locate("milestones/unlock_ink_use");
@@ -116,7 +117,7 @@ public class SpectrumAdvancements {
 	public static final ResourceLocation ASCEND_KINDLING = SpectrumCommon.locate("ascend_kindling");
 	public static final ResourceLocation BREAK_CRACKED_DRAGONBONE = SpectrumCommon.locate("break_cracked_dragonbone");
 	public static final ResourceLocation COLLECT_HIBERNATING_JADE_VINE_BULB = SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_bulb");
-	public static final ResourceLocation COLLECT_NECTARDEW = SpectrumCommon.locate("lategame/collect_nectardew");
+	public static final ResourceLocation COLLECT_NECTARDEW = SpectrumCommon.locate("hidden/collect_nectardew_burgeon");
 	public static final ResourceLocation CRAFT_BOTTLE_OF_FADING = SpectrumCommon.locate("craft_bottle_of_fading");
 	public static final ResourceLocation CRAFT_BOTTLE_OF_FAILING = SpectrumCommon.locate("midgame/craft_bottle_of_failing");
 	public static final ResourceLocation CREATE_MIDNIGHT_ABERRATION = SpectrumCommon.locate("midgame/create_midnight_aberration");

@@ -225,8 +225,18 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.SPIRIT_INSTILLER);
 					entries.accept(SpectrumBlocks.CRYSTAL_APOTHECARY);
 					
+					// Ink Sources
 					entries.accept(SpectrumBlocks.COLOR_PICKER);
-					entries.accept(SpectrumBlocks.CINDERHEARTH);
+					entries.accept(SpectrumBlocks.VINTAGE_COLOR_PICKER); // TODO: secret unlock & recipe
+					entries.accept(SpectrumBlocks.TWILL); // TODO: unlock
+					entries.accept(SpectrumBlocks.BRIGHT_TWILL); // TODO: secret unlock & recipe
+					entries.accept(SpectrumBlocks.JADE_TWILL); // TODO: secret unlock & recipe
+					entries.accept(SpectrumBlocks.VANTACLAST); // TODO: unlock
+					entries.accept(SpectrumBlocks.DAYDREAMER); // TODO: unlock#
+					
+					// Ink Sinks
+					entries.accept(SpectrumBlocks.TINTING_STATION); // TODO: gui
+					entries.accept(SpectrumBlocks.CINDERHEARTH); // TODO: gui
 					entries.accept(SpectrumBlocks.CRYSTALLARIEUM);
 					
 					entries.accept(SpectrumBlocks.UPGRADE_SPEED);
@@ -1760,14 +1770,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.PRESERVATION_CHEST);
 					
 					entries.accept(SpectrumItems.DIVINATION_HEART);
-					
-					entries.accept(SpectrumBlocks.VINTAGE_COLOR_PICKER); // TODO: secret unlock & recipe
-					entries.accept(SpectrumBlocks.TINTING_STATION); // TODO: gui
-					entries.accept(SpectrumBlocks.DAYDREAMER); // TODO: unlock
-					entries.accept(SpectrumBlocks.TWILL); // TODO: unlock
-					entries.accept(SpectrumBlocks.BRIGHT_TWILL); // TODO: secret unlock & recipe
-					entries.accept(SpectrumBlocks.JADE_TWILL); // TODO: secret unlock & recipe
-					entries.accept(SpectrumBlocks.VANTACLAST); // TODO: unlock
 				}).build();
 	}
 	

@@ -1,0 +1,13 @@
+{
+  "values": [
+    "spectrum:topaz_ore",
+    "spectrum:citrine_ore",
+    "spectrum:amethyst_ore",
+    "spectrum:onyx_ore",
+    "spectrum:moonstone_ore",
+
+    "spectrum:shimmerstone_ore",
+    "spectrum:azurite_ore",
+    "spectrum:malachite_ore"
+  ]
+}

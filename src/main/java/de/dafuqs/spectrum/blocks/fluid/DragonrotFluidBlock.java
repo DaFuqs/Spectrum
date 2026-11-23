@@ -19,12 +19,6 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	public DragonrotFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Properties settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
-
-//	@Override
-//	public MapCodec<? extends DragonrotFluidBlock> getCodec() {
-//		//TODO: Make the codec
-//		return null;
-//	}
 	
 	@Override
 	public SimpleParticleType getSplashParticle() {
@@ -47,20 +41,6 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
-	}
-	
-	@Override
-	public @Nullable BlockState handleFluidCollision(Level world, FluidState state, FluidState otherState, Direction direction) {
-		if (otherState.is(FluidTags.WATER)) {
-			return SpectrumBlocks.SLUSH.get().defaultBlockState();
-		} else if (otherState.is(FluidTags.LAVA)) {
-			return Blocks.TERRACOTTA.defaultBlockState();
-		} else if (otherState.is(SpectrumFluidTags.LIQUID_CRYSTAL)) {
-			return Blocks.TUFF.defaultBlockState();
-		} else if (otherState.is(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
-			return Blocks.MUD.defaultBlockState();
-		}
-		return null;
 	}
 	
 	@Override

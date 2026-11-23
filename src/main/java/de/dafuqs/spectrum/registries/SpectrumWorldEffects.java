@@ -13,6 +13,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.storage.*;
 import net.minecraft.world.phys.*;
@@ -122,7 +123,7 @@ public class SpectrumWorldEffects {
 						return;
 					}
 					world.setBlockAndUpdate(targetPos.get(), SpectrumBlocks.MIDNIGHT_SOLUTION.get().defaultBlockState());
-					MidnightSolutionFluidBlock.fizz(world, targetPos.get());
+					world.levelEvent(LevelEvent.LAVA_FIZZ, targetPos.get(), 0);
 				}
 			}
 		}
@@ -137,7 +138,7 @@ public class SpectrumWorldEffects {
 					return;
 				}
 				world.setBlockAndUpdate(p, SpectrumBlocks.MIDNIGHT_SOLUTION.get().defaultBlockState());
-				MidnightSolutionFluidBlock.fizz(world, targetPos.get());
+				world.levelEvent(LevelEvent.LAVA_FIZZ, targetPos.get(), 0);
 			}
 		}
 	});

@@ -1,5 +1,8 @@
 {
   "values": [
     "#minecraft:mineable/shovel"
+  ],
+  "remove": [
+    "spectrum:rotten_ground"
   ]
 }

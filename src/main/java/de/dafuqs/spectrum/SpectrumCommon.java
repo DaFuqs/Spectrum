@@ -122,7 +122,6 @@ public class SpectrumCommon {
 		SpectrumBlockEntities.register(modBus);
 		SpectrumPastelPayloadTypes.register(modBus);
 		SpectrumPastelPayloads.register(modBus);
-		modBus.addListener(SpectrumBlockEntities::addBlockEntityTypeBlocks);
 		
 		// Worldgen
 		logInfo("Registering Features...");
@@ -165,18 +164,35 @@ public class SpectrumCommon {
 		SpectrumItemProjectileBehaviors.register();
 		SpectrumEntityColorProcessors.register();
 		
-		logInfo("Registering Commands...");
-		NeoForge.EVENT_BUS.addListener(SpectrumCommands::register);
+		logInfo("Registering Game Events...");
+		SpectrumGameEvents.register(modBus);
+		SpectrumPositionSources.register(modBus);
+		SpectrumResonanceProcessorTypes.register(modBus);
+		logInfo("Registering Resource Conditions...");
+		SpectrumResourceConditions.register(modBus);
+		logInfo("Registering Structure WeightedPool Element Types...");
+		SpectrumStructurePoolElementTypes.register(modBus);
+		logInfo("Registering Event Listeners...");
+		SpectrumEventListeners.register();
+		logInfo("Registering Tree Decorator Types...");
+		SpectrumTreeDecoratorTypes.register(modBus);
+		logInfo("Registering Cat Variants...");
+		SpectrumCatVariants.register(modBus);
+		logInfo("Registering Attachments...");
+		SpectrumAttachmentTypes.register(modBus);
+		logInfo("Setting up server side Mod Compat...");
+		SpectrumIntegrationPacks.register(modBus);
 		
-		logInfo("Registering Networking Packets...");
+		NeoForge.EVENT_BUS.addListener(SpectrumCommands::register);
+		modBus.addListener(SpectrumBlockEntities::addBlockEntityTypeBlocks);
+		
 		modBus.addListener(SpectrumC2SPackets::register);
 		modBus.addListener(RegisterPayloadHandlersEvent.class, (event) -> {
-				PayloadRegistrar registrar = event.registrar("1");
-				SpectrumS2CPackets.register(registrar);
-			}
+					PayloadRegistrar registrar = event.registrar("1");
+					SpectrumS2CPackets.register(registrar);
+				}
 		);
-
-		logInfo("Registering Data Loaders...");
+		
 		NeoForge.EVENT_BUS.addListener((Consumer<AddReloadListenerEvent>) event -> {
 			event.addListener(NaturesStaffConversionDataLoader.INSTANCE);
 			event.addListener(EntityFishingDataLoader.INSTANCE);
@@ -200,36 +216,14 @@ public class SpectrumCommon {
 		});
 		modBus.addListener(SpectrumCapabilities::register);
 		
-		logInfo("Registering Game Events...");
-		SpectrumGameEvents.register(modBus);
-		SpectrumPositionSources.register(modBus);
-
-		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
 		modBus.addListener((Consumer<FMLCommonSetupEvent>) event -> event.enqueueWork(() -> {
+			logInfo("Running Late Setup...");
 			SpectrumCauldronInteractions.register();
 			SpectrumDispenserBehaviors.register();
 			SpectrumPresentUnpackBehaviors.register();
 			SpectrumItemGroups.registerSubTabs();
+			SpectrumFluidInteractions.register();
 		}));
-		
-		SpectrumResonanceProcessorTypes.register(modBus);
-		
-		logInfo("Registering Resource Conditions...");
-		SpectrumResourceConditions.register(modBus);
-		logInfo("Registering Structure WeightedPool Element Types...");
-		SpectrumStructurePoolElementTypes.register(modBus);
-		logInfo("Registering Event Listeners...");
-		SpectrumEventListeners.register();
-		logInfo("Registering Tree Decorator Types...");
-		SpectrumTreeDecoratorTypes.register(modBus);
-		logInfo("Registering Cat Variants...");
-		SpectrumCatVariants.register(modBus);
-		
-		logInfo("Registering Attachments...");
-		SpectrumAttachmentTypes.register(modBus);
-		
-		logInfo("Setting up server side Mod Compat...");
-		SpectrumIntegrationPacks.register(modBus);
 		
 		logInfo("Common startup completed!");
 	}

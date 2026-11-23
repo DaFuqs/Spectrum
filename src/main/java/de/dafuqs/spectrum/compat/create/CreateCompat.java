@@ -37,9 +37,6 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	@Override
 	public void register(IEventBus modBus) {
 		NeoForge.EVENT_BUS.addListener(CreateCompat::addItemsToSubTabs);
-		
-		NeoForge.EVENT_BUS.addListener(CreateCompat::onPipeSpillCollision);
-		NeoForge.EVENT_BUS.addListener(CreateCompat::onPipeFlowCollision);
 	}
 	
 	@SubscribeEvent
@@ -53,38 +50,6 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 			event.getItemDisplayBuilder().accept(ZINC_CLUSTER);
 			event.getItemDisplayBuilder().accept(PURE_ZINC_BLOCK);
 		}
-	}
-	
-	private static void onPipeFlowCollision(PipeCollisionEvent.Flow event) {
-		var result = handleBidirectionalCollision(event.getLevel(), event.getFirstFluid(), event.getSecondFluid());
-		if (result != null)
-			event.setState(result);
-	}
-	
-	private static void onPipeSpillCollision(PipeCollisionEvent.Spill event) {
-		var result = handleBidirectionalCollision(event.getLevel(), event.getPipeFluid(), event.getWorldFluid());
-		if (result != null)
-			event.setState(result);
-	}
-	
-	// NOTE: firstFluid and secondFluid are assumed to be not null without checking,
-	// since the default Create event handlers for pipe collisions would throw a NullPointerException otherwise.
-	private static @Nullable BlockState handleBidirectionalCollision(Level world, Fluid firstFluid, Fluid secondFluid) {
-		final FluidState firstState = firstFluid.defaultFluidState();
-		final FluidState secondState = secondFluid.defaultFluidState();
-		
-		// Handle fluid 1
-		final BlockState result = spectrumFluidCollision(world, firstState, secondState);
-		if (result != null) return result;
-		
-		// Handle fluid 2
-		return spectrumFluidCollision(world, secondState, firstState);
-	}
-	
-	private static @Nullable BlockState spectrumFluidCollision(Level world, FluidState state, FluidState otherState) {
-		if (state.createLegacyBlock().getBlock() instanceof SpectrumFluidBlock spectrumFluid)
-			return spectrumFluid.handleFluidCollision(world, state, otherState, Direction.DOWN);
-		return null;
 	}
 	
 	@Override

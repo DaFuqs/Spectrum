@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
+import net.neoforged.neoforge.event.level.*;
 import org.jspecify.annotations.*;
 
 public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
@@ -18,12 +19,6 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	public LiquidCrystalFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Properties settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
-
-//	@Override
-//	public MapCodec<? extends LiquidCrystalFluidBlock> getCodec() {
-//		//TODO: Make the codec
-//		return null;
-//	}
 	
 	@Override
 	public SimpleParticleType getSplashParticle() {
@@ -36,11 +31,6 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	@Override
-	public boolean isPathfindable(BlockState state, PathComputationType type) {
-		return true;
-	}
-	
-	@Override
 	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		super.animateTick(state, world, pos, random);
 		if (random.nextFloat() < 0.10F) {
@@ -49,13 +39,8 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	@Override
-	public @Nullable BlockState handleFluidCollision(Level world, FluidState state, FluidState otherState, Direction direction) {
-		if (otherState.is(FluidTags.WATER)) {
-			return state.isSource() && direction != Direction.DOWN ? SpectrumBlocks.FROSTBITE_CRYSTAL.get().defaultBlockState() : Blocks.CLAY.defaultBlockState();
-		} else if (otherState.is(FluidTags.LAVA)) {
-			return state.isSource() && direction != Direction.DOWN ? SpectrumBlocks.BLAZING_CRYSTAL.get().defaultBlockState() : Blocks.CALCITE.defaultBlockState();
-		}
-		return null;
+	public boolean isPathfindable(BlockState state, PathComputationType type) {
+		return true;
 	}
 	
 }

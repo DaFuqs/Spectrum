@@ -22,6 +22,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.*;
@@ -29,6 +30,10 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.fluids.*;
 
 public abstract class MidnightSolutionFluid extends SpectrumFluid {
+	
+	public static boolean canBeTakenOver(Level level, BlockPos relativePos) {
+		return level.getFluidState(relativePos).is(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED);
+	}
 	
 	@Override
 	public FluidType getFluidType() {
@@ -80,20 +85,27 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	}
 	
 	@Override
-	public void tick(Level world, BlockPos pos, FluidState state) {
-		super.tick(world, pos, state);
+	public void tick(Level level, BlockPos pos, FluidState state) {
+		super.tick(level, pos, state);
 		
 		if (state.getOwnHeight() < 1.0) {
 			for (Direction direction : Direction.values()) {
-				if (MidnightSolutionFluidBlock.tryConvertNeighbor(world, pos.relative(direction))) {
-					break;
-				}
+				tryConvertNeighbor(level, pos.relative(direction));
 			}
 		}
 		
-		boolean converted = BlackMateriaBlock.spreadBlackMateria(world, pos, world.getRandom(), MidnightSolutionFluidBlock.SPREAD_BLOCKSTATE);
+		boolean converted = BlackMateriaBlock.spreadBlackMateria(level, pos, level.getRandom(), MidnightSolutionFluidBlock.SPREAD_BLOCKSTATE);
 		if (converted) {
-			world.scheduleTick(pos, state.getType(), 400 + world.getRandom().nextInt(800));
+			level.scheduleTick(pos, state.getType(), 400 + level.getRandom().nextInt(800));
+		}
+	}
+	
+	public void tryConvertNeighbor(Level level, BlockPos pos) {
+		FluidState fluidState = level.getFluidState(pos);
+		if (!fluidState.isEmpty() && fluidState.is(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED) && level.getBlockState(pos).getBlock() instanceof LiquidBlock) {
+			level.setBlockAndUpdate(pos, SpectrumBlocks.MIDNIGHT_SOLUTION.get().defaultBlockState());
+			level.levelEvent(LevelEvent.LAVA_FIZZ, pos, 0);
+			level.scheduleTick(pos, SpectrumFluids.MIDNIGHT_SOLUTION.get(), getTickDelay(level));
 		}
 	}
 	

@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.pathfinder.*;
+import net.neoforged.neoforge.fluids.*;
 import org.jspecify.annotations.*;
 
 public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
@@ -23,12 +24,6 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	public MidnightSolutionFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Properties settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
-
-//	@Override
-//	public MapCodec<? extends MidnightSolutionFluidBlock> getCodec() {
-//		//TODO: Make the codec
-//		return null;
-//	}
 	
 	@Override
 	public SimpleParticleType getSplashParticle() {
@@ -38,20 +33,6 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public Tuple<SimpleParticleType, SimpleParticleType> getFishingParticles() {
 		return new Tuple<>(SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH, SpectrumParticleTypes.MIDNIGHT_SOLUTION_FISHING);
-	}
-	
-	public static boolean tryConvertNeighbor(Level world, BlockPos fromPos) {
-		FluidState fluidState = world.getFluidState(fromPos);
-		if (!fluidState.isEmpty() && fluidState.is(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED)) {
-			world.setBlockAndUpdate(fromPos, SpectrumBlocks.MIDNIGHT_SOLUTION.get().defaultBlockState());
-			fizz(world, fromPos);
-			return true;
-		}
-		return false;
-	}
-	
-	public static void fizz(LevelAccessor world, BlockPos pos) {
-		world.levelEvent(LevelEvent.LAVA_FIZZ, pos, 0);
 	}
 	
 	@Override
@@ -65,53 +46,6 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
-	}
-	
-	@Override
-	public boolean shouldSpreadLiquid(Level world, BlockPos pos, BlockState state) {
-		// Shouldn't happen but check anyway
-		// If it IS true then do nothing, since no interaction can take place at this position
-		final FluidState fluidState = state.getFluidState();
-		if (fluidState.isEmpty()) return true;
-		
-		for (Direction direction : Direction.values()) {
-			BlockPos neighborPos = pos.relative(direction);
-			FluidState neighborFluidState = world.getFluidState(neighborPos);
-			
-			// Do nothing if neighbor fluid state is empty. [matters for both collision and spread]
-			if (neighborFluidState.isEmpty()) continue;
-			
-			// Fluid collision interaction
-			final BlockState setState = handleFluidCollision(world, fluidState, neighborFluidState, direction);
-			if (setState != null) {
-				fireExtinguishEvent(world, pos);
-				world.setBlockAndUpdate(pos, setState);
-				return false;
-			}
-			
-			// World interaction
-			boolean isNeighborFluidBlock = world.getBlockState(neighborPos).getBlock() instanceof LiquidBlock;
-			// spread to the fluid
-			boolean doesTickEntities = world.getChunkAt(pos).getFullStatus().isOrAfter(FullChunkStatus.ENTITY_TICKING);
-			if (!neighborFluidState.isEmpty() && doesTickEntities) {
-				if (!isNeighborFluidBlock) {
-					world.setBlockAndUpdate(pos, SPREAD_BLOCKSTATE);
-					fireExtinguishEvent(world, pos);
-				} else {
-					if (!neighborFluidState.is(this.fluid) && !neighborFluidState.is(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED) && !world.getBlockState(neighborPos).is(this)) {
-						world.setBlockAndUpdate(pos, SPREAD_BLOCKSTATE);
-						fireExtinguishEvent(world, neighborPos);
-					}
-				}
-			}
-		}
-		return true;
-	}
-	
-	@Override
-	public @Nullable BlockState handleFluidCollision(Level world, FluidState state, FluidState otherState, Direction direction) {
-		if (otherState.is(FluidTags.LAVA)) return Blocks.BLACKSTONE.defaultBlockState();
-		return null;
 	}
 	
 	@Override

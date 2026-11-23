@@ -35,7 +35,7 @@ public class BloodstoneGlassAmpouleItem extends GlassAmpouleItem implements Prio
 	}
 	
 	@Override
-	public boolean trigger(Level world, ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target, Vec3 position) {
+	public boolean trigger(Level world, ItemStack stack, @Nullable LivingEntity attacker, @Nullable LivingEntity target, Vec3 position) {
 		world.playLocalSound(BlockPos.containing(position), SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundSource.PLAYERS, 0.35F, 0.9F + world.getRandom().nextFloat() * 0.334F, true);
 		LightSpearEntity.summonBarrage(world, attacker, target, LightShardBaseEntity.MONSTER_TARGET, position, LightShardBaseEntity.DEFAULT_COUNT_PROVIDER);
 		return true;

@@ -178,8 +178,6 @@ public class ArtisansAtlasState extends MapItemSavedData {
 		}
 		
 		MapDecoration icon = new MapDecoration(type, pixelX, pixelZ, rotationByte, Optional.ofNullable(text));
-		icon.spectrum$setScale(scaleByte);
-		
 		MapDecoration previousIcon = accessor.getDecorations().put(key, icon);
 		if (!icon.equals(previousIcon)) {
 			if (previousIcon != null && previousIcon.type().value().trackCount())

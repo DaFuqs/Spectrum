@@ -33,15 +33,11 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 	
 	public static final float MAX_CHARGE_TIME = 60;
 	
-	public DraconicTwinswordItem(Tier toolMaterial, Properties settings) {
-		super(toolMaterial, settings);
-	}
-	
-	public static ItemAttributeModifiers createAttributes() {
-		return ItemAttributeModifiers.builder()
-				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 6, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-				.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -3.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-				.build();
+	public DraconicTwinswordItem(Tier toolMaterial, double damage, double attackSpeed, Properties settings) {
+		super(toolMaterial, settings.attributes(ItemAttributeModifiers.builder()
+				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, damage + toolMaterial.getAttackDamageBonus(), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+				.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+				.build()));
 	}
 	
 	@Override

@@ -5,8 +5,9 @@ import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.api.ink.color.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
+import net.minecraft.util.random.*;
 
-	public record InkAmount(InkColor color, long amount) {
+public record InkAmount(InkColor color, long amount) implements WeightedEntry {
 	
 	public static final Codec<InkAmount> CODEC = RecordCodecBuilder.create(i -> i.group(
 			InkColor.CODEC.fieldOf("color").forGetter(InkAmount::color),
@@ -18,5 +19,10 @@ import net.minecraft.network.codec.*;
 			ByteBufCodecs.VAR_LONG, InkAmount::amount,
 			InkAmount::new
 	);
+	
+	@Override
+	public Weight getWeight() {
+		return Weight.of((int) (amount));
+	}
 	
 }

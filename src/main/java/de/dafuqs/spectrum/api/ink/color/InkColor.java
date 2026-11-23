@@ -110,6 +110,14 @@ public class InkColor {
 		return this.colorVec;
 	}
 	
+	public Vector3f getColorVec(float tintStrength) {
+		return new Vector3f(
+				1.0F + (colorVec.x - 1.0F) * tintStrength,
+				1.0F + (colorVec.y - 1.0F) * tintStrength,
+				1.0F + (colorVec.z - 1.0F) * tintStrength
+		);
+	}
+	
 	@Deprecated(forRemoval = true)
 	public int getColorInt() {
 		return this.colorInt;

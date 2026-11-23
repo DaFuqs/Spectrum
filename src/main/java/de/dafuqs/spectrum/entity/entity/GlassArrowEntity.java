@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.magic.*;
 import de.dafuqs.spectrum.registries.*;
@@ -23,7 +22,7 @@ import org.jspecify.annotations.*;
 public class GlassArrowEntity extends AbstractArrow {
 	
 	private static final String VARIANT_STRING = "variant";
-	private static final EntityDataAccessor<GlassArrowVariant> VARIANT = SynchedEntityData.defineId(GlassArrowEntity.class, SpectrumTrackedDataHandlerRegistry.GLASS_ARROW_VARIANT);
+	private static final EntityDataAccessor<GlassArrowVariant> VARIANT = SynchedEntityData.defineId(GlassArrowEntity.class, SpectrumEntityDataSerializers.GLASS_ARROW_VARIANT);
 	
 	public static final float DAMAGE_MODIFIER = 1.5F;
 	

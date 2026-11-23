@@ -42,6 +42,8 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 		addInkPoweredTooltip(stack, tooltip);
 	}
 	
+	
+	
 	@Override
 	public InteractionResult interactLivingEntity(ItemStack stack, Player user, LivingEntity entity, InteractionHand hand) {
 		Level world = user.level();

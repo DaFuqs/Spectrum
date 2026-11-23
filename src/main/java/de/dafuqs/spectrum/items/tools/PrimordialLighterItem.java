@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.primordial_fire.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.advancements.*;

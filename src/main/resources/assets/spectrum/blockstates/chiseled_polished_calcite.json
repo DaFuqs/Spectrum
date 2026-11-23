@@ -1,7 +1,16 @@
 {
   "variants": {
-    "": {
+    "facing=south": {
       "model": "spectrum:block/chiseled_polished_calcite"
+    },
+    "facing=west": {
+      "model": "spectrum:block/chiseled_polished_calcite_2"
+    },
+    "facing=north": {
+      "model": "spectrum:block/chiseled_polished_calcite_3"
+    },
+    "facing=east": {
+      "model": "spectrum:block/chiseled_polished_calcite_4"
     }
   }
 }

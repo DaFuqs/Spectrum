@@ -25,7 +25,7 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 	public static final int BUILTIN_RIPTIDE_LEVEL = 1;
 	
 	public FerociousBidentItem(Item.Properties settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
-		super(settings, attackSpeed, damage, armorPierce, protPierce, true);
+		super(settings, attackSpeed, damage, 0, armorPierce, protPierce, true);
 	}
 	
 	@Override

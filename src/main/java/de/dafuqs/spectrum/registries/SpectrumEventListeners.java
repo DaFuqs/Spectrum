@@ -202,13 +202,12 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	private static void entityTick(EntityTickEvent.Post event) {
-		var entity = event.getEntity();
-		
-		if (entity instanceof LivingEntity living) {
+		if (event.getEntity() instanceof LivingEntity living) {
 			PrimordialFireAttachmentType.tick(living);
 			
-			if (living.level().isClientSide())
+			if (living.level().isClientSide()) {
 				return;
+			}
 			AzureDikeAttachmentType azureDikeAttachment = living.getData(AzureDikeAttachmentType.ATTACHMENT_TYPE);
 			azureDikeAttachment.serverTick(living);
 		}
@@ -216,35 +215,20 @@ public class SpectrumEventListeners {
 	
 	@SubscribeEvent
 	public static InteractionResult triggerPrioritizedEntityInteraction(PlayerInteractEvent.EntityInteract event){
-		
 		Player player = event.getEntity();
 		Entity entity = event.getTarget();
 		InteractionHand hand = event.getHand();
 		ItemStack handStack = player.getItemInHand(hand);
 		
 		if (handStack.getItem() instanceof PrioritizedEntityInteraction && entity instanceof LivingEntity livingEntity) {
-			return handStack.interactLivingEntity(player, livingEntity, hand);
+			event.setCanceled(true);
+			event.setCancellationResult(handStack.interactLivingEntity(player, livingEntity, hand));
 		}
 		return InteractionResult.PASS;
-		
-	}
-	
-	@SubscribeEvent
-	public static InteractionResult triggerPrioritizedBlockInteraction(PlayerInteractEvent.RightClickBlock event) {
-		Player player = event.getEntity();
-		InteractionHand hand = event.getHand();
-		BlockHitResult hitResult = event.getHitVec();
-		ItemStack handStack = player.getItemInHand(hand);
-		
-		if (handStack.getItem() instanceof PrioritizedBlockInteraction) {
-			return handStack.useOn(new UseOnContext(player, hand, hitResult));
-		}
-		return InteractionResult.PASS;
-		
 	}
 	
 	//Curious: I'm basically checking the sleep timer when the player wakes up here
-	//Curious: Miraculously this works due to a single line in the Player class which is awesome
+	//Curious: Miraculously, this works due to a single line in the Player class which is awesome
 	@SubscribeEvent
 	public static void triggerWhispyCirclet(PlayerWakeUpEvent event) {
 		Player player = event.getEntity();
@@ -253,7 +237,6 @@ public class SpectrumEventListeners {
 			player.setHealth(player.getMaxHealth());
 			MobEffectHelper.clearEffects(player, WhispyCircletItem.EFFECT_CLEAR_PREDICATE);
 		}
-		
 	}
 	
 	@SubscribeEvent
@@ -587,6 +570,21 @@ public class SpectrumEventListeners {
 				return SpectrumCommon.MOD_ID + ":resources_cleanup";
 			}
 		});
+	}
+	
+	@SubscribeEvent
+	private static void onPickupXP(PlayerXpEvent.PickupXp event) {
+		for (InteractionHand hand : InteractionHand.values()) {
+			ItemStack handStack = event.getEntity().getItemInHand(hand);
+			if (handStack.getItem() instanceof ExperienceStorageItem) {
+				ExperienceOrb orb = event.getOrb();
+				int orbXp = orb.getValue();
+				if (orbXp < 1) {
+					return;
+				}
+				orb.value = ExperienceStorageItem.addStoredExperience(event.getEntity().registryAccess(), handStack, orbXp);
+			}
+		}
 	}
 	
 	

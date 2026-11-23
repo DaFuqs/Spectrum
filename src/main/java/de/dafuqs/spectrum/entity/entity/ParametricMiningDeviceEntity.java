@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.damagesource.*;
@@ -31,29 +32,26 @@ public class ParametricMiningDeviceEntity extends ThrowableItemProjectile {
 	
 	@Override
 	protected void onHitEntity(EntityHitResult hitResult) {
-		explodeAt(hitResult.getLocation());
+		explodeAt(hitResult);
 	}
 	
 	@Override
 	protected void onHitBlock(BlockHitResult hitResult) {
-		explodeAt(Vec3.atCenterOf(hitResult.getBlockPos()));
+		explodeAt(hitResult);
 	}
 	
-	private void explodeAt(Vec3 hitResult) {
+	private void explodeAt(HitResult hitResult) {
 		Level level = this.level();
 		ItemStack stack = this.getItem();
 		if (!level.isClientSide()) {
 			Entity owner = getOwner();
 			Player playerOwner = owner instanceof Player player ? player : null;
-			ExplosionWithStack.explode((ServerLevel) level, playerOwner, stack, hitResult, false);
+			
+			ParametricMiningDeviceBlock.explodeTowardsPosition(Direction.getNearest(this.getDeltaMovement()), level, BlockPos.containing(hitResult.getLocation()), playerOwner, stack);
 		}
 		
 		level.broadcastEntityEvent(this, EntityEvent.DEATH);
 		remove(RemovalReason.DISCARDED);
-		
-		if(ExplosionWithStack.shouldPreserveExplosive(level, stack)) {
-			level.addFreshEntity(new ItemEntity(level, position().x, position().y, position().z, stack));
-		}
 	}
 	
 	@Override

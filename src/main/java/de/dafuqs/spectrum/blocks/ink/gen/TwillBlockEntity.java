@@ -56,4 +56,9 @@ public class TwillBlockEntity extends InkGeneratorBlockEntity {
 		return false;
 	}
 	
+	@Override
+	public boolean pauseWhenInactive() {
+		return false;
+	}
+	
 }

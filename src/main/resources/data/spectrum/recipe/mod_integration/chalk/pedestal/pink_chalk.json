@@ -15,16 +15,19 @@
     "D": "spectrum:pink_pigment"
   },
   "result": {
-    "id": "chalk:pink_chalk",
+    "id": "chalk:chalk",
     "components": {
-      "unbreakable": {}
+      "minecraft:unbreakable": {},
+      "minecraft:dyed_color": {
+        "rgb": 16752582
+      }
     }
   },
   "required_advancement": "spectrum:hidden/collect_pigment/pink",
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "chalk-colorful-addon"
+      "modid": "chalk"
     }
   ]
 }

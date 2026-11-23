@@ -14,11 +14,9 @@ import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import org.jspecify.annotations.*;
@@ -27,16 +25,8 @@ import java.util.*;
 import java.util.function.*;
 
 public class DragonTalonItem extends MalachiteBidentItem implements MergeableItem, SlotReservingItem, SlotBackgroundEffectProvider {
-	
-	private final ItemAttributeModifiers modifiers;
-	
-	public DragonTalonItem(Tier toolMaterial, double damage, double extraReach, Item.Properties settings) {
-		super(settings, 0, 0, 0, 0, false);
-		this.modifiers = ItemAttributeModifiers.builder()
-				.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, damage + toolMaterial.getAttackDamageBonus(), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-				.add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -2.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-				.add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(SpectrumEntityAttributes.REACH_MODIFIER_ID, extraReach, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-				.build();
+	public DragonTalonItem(Tier toolMaterial, double damage, double attackSpeed, double extraReach, Item.Properties settings) {
+		super(settings, attackSpeed, damage + toolMaterial.getAttackDamageBonus(), extraReach, 0, 0, false);
 	}
 	
 	@Override

@@ -12,6 +12,9 @@
   "parents": [
     {
       "entry": "spectrum:general/midnight_chip"
+    },
+    {
+      "entry": "spectrum:general/azurite"
     }
   ],
   "background_u_index": 0,

@@ -14,13 +14,9 @@
   },
   "criteria": {
     "has_nectardew_burgeon": {
-      "trigger": "minecraft:inventory_changed",
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "items": [
-          {
-            "items": "spectrum:nectardew_burgeon"
-          }
-        ]
+        "advancement_identifier": "spectrum:hidden/collect_nectardew_burgeon"
       }
     },
     "gotten_previous": {

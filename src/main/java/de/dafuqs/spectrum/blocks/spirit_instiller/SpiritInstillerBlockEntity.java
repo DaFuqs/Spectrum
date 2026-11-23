@@ -16,6 +16,7 @@ import de.dafuqs.spectrum.render.animation.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
@@ -32,7 +33,7 @@ import org.jspecify.annotations.*;
 
 import java.util.*;
 
-public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter, WorldlyContainer {
+public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter, WorldlyContainer, PaintbrushHoverInfo {
 	
 	private static final FlowAnimator.Factory<SpiritInstillerBlockEntity> FACTORY;
 	private static final KeyFrame<Float> platformPos = (tickDelta, time) -> (float) (Math.sin((time + tickDelta + 15) / 23) + 6F) * 2F;
@@ -553,4 +554,15 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
 		return true;
 	}
+	
+	@Override
+	public List<Component> getPaintbrushHoverInfo(boolean includeDebugInfo) {
+		if(currentRecipe != null && craftingTimeTotal > 0) {
+			return List.of(
+					Component.translatable("spectrum.hover.progress_percent", Support.getSensiblePercentString(craftingTime, craftingTimeTotal))
+			);
+		}
+		return List.of();
+	}
+	
 }

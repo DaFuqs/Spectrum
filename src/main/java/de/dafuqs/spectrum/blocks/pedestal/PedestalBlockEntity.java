@@ -887,8 +887,10 @@ public class PedestalBlockEntity extends BaseContainerBlockEntity implements Mul
 		setChanged();
 	}
 	
-	public void setInventoryChanged() {
+	@Override
+	public void inventoryChanged() {
 		this.inventoryChanged = true;
+		this.setChanged();
 	}
 	
 }

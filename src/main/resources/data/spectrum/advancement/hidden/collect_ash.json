@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "collected_slush": {
+    "collected_ash_flakes": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.primordial_fire.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.level.*;

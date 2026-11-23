@@ -25,7 +25,7 @@ import java.util.*;
 
 public class ExplosionWithStack extends Explosion {
 	
-	public static final int BASE_EXPLOSION_LEVEL = 4;
+	public static final int BASE_EXPLOSION_LEVEL = 3;
 	@Unique
 	public static @Nullable Explosion spectrum$explosion = null;
 	

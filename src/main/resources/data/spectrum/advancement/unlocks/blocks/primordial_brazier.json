@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "interacted_with_doombloom": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/interact_with_doombloom"
+      }
+    },
+    "built_advanced_pedestal_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure"
+      }
+    }
+  }
+}

@@ -119,18 +119,17 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 		
 		if (!world.isClientSide()) {
 			if (entity instanceof LivingEntity livingEntity) {
-				if (!livingEntity.isDeadOrDying() && world.getGameTime() % 20 == 0) {
-					var damageMult = 1F;
-					
-					if (world.getBiome(pos).is(SpectrumBiomeKeys.BLACK_LANGAST))
-						damageMult = 9F;
+				if (!livingEntity.isDeadOrDying()) {
+					float damage = world.getBiome(pos).is(SpectrumBiomeKeys.BLACK_LANGAST) ? 10F : 2F;
 					
 					if (livingEntity.isEyeInFluidType(SpectrumFluids.MIDNIGHT_SOLUTION_TYPE.get())) {
-						livingEntity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 50, 0));
-						livingEntity.hurt(SpectrumDamageTypes.midnightSolution(world), 2 * damageMult);
-					} else {
-						livingEntity.hurt(SpectrumDamageTypes.midnightSolution(world), damageMult);
+						if(world.getGameTime() % 20 == 0) {
+							livingEntity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 50, 0));
+						}
+						damage *= 2;
 					}
+					livingEntity.hurt(SpectrumDamageTypes.midnightSolution(world), damage);
+					
 					if (livingEntity.isDeadOrDying()) {
 						livingEntity.spawnAtLocation(SpectrumItems.MIDNIGHT_CHIP.get().getDefaultInstance());
 					}

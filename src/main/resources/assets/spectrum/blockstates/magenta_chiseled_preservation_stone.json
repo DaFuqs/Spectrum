@@ -1,7 +1,20 @@
 {
   "variants": {
-    "": {
-      "model": "spectrum:block/magenta_chiseled_preservation_stone"
+    "facing=south": {
+		"model": "spectrum:block/magenta_chiseled_preservation_stone",
+		"y" : 0
+    },
+	"facing=west": {
+		"model": "spectrum:block/magenta_chiseled_preservation_stone",
+		"y" : 90
+    },
+	"facing=north": {
+		"model": "spectrum:block/magenta_chiseled_preservation_stone",
+		"y" : 180
+    },
+	"facing=east": {
+		"model": "spectrum:block/magenta_chiseled_preservation_stone",
+		"y" : -90
     }
   }
 }

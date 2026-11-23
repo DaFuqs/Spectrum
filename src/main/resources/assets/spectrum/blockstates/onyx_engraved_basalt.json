@@ -1,7 +1,16 @@
 {
   "variants": {
-    "": {
-      "model": "spectrum:block/onyx_engraved_basalt"
+    "facing=south": {
+      "model": "spectrum:block/onyx_engraved_basalt_1"
+    },
+    "facing=west": {
+      "model": "spectrum:block/onyx_engraved_basalt_2"
+    },
+    "facing=north": {
+      "model": "spectrum:block/onyx_engraved_basalt_3"
+    },
+    "facing=east": {
+      "model": "spectrum:block/onyx_engraved_basalt_4"
     }
   }
 }

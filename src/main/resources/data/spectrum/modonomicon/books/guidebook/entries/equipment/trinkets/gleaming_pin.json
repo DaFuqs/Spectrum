@@ -39,11 +39,11 @@
       },
       "title": "enchantment.spectrum.sniping",
       "item": {
-        "item": "spectrum:gleaming_pin"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:sniping": 2
+        "item": "spectrum:gleaming_pin",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:sniping": 2
+          }
         }
       },
       "text": "book.spectrum.guidebook.gleaming_pin.page2.text"

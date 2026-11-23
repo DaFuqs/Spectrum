@@ -33,11 +33,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
-        "item": "minecraft:iron_axe"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:treasure_hunter": 3
+        "item": "minecraft:iron_axe",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:treasure_hunter": 3
+          }
         }
       },
       "text": "book.spectrum.guidebook.treasure_hunter.page2.text"

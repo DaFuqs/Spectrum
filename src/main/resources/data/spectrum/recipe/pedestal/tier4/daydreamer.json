@@ -8,17 +8,16 @@
   },
   "experience": 4.0,
   "pattern": [
-    "CMY",
-    "PDP",
-    "PLP"
+    "WCB",
+    " P ",
+    "APA"
   ],
   "key": {
-    "C": "spectrum:cyan_pigment",
-    "M": "spectrum:magenta_pigment",
-    "Y": "spectrum:yellow_pigment",
-    "L": "#minecraft:wood",
-    "D": "minecraft:green_dye",
-    "P": "#minecraft:planks"
+    "W": "spectrum:white_pigment",
+    "C": "spectrum:pure_copper",
+    "B": "spectrum:black_pigment",
+    "A": "spectrum:polished_basalt",
+    "P": "spectrum:polished_calcite"
   },
   "result": {
     "id": "spectrum:daydreamer",

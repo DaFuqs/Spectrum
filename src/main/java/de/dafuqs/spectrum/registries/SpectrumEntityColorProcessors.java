@@ -12,54 +12,58 @@ public class SpectrumEntityColorProcessors {
 	
 	public static void register() {
 		// VANILLA
-		EntityColorProcessorRegistry.register(() -> EntityType.SHEEP, (entity, dyeColor, player) -> {
-			if (dyeColor.isEmpty()) {
+		EntityColorProcessorRegistry.register(() -> EntityType.SHEEP, (entity, color, player) -> {
+			if (color.isEmpty()) {
 				return false;
 			}
-			DyeColor color = dyeColor.get();
+			Optional<DyeColor> dyeColor = color.get().getDyeColor();
 			
-			if (entity.getColor() == color) {
+			if (dyeColor.isEmpty() || entity.getColor() == dyeColor.get()) {
 				return false;
 			}
-			entity.setColor(color);
+			entity.setColor(dyeColor.get());
 			return true;
 		});
-		EntityColorProcessorRegistry.register(() -> EntityType.WOLF, (entity, dyeColor, player) -> {
-			if (dyeColor.isEmpty()) {
+		EntityColorProcessorRegistry.register(() -> EntityType.WOLF, (entity, color, player) -> {
+			if (color.isEmpty()) {
 				return false;
 			}
 			if (!entity.isTame() || !entity.isOwnedBy(player)) {
 				return false;
 			}
-			DyeColor color = dyeColor.get();
-			if (entity.getCollarColor() == color) {
+			Optional<DyeColor> dyeColor = color.get().getDyeColor();
+			if (dyeColor.isEmpty() || entity.getCollarColor() == dyeColor.get()) {
 				return false;
 			}
 			
-			entity.setCollarColor(color);
+			entity.setCollarColor(dyeColor.get());
 			return true;
 		});
-		EntityColorProcessorRegistry.register(() -> EntityType.CAT, (entity, dyeColor, player) -> {
-			if (dyeColor.isEmpty()) {
+		EntityColorProcessorRegistry.register(() -> EntityType.CAT, (entity, color, player) -> {
+			if (color.isEmpty()) {
 				return false;
 			}
 			if (!entity.isTame() || !entity.isOwnedBy(player)) {
 				return false;
 			}
-			DyeColor color = dyeColor.get();
-			if (entity.getCollarColor() == color) {
+			Optional<DyeColor> dyeColor = color.get().getDyeColor();
+			if (dyeColor.isEmpty() || entity.getCollarColor() == dyeColor.get()) {
 				return false;
 			}
-			
-			entity.setCollarColor(color);
+			entity.setCollarColor(dyeColor.get());
 			return true;
 		});
-		EntityColorProcessorRegistry.register(() -> EntityType.SHULKER, (entity, dyeColor, player) -> {
-			@Nullable DyeColor shulkerColor = entity.getColor();
-			if (shulkerColor == null && dyeColor.isEmpty()) {
+		EntityColorProcessorRegistry.register(() -> EntityType.SHULKER, (entity, color, player) -> {
+			Optional<DyeColor> shulkerColor = entity.getVariant();
+			if (shulkerColor.isPresent() && color.isEmpty()) {
 				return false;
 			}
-			if (Optional.ofNullable(shulkerColor) == dyeColor) {
+			if(color.isEmpty()) {
+				entity.setVariant(Optional.empty());
+				return true;
+			}
+			Optional<DyeColor> dyeColor = color.get().getDyeColor();
+			if (dyeColor.isEmpty() || shulkerColor.equals(dyeColor)) {
 				return false;
 			}
 			entity.setVariant(dyeColor);
@@ -67,26 +71,18 @@ public class SpectrumEntityColorProcessors {
 		});
 		
 		// SPECTRUM
-		EntityColorProcessorRegistry.register(() -> SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.get(), (entity, dyeColor, player) -> {
-			if (dyeColor.isEmpty()) {
-				return false;
-			}
-			DyeColor color = dyeColor.get();
-			if (entity.getColor() == color) {
+		EntityColorProcessorRegistry.register(() -> SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.get(), (entity, color, player) -> {
+			if (color.isEmpty() || entity.getColor() == color) {
 				return false;
 			}
 			entity.setColor(color);
 			return true;
 		});
-		EntityColorProcessorRegistry.register(() -> SpectrumEntityTypes.INK_PROJECTILE.get(), (entity, dyeColor, player) -> {
-			if (dyeColor.isEmpty()) {
+		EntityColorProcessorRegistry.register(() -> SpectrumEntityTypes.INK_PROJECTILE.get(), (entity, color, player) -> {
+			if (color.isEmpty() || entity.getInkColor() == color.get()) {
 				return false;
 			}
-			@Nullable InkColor inkColor = entity.getInkColor();
-			if (inkColor == null || entity.getInkColor() == inkColor) {
-				return false;
-			}
-			entity.setColor(inkColor);
+			entity.setColor(color.get());
 			return true;
 		});
 	}

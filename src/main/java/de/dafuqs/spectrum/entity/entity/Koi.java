@@ -81,8 +81,7 @@ public class Koi extends AbstractFish {
 							random.nextGaussian() * 0.005, random.nextGaussian() * 0.005, random.nextGaussian() * 0.005);
 				}
 			} else if(--this.scaleDropTime <= 0) {
-				// TODO: readd when they got textures & uses
-				//this.spawnAtLocation(SpectrumItems.SILVER_SCALE);
+				this.spawnAtLocation(SpectrumItems.PRISM_SCALE);
 				this.scaleDropTime = SCALE_DROP_TIME_BASE + this.getRandom().nextInt(SCALE_DROP_TIME_BASE);
 			}
 		}

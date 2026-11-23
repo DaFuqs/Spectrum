@@ -8,7 +8,9 @@ import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 
@@ -23,6 +25,7 @@ public class Splinterspawn extends Silverfish {
 		this.goalSelector.addGoal(1, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new ClimbOnTopOfPowderSnowGoal(this, this.level()));
 		this.goalSelector.addGoal(2, new SplinterspawnMoveToBlockGoal(this, 1.5));
+		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0, 1.2));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
 	}
 	

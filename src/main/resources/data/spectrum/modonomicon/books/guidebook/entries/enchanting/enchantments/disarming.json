@@ -25,11 +25,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
-        "item": "minecraft:iron_sword"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:disarming": 2
+        "item": "minecraft:iron_sword",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:disarming": 2
+          }
         }
       },
       "text": "book.spectrum.guidebook.disarming.page1.text"

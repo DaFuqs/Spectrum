@@ -93,6 +93,11 @@ public class CinderhearthBlockEntity extends InkSinkBlockEntity implements Multi
 		return true;
 	}
 	
+	@Override
+	public void inventoryChanged() {
+		this.setChanged();
+	}
+	
 	public enum CinderHearthStructureType {
 		NONE,
 		WITH_LAVA,

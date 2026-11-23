@@ -33,13 +33,9 @@ public class TransientLightBlock extends PersistentLightBlock {
 		super.randomTick(state, world, pos, random);
 		int light = state.getValue(LightBlock.LEVEL);
 		if (light < 2) {
-			if (state.getValue(WATERLOGGED)) {
-				world.setBlock(pos, Blocks.WATER.defaultBlockState(), 3);
-			} else {
-				world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-			}
+			world.removeBlock(pos, false);
 		} else {
-			world.setBlock(pos, state.setValue(LightBlock.LEVEL, light - 1), 3);
+			world.setBlockAndUpdate(pos, state.setValue(LightBlock.LEVEL, light - 1));
 		}
 	}
 	

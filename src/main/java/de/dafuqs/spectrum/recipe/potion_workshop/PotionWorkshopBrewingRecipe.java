@@ -56,16 +56,14 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		HARMFUL_TO_BENEFICIAL_EFFECT.put(SpectrumMobEffects.DENSITY, SpectrumMobEffects.LIGHTWEIGHT);
 	}
 	
-	public static @Nullable PotionWorkshopBrewingRecipe getInverseRecipe(Holder<MobEffect> statusEffect, MobEffectCategory sourceCategory, BiMap<Holder<MobEffect>, Holder<MobEffect>> map) {
-		if (statusEffect.value().getCategory() == sourceCategory) {
-			Holder<MobEffect> beneficialEffect = map.getOrDefault(statusEffect, null);
-			if (beneficialEffect == null) {
-				return null;
-			}
-			for (PotionWorkshopBrewingRecipe positiveRecipe : beneficialRecipes) {
-				if (positiveRecipe.recipeData.statusEffect() == beneficialEffect) {
-					return positiveRecipe;
-				}
+	public static @Nullable PotionWorkshopBrewingRecipe getInverseRecipe(Holder<MobEffect> statusEffect, BiMap<Holder<MobEffect>, Holder<MobEffect>> map, List<PotionWorkshopBrewingRecipe> recipeList) {
+		Holder<MobEffect> beneficialEffect = map.getOrDefault(statusEffect, null);
+		if (beneficialEffect == null) {
+			return null;
+		}
+		for (PotionWorkshopBrewingRecipe positiveRecipe : recipeList) {
+			if (positiveRecipe.recipeData.statusEffect() == beneficialEffect) {
+				return positiveRecipe;
 			}
 		}
 		return null;
@@ -218,13 +216,14 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 		List<InkPoweredMobEffectInstance> effects = generateEffects(stack, potionMod, lastRecipe, random);
 		
-		ItemStack itemStack = new ItemStack(Items.TIPPED_ARROW, amount);
+		ItemStack itemStack;
 		if (effects.isEmpty()) {
-			itemStack = PotionContents.createItemStack(itemStack.getItem(), Potions.THICK);
+			itemStack = PotionContents.createItemStack(Items.TIPPED_ARROW, Potions.THICK);
 		} else {
-			itemStack = PotionContents.createItemStack(itemStack.getItem(), SpectrumPotions.PIGMENT_POTION);
+			itemStack = PotionContents.createItemStack(Items.TIPPED_ARROW, SpectrumPotions.PIGMENT_POTION);
 			setCustomPotionEffects(itemStack, potionMod, effects);
 		}
+		itemStack.setCount(amount);
 		
 		return itemStack;
 	}
@@ -300,14 +299,14 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 		
 		if (potionMod.flags().makeEffectsBeneficial()) {
-			PotionWorkshopBrewingRecipe beneficialRecipe = getInverseRecipe(recipeData.statusEffect(), MobEffectCategory.HARMFUL, HARMFUL_TO_BENEFICIAL_EFFECT);
+			PotionWorkshopBrewingRecipe beneficialRecipe = getInverseRecipe(recipeData.statusEffect(), HARMFUL_TO_BENEFICIAL_EFFECT, beneficialRecipes);
 			if (beneficialRecipe != null) {
 				effects.add(beneficialRecipe.recipeData.getStatusEffectInstance(potionMod, random));
 				return;
 			}
 		}
 		if (potionMod.flags().makeEffectsHarmful()) {
-			PotionWorkshopBrewingRecipe harmfulRecipe = getInverseRecipe(recipeData.statusEffect(), MobEffectCategory.BENEFICIAL, HARMFUL_TO_BENEFICIAL_EFFECT.inverse());
+			PotionWorkshopBrewingRecipe harmfulRecipe = getInverseRecipe(recipeData.statusEffect(), HARMFUL_TO_BENEFICIAL_EFFECT.inverse(), harmfulRecipes);
 			if (harmfulRecipe != null) {
 				effects.add(harmfulRecipe.recipeData.getStatusEffectInstance(potionMod, random));
 				return;

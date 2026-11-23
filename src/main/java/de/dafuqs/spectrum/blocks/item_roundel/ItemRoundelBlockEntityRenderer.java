@@ -7,7 +7,9 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.world.item.*;
 import net.neoforged.api.distmarker.*;
+import org.joml.*;
 
+import java.lang.Math;
 import java.util.*;
 
 @OnlyIn(Dist.CLIENT)
@@ -50,7 +52,8 @@ public class ItemRoundelBlockEntityRenderer<T extends ItemRoundelBlockEntity> im
 				
 				double currentRadiant = radiant * i + (radiant * (time / 16.0) / (8.0F / inventoryStacks.size()));
 				poseStack.translate(distance * Math.sin(currentRadiant) + 0.5, 0.3 + bob, distance * Math.cos(currentRadiant) + 0.5); // position offset
-				poseStack.mulPose(Axis.YP.rotationDegrees((float) (i * 360 / inventoryStacks.size()) + (time / 16 / 8 * 360))); // item stack rotation; takes 0..360
+				Quaternionf quaternion = Axis.YP.rotationDegrees((float) (i * 360 / inventoryStacks.size()) + (time / 16 / 8 * 360));
+				poseStack.mulPose(blockEntity.reversed ? quaternion.invert() : quaternion); // item stack rotation; takes 0..360
 				
 				Minecraft.getInstance().getItemRenderer().renderStatic(inventoryStacks.get(i), ItemDisplayContext.GROUND, light, overlay, poseStack, vertexConsumerProvider, blockEntity.getLevel(), 0);
 				poseStack.popPose();

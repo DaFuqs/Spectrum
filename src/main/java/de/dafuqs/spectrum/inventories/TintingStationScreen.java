@@ -22,7 +22,7 @@ public class TintingStationScreen extends BaseInkScreen<TintingStationScreenHand
 	protected void init() {
 		super.init();
 		
-		this.colorSelectionWidget = new ColorSelectionWidget(getGuiLeft() + 113, getGuiTop() + 55, getGuiLeft() + 139, getGuiTop() + 25, this.menu.getBlockEntity());
+		this.colorSelectionWidget = new ColorSelectionWidget(getGuiLeft() + 81, getGuiTop() + 55, getGuiLeft() + 107, getGuiTop() + 25, this.menu.getBlockEntity());
 		this.colorSelectionWidget.setChangedListener(this);
 		addRenderableWidget(this.colorSelectionWidget);
 		

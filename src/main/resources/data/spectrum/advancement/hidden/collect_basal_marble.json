@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "has_primordial_torch": {
+    "has_basal_marble": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

@@ -12,13 +12,12 @@ public class SpectrumSoundEvents {
 	
 	private static final DeferredRegister<SoundEvent> REGISTRAR = DeferredRegister.create(Registries.SOUND_EVENT, SpectrumCommon.MOD_ID);
 	
-	// Music
+	// Jukebox Songs (mono channel)
 	public static final SoundEvent MUSIC_DISCOVERY = register("music.discovery");
 	public static final SoundEvent MUSIC_CREDITS = register("music.credits");
 	public static final SoundEvent MUSIC_DIVINITY = register("music.divinity");
-	
-	// Fishposting
-	public static final SoundEvent MUSIC_LE_FISHE_AU_CHOCOLAT = register("music.le_fishe_au_chocolat");
+	public static final SoundEvent MUSIC_IT_LL_BE_ALRIGHT = register("music.radiarc_it_ll_be_alright");
+	public static final SoundEvent MUSIC_LE_FISHE_AU_CHOCOLAT = register("music.le_fishe_au_chocolat"); // Fishposting
 	
 	// Music referenced in the biome.jsons
 	public static final SoundEvent MUSIC_DEEPER_DOWN_BLACK_LANGAST = register("music.deeper_down.black_langast");

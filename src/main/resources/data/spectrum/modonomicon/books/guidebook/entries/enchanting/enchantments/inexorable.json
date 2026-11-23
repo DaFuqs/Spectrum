@@ -25,11 +25,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
-        "item": "minecraft:iron_pickaxe"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:inexorable": 1
+        "item": "minecraft:iron_pickaxe",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:inexorable": 1
+          }
         }
       },
       "text": "book.spectrum.guidebook.inexorable.page1.text"

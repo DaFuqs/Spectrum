@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.compat.claims.*;
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -45,7 +44,7 @@ import java.util.*;
 
 public class KindlingEntity extends AbstractHorse implements RangedAttackMob, NeutralMob, Shearable {
 	
-	protected static final EntityDataAccessor<Holder<KindlingVariant>> VARIANT = SynchedEntityData.defineId(KindlingEntity.class, SpectrumTrackedDataHandlerRegistry.KINDLING_VARIANT);
+	protected static final EntityDataAccessor<Holder<KindlingVariant>> VARIANT = SynchedEntityData.defineId(KindlingEntity.class, SpectrumEntityDataSerializers.KINDLING_VARIANT);
 	protected static final Ingredient FOOD = Ingredient.of(SpectrumItemTags.KINDLING_FOOD);
 	
 	private static final UniformInt ANGER_TIME_RANGE = TimeUtil.rangeOfSeconds(30, 59);

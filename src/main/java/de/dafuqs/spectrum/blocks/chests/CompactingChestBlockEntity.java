@@ -34,6 +34,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	private @Nullable ItemStack lastCraftedStack; // cache
 	
 	protected boolean isOpen;
+	protected boolean shouldCraft = true;
 	protected long craftingTimeStamp;
 	
 	protected @Nullable FlowAnimator animator;
@@ -73,10 +74,11 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	@SuppressWarnings("unused")
 	public static void tick(Level world, BlockPos pos, BlockState state, CompactingChestBlockEntity chest) {
-		if (world.isClientSide())
+		if (world.isClientSide()) {
 			chest.updateAnimator();
-		else
+		} else if(chest.shouldCraft) {
 			chest.process();
+		}
 	}
 	
 	private void updateAnimator() {
@@ -126,8 +128,11 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 					CompactingChestStatusUpdatePayload.sendCompactingChestStatusUpdate(this);
 					((ServerLevel) level).getChunkSource().blockChanged(worldPosition);
 				}
+				setChanged();
+				return;
 			}
 		}
+		shouldCraft = false;
 	}
 	
 	public Optional<RecipeHolder<CraftingRecipe>> searchRecipeToCraft() {
@@ -337,6 +342,12 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		this.lastCraftedStack = null;
 		
 		setChanged();
+	}
+	
+	@Override
+	public void setChanged() {
+		super.setChanged();
+		this.shouldCraft = true;
 	}
 	
 	@Override

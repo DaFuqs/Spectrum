@@ -1,10 +1,15 @@
 package de.dafuqs.spectrum.config;
 
+import net.minecraft.core.*;
+import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.common.*;
 import org.apache.commons.lang3.tuple.*;
 
 import java.util.*;
+import java.util.function.*;
 
 // TODO: split into server/client config
 public class SpectrumConfig {
@@ -155,6 +160,8 @@ public class SpectrumConfig {
 	
 	public final ModConfigSpec.ConfigValue<Integer> ConstructorsStaffInkCostPerBlock;
 	public final ModConfigSpec.ConfigValue<Integer> ExchangingStaffInkCostPerBlock;
+	
+	public final ModConfigSpec.ConfigValue<String> BlockFlooderFallbackBlock;
 	
 	public enum DimensionPortalSetting {
 		CREATE_PORTALS,
@@ -687,6 +694,11 @@ public class SpectrumConfig {
 				.translation("config.spectrum.midnight_solution_dripstone_drip_chance")
 				.comment("The chance for Dripstone to fill a Cauldron with Midnight Solution")
 				.define("midnight_solution_dripstone_drip_chance", 0.01D);
+		
+		BlockFlooderFallbackBlock = builder
+				.translation("config.spectrum.block_flooder_fallback_block")
+				.comment("Which block Block Flooders place when no matching blocks are in the players inventory")
+				.define("block_flooder_fallback_block", "minecraft:cobblestone");
 	}
 	
 	public final boolean canPedestalCraftVanillaRecipes() {
@@ -708,6 +720,11 @@ public class SpectrumConfig {
 			}
 		}
 		return false;
+	}
+	
+	public BlockState blockFlooderFallbackBlock(RegistryAccess lookup) {
+		Optional<Holder.Reference<Block>> b = lookup.lookup(Registries.BLOCK).get().get(ResourceKey.create(Registries.BLOCK, ResourceLocation.parse(BlockFlooderFallbackBlock.get())));
+		return b.map(blockReference -> blockReference.value()).orElse(Blocks.COBBLESTONE).defaultBlockState();
 	}
 	
 }

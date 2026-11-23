@@ -1,0 +1,89 @@
+{
+	"parent": "minecraft:block/template_campfire",
+  "comment": "Unlike the vanilla campfire texture, does not stretch the fire texture",
+	"textures": {
+		"2": "spectrum:block/primordial_campfire_log",
+		"lit_log": "spectrum:block/primordial_campfire_log_lit",
+		"particle": "spectrum:block/primordial_campfire_log",
+		"fire": "spectrum:block/primordial_campfire_fire"
+	},
+	"elements": [
+		{
+			"from": [8, 1, 1.8],
+			"to": [8, 21, 14.2],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#fire"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#fire"}
+			}
+		},
+		{
+			"from": [1.8, 1, 8],
+			"to": [14.2, 21, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#fire"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#fire"}
+			}
+		},
+		{
+			"from": [0, 3, 1],
+			"to": [16, 7, 5],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 4], "texture": "#lit_log"},
+				"east": {"uv": [0, 4, 4, 8], "texture": "#2", "cullface": "east"},
+				"south": {"uv": [16, 0, 0, 4], "texture": "#2"},
+				"west": {"uv": [0, 4, 4, 8], "texture": "#2", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 4], "rotation": 180, "texture": "#2"},
+				"down": {"uv": [0, 4, 16, 8], "texture": "#lit_log"}
+			}
+		},
+		{
+			"from": [1, 0, 0],
+			"to": [5, 4, 16],
+			"faces": {
+				"north": {"uv": [0, 4, 4, 8], "texture": "#2", "cullface": "north"},
+				"east": {"uv": [0, 1, 16, 5], "texture": "#2"},
+				"south": {"uv": [0, 4, 4, 8], "texture": "#2", "cullface": "south"},
+				"west": {"uv": [16, 0, 0, 4], "texture": "#2"},
+				"up": {"uv": [0, 0, 16, 4], "rotation": 90, "texture": "#2"},
+				"down": {"uv": [0, 0, 16, 4], "rotation": 90, "texture": "#2", "cullface": "down"}
+			}
+		},
+		{
+			"from": [0, 3, 11],
+			"to": [16, 7, 15],
+			"faces": {
+				"north": {"uv": [16, 0, 0, 4], "texture": "#2"},
+				"east": {"uv": [0, 4, 4, 8], "texture": "#2", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 4], "texture": "#lit_log"},
+				"west": {"uv": [0, 4, 4, 8], "texture": "#2", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 4], "rotation": 180, "texture": "#2"},
+				"down": {"uv": [0, 4, 16, 8], "texture": "#lit_log"}
+			}
+		},
+		{
+			"from": [11, 0, 0],
+			"to": [15, 4, 16],
+			"faces": {
+				"north": {"uv": [0, 4, 4, 8], "texture": "#2", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 4], "texture": "#2"},
+				"south": {"uv": [0, 4, 4, 8], "texture": "#2", "cullface": "south"},
+				"west": {"uv": [16, 1, 0, 5], "texture": "#2"},
+				"up": {"uv": [0, 0, 16, 4], "rotation": 90, "texture": "#2"},
+				"down": {"uv": [0, 0, 16, 4], "rotation": 90, "texture": "#2", "cullface": "down"}
+			}
+		},
+		{
+			"name": "ash",
+			"from": [5, 0, 0],
+			"to": [11, 1, 16],
+			"faces": {
+				"north": {"uv": [0, 15, 6, 16], "texture": "#2", "cullface": "north"},
+				"south": {"uv": [10, 15, 16, 16], "texture": "#2", "cullface": "south"},
+				"up": {"uv": [0, 8, 16, 14], "rotation": 90, "texture": "#lit_log"},
+				"down": {"uv": [0, 8, 16, 14], "rotation": 90, "texture": "#2", "cullface": "down"}
+			}
+		}
+	]
+}

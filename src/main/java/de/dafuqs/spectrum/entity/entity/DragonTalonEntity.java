@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.core.component.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
@@ -18,12 +17,10 @@ import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.entity.projectile.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.phys.*;
-import org.apache.commons.lang3.mutable.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
@@ -96,22 +93,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
 	}
 	
 	private float getDamage(ItemStack stack) {
-		//TODO can we use a built in function for this?
-		var damage = new MutableDouble(0);
-		var key = Attributes.ATTACK_DAMAGE.unwrapKey().orElse(null);
-		var base = Attributes.ATTACK_DAMAGE.value().getDefaultValue();
-		var modifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
-		modifiers.forEach(EquipmentSlot.MAINHAND, (attribute, modifier) -> {
-			if (attribute.is(key)) {
-				var value = modifier.amount();
-				damage.addAndGet(switch (modifier.operation()) {
-					case ADD_VALUE -> value;
-					case ADD_MULTIPLIED_BASE -> value * base;
-					case ADD_MULTIPLIED_TOTAL -> value * damage.getValue();
-				});
-			}
-		});
-		return damage.getValue().floatValue();
+		return AttributeHelper.computeValue(getOwner(), stack, Attributes.ATTACK_DAMAGE, EquipmentSlot.MAINHAND);
 	}
 	
 	@Override
@@ -273,12 +255,12 @@ public class DragonTalonEntity extends BidentBaseEntity {
 		}
 		return false;
 	}
-
+	
 	@Override
 	public @Nullable ItemEntity spawnAtLocation(ItemStack stack) {
 		return null;
 	}
-
+	
 	@Override
 	public @Nullable ItemEntity spawnAtLocation(ItemStack stack, float yOffset) {
 		return null;

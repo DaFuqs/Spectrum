@@ -36,6 +36,11 @@
       },
       "text": "book.spectrum.guidebook.primordial_fire.primordial_torch.text",
       "recipe_id": "spectrum:primordial_fire_burning/primordial_torch"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.primordial_fire.primordial_campfire.text",
+      "recipe_id": "spectrum:pedestal/tier1/primordial_campfire"
     }
   ]
 }

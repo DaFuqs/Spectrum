@@ -35,20 +35,16 @@ import java.util.*;
 
 public class ExchangeStaffItem extends BuildingStaffItem {
 	
-	public static final int CREATIVE_RANGE = 5;
-	
 	public ExchangeStaffItem(Properties settings) {
 		super(settings);
 	}
 	
 	// The range grows with the players' progression
-	// this way the item is not overpowered at the start
-	// but not useless at the end
-	// this way the player does not need to craft 5 tiers
-	// of staffs that each do basically feel the same
+	// this way the item is not overpowered at the start, but not useless at the end.
+	// The player does not need to craft 5 tiers of staffs that each do basically feel the same
 	public static int getRange(@Nullable Player playerEntity) {
 		if (playerEntity == null || playerEntity.isCreative()) {
-			return CREATIVE_RANGE;
+			return 5;
 		} else {
 			Optional<PedestalRecipeTier> highestUnlockedRecipeTier = PedestalRecipeTier.getHighestUnlockedRecipeTier(playerEntity);
 			if (highestUnlockedRecipeTier.isPresent()) {
@@ -100,7 +96,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 			BlockState stateToPlace;
 			for (BlockPos targetPosition : targetPositions) {
 				
-				// Require both place and break permissions in order to swap blocks
+				// Require both place and break permissions to swap blocks
 				if (!GenericClaimModsCompat.canModify(world, pos, player))
 					continue;
 				
@@ -169,7 +165,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 	}
 	
 	@Override
-	public InteractionResult useOn(UseOnContext context) {
+	public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
 		Player player = context.getPlayer();
 		
 		if (player == null) {
@@ -182,8 +178,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 		Block targetBlock = targetBlockState.getBlock();
 		
 		if (!canInteractWith(targetBlockState, context.getLevel(), context.getClickedPos(), context.getPlayer())) {
-			world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.PLAYERS, 1.0F,
-					1.0F);
+			world.playSound(null, player.blockPosition(), SpectrumSoundEvents.USE_FAIL, SoundSource.PLAYERS, 1.0F, 1.0F);
 			return InteractionResult.FAIL;
 		}
 		
@@ -195,13 +190,9 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 				storeBlockAsTarget(staffStack, targetBlock);
 				
 				Direction side = context.getClickedFace();
-				Vec3 sourcePos = new Vec3(context.getClickLocation().x() + side.getStepX() * 0.1,
-						context.getClickLocation().y() + side.getStepY() * 0.1,
-						context.getClickLocation().z() + side.getStepZ() * 0.1);
-				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(serverWorld, sourcePos,
-						SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, 15, Vec3.ZERO, new Vec3(0.25, 0.25, 0.25));
-				world.playSound(null, player.blockPosition(), SpectrumSoundEvents.EXCHANGING_STAFF_SELECT,
-						SoundSource.PLAYERS, 1.0F, 1.0F);
+				Vec3 sourcePos = new Vec3(context.getClickLocation().x() + side.getStepX() * 0.1, context.getClickLocation().y() + side.getStepY() * 0.1, context.getClickLocation().z() + side.getStepZ() * 0.1);
+				PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(serverWorld, sourcePos, SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, 15, Vec3.ZERO, new Vec3(0.25, 0.25, 0.25));
+				world.playSound(null, player.blockPosition(), SpectrumSoundEvents.EXCHANGING_STAFF_SELECT, SoundSource.PLAYERS, 1.0F, 1.0F);
 			}
 			return InteractionResult.sidedSuccess(world.isClientSide());
 		} else {
@@ -216,8 +207,7 @@ public class ExchangeStaffItem extends BuildingStaffItem {
 			}
 		}
 		
-		world.playSound(null, player.blockPosition(), SoundEvents.DISPENSER_FAIL, SoundSource.PLAYERS, 1.0F,
-				1.0F);
+		world.playSound(null, player.blockPosition(), SpectrumSoundEvents.USE_FAIL, SoundSource.PLAYERS, 1.0F, 1.0F);
 		return InteractionResult.FAIL;
 	}
 	

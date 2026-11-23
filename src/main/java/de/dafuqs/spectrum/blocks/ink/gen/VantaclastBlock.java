@@ -2,10 +2,13 @@ package de.dafuqs.spectrum.blocks.ink.gen;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.ink.*;
+import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.sounds.*;
+import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.entity.*;
@@ -43,6 +46,24 @@ public class VantaclastBlock extends BaseInkBlock {
 	@Override
 	public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
 		return createInkBlockTicker(level, blockEntityType, SpectrumBlockEntities.VANTACLAST.get());
+	}
+	
+	@Override
+	public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+		super.animateTick(state, level, pos, random);
+		
+		float r = random.nextFloat();
+		if (r <  0.01) {
+			level.addParticle(SpectrumParticleTypes.VOID_FOG,
+					pos.getX() + 0.3125 + random.nextDouble() * 0.375,
+					pos.getY() + 0.5,
+					pos.getZ() + 0.3125 + random.nextDouble() * 0.375,
+					0, random.nextDouble() * 0.1, 0);
+			
+			if(r < 0.025) {
+				level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.MIDNIGHT_SOLUTION_AMBIENT, SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+			}
+		}
 	}
 	
 }

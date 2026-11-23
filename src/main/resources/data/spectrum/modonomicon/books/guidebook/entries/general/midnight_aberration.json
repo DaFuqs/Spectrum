@@ -31,6 +31,18 @@
     {
       "type": "modonomicon:text",
       "text": "book.spectrum.guidebook.midnight_aberration.page1.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "book.spectrum.guidebook.midnight_aberration.onyx_shards.title",
+      "recipe_id": "spectrum:fusion_shrine/onyx_shard_aberration",
+      "text": "spectrum.recipe.fusion_shrine.explanation.onyx_shard_aberration"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "book.spectrum.guidebook.midnight_aberration.netherite_ingot.title",
+      "recipe_id": "spectrum:fusion_shrine/vanilla/netherite_ingot",
+      "text": "spectrum.recipe.fusion_shrine.explanation.netherite_ingot"
     }
   ]
 }

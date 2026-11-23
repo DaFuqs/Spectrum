@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "has_prism_scale": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "spectrum:prism_scale"
+          }
+        ]
+      }
+    }
+  }
+}

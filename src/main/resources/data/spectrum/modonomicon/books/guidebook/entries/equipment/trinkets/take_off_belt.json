@@ -39,11 +39,11 @@
       },
       "title": "enchantment.minecraft.power",
       "item": {
-        "item": "spectrum:take_off_belt"
-      },
-      "components": {
-        "enchantments": {
-          "minecraft:power": 5
+        "item": "spectrum:take_off_belt",
+        "components": {
+          "minecraft:enchantments": {
+            "minecraft:power": 5
+          }
         }
       },
       "text": "book.spectrum.guidebook.take_off_belt.page2.text"
@@ -56,11 +56,11 @@
       },
       "title": "enchantment.minecraft.feather_falling",
       "item": {
-        "item": "spectrum:take_off_belt"
-      },
-      "components": {
-        "enchantments": {
-          "minecraft:feather_falling": 4
+        "item": "spectrum:take_off_belt",
+        "components": {
+          "minecraft:enchantments": {
+            "minecraft:feather_falling": 4
+          }
         }
       },
       "text": "book.spectrum.guidebook.take_off_belt.page3.text"

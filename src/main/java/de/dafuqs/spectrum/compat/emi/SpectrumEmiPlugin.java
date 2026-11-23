@@ -109,14 +109,18 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registry.addWorkstation(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING, EmiStack.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING, EmiStack.of(SpectrumItems.DRAGONROT_BUCKET));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.SPIRIT_INSTILLER, EmiStack.of(SpectrumBlocks.SPIRIT_INSTILLER));
-		registry.addWorkstation(SpectrumEmiRecipeCategories.INK_CONVERTING, EmiIngredient.of(List.of(EmiStack.of(SpectrumBlocks.COLOR_PICKER), EmiStack.of(SpectrumBlocks.VINTAGE_COLOR_PICKER))));
+		registry.addWorkstation(SpectrumEmiRecipeCategories.INK_CONVERTING, EmiIngredient.of(SpectrumItemTags.COLOR_PICKERS));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, EmiStack.of(SpectrumBlocks.CRYSTALLARIEUM));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.POTION_WORKSHOP_BREWING, EmiStack.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.POTION_WORKSHOP_CRAFTING, EmiStack.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.POTION_WORKSHOP_REACTING, EmiStack.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.CINDERHEARTH, EmiStack.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.TITRATION_BARREL, EmiStack.of(SpectrumBlocks.TITRATION_BARREL));
-		registry.addWorkstation(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, EmiIngredient.of(List.of(EmiStack.of(SpectrumItems.DOOMBLOOM_SEED), EmiStack.of(SpectrumItems.PRIMORDIAL_LIGHTER), EmiStack.of(SpectrumBlocks.INCANDESCENT_AMALGAM), EmiStack.of(SpectrumItems.PIPE_BOMB))));
+		registry.addWorkstation(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, EmiStack.of(SpectrumItems.DOOMBLOOM_SEED));
+		registry.addWorkstation(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, EmiStack.of(SpectrumBlocks.PRIMORDIAL_CAMPFIRE));
+		registry.addWorkstation(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, EmiStack.of(SpectrumBlocks.INCANDESCENT_AMALGAM));
+		registry.addWorkstation(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, EmiStack.of(SpectrumItems.PIPE_BOMB));
+		registry.addWorkstation(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, EmiStack.of(SpectrumItems.PRIMORDIAL_LIGHTER));
 	}
 	
 	public void registerRecipes(EmiRegistry registry) {

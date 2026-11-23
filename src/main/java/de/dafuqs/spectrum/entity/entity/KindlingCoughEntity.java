@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.attachment_types.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.primordial_fire.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.network.protocol.game.*;

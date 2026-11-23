@@ -38,7 +38,6 @@
     "LivingEntityMixin",
     "LoomContainerPatternSlotMixin",
     "LoomScreenHandlerMixin",
-    "MapDecorationMixin",
     "MapStateMixin",
     "MapStatePlayerUpdateTrackerMixin",
     "MC252934Mixin",
@@ -99,7 +98,6 @@
     "client.InGameOverlayRendererMixin",
     "client.ItemRendererMixin",
     "client.LightmapTextureManagerMixin",
-    "client.MapRendererMapTextureMixin",
     "client.MixinParticleManager",
     "client.ModifyHeartsMixin",
     "client.MouseMixin",
@@ -110,7 +108,8 @@
     "client.SoundSystemMixin",
     "client.TranslucentBlockMixin",
     "client.accessors.ParticleManagerAccessor",
-    "client.accessors.SourceAccessor"
+    "client.accessors.SourceAccessor",
+    "client.compat.modonomicon.present.BookCraftingRecipePageRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -4,10 +4,23 @@
 	"parent": "minecraft:block/block",
 	"texture_size": [32, 32],
 	"textures": {
-    "0": "spectrum:block/vantaclast",
-    "particle": "#0"
+		"0": "spectrum:block/vantaclast",
+		"particle": "spectrum:block/vantaclast"
 	},
 	"elements": [
+		{
+			"name": "tank_inner",
+			"from": [11, 9.04, 11],
+			"to": [5, 6.04, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 7.54, 14]},
+			"faces": {
+				"north": {"uv": [6, 0, 8, 2.25], "texture": "#0"},
+				"east": {"uv": [6, 0, 8, 2.25], "texture": "#0"},
+				"south": {"uv": [6, 0, 8, 2.25], "texture": "#0"},
+				"west": {"uv": [6, 4.25, 8, 6.5], "texture": "#0"},
+				"up": {"uv": [6, 6.5, 8, 8.5], "rotation": 270, "texture": "#0"}
+			}
+		},
 		{
 			"name": "tank",
 			"from": [4, 0, 4],
@@ -79,20 +92,21 @@
 			}
 		}
 	],
+	"display": {},
 	"groups": [
 		{
 			"name": "base",
 			"origin": [16, 3, 8],
 			"scope": 0,
 			"color": 0,
-			"children": [0, 1]
+			"children": [0, 1, 2]
 		},
 		{
 			"name": "columns",
 			"origin": [0, 0, 0],
 			"scope": 0,
 			"color": 0,
-			"children": [2, 3, 4]
+			"children": [3, 4, 5]
 		}
 	]
 }

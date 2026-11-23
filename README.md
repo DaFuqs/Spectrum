@@ -1,8 +1,8 @@
-![Spectrum's Banner](/images/readme/banner.png)
+![Spectrum's Banner](/raw/readme/banner.png)
 
 ## Overview
 
-Spectrum is a colour-themed magic mod all about discovery and exploration. You will combine the sixteen colours and magical resources you discover on your journey to create magical tools and machines.
+Spectrum is a color-themed magic mod all about discovery and exploration. You will combine the sixteen colours and magical resources you discover on your journey to create magical tools and machines.
 The ultimate goal is to discover what lies beneath the once impenetrable bedrock floor.
 
 In the process, you will gain a new perspective on things that have always been around you. You will notice things that have always seemed out of place,
@@ -27,40 +27,39 @@ This also means that it may not be the best fit for everyone. Everyone plays Min
 - New unique ores, plants, and geodes
 - Customizable structures with intriguing puzzles
 
-![Item Showcase](/images/readme/showcase.png)
+![Item Showcase](/raw/readme/showcase.png)
 
 ## Revelations
 
 Just because something looks like stone doesn't mean it is…
 
-![Obscured Items](/images/readme/obscured_items.png)
+![Obscured Items](/raw/readme/obscured_items.png)
 
 There is a lot to uncover and lots of discoveries to be made.
 
-![Revelations](/images/readme/revelation.png)
+![Revelations](/raw/readme/revelation.png)
 
 ## Is this mod for me?
 **You might fancy Spectrum if you enjoy:** Outer Wilds; Myst; Thaumcraft; Chromaticraft; figuring out how
-and why things work with only limited guidance.
+and why things work with only limited guidance
 
-**You may hate Spectrum if you enjoy:** Generic tech mod #7 with linear progression that tells
-you exactly what to do at every step; following video tutorials
+**You may hate Spectrum if you enjoy:** Mods with linear progression that tell you exactly what to do at every step; following video tutorials
 
-# Progressing through the mod
+# Progressing through Spectrum
 When you first start out, you may notice that most items only appear with a locked recipe in your chosen recipe viewer.
 In Spectrum, recipes and their matching guidebook entries are unlocked step by step, providing something new to experiment with at each stage.
 
 Everything will be hinted at via advancements and the guidebook that is gifted to you when you stumble upon your first geode: your own personal notebook.
 You will note down everything you stumble upon, every recipe you unlock and every discovery you make there.
 
-![Guidebook](/images/readme/guidebook.png)
+![Guidebook](/raw/readme/guidebook.png)
 
 ## New ways to craft
 Spectrum offers many new ways to express yourself.
 Its multiblock structures are designed to be satisfying and fun to play with, 
 giving you lots of freedom to construct and personalize them in your own creative way.
 
-![Pedestal Crafting](/images/readme/pedestal_crafting.webp)
+![Pedestal Crafting](/raw/readme/pedestal_crafting.webp)
 
 # Spectrum's Discord
 You will find a lot of helpful people on Spectrum's Discord.
@@ -82,16 +81,4 @@ Every single input and be it just feedback or a bug report is greatly appreciate
 ## Mod Integration
 Spectrum ships with custom content for many mods: Custom recipes, sensible tags and even custom blocks and items.  
 For the mods with more extensive content integrations, there exist dedicated entries in the guidebook.  
-[Check it out for a list of supported mods!](/src/main/resources/data/spectrum/modonomicon/books/guidebook/entries/mod_integration)  
-
-### Examples
-- AE2: Lots of additional Recipes; Crystal Apothecary compat
-- Alloy Forgery: New forges, recipes & fuel
-- Botania: New custom items, Black Hole Talisman support, additional recipes & Potion Workshop reagents
-- [Paginated Advancements & Custom Frames](https://github.com/DaFuqs/PaginatedAdvancements): Custom advancement frames
-- [Starry Skies](https://github.com/DaFuqs/StarrySkies): Many additional spheres, making a full skyblock Spectrum playthrough possible
-- Chalk: Making Chalk unbreakable
-- EMI: Integration for all of Spectrum's recipe types
-- Go Fish: Full compat for Go Fish enchants & loot tables; enchantment recipes
-- [RoughlyEnoughItems](https://github.com/shedaniel/RoughlyEnoughItems): Integration for all of Spectrum's recipe types
-- …and many more
+[Check it out for a list of supported mods!](/src/main/resources/data/spectrum/modonomicon/books/guidebook/entries/mod_integration)

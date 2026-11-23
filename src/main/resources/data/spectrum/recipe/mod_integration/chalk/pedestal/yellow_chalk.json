@@ -15,16 +15,19 @@
     "D": "spectrum:yellow_pigment"
   },
   "result": {
-    "id": "chalk:yellow_chalk",
+    "id": "chalk:chalk",
     "components": {
-      "unbreakable": {}
+      "minecraft:unbreakable": {},
+      "minecraft:dyed_color": {
+        "rgb": 15592704
+      }
     }
   },
   "required_advancement": "spectrum:hidden/collect_pigment/yellow",
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "chalk-colorful-addon"
+      "modid": "chalk"
     }
   ]
 }

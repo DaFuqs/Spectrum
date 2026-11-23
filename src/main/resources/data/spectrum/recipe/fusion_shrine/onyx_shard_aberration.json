@@ -1,0 +1,44 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 480,
+  "experience": 8.0,
+  "fluid": {
+    "fluid": "minecraft:lava"
+  },
+  "ingredients": [
+    {
+      "item": "spectrum:topaz_shard",
+      "count": 4
+    },
+    {
+      "item": "minecraft:amethyst_shard",
+      "count": 4
+    },
+    {
+      "item": "spectrum:citrine_shard",
+      "count": 4
+    },
+    "spectrum:midnight_aberration"
+  ],
+  "result": {
+    "id": "spectrum:onyx_shard",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/blocks/fusion_shrine",
+  "world_conditions": {
+    "time_of_day": "midnight"
+  },
+  "effects": {
+    "start": "weather_thunder_short",
+    "during": [
+      "visual_explosions_on_shrine",
+      "nothing",
+      "visual_explosions_on_shrine"
+    ],
+    "finish": "lightning_on_shrine"
+  },
+  "description": {
+    "type": "translatable",
+    "translate": "spectrum.recipe.fusion_shrine.explanation.onyx_shard_aberration"
+  }
+}

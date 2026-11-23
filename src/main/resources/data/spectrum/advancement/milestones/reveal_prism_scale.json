@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_prism_scale": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_prism_scale"
+      }
+    },
+    "collected_amaranth": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_amaranth"
+      }
+    }
+  }
+}

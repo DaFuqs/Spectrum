@@ -21,7 +21,7 @@ import org.jspecify.annotations.*;
 
 import java.util.*;
 
-public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe<RecipeInput> {
+public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe<SingleRecipeInput> {
 	
 	public static final ResourceLocation UNLOCK_IDENTIFIER = SpectrumCommon.locate("lategame/collect_doombloom_seed");
 	
@@ -38,12 +38,12 @@ public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe<RecipeInput
 	}
 	
 	@Override
-	public boolean matches(RecipeInput inv, Level world) {
+	public boolean matches(SingleRecipeInput inv, Level world) {
 		return this.input.test(inv.getItem(0));
 	}
 	
 	@Override
-	public ItemStack assemble(RecipeInput inv, HolderLookup.Provider drm) {
+	public ItemStack assemble(SingleRecipeInput inv, HolderLookup.Provider drm) {
 		return this.output.copy();
 	}
 	

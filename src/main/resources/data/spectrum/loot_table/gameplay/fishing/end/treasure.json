@@ -39,7 +39,7 @@
           "name": "minecraft:book",
           "functions": [
             {
-              "function": "enchant_with_levels",
+              "function": "minecraft:enchant_with_levels",
               "levels": {
                 "min": 20,
                 "max": 30

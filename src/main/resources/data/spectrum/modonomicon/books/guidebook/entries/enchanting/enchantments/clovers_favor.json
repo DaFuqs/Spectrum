@@ -25,11 +25,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
-        "item": "minecraft:iron_sword"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:clovers_favor": 3
+        "item": "minecraft:iron_sword",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:clovers_favor": 3
+          }
         }
       },
       "text": "book.spectrum.guidebook.clovers_favor.page1.text"

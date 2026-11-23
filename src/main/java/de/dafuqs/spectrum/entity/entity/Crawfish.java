@@ -148,14 +148,14 @@ public class Crawfish extends TamableAnimal implements NeutralMob {
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		this.addPersistentAngerSaveData(compound);
-		this.setCollectedXP(compound.getInt("collected_xp"));
+		compound.putInt("collected_xp", this.getCollectedXP());
 	}
 	
 	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.readPersistentAngerSaveData(this.level(), compound);
-		compound.putInt("collected_xp", this.getCollectedXP());
+		this.setCollectedXP(compound.getInt("collected_xp"));
 	}
 	
 	@Override

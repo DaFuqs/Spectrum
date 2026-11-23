@@ -41,7 +41,7 @@ public class TintingStationBlockEntity extends InkSinkBlockEntity implements Men
 	public static final long ITEM_COLORING_COST = 10;
 	
 	public TintingStationBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.TINTING_STATION.get(), blockPos, blockState, 4, 2, INPUT_SLOT_ID);
+		super(SpectrumBlockEntities.TINTING_STATION.get(), blockPos, blockState, 4, 2, OUTPUT_SLOT_ID);
 	}
 	
 	public boolean shouldTickLogic(Level world) {

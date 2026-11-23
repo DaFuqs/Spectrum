@@ -52,12 +52,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		if (targetBlockState.isAir()) {
 			if (payForUse(playerEntity, radianceStaff, INK_COST, COST)) {
-				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.get().defaultBlockState(), 3);
-				return true;
-			}
-		} else if (targetBlockState.is(Blocks.WATER)) {
-			if (payForUse(playerEntity, radianceStaff, INK_COST, COST)) {
-				world.setBlock(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.get().defaultBlockState().setValue(WATERLOGGED, true), 3);
+				world.setBlockAndUpdate(targetPos, SpectrumBlocks.PERSISTENT_LIGHT.get().defaultBlockState());
 				return true;
 			}
 		}

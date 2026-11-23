@@ -25,11 +25,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
-        "item": "spectrum:multitool"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:inventory_insertion": 1
+        "item": "spectrum:multitool",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:inventory_insertion": 1
+          }
         }
       },
       "text": "book.spectrum.guidebook.inventory_insertion.page1.text"

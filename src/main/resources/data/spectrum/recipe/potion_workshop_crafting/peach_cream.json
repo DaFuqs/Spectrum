@@ -1,7 +1,7 @@
 {
   "type": "spectrum:potion_workshop_crafting",
   "group": "deserts",
-  "base_ingredient": "minecraft:sugar",
+  "base_ingredient": "minecraft:glass_bottle",
   "use_up_base_ingredient": true,
   "color": 16754073,
   "ingredient1": "spectrum:clotted_cream",

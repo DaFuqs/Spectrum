@@ -25,35 +25,35 @@ public class EggLayingWoolyPigWoolFeatureRenderer extends RenderLayer<EggLayingW
 	
 	@Override
 	public void render(PoseStack poseStack, MultiBufferSource vertexConsumerProvider, int i, EggLayingWoolyPigEntity entity, float f, float g, float h, float j, float k, float l) {
+		int bodyFurColor = entity.getRenderedColor();
+		int hatColor = entity.hasEatenColoredGrass() ? bodyFurColor : EggLayingWoolyPigEntity.DEFAULT_COLOR;
+		
 		if (entity.isInvisible()) {
-			Minecraft minecraftClient = Minecraft.getInstance();
-			boolean hasOutline = minecraftClient.shouldEntityAppearGlowing(entity);
+			boolean hasOutline = Minecraft.getInstance().shouldEntityAppearGlowing(entity);
 			if (hasOutline) {
-				int rgbColor = EggLayingWoolyPigEntity.getRgbColor(entity.getColor());
 				VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.outline(EggLayingWoolyPigEntityRenderer.TEXTURE));
 				if (!entity.isHatless()) {
 					this.getParentModel().copyPropertiesTo(this.hat);
 					this.hat.prepareMobModel(entity, f, g, h);
 					this.hat.setupAnim(entity, f, g, j, k, l);
-					this.hat.renderToBuffer(poseStack, vertexConsumer, i, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), rgbColor);
+					this.hat.renderToBuffer(poseStack, vertexConsumer, i, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), hatColor);
 				}
 				if (!entity.isSheared()) {
 					this.getParentModel().copyPropertiesTo(this.wool);
 					this.wool.prepareMobModel(entity, f, g, h);
 					this.wool.setupAnim(entity, f, g, j, k, l);
-					this.wool.renderToBuffer(poseStack, vertexConsumer, i, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), rgbColor);
+					this.wool.renderToBuffer(poseStack, vertexConsumer, i, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), bodyFurColor);
 				}
 			}
 		} else {
-			int rgbColor = EggLayingWoolyPigEntity.getRgbColor(entity.getColor());
 			if (!entity.isHatless()) {
 				this.getParentModel().copyPropertiesTo(this.hat);
 				this.hat.prepareMobModel(entity, f, g, h);
 				this.hat.setupAnim(entity, f, g, j, k, l);
-				coloredCutoutModelCopyLayerRender(this.getParentModel(), this.hat, getTextureLocation(entity), poseStack, vertexConsumerProvider, i, entity, f, g, j, k, l, h, rgbColor);
+				coloredCutoutModelCopyLayerRender(this.getParentModel(), this.hat, getTextureLocation(entity), poseStack, vertexConsumerProvider, i, entity, f, g, j, k, l, h, hatColor);
 			}
 			if (!entity.isSheared()) {
-				coloredCutoutModelCopyLayerRender(this.getParentModel(), this.wool, getTextureLocation(entity), poseStack, vertexConsumerProvider, i, entity, f, g, j, k, l, h, rgbColor);
+				coloredCutoutModelCopyLayerRender(this.getParentModel(), this.wool, getTextureLocation(entity), poseStack, vertexConsumerProvider, i, entity, f, g, j, k, l, h, bodyFurColor);
 			}
 		}
 	}

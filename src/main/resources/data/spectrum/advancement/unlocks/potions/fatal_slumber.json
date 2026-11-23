@@ -18,14 +18,10 @@
         "advancement_identifier": "spectrum:lategame/collect_moonstone"
       }
     },
-    "eat_burgeon": {
-      "trigger": "minecraft:consume_item",
+    "collected_nectardew_burgeon": {
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "item": {
-          "items": [
-            "spectrum:nectardew_burgeon"
-          ]
-        }
+        "advancement_identifier": "spectrum:hidden/collect_nectardew_burgeon"
       }
     }
   }

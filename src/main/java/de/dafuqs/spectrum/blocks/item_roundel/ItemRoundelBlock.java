@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import org.jspecify.annotations.*;
 
 public class ItemRoundelBlock extends InWorldInteractionBlock implements PaintbrushTriggered {
 	
@@ -41,11 +42,6 @@ public class ItemRoundelBlock extends InWorldInteractionBlock implements Paintbr
 	
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack handStack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		ItemInteractionResult actionResult = checkAndDoPaintbrushTrigger(state, world, pos, player, hand, hit);
-		if (actionResult.consumesAction()) {
-			return actionResult;
-		}
-
         if (world.isClientSide()) {
             return ItemInteractionResult.SUCCESS;
         } else {
@@ -62,7 +58,7 @@ public class ItemRoundelBlock extends InWorldInteractionBlock implements Paintbr
 	}
 	
 	@Override
-	public ItemInteractionResult onPaintBrushTrigger(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+	public ItemInteractionResult onPaintBrushTrigger(BlockState state, Level world, BlockPos pos, @Nullable Player player, InteractionHand hand) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof ItemRoundelBlockEntity itemRoundelBlockEntity) {
 			itemRoundelBlockEntity.reverse();

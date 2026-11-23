@@ -121,6 +121,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.SEVEN_LEAGUE_BOOTS.get(), Map.of(Enchantments.POWER, 5)));
 					entries.accept(SpectrumItems.COTTON_CLOUD_BOOTS);
 					entries.accept(SpectrumItems.RADIANCE_PIN);
+					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.RADIANCE_PIN.get(), Map.of(Enchantments.INFINITY, 1)));
 					entries.accept(SpectrumItems.TOTEM_PENDANT);
 					entries.accept(SpectrumItems.TAKE_OFF_BELT);
 					entries.accept(SpectrumEnchantmentHelper.getEnchantedStack(lookup, SpectrumItems.TAKE_OFF_BELT.get(), Map.of(Enchantments.POWER, 5, Enchantments.FEATHER_FALLING, 4)));
@@ -275,6 +276,9 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.ENDER_HOPPER);
 					entries.accept(SpectrumBlocks.ENDER_DROPPER);
 					
+					entries.accept(SpectrumBlocks.PRIMORDIAL_CAMPFIRE);
+					entries.accept(SpectrumBlocks.PRIMORDIAL_BRAZIER);
+					
 					entries.accept(SpectrumBlocks.PARTICLE_SPAWNER);
 					
 					entries.accept(SpectrumBlocks.GLISTERING_MELON);
@@ -341,6 +345,11 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.WITHER_IDOL);
 					entries.accept(SpectrumBlocks.WITHER_SKELETON_IDOL);
 					entries.accept(SpectrumBlocks.ZOMBIE_IDOL);
+					
+					entries.accept(SpectrumItems.MUSIC_DISC_DISCOVERY);
+					entries.accept(SpectrumItems.MUSIC_DISC_CREDITS);
+					entries.accept(SpectrumItems.MUSIC_DISC_DIVINITY);
+					entries.accept(SpectrumItems.MUSIC_DISC_ALRIGHT);
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_CUISINE, Component.translatable("itemGroup.spectrum.cuisine"))
@@ -625,6 +634,7 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumBlocks.STARDUST_BLOCK);
 					entries.accept(SpectrumItems.STAR_FRAGMENT);
 					entries.accept(SpectrumBlocks.RADIATING_ENDER);
+					entries.accept(SpectrumItems.PRISM_SCALE);
 					
 					entries.accept(SpectrumItems.WHITE_PIGMENT);
 					entries.accept(SpectrumItems.ORANGE_PIGMENT);
@@ -671,8 +681,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
 					entries.accept(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
 					entries.accept(SpectrumItems.DRAGONROT_BUCKET);
-					
-					//entries.accept(SpectrumItems.SILVER_SCALE); // TODO: readd when they got textures & uses
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_PURE_RESOURCES, Component.translatable("itemGroup.spectrum.pure_resources"))
@@ -1312,9 +1320,6 @@ public class SpectrumItemGroups {
 					entries.accept(SpectrumItems.VELVET_ASTROLOGER_BANNER_PATTERN);
 					entries.accept(SpectrumItems.POISONBLOOM_BANNER_PATTERN);
 					entries.accept(SpectrumItems.DEEP_LIGHT_BANNER_PATTERN);
-					entries.accept(SpectrumItems.MUSIC_DISC_DISCOVERY);
-					entries.accept(SpectrumItems.MUSIC_DISC_CREDITS);
-					entries.accept(SpectrumItems.MUSIC_DISC_DIVINITY);
 				}).build();
 		
 		new CreativeSubTab.Builder(MAIN.get(), ItemGroupIDs.SUBTAB_COLORED_WOOD, Component.translatable("itemGroup.spectrum.colored_wood"))
@@ -1756,16 +1761,13 @@ public class SpectrumItemGroups {
 					
 					entries.accept(SpectrumItems.DIVINATION_HEART);
 					
-					// TODO: add model, guidebook entries & finish impl
-					entries.accept(SpectrumBlocks.TINTING_STATION);
-					entries.accept(SpectrumBlocks.DAYDREAMER);
-					entries.accept(SpectrumBlocks.TWILL);
-					entries.accept(SpectrumBlocks.VANTACLAST);
-					
-					// TODO: add secret unlocks & recipes
-					entries.accept(SpectrumBlocks.BRIGHT_TWILL);
-					entries.accept(SpectrumBlocks.JADE_TWILL);
-					entries.accept(SpectrumBlocks.VINTAGE_COLOR_PICKER);
+					entries.accept(SpectrumBlocks.VINTAGE_COLOR_PICKER); // TODO: secret unlock & recipe
+					entries.accept(SpectrumBlocks.TINTING_STATION); // TODO: gui
+					entries.accept(SpectrumBlocks.DAYDREAMER); // TODO: unlock
+					entries.accept(SpectrumBlocks.TWILL); // TODO: unlock
+					entries.accept(SpectrumBlocks.BRIGHT_TWILL); // TODO: secret unlock & recipe
+					entries.accept(SpectrumBlocks.JADE_TWILL); // TODO: secret unlock & recipe
+					entries.accept(SpectrumBlocks.VANTACLAST); // TODO: unlock
 				}).build();
 	}
 	

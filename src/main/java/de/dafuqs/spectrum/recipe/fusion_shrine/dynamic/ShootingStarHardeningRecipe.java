@@ -23,7 +23,7 @@ public class ShootingStarHardeningRecipe extends FusionShrineRecipe {
 	public static final Component DESCRIPTION = Component.translatable("spectrum.recipe.fusion_shrine.explanation.shooting_star_hardening");
 	
 	public ShootingStarHardeningRecipe() {
-		super("", Optional.of(UNLOCK_IDENTIFIER), Optional.empty(), List.of(), List.of(IngredientStack.ofTag(SpectrumItemTags.SHOOTING_STARS), IngredientStack.ofItems(Items.DIAMOND)), FluidIngredient.of(Fluids.WATER), getHardenedShootingStar(),
+		super("", Optional.of(UNLOCK_IDENTIFIER), Optional.empty(), List.of(), List.of(IngredientStack.ofTag(SpectrumItemTags.SHOOTING_STARS), IngredientStack.ofTag(SpectrumItemTags.SHOOTING_STAR_HARDENER)), FluidIngredient.of(Fluids.WATER), getHardenedShootingStar(),
 				5, 100, true, true, true, new ArrayList<>(), WorldEffect.CraftingWorldEffects.FUSION_SHRINE_DEFAULT, DESCRIPTION);
 	}
 	

@@ -86,8 +86,13 @@ public class SanityCommand {
 			if (registryKey.location().getNamespace().equals(modId)) {
 				BlockState blockState = entry.getValue().defaultBlockState();
 				
-				// unbreakable or instabreak blocks do not need to have an entry
-				if (blockState.getBlock().defaultDestroyTime() <= 0) {
+				// do not test indestructible blocks
+				float destroyTime = blockState.getBlock().defaultDestroyTime();
+				if (destroyTime < 0) {
+					continue;
+				}
+				// instabreak blocks should only be checked, if they require a tool for drops
+				if(destroyTime == 0 && !blockState.getBlock().defaultBlockState().requiresCorrectToolForDrops()) {
 					continue;
 				}
 				

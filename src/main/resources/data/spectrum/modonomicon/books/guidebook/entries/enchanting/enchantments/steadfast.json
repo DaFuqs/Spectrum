@@ -25,11 +25,11 @@
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.enchantment_characteristics",
       "item": {
-        "item": "spectrum:multitool"
-      },
-      "components": {
-        "enchantments": {
-          "spectrum:steadfast": 1
+        "item": "spectrum:multitool",
+        "components": {
+          "minecraft:enchantments": {
+            "spectrum:steadfast": 1
+          }
         }
       },
       "text": "book.spectrum.guidebook.steadfast.page1.text"

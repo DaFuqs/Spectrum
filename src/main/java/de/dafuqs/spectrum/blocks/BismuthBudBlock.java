@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.networking.s2c_payloads.*;
 import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
@@ -18,21 +19,15 @@ public class BismuthBudBlock extends SpectrumClusterBlock {
 	
 	public static final int GROWTH_CHECK_RADIUS = 3;
 	public static final int GROWTH_CHECK_TRIES = 5;
-	public static final TagKey<Block> CONSUMED_TAG_TO_GROW = BlockTags.BEACON_BASE_BLOCKS;
+	public static final TagKey<Block> CONSUMED_TAG_TO_GROW = SpectrumBlockTags.BISMUTH_CONSUMABLE;
 	public static final BlockState CONSUMED_TARGET_STATE = Blocks.COBBLESTONE.defaultBlockState();
 	
-	public final AmethystClusterBlock grownBlock;
+	public final @Nullable AmethystClusterBlock grownBlock;
 	
 	public BismuthBudBlock(Properties settings, GrowthStage growthStage, @Nullable AmethystClusterBlock grownBlock) {
 		super(settings, growthStage);
 		this.grownBlock = grownBlock;
 	}
-
-//	@Override
-//	public MapCodec<? extends BismuthBudBlock> getCodec() {
-//		//TODO: Make the codec
-//		return null;
-//	}
 	
 	@Override
 	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {

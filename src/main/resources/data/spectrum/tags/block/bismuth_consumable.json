@@ -1,0 +1,8 @@
+{
+  "values": [
+    "#minecraft:beacon_base_blocks"
+  ],
+  "remove": [
+    "spectrum:bismuth_block"
+  ]
+}

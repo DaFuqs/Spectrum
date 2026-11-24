@@ -1,16 +1,21 @@
 package de.dafuqs.spectrum.blocks.end_portal;
 
 import com.mojang.serialization.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.player.*;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.pathfinder.*;
+import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 
 public class CrackedEndPortalFrameBlock extends Block {
@@ -120,6 +125,29 @@ public class CrackedEndPortalFrameBlock extends Block {
 			}
 		}
 		world.scheduleTick(pos, this, 10);
+	}
+	
+	@Override
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+		ItemStack handStack = player.getItemInHand(hand);
+		
+		if (handStack.is(Items.ENDER_EYE) && state.getValue(CrackedEndPortalFrameBlock.EYE_TYPE) == CrackedEndPortalFrameBlock.EndPortalFrameEye.NONE) {
+			BlockState targetBlockState = state.setValue(CrackedEndPortalFrameBlock.EYE_TYPE, CrackedEndPortalFrameBlock.EndPortalFrameEye.WITH_EYE_OF_ENDER);
+			Block.pushEntitiesUp(state, targetBlockState, level, pos);
+			level.setBlock(pos, targetBlockState, 2);
+			level.updateNeighbourForOutputSignal(pos, SpectrumBlocks.CRACKED_END_PORTAL_FRAME.get());
+			
+			handStack.shrink(1);
+			if(level.isClientSide) {
+				return ItemInteractionResult.SUCCESS;
+			} else {
+				level.levelEvent(LevelEvent.END_PORTAL_FRAME_FILL, pos, 0);
+				EndPortalShaper.checkAndFillEndPortal(level, pos);
+				return ItemInteractionResult.CONSUME;
+			}
+		}
+		
+		return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
 	}
 	
 	public enum EndPortalFrameEye implements StringRepresentable {

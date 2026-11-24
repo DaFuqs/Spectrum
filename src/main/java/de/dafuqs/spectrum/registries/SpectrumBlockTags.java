@@ -84,6 +84,7 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> C_LIGHTNING_RODS = conventional("lightning_rods");
 	public static final TagKey<Block> C_BRUSHABLE_BLOCKS = conventional("brushable_blocks");
 	public static final TagKey<Block> C_INFESTED_BLOCKS = conventional("infested_blocks");
+	public static final TagKey<Block> C_END_PORTAL_FRAMES = conventional("end_portal_frames");
 	
 	private static TagKey<Block> spectrum(String name) {
 		return TagKey.create(Registries.BLOCK, SpectrumCommon.locate(name));

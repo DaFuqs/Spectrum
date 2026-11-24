@@ -3150,7 +3150,7 @@
   "book.spectrum.guidebook.ink.pigment_converting.title": "생산 및 보관",
   "book.spectrum.guidebook.ink.page2.text": "잉크는 넘치는 곳에서 부족한 곳으로 자연스럽게 흘러간다.",
   "book.spectrum.guidebook.ink.page2.title": "잉크 전송",
-  "book.spectrum.guidebook.ink.page3.text": "\\\n잉크를 저장하는 두 물체를 연결하면, 예를 들어 [색상 추출기](entry://ink/color_picker) 안에 [잉크 플라스크](entry://ink/ink_flask)를 넣었을 때와 같은 상황일 때, 두 물체 사이의 잉크 양이 서서히 평형을 이룰 때까지 흘러간다.\\\n두 물체 간의 잉크 양 차이가 클수록, 평형이 되는 과정이 더 빨라진다.\\\n\\\n이 흐름을 조작할 방법은 찾지 못했다. 나의 이해가 부족한 만큼, 참으로 알다가도 모를 현상이다.",
+  "book.spectrum.guidebook.ink.page3.text": "잉크를 저장하는 두 물체를 연결하면, 예를 들어 [색상 추출기](entry://ink/color_picker) 안에 [잉크 플라스크](entry://ink/ink_flask)를 넣었을 때와 같은 상황일 때, 두 물체 사이의 잉크 양이 서서히 평형을 이룰 때까지 흘러간다.\\\n두 물체 간의 잉크 양 차이가 클수록, 평형이 되는 과정이 더 빨라진다.\\\n\\\n이 흐름을 조작할 방법은 찾지 못했다. 나의 이해가 부족한 만큼, 참으로 알다가도 모를 현상이다.",
   "book.spectrum.guidebook.ink_assortment.page0.text": "자그마한 유리병들이 옹기종기 모여 있는 이 컬렉션은, 비록 양은 적더라도 온갖 종류의 [잉크](entry://ink/ink)를 빠짐없이 보관할 수 있게 해준다.",
   "book.spectrum.guidebook.ink_flask.page0.text": "잉크 플라스크는 단일 색상의 [잉크](entry://ink/ink)를 아주 넉넉하게 담아둘 수 있다.",
   "book.spectrum.guidebook.ink_flask.page1.text": "[색상 추출기](entry://ink/color_picker)를 이용해 이 병을 채울 수 있으며 [#](449900)조합창[#]()에서 비울 수 있다.",

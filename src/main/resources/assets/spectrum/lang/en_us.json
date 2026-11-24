@@ -3150,7 +3150,7 @@
   "book.spectrum.guidebook.ink.pigment_converting.title": "Producing & Storing",
   "book.spectrum.guidebook.ink.page2.text": "Ink flows from where it is abundant to where there is little.",
   "book.spectrum.guidebook.ink.page2.title": "Ink Transfer",
-  "book.spectrum.guidebook.ink.page3.text": "Connecting two objects that store Ink – like putting in an [Ink Flask](entry://ink/ink_flask) into a [Color Picker](entry://ink/color_picker) – the Ink between the two will slowly equalize.\\\nThe larger the difference, the faster the process until approaching equilibrium.\\\n\\\nI haven’t found a way to manipulate that flow. As little as I understand it, as intangible it is.",
+  "book.spectrum.guidebook.ink.page3.text": "When I connect two Ink-storing objects, such as an [Ink Flask](entry://ink/ink_flask) and a [Color Picker](entry://ink/color_picker), the ink between them will slowly equalise.\\\nThe larger the difference, the faster the process until approaching equilibrium.\\\n\\\nI haven’t found a way to manipulate that flow. As little as I understand it, as intangible it is.",
   "book.spectrum.guidebook.ink_assortment.page0.text": "This collection of small vials allows me to store all kinds of [Ink](entry://ink/ink), albeit only small amounts of each.",
   "book.spectrum.guidebook.ink_flask.page0.text": "The Ink Flask holds a considerable amount of [Ink](entry://ink/ink) of a single color.",
   "book.spectrum.guidebook.ink_flask.page1.text": "I can fill it in the [Color Picker](entry://ink/color_picker) and if I need to empty it I can use a [#](449900)Crafting Grid[#]().",

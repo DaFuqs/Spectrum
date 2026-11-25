@@ -4781,7 +4781,7 @@
   "book.spectrum.guidebook.ink.pigment_converting.text": "\\\n普通染料虽然也能用，但效率要低得多。不过在走投无路时，这也算是个备选方案。\\\n\\\n我可以将转化完成后的墨水提取到像[墨水瓶](entry://ink/ink_flask)这样的专用容器中。",
   "book.spectrum.guidebook.ink.page2.title": "墨水传输",                                                         
   "book.spectrum.guidebook.ink.page2.text": "墨水会从储量高的地方流向储量低的地方。",
-  "book.spectrum.guidebook.ink.page3.text": "把两个存墨水的东西连通起来，比如把[墨水瓶](entry://ink/ink_flask)放进[拾色器](entry://ink/color_picker)，两边墨水就会慢慢均分。\\\n存量差越大，流动越快，快要持平的时候速度就放缓了\\\n\\\n我还没法控制这股流动。它虚无缥缈，我也摸不透它。",
+  "book.spectrum.guidebook.ink.page3.text": "当我把两个存墨水的东西连通起来，比如[墨水瓶](entry://ink/ink_flask)和[拾色器](entry://ink/color_picker)，两边的墨水就会慢慢均衡。\\\n储量差距越大，流动越快，快要持平的时候速度就会慢下来。\\\n\\\n我还没法控制这股流动。它虚无缥缈，我也摸不透它。",
 
   "book.spectrum.guidebook.ink_assortment.page0.text": "这些小瓶可以少量存储多种[墨水](entry://ink/ink)。",
 

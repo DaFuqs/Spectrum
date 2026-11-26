@@ -24,7 +24,7 @@
         }
       }
     },
-    "H": "minecraft:honey_bottle",
+    "H": "#c:drinks/honey",
     "B": "minecraft:sweet_berries",
     "M": "spectrum:clotted_cream",
     "C": "spectrum:fresh_chocolate"

@@ -3,7 +3,7 @@
   "group": "infused_beverages",
   "ingredients": [
     {
-      "item": "minecraft:honey_bottle",
+      "tag": "c:drinks/honey",
       "count": 4
     }
   ],

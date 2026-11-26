@@ -2,7 +2,7 @@
   "type": "spectrum:titration_barrel",
   "ingredients": [
     {
-      "item": "minecraft:honey_bottle",
+      "tag": "c:drinks/honey",
       "count": 4
     },
     {

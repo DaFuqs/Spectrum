@@ -10,7 +10,7 @@
     "EXE"
   ],
   "key": {
-    "S": "minecraft:honey_bottle",
+    "S": "#c:drinks/honey",
     "E": "spectrum:amaranth_grains",
     "C": "spectrum:clotted_cream",
     "X": "#c:eggs"

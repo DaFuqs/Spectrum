@@ -14,7 +14,7 @@
     "S": "spectrum:shimmerstone_gem",
     "F": "minecraft:fermented_spider_eye",
     "C": "spectrum:incandescent_essence",
-    "B": "minecraft:honey_bottle"
+    "B": "#c:drinks/honey"
   },
   "result": {
     "id": "spectrum:bottle_of_fading",

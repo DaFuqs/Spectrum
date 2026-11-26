@@ -1,6 +1,6 @@
 {
   "type": "spectrum:potion_workshop_crafting",
-  "base_ingredient": "minecraft:honey_bottle",
+  "base_ingredient": "#c:drinks/honey",
   "use_up_base_ingredient": true,
   "color": 867887,
   "ingredient1": "malum:rotting_essence",

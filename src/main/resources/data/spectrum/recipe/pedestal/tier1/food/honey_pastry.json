@@ -11,7 +11,7 @@
   ],
   "key": {
     "A": "spectrum:amaranth_grains",
-    "H": "minecraft:honey_bottle",
+    "H": "#c:drinks/honey",
     "E": "#c:eggs",
     "S": "minecraft:sugar"
   },

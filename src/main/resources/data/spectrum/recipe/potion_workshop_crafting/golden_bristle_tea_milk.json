@@ -6,7 +6,7 @@
   "reveal_secret_advancement": "spectrum:midgame/drink_tea_with_milk",
   "color": 15853164,
   "ingredient1": "spectrum:sawblade_holly_berry",
-  "ingredient2": "minecraft:honey_bottle",
+  "ingredient2": "#c:drinks/honey",
   "ingredient3": "#c:drinks/milk",
   "result": {
     "id": "spectrum:golden_bristle_tea",

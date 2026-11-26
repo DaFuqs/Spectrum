@@ -3902,7 +3902,7 @@
   "book.spectrum.guidebook.primordial_fire.primordial_campfire.text": "The best use for such fierce flames?\\\n\\\n*A barbecue*",
 
   "book.spectrum.guidebook.primordial_brazier.about.text": "I thought it would be a brilliant idea trying to encapsulate furious hellfire in a really confined space. And it was. This Brazier is insanely pretty and absolutely safe… unless you stand on it.\\\n…I think I made it angry.\\\n\\\nCan be toggled using the [Paintbrush](entry://general/paintbrush) and Redstone.",
-  "book.spectrum.guidebook.primordial_brazier.recipe.text": "When I need something to be either *really* pretty, or *really* fried.",
+  "book.spectrum.guidebook.primordial_brazier.recipe.text": "When I want to turn something either *really* pretty, or *really* fried.",
 
   "book.spectrum.guidebook.projectile_rebound.page0.text": "Each level gave me a small chance of [#](449900)bouncing off incoming projectiles[#]().",
   "book.spectrum.guidebook.provider_node.name": "Provider Nodes",

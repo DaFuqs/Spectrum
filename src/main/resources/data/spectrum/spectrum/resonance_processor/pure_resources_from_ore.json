@@ -87,6 +87,18 @@
         "item": "minecraft:netherite_scrap"
       },
       "output": "spectrum:pure_netherite_scrap"
+    },
+    {
+      "input": {
+        "item": "spectrum:raw_azurite"
+      },
+      "output": "spectrum:pure_azurite"
+    },
+    {
+      "input": {
+        "item": "spectrum:raw_malachite"
+      },
+      "output": "spectrum:pure_malachite"
     }
   ]
 }

@@ -70,24 +70,6 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:raw_malachite",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 0,
-                "max": 6
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
           "name": "minecraft:gold_ingot",
           "functions": [
             {

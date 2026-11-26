@@ -42,14 +42,6 @@ public class AzureDikeAttachmentType {
 			AzureDikeAttachmentType::new
 	);
 	
-	public static final IAttachmentCopyHandler<AzureDikeAttachmentType> COPY_HANDLER = (dike, holder, provider) -> {
-		AzureDikeAttachmentType copy = new AzureDikeAttachmentType();
-		copy.maxCharges = dike.maxCharges;
-		copy.ticksToReplenishCharge = dike.ticksToReplenishCharge;
-		copy.ticksToReplenishChargeAfterGettingHit = dike.ticksToReplenishChargeAfterGettingHit;
-		return copy;
-	};
-	
 	public static final AttachmentType<AzureDikeAttachmentType> ATTACHMENT_TYPE =
 			AttachmentType.builder(AzureDikeAttachmentType::new)
 					.serialize(CODEC)

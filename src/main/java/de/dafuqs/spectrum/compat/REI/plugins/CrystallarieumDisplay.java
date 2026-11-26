@@ -24,6 +24,7 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	protected final InkColor inkColor;
 	protected final boolean growsWithoutAdditive;
 	protected final int secondsPerStage;
+	protected final EntryIngredient fluidIngredient;
 	
 	public CrystallarieumDisplay(RecipeHolder<CrystallarieumRecipe> recipe) {
 		super(recipe, inputs(recipe.value()), outputs(recipe.value()));
@@ -36,6 +37,7 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 		this.inkColor = recipe.value().getInkColor();
 		this.growsWithoutAdditive = recipe.value().growsWithoutAdditive();
 		this.secondsPerStage = recipe.value().getSecondsPerGrowthStage();
+		this.fluidIngredient = REIHelper.ofFluidIngredient(recipe.value().getFluid());
 	}
 	
 	public static List<EntryIngredient> inputs(CrystallarieumRecipe recipe) {

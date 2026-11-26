@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.ink.sink.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
+import dev.emi.emi.api.neoforge.*;
 import me.shedaniel.math.*;
 import me.shedaniel.rei.api.client.gui.*;
 import me.shedaniel.rei.api.client.gui.widgets.*;
@@ -41,21 +42,22 @@ public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumD
 	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, CrystallarieumDisplay display) {
 		// input
 		EntryIngredient input = display.getInputEntries().get(0);
-		widgets.add(Widgets.createSlot(new Point(startPoint.x - 2, startPoint.y + 1 + 8)).markInput().entries(input));
+		widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 2)).markInput().entries(input));
+		widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 22)).markInput().entries(display.fluidIngredient));
 		
 		// crystallarieum
 		ItemStack crystallarieumStack = CrystallarieumBlock.withColor(SpectrumBlocks.CRYSTALLARIEUM.toStack(), display.inkColor);
-		widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 3 + 16)).entries(EntryIngredients.of(crystallarieumStack)).disableBackground());
+		widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 22)).entries(EntryIngredients.of(crystallarieumStack)).disableBackground());
 		
 		// output arrow
-		widgets.add(Widgets.createArrow(new Point(startPoint.x + 39, startPoint.y + 1 + 8)).animationDurationTicks(display.secondsPerStage));
+		widgets.add(Widgets.createArrow(new Point(startPoint.x + 39, startPoint.y + 9)).animationDurationTicks(display.secondsPerStage));
 		
 		// growth stages
 		Iterator<EntryIngredient> it = display.growthStages.iterator();
-		widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 3)).markInput().entries(it.next()));
+		widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 2)).markInput().entries(it.next()));
 		int x = 0;
 		while (it.hasNext()) {
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 66 + x * 20, startPoint.y + 1 + 8)).markInput().entries(it.next()));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 66 + x * 20, startPoint.y + 9)).markInput().entries(it.next()));
 			x++;
 		}
 		

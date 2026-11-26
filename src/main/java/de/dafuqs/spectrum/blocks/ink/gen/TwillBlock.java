@@ -8,8 +8,10 @@ import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jspecify.annotations.Nullable;
 
 import javax.annotation.*;
@@ -17,6 +19,7 @@ import java.util.*;
 
 public class TwillBlock extends BaseInkBlock {
 	
+	protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 13.0D, 15.0D);
 	public static final MapCodec<TwillBlock> CODEC = simpleCodec(TwillBlock::new);
 	
 	public TwillBlock(Properties settings) {
@@ -26,6 +29,11 @@ public class TwillBlock extends BaseInkBlock {
 	@Override
 	public MapCodec<? extends TwillBlock> codec() {
 		return CODEC;
+	}
+	
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return SHAPE;
 	}
 	
 	@Override

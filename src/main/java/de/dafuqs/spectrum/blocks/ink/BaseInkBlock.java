@@ -19,8 +19,6 @@ import org.jspecify.annotations.*;
 
 public abstract class BaseInkBlock extends HorizontalDirectionalBlock implements EntityBlock {
 	
-	protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 13.0D, 15.0D);
-	
 	public BaseInkBlock(Properties settings) {
 		super(settings);
 	}
@@ -28,11 +26,6 @@ public abstract class BaseInkBlock extends HorizontalDirectionalBlock implements
 	@Override
 	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
-	}
-	
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return SHAPE;
 	}
 	
 	@Override

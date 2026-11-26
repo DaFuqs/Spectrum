@@ -8,8 +8,10 @@ import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jspecify.annotations.Nullable;
 
 import java.util.*;
@@ -17,6 +19,7 @@ import java.util.*;
 public class DaydreamerBlock extends BaseInkBlock {
 	
 	public static final MapCodec<DaydreamerBlock> CODEC = BlockBehaviour.simpleCodec(DaydreamerBlock::new);
+	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 	
 	public DaydreamerBlock(BlockBehaviour.Properties settings) {
 		super(settings);
@@ -25,6 +28,11 @@ public class DaydreamerBlock extends BaseInkBlock {
 	@Override
 	public MapCodec<? extends DaydreamerBlock> codec() {
 		return CODEC;
+	}
+	
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return SHAPE;
 	}
 	
 	@Override

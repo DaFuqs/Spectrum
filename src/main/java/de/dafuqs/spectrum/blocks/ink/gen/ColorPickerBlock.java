@@ -9,8 +9,10 @@ import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.phys.shapes.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
@@ -18,6 +20,7 @@ import java.util.*;
 public class ColorPickerBlock extends BaseInkBlock {
 	
 	public static final MapCodec<ColorPickerBlock> CODEC = simpleCodec(ColorPickerBlock::new);
+	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D);
 	
 	public ColorPickerBlock(Properties settings) {
 		super(settings);
@@ -26,6 +29,11 @@ public class ColorPickerBlock extends BaseInkBlock {
 	@Override
 	public MapCodec<? extends ColorPickerBlock> codec() {
 		return CODEC;
+	}
+	
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return SHAPE;
 	}
 	
 	@Override

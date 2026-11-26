@@ -1,0 +1,48 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.aeronautics.name",
+  "icon": "ae2:controller",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "aeronautics"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.mod_integration.aeronautics.name",
+      "text": "book.spectrum.guidebook.mod_integration.aeronautics.about.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "enchantment.spectrum.resonance",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
+      },
+      "items": [
+        {
+          "id": "aeronautics:levitite"
+        },
+        {
+          "id": "aeronautics:pearlescent_levitite"
+        }
+      ],
+      "text": "book.spectrum.guidebook.mod_integration.aeronautics.resonance.text"
+    }
+  ]
+}

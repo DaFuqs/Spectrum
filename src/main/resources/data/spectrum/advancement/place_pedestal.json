@@ -12,7 +12,7 @@
   },
   "parent": "spectrum:collect_any_basic_shard",
   "criteria": {
-    "interact_with_existing_pedestal": {
+    "interacted_with_existing_pedestal": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
         "player": [
@@ -116,7 +116,7 @@
   },
   "requirements": [
     [
-      "interact_with_existing_pedestal",
+      "interacted_with_existing_pedestal",
       "used_pedestal1",
       "used_pedestal2",
       "used_pedestal3",

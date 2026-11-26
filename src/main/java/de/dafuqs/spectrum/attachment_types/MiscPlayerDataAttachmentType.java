@@ -3,8 +3,7 @@ package de.dafuqs.spectrum.attachment_types;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.entity.*;
-import de.dafuqs.spectrum.networking.s2c_payloads.*;
+import de.dafuqs.spectrum.api.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
@@ -25,6 +24,7 @@ public class MiscPlayerDataAttachmentType {
 	public static final String NAME = "misc_player_data";
 	
 	public static final Codec<MiscPlayerDataAttachmentType> CODEC = RecordCodecBuilder.create(i -> i.group(
+			Codec.INT.optionalFieldOf("last_played_spectrum_version", -1).forGetter(m -> m.lastPlayedSpectrumVersion),
 			Codec.INT.fieldOf("ticky_before_sleep").forGetter(m -> m.ticksBeforeSleep),
 			Codec.INT.fieldOf("sleeping_window").forGetter(m -> m.sleepingWindow),
 			Codec.INT.fieldOf("sleep_invincibility").forGetter(m -> m.sleepInvincibility),
@@ -43,6 +43,7 @@ public class MiscPlayerDataAttachmentType {
 	private @Nullable Player player;
 	
 	// Sleep
+	private int lastPlayedSpectrumVersion = SpectrumVersions.UNSET;
 	private int ticksBeforeSleep = -1, sleepingWindow = -1, sleepInvincibility;
 	private List<MobEffectInstance> sleepAlteringEffects = List.of();
 	
@@ -53,8 +54,9 @@ public class MiscPlayerDataAttachmentType {
 	// Gleaming Pin
 	private long lastGleamingPinTriggerTick;
 	
-	public static MiscPlayerDataAttachmentType ofCodec(int ticksBeforeSleep, int sleepingWindow, int sleepInvincibility, List<MobEffectInstance> sleepAlteringEffects) {
+	public static MiscPlayerDataAttachmentType ofCodec(int lastPlayedSpectrumVersion, int ticksBeforeSleep, int sleepingWindow, int sleepInvincibility, List<MobEffectInstance> sleepAlteringEffects) {
 		MiscPlayerDataAttachmentType data = new MiscPlayerDataAttachmentType();
+		data.lastPlayedSpectrumVersion = lastPlayedSpectrumVersion;
 		data.ticksBeforeSleep = ticksBeforeSleep;
 		data.sleepingWindow = sleepingWindow;
 		data.sleepInvincibility = sleepInvincibility;
@@ -65,6 +67,14 @@ public class MiscPlayerDataAttachmentType {
 	public void tick() {
 		tickSleep();
 		tickSwordMechanics();
+	}
+	
+	public int getLastPlayedSpectrumVersion() {
+		return lastPlayedSpectrumVersion;
+	}
+	
+	public void setLastPlayedSpectrumVersion(int version) {
+		this.lastPlayedSpectrumVersion = version;
 	}
 	
 	private boolean isInModifiedMotionState() {

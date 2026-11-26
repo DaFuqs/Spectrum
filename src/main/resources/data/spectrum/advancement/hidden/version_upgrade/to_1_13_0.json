@@ -1,0 +1,11 @@
+{
+  "criteria": {
+    "updated_from_unknown_to_1_13_0": {
+      "trigger": "spectrum:mod_updated",
+      "conditions": {
+        "previous_version": 1,
+        "current_version": 2
+      }
+    }
+  }
+}

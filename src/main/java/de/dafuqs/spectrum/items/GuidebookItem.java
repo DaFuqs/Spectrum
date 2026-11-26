@@ -5,6 +5,7 @@ import com.klikli_dev.modonomicon.client.gui.book.*;
 import com.klikli_dev.modonomicon.item.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.network.chat.*;
@@ -70,10 +71,11 @@ public class GuidebookItem extends ModonomiconItem implements LoomPatternProvide
 	
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-		if (!world.isClientSide() && user instanceof ServerPlayer serverPlayerEntity) {
+		if (!world.isClientSide() && user instanceof ServerPlayer serverPlayer) {
 			// Process new advancement unlocks that got added
 			// after spectrum has been installed / updated
-			reprocessAdvancementUnlocks(serverPlayerEntity);
+			SpectrumVersions.updateLastPlayedVersion(serverPlayer);
+			reprocessAdvancementUnlocks(serverPlayer);
 		}
 		
 		return super.use(world, user, hand);

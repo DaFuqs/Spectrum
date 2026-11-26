@@ -3352,6 +3352,10 @@
   "book.spectrum.guidebook.mod_integration.colorfulazaleas.page1.text": "Colored Azalea leaves, including their blooming variant, contain quite a bit of magical energy, able to be converted into Ink.",
   "book.spectrum.guidebook.mod_integration.colorfulazaleas.page2.text": "While not highly efficient, flowering and drooping leaves will do, too.",
 
+  "book.spectrum.guidebook.mod_integration.aeronautics.name": "Create Aeronautics",
+  "book.spectrum.guidebook.mod_integration.aeronautics.about.text": "Many blocks have their weight set for Create Aeronautics to pick them up as heavy / light.\\\n...including a few surprises!\\\n\\\n*fly with me~*",
+  "book.spectrum.guidebook.mod_integration.aeronautics.resonance.text": "Resonance is able to harvest Levitite with ease.",
+
   "book.spectrum.guidebook.mod_integration.ae2.name": "Applied Energistics",
   "book.spectrum.guidebook.mod_integration.ae2.page0.text": "\"Any technology advanced enough is indistinguishable from magic\", I once heard.\\\n\\\nI'm still not entirely sure how this system manages to store so many blocks in such a small space, but since I regularly walk around with hundreds of square metres of dirt, I've never bothered to question it.",
   "book.spectrum.guidebook.mod_integration.ae2.page1.text": "Looks like the [#](bb00bb)Crystal Growth Accelerator[#]() can speed up the growth of all kinds of Gemstone Buds!",
@@ -4313,6 +4317,12 @@
   "book.spectrum.guidebook.vantaclast.recipe.text": "*Do not the soup.*",
   "book.spectrum.guidebook.daydreamer.about.text": "I have come a long way and it shows. I am far from *getting* it, I feel, but I must still admit a certain pride.\\\n\\\nWhat began as a simple decorative piece has become one of my finest creations: a chromatic sundial, capable of weaving Ink directly from sunlight, cloud cover, and the passing hours.",
   "book.spectrum.guidebook.daydreamer.recipe.text": "*The colors possess character, shifting with the mood of the sky itself, each in its own way.*\\\n*I offer a place to rest and they give freely.*",
+
+  "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.name": "Spectrum 1.13",
+  "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.description": "The Colorful World Update",
+  "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.page1.text": "This update brings you:\n- many new decorational blocks\n- many options for Ink generation\n- the Tinting Station\n- contextual information when hovering over blocks using the Paintbrush, like the Enchanter\n- colored vegetation\n- the full colored, noxwood and gala sets\n- lots and lots of bug fixes\n- new bugs",
+  "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.page2.text": "I noticed that you come from a version from before Spectrum 1.13. That means a few block ids were switched around and you will have to rebuild some of your structures, sorry!\\\n\\\n++[#](0000ff)[Some treats for you as an apology](command://give_moonstone_blocks)++.",
+  "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.command.success": "Time to rebuild!",
 
   "commands.spectrum.primordial_fire.put_on.success": "Set %d entities on primordial fire",
   "commands.spectrum.primordial_fire.put_out.success": "Extinguished %d entities",

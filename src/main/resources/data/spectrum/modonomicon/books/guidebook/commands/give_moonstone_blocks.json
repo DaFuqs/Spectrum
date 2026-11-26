@@ -1,0 +1,9 @@
+{
+  "command": "/loot give @s loot spectrum:commands/version_upgrade_from_unknown_to_1_13_0",
+  "max_uses": 1,
+  "allowed_entries": [
+    "spectrum:general/mod_updates/from_unknown_to_1_13_0"
+  ],
+  "permission_level": 2,
+  "success_message": "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.command.success"
+}

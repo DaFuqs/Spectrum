@@ -1,0 +1,29 @@
+{
+  "name": "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.name",
+  "description": "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.description",
+  "icon": {
+    "item": "spectrum:cyan_symbolic_basalt"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": -12,
+  "y": -5,
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/version_upgrade/to_1_13_0"
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.name",
+      "text": "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.page2.text"
+    }
+  ]
+}

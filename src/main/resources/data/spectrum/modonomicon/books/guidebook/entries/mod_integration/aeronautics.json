@@ -1,6 +1,6 @@
 {
   "name": "book.spectrum.guidebook.mod_integration.aeronautics.name",
-  "icon": "ae2:controller",
+  "icon": "aeronautics:levitite",
   "condition": {
     "type": "modonomicon:and",
     "children": [

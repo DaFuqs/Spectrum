@@ -3150,7 +3150,7 @@
   "book.spectrum.guidebook.ink.pigment_converting.title": "생산 및 보관",
   "book.spectrum.guidebook.ink.page2.text": "잉크는 넘치는 곳에서 부족한 곳으로 자연스럽게 흘러간다.",
   "book.spectrum.guidebook.ink.page2.title": "잉크 전송",
-  "book.spectrum.guidebook.ink.page3.text": "잉크를 저장하는 두 물체를 연결하면, 예를 들어 [색상 추출기](entry://ink/color_picker) 안에 [잉크 플라스크](entry://ink/ink_flask)를 넣었을 때와 같은 상황일 때, 두 물체 사이의 잉크 양이 서서히 평형을 이룰 때까지 흘러간다.\\\n두 물체 간의 잉크 양 차이가 클수록, 평형이 되는 과정이 더 빨라진다.\\\n\\\n이 흐름을 조작할 방법은 찾지 못했다. 나의 이해가 부족한 만큼, 참으로 알다가도 모를 현상이다.",
+  "book.spectrum.guidebook.ink.page3.text": "잉크를 저장하는 두 물체를 연결하면, 예를 들어 [색상 추출기](entry://ink/color_picker) 안에 [잉크 플라스크](entry://ink/ink_flask)를 넣었을 때와 같은 상황일 때, 두 물체 사이의 잉크가 서서히 평형을 이룬다.\\\n두 물체 간의 잉크 양 차이가 클수록, 평형이 되는 과정이 더 빨라진다.\\\n\\\n이 흐름을 조작할 방법은 찾지 못했다. 나의 이해가 부족한 만큼, 참으로 알다가도 모를 현상이다.",
   "book.spectrum.guidebook.ink_assortment.page0.text": "자그마한 유리병들이 옹기종기 모여 있는 이 컬렉션은, 비록 양은 적더라도 온갖 종류의 [잉크](entry://ink/ink)를 빠짐없이 보관할 수 있게 해준다.",
   "book.spectrum.guidebook.ink_flask.page0.text": "잉크 플라스크는 단일 색상의 [잉크](entry://ink/ink)를 아주 넉넉하게 담아둘 수 있다.",
   "book.spectrum.guidebook.ink_flask.page1.text": "[색상 추출기](entry://ink/color_picker)를 이용해 이 병을 채울 수 있으며 [#](449900)조합창[#]()에서 비울 수 있다.",
@@ -3351,6 +3351,10 @@
   "book.spectrum.guidebook.mod_integration.colorfulazaleas.page0.text": "색깔 나무들!\\\n음, 조금 다르긴 하다. 그래도 어쨌든.\\\n\\\n비슷하지만, [내가 직접 만들어낸 색깔 나무](entry://general/colored_trees)와 똑같지는 않다. 분명 뭔가가 있을 텐데...",
   "book.spectrum.guidebook.mod_integration.colorfulazaleas.page1.text": "만개한 변종을 포함한 색깔 진달래 잎들은 상당한 마법 에너지를 품고 있으며, 잉크로 변환할 수 있다.",
   "book.spectrum.guidebook.mod_integration.colorfulazaleas.page2.text": "효율이 아주 좋지는 않지만, 꽃이 핀 잎이나 늘어진 잎도 사용할 수 있다.",
+
+  "book.spectrum.guidebook.mod_integration.aeronautics.name": "Create Aeronautics",
+  "book.spectrum.guidebook.mod_integration.aeronautics.about.text": "많은 블록들의 무게가 Create Aeronautics를 위해 무겁거나 가볍도록 설정되었다.\\\n...몇 가지 깜짝 요소를 포함해서!\\\n\\\n*나와 함께 날아봐~*",
+  "book.spectrum.guidebook.mod_integration.aeronautics.resonance.text": "공명을 사용하면 부양석을 손쉽게 채취할 수 있다.",
 
   "book.spectrum.guidebook.mod_integration.ae2.name": "Applied Energistics",
   "book.spectrum.guidebook.mod_integration.ae2.page0.text": "\"충분히 발달한 기술은 마법과 구별할 수 없다.\" 예전에 이런 말을 들은 적이 있다.\\\n\\\n이 시스템이 도대체 어떻게 그 수많은 블록들을 이토록 작은 공간에 압축해 넣는 건지 아직도 완벽히 이해하진 못했지만, 나 역시 평소에 수백 제곱미터 분량의 흙을 주머니에 넣고 돌아다니는 처지니, 굳이 따지고 들고 싶진 않다.",
@@ -3898,7 +3902,7 @@
   "book.spectrum.guidebook.primordial_fire.primordial_campfire.text": "이런 맹렬한 불꽃을 활용할 가장 좋은 방법이 있냐고?\\\n\\\n*바베~큐*",
 
   "book.spectrum.guidebook.primordial_brazier.about.text": "맹렬한 지옥불을 비좁은 공간에 봉인하는 건 정말 기발한 아이디어라고 생각했고, 실제로 그랬다. 이 화덕은 엄청나게 예쁘고 완전히 안전하다… 그 위에 올라서지만 않는다면.\\\n…이걸 화나게 만든 것 같다.\\\n\\\n[붓](entry://general/paintbrush)과 레드스톤을 사용하여 켜고 끌 수 있다.",
-  "book.spectrum.guidebook.primordial_brazier.recipe.text": "무언가 *정말* 예쁘거나, 아니면 *정말* 구워질 게 필요하다면",
+  "book.spectrum.guidebook.primordial_brazier.recipe.text": "무언가를 *죽여주게* 예쁘게, 아니면 *정말로 죽여줄 게* 필요하다면",
 
   "book.spectrum.guidebook.projectile_rebound.page0.text": "레벨이 오를수록 [#](449900)날아오는 투사체를 튕겨낼[#]() 확률이 조금씩 생겼다.",
   "book.spectrum.guidebook.provider_node.name": "제공 노드",
@@ -4313,6 +4317,12 @@
   "book.spectrum.guidebook.vantaclast.recipe.text": "*수프는 안된다.*",
   "book.spectrum.guidebook.daydreamer.about.text": "긴 여정을 걸어왔고 이제 그 결실이 드러난다. 아직 완전한 *이해*와는, 거리가 먼 것 같지만, 그래도 어느 정도 자부심을 느낀다.\\\n\\\n단순한 장식물로 시작했던 것이 이제는 최고의 작품 중 하나가 되었다. 바로 햇빛과 구름, 흘러가는 시간에서 직접 잉크를 쥐어짤 수 있는 색채 해시계다.",
   "book.spectrum.guidebook.daydreamer.recipe.text": "*색은 저마다의 개성을 지니고 있고, 하늘의 분위기에 따라 각기 다른 방식으로 변화한다.*\\\n*휴식처를 마련해 주면 그것들도 아낌없이 베푼다.*",
+
+  "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.name": "스펙트럼 1.13",
+  "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.description": "다채로운 세계 업데이트",
+  "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.page1.text": "이번 업데이트에서 추가된 것:\n- 다양한 새로운 장식용 블록\n- 다양한 잉크 생성 선택지\n- 염색대\n- 마법사처럼, 붓으로 블록에 마우스를 올렸을 때 표시되는 상황 정보\n- 색깔 식물\n- 완전한 색깔, 어스름나무, 낙유목 세트\n- 정말 정말 많은 버그 수정\n- 새로운 버그",
+  "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.page2.text": "스펙트럼 1.13 이전 버전을 사용 중인 것 같습니다. 몇몇 블록 ID가 바뀌었기 때문에 일부 구조물을 다시 만들어야 할 것입니다. 미안해요!\\\n\\\n++[#](0000ff)[사과의 마음으로 준비한 작은 선물](command://give_moonstone_blocks)++.",
+  "book.spectrum.guidebook.general.mod_updates.from_unknown_to_1_13_0.command.success": "새로 만들 시간이다!",
 
   "commands.spectrum.primordial_fire.put_on.success": "%d개의 개체에 태고의 불을 붙였습니다",
   "commands.spectrum.primordial_fire.put_out.success": "%d개의 개체의 불을 껐습니다",

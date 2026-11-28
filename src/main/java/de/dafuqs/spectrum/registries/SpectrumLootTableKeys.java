@@ -29,6 +29,7 @@ public class SpectrumLootTableKeys {
 	
 	public static final ResourceKey<LootTable> JADE_VINE_HARVESTING_PETALS = keyOf("gameplay/jade_vine_petal_harvesting");
 	public static final ResourceKey<LootTable> JADE_VINE_HARVESTING_NECTAR = keyOf("gameplay/jade_vine_nectar_harvesting");
+	public static final ResourceKey<LootTable> JADE_VINE_HARVESTING_SNIPPING = keyOf("gameplay/jade_vine_nectar_snipping");
 	
 	public static final ResourceKey<LootTable> SLATE_NOXCAP_STRIPPING = keyOf("gameplay/stripping/slate_noxcap_stripping");
 	public static final ResourceKey<LootTable> EBONY_NOXCAP_STRIPPING = keyOf("gameplay/stripping/ebony_noxcap_stripping");

@@ -22,6 +22,7 @@ import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
+import net.neoforged.neoforge.common.*;
 import org.jspecify.annotations.*;
 
 import java.util.*;
@@ -107,7 +108,9 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 		if (growthStage.isFullyGrown()) {
 			boolean harvested = false;
 			
-			if (handStack.is(Items.GLASS_BOTTLE)) {
+			boolean isBottle = handStack.is(Items.GLASS_BOTTLE);
+			boolean isShears = handStack.is(Tags.Items.TOOLS_SHEAR);
+			if (isBottle || isShears) {
                 if (world.isClientSide()) {
                     return ItemInteractionResult.SUCCESS;
                 } else {
@@ -118,7 +121,11 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
                     handStack.shrink(1);
                     setHarvested(state, (ServerLevel) world, pos);
 
-                    List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, handStack, SpectrumLootTableKeys.JADE_VINE_HARVESTING_NECTAR);
+					ResourceKey<LootTable> lootTable = SpectrumLootTableKeys.JADE_VINE_HARVESTING_NECTAR;
+					if(isShears) {
+						lootTable = SpectrumLootTableKeys.JADE_VINE_HARVESTING_SNIPPING;
+					}
+                    List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, handStack, lootTable);
                     for (ItemStack harvestedStack : harvestedStacks) {
                         player.getInventory().placeItemBackInInventory(harvestedStack);
                     }
@@ -127,7 +134,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 			}
 			
 			if (!harvested) {
-				player.displayClientMessage(Component.translatable("message.spectrum.needs_item_to_harvest").append(Items.GLASS_BOTTLE.getDescription()), true);
+				player.displayClientMessage(Component.translatable("message.spectrum.needs_item_to_harvest", Items.GLASS_BOTTLE.getDescription(), Items.SHEARS.getDescription()), true);
 			}
 			
 			return ItemInteractionResult.sidedSuccess(world.isClientSide());
@@ -262,10 +269,6 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffT
 			} else {
 				return LEAVES;
 			}
-		}
-		
-		public static boolean isFullyGrown(int age) {
-			return age == BlockStateProperties.MAX_AGE_7;
 		}
 		
 		public boolean isFullyGrown() {

@@ -5338,7 +5338,7 @@
   "jukebox_song.spectrum.discovery": "DaveJF – The Mist",
   "jukebox_song.spectrum.le_fishe_au_chocolat": "A Culinary Identity Crisis",
 
-  "message.spectrum.needs_item_to_harvest": "Harvesting requires a ",
+  "message.spectrum.needs_item_to_harvest": "Harvesting requires a %s or %s",
 
   "multiblock.spectrum.abyssal_vines": "Abyssal Vines",
   "multiblock.spectrum.cinderhearth": "Cinderhearth",

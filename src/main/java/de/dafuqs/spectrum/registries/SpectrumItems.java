@@ -331,7 +331,7 @@ public class SpectrumItems {
 	public static final DeferredItem<Item> SALTED_JARAMEL_TART = register("salted_jaramel_tart", () -> new Item(IS.of().food(SpectrumFoodComponents.SALTED_JARAMEL_TART)));
 	public static final DeferredItem<Item> ASHEN_TART = register("ashen_tart", () -> new Item(IS.of().food(SpectrumFoodComponents.ASHEN_TART)));
 	public static final DeferredItem<Item> WEEPING_TART = register("weeping_tart", () -> new Item(IS.of().food(SpectrumFoodComponents.WEEPING_TART)));
-	public static final DeferredItem<Item> WHISPY_TART = register("whispy_tart", () -> new Item(IS.of().food(SpectrumFoodComponents.WHISPY_TART)));
+	public static final DeferredItem<Item> WHISPY_TART = register("whispy_tart", () -> new WhispyTartItem(IS.of().food(SpectrumFoodComponents.WHISPY_TART)));
 	public static final DeferredItem<Item> PUFF_TART = register("puff_tart", () -> new Item(IS.of().food(SpectrumFoodComponents.PUFF_TART)));
 	
 	public static final DeferredItem<Item> JARAMEL_TRIFLE = register("jaramel_trifle", () -> new Item(IS.of().food(SpectrumFoodComponents.JARAMEL_TRIFLE)));

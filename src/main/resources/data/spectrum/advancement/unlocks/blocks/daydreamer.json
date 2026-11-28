@@ -5,6 +5,18 @@
       "conditions": {
         "advancement_identifier": "spectrum:milestones/unlock_ink_use"
       }
+    },
+    "collected_moonstone_core": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_moonstone_core"
+      }
+    },
+    "collected_pure_resource": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_pure_resource"
+      }
     }
   }
 }

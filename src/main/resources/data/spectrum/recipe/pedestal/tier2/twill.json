@@ -9,12 +9,13 @@
   },
   "experience": 2.0,
   "pattern": [
-    " S ",
+    "FSF",
     "BDB",
     "CCC"
   ],
   "key": {
     "S": "#spectrum:colored_saplings",
+    "F": "spectrum:four_leaf_clover",
     "D": "minecraft:dirt",
     "B": "spectrum:polished_basalt_crest",
     "C": "spectrum:polished_calcite"

@@ -9,10 +9,11 @@
   "experience": 4.0,
   "pattern": [
     "WCB",
-    " P ",
-    "APA"
+    "PMP",
+    "AAA"
   ],
   "key": {
+    "M": "spectrum:moonstone_core",
     "W": "spectrum:white_pigment",
     "C": "spectrum:pure_copper",
     "B": "spectrum:black_pigment",
